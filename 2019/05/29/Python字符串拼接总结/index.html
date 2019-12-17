@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
 <meta name="generator" content="Hexo 4.1.1">
@@ -25,7 +25,7 @@
     version: '7.6.0',
     exturl: false,
     sidebar: {"position":"left","width":200,"display":"post","padding":18,"offset":12,"onmobile":true},
-    copycode: {"enable":false,"show_result":false,"style":null},
+    copycode: {"enable":false,"show_result":true,"style":"mac"},
     back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
     bookmark: {"enable":false,"color":"#222","save":"auto"},
     fancybox: false,
@@ -46,15 +46,15 @@
   };
 </script>
 
-  <meta name="description" content="Python 字符串拼接总结 原文  方法1：加号连接很多语言都支持使用加号连接字符串，Python也不例外，只需要简单的将2个或多个字符串相加就可以完成拼接。 123a &#x3D; &#39;Python&#39;b &#x3D; &#39;私房菜&#39;r &#x3D; a + b  # 输出&#39;Python私房菜&#39;  方法2：使用%操作符在Python 2.6以前，%操作符是唯一一种格式化字符串的方法，它也可以用于连接字符串。 123a &#x3D; &#39;Pyt">
+  <meta name="description" content="原文  方法1：加号连接很多语言都支持使用加号连接字符串，Python也不例外，只需要简单的将2个或多个字符串相加就可以完成拼接。   a &#x3D; &#39;Python&#39; b &#x3D; &#39;私房菜&#39; r &#x3D; a + b  # 输出&#39;Python私房菜&#39;     方法2：使用%操作符在Python 2.6以前，%操作符是唯一一种格式化字符串的方法，它也可以用于连接字符">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Python字符串拼接总结">
 <meta property="og:url" content="http:&#x2F;&#x2F;https&#x2F;&#x2F;lyvivian0077.github.io&#x2F;2019&#x2F;05&#x2F;29&#x2F;Python%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%8B%BC%E6%8E%A5%E6%80%BB%E7%BB%93&#x2F;index.html">
 <meta property="og:site_name" content="总有刁民想要害朕">
-<meta property="og:description" content="Python 字符串拼接总结 原文  方法1：加号连接很多语言都支持使用加号连接字符串，Python也不例外，只需要简单的将2个或多个字符串相加就可以完成拼接。 123a &#x3D; &#39;Python&#39;b &#x3D; &#39;私房菜&#39;r &#x3D; a + b  # 输出&#39;Python私房菜&#39;  方法2：使用%操作符在Python 2.6以前，%操作符是唯一一种格式化字符串的方法，它也可以用于连接字符串。 123a &#x3D; &#39;Pyt">
+<meta property="og:description" content="原文  方法1：加号连接很多语言都支持使用加号连接字符串，Python也不例外，只需要简单的将2个或多个字符串相加就可以完成拼接。   a &#x3D; &#39;Python&#39; b &#x3D; &#39;私房菜&#39; r &#x3D; a + b  # 输出&#39;Python私房菜&#39;     方法2：使用%操作符在Python 2.6以前，%操作符是唯一一种格式化字符串的方法，它也可以用于连接字符">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2019-05-29T02:02:20.000Z">
-<meta property="article:modified_time" content="2019-12-13T08:15:11.593Z">
+<meta property="article:modified_time" content="2019-12-17T00:31:55.559Z">
 <meta property="article:author" content="lyvivian0077">
 <meta name="twitter:card" content="summary">
 
@@ -99,12 +99,12 @@
   .use-motion .logo-line-before i { left: initial; }
   .use-motion .logo-line-after i { right: initial; }
   </style>
-</noscript>
+</noscript><!-- hexo-inject:begin --><link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/prism/1.15.0/themes/prism.min.css'><link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/prism/1.15.0/plugins/line-numbers/prism-line-numbers.min.css'><!-- hexo-inject:end -->
 
-</head>
+<link rel="stylesheet" href="/css/prism.css" type="text/css"></head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
-  <div class="container">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container">
     <div class="headband"></div>
 
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -199,7 +199,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-12-13 17:15:11" itemprop="dateModified" datetime="2019-12-13T17:15:11+09:00">2019-12-13</time>
+                <time title="Modified: 2019-12-17 09:31:55" itemprop="dateModified" datetime="2019-12-17T09:31:55+09:00">2019-12-17</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -224,26 +224,67 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="Python-字符串拼接总结"><a href="#Python-字符串拼接总结" class="headerlink" title="Python 字符串拼接总结"></a>Python 字符串拼接总结</h1><ul>
+        <ul>
 <li><a href="https://juejin.im/post/5b350624f265da5954426713" target="_blank" rel="noopener">原文</a></li>
 </ul>
 <h2 id="方法1：加号连接"><a href="#方法1：加号连接" class="headerlink" title="方法1：加号连接"></a>方法1：加号连接</h2><p>很多语言都支持使用加号连接字符串，Python也不例外，只需要简单的将2个或多个字符串相加就可以完成拼接。</p>
-<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a = <span class="hljs-string">'Python'</span></span><br><span class="line">b = <span class="hljs-string">'私房菜'</span></span><br><span class="line">r = a + b  <span class="hljs-comment"># 输出'Python私房菜'</span></span><br></pre></td></tr></table></figure>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style="" ><code class="language-python">a = &#39;Python&#39;
+b = &#39;私房菜&#39;
+r = a + b  # 输出&#39;Python私房菜&#39;
+</code></pre>
+
+
 
 <h2 id="方法2：使用-操作符"><a href="#方法2：使用-操作符" class="headerlink" title="方法2：使用%操作符"></a>方法2：使用<code>%</code>操作符</h2><p>在Python 2.6以前，<code>%</code>操作符是唯一一种格式化字符串的方法，它也可以用于连接字符串。</p>
-<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a = <span class="hljs-string">'Python'</span></span><br><span class="line">b = <span class="hljs-string">'私房菜'</span></span><br><span class="line">r = <span class="hljs-string">'%s%s'</span> % (a, b)  <span class="hljs-comment"># 输出'Python私房菜'</span></span><br></pre></td></tr></table></figure>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style="" ><code class="language-python">a = &#39;Python&#39;
+b = &#39;私房菜&#39;
+r = &#39;%s%s&#39; % (a, b)  # 输出&#39;Python私房菜&#39;
+</code></pre>
+
+
 
 <h2 id="方法3：使用format方法"><a href="#方法3：使用format方法" class="headerlink" title="方法3：使用format方法"></a>方法3：使用<code>format</code>方法</h2><p>format方法是Python 2.6中出现的一种代替<code>%</code>操作符的字符串格式化方法，同样可以用来连接字符串。</p>
-<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a = <span class="hljs-string">'Python'</span></span><br><span class="line">b = <span class="hljs-string">'私房菜'</span></span><br><span class="line">r = <span class="hljs-string">'&#123;&#125;&#123;&#125;'</span>.format(a, b)</span><br></pre></td></tr></table></figure>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style="" ><code class="language-python">a = &#39;Python&#39;
+b = &#39;私房菜&#39;
+r = &#39;{}{}&#39;.format(a, b)
+</code></pre>
+
+
 
 <h2 id="方法4：使用f-string"><a href="#方法4：使用f-string" class="headerlink" title="方法4：使用f-string"></a>方法4：使用<code>f-string</code></h2><p>Python 3.6中引入了Formatted String Literals（字面量格式化字符串），简称f-string，<code>f-string</code>是<code>%</code>操作符和<code>format</code>方法的进化版，使用<code>f-string</code>连接字符串的方法和使用<code>%</code>操作符、<code>format</code>方法类似。</p>
-<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a = <span class="hljs-string">'Python'</span></span><br><span class="line">b = <span class="hljs-string">'私房菜'</span></span><br><span class="line">r = <span class="hljs-string">f'<span class="hljs-subst">&#123;a&#125;</span><span class="hljs-subst">&#123;b&#125;</span>'</span></span><br></pre></td></tr></table></figure>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style="" ><code class="language-python">a = &#39;Python&#39;
+b = &#39;私房菜&#39;
+r = f&#39;{a}{b}&#39;
+</code></pre>
+
+
 
 <h2 id="方法5：使用str-join-方法"><a href="#方法5：使用str-join-方法" class="headerlink" title="方法5：使用str.join()方法"></a>方法5：使用<code>str.join()</code>方法</h2><p>字符串有一个内置方法<code>join</code>，其参数是一个序列类型，例如数组或者元组等。</p>
-<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a = <span class="hljs-string">'Python'</span> </span><br><span class="line">b = <span class="hljs-string">'私房菜'</span></span><br><span class="line">r = <span class="hljs-string">''</span>.join([a, b])</span><br></pre></td></tr></table></figure>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style="" ><code class="language-python">a = &#39;Python&#39; 
+b = &#39;私房菜&#39;
+r = &#39;&#39;.join([a, b])
+</code></pre>
+
+
 
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>连接少量字符串时<br>使用加号连接符在性能和可读性上都是明智的，如果对可读性有更高的要求，并且使用的Python 3.6以上版本，<code>f-string</code>也是一个非常好的选择，例如下面这种情况，<code>f-string</code>的可读性显然比加号连接好得多。</p>
-<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a = <span class="hljs-string">f'姓名：<span class="hljs-subst">&#123;name&#125;</span> 年龄：<span class="hljs-subst">&#123;age&#125;</span> 性别：<span class="hljs-subst">&#123;gender&#125;</span>'</span></span><br><span class="line">b = <span class="hljs-string">'姓名：'</span> + name + <span class="hljs-string">'年龄：'</span> + age + <span class="hljs-string">'性别：'</span> + gender</span><br></pre></td></tr></table></figure>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style="" ><code class="language-python">a = f&#39;姓名：{name} 年龄：{age} 性别：{gender}&#39;
+b = &#39;姓名：&#39; + name + &#39;年龄：&#39; + age + &#39;性别：&#39; + gender
+</code></pre>
+
+
 
 <p><strong>连接大量字符串时</strong> <code>join</code>和<code>f-string</code>都是性能最好的选择，选择时依然取决于你使用的Python版本以及对可读性的要求，<code>f-string</code>在连接大量字符串时可读性并不一定好。<strong>切记不要使用加号连接，尤其是在for循环中。</strong></p>
 
@@ -327,7 +368,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Python-字符串拼接总结"><span class="nav-number">1.</span> <span class="nav-text">Python 字符串拼接总结</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#方法1：加号连接"><span class="nav-number">1.1.</span> <span class="nav-text">方法1：加号连接</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#方法2：使用-操作符"><span class="nav-number">1.2.</span> <span class="nav-text">方法2：使用%操作符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#方法3：使用format方法"><span class="nav-number">1.3.</span> <span class="nav-text">方法3：使用format方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#方法4：使用f-string"><span class="nav-number">1.4.</span> <span class="nav-text">方法4：使用f-string</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#方法5：使用str-join-方法"><span class="nav-number">1.5.</span> <span class="nav-text">方法5：使用str.join()方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">1.6.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#方法1：加号连接"><span class="nav-number">1.</span> <span class="nav-text">方法1：加号连接</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#方法2：使用-操作符"><span class="nav-number">2.</span> <span class="nav-text">方法2：使用%操作符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#方法3：使用format方法"><span class="nav-number">3.</span> <span class="nav-text">方法3：使用format方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#方法4：使用f-string"><span class="nav-number">4.</span> <span class="nav-text">方法4：使用f-string</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#方法5：使用str-join-方法"><span class="nav-number">5.</span> <span class="nav-text">方法5：使用str.join()方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">6.</span> <span class="nav-text">总结</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -397,6 +438,8 @@
   </div>
 
   
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='99' src="/lib/canvas-nest/canvas-nest.min.js"></script>
   <script src="/lib/anime.min.js"></script>
 
 <script src="/js/utils.js"></script>
@@ -405,7 +448,7 @@
 <script src="/js/schemes/muse.js"></script>
 
 
-<script src="/js/next-boot.js"></script>
+<script src="/js/next-boot.js"></script><!-- hexo-inject:begin --><script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/prism/1.15.0/prism.min.js'></script><script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/prism/1.15.0/plugins/line-numbers/prism-line-numbers.min.js'></script><script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/prism/1.15.0/plugins/normalize-whitespace/prism-normalize-whitespace.min.js'></script><!-- hexo-inject:end -->
 
 
 
