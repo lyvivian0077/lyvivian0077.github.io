@@ -165,6 +165,214 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://https//lyvivian0077.github.io/2020/01/08/mysql%E3%82%92%E3%82%BD%E3%83%BC%E3%82%B9%E3%81%8B%E3%82%89%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="lyvivian0077">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="总有刁民想要害朕">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/01/08/mysql%E3%82%92%E3%82%BD%E3%83%BC%E3%82%B9%E3%81%8B%E3%82%89%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB/" class="post-title-link" itemprop="url">mysqlをソースからインストール</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-01-08 15:02:28 / Modified: 15:12:49" itemprop="dateCreated datePublished" datetime="2020-01-08T15:02:28+09:00">2020-01-08</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="Linux系のビルドオプション"><a href="#Linux系のビルドオプション" class="headerlink" title="Linux系のビルドオプション"></a>Linux系のビルドオプション</h3><h4 id="MySQL5-6"><a href="#MySQL5-6" class="headerlink" title="MySQL5.6"></a>MySQL5.6</h4>
+<!-- Has Prism -->
+<pre class="line-numbers" style="" ><code class="language-clike">$ cat build-mysql5.6.sh
+export CC=&quot;cc&quot;
+export CXX=&quot;c++&quot;
+export CFLAGS=&quot;-O2 -fPIC -fno-omit-frame-pointer&quot;
+export CXXFLAGS=&quot;${CFLAGS} -Wno-narrowing -felide-constructors -fno-rtti -fexceptions&quot;
+
+#export CXXFLAGS=&quot;${CFLAGS} -Wno-c++11-narrowing -felide-constructors -fno-rtti -fno-exceptions&quot;
+
+cmake \
+-DCMAKE_INSTALL_PREFIX=&quot;&#x2F;home&#x2F;USER&#x2F;myetc&#x2F;mysql&#x2F;5.6&quot; \
+-DINSTALL_DOCDIR=&quot;share&#x2F;doc&#x2F;mysql&quot; \
+-DINSTALL_DOCREADMEDIR=&quot;share&#x2F;doc&#x2F;mysql&quot; \
+-DINSTALL_INCLUDEDIR=&quot;include&#x2F;mysql&quot; \
+-DINSTALL_INFODIR=&quot;info&quot; \
+-DINSTALL_LIBDIR=&quot;lib&#x2F;mysql&quot; \
+-DINSTALL_MANDIR=&quot;man&quot; \
+-DINSTALL_MYSQLSHAREDIR=&quot;share&#x2F;mysql&quot; \
+-DINSTALL_MYSQLTESTDIR=&quot;share&#x2F;mysql&#x2F;tests&quot; \
+-DINSTALL_PLUGINDIR=&quot;lib&#x2F;mysql&#x2F;plugin&quot; \
+-DINSTALL_SBINDIR=&quot;libexec&quot; \
+-DINSTALL_SCRIPTDIR=&quot;bin&quot; \
+-DINSTALL_SHAREDIR=&quot;share&quot; \
+-DINSTALL_SQLBENCHDIR=&quot;share&#x2F;mysql&quot; \
+-DINSTALL_SUPPORTFILESDIR=&quot;share&#x2F;mysql&quot; \
+-DWITH_UNIT_TESTS=0 \
+-DWITH_SSL=system \
+-DWITH_READLINE=1 \
+-DWITH_LIBWRAP=0 \
+-DWITHOUT_SERVER=1 \
+-DWITH_EMBEDDED_SERVER=&quot;ON&quot;
+</code></pre>
+
+
+
+<p><code>make</code><br><code>make install</code></p>
+<h4 id="MySQL5-5"><a href="#MySQL5-5" class="headerlink" title="MySQL5.5"></a>MySQL5.5</h4>
+<!-- Has Prism -->
+<pre class="line-numbers" style="" ><code class="language-clike">
+$ cat build-mysql5.5.sh
+export CC=&quot;cc&quot;
+export CXX=&quot;c++&quot;
+export CFLAGS=&quot;-O2 -fPIC -fno-omit-frame-pointer&quot;
+export CXXFLAGS=&quot;${CFLAGS} -Wno-narrowing -felide-constructors -fno-rtti -fexceptions -fpermissive &quot;
+
+#export CXXFLAGS=&quot;${CFLAGS} -Wno-c++11-narrowing -felide-constructors -fno-rtti -fno-exceptions&quot;
+
+cmake \
+-DCMAKE_INSTALL_PREFIX=&quot;&#x2F;home&#x2F;USER&#x2F;myetc&#x2F;mysql&#x2F;5.5&quot; \
+-DINSTALL_DOCDIR=&quot;share&#x2F;doc&#x2F;mysql&quot; \
+-DINSTALL_DOCREADMEDIR=&quot;share&#x2F;doc&#x2F;mysql&quot; \
+-DINSTALL_INCLUDEDIR=&quot;include&#x2F;mysql&quot; \
+-DINSTALL_INFODIR=&quot;info&quot; \
+-DINSTALL_LIBDIR=&quot;lib&#x2F;mysql&quot; \
+-DINSTALL_MANDIR=&quot;man&quot; \
+-DINSTALL_MYSQLSHAREDIR=&quot;share&#x2F;mysql&quot; \
+-DINSTALL_MYSQLTESTDIR=&quot;share&#x2F;mysql&#x2F;tests&quot; \
+-DINSTALL_PLUGINDIR=&quot;lib&#x2F;mysql&#x2F;plugin&quot; \
+-DINSTALL_SBINDIR=&quot;libexec&quot; \
+-DINSTALL_SCRIPTDIR=&quot;bin&quot; \
+-DINSTALL_SHAREDIR=&quot;share&quot; \
+-DINSTALL_SQLBENCHDIR=&quot;share&#x2F;mysql&quot; \
+-DINSTALL_SUPPORTFILESDIR=&quot;share&#x2F;mysql&quot; \
+-DWITH_UNIT_TESTS=0 \
+-DWITH_SSL=system \
+-DWITH_READLINE=1 \
+-DWITH_LIBWRAP=0 \
+-DWITHOUT_SERVER=0 \
+-DWITH_EMBEDDED_SERVER=&quot;ON&quot;
+</code></pre>
+
+
+
+<p><code>make</code><br><code>make install</code></p>
+<h3 id="FreeBSD系のビルドオプション"><a href="#FreeBSD系のビルドオプション" class="headerlink" title="FreeBSD系のビルドオプション"></a>FreeBSD系のビルドオプション</h3><h4 id="MySQL5-6-1"><a href="#MySQL5-6-1" class="headerlink" title="MySQL5.6"></a>MySQL5.6</h4>
+<!-- Has Prism -->
+<pre class="line-numbers" style="" ><code class="language-clike">export CC=&quot;cc&quot;
+export CXX=&quot;c++&quot;
+export CFLAGS=&quot;-O2 -fPIC -fno-omit-frame-pointer&quot;
+#export CXXFLAGS=&quot;${CFLAGS} -Wno-c++11-narrowing -felide-constructors -fno-rtti -fno-exceptions&quot;
+export CXXFLAGS=&quot;${CFLAGS} -Wno-narrowing -felide-constructors -fno-rtti -fexceptions&quot;
+
+
+cmake \
+-DCMAKE_INSTALL_PREFIX=&quot;&#x2F;home&#x2F;USER&#x2F;myetc&#x2F;mysql&#x2F;5.6&quot; \
+-DINSTALL_DOCDIR=&quot;share&#x2F;doc&#x2F;mysql&quot; \
+-DINSTALL_DOCREADMEDIR=&quot;share&#x2F;doc&#x2F;mysql&quot; \
+-DINSTALL_INCLUDEDIR=&quot;include&#x2F;mysql&quot; \
+-DINSTALL_INFODIR=&quot;info&quot; \
+-DINSTALL_LIBDIR=&quot;lib&#x2F;mysql&quot; \
+-DINSTALL_MANDIR=&quot;man&quot; \
+-DINSTALL_MYSQLSHAREDIR=&quot;share&#x2F;mysql&quot; \
+-DINSTALL_MYSQLTESTDIR=&quot;share&#x2F;mysql&#x2F;tests&quot; \
+-DINSTALL_PLUGINDIR=&quot;lib&#x2F;mysql&#x2F;plugin&quot; \
+-DINSTALL_SBINDIR=&quot;libexec&quot; \
+-DINSTALL_SCRIPTDIR=&quot;bin&quot; \
+-DINSTALL_SHAREDIR=&quot;share&quot; \
+-DINSTALL_SQLBENCHDIR=&quot;share&#x2F;mysql&quot; \
+-DINSTALL_SUPPORTFILESDIR=&quot;share&#x2F;mysql&quot; \
+-DWITH_UNIT_TESTS=0 \
+-DWITH_SSL=system \
+-DWITH_READLINE=1 \
+-DWITH_LIBWRAP=0 \
+-DWITHOUT_SERVER=1 \
+-DWITH_EMBEDDED_SERVER=&quot;ON&quot;
+</code></pre>
+
+
+
+<p><code>make</code><br><code>make install</code></p>
+<h4 id="MySQL5-5-1"><a href="#MySQL5-5-1" class="headerlink" title="MySQL5.5"></a>MySQL5.5</h4>
+<!-- Has Prism -->
+<pre class="line-numbers" style="" ><code class="language-clike">$ cat mysql-5.5.61&#x2F;build-mysql5.5.sh
+export CC=&quot;cc&quot;
+export CXX=&quot;c++&quot;
+export CFLAGS=&quot;-O2 -fPIC -fno-omit-frame-pointer&quot;
+export CXXFLAGS=&quot;${CFLAGS} -Wno-c++11-narrowing -felide-constructors -fno-rtti -fno-exceptions -fpermissive&quot;
+#export CXXFLAGS=&quot;${CFLAGS} -Wno-c++11-narrowing -felide-constructors -fno-rtti -fno-exceptions&quot;
+#export CXXFLAGS=&quot;${CFLAGS} -Wno-narrowing -felide-constructors -fno-rtti -fexceptions -fpermissive&quot;
+
+
+cmake \
+-DCMAKE_INSTALL_PREFIX=&quot;&#x2F;home&#x2F;USER&#x2F;myetc&#x2F;mysql&#x2F;5.5&quot; \
+-DINSTALL_DOCDIR=&quot;share&#x2F;doc&#x2F;mysql&quot; \
+-DINSTALL_DOCREADMEDIR=&quot;share&#x2F;doc&#x2F;mysql&quot; \
+-DINSTALL_INCLUDEDIR=&quot;include&#x2F;mysql&quot; \
+-DINSTALL_INFODIR=&quot;info&quot; \
+-DINSTALL_LIBDIR=&quot;lib&#x2F;mysql&quot; \
+-DINSTALL_MANDIR=&quot;man&quot; \
+-DINSTALL_MYSQLSHAREDIR=&quot;share&#x2F;mysql&quot; \
+-DINSTALL_MYSQLTESTDIR=&quot;share&#x2F;mysql&#x2F;tests&quot; \
+-DINSTALL_PLUGINDIR=&quot;lib&#x2F;mysql&#x2F;plugin&quot; \
+-DINSTALL_SBINDIR=&quot;libexec&quot; \
+-DINSTALL_SCRIPTDIR=&quot;bin&quot; \
+-DINSTALL_SHAREDIR=&quot;share&quot; \
+-DINSTALL_SQLBENCHDIR=&quot;share&#x2F;mysql&quot; \
+-DINSTALL_SUPPORTFILESDIR=&quot;share&#x2F;mysql&quot; \
+-DWITH_UNIT_TESTS=0 \
+-DWITH_SSL=system \
+-DWITH_READLINE=1 \
+-DWITH_LIBWRAP=0 \
+-DWITHOUT_SERVER=0 \
+-DWITHOUT_PARTITION_STORAGE_ENGINE=1 \
+-DWITH_EMBEDDED_SERVER=&quot;ON&quot;
+</code></pre>
+
+
+
+<p><code>make</code><br><code>make install</code></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
     <link itemprop="mainEntityOfPage" href="http://https//lyvivian0077.github.io/2019/12/23/macOS%E8%BD%AF%E4%BB%B6%E7%BC%96%E8%AF%91%E6%97%B6%E6%89%BE%E4%B8%8D%E5%88%B0%E5%A4%B4%E6%96%87%E4%BB%B6%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95-%E6%9B%B4%E6%96%B010-15/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -3655,100 +3863,6 @@ conn.close()
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://https//lyvivian0077.github.io/2017/10/06/mysql-table/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="lyvivian0077">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="总有刁民想要害朕">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2017/10/06/mysql-table/" class="post-title-link" itemprop="url">MySQL-table</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2017-10-06 16:44:10" itemprop="dateCreated datePublished" datetime="2017-10-06T16:44:10+09:00">2017-10-06</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-12-13 17:15:11" itemprop="dateModified" datetime="2019-12-13T17:15:11+09:00">2019-12-13</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/main/" itemprop="url" rel="index">
-                    <span itemprop="name">main</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>=========================================================================================================================================</p>
-<h2 id="指定的Database里的指定的Table容量"><a href="#指定的Database里的指定的Table容量" class="headerlink" title="指定的Database里的指定的Table容量"></a>指定的Database里的指定的Table容量</h2><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">SELECT </span><br><span class="line">    table_name AS &#96;Table&#96;, </span><br><span class="line">    round(((data_length + index_length) &#x2F; 1024 &#x2F; 1024), 2) &#96;Size in MB&#96; </span><br><span class="line">FROM information_schema.TABLES </span><br><span class="line">WHERE table_schema &#x3D; &quot;$DB_NAME&quot;</span><br><span class="line">    AND table_name &#x3D; &quot;$TABLE_NAME&quot;;</span><br><span class="line"></span><br><span class="line">mysql -uroot -e</span><br><span class="line">  &quot;SELECT TABLE_NAME, round(((data_length+index_length) &#x2F; 1024 &#x2F; 1024 &#x2F; 1024), 2) AS &#39;Size (GB)&#39;</span><br><span class="line">   FROM information_schema.tables </span><br><span class="line">   WHERE table_schema &#x3D; &#39;$DB_NAME&#39; AND table_name &#x3D; &#39;$TABLE_NAME&#39;;&quot;</span><br><span class="line"> - mysql55-dev# mysql -uroot -e &quot; SELECT TABLE_NAME, round(((data_length+index_length) &#x2F; 1024 &#x2F; 1024 &#x2F; 1024), 2) AS &#39;Size (GB)&#39; FROM information_schema.tables WHERE table_schema &#x3D; &#39;tigrex_mygoods2&#39; AND table_name &#x3D; &#39;g5_apms_like&#39;;&quot;</span><br></pre></td></tr></table></figure>
-
-<h2 id="指定的Database里的所有的Table容量"><a href="#指定的Database里的所有的Table容量" class="headerlink" title="指定的Database里的所有的Table容量"></a>指定的Database里的所有的Table容量</h2><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">[root@mysqlxxx log]# mysql -uroot -e &quot;SELECT TABLE_SCHEMA, TABLE_NAME, round(((data_length+index_length) &#x2F; 1024 &#x2F; 1024 ),2)  AS &#39;Size (MB)&#39; FROM information_schema.tables  WHERE table_schema &#x3D; &#39;zeroen_wp&#39;ORDER BY (data_length + index_length) DESC ;&quot;</span><br><span class="line">+--------------+--------------------------------+-----------+</span><br><span class="line">| TABLE_SCHEMA | TABLE_NAME                     | Size (GB) |</span><br><span class="line">+--------------+--------------------------------+-----------+</span><br><span class="line">| zeroen_wp    | wp74e2b1options                |      0.39 |</span><br><span class="line">| zeroen_wp    | wp74e2b1postmeta               |      0.28 |</span><br><span class="line">| zeroen_wp    | wp74e2b1posts                  |      0.13 |</span><br><span class="line">| zeroen_wp    | wp74e2b1comments               |      0.09 |</span><br><span class="line">| zeroen_wp    | wp74e2b1users                  |      0.06 |</span><br><span class="line">| zeroen_wp    | wp74e2b1usermeta               |      0.05 |</span><br><span class="line">| zeroen_wp    | wp74e2b1terms                  |      0.05 |</span><br><span class="line">| zeroen_wp    | wp74e2b1termmeta               |      0.05 |</span><br><span class="line">| zeroen_wp    | wp74e2b1term_taxonomy          |      0.05 |</span><br><span class="line">| zeroen_wp    | wp74e2b1commentmeta            |      0.05 |</span><br><span class="line">| zeroen_wp    | wp74e2b1term_relationships     |      0.03 |</span><br><span class="line">| zeroen_wp    | wp74e2b1links                  |      0.03 |</span><br><span class="line">| zeroen_wp    | wp74e2b1aiowps_login_lockdown  |      0.02 |</span><br><span class="line">| zeroen_wp    | wp74e2b1aiowps_login_activity  |      0.02 |</span><br><span class="line">| zeroen_wp    | wp74e2b1aiowps_global_meta     |      0.02 |</span><br><span class="line">| zeroen_wp    | wp74e2b1aiowps_failed_logins   |      0.02 |</span><br><span class="line">| zeroen_wp    | wp74e2b1aiowps_events          |      0.02 |</span><br><span class="line">| zeroen_wp    | wp74e2b1aiowps_permanent_block |      0.02 |</span><br><span class="line">+--------------+--------------------------------+-----------+</span><br><span class="line">[root@mysqlxxx log]#</span><br></pre></td></tr></table></figure>
-<h2 id="所有的Database里的所有的Table容量"><a href="#所有的Database里的所有的Table容量" class="headerlink" title="所有的Database里的所有的Table容量"></a>所有的Database里的所有的Table容量</h2><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">SELECT </span><br><span class="line">     table_schema as &#96;Database&#96;, </span><br><span class="line">     table_name AS &#96;Table&#96;, </span><br><span class="line">     round(((data_length + index_length) &#x2F; 1024 &#x2F; 1024), 2) &#96;Size in MB&#96; </span><br><span class="line">FROM information_schema.TABLES </span><br><span class="line">ORDER BY (data_length + index_length) DESC;</span><br><span class="line"> - mysql -uroot -e &quot;SELECT TABLE_SCHEMA, TABLE_NAME, round(((data_length+index_length) &#x2F; 1024),2)  AS &#39;Size (GB)&#39; FROM information_schema.tables  ORDER BY (data_length + index_length) DESC;&quot;</span><br><span class="line"> - mysql55-dev# mysql -uroot -e &quot; SELECT TABLE_NAME, round(((data_length+index_length) &#x2F; 1024 &#x2F; 1024 &#x2F; 1024), 2) AS &#39;Size (GB)&#39; FROM information_schema.tables ORDER BY (data_length + index_length) DESC;&quot;</span><br></pre></td></tr></table></figure>
-
-<h2 id="指定的Database里的所有的Table容量-1"><a href="#指定的Database里的所有的Table容量-1" class="headerlink" title="指定的Database里的所有的Table容量"></a>指定的Database里的所有的Table容量</h2><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">mysql -uroot -e</span><br><span class="line">  &quot;SELECT TABLE_SCHEMA AS &#39;Database Name&#39;,</span><br><span class="line">   TABLE_NAME AS &#39;TABLE_NAME&#39;,</span><br><span class="line">   SUM(data_length+index_length) &#x2F; 1024 &#x2F; 1024 &#x2F; 1024 AS &#39;Size (GB)&#39;</span><br><span class="line">   FROM information_schema.tables </span><br><span class="line">   WHERE table_schema &#x3D; &#39;$DB_NAME&#39;</span><br><span class="line">   ORDER BY (data_length + index_length) DESC;&quot;</span><br><span class="line"></span><br><span class="line"> - mysql -uroot -e &quot;SELECT TABLE_SCHEMA, TABLE_NAME, round(((data_length+index_length) &#x2F; 1024),2)  AS &#39;Size (GB)&#39; FROM information_schema.tables WHERE table_schema &#x3D; &#39;tigrex_mygoods&#39; ORDER BY (data_length + index_length) DESC;&quot;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">use databaseName;</span><br><span class="line">select  </span><br><span class="line">table_name, engine, table_rows as tbl_rows, avg_row_length as rlen,  </span><br><span class="line">floor((data_length+index_length)&#x2F;1024&#x2F;1024) as allMB,  #総容量</span><br><span class="line">floor((data_length)&#x2F;1024&#x2F;1024) as dMB,  #データ容量</span><br><span class="line">floor((index_length)&#x2F;1024&#x2F;1024) as iMB   #インデックス容量</span><br><span class="line">from information_schema.tables  </span><br><span class="line">where table_schema&#x3D;database()  </span><br><span class="line">order by (data_length+index_length) desc;</span><br></pre></td></tr></table></figure>
-
-<p>=========================================================================================================================================</p>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select TABLE_NAME from information_schema.TABLES where TABLE_SCHEMA &#x3D; &#39;spacerental2_kikou&#39; and  TABLE_TYPE &#x3D; &#39;VIEW&#39;;</span><br><span class="line">+------------------------+</span><br><span class="line">| TABLE_NAME             |</span><br><span class="line">+------------------------+</span><br><span class="line">| roomtimetable_chk_v01  |</span><br><span class="line">| roomtimetable_disp     |</span><br><span class="line">| roomtimetable_disp_v01 |</span><br><span class="line">| roomtimetable_disp_v02 |</span><br><span class="line">| sagakuview             |</span><br><span class="line">| sagakuview1            |</span><br><span class="line">| sagakuview_Ytmp        |</span><br><span class="line">| sagakuview_n           |</span><br><span class="line">| sagakuview_ngaku       |</span><br><span class="line">| sagakuview_s           |</span><br><span class="line">| sagakuview_sgaku       |</span><br><span class="line">| sagakuview_y           |</span><br><span class="line">| sagakuview_ygaku       |</span><br><span class="line">| yoyakubihintable_v01   |</span><br><span class="line">| yoyakubihintable_v02   |</span><br><span class="line">| yoyakubihintable_v03   |</span><br><span class="line">| yoyakubihintable_v04   |</span><br><span class="line">+------------------------+</span><br><span class="line">17 rows in set (0.01 sec)</span><br></pre></td></tr></table></figure>
-
-<h2 id="指定的Database里的総容量"><a href="#指定的Database里的総容量" class="headerlink" title="指定的Database里的総容量"></a>指定的Database里的総容量</h2><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">mysql# mysql -uroot -e &quot;SELECT TABLE_SCHEMA, SUM(data_length+index_length) &#x2F; 1024 &#x2F; 1024 &#x2F; 1024 AS &#39;Size (GB)&#39; FROM information_schema.tables WHERE table_schema &#x3D; &#39;test45_wdpress&#39;;&quot;</span><br><span class="line"></span><br><span class="line">mysql&gt; sELECT TABLE_SCHEMA, SUM(data_length+index_length) &#x2F; 1024 &#x2F; 1024 &#x2F; 1024 AS &#39;Size (GB)&#39; FROM information_schema.tables WHERE table_schema &#x3D; &#39;test45_wdpress&#39;;</span><br><span class="line">+----------------+----------------+</span><br><span class="line">| TABLE_SCHEMA   | Size (GB)      |</span><br><span class="line">+----------------+----------------+</span><br><span class="line">| test45_wdpress | 0.000793457031 |</span><br><span class="line">+----------------+----------------+</span><br><span class="line">1 row in set (0.01 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt;</span><br></pre></td></tr></table></figure>
-
-<h2 id="複数Databaseの各容量"><a href="#複数Databaseの各容量" class="headerlink" title="複数Databaseの各容量"></a>複数Databaseの各容量</h2><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT TABLE_SCHEMA, SUM(data_length+index_length) &#x2F; 1024 &#x2F; 1024 AS &#39;Size&#39;  FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA IN  (&quot;dbname_table1&quot;, &quot;dbname_table2&quot;) GROUP BY TABLE_SCHEMA;</span><br><span class="line">+--------------------+--------------+</span><br><span class="line">| TABLE_SCHEMA       | Size         |</span><br><span class="line">+--------------------+--------------+</span><br><span class="line">| dbname_table1      | 688.31250000 |</span><br><span class="line">| dbname_table2      | 657.39062500 |</span><br><span class="line">+--------------------+--------------+</span><br><span class="line">2 rows in set (0.09 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt;</span><br></pre></td></tr></table></figure>
-
-
-<h2 id="複数Databaseの総容量-and-各容量"><a href="#複数Databaseの総容量-and-各容量" class="headerlink" title="複数Databaseの総容量 and 各容量"></a>複数Databaseの総容量 and 各容量</h2><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT  SUM(data_length+index_length) &#x2F; 1024 &#x2F; 1024 &#x2F; 1024 AS &#39;Size GB&#39;  FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA like &quot;dbname_table_%&quot;  ;</span><br><span class="line">+----------------+</span><br><span class="line">| Size GB        |</span><br><span class="line">+----------------+</span><br><span class="line">| 3.150512695313 |</span><br><span class="line">+----------------+</span><br><span class="line">1 row in set (0.58 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt; SELECT TABLE_SCHEMA, SUM(data_length+index_length) &#x2F; 1024 &#x2F; 1024 AS &#39;Size&#39;  FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA like &quot;dbname_table_%&quot;  GROUP BY TABLE_SCHEMA;</span><br><span class="line">+---------------------------+--------------+</span><br><span class="line">| TABLE_SCHEMA              | Size         |</span><br><span class="line">+---------------------------+--------------+</span><br><span class="line">| dbname_table_1            | 661.78125000 |</span><br><span class="line">| dbname_table_2            | 158.42187500 |</span><br><span class="line">| dbname_table_3            | 472.39062500 |</span><br><span class="line">| dbname_table_4            | 196.60937500 |</span><br><span class="line">| dbname_table_5            |  82.23437500 |</span><br><span class="line">| dbname_table_6            | 479.35937500 |</span><br><span class="line">| dbname_table_7            | 403.57812500 |</span><br><span class="line">| dbname_table_8            | 197.03125000 |</span><br><span class="line">| dbname_table_9            | 156.93750000 |</span><br><span class="line">| dbname_table_10           | 400.75000000 |</span><br><span class="line">| dbname_table_11           |  17.03125000 |</span><br><span class="line">+---------------------------+--------------+</span><br><span class="line">11 rows in set (0.60 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt;</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -3819,7 +3933,7 @@ conn.close()
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">26</span>
+          <span class="site-state-item-count">27</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -3854,7 +3968,7 @@ conn.close()
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2019</span>
+  <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
     <i class="fa fa-lyvivian0077"></i>
   </span>
