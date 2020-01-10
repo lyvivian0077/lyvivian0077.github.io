@@ -53,10 +53,12 @@
 <meta property="og:site_name" content="总有刁民想要害朕">
 <meta property="og:description" content="原文  Python 在程序并行化方面多少有些声名狼藉。撇开技术上的问题，例如线程的实现和 GIL1，我觉得错误的教学指导才是主要问题。常见的经典 Python 多线程、多进程教程多显得偏“重”。而且往往隔靴搔痒，没有深入探讨日常工作中最有用的内容。 传统的例子简单搜索下“Python 多线程教程”，不难发现几乎所有的教程都给出涉及类和队列的例子：   #Example.py &#39;&amp;#39">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="http:&#x2F;&#x2F;https&#x2F;assets&#x2F;f61522cd2f5c85e4c06041f53619140c_articlex.png">
 <meta property="article:published_time" content="2020-01-10T03:36:48.000Z">
-<meta property="article:modified_time" content="2020-01-10T03:47:18.074Z">
+<meta property="article:modified_time" content="2020-01-10T03:50:14.766Z">
 <meta property="article:author" content="lyvivian0077">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http:&#x2F;&#x2F;https&#x2F;assets&#x2F;f61522cd2f5c85e4c06041f53619140c_articlex.png">
 
 <link rel="canonical" href="http://https//lyvivian0077.github.io/2020/01/10/%E4%B8%80%E8%A1%8C-Python-%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0%E5%B9%B6%E8%A1%8C/">
 
@@ -193,7 +195,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2020-01-10 12:36:48 / Modified: 12:47:18" itemprop="dateCreated datePublished" datetime="2020-01-10T12:36:48+09:00">2020-01-10</time>
+              <time title="Created: 2020-01-10 12:36:48 / Modified: 12:50:14" itemprop="dateCreated datePublished" datetime="2020-01-10T12:36:48+09:00">2020-01-10</time>
             </span>
 
           
@@ -365,6 +367,7 @@ for url in urls:
 
 <p>map 函数一手包办了序列操作、参数传递和结果保存等一系列的操作。</p>
 <p>为什么这很重要呢？这是因为借助正确的库，map 可以轻松实现并行化操作。</p>
+<p><img src="/assets/f61522cd2f5c85e4c06041f53619140c_articlex.png" alt="Map"></p>
 <p>在 Python 中有个两个库包含了 map 函数： multiprocessing 和它鲜为人知的子库 multiprocessing.dummy.</p>
 <p>这里多扯两句： multiprocessing.dummy？ mltiprocessing 库的线程版克隆？这是虾米？即便在 multiprocessing 库的官方文档里关于这一子库也只有一句相关描述。而这句描述译成人话基本就是说:”嘛，有这么个东西，你知道就成.”相信我，这个库被严重低估了！</p>
 <p>dummy 是 multiprocessing 模块的完整克隆，唯一的不同在于 multiprocessing 作用于进程，而 dummy 模块作用于线程（因此也包括了 Python 所有常见的多线程限制）。<br>所以替换使用这两个库异常容易。你可以针对 IO 密集型任务和 CPU 密集型任务来选择不同的库。</p>
