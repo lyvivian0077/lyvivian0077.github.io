@@ -4,7 +4,7 @@
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.1.1">
+<meta name="generator" content="Hexo 4.2.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
@@ -49,17 +49,17 @@
   <meta name="description" content="一、传统的磁盘管理其实在Linux操作系统中，我们的磁盘管理机制和windows上的差不多，绝大多数都是使用MBR(Master Boot Recorder)都是通过先对一个硬盘进行分区，然后再将该分区进行文件系统的格式化，在Linux系统中如果要使用该分区就将其挂载上去即可，windows的话其实底层也就是自动将所有的分区挂载好，然后我们就可以对该分区进行使用了。 但是这种传统的磁盘管理经常会带">
 <meta property="og:type" content="article">
 <meta property="og:title" content="LVM逻辑卷基本概念及LVM的工作原理">
-<meta property="og:url" content="http:&#x2F;&#x2F;https&#x2F;&#x2F;lyvivian0077.github.io&#x2F;2019&#x2F;04&#x2F;16&#x2F;LVM%E9%80%BB%E8%BE%91%E5%8D%B7%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5%E5%8F%8ALVM%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86&#x2F;index.html">
+<meta property="og:url" content="http://https//lyvivian0077.github.io/2019/04/16/LVM%E9%80%BB%E8%BE%91%E5%8D%B7%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5%E5%8F%8ALVM%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/index.html">
 <meta property="og:site_name" content="总有刁民想要害朕">
 <meta property="og:description" content="一、传统的磁盘管理其实在Linux操作系统中，我们的磁盘管理机制和windows上的差不多，绝大多数都是使用MBR(Master Boot Recorder)都是通过先对一个硬盘进行分区，然后再将该分区进行文件系统的格式化，在Linux系统中如果要使用该分区就将其挂载上去即可，windows的话其实底层也就是自动将所有的分区挂载好，然后我们就可以对该分区进行使用了。 但是这种传统的磁盘管理经常会带">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http:&#x2F;&#x2F;https&#x2F;assets&#x2F;lvm1.jpg">
-<meta property="og:image" content="http:&#x2F;&#x2F;https&#x2F;assets&#x2F;lvm2.jpg">
+<meta property="og:image" content="http://https/assets/lvm1.jpg">
+<meta property="og:image" content="http://https/assets/lvm2.jpg">
 <meta property="article:published_time" content="2019-04-16T00:48:20.000Z">
 <meta property="article:modified_time" content="2019-12-16T02:06:18.155Z">
 <meta property="article:author" content="lyvivian0077">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http:&#x2F;&#x2F;https&#x2F;assets&#x2F;lvm1.jpg">
+<meta name="twitter:image" content="http://https/assets/lvm1.jpg">
 
 <link rel="canonical" href="http://https//lyvivian0077.github.io/2019/04/16/LVM%E9%80%BB%E8%BE%91%E5%8D%B7%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5%E5%8F%8ALVM%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/">
 
@@ -354,7 +354,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">28</span>
+          <span class="site-state-item-count">29</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

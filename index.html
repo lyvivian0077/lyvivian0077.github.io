@@ -4,7 +4,7 @@
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.1.1">
+<meta name="generator" content="Hexo 4.2.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
@@ -48,7 +48,7 @@
 
   <meta property="og:type" content="website">
 <meta property="og:title" content="总有刁民想要害朕">
-<meta property="og:url" content="http:&#x2F;&#x2F;https&#x2F;&#x2F;lyvivian0077.github.io&#x2F;index.html">
+<meta property="og:url" content="http://https//lyvivian0077.github.io/index.html">
 <meta property="og:site_name" content="总有刁民想要害朕">
 <meta property="og:locale" content="en_US">
 <meta property="article:author" content="lyvivian0077">
@@ -161,6 +161,1300 @@
             
 
   <div class="posts-expand">
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://https//lyvivian0077.github.io/2020/02/03/Bash%E7%BC%96%E7%A8%8B%E8%B6%85%E8%AF%A6%E7%BB%86%E8%AF%AD%E6%B3%95%E6%80%BB%E7%BB%93/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="lyvivian0077">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="总有刁民想要害朕">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/02/03/Bash%E7%BC%96%E7%A8%8B%E8%B6%85%E8%AF%A6%E7%BB%86%E8%AF%AD%E6%B3%95%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">Bash编程超详细语法总结</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-02-03 15:38:19 / Modified: 16:17:52" itemprop="dateCreated datePublished" datetime="2020-02-03T15:38:19+09:00">2020-02-03</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <ul>
+<li><a href="https://mp.weixin.qq.com/s/r5KNvm90qYnnNOL3TAVXJA" target="_blank" rel="noopener">原文</a></li>
+</ul>
+<p>在Linux学习过程中，我们无可避免的会碰到一个既让人喜欢，又令人头疼的神奇的东西——bash编程，即shell脚本。<br>那么什么是shell脚本呢？shell是一个命令语言解释器，而shell脚本则是Linux命令的集合，<br>按照预设的顺序依次解释执行，来完成特定的、较复杂的系统管理任务，类似于Windows中的批处理文件。<br>本文带来的是bash编程的基础语法讲解。</p>
+<h2 id="bash编程之变量"><a href="#bash编程之变量" class="headerlink" title="bash编程之变量"></a>bash编程之变量</h2><h3 id="bash变量类别"><a href="#bash变量类别" class="headerlink" title="bash变量类别"></a>bash变量类别</h3><p><strong>本地变量</strong> : 只对当前shell进程有效的变量，对其它shell进程无效，包当前shell进程的子进程</p>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style="" ><code class="language-clike">VAR_NAME=VALUE
+</code></pre>
+
+
+
+<p><strong>变量赋值</strong> : 向变量的存储空间保存数据</p>
+<p><strong>变量引用</strong> : ${VAR_NAME} </p>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style="" ><code class="language-clike">&quot;&quot;:弱引用，里面的变量会被替换
+&#39;&#39;:强引用，里面的所有字符都是字面量，直接输出
+</code></pre>
+
+
+
+<p><strong>环境变量</strong> : 对当前shell进程及其子shell有效，对其它的shell进程无效</p>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style="" ><code class="language-clike">定义：export VAR_NAME=VALUE
+导出：export VAR_NAME
+撤消变量：unset VAR_NAME
+只读变量：readonly VAR_NAME
+</code></pre>
+
+
+
+<p><strong>局部变量</strong> : 对shell脚本中某代码片断有效，通常用于函数本地</p>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style="" ><code class="language-clike">local VAR_NAME=VALUE
+</code></pre>
+
+
+
+<p><strong>位置变量</strong> : 用来接受变量指定位置的参数</p>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style="" ><code class="language-clike">$1,$2...,${10}
+</code></pre>
+
+
+
+<p><strong>特殊变量</strong> : shell对一些参数做特殊处理,这些参数只能被引用而不能被赋值</p>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style="" ><code class="language-clike">$#  传递到脚本的参数个数
+$*  显示所有向脚本传递的参数                  #与位置变量不同，此选项参数可超过9个
+$$  获取当前shell的进程号
+$!  执行上一个指令的进程号
+$?  获取执行的上一个指令的返回值              #0为执行成功，非零为执行失败
+$-  显示shell使用的当前选项，与set命令功能相同
+$@  与$*相同，但是使用时加引号，并在引号中返回每个参数
+</code></pre>
+
+
+
+<p><strong>查看变量</strong> :</p>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style="" ><code class="language-clike">set：查看当前shell进程中的所有变量
+export, printenv, env：查看当前shell进程中的所有环境变量
+</code></pre>
+
+
+
+<p><strong>变量命名</strong> :</p>
+<ol>
+<li>不能使用程序中的关键字（保留字）</li>
+<li>只能使用数字、字母和下划线，且不能以数字开头</li>
+<li>要见名知义</li>
+</ol>
+<p><strong>变量类型</strong> :</p>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style="" ><code class="language-clike">数值型：精确数值(整数)，近似数值（浮点型）
+字符型：char,string
+布尔型：true, false
+</code></pre>
+
+
+
+<p><strong>类型转换</strong> :</p>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style="" ><code class="language-clike">显式转换
+隐式转换
+</code></pre>
+
+
+
+<h3 id="bash的配置文件："><a href="#bash的配置文件：" class="headerlink" title="bash的配置文件："></a>bash的配置文件：</h3><h4 id="功能：设定本地变量，定义命令别名"><a href="#功能：设定本地变量，定义命令别名" class="headerlink" title="功能：设定本地变量，定义命令别名"></a>功能：设定本地变量，定义命令别名</h4><ul>
+<li>profile类：为交互式登录的用户提供配置</li>
+</ul>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style="" ><code class="language-clike">全局：&#x2F;etc&#x2F;profile、&#x2F;etc&#x2F;profile.d&#x2F;*.sh
+用户：~&#x2F;.bash_profile
+</code></pre>
+
+
+
+<ul>
+<li>bashrc类：为非交互式的用户提供配置</li>
+</ul>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style="" ><code class="language-clike">全局：&#x2F;etc&#x2F;bashrc
+用户：~&#x2F;.bashrc
+</code></pre>
+
+
+
+<h4 id="bash编程之编写格式及执行方式"><a href="#bash编程之编写格式及执行方式" class="headerlink" title="bash编程之编写格式及执行方式"></a>bash编程之编写格式及执行方式</h4><ul>
+<li>编写格式：shell脚本第一行必须顶格写，用shebang定义指定的解释器来解释该脚本。</li>
+</ul>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style="" ><code class="language-clike">#!&#x2F;bin&#x2F;bash       #!即为shebang
+# 其它的以#开头的行均为注释，会被解释器忽略，可用来注释脚本用途及版本，方便使用管理。
+</code></pre>
+
+
+
+<ul>
+<li>执行方式：bash编程属于面向过程编程，执行方式如下：</li>
+</ul>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style="" ><code class="language-clike">顺序执行：按命令先后顺寻依次执行
+选择执行：测试条件，可能会多个测试条件，某条件满足时，则执行对应的分支
+循环执行：将同一段代码反复执行多次，因此，循环必须有退出条件；否则，则陷入死循环
+</code></pre>
+
+
+
+<ul>
+<li>bash执行选项：</li>
+</ul>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style="" ><code class="language-clike">bash -n SHELLNAME  #语法测试，测试是否存在语法错误
+bash -x SHELLNAME  #模拟单步执行，显示每一步执行过程
+</code></pre>
+
+
+
+<h4 id="bash之算数运算与逻辑运算"><a href="#bash之算数运算与逻辑运算" class="headerlink" title="bash之算数运算与逻辑运算"></a>bash之算数运算与逻辑运算</h4><ul>
+<li><p>算数运算</p>
+<ul>
+<li><p>定义整型变量：</p>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style="" ><code class="language-clike">let VAR_NAME=INTEGER_VALUE            #例如：let a=3
+declare -i VAR_NAME=INTEGER_VALUE     #declare -i a=3
+</code></pre>
+</li>
+<li><p>实现算术运算的方式：</p>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style="" ><code class="language-clike">let VAR_NAME=ARITHMATIC_EXPRESSION
+VAR_NAME=$[ARITHMATIC_EXRESSION]
+VAR_NAME=$((EXPRESSION))
+VAR_NAME=$(expr $num1 + $num2)
+</code></pre>
+</li>
+<li><p>算术运算符：</p>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style="" ><code class="language-clike">+：加法
+-：减法
+*：乘法
+&#x2F;：整除
+%：取余数
+**：乘幂
+</code></pre>
+
+</li>
+</ul>
+<blockquote>
+<p>注意：即使没有定义为整型变量，字符型的数字依然可以参与算术运算，bash会执行变量类型的隐式类型转换。</p>
+</blockquote>
+<ul>
+<li>逻辑运算</li>
+</ul>
+</li>
+</ul>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style="" ><code class="language-clike">布尔运算：真，假
+与运算：真 &amp;&amp; 真 = 真
+        真 &amp;&amp; 假 = 假
+        假 &amp;&amp; 真 = 假
+        假 &amp;&amp; 假 = 假
+或运算：真 || 真 = 真
+  真 || 假 = 真
+  假 || 真 = 真
+  假 || 假 = 假
+非运算：！真=假
+        ！假=真
+</code></pre>
+
+
+
+<h3 id="bash编程之条件测试语句"><a href="#bash编程之条件测试语句" class="headerlink" title="bash编程之条件测试语句"></a>bash编程之条件测试语句</h3><h4 id="bash条件测试"><a href="#bash条件测试" class="headerlink" title="bash条件测试"></a>bash条件测试</h4><p><strong>整型测试</strong>：整数比较</p>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style="" ><code class="language-clike">例如 [ $num1 -gt $num2 ]
+
+-gt: 大于则为真
+-lt: 小于则为真
+-ge: 大于等于则为真
+-le: 小于等于则为真
+-eq: 等于则为真
+-ne: 不等于则为真
+</code></pre>
+
+
+
+<p><strong>字符测试</strong>：字符串比较</p>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style="" ><code class="language-clike">双目：
+例如[[ &quot;$str1&quot; &gt; &quot;$str2&quot; ]]
+
+&gt;: 大于则为真
+&lt;: 小于则为真
+&gt;=：大于等于则为真
+&lt;=：小于等于则为真
+==：等于则为真
+!=：不等于则为真
+
+
+单目：
+-n String: 是否不空，不空则为真，空则为假
+-z String: 是否为空，空则为真，不空则假
+
+文件测试：判断文件的存在性及属性等
+
+-a FILE：存在则为真；否则则为假；
+-e FILE: 存在则为真；否则则为假；
+-f FILE: 存在并且为普通文件，则为真；否则为假；
+-d FILE: 存在并且为目录文件，则为真；否则为假；
+-L&#x2F;-h FILE: 存在并且为符号链接文件，则为真；否则为假；
+-b: 存在并且为块设备，则为真；否则为假；
+-c: 存在并且为字符设备，则为真；否则为假
+-S: 存在并且为套接字文件，则为真；否则为假
+-p: 存在并且为命名管道，则为真；否则为假
+-s FILE: 存在并且为非空文件则为值，否则为假；
+-r FILE：文件可读为真，否则为假
+-w FILE：文件可写为真，否则为假
+-x FILE：文件可执行为真，否则为假
+file1 -nt file2: file1的mtime新于file2则为真，否则为假；
+file1 -ot file2：file1的mtime旧于file2则为真，否则为假；
+
+组合条件测试：在多个条件间实现逻辑运算
+
+与：[ condition1 -a condition2 ]
+  condition1 &amp;&amp; condition2
+或：[ condition1 -o condition2 ]
+  condition1 || condition2
+非：[ -not condition ]
+  ! condition
+与：COMMAND1 &amp;&amp; COMMAND2
+COMMAND1如果为假，则COMMAND2不执行
+或：COMMAND1 || COMMAND2
+COMMAND1如果为真，则COMMAND2不执行
+非：! COMMAND
+</code></pre>
+
+
+
+<p><strong>条件测试之if语句</strong></p>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style="" ><code class="language-clike">1、if语句之单分支
+语句结构：
+if 测试条件;then
+   选择分支
+fi
+表示条件测试状态返回值为值，则执行选择分支
+例：写一个脚本，接受一个参数，这个参数是用户名；如果此用户不存在，则创建该用户；
+
+#！&#x2F;bin&#x2F;bash
+if ! id $1 &amp;&gt; &#x2F;dev&#x2F;null;then
+  useradd $1
+fi
+
+2、if语句之双分支
+语句结构：
+if 测试条件;then
+   选择分支1
+else
+   选择分支2
+fi
+
+两个分支仅执行其中之一
+例：通过命令行给定一个文件路径，而后判断：如果此文件中存在空白行，则显示其空白行的总数；否则，则显示无空白行；
+#！&#x2F;bin&#x2F;bash
+if grep &quot;^[[:space]]*$&quot; $1 &amp;&gt; &#x2F;dev&#x2F;null; then
+  echo &quot;$1 has $(grep &quot;^[[:space]]*$&quot; $1 | wc -l) blank lines.&quot;
+else
+  echo &quot;No blank lines&quot;
+fi
+
+注意：如果把命令执行成功与否当作条件，则if语句后必须只跟命令本身，而不能引用。
+
+3、if语句之多分支
+语句结构：
+if 条件1;then
+     分支1
+elif 条件2;then
+     分支2
+elif 条件3;then
+     分支3
+      ...
+else
+     分支n
+fi
+
+例：传递一个用户名给脚本：如果此用户的id号为0，则显示说这是管理员；如果此用户的id号大于等于500，则显示说这是普通用户；否则，则说这是系统用户。
+#!&#x2F;bin&#x2F;bash
+if [ $# -lt 1 ]; then
+  echo &quot;Usage: `basename $0` username&quot;
+  exit 1
+fi
+if ! id -u $1 &amp;&gt; &#x2F;dev&#x2F;null; then
+  echo &quot;Usage: `basename $0` username&quot;
+  echo &quot;No this user $1.&quot;
+  exit 2
+fi
+
+if [ $(id -u $1) -eq 0 ]; then
+  echo &quot;Admin&quot;
+elif [ $(id -u $1) -ge 500 ]; then
+  echo &quot;Common user.&quot;
+else
+  echo &quot;System user.&quot;
+fi
+</code></pre>
+
+
+
+<p><strong>bash交互式编程</strong></p>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style="" ><code class="language-clike">read [option] “prompt”-p:直接指定一个变量接受参数
+-t timaout：指定等待接受参数的时间
+-n:表示不换行
+
+例：输入用户名，可返回其shell
+
+#!&#x2F;bin&#x2F;bash
+read -p &quot;Plz input a username: &quot; userName
+if id $userName &amp;&gt; &#x2F;dev&#x2F;null; then
+    echo &quot;The shell of $userName is `grep &quot;^$userName\&gt;&quot; &#x2F;etc&#x2F;passwd | cut -d: -f7`.&quot;
+else
+    echo &quot;No such user. stupid.&quot;
+fi    
+</code></pre>
+
+
+
+<p><strong>条件测试之case语句</strong></p>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style="" ><code class="language-clike">
+case语句：有多个测试条件时，case语句会使得语法结构更明晰
+语句结构：
+
+case 变量引用 in
+PATTERN1)
+  分支1
+;;
+PATTERN2)
+  分支2
+;;
+...
+*)
+  分支n
+;;
+esac
+</code></pre>
+
+
+
+<p><strong>PATTERN：类同于文件名通配机制，但支持使用|表示或者</strong></p>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style="" ><code class="language-clike"> a|b:  a或者b*：匹配任意长度的任意字符
+?: 匹配任意单个字符
+[]: 指定范围内的任意单个字符
+
+例：写一个脚本，完成如下任务，其使用形式如下所示：
+script.sh {start|stop|restart|status}
+
+其中：如果参数为空，则显示帮助信息，并退出脚本；
+如果参数为start，则创建空文件&#x2F;var&#x2F;lock&#x2F;subsys&#x2F;script，并显示“starting script successfully.”
+如果参数为stop，则删除文件&#x2F;var&#x2F;lock&#x2F;subsys&#x2F;script，并显示“Stop script successfully.”
+如果参数为restart，则删除文件&#x2F;var&#x2F;locksubsys&#x2F;script并重新创建，而后显示“Restarting script successfully.”
+如果参数为status，那么：如果文件&#x2F;var&#x2F;lock&#x2F;subsys&#x2F;script存在，则显示“Script is running…”，否则，则显示“Script is stopped.”
+
+#!&#x2F;bin&#x2F;bash
+file=&#39;&#x2F;var&#x2F;lock&#x2F;subsys&#x2F;script&#39;
+case $1 in
+start)
+  if [ -f $file ];then
+  echo &quot;Script is running...&quot;
+    exit 3
+  else
+  touch $file
+  [ $? -eq 0 ] &amp;&amp; echo &quot;Starting script successfully.&quot;
+  fi
+  ;;
+stop)
+  if [ -f $file ];then
+  rm -rf $file
+  [ $? -eq 0 ] &amp;&amp; echo &quot;Stop script successfully.&quot;
+  else
+  echo &quot;Script is stopped...&quot;
+  exit 4
+  fi
+  ;;
+restart)
+  if [ -f $file ];then
+  rm -rf $file
+  [ $? -eq 0 ] &amp;&amp; echo &quot;Stop script successfully&quot;
+  else 
+  echo &quot;Script is stopped...&quot;
+  exit 5
+  fi
+  touch $file
+  [ $? -eq 0 ] &amp;&amp; echo &quot;Starting script successfully&quot;
+  ;;
+status)
+  if [ -f $file ];then
+  echo &quot;Script is running...&quot;
+  else
+  echo &quot;Script is stopped.&quot;
+  fi
+  ;;
+*)
+  echo &quot;`basename $0` {start|stop|restart|status}&quot;
+  exit 2
+  ;;
+ esac
+</code></pre>
+
+
+
+<h4 id="bash编程之循环语句"><a href="#bash编程之循环语句" class="headerlink" title="bash编程之循环语句"></a>bash编程之循环语句</h4><p><strong>循环之for循环</strong></p>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style="" ><code class="language-clike">1、for语句格式一
+语句结构：
+for 变量名 in 列表; do
+    循环体
+done
+列表：可包含一个或多个元素
+循环体：依赖于调用变量来实现其变化
+循环可嵌套
+退出条件：遍历元素列表结束
+例：求100以内所有正整数之和
+
+#!&#x2F;bin&#x2F;bash
+declare -i sum=0
+for i in {1..100}; do
+    let sum+=$i
+done
+echo $sum
+
+2、for语句格式二
+for ((初始条件;测试条件;修改表达式)); do
+      循环体
+done
+先用初始条件和测试条件做判断，如果符合测试条件则执行循环体，再修改表达式，否则直接跳出循环。
+
+例：求100以内所有正整数之和（for二实现）
+#!&#x2F;bin&#x2F;bash
+declare -i sum=0
+for ((counter=1;$counter &lt;= 100; counter++)); do
+  let sum+=$counter
+done
+echo $sum
+</code></pre>
+
+
+
+<p><strong>循环之while语句</strong></p>
+<p>while适用于循环次数未知，或不便用for直接生成较大的列表时</p>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style="" ><code class="language-clike">语句结构：
+while 测试条件; do
+  循环体
+done
+测试条件为真，进入循环；测试条件为假，退出循环
+例1：求100以内所有偶数之和，要求使用取模方法
+#!&#x2F;bin&#x2F;bash
+declare -i counter=1
+declare -i sum=0
+while [ $counter -le 100 ]; do
+  if [ $[$counter%2] -eq 0 ]; then
+     let sum+=$counter
+  fi
+  let counter++
+ done
+echo $sum
+
+例2：提示用户输入一个用户名，如果用户存在，就显示用户的ID号和shell；否则显示用户不存在；显示完成之后不退出，再次重复前面的操作，直到用户输入q或quit为止
+#!&#x2F;bin&#x2F;bash
+read -p &quot;Plz enter a username: &quot; userName
+while [ &quot;$userName&quot; != &#39;q&#39; -a &quot;$userName&quot; != &#39;quit&#39; ]; do
+  if id $userName &amp;&gt; &#x2F;dev&#x2F;null; then
+     grep &quot;^$userName\&gt;&quot; &#x2F;etc&#x2F;passwd | cut -d: -f3,7
+  else
+    echo &quot;No such user.&quot;
+  fi
+read -p &quot;Plz enter a username again: &quot; userName
+done
+
+while特殊用法：遍历文本文件
+语句结构：
+while read 变量名; do
+  循环体
+done &lt; &#x2F;path&#x2F;to&#x2F;somefile
+变量名，每循环一次，记忆了文件中一行文本
+
+例：显示ID号为偶数，且ID号同GID的用户的用户名、ID和SHELL
+while read line; do
+  userID=`echo $line | cut -d: -f3`
+  groupID=`echo $line | cut -d: -f4`
+  if [ $[$userID%2] -eq 0 -a $userID -eq $groupID ]; then
+     echo $line | cut -d: -f1,3,7
+  fi
+done &lt; &#x2F;etc&#x2F;passwd
+</code></pre>
+
+
+
+<p><strong>循环之until语句</strong></p>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style="" ><code class="language-clike">语句结构：
+until 测试条件; do
+      循环体
+done
+测试条件为假，进入循环；测试条件为真，退出循环
+
+例：求100以内所有偶数之和，要求使用取模方法（until实现）
+
+#!&#x2F;bin&#x2F;bash
+declare -i counter=1
+declare -i sum=0
+until [ $counter -gt 100 ]; do
+  if [ $[$counter%2] -eq 0 ]; then
+     let sum+=$counter
+  fi
+  let counter++
+done
+echo $sum
+例：提示用户输入一个用户名，如果用户存在，就显示用户的ID号和shell；否则显示用户不存在；显示完成之后不退出，再次重复前面的操作，直到用户输入q或quit为止（until实现）
+
+
+#!&#x2F;bin&#x2F;bash
+read -p &quot;Plz enter a username: &quot; userName
+until [ &quot;$userName&quot; = &#39;q&#39; -a &quot;$userName&quot; = &#39;quit&#39; ]; do
+  if id $userName &amp;&gt; &#x2F;dev&#x2F;null; then
+   grep &quot;^$userName\&gt;&quot; &#x2F;etc&#x2F;passwd | cut -d: -f3,7
+else
+echo &quot;No such user.&quot;
+fi
+read -p &quot;Plz enter a username again: &quot; userName
+done
+</code></pre>
+
+
+
+<p><strong>循环之循环控制和shift</strong></p>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style="" ><code class="language-clike">
+循环控制命令：
+break：提前退出循环
+break [N]: 退出N层循环；N省略时表示退出break语句所在的循环
+continue: 提前结束本轮循环，而直接进入下轮循环
+continue [N]：提前第N层的循环的本轮循环，而直接进入下轮循环
+</code></pre>
+
+
+
+<p><strong>死循环：</strong></p>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style="" ><code class="language-clike">
+#while体while true; do
+      循环体
+done
+#until体
+until false; do
+      循环体
+done
+
+例1：写一个脚本，判断给定的用户是否登录了当前系统
+(1) 如果登录了，则脚本终止；
+(2) 每5秒种，查看一次用户是否登录；
+#!&#x2F;bin&#x2F;bash
+while true; do
+    who | grep &quot;gentoo&quot; &amp;&gt; &#x2F;dev&#x2F;null
+    if [ $? -eq 0 ];then
+break
+    fi
+    sleep 5
+done
+echo &quot;gentoo is logged.&quot;
+</code></pre>
+
+
+
+<p><strong>shift：</strong></p>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style="" ><code class="language-clike">如果没有数字，只有shift 就是跳过一个参数获取下一个参数，如果加上数字，比如shift 2 ，跳过两个参数获取下一个参数。
+例：写一个脚本，使用形式如下所示    
+showifinfo.sh [-i INTERFACE|-a] [-v]
+要求：
+1、-i或-a不可同时使用，-i用于指定特定网卡接口，-a用于指定所有接口；
+显示接口的ip地址
+2、使用-v，则表示显示详细信息，显示接口的ip地址、子网掩码、广播地址；
+3、默认表示仅使用-a选项;
+
+#!&#x2F;bin&#x2F;bash
+allinterface=0
+ifflag=0
+verbose=0
+interface=0
+if [ $# -eq 0 ];then
+  ifconfig | grep &quot;inet addr:&quot; | awk &#39;{print $2}&#39;
+fi
+while [ $# -ge 1 ];do
+  case $1 in 
+-a)
+ allinterface=1
+ shift 1
+  ;;
+-i)
+  ifflag=1
+  interface=$2
+  shift 2
+  ;;
+-v)
+  verbose=1
+  shift 1
+  ;;
+  *)
+echo &quot;error option&quot;
+exit 2
+  ;;
+  esac
+done
+if [ $allinterface -eq 1 ];then
+  if [ $ifflag -eq 1 ];then
+   echo &quot;command not found&quot;
+    exit 5
+  fi
+  if [ $verbose -eq 1 ];then
+    ifconfig | grep &quot;inet addr:&quot;
+  else
+    ifconfig | grep &quot;inet addr:&quot; | awk &#39;{print $2}&#39;
+  fi
+fi
+if [ $ifflag -eq 1 ];then
+  if [ $allinterface -eq 1 ];then
+        echo &quot;command not found&quot;
+        exit 5
+  fi
+ if [ $verbose -eq 1 ];then
+    ifconfig $interface | grep &quot;inet addr:&quot;
+  else
+    ifconfig $interface | grep &quot;inet addr:&quot; | awk &#39;{print $2}&#39;
+  fi
+fi
+</code></pre>
+
+
+
+<h3 id="bash编程之函数"><a href="#bash编程之函数" class="headerlink" title="bash编程之函数"></a>bash编程之函数</h3><h4 id="语法结构："><a href="#语法结构：" class="headerlink" title="语法结构："></a>语法结构：</h4>
+<!-- Has Prism -->
+<pre class="line-numbers" style="" ><code class="language-clike">
+function F_NAME {    
+   函数体
+  }
+
+  F_NAME() {
+    函数体
+  }
+</code></pre>
+
+
+
+<p>可调用：使用函数名，函数名出现的地方，会被自动替换为函数<br>函数的返回值：<br>函数的执行结果返回值：代码的输出<br>函数中使用打印语句：echo, printf<br>函数中调用的系统命令执行后返回的结果<br>执行状态返回值：<br>默认取决于函数体执行的最后一个命令状态结果<br>自定义退出状态码：return [0-255]</p>
+<blockquote>
+<p>注意：函数体运行时，一旦遇到return语句，函数即返回；</p>
+</blockquote>
+<p><strong>函数可以接受参数：</strong><br>在函数体中调用函数参数的方式同脚本中调用脚本参数的方式：</p>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style="" ><code class="language-clike">位置参数
+$1, $2, …
+$#, $*, $@
+</code></pre>
+
+
+
+<p>例：写一个脚本，完成如下功能(使用函数)：</p>
+<p>1、提示用户输入一个可执行命令；</p>
+<p>2、获取这个命令所依赖的所有库文件(使用ldd命令)；</p>
+<p>3、复制命令至/mnt/sysroot/对应的目录中</p>
+<p>解释：假设，如果复制的是cat命令，其可执行程序的路径是/bin/cat，那么就要将/bin/cat复到/mnt/sysroot/bin/目录中，如果复制的是useradd命令，而useradd的可执行文件路径为/usr/sbin/useradd，那么就要将其复制到/mnt/sysroot/usr/sbin/目录中；</p>
+<p>4、复制各库文件至/mnt/sysroot/对应的目录中；</p>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style="" ><code class="language-clike">#!&#x2F;bin&#x2F;bash
+target=&#x2F;mnt&#x2F;sysroot&#x2F;
+[ -d $target ] || mkdir $target
+preCommand() {
+    if which $1 &amp;&gt; &#x2F;dev&#x2F;null; then
+  commandPath=`which --skip-alias $1`
+  return 0
+    else
+  echo &quot;No such command.&quot;
+  return 1
+    fi
+}
+
+commandCopy() {
+    commandDir=`dirname $1`
+    [ -d ${target}${commandDir} ] || mkdir -p ${target}${commandDir}
+    [ -f ${target}${commandPath} ] || cp $1 ${target}${commandDir}
+}
+
+libCopy() {
+    for lib in `ldd $1 | egrep -o &quot;&#x2F;[^[:space:]]+&quot;`; do
+libDir=`dirname $lib`
+[ -d ${target}${libDir} ] || mkdir -p ${target}${libDir}
+[ -f ${target}${lib} ] || cp $lib ${target}${libDir}
+    done
+} 
+read -p &quot;Plz enter a command: &quot; command
+
+until [ &quot;$command&quot; == &#39;quit&#39; ]; do
+
+  if preCommand $command &amp;&gt; &#x2F;dev&#x2F;null; then
+    commandCopy $commandPath
+    libCopy $commandPath
+  fi
+
+  read -p &quot;Plz enter a command: &quot; command
+done
+</code></pre>
+
+
+
+<h4 id="bash编程之信号捕捉"><a href="#bash编程之信号捕捉" class="headerlink" title="bash编程之信号捕捉"></a>bash编程之信号捕捉</h4><p>trap命令用于在shell程序中捕捉到信号，之后可以有三种反应方式：</p>
+<ul>
+<li>(1)执行一段程序来处理这一信号</li>
+<li>(2)接受信号的默认操作</li>
+<li>(3)忽视这一信号</li>
+</ul>
+<p>trap对上面三种方式提供了三种基本形式：</p>
+<p>第一种形式的trap命令在shell接收到signal list清单中数值相同的信号时，将执行双引号中的命令串。</p>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style="" ><code class="language-clike">trap &#39;commands&#39; signal-list
+trap &quot;commands&quot; signal-list
+</code></pre>
+
+
+
+<p>第二种形式的trap命令恢复信号的默认操作：</p>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style="" ><code class="language-clike">trap signal-list
+</code></pre>
+
+
+
+<p>第三种形式的trap命令允许忽视信号：</p>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style="" ><code class="language-clike">trap &quot; &quot; signal-list
+trap &#39;COMMAND&#39; SIGINT（表示关闭进程）
+</code></pre>
+
+
+
+<p>例：写一个脚本，能够ping探测指定网络内的所有主机是否在线,当没有执行完时可接收ctrl+c命令退出。</p>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style="" ><code class="language-clike">
+#!&#x2F;bin&#x2F;bash
+quitScript() {
+   echo &quot;Quit...&quot;
+}    
+trap &#39;quitScript; exit 5&#39; SIGINT
+
+cnetPing() {
+  for i in {1..254}; do
+    if ping -c 1 -W 1 $1.$i &amp;&gt; &#x2F;dev&#x2F;null; then
+      echo &quot;$1.$i is up.&quot;
+     else
+      echo &quot;$1.$i is down.&quot;
+    fi
+    done
+}
+
+bnetPing() {
+  for j in {0..255}; do
+    cnetPing $1.$j 
+  done
+}
+anetPing() {
+for m in {0..255}; do
+bnetPing $1.$m
+done
+}
+
+netType=`echo $1 | cut -d&quot;.&quot; -f1`
+
+if [ $netType -ge 1 -a $netType -le 126 ]; then
+anetPing $netType
+elif [ $netType -ge 128 -a $netType -le 191 ]; then
+bnetPing $(echo $1 | cut -d&#39;.&#39; -f1,2)
+elif [ $netType -ge 192 -a $netType -le 223 ]; then
+cnetPing $(echo $1 | cut -d&#39;.&#39; -f1-3)
+else
+echo &quot;Wrong&quot;
+exit 2
+fi
+</code></pre>
+
+
+
+<h3 id="bash编程之数组"><a href="#bash编程之数组" class="headerlink" title="bash编程之数组"></a>bash编程之数组</h3><p><strong>数组</strong>：连续的多个独立内存空间，每个内存空间相当于一个变量<br><strong>数组元素</strong>：数组名+索引（从0开始编号）<br><strong>索引的表示方式</strong>：a[0], a[1]<br><strong>声明数组</strong>：</p>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style="" ><code class="language-clike">declare -a ARRAR_NAME
+</code></pre>
+
+<p><strong>关联数组</strong>：</p>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style="" ><code class="language-clike">declare -A ARRAY_NAME
+</code></pre>
+
+
+
+<p>支持稀疏格式：仅一维数组  </p>
+<p>数组元素的赋值：</p>
+<p>(1) 一次只赋值一个元素</p>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style="" ><code class="language-clike">a[0]=$RANDOM
+</code></pre>
+
+
+
+<p>(2) 一次赋值全部元素</p>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style="" ><code class="language-clike">a=(red blue yellow green)
+</code></pre>
+
+
+
+<p>(3) 指定索引进行赋值</p>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style="" ><code class="language-clike">a=([0]=green [3]=red [2]=blue [6]=yellow)
+</code></pre>
+
+
+
+<p>(4) 用户输入</p>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style="" ><code class="language-clike">read -a ARRAY
+</code></pre>
+
+
+
+<p><strong>数组的访问</strong>：<br><strong>用索引访问</strong>：</p>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style="" ><code class="language-clike">ARRAY[index]
+</code></pre>
+
+<p><strong>数组的长度</strong>：</p>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style="" ><code class="language-clike">${#ARRAY[*]}
+${#ARRAY[@]}
+</code></pre>
+
+<p>例：写一个脚本，生成10个随机数，保存至数组中；而后显示数组下标为偶数的元素</p>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style="" ><code class="language-clike">#！&#x2F;bin&#x2F;bash
+for i in {0..9}; do
+    rand[$i]=$RANDOM
+    [ $[$i%2] -eq 0 ] &amp;&amp; echo &quot;$i:${rand[$i]}&quot;
+done
+</code></pre>
+
+
+
+<p><strong>从数组中挑选某元素</strong>:</p>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style="" ><code class="language-clike">${ARRAY[@]:offset:number}
+</code></pre>
+
+
+
+<p><strong>切片</strong>：</p>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style="" ><code class="language-clike">offset: 偏移的元素个数
+number: 取出的元素的个数
+${ARRAY[@]:offset}：取出偏移量后的所有元素
+${ARRAY[@]}: 取出所有元素
+</code></pre>
+
+
+
+<p><strong>数组复制</strong>：要使用${ARRAY[@]}</p>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style="" ><code class="language-clike">$@: 每个参数是一个独立的串
+$*: 所有参数是一个串
+</code></pre>
+
+<p><strong>向数组中追加元素</strong>：非稀疏格式</p>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style="" ><code class="language-clike">week, 
+week[${#week[@]}]
+</code></pre>
+
+
+
+<p><strong>从数组中删除元素</strong>：</p>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style="" ><code class="language-clike">unset ARRAY[index]
+</code></pre>
+
+
+
+<p>例：复制一个数组中下标为偶数的元素至一个新数组中</p>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style="" ><code class="language-clike">#!&#x2F;bin&#x2F;bash
+declare -a mylogs
+logs=(&#x2F;var&#x2F;log&#x2F;*.log)
+echo ${logs[@]}
+for i in `seq 0 ${#logs[@]}`; do
+  if [ $[$i%2] -eq 0 ];then
+    index=${#mylogs[@]}
+     mylogs[$index]=${logs[$i]}
+  fi
+done
+echo ${mylogs[@]}
+</code></pre>
+
+
+
+<p>例2：生成10个随机数，升序排序</p>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style="" ><code class="language-clike">
+#!&#x2F;bin&#x2F;bash
+for((i=0;i&lt;10;i++))
+do
+  rnd[$i]=$RANDOM
+done
+echo -e &quot;total=${#rnd[@]}\n${rnd[@]}\nBegin to sort&quot;
+for((i=9;i&gt;=1;i--))
+do
+        for((j=0;j&lt;i;j++))
+  do
+  if [ ${rnd[$j]} -gt ${rnd[$[$j+1]]} ] ;then
+    swapValue=${rnd[$j]}
+    rnd[$j]=${rnd[$[$j+1]]}
+    rnd[$[$j+1]]=$swapValue
+  fi
+  done
+done
+echo ${rnd[@]}
+</code></pre>
+
+
+
+<p>例3：打印九九乘法表</p>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style="" ><code class="language-clike">#!&#x2F;bin&#x2F;bashfor((i=1;i&lt;=9;i++))
+do 
+strLine=&quot;&quot;
+  for((j=1;i&lt;=9;j++))
+  do
+    strLine=$strLine&quot;$i*$j=&quot;$[$i*$j]&quot;\t&quot;
+    [ $i -eq $j ] &amp;&amp; echo -e $strLine &amp;&amp; break
+  done
+done
+</code></pre>
+
+
+
+<h3 id="bash编程之字符串操作"><a href="#bash编程之字符串操作" class="headerlink" title="bash编程之字符串操作"></a>bash编程之字符串操作</h3><p><strong>字符串切片</strong>：</p>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style="" ><code class="language-clike">${string:offset:length}
+[root@scholar scripts]# string=&#39;hello word&#39;
+[root@scholar scripts]# echo ${string:2:4}
+llo
+
+取尾部的指定个数的字符：
+${string: -length}
+[root@scholar scripts]# echo ${string: -2}
+rd
+</code></pre>
+
+
+
+<p><strong>取子串</strong>：基于模式</p>
+<ul>
+<li><p><code>${variable#*word}</code>：在variable中存储字串上，自左而右，查找第一次出现word，删除字符开始至此word处的所有内容；</p>
+</li>
+<li><p>$<code>{variable##*word}</code>：在variable中存储字串上，自左而右，查找最后一次出现word，删除字符开始至此word处的所有内容；</p>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style="" ><code class="language-clike">file=&#39;&#x2F;var&#x2F;log&#x2F;messages&#39;
+${file#*&#x2F;}: 返回的结果是var&#x2F;log&#x2F;messages
+${file##*&#x2F;}: 返回messages
+</code></pre>
+</li>
+<li><p><code>${variable%word*}</code>: 在variable中存储字串上，自右而左，查找第一次出现word，删除此word处至字串尾部的所有内容；</p>
+</li>
+<li><p><code>${variable%%world*}</code>:在variable中存储字串上，自右而左，查找最后一次出现word，删除此word处至字串尾部的所有内容；</p>
+</li>
+</ul>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style="" ><code class="language-clike">file=&#39;&#x2F;var&#x2F;log&#x2F;messages&#39;
+${file%*&#x2F;}: 返回的结果是&#x2F;var&#x2F;log
+${file%%*&#x2F;}: 返回结果为空
+
+例：url=&quot;http:&#x2F;&#x2F;www.redhat.com:80&quot;
+取端口：${url##*:}
+取协议：${url%%:*}
+</code></pre>
+
+
+
+<p><strong>查找替换</strong>：</p>
+<ul>
+<li><code>${variable/pattern/substi}</code>: 替换第一次出现</li>
+</ul>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style="" ><code class="language-clike">#userinfo=`tail -1 &#x2F;etc&#x2F;passwd
+#echo $userinfo
+scholar:x:500:500:scholar:&#x2F;home&#x2F;scholar:&#x2F;bin&#x2F;bash
+#echo ${userinfo&#x2F;scholar&#x2F;redhat}
+redhat:x:500:500:scholar:&#x2F;home&#x2F;scholar:&#x2F;bin&#x2F;bash
+</code></pre>
+
+
+
+<ul>
+<li><code>${variable//pattern/substi}</code>：替换所有的出现</li>
+</ul>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style="" ><code class="language-clike">#echo ${userinfo&#x2F;&#x2F;scholar&#x2F;redhat}
+redhat:x:500:500:redhat:&#x2F;home&#x2F;redhat:&#x2F;bin&#x2F;bash
+</code></pre>
+
+
+
+<ul>
+<li><code>${variable/#pattern/substi}</code>：替换行首被pattern匹配到的内容</li>
+</ul>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style="" ><code class="language-clike">#echo ${userinfo&#x2F;#scholar&#x2F;redhat}
+redhat:x:500:500:scholar:&#x2F;home&#x2F;scholar:&#x2F;bin&#x2F;bash
+</code></pre>
+
+
+
+<ul>
+<li><code>${variable/%pattern/substi}</code>：替换行尾被pattern匹配到的内容</li>
+</ul>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style="" ><code class="language-clike">#echo ${userinfo&#x2F;%bash&#x2F;redhat}
+scholar:x:500:500:scholar:&#x2F;home&#x2F;scholar:&#x2F;bin&#x2F;redhat
+</code></pre>
+
+
+
+<h4 id="pattern可以使用globbing中的元字符：-？"><a href="#pattern可以使用globbing中的元字符：-？" class="headerlink" title="pattern可以使用globbing中的元字符：* ？"></a>pattern可以使用globbing中的元字符：<code>* ？</code></h4><p><strong>查找删除</strong>：</p>
+<ul>
+<li><code>${variable/pattern}</code>：删除第一次出现</li>
+</ul>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style="" ><code class="language-clike">#echo ${userinfo&#x2F;scholar}
+:x:500:500:scholar:&#x2F;home&#x2F;scholar:&#x2F;bin&#x2F;bash
+</code></pre>
+
+
+
+<ul>
+<li><code>${variable//pattern}</code>：删除所有的出现</li>
+</ul>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style="" ><code class="language-clike">#echo ${userinfo&#x2F;&#x2F;scholar}
+:x:500:500::&#x2F;home&#x2F;:&#x2F;bin&#x2F;bash
+</code></pre>
+
+
+
+<ul>
+<li><code>${variable/#pattern}</code>：删除行首被pattern匹配到的内容</li>
+</ul>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style="" ><code class="language-clike">#echo ${userinfo&#x2F;#scholar}
+:x:500:500:scholar:&#x2F;home&#x2F;scholar:&#x2F;bin&#x2F;bash
+</code></pre>
+
+
+
+<ul>
+<li><code>${variable/%pattern}</code>：删除行尾被pattern匹配到的内容</li>
+</ul>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style="" ><code class="language-clike">#echo ${userinfo&#x2F;%bash}
+scholar:x:500:500:scholar:&#x2F;home&#x2F;scholar:&#x2F;bin&#x2F;
+</code></pre>
+
+
+
+<p><strong>大小写转换</strong>：</p>
+<p>小–&gt;大：<code>${variable^^}</code></p>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style="" ><code class="language-clike">#echo ${userinfo^^}
+SCHOLAR:X:500:500:SCHOLAR:&#x2F;HOME&#x2F;SCHOLAR:&#x2F;BIN&#x2F;BASH
+</code></pre>
+
+
+
+<p>大–&gt;小：<code>${variable,,}</code></p>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style="" ><code class="language-clike">#name=&quot;SCHOLAR&quot;
+#echo ${name,,}
+scholar
+</code></pre>
+
+
+
+<h4 id="变量赋值操作："><a href="#变量赋值操作：" class="headerlink" title="变量赋值操作："></a>变量赋值操作：</h4><ul>
+<li><code>${variable:-string}</code>:variable为空或未设定，那么返回string，否则，返回variable变量的值；</li>
+<li><code>${variable:=string}</code>:variable为空或未设定，则返回string，且将string赋值给变量variable，否则，返回variable的值；</li>
+</ul>
+<p>为脚本使用配置文件，并确保某变量有可用值的方式</p>
+<p><code>variable=${variable:-default vaule}</code></p>
+<p>写个脚本，配置etc目录；</p>
+<ul>
+<li>(1) 在配置文件中定义变量；</li>
+<li>(2) 在脚本中source配置文件；</li>
+</ul>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style="" ><code class="language-clike">#!&#x2F;bin&#x2F;bash
+[ -f &#x2F;etc&#x2F;sysconfig&#x2F;network ] &amp;&amp; source &#x2F;etc&#x2F;network&#x2F;network
+[-z &quot;$HOSTAME&quot; -o &quot;$HOSTNAME&quot; = &#39;(none)&#39; ] || HOSTNAME =&#39;localhost&#39;
+&#x2F;bin&#x2F;hostname $HOSTNAME
+&#x2F;bin&#x2F;hostname
+</code></pre>
+
+
+
+<h4 id="mktemp命令："><a href="#mktemp命令：" class="headerlink" title="mktemp命令："></a>mktemp命令：</h4><p>mktemp [OPTIONS] filename.XXX</p>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style="" ><code class="language-clike">-d: 创建临时目录
+--tmpdir=&#x2F;path&#x2F;to&#x2F;somewhere ：指定临时文件所在的目录
+
+mktemp &#x2F;tmp&#x2F;tmp.XXX                    #XXX生成相同数量随机字符
+mktemp --tmpdir=&#x2F;var&#x2F;tmp tmp.XXX       #指定目录创建临时文件
+mktemp --tmpdir=&#x2F;var&#x2F;tmp -d tmp.XXX    #指定目录创建临时目录
+</code></pre>
+
+
+
+<h4 id="install命令"><a href="#install命令" class="headerlink" title="install命令:"></a>install命令:</h4><p>install [OPTIONS] SOURCE DEST<br>install [OPTIONS] SOURCE… DIR<br>install [OPTIONS] -d DIR …</p>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style="" ><code class="language-clike">增强型的复制命令：
+-o OWNER
+-g GROUP
+-m MODE
+-d : 创建目录
+
+install &#x2F;etc&#x2F;fstab &#x2F;tmp                 #复制文件到指定目录
+install --mode=644 &#x2F;etc&#x2F;fstab &#x2F;tmp&#x2F;     #复制时指定权限
+install --owner=scholar &#x2F;etc&#x2F;fstab &#x2F;tmp #复制时指定属主
+install --group=scholar &#x2F;etc&#x2F;fstab &#x2F;tmp #复制时指定属组
+install -d &#x2F;tmp&#x2F;install                 #创建目录
+</code></pre>
+
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
         
   
   
@@ -3635,82 +4929,6 @@ b = &#39;姓名：&#39; + name + &#39;年龄：&#39; + age + &#39;性别：&#39;
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://https//lyvivian0077.github.io/2018/01/23/awk/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="lyvivian0077">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="总有刁民想要害朕">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2018/01/23/awk/" class="post-title-link" itemprop="url">三十分钟学会AWK</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2018-01-23 15:43:20" itemprop="dateCreated datePublished" datetime="2018-01-23T15:43:20+09:00">2018-01-23</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-12-16 10:24:47" itemprop="dateModified" datetime="2019-12-16T10:24:47+09:00">2019-12-16</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/main/" itemprop="url" rel="index">
-                    <span itemprop="name">main</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="三十分钟学会AWK"><a href="#三十分钟学会AWK" class="headerlink" title="三十分钟学会AWK"></a>三十分钟学会AWK</h2><p><a href="/assets/三十分钟学会AWK.pdf">三十分钟学会AWK</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -3781,7 +4999,7 @@ b = &#39;姓名：&#39; + name + &#39;年龄：&#39; + age + &#39;性别：&#39;
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">28</span>
+          <span class="site-state-item-count">29</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
