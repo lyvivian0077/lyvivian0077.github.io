@@ -95,9 +95,9 @@
   .use-motion .logo-line-before i { left: initial; }
   .use-motion .logo-line-after i { right: initial; }
   </style>
-</noscript><!-- hexo-inject:begin --><link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/prism/1.15.0/themes/prism.min.css'><link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/prism/1.15.0/plugins/line-numbers/prism-line-numbers.min.css'><!-- hexo-inject:end -->
+</noscript>
 
-<link rel="stylesheet" href="/css/prism.css" type="text/css"></head>
+<link rel="stylesheet" href="/css/prism.css" type="text/css"><!-- hexo-inject:begin --><link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/prism/1.15.0/themes/prism.min.css'><link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/prism/1.15.0/plugins/line-numbers/prism-line-numbers.min.css'><!-- hexo-inject:end --></head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container">
@@ -161,6 +161,211 @@
             
 
   <div class="posts-expand">
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://https//lyvivian0077.github.io/2018/03/30/ubnt/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="lyvivian0077">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="总有刁民想要害朕">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2018/03/30/ubnt/" class="post-title-link" itemprop="url">ubnt</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2018-03-30 17:00:20" itemprop="dateCreated datePublished" datetime="2018-03-30T17:00:20+09:00">2018-03-30</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2019-12-13 17:15:11" itemprop="dateModified" datetime="2019-12-13T17:15:11+09:00">2019-12-13</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/main/" itemprop="url" rel="index">
+                    <span itemprop="name">main</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <ul>
+<li><a href="https://qiita.com/haccht/items/17ed2bed628d2fd17bea" target="_blank" rel="noopener">Edgerouter Lite-3でDS-Lite</a></li>
+</ul>
+<h2 id="Add-nat"><a href="#Add-nat" class="headerlink" title="Add nat"></a>Add nat</h2><ul>
+<li><a href="https://help.ubnt.com/hc/en-us/articles/217367937-EdgeRouter-Port-Forwarding" target="_blank" rel="noopener">EdgeRouter - Port Forwarding</a></li>
+<li>  <figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">set firewall name WAN_IN rule 22 action accept</span><br><span class="line">set firewall name WAN_IN rule 22 destination address 192.168.1.100</span><br><span class="line">set firewall name WAN_IN rule 22 destination port 22</span><br><span class="line">set firewall name WAN_IN rule 22 protocol tcp</span><br><span class="line"></span><br><span class="line">set service nat rule 22 description &quot;port forward to Server (ssh)&quot;</span><br><span class="line">set service nat rule 22 destination port 22</span><br><span class="line">set service nat rule 22 inbound-interface pppoe0</span><br><span class="line">set service nat rule 22 inside-address address 192.168.1.100</span><br><span class="line">set service nat rule 22 inside-address port 22</span><br><span class="line">set service nat rule 22 protocol tcp</span><br><span class="line">set service nat rule 22 type destination</span><br><span class="line">commit</span><br><span class="line">save</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="Add-dynamic-DNS"><a href="#Add-dynamic-DNS" class="headerlink" title="Add dynamic DNS"></a>Add dynamic DNS</h2><table>
+<thead>
+<tr>
+<th align="left">設定値</th>
+<th align="left">Duck DNS</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">domain</td>
+<td align="left">return-0.duckdns.org</td>
+</tr>
+<tr>
+<td align="left">Interface</td>
+<td align="left">pppoe0</td>
+</tr>
+<tr>
+<td align="left">Service</td>
+<td align="left">custom-duckdns</td>
+</tr>
+<tr>
+<td align="left">Hostname</td>
+<td align="left">return-0</td>
+</tr>
+<tr>
+<td align="left">Login</td>
+<td align="left">nouser</td>
+</tr>
+<tr>
+<td align="left">Password</td>
+<td align="left">Duck DNS のサイトに表示される<code>token</code></td>
+</tr>
+<tr>
+<td align="left">Protocol</td>
+<td align="left">dyndns2</td>
+</tr>
+<tr>
+<td align="left">Server</td>
+<td align="left"><a href="http://www.duckdns.org" target="_blank" rel="noopener">www.duckdns.org</a></td>
+</tr>
+</tbody></table>
+<ul>
+<li>duckdns</li>
+<li><a href="https://yabe.jp/gadgets/edgerouter-x-05-ddns" target="_blank" rel="noopener">EdgeRouter X - 5. ダイナミック DNS の設定 ( DDNS )</a></li>
+<li><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">root@ubnt:&#x2F;home&#x2F;ubnt# configure</span><br><span class="line">[edit]</span><br><span class="line">root@ubnt# set service dns dynamic interface pppoe0  service custom-duckdns host-name return-0</span><br><span class="line">[edit]</span><br><span class="line">root@ubnt# set service dns dynamic interface pppoe0  service custom-duckdns login nosuer</span><br><span class="line">[edit]</span><br><span class="line">root@ubnt# set service dns dynamic interface pppoe0  service custom-duckdns password xxxtokenxxxx</span><br><span class="line">[edit]</span><br><span class="line">root@ubnt# set service dns dynamic interface pppoe0  service custom-duckdns protocol dyndns2</span><br><span class="line">[edit]</span><br><span class="line">root@ubnt# set service dns dynamic interface pppoe0  service custom-duckdns server www.duckdns.org</span><br><span class="line">[edit]</span><br><span class="line">root@ubnt# commit</span><br><span class="line">[edit]</span><br><span class="line">root@ubnt# save</span><br><span class="line">Saving configuration to &#39;&#x2F;config&#x2F;config.boot&#39;...</span><br><span class="line">Done</span><br><span class="line">[edit]</span><br><span class="line">root@ubnt#</span><br><span class="line">root@ubnt:&#x2F;home&#x2F;ubnt# show dns dynamic status</span><br><span class="line"># ddns</span><br><span class="line">interface    : pppoe0</span><br><span class="line">ip address   : &lt;PublicIP&gt;</span><br><span class="line">host-name    : &lt;hostname&gt; (xxx.ddns.net)</span><br><span class="line">last update  : Wed Apr 25 10:28:27 2018</span><br><span class="line">update-status: good</span><br><span class="line"># duckdns</span><br><span class="line">interface    : pppoe0</span><br><span class="line">ip address   : &lt;PublicIP&gt;</span><br><span class="line">host-name    : &lt;hostname&gt; (xxx)</span><br><span class="line">last update  : Wed Apr 25 10:28:27 2018</span><br><span class="line">update-status: good</span><br><span class="line">root@ubnt:&#x2F;home&#x2F;ubnt#</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="create-VPN-L2TP"><a href="#create-VPN-L2TP" class="headerlink" title="create VPN L2TP"></a>create VPN L2TP</h2><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">SSH でルーターにアクセス</span><br><span class="line">## 設定モードに入る</span><br><span class="line">configure</span><br></pre></td></tr></table></figure>
+
+<h3 id="Add-firewall-rules-for-the-L2TP-traffic-to-the-local-firewall-policy"><a href="#Add-firewall-rules-for-the-L2TP-traffic-to-the-local-firewall-policy" class="headerlink" title="Add firewall rules for the L2TP traffic to the local firewall policy."></a>Add firewall rules for the L2TP traffic to the local firewall policy.</h3><ul>
+<li>  <figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">set firewall name WAN_LOCAL rule 30 action accept</span><br><span class="line">set firewall name WAN_LOCAL rule 30 description ike</span><br><span class="line">set firewall name WAN_LOCAL rule 30 destination port 500</span><br><span class="line">set firewall name WAN_LOCAL rule 30 log disable</span><br><span class="line">set firewall name WAN_LOCAL rule 30 protocol udp</span><br><span class="line"></span><br><span class="line">set firewall name WAN_LOCAL rule 40 action accept</span><br><span class="line">set firewall name WAN_LOCAL rule 40 description esp</span><br><span class="line">set firewall name WAN_LOCAL rule 40 log disable</span><br><span class="line">set firewall name WAN_LOCAL rule 40 protocol esp</span><br><span class="line"></span><br><span class="line">set firewall name WAN_LOCAL rule 50 action accept</span><br><span class="line">set firewall name WAN_LOCAL rule 50 description nat-t</span><br><span class="line">set firewall name WAN_LOCAL rule 50 destination port 4500</span><br><span class="line">set firewall name WAN_LOCAL rule 50 log disable</span><br><span class="line">set firewall name WAN_LOCAL rule 50 protocol udp</span><br><span class="line"></span><br><span class="line">set firewall name WAN_LOCAL rule 60 action accept</span><br><span class="line">set firewall name WAN_LOCAL rule 60 description l2tp</span><br><span class="line">set firewall name WAN_LOCAL rule 60 destination port 1701</span><br><span class="line">set firewall name WAN_LOCAL rule 60 ipsec match-ipsec</span><br><span class="line">set firewall name WAN_LOCAL rule 60 log disable</span><br><span class="line">set firewall name WAN_LOCAL rule 60 protocol udp</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="基本的な-IPsec-の設定"><a href="#基本的な-IPsec-の設定" class="headerlink" title="基本的な IPsec の設定"></a>基本的な IPsec の設定</h3><ul>
+<li><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">set vpn ipsec ipsec-interfaces interface pppoe0</span><br><span class="line">set vpn ipsec nat-networks allowed-network 0.0.0.0&#x2F;0</span><br><span class="line">set vpn ipsec nat-traversal enable</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="WAN-側-IP-アドレスが-pppoe0-経由で割り当ての場合これを指定"><a href="#WAN-側-IP-アドレスが-pppoe0-経由で割り当ての場合これを指定" class="headerlink" title="WAN 側 IP アドレスが pppoe0 経由で割り当ての場合これを指定"></a>WAN 側 IP アドレスが pppoe0 経由で割り当ての場合これを指定</h3><ul>
+<li><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">set vpn l2tp remote-access outside-address 0.0.0.0</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="L2TP-でアクセスしてきたクライアントに割り当てる-IP-アドレスの範囲を指定"><a href="#L2TP-でアクセスしてきたクライアントに割り当てる-IP-アドレスの範囲を指定" class="headerlink" title="L2TP でアクセスしてきたクライアントに割り当てる IP アドレスの範囲を指定"></a>L2TP でアクセスしてきたクライアントに割り当てる IP アドレスの範囲を指定</h3><ul>
+<li><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">set vpn l2tp remote-access client-ip-pool start 192.168.1.121</span><br><span class="line">set vpn l2tp remote-access client-ip-pool stop 192.168.1.140</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="L2TP-の「シークレット」を設定"><a href="#L2TP-の「シークレット」を設定" class="headerlink" title="L2TP の「シークレット」を設定"></a>L2TP の「シークレット」を設定</h3><ul>
+<li><code>PASSWORD</code> の部分を任意のパスワードに変更して入力</li>
+<li><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">set vpn l2tp remote-access ipsec-settings authentication mode pre-shared-secret</span><br><span class="line">set vpn l2tp remote-access ipsec-settings authentication pre-shared-secret PASSWORD</span><br><span class="line">set vpn l2tp remote-access ipsec-settings ike-lifetime 3600</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="L2TP-クライアントの認証方法をローカルに設定"><a href="#L2TP-クライアントの認証方法をローカルに設定" class="headerlink" title="L2TP クライアントの認証方法をローカルに設定"></a>L2TP クライアントの認証方法をローカルに設定</h3><ul>
+<li><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">set vpn l2tp remote-access authentication mode local</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="L2TP-クライアントのユーザー名とパスワードを設定"><a href="#L2TP-クライアントのユーザー名とパスワードを設定" class="headerlink" title="L2TP クライアントのユーザー名とパスワードを設定"></a>L2TP クライアントのユーザー名とパスワードを設定</h3><ul>
+<li><code>USER</code> と <code>PASSWORD</code> の部分を変更して入力</li>
+<li><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">set vpn l2tp remote-access authentication local-users username USER password PASSWORD</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="L2TP-の-MTU-を保守的に設定"><a href="#L2TP-の-MTU-を保守的に設定" class="headerlink" title="L2TP の MTU を保守的に設定"></a>L2TP の MTU を保守的に設定</h3><ul>
+<li><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">set vpn l2tp remote-access mtu 1280</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="L2TP-のクライアントが使う-DNS-をルーター自身と-Google-DNS-に設定"><a href="#L2TP-のクライアントが使う-DNS-をルーター自身と-Google-DNS-に設定" class="headerlink" title="L2TP のクライアントが使う DNS をルーター自身と Google DNS に設定"></a>L2TP のクライアントが使う DNS をルーター自身と Google DNS に設定</h3><ul>
+<li><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">set vpn l2tp remote-access dns-servers server-1 192.168.1.1</span><br><span class="line">set vpn l2tp remote-access dns-servers server-2 8.8.8.8</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="ルーターの-DNS-が-L2TP-から使えるよう-DNS-Frowarding-をルーター自身に設定"><a href="#ルーターの-DNS-が-L2TP-から使えるよう-DNS-Frowarding-をルーター自身に設定" class="headerlink" title="ルーターの DNS が L2TP から使えるよう DNS Frowarding をルーター自身に設定"></a>ルーターの DNS が L2TP から使えるよう DNS Frowarding をルーター自身に設定</h3><ul>
+<li><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">set service dns forwarding listen-on lo</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="設定保存"><a href="#設定保存" class="headerlink" title="設定保存"></a>設定保存</h3><ul>
+<li><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">commit</span><br><span class="line">save</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="「どこでも-My-Mac」との競合対策"><a href="#「どこでも-My-Mac」との競合対策" class="headerlink" title="「どこでも My Mac」との競合対策"></a>「どこでも My Mac」との競合対策</h3><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">UDP ポート 4500は、「どこでも My Mac」でも使用しているため、</span><br><span class="line">Mac側で「どこでも My Mac」が有効になっていると、L2TP&#x2F;IPSecと競合してアクセス不能に陥ります。</span><br><span class="line">　・　回避方法</span><br><span class="line">　　その1） ローカルネットワーク内にあるすべてのMacで「どこでも My Mac」を無効にする</span><br><span class="line">　　その2） EdgerouterのUPnP2を無効にする　※セキュリティ的にはUPnPを無効にするのが吉</span><br><span class="line">　　その3） UPnPが必要な場合、UPnP2でUDP ポート 4500での転送を止める</span><br></pre></td></tr></table></figure>
+
+<h3 id="その3）をコマンドで設定する場合"><a href="#その3）をコマンドで設定する場合" class="headerlink" title="その3）をコマンドで設定する場合"></a>その3）をコマンドで設定する場合</h3><h3 id="対策-設定モードのコマンドを使用して設定"><a href="#対策-設定モードのコマンドを使用して設定" class="headerlink" title="対策 設定モードのコマンドを使用して設定"></a>対策 設定モードのコマンドを使用して設定</h3><ul>
+<li><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">configure</span><br><span class="line">set service upnp2 acl rule 10 action deny</span><br><span class="line">set service upnp2 acl rule 10 description &quot;Block Port 4500&quot;</span><br><span class="line">set service upnp2 acl rule 10 external-port 4500</span><br><span class="line">set service upnp2 acl rule 10 local-port 4500</span><br><span class="line">set service upnp2 acl rule 10 subnet 192.168.1.0&#x2F;24</span><br><span class="line">set service upnp2 listen-on pppoe0</span><br><span class="line">set service upnp2 wan pppoe0</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="設定を反映して保存、設定モード終了"><a href="#設定を反映して保存、設定モード終了" class="headerlink" title="設定を反映して保存、設定モード終了"></a>設定を反映して保存、設定モード終了</h3><ul>
+<li><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">commit</span><br><span class="line">save</span><br><span class="line">exit</span><br></pre></td></tr></table></figure>
+
+
+</li>
+</ul>
+<h2 id="ファームウェアのアップデート"><a href="#ファームウェアのアップデート" class="headerlink" title="ファームウェアのアップデート"></a>ファームウェアのアップデート</h2><p>-</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br></pre></td><td class="code"><pre><span class="line">root@ubnt:&#x2F;home&#x2F;ubnt# df -h</span><br><span class="line">Filesystem                Size      Used Available Use% Mounted on</span><br><span class="line">ubi0_0                  214.9M    155.8M     54.4M  74% &#x2F;root.dev</span><br><span class="line">aufs                    214.9M    155.8M     54.4M  74% &#x2F;</span><br><span class="line">devtmpfs                124.3M         0    124.3M   0% &#x2F;dev</span><br><span class="line">tmpfs                   124.4M    220.0K    124.2M   0% &#x2F;run</span><br><span class="line">tmpfs                   124.4M    220.0K    124.2M   0% &#x2F;run</span><br><span class="line">tmpfs                   124.4M     18.7M    105.8M  15% &#x2F;var&#x2F;log</span><br><span class="line">tmpfs                   124.4M     12.0K    124.4M   0% &#x2F;tmp</span><br><span class="line">none                    124.4M    756.0K    123.7M   1% &#x2F;opt&#x2F;vyatta&#x2F;config</span><br><span class="line">root@ubnt:&#x2F;home&#x2F;ubnt# </span><br><span class="line"></span><br><span class="line">root@ubnt:&#x2F;home&#x2F;ubnt# show system image</span><br><span class="line">The system currently has the following image(s) installed:</span><br><span class="line"></span><br><span class="line">v1.10.5.5098943.180622.1555    (running image) (default boot)</span><br><span class="line">v1.9.0.4901118.160804.1131</span><br><span class="line"></span><br><span class="line">root@ubnt:&#x2F;home&#x2F;ubnt# show system image storage</span><br><span class="line">Image name                        Read-Only   Read-Write        Total</span><br><span class="line">------------------------------ ------------ ------------ ------------</span><br><span class="line">v1.10.5.5098943.180622.1555           77760          940        78700</span><br><span class="line">v1.9.0.4901118.160804.1131            76760        14152        90912</span><br><span class="line">root@ubnt:&#x2F;home&#x2F;ubnt# delete system image</span><br><span class="line">Possible completions:</span><br><span class="line">  &lt;Enter&gt;       Execute the current command</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">root@ubnt:&#x2F;home&#x2F;ubnt# delete system image</span><br><span class="line">The system currently has the following image(s) installed:</span><br><span class="line"></span><br><span class="line">v1.10.5.5098943.180622.1555    (running image) (default boot)</span><br><span class="line">v1.9.0.4901118.160804.1131</span><br><span class="line"></span><br><span class="line">You are about to delete image [v1.9.0.4901118.160804.1131]</span><br><span class="line">Are you sure you want to delete ? (Yes&#x2F;No) [Yes]: Yes</span><br><span class="line">Removing old image... Done</span><br><span class="line">root@ubnt:&#x2F;home&#x2F;ubnt#</span><br><span class="line">root@ubnt:&#x2F;home&#x2F;ubnt# df -h</span><br><span class="line">Filesystem                Size      Used Available Use% Mounted on</span><br><span class="line">ubi0_0                  214.9M     74.1M    136.1M  35% &#x2F;root.dev</span><br><span class="line">aufs                    214.9M     74.1M    136.1M  35% &#x2F;</span><br><span class="line">devtmpfs                124.3M         0    124.3M   0% &#x2F;dev</span><br><span class="line">tmpfs                   124.4M    220.0K    124.2M   0% &#x2F;run</span><br><span class="line">tmpfs                   124.4M    220.0K    124.2M   0% &#x2F;run</span><br><span class="line">tmpfs                   124.4M     18.7M    105.7M  15% &#x2F;var&#x2F;log</span><br><span class="line">tmpfs                   124.4M     12.0K    124.4M   0% &#x2F;tmp</span><br><span class="line">none                    124.4M    756.0K    123.7M   1% &#x2F;opt&#x2F;vyatta&#x2F;config</span><br><span class="line">root@ubnt:&#x2F;home&#x2F;ubnt# </span><br><span class="line"></span><br><span class="line">root@ubnt:&#x2F;home&#x2F;ubnt# ls</span><br><span class="line">ER-e50.v1.10.7.5127989.tar</span><br><span class="line">root@ubnt:&#x2F;home&#x2F;ubnt# add system image ^C</span><br><span class="line">root@ubnt:&#x2F;home&#x2F;ubnt# show version</span><br><span class="line">Version:      v1.10.5</span><br><span class="line">Build ID:     5098943</span><br><span class="line">Build on:     06&#x2F;22&#x2F;18 15:55</span><br><span class="line">Copyright:    2012-2018 Ubiquiti Networks, Inc.</span><br><span class="line">HW model:     EdgeRouter X 5-Port</span><br><span class="line">HW S&#x2F;N:       F09FC2087E8A</span><br><span class="line">Uptime:       12:45:43 up 85 days, 13:33,  1 user,  load average: 1.26, 1.24, 1.19</span><br><span class="line">root@ubnt:&#x2F;home&#x2F;ubnt# add system image  ER-e50.v1.10.7.5127989.tar</span><br><span class="line">Checking upgrade image...Done</span><br><span class="line">Preparing to upgrade...Done</span><br><span class="line">Clearing directory &#x2F;var&#x2F;cache&#x2F;apt (356.0K)...Done</span><br><span class="line">Copying upgrade image...Not enough disk space for root file system</span><br><span class="line">Do you want to delete old version first? (Yes&#x2F;No) [Yes]: Yes</span><br><span class="line">Removing old image...Done</span><br><span class="line">Still not enough disk space for root file system</span><br><span class="line">Canceling upgrade</span><br><span class="line">&#x2F;home&#x2F;ubnt</span><br><span class="line">root@ubnt:&#x2F;home&#x2F;ubnt#</span><br><span class="line">root@ubnt:&#x2F;home&#x2F;ubnt# df -h</span><br><span class="line">Filesystem                Size      Used Available Use% Mounted on</span><br><span class="line">ubi0_0                  214.9M    149.9M     60.3M  71% &#x2F;root.dev</span><br><span class="line">aufs                    214.9M    149.9M     60.3M  71% &#x2F;</span><br><span class="line">devtmpfs                124.3M         0    124.3M   0% &#x2F;dev</span><br><span class="line">tmpfs                   124.4M    220.0K    124.2M   0% &#x2F;run</span><br><span class="line">tmpfs                   124.4M    220.0K    124.2M   0% &#x2F;run</span><br><span class="line">tmpfs                   124.4M     18.7M    105.7M  15% &#x2F;var&#x2F;log</span><br><span class="line">tmpfs                   124.4M     12.0K    124.4M   0% &#x2F;tmp</span><br><span class="line">none                    124.4M    756.0K    123.7M   1% &#x2F;opt&#x2F;vyatta&#x2F;config</span><br><span class="line">root@ubnt:&#x2F;home&#x2F;ubnt# ls -lath ER-e50.v1.10.7.5127989.tar</span><br><span class="line">-rw-r--r--    1 ubnt     users      78.3M Nov  1 12:44 ER-e50.v1.10.7.5127989.tar</span><br><span class="line">root@ubnt:&#x2F;home&#x2F;ubnt#</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">root@ubnt:&#x2F;home&#x2F;ubnt# add system image https:&#x2F;&#x2F;dl.ubnt.com&#x2F;firmwares&#x2F;edgemax&#x2F;v1.10.x&#x2F;ER-e50.v1.10.7.5127989.tar</span><br><span class="line">Trying to get upgrade file from https:&#x2F;&#x2F;dl.ubnt.com&#x2F;firmwares&#x2F;edgemax&#x2F;v1.10.x&#x2F;ER-e50.v1.10.7.5127989.tar</span><br><span class="line">  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current</span><br><span class="line">                                 Dload  Upload   Total   Spent    Left  Speed</span><br><span class="line">100 78.3M  100 78.3M    0     0  3586k      0  0:00:22  0:00:22 --:--:-- 4926k</span><br><span class="line">Download succeeded</span><br><span class="line">Checking upgrade image...Done</span><br><span class="line">Preparing to upgrade...Done</span><br><span class="line">Clearing directory &#x2F;var&#x2F;cache&#x2F;apt (356.0K)...Done</span><br><span class="line">Copying upgrade image...Done</span><br><span class="line">Removing old image...Done</span><br><span class="line">Checking upgrade image...Done</span><br><span class="line">Copying config data...Done</span><br><span class="line">Finishing upgrade...Done</span><br><span class="line">Upgrade completed</span><br><span class="line">root@ubnt:&#x2F;home&#x2F;ubnt#</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">root@ubnt:&#x2F;home&#x2F;ubnt# show system image</span><br><span class="line">The system currently has the following image(s) installed:</span><br><span class="line"></span><br><span class="line">v1.10.7.5127989.181001.1227    (default boot)</span><br><span class="line">v1.10.5.5098943.180622.1555    (running image)</span><br><span class="line"></span><br><span class="line">A reboot is needed to boot default image</span><br><span class="line">root@ubnt:&#x2F;home&#x2F;ubnt# show system image storage</span><br><span class="line">Image name                        Read-Only   Read-Write        Total</span><br><span class="line">------------------------------ ------------ ------------ ------------</span><br><span class="line">v1.10.7.5127989.181001.1227           78500           88        78588</span><br><span class="line">v1.10.5.5098943.180622.1555           77760          588        78348</span><br><span class="line">root@ubnt:&#x2F;home&#x2F;ubnt#</span><br><span class="line"></span><br><span class="line">root@ubnt:&#x2F;home&#x2F;ubnt# show system image</span><br><span class="line">The system currently has the following image(s) installed:</span><br><span class="line"></span><br><span class="line">v1.10.7.5127989.181001.1227    (default boot)</span><br><span class="line">v1.10.5.5098943.180622.1555    (running image)</span><br><span class="line"></span><br><span class="line">A reboot is needed to boot default image</span><br><span class="line">root@ubnt:&#x2F;home&#x2F;ubnt# set system image default-boot</span><br><span class="line">The system currently has the following image(s) installed:</span><br><span class="line"></span><br><span class="line">v1.10.7.5127989.181001.1227    (default boot)</span><br><span class="line">v1.10.5.5098943.180622.1555    (running image)</span><br><span class="line"></span><br><span class="line">A reboot is needed to boot default image</span><br><span class="line">Are you sure you want to switch images? (Yes&#x2F;No) [Yes]:</span><br><span class="line">Moving images...</span><br><span class="line">Done</span><br><span class="line">Switched from</span><br><span class="line">  Version:      v1.10.7.5127989.181001.1227</span><br><span class="line">to</span><br><span class="line">  Version:      v1.10.5.5098943.180622.1555</span><br><span class="line">root@ubnt:&#x2F;home&#x2F;ubnt#</span><br><span class="line">root@ubnt:&#x2F;home&#x2F;ubnt# show system image</span><br><span class="line">The system currently has the following image(s) installed:</span><br><span class="line"></span><br><span class="line">v1.10.5.5098943.180622.1555    (running image) (default boot)</span><br><span class="line">v1.10.7.5127989.181001.1227</span><br><span class="line"></span><br><span class="line">root@ubnt:&#x2F;home&#x2F;ubnt# set system image default-boot</span><br><span class="line">The system currently has the following image(s) installed:</span><br><span class="line"></span><br><span class="line">v1.10.5.5098943.180622.1555    (running image) (default boot)</span><br><span class="line">v1.10.7.5127989.181001.1227</span><br><span class="line"></span><br><span class="line">Are you sure you want to switch images? (Yes&#x2F;No) [Yes]:</span><br><span class="line">Moving images...</span><br><span class="line">Done</span><br><span class="line">Switched from</span><br><span class="line">  Version:      v1.10.5.5098943.180622.1555</span><br><span class="line">to</span><br><span class="line">  Version:      v1.10.7.5127989.181001.1227</span><br><span class="line">root@ubnt:&#x2F;home&#x2F;ubnt# show system image</span><br><span class="line">The system currently has the following image(s) installed:</span><br><span class="line"></span><br><span class="line">v1.10.7.5127989.181001.1227    (default boot)</span><br><span class="line">v1.10.5.5098943.180622.1555    (running image)</span><br><span class="line"></span><br><span class="line">A reboot is needed to boot default image</span><br><span class="line">root@ubnt:&#x2F;home&#x2F;ubnt#</span><br><span class="line">root@ubnt:&#x2F;home&#x2F;ubnt# reboot</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
         
   
   
@@ -3216,7 +3421,7 @@ Port Status Linkspeed SAS address
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">29</span>
+          <span class="site-state-item-count">30</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
