@@ -54,7 +54,7 @@
 <meta property="og:description" content="explain详解与索引最佳实践explain详解与索引最佳实践    select_type 含义    SIMPLE 简单的select查询,查询中不包含子查询或者UNION   PRIMARY 查询中若包含任何复杂的字查询,最外层查询标记为该标识   SUBQUERY 在SELECT或WHERE列表中包含了子查询   DERIVED 在FROM列表中包含的子查询,被标记为DERIVED(衍生">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-10-22T03:49:29.000Z">
-<meta property="article:modified_time" content="2020-11-04T02:42:41.324Z">
+<meta property="article:modified_time" content="2020-11-26T06:22:35.175Z">
 <meta property="article:author" content="lyvivian0077">
 <meta name="twitter:card" content="summary">
 
@@ -199,7 +199,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-11-04 11:42:41" itemprop="dateModified" datetime="2020-11-04T11:42:41+09:00">2020-11-04</time>
+                <time title="Modified: 2020-11-26 15:22:35" itemprop="dateModified" datetime="2020-11-26T15:22:35+09:00">2020-11-26</time>
               </span>
 
           
@@ -976,6 +976,373 @@ Innodb_row_lock_waits: 系统启动后到现在总共等待的次数
 <li>尽量控制事务大小，减少锁定资源量和时间长度</li>
 <li>尽可能使用低级别事务隔离（但是需要业务层满足需求）</li>
 </ol>
+<h2 id="3、常用MySQL技巧"><a href="#3、常用MySQL技巧" class="headerlink" title="3、常用MySQL技巧"></a>3、常用MySQL技巧</h2><h4 id="1-SQL-执行顺序"><a href="#1-SQL-执行顺序" class="headerlink" title="1. SQL 执行顺序"></a>1. SQL 执行顺序</h4><p>编写顺序</p>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style="" ><code class="language-sql">SELECT DISTINCT
+ &lt;select list&gt;
+FROM
+ &lt;left_table&gt; &lt;join_type&gt;
+JOIN
+ &lt;right_table&gt; ON &lt;join_condition&gt;
+WHERE
+ &lt;where_condition&gt;
+GROUP BY
+ &lt;group_by_list&gt;
+HAVING
+ &lt;having_condition&gt;
+ORDER BY
+ &lt;order_by_condition&gt;
+LIMIT
+ &lt;limit_params&gt;
+12345678910111213141516
+</code></pre>
+
+
+
+<p>执行顺序</p>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style="" ><code class="language-sql">FROM	&lt;left_table&gt;
+
+ON 		&lt;join_condition&gt;
+
+&lt;join_type&gt;		JOIN	&lt;right_table&gt;
+
+WHERE		&lt;where_condition&gt;
+
+GROUP BY 	&lt;group_by_list&gt;
+
+HAVING		&lt;having_condition&gt;
+
+SELECT DISTINCT		&lt;select list&gt;
+
+ORDER BY	&lt;order_by_condition&gt;
+
+LIMIT		&lt;limit_params&gt;
+</code></pre>
+
+
+
+<h4 id="2-正则表达式使用"><a href="#2-正则表达式使用" class="headerlink" title="2. 正则表达式使用"></a>2. 正则表达式使用</h4><p>正则表达式（Regular Expression）是指一个用来描述或者匹配一系列符合某个句法规则的字符串的单个字符串。</p>
+<table>
+<thead>
+<tr>
+<th>符号</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>^</td>
+<td>在字符串开始处进行匹配</td>
+</tr>
+<tr>
+<td>$</td>
+<td>在字符串末尾处进行匹配</td>
+</tr>
+<tr>
+<td>.</td>
+<td>匹配任意单个字符, 包括换行符</td>
+</tr>
+<tr>
+<td>[…]</td>
+<td>匹配出括号内的任意字符</td>
+</tr>
+<tr>
+<td>[^…]</td>
+<td>匹配不出括号内的任意字符</td>
+</tr>
+<tr>
+<td>a*</td>
+<td>匹配零个或者多个a(包括空串)</td>
+</tr>
+<tr>
+<td>a+</td>
+<td>匹配一个或者多个a(不包括空串)</td>
+</tr>
+<tr>
+<td>a?</td>
+<td>匹配零个或者一个a</td>
+</tr>
+<tr>
+<td>a1|a2</td>
+<td>匹配a1或a2</td>
+</tr>
+<tr>
+<td>a(m)</td>
+<td>匹配m个a</td>
+</tr>
+<tr>
+<td>a(m,)</td>
+<td>至少匹配m个a</td>
+</tr>
+<tr>
+<td>a(m,n)</td>
+<td>匹配m个a 到 n个a</td>
+</tr>
+<tr>
+<td>a(,n)</td>
+<td>匹配0到n个a</td>
+</tr>
+<tr>
+<td>(…)</td>
+<td>将模式元素组成单一元素</td>
+</tr>
+</tbody></table>
+
+<!-- Has Prism -->
+<pre class="line-numbers" style="" ><code class="language-clike">select * from emp where name regexp &#39;^T&#39;;
+select * from emp where name regexp &#39;2$&#39;;
+select * from emp where name regexp &#39;[uvw]&#39;;
+12345
+</code></pre>
+
+
+
+<h4 id="3-MySQL-常用函数"><a href="#3-MySQL-常用函数" class="headerlink" title="3. MySQL 常用函数"></a>3. MySQL 常用函数</h4><p>数字函数</p>
+<table>
+<thead>
+<tr>
+<th>函数名称</th>
+<th>作 用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>ABS</td>
+<td>求绝对值</td>
+</tr>
+<tr>
+<td>SQRT</td>
+<td>求二次方根</td>
+</tr>
+<tr>
+<td>MOD</td>
+<td>求余数</td>
+</tr>
+<tr>
+<td>CEIL 和 CEILING</td>
+<td>两个函数功能相同，都是返回不小于参数的最小整数，即向上取整</td>
+</tr>
+<tr>
+<td>FLOOR</td>
+<td>向下取整，返回值转化为一个BIGINT</td>
+</tr>
+<tr>
+<td>RAND</td>
+<td>生成一个0~1之间的随机数，传入整数参数是，用来产生重复序列</td>
+</tr>
+<tr>
+<td>ROUND</td>
+<td>对所传参数进行四舍五入</td>
+</tr>
+<tr>
+<td>SIGN</td>
+<td>返回参数的符号</td>
+</tr>
+<tr>
+<td>POW 和 POWER</td>
+<td>两个函数的功能相同，都是所传参数的次方的结果值</td>
+</tr>
+<tr>
+<td>SIN</td>
+<td>求正弦值</td>
+</tr>
+<tr>
+<td>ASIN</td>
+<td>求反正弦值，与函数 SIN 互为反函数</td>
+</tr>
+<tr>
+<td>COS</td>
+<td>求余弦值</td>
+</tr>
+<tr>
+<td>ACOS</td>
+<td>求反余弦值，与函数 COS 互为反函数</td>
+</tr>
+<tr>
+<td>TAN</td>
+<td>求正切值</td>
+</tr>
+<tr>
+<td>ATAN</td>
+<td>求反正切值，与函数 TAN 互为反函数</td>
+</tr>
+<tr>
+<td>COT</td>
+<td>求余切值</td>
+</tr>
+</tbody></table>
+<p>字符串函数</p>
+<table>
+<thead>
+<tr>
+<th>函数名称</th>
+<th>作 用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>LENGTH</td>
+<td>计算字符串长度函数，返回字符串的字节长度</td>
+</tr>
+<tr>
+<td>CONCAT</td>
+<td>合并字符串函数，返回结果为连接参数产生的字符串，参数可以使一个或多个</td>
+</tr>
+<tr>
+<td>INSERT</td>
+<td>替换字符串函数</td>
+</tr>
+<tr>
+<td>LOWER</td>
+<td>将字符串中的字母转换为小写</td>
+</tr>
+<tr>
+<td>UPPER</td>
+<td>将字符串中的字母转换为大写</td>
+</tr>
+<tr>
+<td>LEFT</td>
+<td>从左侧字截取符串，返回字符串左边的若干个字符</td>
+</tr>
+<tr>
+<td>RIGHT</td>
+<td>从右侧字截取符串，返回字符串右边的若干个字符</td>
+</tr>
+<tr>
+<td>TRIM</td>
+<td>删除字符串左右两侧的空格</td>
+</tr>
+<tr>
+<td>REPLACE</td>
+<td>字符串替换函数，返回替换后的新字符串</td>
+</tr>
+<tr>
+<td>SUBSTRING</td>
+<td>截取字符串，返回从指定位置开始的指定长度的字符换</td>
+</tr>
+<tr>
+<td>REVERSE</td>
+<td>字符串反转（逆序）函数，返回与原始字符串顺序相反的字符串</td>
+</tr>
+</tbody></table>
+<p>日期函数</p>
+<table>
+<thead>
+<tr>
+<th>函数名称</th>
+<th>作 用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>CURDATE 和 CURRENT_DATE</td>
+<td>两个函数作用相同，返回当前系统的日期值</td>
+</tr>
+<tr>
+<td>CURTIME 和 CURRENT_TIME</td>
+<td>两个函数作用相同，返回当前系统的时间值</td>
+</tr>
+<tr>
+<td>NOW 和 SYSDATE</td>
+<td>两个函数作用相同，返回当前系统的日期和时间值</td>
+</tr>
+<tr>
+<td>MONTH</td>
+<td>获取指定日期中的月份</td>
+</tr>
+<tr>
+<td>MONTHNAME</td>
+<td>获取指定日期中的月份英文名称</td>
+</tr>
+<tr>
+<td>DAYNAME</td>
+<td>获取指定曰期对应的星期几的英文名称</td>
+</tr>
+<tr>
+<td>DAYOFWEEK</td>
+<td>获取指定日期对应的一周的索引位置值</td>
+</tr>
+<tr>
+<td>WEEK</td>
+<td>获取指定日期是一年中的第几周，返回值的范围是否为 0〜52 或 1〜53</td>
+</tr>
+<tr>
+<td>DAYOFYEAR</td>
+<td>获取指定曰期是一年中的第几天，返回值范围是1~366</td>
+</tr>
+<tr>
+<td>DAYOFMONTH</td>
+<td>获取指定日期是一个月中是第几天，返回值范围是1~31</td>
+</tr>
+<tr>
+<td>YEAR</td>
+<td>获取年份，返回值范围是 1970〜2069</td>
+</tr>
+<tr>
+<td>TIME_TO_SEC</td>
+<td>将时间参数转换为秒数</td>
+</tr>
+<tr>
+<td>SEC_TO_TIME</td>
+<td>将秒数转换为时间，与TIME_TO_SEC 互为反函数</td>
+</tr>
+<tr>
+<td>DATE_ADD 和 ADDDATE</td>
+<td>两个函数功能相同，都是向日期添加指定的时间间隔</td>
+</tr>
+<tr>
+<td>DATE_SUB 和 SUBDATE</td>
+<td>两个函数功能相同，都是向日期减去指定的时间间隔</td>
+</tr>
+<tr>
+<td>ADDTIME</td>
+<td>时间加法运算，在原始时间上添加指定的时间</td>
+</tr>
+<tr>
+<td>SUBTIME</td>
+<td>时间减法运算，在原始时间上减去指定的时间</td>
+</tr>
+<tr>
+<td>DATEDIFF</td>
+<td>获取两个日期之间间隔，返回参数 1 减去参数 2 的值</td>
+</tr>
+<tr>
+<td>DATE_FORMAT</td>
+<td>格式化指定的日期，根据参数返回指定格式的值</td>
+</tr>
+<tr>
+<td>WEEKDAY</td>
+<td>获取指定日期在一周内的对应的工作日索引</td>
+</tr>
+</tbody></table>
+<p>聚合函数</p>
+<table>
+<thead>
+<tr>
+<th>函数名称</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>MAX</td>
+<td>查询指定列的最大值</td>
+</tr>
+<tr>
+<td>MIN</td>
+<td>查询指定列的最小值</td>
+</tr>
+<tr>
+<td>COUNT</td>
+<td>统计查询结果的行数</td>
+</tr>
+<tr>
+<td>SUM</td>
+<td>求和，返回指定列的总和</td>
+</tr>
+<tr>
+<td>AVG</td>
+<td>求平均值，返回指定列数据的平均值</td>
+</tr>
+</tbody></table>
 
     </div>
 
@@ -1054,7 +1421,7 @@ Innodb_row_lock_waits: 系统启动后到现在总共等待的次数
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#explain详解与索引最佳实践"><span class="nav-number">1.</span> <span class="nav-text">explain详解与索引最佳实践</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#explain-之type"><span class="nav-number">1.0.0.1.</span> <span class="nav-text">explain 之type</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#explain-之key"><span class="nav-number">1.0.0.2.</span> <span class="nav-text">explain 之key</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#explain-之rows"><span class="nav-number">1.0.0.3.</span> <span class="nav-text">explain 之rows</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#explain-之extra"><span class="nav-number">1.0.0.4.</span> <span class="nav-text">explain 之extra</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查看索引索引情况"><span class="nav-number">1.0.1.</span> <span class="nav-text">查看索引索引情况</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SQL优化"><span class="nav-number">1.0.2.</span> <span class="nav-text">SQL优化</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#大批量插入"><span class="nav-number">1.0.2.1.</span> <span class="nav-text">大批量插入</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#优化insert语句"><span class="nav-number">1.0.2.2.</span> <span class="nav-text">优化insert语句</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#优化order-by语句"><span class="nav-number">1.0.2.3.</span> <span class="nav-text">优化order by语句</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Filesort的优化"><span class="nav-number">1.0.2.4.</span> <span class="nav-text">Filesort的优化</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#优化group-by语句"><span class="nav-number">1.0.2.5.</span> <span class="nav-text">优化group by语句</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#优化嵌套查询"><span class="nav-number">1.0.2.6.</span> <span class="nav-text">优化嵌套查询</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#优化OR条件"><span class="nav-number">1.0.2.7.</span> <span class="nav-text">优化OR条件</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#优化分页查询"><span class="nav-number">1.0.2.8.</span> <span class="nav-text">优化分页查询</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查询缓存配置"><span class="nav-number">1.0.3.</span> <span class="nav-text">查询缓存配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#开启查询缓存"><span class="nav-number">1.0.4.</span> <span class="nav-text">开启查询缓存</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查询缓存失效的情况"><span class="nav-number">1.0.5.</span> <span class="nav-text">查询缓存失效的情况</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MySQL内存管理及优化"><span class="nav-number">1.1.</span> <span class="nav-text">MySQL内存管理及优化</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#内存优化原则"><span class="nav-number">1.1.1.</span> <span class="nav-text">内存优化原则</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#MyISAM-内存优化"><span class="nav-number">1.1.2.</span> <span class="nav-text">MyISAM 内存优化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#key-buffer-size"><span class="nav-number">1.1.3.</span> <span class="nav-text">key_buffer_size</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#read-buffer-size"><span class="nav-number">1.1.4.</span> <span class="nav-text">read_buffer_size</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#read-rnd-buffer-size"><span class="nav-number">1.1.5.</span> <span class="nav-text">read_rnd_buffer_size</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#InnoDB内存优化"><span class="nav-number">1.1.6.</span> <span class="nav-text">InnoDB内存优化</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#innodb-buffer-pool-size"><span class="nav-number">1.1.6.1.</span> <span class="nav-text">innodb_buffer_pool_size</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#innodb-log-buffer-size"><span class="nav-number">1.1.6.2.</span> <span class="nav-text">innodb_log_buffer_size</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#MySQL并发参数调整"><span class="nav-number">1.1.7.</span> <span class="nav-text">MySQL并发参数调整</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#max-connections"><span class="nav-number">1.1.7.1.</span> <span class="nav-text">max_connections</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#back-log"><span class="nav-number">1.1.7.2.</span> <span class="nav-text">back_log</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#table-open-cache"><span class="nav-number">1.1.7.3.</span> <span class="nav-text">table_open_cache</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#hread-cache-size"><span class="nav-number">1.1.7.4.</span> <span class="nav-text">hread_cache_size</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#innodb-lock-wait-timeout"><span class="nav-number">1.1.7.5.</span> <span class="nav-text">innodb_lock_wait_timeout</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、MySQL-锁问题"><span class="nav-number">2.</span> <span class="nav-text">2、MySQL 锁问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1、锁概述"><span class="nav-number">2.1.</span> <span class="nav-text">2.1、锁概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2、锁分类"><span class="nav-number">2.2.</span> <span class="nav-text">2.2、锁分类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3、MySQL锁"><span class="nav-number">2.3.</span> <span class="nav-text">2.3、MySQL锁</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4、MyISAM-表锁"><span class="nav-number">2.4.</span> <span class="nav-text">2.4、MyISAM 表锁</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-4-1、如何加表锁"><span class="nav-number">2.4.1.</span> <span class="nav-text">2.4.1、如何加表锁</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-4-4、结论"><span class="nav-number">2.4.2.</span> <span class="nav-text">2.4.4、结论</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-4-5、查看锁的争用情况"><span class="nav-number">2.4.3.</span> <span class="nav-text">2.4.5、查看锁的争用情况</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-5、InnoDB-行锁"><span class="nav-number">2.5.</span> <span class="nav-text">2.5、InnoDB 行锁</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-5-1、行锁介绍"><span class="nav-number">2.5.1.</span> <span class="nav-text">2.5.1、行锁介绍</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-5-2、背景知识"><span class="nav-number">2.5.2.</span> <span class="nav-text">2.5.2、背景知识</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-5-3、InnoDB-的行锁模式"><span class="nav-number">2.5.3.</span> <span class="nav-text">2.5.3、InnoDB 的行锁模式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-5-6、无索引行锁升级为表锁"><span class="nav-number">2.5.4.</span> <span class="nav-text">2.5.6、无索引行锁升级为表锁</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-5-7、间隙锁危害"><span class="nav-number">2.5.5.</span> <span class="nav-text">2.5.7、间隙锁危害</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-5-8、InnoDB行锁争用情况"><span class="nav-number">2.5.6.</span> <span class="nav-text">2.5.8、InnoDB行锁争用情况</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-5-9、总结"><span class="nav-number">2.5.7.</span> <span class="nav-text">2.5.9、总结</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-5-10、优化建议"><span class="nav-number">2.5.8.</span> <span class="nav-text">2.5.10、优化建议</span></a></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#explain详解与索引最佳实践"><span class="nav-number">1.</span> <span class="nav-text">explain详解与索引最佳实践</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#explain-之type"><span class="nav-number">1.0.0.1.</span> <span class="nav-text">explain 之type</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#explain-之key"><span class="nav-number">1.0.0.2.</span> <span class="nav-text">explain 之key</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#explain-之rows"><span class="nav-number">1.0.0.3.</span> <span class="nav-text">explain 之rows</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#explain-之extra"><span class="nav-number">1.0.0.4.</span> <span class="nav-text">explain 之extra</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查看索引索引情况"><span class="nav-number">1.0.1.</span> <span class="nav-text">查看索引索引情况</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SQL优化"><span class="nav-number">1.0.2.</span> <span class="nav-text">SQL优化</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#大批量插入"><span class="nav-number">1.0.2.1.</span> <span class="nav-text">大批量插入</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#优化insert语句"><span class="nav-number">1.0.2.2.</span> <span class="nav-text">优化insert语句</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#优化order-by语句"><span class="nav-number">1.0.2.3.</span> <span class="nav-text">优化order by语句</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Filesort的优化"><span class="nav-number">1.0.2.4.</span> <span class="nav-text">Filesort的优化</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#优化group-by语句"><span class="nav-number">1.0.2.5.</span> <span class="nav-text">优化group by语句</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#优化嵌套查询"><span class="nav-number">1.0.2.6.</span> <span class="nav-text">优化嵌套查询</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#优化OR条件"><span class="nav-number">1.0.2.7.</span> <span class="nav-text">优化OR条件</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#优化分页查询"><span class="nav-number">1.0.2.8.</span> <span class="nav-text">优化分页查询</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查询缓存配置"><span class="nav-number">1.0.3.</span> <span class="nav-text">查询缓存配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#开启查询缓存"><span class="nav-number">1.0.4.</span> <span class="nav-text">开启查询缓存</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查询缓存失效的情况"><span class="nav-number">1.0.5.</span> <span class="nav-text">查询缓存失效的情况</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MySQL内存管理及优化"><span class="nav-number">1.1.</span> <span class="nav-text">MySQL内存管理及优化</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#内存优化原则"><span class="nav-number">1.1.1.</span> <span class="nav-text">内存优化原则</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#MyISAM-内存优化"><span class="nav-number">1.1.2.</span> <span class="nav-text">MyISAM 内存优化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#key-buffer-size"><span class="nav-number">1.1.3.</span> <span class="nav-text">key_buffer_size</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#read-buffer-size"><span class="nav-number">1.1.4.</span> <span class="nav-text">read_buffer_size</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#read-rnd-buffer-size"><span class="nav-number">1.1.5.</span> <span class="nav-text">read_rnd_buffer_size</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#InnoDB内存优化"><span class="nav-number">1.1.6.</span> <span class="nav-text">InnoDB内存优化</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#innodb-buffer-pool-size"><span class="nav-number">1.1.6.1.</span> <span class="nav-text">innodb_buffer_pool_size</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#innodb-log-buffer-size"><span class="nav-number">1.1.6.2.</span> <span class="nav-text">innodb_log_buffer_size</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#MySQL并发参数调整"><span class="nav-number">1.1.7.</span> <span class="nav-text">MySQL并发参数调整</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#max-connections"><span class="nav-number">1.1.7.1.</span> <span class="nav-text">max_connections</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#back-log"><span class="nav-number">1.1.7.2.</span> <span class="nav-text">back_log</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#table-open-cache"><span class="nav-number">1.1.7.3.</span> <span class="nav-text">table_open_cache</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#hread-cache-size"><span class="nav-number">1.1.7.4.</span> <span class="nav-text">hread_cache_size</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#innodb-lock-wait-timeout"><span class="nav-number">1.1.7.5.</span> <span class="nav-text">innodb_lock_wait_timeout</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、MySQL-锁问题"><span class="nav-number">2.</span> <span class="nav-text">2、MySQL 锁问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1、锁概述"><span class="nav-number">2.1.</span> <span class="nav-text">2.1、锁概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2、锁分类"><span class="nav-number">2.2.</span> <span class="nav-text">2.2、锁分类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3、MySQL锁"><span class="nav-number">2.3.</span> <span class="nav-text">2.3、MySQL锁</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4、MyISAM-表锁"><span class="nav-number">2.4.</span> <span class="nav-text">2.4、MyISAM 表锁</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-4-1、如何加表锁"><span class="nav-number">2.4.1.</span> <span class="nav-text">2.4.1、如何加表锁</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-4-4、结论"><span class="nav-number">2.4.2.</span> <span class="nav-text">2.4.4、结论</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-4-5、查看锁的争用情况"><span class="nav-number">2.4.3.</span> <span class="nav-text">2.4.5、查看锁的争用情况</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-5、InnoDB-行锁"><span class="nav-number">2.5.</span> <span class="nav-text">2.5、InnoDB 行锁</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-5-1、行锁介绍"><span class="nav-number">2.5.1.</span> <span class="nav-text">2.5.1、行锁介绍</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-5-2、背景知识"><span class="nav-number">2.5.2.</span> <span class="nav-text">2.5.2、背景知识</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-5-3、InnoDB-的行锁模式"><span class="nav-number">2.5.3.</span> <span class="nav-text">2.5.3、InnoDB 的行锁模式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-5-6、无索引行锁升级为表锁"><span class="nav-number">2.5.4.</span> <span class="nav-text">2.5.6、无索引行锁升级为表锁</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-5-7、间隙锁危害"><span class="nav-number">2.5.5.</span> <span class="nav-text">2.5.7、间隙锁危害</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-5-8、InnoDB行锁争用情况"><span class="nav-number">2.5.6.</span> <span class="nav-text">2.5.8、InnoDB行锁争用情况</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-5-9、总结"><span class="nav-number">2.5.7.</span> <span class="nav-text">2.5.9、总结</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-5-10、优化建议"><span class="nav-number">2.5.8.</span> <span class="nav-text">2.5.10、优化建议</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3、常用MySQL技巧"><span class="nav-number">3.</span> <span class="nav-text">3、常用MySQL技巧</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-SQL-执行顺序"><span class="nav-number">3.0.1.</span> <span class="nav-text">1. SQL 执行顺序</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-正则表达式使用"><span class="nav-number">3.0.2.</span> <span class="nav-text">2. 正则表达式使用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-MySQL-常用函数"><span class="nav-number">3.0.3.</span> <span class="nav-text">3. MySQL 常用函数</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
