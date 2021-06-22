@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"lyvivian0077.github.io","root":"/","images":"/images","scheme":"Muse","version":"8.5.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+<meta name="description" content="元URL  正規表現（Regular Expression）とは？ 文字列をパターン化し、特殊な文字（メタキャラクタ、メタ文字）で表現したもの  例えば、郵便番号を正規表現を使って表すと以下のように表現できる。 123郵便番号の正規表現\d&amp;#123;3&amp;#125;-?\d&amp;#123;4&amp;#125;# 3桁の数字 + ハイフン有りor無し + 4桁の数字 この「\d」「&amp;#123;&amp;#125;」">
+<meta property="og:type" content="article">
+<meta property="og:title" content="正規表現（Regular Expression）とは？">
+<meta property="og:url" content="https://lyvivian0077.github.io/2019/10/17/Regular-Expression/index.html">
+<meta property="og:site_name" content="总有刁民想要害朕">
+<meta property="og:description" content="元URL  正規表現（Regular Expression）とは？ 文字列をパターン化し、特殊な文字（メタキャラクタ、メタ文字）で表現したもの  例えば、郵便番号を正規表現を使って表すと以下のように表現できる。 123郵便番号の正規表現\d&amp;#123;3&amp;#125;-?\d&amp;#123;4&amp;#125;# 3桁の数字 + ハイフン有りor無し + 4桁の数字 この「\d」「&amp;#123;&amp;#125;」">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2019-10-17T06:08:20.000Z">
+<meta property="article:modified_time" content="2021-06-22T03:58:45.598Z">
+<meta property="article:author" content="lyvivian">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://lyvivian0077.github.io/2019/10/17/Regular-Expression/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://lyvivian0077.github.io/2019/10/17/Regular-Expression/","path":"2019/10/17/Regular-Expression/","title":"正規表現（Regular Expression）とは？"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>正規表現（Regular Expression）とは？ | 总有刁民想要害朕</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">总有刁民想要害朕</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%AD%A3%E8%A6%8F%E8%A1%A8%E7%8F%BE%EF%BC%88Regular-Expression%EF%BC%89%E3%81%A8%E3%81%AF%EF%BC%9F"><span class="nav-number">1.</span> <span class="nav-text">正規表現（Regular Expression）とは？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%AD%A3%E8%A6%8F%E8%A1%A8%E7%8F%BE%E3%81%AE%E7%94%B1%E6%9D%A5"><span class="nav-number">2.</span> <span class="nav-text">正規表現の由来</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BD%95%E3%81%AE%E5%BD%B9%E3%81%AB%E7%AB%8B%E3%81%A4%EF%BC%9F"><span class="nav-number">3.</span> <span class="nav-text">何の役に立つ？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%AD%A3%E8%A6%8F%E8%A1%A8%E7%8F%BE%E3%81%A8%E3%83%AF%E3%82%A4%E3%83%AB%E3%83%89%E3%82%AB%E3%83%BC%E3%83%89%E3%81%AE%E9%81%95%E3%81%84"><span class="nav-number">4.</span> <span class="nav-text">正規表現とワイルドカードの違い</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E6%A4%9C%E7%B4%A2%E3%81%AB%E3%81%8A%E3%81%91%E3%82%8B%E3%83%AF%E3%82%A4%E3%83%AB%E3%83%89%E3%82%AB%E3%83%BC%E3%83%89"><span class="nav-number">4.1.</span> <span class="nav-text">ファイル検索におけるワイルドカード</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SQL%E3%81%AB%E3%81%8A%E3%81%91%E3%82%8B%E3%83%AF%E3%82%A4%E3%83%AB%E3%83%89%E3%82%AB%E3%83%BC%E3%83%89"><span class="nav-number">4.2.</span> <span class="nav-text">SQLにおけるワイルドカード</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E3%83%A1%E3%82%BF%E3%82%AD%E3%83%A3%E3%83%A9%E3%82%AF%E3%82%BF%E3%81%A8%E3%81%AF%EF%BC%9F"><span class="nav-number">5.</span> <span class="nav-text">メタキャラクタとは？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%96%87%E5%AD%97%E3%82%92%E8%A1%A8%E3%81%99%E3%83%A1%E3%82%BF%E3%82%AD%E3%83%A3%E3%83%A9%E3%82%AF%E3%82%BF"><span class="nav-number">6.</span> <span class="nav-text">文字を表すメタキャラクタ</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%88%B6%E5%BE%A1%E6%96%87%E5%AD%97%E3%82%92%E8%A1%A8%E3%81%99%E3%83%A1%E3%82%BF%E3%82%AD%E3%83%A3%E3%83%A9%E3%82%AF%E3%82%BF"><span class="nav-number">7.</span> <span class="nav-text">制御文字を表すメタキャラクタ</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%B9%B0%E3%82%8A%E8%BF%94%E3%81%97%E3%82%92%E8%A1%A8%E3%81%99%E3%83%A1%E3%82%BF%E3%82%AD%E3%83%A3%E3%83%A9%E3%82%AF%E3%82%BF%EF%BC%88%E9%87%8F%E6%8C%87%E5%AE%9A%E5%AD%90%EF%BC%89"><span class="nav-number">8.</span> <span class="nav-text">繰り返しを表すメタキャラクタ（量指定子）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BD%8D%E7%BD%AE%E3%82%92%E8%A1%A8%E3%81%99%E3%83%A1%E3%82%BF%E3%82%AD%E3%83%A3%E3%83%A9%E3%82%AF%E3%82%BF%EF%BC%88%E3%82%A2%E3%83%B3%E3%82%AB%E3%83%BC%EF%BC%89"><span class="nav-number">9.</span> <span class="nav-text">位置を表すメタキャラクタ（アンカー）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%96%87%E5%AD%97%E9%9B%86%E5%90%88%E3%82%84%E3%82%B0%E3%83%AB%E3%83%BC%E3%83%97%E3%82%92%E4%BD%9C%E3%82%8B%E3%83%A1%E3%82%BF%E3%82%AD%E3%83%A3%E3%83%A9%E3%82%AF%E3%82%BF"><span class="nav-number">10.</span> <span class="nav-text">文字集合やグループを作るメタキャラクタ</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#a-z-%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6"><span class="nav-number">10.1.</span> <span class="nav-text">[a-z]について</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E3%81%9D%E3%81%AE%E4%BB%96%E3%81%AE%E6%AD%A3%E8%A6%8F%E8%A1%A8%E7%8F%BE%E3%81%AE%E6%A9%9F%E8%83%BD"><span class="nav-number">11.</span> <span class="nav-text">その他の正規表現の機能</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E3%82%B0%E3%83%AB%E3%83%BC%E3%83%97%E5%8C%96"><span class="nav-number">11.1.</span> <span class="nav-text">グループ化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E3%82%AD%E3%83%A3%E3%83%97%E3%83%81%E3%83%A3"><span class="nav-number">11.2.</span> <span class="nav-text">キャプチャ</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E3%82%AD%E3%83%A3%E3%83%97%E3%83%81%E3%83%A3%E3%81%97%E3%81%AA%E3%81%84%E6%8B%AC%E5%BC%A7"><span class="nav-number">11.3.</span> <span class="nav-text">キャプチャしない括弧</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%88%E8%AA%AD%E3%81%BF%E3%81%A8%E5%BE%8C%E8%AA%AD%E3%81%BF"><span class="nav-number">11.4.</span> <span class="nav-text">先読みと後読み</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%EF%BD%9E%E3%82%92%E5%90%AB%E3%82%80%E3%83%BB%E5%90%AB%E3%81%BE%E3%81%AA%E3%81%84"><span class="nav-number">11.5.</span> <span class="nav-text">～を含む・含まない</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BF%AE%E9%A3%BE%E5%AD%90"><span class="nav-number">11.6.</span> <span class="nav-text">修飾子</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%AD%A3%E8%A6%8F%E8%A1%A8%E7%8F%BE%E3%81%AB%E3%81%8A%E3%81%91%E3%82%8B%E6%B3%A8%E6%84%8F%E7%82%B9"><span class="nav-number">12.</span> <span class="nav-text">正規表現における注意点</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%80%E9%95%B7%E3%83%9E%E3%83%83%E3%83%81%E3%81%A8%E6%9C%80%E7%9F%AD%E3%83%9E%E3%83%83%E3%83%81"><span class="nav-number">12.1.</span> <span class="nav-text">最長マッチと最短マッチ</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%AD%A3%E8%A6%8F%E8%A1%A8%E7%8F%BE%E3%81%A8%E6%8B%A1%E5%BC%B5%E6%AD%A3%E8%A6%8F%E8%A1%A8%E7%8F%BE"><span class="nav-number">12.2.</span> <span class="nav-text">基本正規表現と拡張正規表現</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E3%82%A8%E3%82%B9%E3%82%B1%E3%83%BC%E3%83%97%E3%81%AE%E5%BF%85%E8%A6%81%E6%80%A7"><span class="nav-number">12.3.</span> <span class="nav-text">エスケープの必要性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%AD%A3%E8%A6%8F%E8%A1%A8%E7%8F%BE%E3%83%AA%E3%83%86%E3%83%A9%E3%83%AB"><span class="nav-number">12.4.</span> <span class="nav-text">正規表現リテラル</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%AD%A3%E8%A6%8F%E8%A1%A8%E7%8F%BE%E3%81%AE%E3%83%81%E3%82%A7%E3%83%83%E3%82%AF%E3%81%AB%E5%BD%B9%E7%AB%8B%E3%81%A4%E3%82%B5%E3%82%A4%E3%83%88"><span class="nav-number">12.5.</span> <span class="nav-text">正規表現のチェックに役立つサイト</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%A3%9C%E8%B6%B3%E3%83%BB%E5%8F%82%E8%80%83"><span class="nav-number">13.</span> <span class="nav-text">補足・参考</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E3%80%8C-%E3%80%8D%EF%BC%88%E3%83%90%E3%83%83%E3%82%AF%E3%82%B9%E3%83%A9%E3%83%83%E3%82%B7%E3%83%A5%EF%BC%89%E3%81%A8%E3%80%8C%C2%A5%E3%80%8D%EF%BC%88%E5%86%86%E3%83%9E%E3%83%BC%E3%82%AF%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6%EF%BC%89"><span class="nav-number">13.1.</span> <span class="nav-text">「\」（バックスラッシュ）と「¥」（円マークについて）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%94%B9%E8%A1%8C%E3%82%B3%E3%83%BC%E3%83%89%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6"><span class="nav-number">13.2.</span> <span class="nav-text">改行コードについて</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E3%82%AD%E3%83%A3%E3%83%AA%E3%83%83%E3%82%B8%E3%83%AA%E3%82%BF%E3%83%BC%E3%83%B3%EF%BC%88carriage-return-CR%E3%80%81%E5%BE%A9%E5%B8%B0%EF%BC%89"><span class="nav-number">13.3.</span> <span class="nav-text">キャリッジリターン（carriage return:CR、復帰）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E3%83%A9%E3%82%A4%E3%83%B3%E3%83%95%E3%82%A3%E3%83%BC%E3%83%89%EF%BC%88line-feed-LF-newline-end-of-line%E3%80%81%E7%8B%AD%E7%BE%A9%E3%81%AE%E6%94%B9%E8%A1%8C%EF%BC%89"><span class="nav-number">13.4.</span> <span class="nav-text">ラインフィード（line feed:LF, newline, end-of-line、狭義の改行）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#grep"><span class="nav-number">13.5.</span> <span class="nav-text">grep</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E3%83%90%E3%83%AA%E3%83%87%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%EF%BC%88validation%EF%BC%89%E3%81%A8%E3%81%AF%EF%BC%9F"><span class="nav-number">13.6.</span> <span class="nav-text">バリデーション（validation）とは？</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-overview">
+            <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">lyvivian</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">32</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">categories</span>
+      </div>
+  </nav>
+</div>
+
+
+
+          </div>
+        </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://lyvivian0077.github.io/2019/10/17/Regular-Expression/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="lyvivian">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="总有刁民想要害朕">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          正規表現（Regular Expression）とは？
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2019-10-17 15:08:20" itemprop="dateCreated datePublished" datetime="2019-10-17T15:08:20+09:00">2019-10-17</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2021-06-22 12:58:45" itemprop="dateModified" datetime="2021-06-22T12:58:45+09:00">2021-06-22</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/main/" itemprop="url" rel="index"><span itemprop="name">main</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <ul>
+<li><a target="_blank" rel="noopener" href="https://qiita.com/ikmiyabi/items/12d1127056cdf4f0eea5">元URL</a></li>
+</ul>
+<h1 id="正規表現（Regular-Expression）とは？"><a href="#正規表現（Regular-Expression）とは？" class="headerlink" title="正規表現（Regular Expression）とは？"></a>正規表現（Regular Expression）とは？</h1><ul>
+<li>文字列をパターン化し、特殊な文字（メタキャラクタ、メタ文字）で表現したもの</li>
+</ul>
+<p>例えば、郵便番号を正規表現を使って表すと以下のように表現できる。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">郵便番号の正規表現</span><br><span class="line">\d&#123;3&#125;-?\d&#123;4&#125;</span><br><span class="line"># 3桁の数字 + ハイフン有りor無し + 4桁の数字</span><br></pre></td></tr></table></figure>
+<p>この<code>「\d」「&#123;&#125;」「?」</code>のような文字のことを <strong>メタキャラクタ（メタ文字）</strong> という。</p>
+<h1 id="正規表現の由来"><a href="#正規表現の由来" class="headerlink" title="正規表現の由来"></a>正規表現の由来</h1><ul>
+<li>1940年代にさまざまな神経生理学者たちが、神経回路を数学的に説明するために開発した。</li>
+<li>1956年、数学者 <em>Stephen Kleene（スティーブン・クリーネ）</em> が、その考え方に基づき論文を著述し、初めて正規表現の概念が紹介された。</li>
+<li>ここで「正則集合の代数」を説明するために「正則表現・正規表現(regular expression)」が使用された。<br>何が言いたかったのかというと、元々は神経回路の研究で開発された数学的な概念だったということ。</li>
+</ul>
+<p>正規表現という若干分かりにくいネーミングはこのせい</p>
+<p>参考：<a target="_blank" rel="noopener" href="https://msdn.microsoft.com/ja-jp/library/cc427944.aspx">正規表現の由来</a></p>
+<h1 id="何の役に立つ？"><a href="#何の役に立つ？" class="headerlink" title="何の役に立つ？"></a>何の役に立つ？</h1><ul>
+<li>文字列検索に役立つ<ul>
+<li>grep検索、エディタやExcelの検索機能</li>
+<li>→ 調査、コーディングが捗る</li>
+</ul>
+</li>
+<li>文字列置換に役立つ<ul>
+<li>sed、エディタやExcelの置換機能</li>
+<li>→ 文字列の一括修正、一括挿入、一括削除が楽になる</li>
+</ul>
+</li>
+<li>入力された文字列が、規定されたパターン通りに入力されているかの確認（バリデーション）に役立つ<ul>
+<li>郵便番号、電話番号、メールアドレスなどの入力形式のチェックなど</li>
+</ul>
+</li>
+</ul>
+<h1 id="正規表現とワイルドカードの違い"><a href="#正規表現とワイルドカードの違い" class="headerlink" title="正規表現とワイルドカードの違い"></a>正規表現とワイルドカードの違い</h1><p>最初の頃に正規表現とワイルドカードを勘違いしていたので確認。</p>
+<p>そもそも、ワイルドカード（Wild Card）とは何か？</p>
+<ul>
+<li>トランプ用語で，どのカードの代用にもできるカードのこと（ポーカーにおけるジョーカーなど）</li>
+<li>転じてITにおけるワイルドカードとは、 <strong>任意の文字列</strong> にマッチする特殊文字</li>
+<li>OSや言語によって解釈が異なる</li>
+</ul>
+<h2 id="ファイル検索におけるワイルドカード"><a href="#ファイル検索におけるワイルドカード" class="headerlink" title="ファイル検索におけるワイルドカード"></a>ファイル検索におけるワイルドカード</h2><ul>
+<li>windowsやUnix/Linuxのシェルでのファイル検索では、以下のワイルドカードが使える</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>ワイルドカード</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>?</td>
+<td>任意の1文字にマッチ</td>
+</tr>
+<tr>
+<td>*</td>
+<td>0文字以上の任意の文字列にマッチ</td>
+</tr>
+</tbody></table>
+<p><code>music.mp?</code> → 「music.mp3」「music.mp4」などにマッチ</p>
+<p><code>*.txt</code> → 拡張子が.txtであるもの全てにマッチ</p>
+<h2 id="SQLにおけるワイルドカード"><a href="#SQLにおけるワイルドカード" class="headerlink" title="SQLにおけるワイルドカード"></a>SQLにおけるワイルドカード</h2><ul>
+<li>SQLのWHERE句におけるLIKE演算子では、以下のワイルドカードが使える</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>ワイルドカード</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>%</td>
+<td>0文字以上の任意の文字列にマッチ</td>
+</tr>
+<tr>
+<td>_</td>
+<td>任意の１文字にマッチ</td>
+</tr>
+</tbody></table>
+<h1 id="メタキャラクタとは？"><a href="#メタキャラクタとは？" class="headerlink" title="メタキャラクタとは？"></a>メタキャラクタとは？</h1><ul>
+<li>その文字自身とは異なる、特別な意味や役割を持つ文字のこと</li>
+</ul>
+<p>ざっくり分類すると、</p>
+<ul>
+<li>文字を表すメタキャラクタ：<code>.（ドット）, \w, \W, \s, \S, \d, \D</code>など</li>
+<li>繰り返しを表すメタキャラクタ：<code>+, *, ?, &#123;n&#125;, &#123;n,m&#125;, &#123;n,&#125;</code></li>
+<li>位置を表すメタキャラクタ：<code>^, $, \b, \B</code></li>
+<li>文字集合やグループを作るメタキャラクタ：<code>[], [^], |, (), (?:)</code></li>
+<li>その他（後方参照など）：<code>\1, \2, \3, ...</code></li>
+</ul>
+<p>※正規表現の実装によってサポートされているメタキャラクタが異なるので注意</p>
+<h1 id="文字を表すメタキャラクタ"><a href="#文字を表すメタキャラクタ" class="headerlink" title="文字を表すメタキャラクタ"></a>文字を表すメタキャラクタ</h1><table>
+<thead>
+<tr>
+<th>メタキャラクタ</th>
+<th>意味</th>
+<th>備考</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>.（ドット）</td>
+<td>任意の１文字にマッチ</td>
+<td>改行にはマッチしない</td>
+</tr>
+<tr>
+<td>\w</td>
+<td>単語を構成する文字にマッチ</td>
+<td>wはwordの頭文字</td>
+</tr>
+<tr>
+<td>\W</td>
+<td>単語を構成する文字 以外の文字 にマッチ</td>
+<td></td>
+</tr>
+<tr>
+<td>\d</td>
+<td>数字（0~9）にマッチ</td>
+<td>dはdigitの頭文字</td>
+</tr>
+<tr>
+<td>\D</td>
+<td>数字 以外の文字 にマッチ</td>
+<td></td>
+</tr>
+<tr>
+<td>\s</td>
+<td>空白文字（半角スペース、タブ文字他）にマッチ</td>
+<td>sはspaceの頭文字</td>
+</tr>
+<tr>
+<td>\S</td>
+<td>空白文字 以外の文字 にマッチ</td>
+<td></td>
+</tr>
+</tbody></table>
+<h1 id="制御文字を表すメタキャラクタ"><a href="#制御文字を表すメタキャラクタ" class="headerlink" title="制御文字を表すメタキャラクタ"></a>制御文字を表すメタキャラクタ</h1><table>
+<thead>
+<tr>
+<th>メタキャラクタ</th>
+<th>意味</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>\t</td>
+<td>タブ文字</td>
+</tr>
+<tr>
+<td>\v</td>
+<td>垂直タブ</td>
+</tr>
+<tr>
+<td>\n</td>
+<td>改行文字</td>
+</tr>
+<tr>
+<td>\r</td>
+<td>改行文字（キャレッジリターン）</td>
+</tr>
+<tr>
+<td>\f</td>
+<td>用紙送り文字</td>
+</tr>
+<tr>
+<td>\a</td>
+<td>警告文字</td>
+</tr>
+<tr>
+<td>\e</td>
+<td>エスケープ文字</td>
+</tr>
+</tbody></table>
+<h1 id="繰り返しを表すメタキャラクタ（量指定子）"><a href="#繰り返しを表すメタキャラクタ（量指定子）" class="headerlink" title="繰り返しを表すメタキャラクタ（量指定子）"></a>繰り返しを表すメタキャラクタ（量指定子）</h1><table>
+<thead>
+<tr>
+<th>メタキャラクタ</th>
+<th>意味</th>
+<th>備考</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>{n}</td>
+<td>n回以上の繰り返しにマッチ</td>
+<td></td>
+</tr>
+<tr>
+<td>{n,m}</td>
+<td>n回以上m回以下の繰り返しにマッチ</td>
+<td></td>
+</tr>
+<tr>
+<td>{n,}</td>
+<td>n回以上の繰り返しにマッチ</td>
+<td></td>
+</tr>
+<tr>
+<td>*</td>
+<td>0回以上の繰り返しにマッチ</td>
+<td>{0,}と同義</td>
+</tr>
+<tr>
+<td>+</td>
+<td>1回以上の繰り返しにマッチ</td>
+<td>{1,}と同義</td>
+</tr>
+<tr>
+<td>?</td>
+<td>0回または1回の繰り返しにマッチ</td>
+<td>{0,1}と同義</td>
+</tr>
+</tbody></table>
+<h1 id="位置を表すメタキャラクタ（アンカー）"><a href="#位置を表すメタキャラクタ（アンカー）" class="headerlink" title="位置を表すメタキャラクタ（アンカー）"></a>位置を表すメタキャラクタ（アンカー）</h1><table>
+<thead>
+<tr>
+<th>メタキャラクタ</th>
+<th>意味</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>$</td>
+<td>行末</td>
+</tr>
+<tr>
+<td>^</td>
+<td>行頭</td>
+</tr>
+<tr>
+<td>\b</td>
+<td>単語境界</td>
+</tr>
+<tr>
+<td>\B</td>
+<td>単語境界以外</td>
+</tr>
+</tbody></table>
+<h1 id="文字集合やグループを作るメタキャラクタ"><a href="#文字集合やグループを作るメタキャラクタ" class="headerlink" title="文字集合やグループを作るメタキャラクタ"></a>文字集合やグループを作るメタキャラクタ</h1><table>
+<thead>
+<tr>
+<th>メタキャラクタ</th>
+<th>意味</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>[abc]</td>
+<td>aかbかcのどれか1文字にマッチ</td>
+</tr>
+<tr>
+<td>[a-z]</td>
+<td>aからzのどれか1文字にマッチ</td>
+</tr>
+<tr>
+<td>[^abc]</td>
+<td>abc以外のどれか1文字にマッチ</td>
+</tr>
+<tr>
+<td>`abc</td>
+<td>def`</td>
+</tr>
+<tr>
+<td>(abc)</td>
+<td>グループ化とキャプチャを行う</td>
+</tr>
+<tr>
+<td>(?:abc)</td>
+<td>グループ化を行う</td>
+</tr>
+</tbody></table>
+<h2 id="a-z-について"><a href="#a-z-について" class="headerlink" title="[a-z]について"></a>[a-z]について</h2><ul>
+<li>[a-z]のa-zの範囲は文字コードの範囲</li>
+<li>Unicodeの文字コード番号を使用して[\u0061-\u007A]のように表すこともできる</li>
+</ul>
+<h1 id="その他の正規表現の機能"><a href="#その他の正規表現の機能" class="headerlink" title="その他の正規表現の機能"></a>その他の正規表現の機能</h1><p>以下の機能は、処理系によっては使用できない場合があるので注意すること。</p>
+<h2 id="グループ化"><a href="#グループ化" class="headerlink" title="グループ化"></a>グループ化</h2><ul>
+<li>(abc)のように括弧内の文字列をひとまとめに扱うこと</li>
+</ul>
+<p>例1) hogehoge….と「hoge」を繰り返す文字列をマッチさせたい場合、以下で検索するとマッチする。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">グループ化の例1</span><br><span class="line">(hoge)+  </span><br></pre></td></tr></table></figure>
+<p>例2) <a target="_blank" rel="noopener" href="https://www.yahoo.co.jp/">https://www.yahoo.co.jp/</a> と <a target="_blank" rel="noopener" href="https://www.google.co.jp/">https://www.google.co.jp/</a> の両方にマッチさせたい場合、以下で検索するとマッチする</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">グループ化の例2</span><br><span class="line">https://www\.(google|yahoo)\.co\.jp/</span><br></pre></td></tr></table></figure>
+<p>で検索するとマッチする。</p>
+<h2 id="キャプチャ"><a href="#キャプチャ" class="headerlink" title="キャプチャ"></a>キャプチャ</h2><ul>
+<li>(abc)括弧内の文字列を記憶し、参照出来るようにすること</li>
+<li>\1 ,\2 ,\3…で前方で記憶した文字列をマッチさせることが出来る</li>
+<li>$1 ,$2 ,$3…で記憶した文字列を変数として参照できる（置換にも使える）</li>
+</ul>
+<p>※使用出来るかどうかが言語によって異なるので注意</p>
+<p>例1) hoge_hoge のように、前後が同じものをマッチさせたい</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">キャプチャのの例1</span><br><span class="line"># 検索文字列</span><br><span class="line">(.+)_\1</span><br></pre></td></tr></table></figure>
+<p>で検索するとマッチする。このように前方でマッチしたものを参照することを 後方参照 という。</p>
+<p>例2) <a><a target="_blank" rel="noopener" href="https://www.google.co.jp/">https://www.google.co.jp/</a></a> のaタグ内の値をhref属性に設定したい場合、</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">キャプチャの例2</span><br><span class="line"># 検索文字列</span><br><span class="line">&lt;a&gt;(.+?)&lt;/a&gt;</span><br><span class="line"></span><br><span class="line"># 置換文字列</span><br><span class="line">&lt;a href=&quot;$1&quot;&gt;$1&lt;/a&gt;</span><br></pre></td></tr></table></figure>
+<p>で置換できる。</p>
+<p>例3) <a href="mailto:&#x68;&#x6f;&#103;&#101;&#x40;&#102;&#117;&#103;&#x61;&#x2e;&#x63;&#x6f;&#x6d;">&#x68;&#x6f;&#103;&#101;&#x40;&#102;&#117;&#103;&#x61;&#x2e;&#x63;&#x6f;&#x6d;</a>からのローカル部、ドメイン部、メールアドレス全体を取り出したい場合、</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">キャプチャの例3</span><br><span class="line"># 検索文字列</span><br><span class="line">((.+)@(.+))</span><br><span class="line"></span><br><span class="line"># 置換文字列</span><br><span class="line">メールアドレス=$1\nローカル部=$2\nドメイン部=$3</span><br></pre></td></tr></table></figure>
+<p>で置換すると、以下の結果になる。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">例3の結果</span><br><span class="line">メールアドレス=hoge@fuga.com</span><br><span class="line">ローカル部=hoge</span><br><span class="line">ドメイン部=fuga.com</span><br></pre></td></tr></table></figure>
+<p>キャプチャする順番は「(」が現れた順になっている。</p>
+<h2 id="キャプチャしない括弧"><a href="#キャプチャしない括弧" class="headerlink" title="キャプチャしない括弧"></a>キャプチャしない括弧</h2><ul>
+<li><p>(?:)を使用すると、グループ化のみを行いキャプチャを行わない</p>
+</li>
+<li><p>グループ化のみが目的であることを明示したい場合このように書く</p>
+</li>
+<li><p>若干読みにくくなる（可読性が下がる）ので、どちらで書いた方がいいかは状況による</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">キャプチャしない括弧の例</span><br><span class="line">https://www\.(?:google|yahoo)\.co\.jp/ </span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="先読みと後読み"><a href="#先読みと後読み" class="headerlink" title="先読みと後読み"></a>先読みと後読み</h2><table>
+<thead>
+<tr>
+<th>先読み・後読み</th>
+<th>正規表現</th>
+<th>意味</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>肯定先読み(positive look forward)</td>
+<td>(?=abc)</td>
+<td>前方を見てabcがある位置にマッチ</td>
+</tr>
+<tr>
+<td>否定先読み(negative look forward)</td>
+<td>(?!abc)</td>
+<td>前方を見てabcがない位置にマッチ</td>
+</tr>
+<tr>
+<td>肯定後読み(positive look behind)</td>
+<td>(?&lt;=abc)</td>
+<td>後方を見てabcがある位置にマッチ</td>
+</tr>
+<tr>
+<td>否定後読み(negative look behind)</td>
+<td>(?&lt;!abc)</td>
+<td>後方を見てabcがない位置にマッチ</td>
+</tr>
+</tbody></table>
+<p>※JavaScript系では後読みは実装されていないので注意</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">例</span><br><span class="line">customer.fullname</span><br><span class="line">customer.firstName</span><br><span class="line">customer.lastName</span><br><span class="line">employee.firstName</span><br><span class="line">employee.lastName</span><br><span class="line">officer.firstName</span><br><span class="line">officer.lastName</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>customer(?=.firstName)<ul>
+<li>→後ろにfirstNameが続くcustomerにマッチ</li>
+</ul>
+</li>
+<li>customer(?!.firstName)<ul>
+<li>→後ろにfullNameが来ないcustomerにマッチ</li>
+</ul>
+</li>
+<li>(?&lt;=customer.)firstName<ul>
+<li>→customerの後ろのfirstNameにマッチ</li>
+</ul>
+</li>
+<li>(?&lt;!customer.)firstName<ul>
+<li>→customer以外の後ろのfirstNameにマッチ</li>
+</ul>
+</li>
+</ul>
+<h2 id="～を含む・含まない"><a href="#～を含む・含まない" class="headerlink" title="～を含む・含まない"></a>～を含む・含まない</h2><ul>
+<li>先読み・後読みを応用すると、～を含む・含まない行は以下の正規表現のように表せる</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">abcを含む行・含まない行</span><br><span class="line"># abcを含む行</span><br><span class="line">^(?=.*abc).*</span><br><span class="line"></span><br><span class="line"># defを含まない行</span><br><span class="line">^(?!.*def).*</span><br></pre></td></tr></table></figure>
+<p>例)</p>
+<p>スペースを含む行を削除したい</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">スペースを含む行の削除</span><br><span class="line"># 検索文字列</span><br><span class="line">^(?=.* ).*\n</span><br><span class="line"></span><br><span class="line"># 置換文字列は空文字</span><br></pre></td></tr></table></figure>
+
+<h2 id="修飾子"><a href="#修飾子" class="headerlink" title="修飾子"></a>修飾子</h2><ul>
+<li>多くの処理系にはマッチングの処理方法を変更する指定オプションが用意されている</li>
+<li>末尾に付ける修飾子をフラグ（flag）と呼ぶ</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">JavaScript</span><br><span class="line">// 修飾子iは大文字と小文字を区別しない（ignoreCase）</span><br><span class="line">// 修飾子gは全てのマッチング箇所を検索する（global）</span><br><span class="line">var regex = /hoge/ig;</span><br></pre></td></tr></table></figure>
+
+<h1 id="正規表現における注意点"><a href="#正規表現における注意点" class="headerlink" title="正規表現における注意点"></a>正規表現における注意点</h1><h2 id="最長マッチと最短マッチ"><a href="#最長マッチと最短マッチ" class="headerlink" title="最長マッチと最短マッチ"></a>最長マッチと最短マッチ</h2><p>思ったよりも長い範囲にマッチしてしまう・・・という時に確認</p>
+<ul>
+<li>繰り返し文字はデフォルトではマッチしうる最大の文字列にマッチする</li>
+<li>繰り返しのメタキャラクタの後ろに 「?」 を付けるとマッチしうる最小の文字列にマッチする</li>
+</ul>
+<p>例えば、「<a href="mailto:&#104;&#x6f;&#103;&#x65;&#x40;&#x68;&#111;&#x67;&#101;&#x2e;&#x63;&#111;&#x6d;">&#104;&#x6f;&#103;&#x65;&#x40;&#x68;&#111;&#x67;&#101;&#x2e;&#x63;&#111;&#x6d;</a>」からhogeを別々に2つマッチさせたいとする。</p>
+<p>正規表現：<code>h.*e</code></p>
+<p>とすると、「hoge@hoge」にマッチしてしまうのでNG、</p>
+<p>正規表現：<code>h.*?e</code></p>
+<p>のようにする必要がある。</p>
+<h2 id="基本正規表現と拡張正規表現"><a href="#基本正規表現と拡張正規表現" class="headerlink" title="基本正規表現と拡張正規表現"></a>基本正規表現と拡張正規表現</h2><p>あれ？正規表現は合ってるのにマッチしない・・・という場合はそもそも機能がサポートされていない可能性がある</p>
+<ul>
+<li>POSIX正規表現には2種類あり、利用できるメタキャラクタや機能が異なる</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>種類</th>
+<th>特徴</th>
+<th>対応</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>基本正規表現(basic regular expression:BRE)</td>
+<td>grep, sed など</td>
+<td>「`</td>
+</tr>
+<tr>
+<td>拡張正規表現(extended regular expression:ERE)</td>
+<td>egrep（grep -E）, sed -E など</td>
+<td>「+」「?」は使用できる「()」「{}」はエスケープ不要</td>
+</tr>
+</tbody></table>
+<ul>
+<li>さらにこれに機能を加えた正規表現があり、追加機能が使えるかどうかは実装毎に確認するしかない。</li>
+</ul>
+<p>参考：<a target="_blank" rel="noopener" href="http://jmatsu.hatenablog.com/entry/2017/01/30/130952">3つの正規表現を知らないとハマるヨ</a></p>
+<h2 id="エスケープの必要性"><a href="#エスケープの必要性" class="headerlink" title="エスケープの必要性"></a>エスケープの必要性</h2><p>コード内で正規表現を使用する場合には、エスケープが２重に必要な場合があるので注意</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">java</span><br><span class="line">// 文字列リテラル</span><br><span class="line">String regex = &quot;hoge\\.com&quot;;</span><br><span class="line"></span><br><span class="line">// バックスラッシュの正規表現は\\\\と書く。これで「\」のみにマッチ</span><br><span class="line">String backslashRegex = &quot;\\\\&quot;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="正規表現リテラル"><a href="#正規表現リテラル" class="headerlink" title="正規表現リテラル"></a>正規表現リテラル</h2><ul>
+<li>正規表現リテラルにはそのまま正規表現を書ける（正規表現のみのエスケープで良い）。</li>
+<li>JavaScriptやRubyなどは正規表現リテラルがサポートされているが、Javaはサポートされていない<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">JavaScript</span><br><span class="line">// 正規表現リテラル</span><br><span class="line">var regex = /hoge\.com/;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="正規表現のチェックに役立つサイト"><a href="#正規表現のチェックに役立つサイト" class="headerlink" title="正規表現のチェックに役立つサイト"></a>正規表現のチェックに役立つサイト</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://regexper.com/">Regexper：正規表現を可視化して確認できる</a></li>
+<li><a target="_blank" rel="noopener" href="http://regex-testdrive.com/ja/">regex-testdrive：Javaの正規表現チェック</a></li>
+<li><a target="_blank" rel="noopener" href="http://okumocchi.jp/php/re.php">okumocchi：PHP及びJavaScript正規表現チェック</a></li>
+<li><a target="_blank" rel="noopener" href="http://regexr.com/">Regexr：JavaScriptの正規表現チェック</a></li>
+<li><a target="_blank" rel="noopener" href="http://rubular.com/">Rubular：Rubyの正規表現チェック、キャプチャ内容がわかる</a></li>
+</ul>
+<h1 id="補足・参考"><a href="#補足・参考" class="headerlink" title="補足・参考"></a>補足・参考</h1><h2 id="「-」（バックスラッシュ）と「¥」（円マークについて）"><a href="#「-」（バックスラッシュ）と「¥」（円マークについて）" class="headerlink" title="「\」（バックスラッシュ）と「¥」（円マークについて）"></a>「\」（バックスラッシュ）と「¥」（円マークについて）</h2><ul>
+<li>Unicodeが広まる以前、和文フォントでは「/」の文字コード（0x5c）に「¥」の表記を割り当てていたため、「\」を入力すると「¥」が表示されるようになった。</li>
+<li>その名残で「\」文字コード（0x5c）を入力した場合、「¥」が表示される場合がある。</li>
+<li>Unicodeでは「\」の文字コード（U+005c）とは別に、「¥」に文字コード（U+00A5）が割り当てられている。</li>
+</ul>
+<h2 id="改行コードについて"><a href="#改行コードについて" class="headerlink" title="改行コードについて"></a>改行コードについて</h2><p>正規表現とは関係ないけどキャレッジリターンってなんぞ？と思ったので調べてみた</p>
+<ul>
+<li>「CR」「LF」「CRLF」の3種類ある</li>
+<li>昔のMacではCR,現在のMacやLinuxなどのUnix系ではLF,windowsではCRLFを採用している</li>
+</ul>
+<blockquote>
+<p>タイプライターにはキャリッジというロールに紙を挟む役目を持つ部品があり、その位置を調節する「キャリッジリターンレバー」と、1行分ロールを回し紙を送ること（ラインフィード）が出来るレバーを順に操作することで改行を行っていた。</p>
+</blockquote>
+<h2 id="キャリッジリターン（carriage-return-CR、復帰）"><a href="#キャリッジリターン（carriage-return-CR、復帰）" class="headerlink" title="キャリッジリターン（carriage return:CR、復帰）"></a>キャリッジリターン（carriage return:CR、復帰）</h2><ul>
+<li>カーソルを行の先頭に戻す指示（左に移動）<h2 id="ラインフィード（line-feed-LF-newline-end-of-line、狭義の改行）"><a href="#ラインフィード（line-feed-LF-newline-end-of-line、狭義の改行）" class="headerlink" title="ラインフィード（line feed:LF, newline, end-of-line、狭義の改行）"></a>ラインフィード（line feed:LF, newline, end-of-line、狭義の改行）</h2></li>
+<li>カーソルを一つ下の行に移す指示（下に移動）</li>
+<li>以前はカーソルを下に移すだけで行頭には戻らなかった（現在は行頭に戻るようになっている）</li>
+</ul>
+<h2 id="grep"><a href="#grep" class="headerlink" title="grep"></a>grep</h2><ul>
+<li>grepとはedというラインエディタのコマンド g/re/pのコマンドからきている</li>
+<li>global Regular Expression printの略</li>
+</ul>
+<h2 id="バリデーション（validation）とは？"><a href="#バリデーション（validation）とは？" class="headerlink" title="バリデーション（validation）とは？"></a>バリデーション（validation）とは？</h2><ul>
+<li>validate：検証する・（妥当性を）確認する、有効性を確かめる</li>
+<li>IT分野では「規定された文法・仕様通りに記述されているかどうかを検証すること」</li>
+<li>メールアドレス、パスワード、電話番号、郵便番号など文法のチェックの意味で使われる</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2019/10/07/taged-VLAN%E3%81%A8untagedVLAN%E3%81%AE%E9%81%95%E3%81%84/" rel="prev" title="タグVLANとネイティブVLAN (PVID)の違い">
+                  <i class="fa fa-chevron-left"></i> タグVLANとネイティブVLAN (PVID)の違い
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2019/11/05/iptables/" rel="next" title="iptables">
+                  iptables <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">lyvivian</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"lyvivian0077.github.io","root":"/","images":"/images","scheme":"Muse","version":"8.5.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+<meta name="description" content="Linux环境下 LVM 逻辑卷的建立、扩容和减容操作前言LVM是逻辑盘卷管理（Logical Volume Manager）的简称，它是Linux环境下对磁盘分区进行管理的一种机制，LVM是建立在硬盘和分区之上的一个逻辑层，来提高磁盘分LVM区管理的灵活性。前面谈到，LVM是在磁盘分区和文件系统之间添加的一个逻辑层，来为文件系统屏蔽下层磁盘分区布局，提供一个抽象的盘卷，在盘卷上建立文件系统。物理">
+<meta property="og:type" content="article">
+<meta property="og:title" content="linux-lvm">
+<meta property="og:url" content="https://lyvivian0077.github.io/2019/02/06/linux-lvm/index.html">
+<meta property="og:site_name" content="总有刁民想要害朕">
+<meta property="og:description" content="Linux环境下 LVM 逻辑卷的建立、扩容和减容操作前言LVM是逻辑盘卷管理（Logical Volume Manager）的简称，它是Linux环境下对磁盘分区进行管理的一种机制，LVM是建立在硬盘和分区之上的一个逻辑层，来提高磁盘分LVM区管理的灵活性。前面谈到，LVM是在磁盘分区和文件系统之间添加的一个逻辑层，来为文件系统屏蔽下层磁盘分区布局，提供一个抽象的盘卷，在盘卷上建立文件系统。物理">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2019-02-06T01:27:20.000Z">
+<meta property="article:modified_time" content="2021-06-22T03:58:45.676Z">
+<meta property="article:author" content="lyvivian">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://lyvivian0077.github.io/2019/02/06/linux-lvm/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://lyvivian0077.github.io/2019/02/06/linux-lvm/","path":"2019/02/06/linux-lvm/","title":"linux-lvm"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>linux-lvm | 总有刁民想要害朕</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">总有刁民想要害朕</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Linux%E7%8E%AF%E5%A2%83%E4%B8%8B-LVM-%E9%80%BB%E8%BE%91%E5%8D%B7%E7%9A%84%E5%BB%BA%E7%AB%8B%E3%80%81%E6%89%A9%E5%AE%B9%E5%92%8C%E5%87%8F%E5%AE%B9%E6%93%8D%E4%BD%9C"><span class="nav-number">1.</span> <span class="nav-text">Linux环境下 LVM 逻辑卷的建立、扩容和减容操作</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.1.</span> <span class="nav-text">前言</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#LVM%E6%98%AF%E9%80%BB%E8%BE%91%E7%9B%98%E5%8D%B7%E7%AE%A1%E7%90%86%EF%BC%88Logical-Volume-Manager%EF%BC%89%E7%9A%84%E7%AE%80%E7%A7%B0%EF%BC%8C%E5%AE%83%E6%98%AFLinux%E7%8E%AF%E5%A2%83%E4%B8%8B%E5%AF%B9%E7%A3%81%E7%9B%98%E5%88%86%E5%8C%BA%E8%BF%9B%E8%A1%8C%E7%AE%A1%E7%90%86%E7%9A%84%E4%B8%80%E7%A7%8D%E6%9C%BA%E5%88%B6%EF%BC%8C"><span class="nav-number">1.1.1.</span> <span class="nav-text">LVM是逻辑盘卷管理（Logical Volume Manager）的简称，它是Linux环境下对磁盘分区进行管理的一种机制，</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#LVM%E6%98%AF%E5%9C%A8%E7%A3%81%E7%9B%98%E5%88%86%E5%8C%BA%E5%92%8C%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E4%B9%8B%E9%97%B4%E6%B7%BB%E5%8A%A0%E7%9A%84%E4%B8%80%E4%B8%AA%E9%80%BB%E8%BE%91%E5%B1%82%EF%BC%8C"><span class="nav-number">1.1.2.</span> <span class="nav-text">LVM是在磁盘分区和文件系统之间添加的一个逻辑层，</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9E%E9%AA%8C%E9%83%A8%E5%88%86"><span class="nav-number">1.1.3.</span> <span class="nav-text">实验部分</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E2%80%94%E2%80%94%E2%80%94%E5%BB%BA%E7%AB%8B%E9%80%BB%E8%BE%91%E5%8D%B7%E2%80%94%E2%80%94%E2%80%94"><span class="nav-number">1.1.3.0.1.</span> <span class="nav-text">———建立逻辑卷———</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E2%80%94%E2%80%94%E2%80%93%E6%89%A9%E5%AE%B9%E2%80%94%E2%80%94%E2%80%93"><span class="nav-number">1.1.3.0.2.</span> <span class="nav-text">——–扩容——–</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E2%80%94%E2%80%94%E2%80%94%E2%80%93%E7%BC%A9%E5%AE%B9%E2%80%94%E2%80%94%E2%80%94"><span class="nav-number">1.1.3.0.3.</span> <span class="nav-text">———–缩容———-</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E2%80%94%E2%80%94%E2%80%93%E7%A7%BB%E9%99%A4%E7%89%A9%E7%90%86%E5%8D%B7%E2%80%94%E2%80%94%E2%80%93"><span class="nav-number">1.1.3.0.4.</span> <span class="nav-text">——–移除物理卷——–</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-overview">
+            <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">lyvivian</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">32</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">categories</span>
+      </div>
+  </nav>
+</div>
+
+
+
+          </div>
+        </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://lyvivian0077.github.io/2019/02/06/linux-lvm/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="lyvivian">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="总有刁民想要害朕">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          linux-lvm
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2019-02-06 10:27:20" itemprop="dateCreated datePublished" datetime="2019-02-06T10:27:20+09:00">2019-02-06</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2021-06-22 12:58:45" itemprop="dateModified" datetime="2021-06-22T12:58:45+09:00">2021-06-22</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/main/" itemprop="url" rel="index"><span itemprop="name">main</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="Linux环境下-LVM-逻辑卷的建立、扩容和减容操作"><a href="#Linux环境下-LVM-逻辑卷的建立、扩容和减容操作" class="headerlink" title="Linux环境下 LVM 逻辑卷的建立、扩容和减容操作"></a>Linux环境下 LVM 逻辑卷的建立、扩容和减容操作</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><h3 id="LVM是逻辑盘卷管理（Logical-Volume-Manager）的简称，它是Linux环境下对磁盘分区进行管理的一种机制，"><a href="#LVM是逻辑盘卷管理（Logical-Volume-Manager）的简称，它是Linux环境下对磁盘分区进行管理的一种机制，" class="headerlink" title="LVM是逻辑盘卷管理（Logical Volume Manager）的简称，它是Linux环境下对磁盘分区进行管理的一种机制，"></a>LVM是逻辑盘卷管理（Logical Volume Manager）的简称，它是Linux环境下对磁盘分区进行管理的一种机制，</h3><p>LVM是建立在硬盘和分区之上的一个逻辑层，来提高磁盘分LVM区管理的灵活性。<br>前面谈到，LVM是在磁盘分区和文件系统之间添加的一个逻辑层，<br>来为文件系统屏蔽下层磁盘分区布局，提供一个抽象的盘卷，在盘卷上建立文件系统。<br>物理卷（physical volume）物理卷就是指硬盘分区或从逻辑上与磁盘分区具有同样<br>功能的设备（如RAID），是LVM的基本存储逻辑块，但和基本的物理存储介质<br>（如分区、磁盘等）比较，却包含有与LVM相关的管理参数。 </p>
+<h3 id="LVM是在磁盘分区和文件系统之间添加的一个逻辑层，"><a href="#LVM是在磁盘分区和文件系统之间添加的一个逻辑层，" class="headerlink" title="LVM是在磁盘分区和文件系统之间添加的一个逻辑层，"></a>LVM是在磁盘分区和文件系统之间添加的一个逻辑层，</h3><p>来为文件系统屏蔽下层磁盘分区布局，提供一个抽象的盘卷，在盘卷上建立文件系统。首先我们讨论以下几个LVM术语：</p>
+<ul>
+<li><p>物理存储介质（Thephysicalmedia）</p>
+<ul>
+<li>这里指系统的存储设备：硬盘，是存储系统最低层的存储单元。</li>
+</ul>
+</li>
+<li><p>物理卷（physicalvolume）</p>
+<ul>
+<li>物理卷就是指硬盘分区或从逻辑上与磁盘分区具有同样功能的设备（如RAID），是LVM的基本存储逻辑块，但和基本的物理存储介质（如分区、磁盘等）比较，却包含有与LVM相关的管理参数。</li>
+</ul>
+</li>
+<li><p>卷组（VolumeGroup）</p>
+<ul>
+<li>LVM卷组类似于非LVM系统中的物理硬盘，其由物理卷组成。可以在卷组上创建一个或多个“LVM分区”（逻辑卷），LVM卷组由一个或多个物理卷组成。</li>
+</ul>
+</li>
+<li><p>逻辑卷（logicalvolume）</p>
+<ul>
+<li>LVM的逻辑卷类似于非LVM系统中的硬盘分区，在逻辑卷之上可以建立文件系统（比如/home或者/usr等）。</li>
+</ul>
+</li>
+<li><p>PE（physicalextent）</p>
+<ul>
+<li>每一个物理卷被划分为称为PE(PhysicalExtents）的基本单元，具有唯一编号的PE是可以被LVM寻址的最小单元。PE的大小是可配置的，默认为4MB。</li>
+</ul>
+</li>
+<li><p>LE（logicalextent）</p>
+<ul>
+<li>逻辑卷也被划分为被称为LE(LogicalExtents）的可被寻址的基本单位。在同一个卷组中，LE的大小和PE是相同的，并且一一对应。</li>
+</ul>
+</li>
+</ul>
+<h3 id="实验部分"><a href="#实验部分" class="headerlink" title="实验部分"></a>实验部分</h3><h5 id="———建立逻辑卷———"><a href="#———建立逻辑卷———" class="headerlink" title="———建立逻辑卷———"></a>———建立逻辑卷———</h5><ol>
+<li>新建2个分区,sda5  5G,sd6 10G,完成之后如下</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">[root@yangcan /]# fdisk -l</span><br><span class="line">Disk /dev/sda: 42.9 GB, 42949672960 bytes</span><br><span class="line">255 heads, 63 sectors/track, 5221 cylinders</span><br><span class="line">Units = cylinders of 16065 * 512 = 8225280 bytes</span><br><span class="line">Sector size (logical/physical): 512 bytes / 512 bytes</span><br><span class="line">I/O size (minimum/optimal): 512 bytes / 512 bytes</span><br><span class="line">Disk identifier: 0x000ed173</span><br><span class="line">   Device Boot      Start         End      Blocks   Id  System</span><br><span class="line">/dev/sda1   *           1          39      307200   83  Linux</span><br><span class="line">Partition 1 does not end on cylinder boundary.</span><br><span class="line">/dev/sda2              39        2167    17091584   83  Linux</span><br><span class="line">/dev/sda3            2167        2611     3571712   82  Linux swap / Solaris</span><br><span class="line">/dev/sda4            2611        5221    20966162+   5  Extended</span><br><span class="line">/dev/sda5            2611        3264     5246528+  83  Linux</span><br><span class="line">/dev/sda6            3265        4570    10490413+  83  Linux</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>把sda6初始化物理卷</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@yangcan /]# pvcreate /dev/sda6</span><br><span class="line">  Device vg6 not found (or ignored by filtering).</span><br><span class="line">  Writing physical volume data to disk &quot;/dev/sda6&quot;</span><br><span class="line">  Physical volume &quot;/dev/sda6&quot; successfully created</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>创建卷组vg6,PE为16M</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">[root@yangcan /]# vgcreate -s 16M vg6 /dev/sda6</span><br><span class="line">  Volume group &quot;vg6&quot; successfully created</span><br><span class="line"></span><br><span class="line">[root@yangcan /]# vgdisplay</span><br><span class="line">  --- Volume group ---</span><br><span class="line">  VG Name               vg6</span><br><span class="line">  System ID</span><br><span class="line">  Format                lvm2</span><br><span class="line">  Metadata Areas        1</span><br><span class="line">  Metadata Sequence No  1</span><br><span class="line">  VG Access             read/write</span><br><span class="line">  VG Status             resizable</span><br><span class="line">  MAX LV                0</span><br><span class="line">  Cur LV                0</span><br><span class="line">  Open LV               0</span><br><span class="line">  Max PV                0</span><br><span class="line">  Cur PV                1</span><br><span class="line">  Act PV                1</span><br><span class="line">  VG Size               10.00 GiB</span><br><span class="line">  PE Size               16.00 MiB</span><br><span class="line">  Total PE              640</span><br><span class="line">  Alloc PE / Size       0 / 0</span><br><span class="line">  Free  PE / Size       640 / 10.00 GiB</span><br><span class="line">  VG UUID               35tmMm-Hyec-i4f1-xkd7-pMRS-RgRl-sqFa7l</span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>创建逻辑卷ftpdata,大小为6G</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">[root@yangcan /]# lvcreate -L 6G -n ftpdata vg6</span><br><span class="line">  Logical volume &quot;ftpdata&quot; created</span><br><span class="line"></span><br><span class="line">[root@yangcan /]# lvdisplay</span><br><span class="line">  --- Logical volume ---</span><br><span class="line">  LV Name                /dev/vg6/ftpdata</span><br><span class="line">  VG Name                vg6</span><br><span class="line">  LV UUID                LSOtbB-k3mz-DVbb-ATcE-IhBk-V9B7-uaSStM</span><br><span class="line">  LV Write Access        read/write</span><br><span class="line">  LV Status              available</span><br><span class="line">  # open                 0</span><br><span class="line">  LV Size                6.00 GiB</span><br><span class="line">  Current LE             384</span><br><span class="line">  Segments               1</span><br><span class="line">  Allocation             inherit</span><br><span class="line">  Read ahead sectors     auto</span><br><span class="line">  - currently set to     256</span><br><span class="line">  Block device           253:0</span><br></pre></td></tr></table></figure>
+
+<ol start="5">
+<li>格式化ext4,并挂载,并cp一些数据进去</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@yangcan /]# mke2fs -T ext4 /dev/vg6/ftpdata</span><br><span class="line">[root@yangcan /]# mount /dev/vg6/ftpdata /ftpdata/</span><br><span class="line">[root@yangcan /]# cd /ftpdata/</span><br><span class="line">[root@yangcan ftpdata]# cp /etc/*.conf ./</span><br><span class="line">[root@yangcan ftpdata]# cp /usr/share/dict/linux.words ./</span><br></pre></td></tr></table></figure>
+
+
+<h5 id="——–扩容——–"><a href="#——–扩容——–" class="headerlink" title="——–扩容——–"></a>——–扩容——–</h5><ol>
+<li>新增一个磁盘到卷组vg6,就用到之前剩下的sda5了</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">[root@yangcan ftpdata]# vgextend vg6 /dev/sda5</span><br><span class="line">  Volume group &quot;vg6&quot; successfully extended</span><br><span class="line"></span><br><span class="line">[root@yangcan ftpdata]# vgdisplay</span><br><span class="line">  --- Volume group ---</span><br><span class="line">  VG Name               vg6</span><br><span class="line">  System ID</span><br><span class="line">  Format                lvm2</span><br><span class="line">  Metadata Areas        2</span><br><span class="line">  Metadata Sequence No  3</span><br><span class="line">  VG Access             read/write</span><br><span class="line">  VG Status             resizable</span><br><span class="line">  MAX LV                0</span><br><span class="line">  Cur LV                1</span><br><span class="line">  Open LV               1</span><br><span class="line">  Max PV                0</span><br><span class="line">  Cur PV                2</span><br><span class="line">  Act PV                2</span><br><span class="line">  VG Size               15.00 GiB</span><br><span class="line">  PE Size               16.00 MiB</span><br><span class="line">  Total PE              960</span><br><span class="line">  Alloc PE / Size       384 / 6.00 GiB</span><br><span class="line">  Free  PE / Size       576 / 9.00 GiB</span><br><span class="line">  VG UUID               35tmMm-Hyec-i4f1-xkd7-pMRS-RgRl-sqFa7l</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>扩容ftpdata,当我们文件不段增加的时候,扩容就很有必要了</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line">[root@yangcan ftpdata]# lvextend -L +4G /dev/vg6/ftpdata</span><br><span class="line"></span><br><span class="line">或者使用,就是想让你明白-L 和 -L +的区别,-L 后面直接加容量,是指直接加到容量,而-L +容量,是指在原有容量上加多少容量!</span><br><span class="line"></span><br><span class="line">[root@yangcan ftpdata]# lvextend -L 10G /dev/vg6/ftpdata</span><br><span class="line">  Extending logical volume ftpdata to 10.00 GiB</span><br><span class="line">  Logical volume ftpdata successfully resized</span><br><span class="line"></span><br><span class="line">[root@yangcan ftpdata]# lvdisplay</span><br><span class="line">  --- Logical volume ---</span><br><span class="line">  LV Name                /dev/vg6/ftpdata</span><br><span class="line">  VG Name                vg6</span><br><span class="line">  LV UUID                LSOtbB-k3mz-DVbb-ATcE-IhBk-V9B7-uaSStM</span><br><span class="line">  LV Write Access        read/write</span><br><span class="line">  LV Status              available</span><br><span class="line">  # open                 1</span><br><span class="line">  LV Size                10.00 GiB</span><br><span class="line">  Current LE             640</span><br><span class="line">  Segments               1</span><br><span class="line">  Allocation             inherit</span><br><span class="line">  Read ahead sectors     auto</span><br><span class="line">  - currently set to     256</span><br><span class="line">  Block device           253:0</span><br><span class="line"></span><br><span class="line">[root@yangcan ftpdata]# df -h|grep ftpdata</span><br><span class="line">/dev/mapper/vg6-ftpdata</span><br><span class="line">                      6.0G  145M  5.5G   3% /ftpdata</span><br><span class="line"></span><br><span class="line">此时查看ftpdata文件系统容量的时候,还是之前的大小,所以需要resize2fs</span><br><span class="line"></span><br><span class="line">[root@yangcan ftpdata]# resize2fs /dev/vg6/ftpdata</span><br><span class="line">resize2fs 1.41.12 (17-May-2010)</span><br><span class="line">Filesystem at /dev/vg6/ftpdata is mounted on /ftpdata; on-line resizing required</span><br><span class="line">old desc_blocks = 1, new_desc_blocks = 1</span><br><span class="line">Performing an on-line resize of /dev/vg6/ftpdata to 2621440 (4k) blocks.</span><br><span class="line">The filesystem on /dev/vg6/ftpdata is now 2621440 blocks long.</span><br><span class="line"></span><br><span class="line">[root@yangcan ftpdata]# df -h|grep ftpdata</span><br><span class="line">/dev/mapper/vg6-ftpdata</span><br><span class="line">                      9.9G  147M  9.3G   2% /ftpdata</span><br><span class="line"></span><br><span class="line">[root@yangcan ftpdata]# lvdisplay</span><br><span class="line">  --- Logical volume ---</span><br><span class="line">  LV Name                /dev/vg6/ftpdata</span><br><span class="line">  VG Name                vg6</span><br><span class="line">  LV UUID                LSOtbB-k3mz-DVbb-ATcE-IhBk-V9B7-uaSStM</span><br><span class="line">  LV Write Access        read/write</span><br><span class="line">  LV Status              available</span><br><span class="line">  # open                 1</span><br><span class="line">  LV Size                10.00 GiB</span><br><span class="line">  Current LE             640</span><br><span class="line">  Segments               1</span><br><span class="line">  Allocation             inherit</span><br><span class="line">  Read ahead sectors     auto</span><br><span class="line">  - currently set to     256</span><br><span class="line">  Block device           253:0</span><br><span class="line"></span><br><span class="line">现在就文件系统和逻辑卷空间一致了</span><br></pre></td></tr></table></figure>
+
+
+<h5 id="———–缩容———"><a href="#———–缩容———" class="headerlink" title="———–缩容———-"></a>———–缩容———-</h5><p>扩容实验做完了,接下来做缩容,缩容比扩容复杂,平时工作也不能轻易的指定缩容的大小.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">[root@yangcan ftpdata]# cd ..</span><br><span class="line">[root@yangcan /]# umount /ftpdata/</span><br><span class="line">[root@yangcan /]# e2fsck -f /dev/vg6/ftpdata</span><br><span class="line">e2fsck 1.41.12 (17-May-2010)</span><br><span class="line">Pass 1: Checking inodes, blocks, and sizes</span><br><span class="line">Pass 2: Checking directory structure</span><br><span class="line">Pass 3: Checking directory connectivity</span><br><span class="line">Pass 4: Checking reference counts</span><br><span class="line">Pass 5: Checking group summary information</span><br><span class="line">/dev/vg6/ftpdata: 41/655360 files (0.0% non-contiguous), 78604/2621440 blocks</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>注意:我们大概要缩到6G左右,那我们就不能直接resize2fs 到6G,这样肯定是错误的,因为PE是可以被LVM寻址的最小单元,本次实验PE大小为16M.我们去做缩容的时候,不可能是0.6个PE.所有尤其注意,网上很多资料就是直接指定大小,而没有做测试环节!!!会造成数据的丢失,所以指定大小时,先用lvreduce -t 测试一下.用bc算出6G的位置,到底那个值合适</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br></pre></td><td class="code"><pre><span class="line">[root@yangcan /]# bc</span><br><span class="line">bc 1.06.95</span><br><span class="line">Copyright 1991-1994, 1997, 1998, 2000, 2004, 2006 Free Software Foundation, Inc.</span><br><span class="line">This is free software with ABSOLUTELY NO WARRANTY.</span><br><span class="line">For details type `warranty&#x27;.</span><br><span class="line">--6000刚好整除16</span><br><span class="line">6000%16</span><br><span class="line">0</span><br><span class="line">--6001除16为1</span><br><span class="line">6001%16</span><br><span class="line">1</span><br><span class="line">5999%16</span><br><span class="line">15</span><br><span class="line">--刚好6000M,取余为0,我们比较一下6001和6000的区别</span><br><span class="line"></span><br><span class="line">[root@yangcan /]# lvreduce -L 6001M /dev/vg6/ftpdata -t</span><br><span class="line">  Test mode: Metadata will NOT be updated and volumes will not be (de)activated.</span><br><span class="line">  Rounding up size to full physical extent 5.88 GiB</span><br><span class="line">  WARNING: Reducing active logical volume to 5.88 GiB</span><br><span class="line">  THIS MAY DESTROY YOUR DATA (filesystem etc.)</span><br><span class="line">Do you really want to reduce ftpdata? [y/n]: n</span><br><span class="line">  Logical volume ftpdata NOT reduced</span><br><span class="line">显示了警告信息!</span><br><span class="line"></span><br><span class="line">[root@yangcan /]# lvreduce -L 6000M /dev/vg6/ftpdata -t</span><br><span class="line">  Test mode: Metadata will NOT be updated and volumes will not be (de)activated.</span><br><span class="line">  WARNING: Reducing active logical volume to 5.86 GiB</span><br><span class="line">  THIS MAY DESTROY YOUR DATA (filesystem etc.)</span><br><span class="line">Do you really want to reduce ftpdata? [y/n]:</span><br><span class="line"></span><br><span class="line">提示为6000M是,没问题</span><br><span class="line">当-t 测试时,没问题了,那我们就resize2fs了</span><br><span class="line"></span><br><span class="line">[root@yangcan /]# resize2fs /dev/vg6/ftpdata 6000M</span><br><span class="line">resize2fs 1.41.12 (17-May-2010)</span><br><span class="line">Resizing the filesystem on /dev/vg6/ftpdata to 1536000 (4k) blocks.</span><br><span class="line">The filesystem on /dev/vg6/ftpdata is now 1536000 blocks long.</span><br><span class="line">挂载,查看文件系统的大小,为最新的6000M,数据也没有丢失!!</span><br><span class="line"></span><br><span class="line">[root@yangcan /]# mount -a</span><br><span class="line">[root@yangcan /]# df -h</span><br><span class="line">Filesystem            Size  Used Avail Use% Mounted on</span><br><span class="line">/dev/sda2              17G  2.1G   14G  14% /</span><br><span class="line">tmpfs                 504M  264K  504M   1% /dev/shm</span><br><span class="line">/dev/sda1             291M   31M  246M  11% /boot</span><br><span class="line">/dev/sr0              2.9G  2.9G     0 100% /media/cdrom</span><br><span class="line">/dev/mapper/vg6-ftpdata  5.8G  145M  5.4G   3% /ftpdata</span><br><span class="line"></span><br><span class="line">我们用lvdisplay查看一下逻辑卷的大小还是为10G</span><br><span class="line"></span><br><span class="line">[root@yangcan /]# lvdisplay</span><br><span class="line">  --- Logical volume ---</span><br><span class="line">  LV Name                /dev/vg6/ftpdata</span><br><span class="line">  VG Name                vg6</span><br><span class="line">  LV UUID                LSOtbB-k3mz-DVbb-ATcE-IhBk-V9B7-uaSStM</span><br><span class="line">  LV Write Access        read/write</span><br><span class="line">  LV Status              available</span><br><span class="line">  # open                 1</span><br><span class="line">  LV Size                10.00 GiB</span><br><span class="line">  Current LE             640</span><br><span class="line">  Segments               1</span><br><span class="line">  Allocation             inherit</span><br><span class="line">  Read ahead sectors     auto</span><br><span class="line">  - currently set to     256</span><br><span class="line">  Block device           253:0</span><br><span class="line"></span><br><span class="line">所以我们用lvreduce进行调整!</span><br><span class="line"></span><br><span class="line">[root@yangcan /]# lvreduce -L 6000M /dev/vg6/ftpdata</span><br><span class="line">  WARNING: Reducing active and open logical volume to 5.86 GiB</span><br><span class="line">  THIS MAY DESTROY YOUR DATA (filesystem etc.)</span><br><span class="line">Do you really want to reduce ftpdata? [y/n]: n</span><br><span class="line">  Logical volume ftpdata NOT reduced</span><br><span class="line"></span><br><span class="line">--提示逻辑卷正在打开,所有我们需要停止逻辑卷,再去调整大小</span><br><span class="line"></span><br><span class="line">[root@yangcan /]# lvchange -an /dev/vg6/ftpdata</span><br><span class="line">[root@yangcan /]# lvscan</span><br><span class="line">  inactive          &#x27;/dev/vg6/ftpdata&#x27; [10.00 GiB] inherit</span><br><span class="line"></span><br><span class="line">[root@yangcan /]# lvreduce -L 6000M /dev/vg6/ftpdata</span><br><span class="line">  Reducing logical volume ftpdata to 5.86 GiB</span><br><span class="line">  Logical volume ftpdata successfully resized</span><br><span class="line"></span><br><span class="line">[root@yangcan /]# mount -a</span><br><span class="line">mount: special device /dev/vg6/ftpdata does not exist</span><br><span class="line"></span><br><span class="line">--当我们去挂载的时候,提示没有这个设备.所以需要启用</span><br><span class="line"></span><br><span class="line">[root@yangcan /]# lvchange -ay /dev/vg6/ftpdata</span><br><span class="line">[root@yangcan /]# lvscan</span><br><span class="line">  ACTIVE            &#x27;/dev/vg6/ftpdata&#x27; [5.86 GiB] inherit</span><br><span class="line"></span><br><span class="line">重新挂载,里面的文件还在!</span><br><span class="line"></span><br><span class="line">[root@yangcan /]# mount -a</span><br><span class="line">[root@yangcan /]# cd /ftpdata/</span><br><span class="line">[root@yangcan ftpdata]# ll</span><br><span class="line">total 4996</span><br><span class="line">-rw-r--r--. 1 root root     148 Jul 30 19:37 asound.conf</span><br><span class="line">-rw-r--r--. 1 root root   21214 Jul 30 19:37 dnsmasq.conf</span><br><span class="line">-rw-r--r--. 1 root root     559 Jul 30 19:37 dracut.conf</span><br><span class="line">-rw-r--r--. 1 root root      20 Jul 30 19:37 fprintd.conf</span><br><span class="line">-rw-r--r--. 1 root root       0 Jul 30 19:37 gai.conf</span><br><span class="line">-rw-------. 1 root root     781 Jul 30 19:37 grub.conf</span><br><span class="line">-rw-r--r--. 1 root root       9 Jul 30 19:37 host.conf</span><br><span class="line">-rw-r--r--. 1 root root    5309 Jul 30 19:37 kdump.conf</span><br></pre></td></tr></table></figure>
+
+<p>ps: 你也可以不做-t测试,直接指定大小去缩容,看数据是否还在?</p>
+<h5 id="——–移除物理卷——–"><a href="#——–移除物理卷——–" class="headerlink" title="——–移除物理卷——–"></a>——–移除物理卷——–</h5><ul>
+<li><p>移除之前,物理卷里面必须没有数据,用下以下命令查看各物理卷的空间大小.计划是否有足够的空间可以被用来移动数据!</p>
+<ul>
+<li><code>[root@yangcan Desktop]# pvscan</code></li>
+</ul>
+</li>
+<li><p>搬移要移除物理卷的数据到其他空闲且满足大小的物理卷</p>
+<ul>
+<li><code>[root@yangcan Desktop]# pvmove /dev/sda6 /dev/sda7</code><br>完成之后</li>
+</ul>
+</li>
+<li><p>从卷组移除物理卷</p>
+<ul>
+<li><code>[root@yangcan Desktop]#vgchange -an vg5</code></li>
+<li><code>[root@yangcan Desktop]# vgreduce vg5 /dev/sda6</code></li>
+</ul>
+</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2018/08/30/python/" rel="prev" title="python">
+                  <i class="fa fa-chevron-left"></i> python
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2019/02/06/python-dunder/" rel="next" title="Python中下划线的5种含义">
+                  Python中下划线的5种含义 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">lyvivian</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>
