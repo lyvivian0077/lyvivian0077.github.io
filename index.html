@@ -47,6 +47,8 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#project-layout">Project layout</a>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#deploying-docs">Deploying docs</a>
+    </li>
     </ul>
                 </li>
               </ul>
@@ -215,6 +217,28 @@ docs/
     index.md  # The documentation homepage.
     ...       # Other markdown pages, images and other files.
 </code></pre>
+
+<h2 id="deploying-docs">Deploying docs<a class="headerlink" href="#deploying-docs" title="Permanent link">&para;</a></h2>
+<ul>
+<li>https://mkdocs.nakaken88.com/use/write/</li>
+<li>https://dev.classmethod.jp/articles/mkdocs-and-material-for-mkdocs-tips-matome/</li>
+<li>https://www.mkdocs.org/getting-started/</li>
+<li>https://www.mkdocs.org/user-guide/deploying-your-docs/</li>
+</ul>
+<pre><code>#  python3 -m pip install --upgrade pip
+#  pip install mkdocs
+#  pip install mkdocs-material
+#  mkdocs serve -a 127.0.0.1:8000 -v
+</code></pre>
+<pre><code>my-project/
+    mkdocs.yml
+    docs/
+orgname.github.io/
+
+
+cd ../orgname.github.io/
+mkdocs gh-deploy --config-file ../my-project/mkdocs.yml --remote-branch master
+</code></pre>
               
             </div>
           </div><footer>
@@ -263,5 +287,5 @@ docs/
 
 <!--
 MkDocs version : 1.4.3
-Build Date UTC : 2023-05-06 06:42:22.337524+00:00
+Build Date UTC : 2023-05-06 06:45:28.810161+00:00
 -->
