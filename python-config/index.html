@@ -9,17 +9,17 @@
       
       
       
-        <link rel="prev" href="../megacli/">
+        <link rel="prev" href="../MySQL-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
       
       
-        <link rel="next" href="../Explain%E8%AF%A6%E8%A7%A3%E4%B8%8E%E7%B4%A2%E5%BC%95%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/">
+        <link rel="next" href="../python-decorator/">
       
       <link rel="icon" href="../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.9">
     
     
       
-        <title>MegaRAID Policy - 总有刁民想要害朕</title>
+        <title>Python程序配置文件管理 - 总有刁民想要害朕</title>
       
     
     
@@ -61,7 +61,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#raidwrite-policyread-policycache-policy" class="md-skip">
+        <a href="#python" class="md-skip">
           Skip to content
         </a>
       
@@ -96,7 +96,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              MegaRAID Policy
+              Python程序配置文件管理
             
           </span>
         </div>
@@ -240,16 +240,14 @@
 
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
       
       
       
@@ -258,7 +256,7 @@
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
         <label class="md-nav__title" for="__nav_5">
           <span class="md-nav__icon md-icon"></span>
           MegaRAID
@@ -283,130 +281,11 @@
               
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          megaraid
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../megaraid/" class="md-nav__link">
         megaraid
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#raidwrite-policyread-policycache-policy" class="md-nav__link">
-    做RAID时Write Policy,Read Policy,Cache Policy如何配置
-  </a>
-  
-    <nav class="md-nav" aria-label="做RAID时Write Policy,Read Policy,Cache Policy如何配置">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#read-aheadscsi" class="md-nav__link">
-    Read-ahead（预读）启用逻辑驱动器的SCSI预读功能。 可将此参数设为
-  </a>
-  
-    <nav class="md-nav" aria-label="Read-ahead（预读）启用逻辑驱动器的SCSI预读功能。 可将此参数设为">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#no-read-ahead" class="md-nav__link">
-    No-Read-Ahead（非预读）
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#read-ahead" class="md-nav__link">
-    Read-ahead（预读）
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#adaptive" class="md-nav__link">
-    Adaptive（自适应）
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#cache-policy-read-ahead" class="md-nav__link">
-    Cache Policy（高速缓存策略） 适合在特定逻辑驱动器上读取。 它并不影响Read ahead（预读）高速缓存。
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#write-policy" class="md-nav__link">
-    Write Policy（写入策略） 将高速缓存方法设置为回写或通过写。
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#raid" class="md-nav__link">
-    查看RAID卡电池情况
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#raid_1" class="md-nav__link">
-    查看当前RAID卡缓存策略
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#raid_2" class="md-nav__link">
-    RAID卡策略更改
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    其它相关命令
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -529,14 +408,16 @@
 
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" checked>
       
       
       
@@ -545,7 +426,7 @@
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="true">
         <label class="md-nav__title" for="__nav_7">
           <span class="md-nav__icon md-icon"></span>
           Python Tips
@@ -556,11 +437,73 @@
               
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../python-config/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Python程序配置文件管理
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         Python程序配置文件管理
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    需求一：支持简单的配置项
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    需求二：配置对象全局唯一
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    需求三：根据配置文件构造配置对象
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    需求四：程序退出前自动持久化配置对象到配置文件
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -911,6 +854,8 @@
   
   
   
+    
+  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -919,90 +864,29 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#raidwrite-policyread-policycache-policy" class="md-nav__link">
-    做RAID时Write Policy,Read Policy,Cache Policy如何配置
-  </a>
-  
-    <nav class="md-nav" aria-label="做RAID时Write Policy,Read Policy,Cache Policy如何配置">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#read-aheadscsi" class="md-nav__link">
-    Read-ahead（预读）启用逻辑驱动器的SCSI预读功能。 可将此参数设为
-  </a>
-  
-    <nav class="md-nav" aria-label="Read-ahead（预读）启用逻辑驱动器的SCSI预读功能。 可将此参数设为">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#no-read-ahead" class="md-nav__link">
-    No-Read-Ahead（非预读）
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#read-ahead" class="md-nav__link">
-    Read-ahead（预读）
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#adaptive" class="md-nav__link">
-    Adaptive（自适应）
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#cache-policy-read-ahead" class="md-nav__link">
-    Cache Policy（高速缓存策略） 适合在特定逻辑驱动器上读取。 它并不影响Read ahead（预读）高速缓存。
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#write-policy" class="md-nav__link">
-    Write Policy（写入策略） 将高速缓存方法设置为回写或通过写。
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#raid" class="md-nav__link">
-    查看RAID卡电池情况
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#raid_1" class="md-nav__link">
-    查看当前RAID卡缓存策略
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#raid_2" class="md-nav__link">
-    RAID卡策略更改
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#_1" class="md-nav__link">
-    其它相关命令
+    需求一：支持简单的配置项
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    需求二：配置对象全局唯一
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    需求三：根据配置文件构造配置对象
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    需求四：程序退出前自动持久化配置对象到配置文件
   </a>
   
 </li>
@@ -1022,135 +906,203 @@
                   
 
 
-  <h1>megaraid</h1>
+<h1 id="python">Python 程序配置文件管理的最佳工程实践<a class="headerlink" href="#python" title="Permanent link">&para;</a></h1>
+<ul>
+<li>https://cloud.tencent.com/developer/beta/article/2269479</li>
+</ul>
+<p>最近在结合 Python-3.12.0a6 版本开发一个多线程架构的后台服务；服务启动时会读取配置文件，并且要求所有线程共享同一份配置。
+服务本身直接通过 http 接口来动态调整配置项的值，还要做到服务退出之后持久化配置项到配置文件。
+一开始以为这个用 Python 写也会要用几百行 ，最后发现完成核心功能就只需要不到 50 行，Python 牛逼！！！</p>
+<h3 id="_1">需求一：支持简单的配置项<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
+<p>假设我们目前只支持 name 和 port 两个配置项，多支持几个不难，只是不方便演示。</p>
+<pre><code class="language-python">&quot;&quot;&quot;实例配置管理
+&quot;&quot;&quot;
 
-<p><a href="/assets/lsi_cackecade_pro_2.0_test.pdf">lsi_cackecade_pro_2.0_test PDF</a></p>
-<h2 id="raidwrite-policyread-policycache-policy">做RAID时Write Policy,Read Policy,Cache Policy如何配置<a class="headerlink" href="#raidwrite-policyread-policycache-policy" title="Permanent link">&para;</a></h2>
-<h3 id="read-aheadscsi">Read-ahead（预读）启用逻辑驱动器的SCSI预读功能。 可将此参数设为<a class="headerlink" href="#read-aheadscsi" title="Permanent link">&para;</a></h3>
-<ol>
-<li>No-Read-Ahead（非预读）</li>
-<li>Read-ahead（预读）</li>
-<li>Adaptive（自适应）。 默认设置为Adaptive（自适应）。</li>
-</ol>
-<h4 id="no-read-ahead">No-Read-Ahead（非预读）<a class="headerlink" href="#no-read-ahead" title="Permanent link">&para;</a></h4>
-<ul>
-<li>指定控制器在当前逻辑驱动器中不使用预读方式。</li>
-</ul>
-<h4 id="read-ahead">Read-ahead（预读）<a class="headerlink" href="#read-ahead" title="Permanent link">&para;</a></h4>
-<ul>
-<li>指定控制器在当前逻辑驱动器中使用预读方式。</li>
-</ul>
-<h4 id="adaptive">Adaptive（自适应）<a class="headerlink" href="#adaptive" title="Permanent link">&para;</a></h4>
-<ul>
-<li>指定如果最近两次的磁盘访问出现在连续的扇区内，则控制器开始采用Read-ahead（预读）。 </li>
-<li>如果所有的读取请求都是随机的，则该算法回复到No-Read-Ahead（非预读），但仍要判断所有的读取请求是否有按顺序操作的可能。</li>
-</ul>
-<h2 id="cache-policy-read-ahead">Cache Policy（高速缓存策略） 适合在特定逻辑驱动器上读取。 它并不影响Read ahead（预读）高速缓存。<a class="headerlink" href="#cache-policy-read-ahead" title="Permanent link">&para;</a></h2>
-<ul>
-<li>Cached I/O（高速缓存I/O）指定所有读取数据在高速缓存存储器中缓存。</li>
-<li>Direct I/O（直接I/O）指定读取数据不在高速缓存存储器中缓存。 此为默认设置。 <ul>
-<li>它不会代替高速缓存策略设置。数据被同时传送到高速缓存和主机。 </li>
-<li>如果再次读取同一数据块，则从高速缓存存储器读取</li>
-</ul>
-</li>
-</ul>
-<h2 id="write-policy">Write Policy（写入策略） 将高速缓存方法设置为回写或通过写。<a class="headerlink" href="#write-policy" title="Permanent link">&para;</a></h2>
-<ul>
-<li>在Write-back（回写）高速缓存中，当控制器高速缓存已接收到某个事务中的所有数据时，该控制器将数据传输完成信号发送给主机。</li>
-<li>在Write-through（通过写）高速缓存中，当磁盘子系统已接收到一个事务中的所有数据时，该控制器将数据传输完成信号发送给主机。</li>
-<li>Write-through（通过写）高速缓存与Write-back（回写）高速缓存相比具有数据安全的优势，但Write-back（回写）高速缓存比起Write-through（通过写）又有性能上的优势。</li>
-</ul>
-<h2 id="raid">查看RAID卡电池情况<a class="headerlink" href="#raid" title="Permanent link">&para;</a></h2>
-<pre><code>MegaCli64 -AdpBbuCmd -GetBbuStatus -aAll
+from dataclasses import dataclass
+
+
+@dataclass
+class Config(object):
+    name:str= &quot;mysql&quot;
+    port:int = 3306
 </code></pre>
-<p>如果返回如下错误那么可能是RAID卡BUU电池有问题或者没有电池保护功能：</p>
-<pre><code>Adapter 0: Get BBU Status Failed.
+<p>看起来是没问题了，下面可以试用一下，也顺带引导出第二个需求。</p>
+<pre><code class="language-python">In [6]: a = Config()
 
-FW error description:
+In [7]: b = Config()
 
-  The required hardware component is not present. 
+In [8]: id(a)
+Out[8]: 4407850896
 
-Exit Code: 0x22
+In [9]: id(b)
+Out[9]: 4407852496
 </code></pre>
-<h2 id="raid_1">查看当前RAID卡缓存策略<a class="headerlink" href="#raid_1" title="Permanent link">&para;</a></h2>
-<pre><code># MegaCli64 -LDinfo -Lall -aAll
-Default Cache Policy: WriteThrough, ReadAheadNone, Direct, No Write Cache if Bad BBU
+<p>可以看到两个配置对象的 ID 值不一样。由于配置文件只有一个，我们希望配置对象也只有一个。</p>
+<h3 id="_2">需求二：配置对象全局唯一<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<p>交代一个背景，解释器在做 import 的时候是单一线程在跑的。有了这个前提我们可以少写一些加锁的代码，能少写一行算一行吧。</p>
+<pre><code class="language-python">&quot;&quot;&quot;实例配置管理
+&quot;&quot;&quot;
 
-Current Cache Policy: WriteThrough, ReadAheadNone, Direct, No Write Cache if Bad BBU
+from dataclasses import dataclass
+
+
+@dataclass
+class Config(object):
+    name:str= &quot;mysql&quot;
+    port:int = 3306
+
+    _instance = None
+
+    # 单例模式
+    def __new__(cls, *args, **kw):
+        if cls._instance is None:
+            cls._instance = object.__new__(cls, *args, **kw)
+        return cls._instance
 </code></pre>
-<p>第一部分：</p>
-<p>WriteBack:写缓存策略</p>
-<p>WriteThrough:直接写入磁盘，不适用RAID卡缓存。</p>
-<p>第二部分：</p>
-<p>ReadAheadNone:不开启预读</p>
-<p>ReadAhead:开启预读，在读操作的时候，预先把后面顺序的数据载入raid卡缓存，在顺序读的环境中能提供很好的性能，但是在随机读的环境中反而降低读的性能（适合文件系统，不适合数据库系统）</p>
-<p>ReadAdaptive:自适应预读，在缓存和I/O空闲时选择预读，默认策略。</p>
-<p>第三部分：</p>
-<p>Direct:读操作不缓存到RAID卡缓存。</p>
-<p>Cached:读操作缓存到RAID卡缓存。</p>
-<p>第四部分：如果BBU(电池)出现问题是否启用Write Cache</p>
-<p>No Write Cache if Bad BBU:如果BBU出现问题不使用Write Cache，从WriteBack自动切换到WriteThrough，默认配置。</p>
-<p>Write Cache OK if Bad BBU: 如果BBU出现问题仍启用Write Cache,这种配置是非常不安全的，除非是有UPS或者双电源的情况下。</p>
-<h2 id="raid_2">RAID卡策略更改<a class="headerlink" href="#raid_2" title="Permanent link">&para;</a></h2>
-<p>修改WriteBack：</p>
-<p><code>MegaCli64 -LDSetProp -WB -Lall -aAll</code></p>
-<p>修改WriteThrough:</p>
-<p><code>MegaCli64 -LDSetProp -WT -Lall -aAll</code></p>
-<p>修改No Write Cache if Bad BBU:</p>
-<p><code>MegaCli64 -LDSetProp -NoCachedBadBBU -Lall -aAll</code></p>
-<p>修改Write Cache OK if Bad BBU:</p>
-<p><code>MegaCli64 -LDSetProp -CachedBadBBU -Lall -aAll</code></p>
-<h2 id="_1">其它相关命令<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
-<details> 
-<summary>其它相关命令 </summary>
-<pre>
+<p>用 Python 就是这么的简单，几行代码就搞定了。但是还是要测试一下顺带引导出下一个需求。</p>
+<pre><code class="language-python">In [4]: a = Config()
 
-查看机器型号    # dmidecode | grep "Product" 
+In [5]: b = Config()
 
-查看厂商    # dmidecode| grep "Manufacturer" 
+In [6]: id(a)
+Out[6]: 4414751568
 
-查看序列号    # dmidecode | grep "Serial Number" 
+In [7]: id(b)
+Out[7]: 4414751568
+</code></pre>
+<p>现在配置对象已经是单例了，但还有一个问题，它的每个配置项的值都是默认值，我们当然是希望它在创建对象的时候是使用配置文件中的值啦。下面看需求三怎么实现</p>
+<h3 id="_3">需求三：根据配置文件构造配置对象<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<p>假设我们的配置文件被 “持久化” 到了 /tmp/config.json ，现在就可以写读取配置文件并更新配置对象值的代码了。</p>
+<pre><code class="language-python">&quot;&quot;&quot;实例配置管理
+&quot;&quot;&quot;
 
-查看CPU信息    # dmidecode | grep "CPU" 
+import json
+import logging
+from pathlib import Path
+from dataclasses import dataclass
 
-查看CPU个数    # dmidecode | grep "Socket Designation: CPU" |wc –l 
 
-查看出厂日期    # dmidecode | grep "Date" 
+@dataclass
+class Config(object):
+    name:str= &quot;mysql&quot;
+    port:int = 3306
 
-查看充电状态    # MegaCli64 -AdpBbuCmd-GetBbuStatus -aALL |grep "Charger Status" 
+    _instance = None
 
-显示BBU状态信息    # MegaCli64 -AdpBbuCmd-GetBbuStatus –aALL 
+    # 单例模式
+    def __new__(cls, *args, **kw):
+        if cls._instance is None:
+            cls._instance = object.__new__(cls, *args, **kw)
+        return cls._instance
 
-显示BBU容量信息    # MegaCli64 -AdpBbuCmd-GetBbuCapacityInfo –aALL 
+    # 读取配置文件
+    def __post_init__(self):
+        &quot;&quot;&quot;如果配置文件存在就用配置文件中的值，覆盖默认值。在这个过程中如果遇到异常就保持默认值
+        &quot;&quot;&quot;
+        if (config_file:=Path(&quot;/tmp/config.json&quot;)) and config_file.exists():
+            try:
+                with open(config_file) as f:
+                    json_data = json.loads(f.read())
+                    self.__dict__.update(json_data)
+            except Exception as err:
+                pass
+        else:
+            logging.warn(&quot;config file '{}' not exists. well using defautl values .&quot;.format(config_file))
+</code></pre>
+<p>假设我们的配置文件内容是这样的。</p>
+<pre><code>cat /tmp/config.json 
+{
+  &quot;name&quot;: &quot;trump&quot;,
+  &quot;port&quot;: 8848
+}
+</code></pre>
+<p>下面的测试一下</p>
+<pre><code>In [2]: a = Config()
 
-显示BBU设计参数    # MegaCli64 -AdpBbuCmd-GetBbuDesignInfo –aALL 
+In [3]: a
+Out[3]: Config(name='trump', port=8848)
 
-显示当前BBU属性    # MegaCli64 -AdpBbuCmd-GetBbuProperties –aALL 
+In [4]: b = Config()
 
-查看充电进度百分比    # MegaCli64 -AdpBbuCmd-GetBbuStatus -aALL |grep "Relative State of Charge" 
+In [5]: b
+Out[5]: Config(name='trump', port=8848)
 
-查询Raid阵列数    # MegaCli64 -cfgdsply -aALL|grep "Number of DISK GROUPS:" 
+In [6]: a == b
+Out[6]: True
+</code></pre>
+<p>可以看到 name 和 port 已经没有使用默认的 "mysql" 和 3306 了，而是使用了配置文件中的值。
+到这里我们只剩下最后一个需求，就是在程序退出的时候，把配置对象的值更新回配置文件。这个就看需求四怎么写。</p>
+<h3 id="_4">需求四：程序退出前自动持久化配置对象到配置文件<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<p>解释器在退出前有个钩子(atexit)，我们可以在这里指定回调函数，这个时候保存配置文件再适合不过。</p>
+<pre><code class="language-python">&quot;&quot;&quot;实例配置管理
+&quot;&quot;&quot;
 
-显示Raid卡型号，Raid设置，Disk相关信息      # MegaCli64-cfgdsply –aALL 
+import json
+import atexit
+import logging
+from pathlib import Path
+from dataclasses import dataclass, asdict
 
-显示所有物理信息    # MegaCli64 -PDList-aALL 
 
-显示所有逻辑磁盘组信息    # MegaCli64 -LDInfo -LALL–aAll 
+@dataclass
+class Config(object):
+    name:str= &quot;mysql&quot;
+    port:int = 3306
 
-查看物理磁盘重建进度(重要)    # MegaCli64 -PDRbld-ShowProg -PhysDrv [1:5] -a0 
+    _instance = None
 
-查看适配器个数    #MegaCli64 –adpCount 
+    # 单例模式
+    def __new__(cls, *args, **kw):
+        if cls._instance is None:
+            cls._instance = object.__new__(cls, *args, **kw)
+        return cls._instance
 
-查看适配器时间    #MegaCli64 -AdpGetTime–aALL 
+    # 读取配置文件
+    def __post_init__(self):
+        &quot;&quot;&quot;如果配置文件存在就用配置文件中的值，覆盖默认值；在这个过程中如果遇到异常就保持默认值。程序退出时持久到到配置到文件。
+        &quot;&quot;&quot;
+        if (config_file:=Path(&quot;/tmp/config.json&quot;)) and config_file.exists():
+            try:
+                with open(config_file) as f:
+                    json_data = json.loads(f.read())
+                    self.__dict__.update(json_data)
+            except Exception as err:
+                pass
+        else:
+            logging.warn(&quot;config file '{}' not exists. well using defautl values .&quot;.format(config_file))
 
-显示所有适配器信息    #MegaCli64 -AdpAllInfo–aAll 
+        # 程序退出时保存配置到配置文件 /tmp/config.json
+        def sync_to_disk():
+            &quot;&quot;&quot;
+            &quot;&quot;&quot;
+            json_str = json.dumps(asdict(self), indent=4)
+            with open(config_file, 'w') as f:
+                logging.warning(&quot;save configs to '{}' &quot;.format(config_file))
+                f.write(json_str) 
 
-查看Cache 策略设置    # MegaCli64 -cfgdsply -aALL|grep Polic
+        atexit.register(sync_to_disk)
+</code></pre>
+<p>验证一下</p>
+<pre><code>In [1]: from appconfig import Config
 
-radi卡电池充放电:http://www.tuicool.com/articles/a2AzAb
-</pre>
+In [2]: a = Config()
 
-</details>
+In [3]: a.name
+Out[3]: 'trump'
+
+In [4]: a.name = &quot;hello-world&quot;
+
+In [5]: exit()
+WARNING:root:save configs to '/tmp/config.json' 
+</code></pre>
+<p>看日志是已经把配置项更新回配置文件了，但是还是 cat 确认一下为好。</p>
+<pre><code>cat /tmp/config.json 
+{
+    &quot;name&quot;: &quot;hello-world&quot;,
+    &quot;port&quot;: 8848
+}
+</code></pre>
+<p>可以看到确实已经把配置项的值更新到文件了。</p>
 
 
 
