@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>centos-network-device-naming - 总有刁民想要害朕</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "centos-network-device-naming";
+        var mkdocs_page_input_path = "centos-network-device-naming.markdown";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> 总有刁民想要害朕
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Welcome</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../ansbile/">ansbile</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../awk/">awk</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../Bash%E7%BC%96%E7%A8%8B%E8%B6%85%E8%AF%A6%E7%BB%86%E8%AF%AD%E6%B3%95%E6%80%BB%E7%BB%93/">Bash编程超详细语法总结</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../centos7-set-kernel/">centos7-set-kernel</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">centos-network-device-naming</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#_1">一、为什么需要这个</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#centos7_1">二、Centos7中的命名策略</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#biosdevnamenetifnames">三、biosdevname和net.ifnames两种命名规范</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#systemd">四、systemd中的实际执行顺序</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#biosdevnamenetifnames_1">五、biosdevname/net.ifnames应用</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#centos7ethx">六、centos7网卡重命名为ethx格式</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#rename">一、如何rename？</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#rename_1">默认rename流程：</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#scheme">二、scheme次序</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#step4scheme">上面step4中提到，按照指定的scheme规则，这个规则是什么呢？</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_2">三、用户自定义网卡名称</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#biosdevnanenetifnames">四、内核启动参数biosdevnane、net.ifnames</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#bios">bios命名规则：</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#netifname">内核启动参数net.ifname,</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#ethx">五、 不要用ethX去命名</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../Explain%E8%AF%A6%E8%A7%A3%E4%B8%8E%E7%B4%A2%E5%BC%95%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/">Explain详解与索引最佳实践</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../iptables/">iptables</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../linux-lvm/">linux-lvm</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../Linux-Performance/">Linux Performance</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../Linux-shell-%E9%80%BB%E8%BE%91%E8%BF%90%E7%AE%97%E7%AC%A6-%E9%80%BB%E8%BE%91%E8%A1%A8%E8%BE%BE%E5%BC%8F%E8%AF%A6%E8%A7%A3/">Linux-shell-逻辑运算符-逻辑表达式详解</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../LVM%E9%80%BB%E8%BE%91%E5%8D%B7%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5%E5%8F%8ALVM%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/">LVM逻辑卷基本概念及LVM的工作原理</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../macOS%E8%BD%AF%E4%BB%B6%E7%BC%96%E8%AF%91%E6%97%B6%E6%89%BE%E4%B8%8D%E5%88%B0%E5%A4%B4%E6%96%87%E4%BB%B6%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95-%E6%9B%B4%E6%96%B010-15/">macOS软件编译时找不到头文件解决方法[更新10.15]</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../MB-MiB%E7%9A%84%E5%8C%BA%E5%88%AB/">MB_MiB的区别</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../megacli/">Megacliの基本操作</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../megaraid/">MegaRAID Policy</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../mysql/">MySQL</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../mysql-table/">MySQL-table</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../mysql%E3%82%92%E3%82%BD%E3%83%BC%E3%82%B9%E3%81%8B%E3%82%89%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB/">mysqlをソースからインストール</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../MySQL-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">1000行 MySQL 学习笔记，不怕你不会，就怕你不学！</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../python-decorator/">跨过这道装饰器的坎，或许你就升级了</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../python-dunder/">Python中下划线的5种含义</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../python-function/">Python传入参数的几种方法</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../python/">python</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../python-mysql/">python 操作 mysql基础补充</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../Python-Re-%E6%A8%A1%E5%9D%97%E8%B6%85%E5%85%A8%E8%A7%A3%E8%AF%BB/">Python Re 模块超全解读</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../Python%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%8B%BC%E6%8E%A5%E6%80%BB%E7%BB%93/">Python字符串拼接总结</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../Regular-Expression/">正規表現（Regular Expression）とは？</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../taged-VLAN%E3%81%A8untagedVLAN%E3%81%AE%E9%81%95%E3%81%84/">タグVLANとネイティブVLAN (PVID)の違い</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../ubnt/">ubnt</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../vim/">VIM</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../%E4%B8%80%E8%A1%8C-Python-%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0%E5%B9%B6%E8%A1%8C/">一行 Python 代码实现并行</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../about/">About</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">总有刁民想要害朕</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
+      <li>centos-network-device-naming</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <p>转自: https://www.cnblogs.com/zyd112/p/8143464.html</p>
+<h2 id="centos7">centos7中的网卡一致性命名规则、网卡重命名方法<a class="headerlink" href="#centos7" title="Permanent link">&para;</a></h2>
+<p>一致性网络设备命名(Consistent Network Device Naming)</p>
+<p>背景介绍：</p>
+<p>在centos5的时候，我们习惯了eth0这样的网络设备命名，在centos6发现网络设备变成了em1这样的命名。<br />
+那时我们在安装的时候，给启动参数加上 biosdevname=0，就可以继续使用eth0这样的命名。<br />
+升级到centos7后，发现原有的参数biosdevname=0不起作用了，网络设备变成了eno1这样的名称。<br />
+centos7这种变化的原因是由于systemd和udev引入了一种新的网络设备命名方式：一致网络设备命名（CONSISTENT NETWORK DEVICE NAMING）。</p>
+<h3 id="_1">一、为什么需要这个<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
+<p>服务器通常有多块网卡，有板载集成的，同时也有插在PCIe插槽的。<br />
+Linux系统的命名原来是eth0,eth1这样的形式，但是这个编号往往不一定准确对应网卡接口的物理顺序。<br />
+为解决这类问题,dell开发了biosdevname方案(systemd v197版本中将dell的方案作了进一步的一般化拓展)。  </p>
+<p>目前的Centos既支持dell的biosdevname，也支持systemd的方案。</p>
+<h3 id="centos7_1">二、Centos7中的命名策略<a class="headerlink" href="#centos7_1" title="Permanent link">&para;</a></h3>
+<pre><code>Scheme 1: 如果从BIOS中能够取到可用的，板载网卡的索引号，则使用这个索引号命名，例如: eno1，如不能则尝试Scheme 2
+Scheme 2: 如果从BIOS中能够取到可以用的，网卡所在的PCI-E热插拔插槽的索引号，则使用这个索引号命名，例如: ens1，如不能则尝试Scheme 3
+Scheme 3: 如果能拿到设备所连接的物理位置信息，则使用这个信息命名，例如:enp2s0，如不能则尝试Scheme 5
+Scheme 4: 使用网卡的MAC地址来命名，这个方法一般不使用。
+Scheme 5：传统的kernel命名方法，例如: eth0，这种命名方法的结果不可预知的，即可能第二块网卡对应eth0，第一块网卡对应eth1。
+</code></pre>
+<h3 id="biosdevnamenetifnames">三、biosdevname和net.ifnames两种命名规范<a class="headerlink" href="#biosdevnamenetifnames" title="Permanent link">&para;</a></h3>
+<p>net.ifnames命名规范为:设备类型+设备位置+数字</p>
+<p><img alt="net.ifnames命名规范" src="/assets/net.ifnames.png" /></p>
+<p>设备类型：
+  - en 表示Ethernet
+  - wl 表示WLAN
+  - ww 表示无线广域网WWAN</p>
+<p>实际的例子:
+  - eno1 板载网卡
+  - enp0s2  pci网卡
+  - ens33   pci网卡
+  - wlp3s0  PCI无线网卡
+  - wwp0s29f7u2i2   4G modem
+  - wlp0s2f1u4u1   连接在USB Hub上的无线网卡
+  - enx78e7d1ea46da pci网卡</p>
+<p>biosdevname的命名规范为:</p>
+<p><img alt="biosdevname命名规范" src="/assets/biosdevname.png" /></p>
+<p>实际的例子:
+  - em1 板载网卡
+  - p3p4 pci网卡
+  - p3p4_1 虚拟网卡</p>
+<h3 id="systemd">四、systemd中的实际执行顺序<a class="headerlink" href="#systemd" title="Permanent link">&para;</a></h3>
+<p>按照如下顺序执行udev的rule</p>
+<ol>
+<li><code>/usr/lib/udev/rules.d/60-net.rules</code></li>
+<li><code>/usr/lib/udev/rules.d/71-biosdevname.rules</code></li>
+<li><code>/lib/udev/rules.d/75-net-description.rules</code></li>
+<li>
+<p><code>/usr/lib/udev/rules.d/80-net-name-slot.rules</code></p>
+</li>
+<li>
+<p>60-net.rules 
+使用/lib/udev/rename_device这个程序，去查询/etc/sysconfig/network-scripts/下所有以ifcfg-开头的文件<br />
+如果在ifcfg-xx中匹配到HWADDR=xx:xx:xx:xx:xx:xx参数的网卡接口<br />
+则选取DEVICE=yyyy中设置的名字作为网卡名称。  </p>
+</li>
+<li>
+<p>71-biosdevname.rules<br />
+如果系统中安装了biosdevname，且内核参数未指定biosdevname=0，且上一步没有重命名网卡，则按照biosdevname的命名规范，从BIOS中取相关信息来命名网卡。<br />
+主要是取SMBIOS中的type 9 (System Slot) 和 type 41 (Onboard Devices Extended Information)<br />
+不过要求SMBIOS的版本要高于2.6，且系统中要安装biosdevname程序。  </p>
+</li>
+<li>
+<p>75-net-description.rules<br />
+udev通过检查网卡信息，填写如下这些udev的属性值  </p>
+</li>
+<li>
+<p>ID_NET_NAME_ONBOARD</p>
+</li>
+<li>ID_NET_NAME_SLOT</li>
+<li>ID_NET_NAME_PATH</li>
+<li>
+<p>ID_NET_NAME_MAC</p>
+</li>
+<li>
+<p>80-net-name-slot.rules<br />
+如果在60-net.rules ，71-biosdevname.rules这两条规则中没有重命名网卡，且内核未指定net.ifnames=0参数<br />
+则udev依次尝试使用以下属性值来命名网卡，如果这些属性值都没有，则网卡不会被重命名。  </p>
+</li>
+<li>
+<p>ID_NET_NAME_ONBOARD</p>
+</li>
+<li>ID_NET_NAME_SLOT</li>
+<li>ID_NET_NAME_PATH</li>
+</ol>
+<p>上边的71-biosdevname.rules 是实际执行biosdevname的policy<br />
+75-net-description.rules和80-net-name-slot.rules实际执行Scheme 1,2,3  </p>
+<p>根据上述的过程，可见网卡命名受 biosdevname和net.ifnames这两个内核参数影响。</p>
+<h3 id="biosdevnamenetifnames_1">五、biosdevname/net.ifnames应用<a class="headerlink" href="#biosdevnamenetifnames_1" title="Permanent link">&para;</a></h3>
+<p>这两个参数都可以在grub配置中提供，biosdevname=0是系统默认值（dell服务器默认是1），net.ifnames=1是系统默认值。</p>
+<pre><code>#vi /boot/grub/grub.conf
+kernel /boot/vmlinuz biosdevname=1
+initrd /boot/initrd.img
+</code></pre>
+<p>第二节所说的Scheme的策略顺序是系统默认的。<br />
+如系统BIOS符合要求，且系统中安装了biosdevname，且biosdevname=1启用，则biosdevname优先；<br />
+如果BIOS不符合biosdevname要求或biosdevname=0，则仍然是systemd的规则优先。<br />
+如果用户自己定义了udev rule来修改内核设备名字，则用户规则优先。  </p>
+<p>内核参数组合使用的时候，其结果如下：<br />
+默认内核参数(biosdevname=0，net.ifnames=1):  网卡名 "enp5s2"<br />
+biosdevname=1，net.ifnames=0：网卡名 "em1"<br />
+biosdevname=0，net.ifnames=0：网卡名 "eth0" (最传统的方式,eth0 eth1 傻傻分不清)  </p>
+<h3 id="centos7ethx">六、centos7网卡重命名为ethx格式<a class="headerlink" href="#centos7ethx" title="Permanent link">&para;</a></h3>
+<p>如果你希望继续使用 eth0 这样的传统名称，那么在安装启动（pxe）时加上参数：<br />
+net.ifnames=0 biosdevname=0</p>
+<p>cobbler profile 修改方法：</p>
+<p><code>cobbler profile edit --name=Centos-7.3-x86_64 --kopts='net.ifnames=0 biosdevname=0'</code></p>
+<p>如果你已经安装完了，希望改成eth0这样的名称，那么执行如下操作需要：</p>
+<p>1.修改grub2启动参数，在GRUB_CMDLINE_LINUX的中加上"net.ifnames=0 biosdevname=0"的参数</p>
+<pre><code>vi /etc/sysconfig/grub
+GRUB_CMDLINE_LINUX=”rd.lvm.lv=vg0/swap vconsole.keymap=us crashkernel=auto vconsole.font=latarcyrheb-sun16 net.ifnames=0 biosdevname=0 rd.lvm.lv=vg0/usr rhgb quiet”
+</code></pre>
+<p>2.重新加载到启动中</p>
+<p><code>grub2-mkconfig -o /boot/grub2/grub.cfg</code></p>
+<p>3.重新对网卡配置文件进行命名（网卡文件全部重命名，顺便修改配置文件NAME、DEVICE的名称）</p>
+<p><code>mv /etc/sysconfig/network-scripts/ifcfg-enp0s3 /etc/sysconfig/network-scripts/ifcfg-eth0</code></p>
+<p>4.reboot重启生效</p>
+<p>参考文档：
+- https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/Networking_Guide/ch-Consistent_Network_Device_Naming.html
+- https://bugzilla.redhat.com/show_bug.cgi?id=965718</p>
+<p>有什么问题尽管说，反正我也不会帮你的</p>
+<p>转自: https://blog.csdn.net/maomao5945/article/details/79354204</p>
+<p>从centos7开始，系统默认的网卡命名有已经不是我们熟悉的ethX方式了，细心的同学会留意到一些比如ens enp等开头的网卡名称，简单了解，可以解释为centos7开始，网卡命名会根据网卡的硬件信息，插槽位置等有关；</p>
+<p>而网上也有为那些依然想使用ethX方式命名的提供了策略。比如在内核启动参数里增加biosdevname=0 net.ifnames=0；</p>
+<p>但是这里忽略了 一个问题，那就是为什么centos7不再使用以前的ethX方式？根本是因为之前ethX方式是不确定的，每次启动可能都不同（如果没有用户自定义网卡名称的前提下）；</p>
+<p>所以大家提供的这种办法其实是不好的；</p>
+<p>解释完上面内容之后，咱们来看下到底网卡名称是如何命名的。</p>
+<p>核心流程：明确一点是，linux内核启动过程中，会默认给网卡以ethX方式随机命名，然后再通过systemd去rename成其他名称。关键字，rename!</p>
+<h3 id="rename">一、如何rename？<a class="headerlink" href="#rename" title="Permanent link">&para;</a></h3>
+<h4 id="rename_1">默认rename流程：<a class="headerlink" href="#rename_1" title="Permanent link">&para;</a></h4>
+<ul>
+<li>
+<p>step1 依据/usr/lib/udev/rules.d/60-net.rules， 查看是否有ifcfg-xx配置文件（路径在/etc/sysconfig/network-scripts/),是否有定义了指定MAC地址的配置文件（ifcfg-xx ，xx必须和配置文件的内容DEVICE一致），如果有，则命名改网卡；</p>
+</li>
+<li>
+<p>step2 依据/usr/lib/udev/rules.d/71-biosdevname.rules，如果biosdevname使能了（安装了biosdevname这个包，且内核启动参数显式设置为1），且网卡没有在step1中定义，则按照biosdevname命名规则rename网卡；（注意，如果没有安装biosdevname这个包，就没有这个文件）</p>
+</li>
+<li>step3, 依据/lib/udev/rules.d/75-net-description.rules，将udev工具会根据device属性将填写网卡的属性命名，可能一个网卡会有多个维度的名称哦；</li>
+<li>step4，udev 根据step3中的赋值，按照指定的scheme规则，去给在step1 step2中没有命名的网卡命名；
+    强调：这个step顺序是在我们没有自定义自己的rules的前提下，如果用户自定义了自己的rules，则用户自定义为优先级最高；</li>
+</ul>
+<h3 id="scheme">二、scheme次序<a class="headerlink" href="#scheme" title="Permanent link">&para;</a></h3>
+<h4 id="step4scheme">上面step4中提到，按照指定的scheme规则，这个规则是什么呢？<a class="headerlink" href="#step4scheme" title="Permanent link">&para;</a></h4>
+<ul>
+<li>首先说step3中，提到按照网卡的不同属性命名，系统识别网卡有好几种维度：  </li>
+<li>比如 BIOS provided index numbers for on-board devices (example: eno1),</li>
+<li>比如：BIOS provided PCI Express hotplug slot index numbers (example: ens1) </li>
+<li>比如：physical location of the connector of the hardware (example: enp2s0), </li>
+<li>比如：mac地址</li>
+<li>同一个网卡通常同时具有多个维度的名称，systemd在选取的时候，按照有先后次序，使用先命中的；</li>
+<li>顺序可以简单理解为（eno1-ens1-enp1）</li>
+</ul>
+<p><img alt="EXP" src="/assets/eno1-ens1-enp1.jpg" /></p>
+<ul>
+<li>eth2这个网卡，scheme名称有3个，如果systemd自选，会使用哪个？ens5f0.(那这个为什么是/sys/class/net/eth2 而不是/sys/class/net/ens5f0 ，那是因为自定义的缘故；)</li>
+</ul>
+<h3 id="_2">三、用户自定义网卡名称<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p>1、在用户没有自定义rules文件前提下，step1中的网卡命名方式也可认为是 一种用户自定义的网卡命名，即在/etc/sysconfig/network-scripts/ifcfg-xx 文件，xx就是这个网卡名称，文件内容中体现MAC_ADDRESS、NAME，这种情况下，则会按照配置文件中指定的名称来命名网卡；</p>
+</li>
+<li>
+<p>2、如果用户自定义了rules文件，放在/etc/udev/rules.d/目录下，则这个优先级是最高的；比1中ifcfg-xx方式优先级更高，但是如果两者不一致，则在重启network服务时，会依据ifcfg-xx，所以用户不应该同时采用里两种方式给同一个网卡命不同的名称；</p>
+</li>
+</ul>
+<h3 id="biosdevnanenetifnames">四、内核启动参数biosdevnane、net.ifnames<a class="headerlink" href="#biosdevnanenetifnames" title="Permanent link">&para;</a></h3>
+<p>默认就是内核启动参数没有biosdevname 也没有net.ifnames 参数（其实默认是net.ifnames=1,biosdevname=0）这种情况下就按照一 中进行网卡命名；eno-ens-enp的方式逐个匹配。但是如果使能了biosdevname.则会使用biosdevname的命名 step1没有命名的网卡；</p>
+<h4 id="bios">bios命名规则：<a class="headerlink" href="#bios" title="Permanent link">&para;</a></h4>
+<ul>
+<li>要么是em开头，要么是p开头；</li>
+<li>怎么样使能biosdevname呢？2个条件，安装biosdevname包，且在内核启动参数中明确 biosdevname=1. 否则使能不了；</li>
+<li>但是不管怎么样，如果用户自定义了udev rules，则用户自定义的rules优先！</li>
+<li>这是总述，但凡用户自定义rules，优先级最高；</li>
+</ul>
+<h4 id="netifname">内核启动参数net.ifname,<a class="headerlink" href="#netifname" title="Permanent link">&para;</a></h4>
+<p>如果在启动参数中增加net.ifname=0，这个文件会在/lib/udev/rule.d/80-net-name-slot.rules体现使用价值，则告诉系统不用scheme的方式来命名，这个时候，会恢复ethx这种不确定性的命名方式；</p>
+<h3 id="ethx">五、 不要用ethX去命名<a class="headerlink" href="#ethx" title="Permanent link">&para;</a></h3>
+<p>内核在boot 过程是默认使用ethX方式来命名的，每次启动的时候都不确定，启动会后再通过udev等方式去rename,</p>
+<p>参考文档：
+https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/networking_guide/sec-troubleshooting_network_device_naming
+   </p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../centos7-set-kernel/" class="btn btn-neutral float-left" title="centos7-set-kernel"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../Explain%E8%AF%A6%E8%A7%A3%E4%B8%8E%E7%B4%A2%E5%BC%95%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/" class="btn btn-neutral float-right" title="Explain详解与索引最佳实践">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+      <p>Copyright © 2022 - 2023 - lyvivian0077</p>
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../centos7-set-kernel/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../Explain%E8%AF%A6%E8%A7%A3%E4%B8%8E%E7%B4%A2%E5%BC%95%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

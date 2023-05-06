@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Linux-shell-逻辑运算符-逻辑表达式详解 - 总有刁民想要害朕</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Linux-shell-\u903b\u8f91\u8fd0\u7b97\u7b26-\u903b\u8f91\u8868\u8fbe\u5f0f\u8be6\u89e3";
+        var mkdocs_page_input_path = "Linux-shell-\u903b\u8f91\u8fd0\u7b97\u7b26-\u903b\u8f91\u8868\u8fbe\u5f0f\u8be6\u89e3.markdown";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> 总有刁民想要害朕
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Welcome</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../ansbile/">ansbile</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../awk/">awk</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../Bash%E7%BC%96%E7%A8%8B%E8%B6%85%E8%AF%A6%E7%BB%86%E8%AF%AD%E6%B3%95%E6%80%BB%E7%BB%93/">Bash编程超详细语法总结</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../centos7-set-kernel/">centos7-set-kernel</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../centos-network-device-naming/">centos-network-device-naming</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../Explain%E8%AF%A6%E8%A7%A3%E4%B8%8E%E7%B4%A2%E5%BC%95%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/">Explain详解与索引最佳实践</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../iptables/">iptables</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../linux-lvm/">linux-lvm</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../Linux-Performance/">Linux Performance</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">Linux-shell-逻辑运算符-逻辑表达式详解</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#shell">shell的逻辑运算符 涉及有以下几种类型，因此只要适当选择，可以解决我们很多复杂的判断，达到事半功倍效果。</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_1">一、逻辑运算符</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#1">1、逻辑卷标表示意思</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#2">2、运算符号 代表意义</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_2">二、逻辑表达式</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#1-test">1. test 命令</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#2_1">2. 精简表达式</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#3">3. 性能比较</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#bashtestif-thenabs">bash的条件表达式中有三个几乎等效的符号和命令：test，[]和[[]]。通常，大家习惯用if [];then这样的形式。而[[]]的出现，根据ABS所说，是为了兼容&gt;&lt;之类的运算符。以下是比较它们性能，发现[[]]是最快的。</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../LVM%E9%80%BB%E8%BE%91%E5%8D%B7%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5%E5%8F%8ALVM%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/">LVM逻辑卷基本概念及LVM的工作原理</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../macOS%E8%BD%AF%E4%BB%B6%E7%BC%96%E8%AF%91%E6%97%B6%E6%89%BE%E4%B8%8D%E5%88%B0%E5%A4%B4%E6%96%87%E4%BB%B6%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95-%E6%9B%B4%E6%96%B010-15/">macOS软件编译时找不到头文件解决方法[更新10.15]</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../MB-MiB%E7%9A%84%E5%8C%BA%E5%88%AB/">MB_MiB的区别</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../megacli/">Megacliの基本操作</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../megaraid/">MegaRAID Policy</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../mysql/">MySQL</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../mysql-table/">MySQL-table</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../mysql%E3%82%92%E3%82%BD%E3%83%BC%E3%82%B9%E3%81%8B%E3%82%89%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB/">mysqlをソースからインストール</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../MySQL-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">1000行 MySQL 学习笔记，不怕你不会，就怕你不学！</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../python-decorator/">跨过这道装饰器的坎，或许你就升级了</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../python-dunder/">Python中下划线的5种含义</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../python-function/">Python传入参数的几种方法</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../python/">python</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../python-mysql/">python 操作 mysql基础补充</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../Python-Re-%E6%A8%A1%E5%9D%97%E8%B6%85%E5%85%A8%E8%A7%A3%E8%AF%BB/">Python Re 模块超全解读</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../Python%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%8B%BC%E6%8E%A5%E6%80%BB%E7%BB%93/">Python字符串拼接总结</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../Regular-Expression/">正規表現（Regular Expression）とは？</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../taged-VLAN%E3%81%A8untagedVLAN%E3%81%AE%E9%81%95%E3%81%84/">タグVLANとネイティブVLAN (PVID)の違い</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../ubnt/">ubnt</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../vim/">VIM</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../%E4%B8%80%E8%A1%8C-Python-%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0%E5%B9%B6%E8%A1%8C/">一行 Python 代码实现并行</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../about/">About</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">总有刁民想要害朕</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
+      <li>Linux-shell-逻辑运算符-逻辑表达式详解</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="linux-shell">Linux shell 逻辑运算符、逻辑表达式详解<a class="headerlink" href="#linux-shell" title="Permanent link">&para;</a></h1>
+<ul>
+<li>Google 开源项目风格指南</li>
+<li>https://zh-google-styleguide.readthedocs.io/en/latest/google-shell-styleguide/contents/</li>
+</ul>
+<h4 id="shell">shell的逻辑运算符 涉及有以下几种类型，因此只要适当选择，可以解决我们很多复杂的判断，达到事半功倍效果。<a class="headerlink" href="#shell" title="Permanent link">&para;</a></h4>
+<h3 id="_1">一、逻辑运算符<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
+<h4 id="1">1、逻辑卷标表示意思<a class="headerlink" href="#1" title="Permanent link">&para;</a></h4>
+<ol>
+<li>
+<p>关于档案与目录的侦测逻辑卷标
+    ```
+    -f 常用！侦测『档案』是否存在 eg: if [ -f filename ]</p>
+<p>-d 常用！侦测『目录』是否存在</p>
+<p>-b 侦测是否为一个『 block 档案』</p>
+<p>-c 侦测是否为一个『 character 档案』</p>
+<p>-S 侦测是否为一个『 socket 标签档案』</p>
+<p>-L 侦测是否为一个『 symbolic link 的档案』</p>
+<p>-e 侦测『某个东西』是否存在！
+<code>2. 关于程序的逻辑卷标</code>
+-G 侦测是否由 GID 所执行的程序所拥有</p>
+<p>-O 侦测是否由 UID 所执行的程序所拥有</p>
+<p>-p 侦测是否为程序间传送信息的 name pipe 或是 FIFO （老实说，这个不太懂！）
+<code>3. 关于档案的属性侦测</code>
+-r 侦测是否为可读的属性</p>
+<p>-w 侦测是否为可以写入的属性</p>
+<p>-x 侦测是否为可执行的属性</p>
+<p>-s 侦测是否为『非空白档案』</p>
+<p>-u 侦测是否具有『 SUID 』的属性</p>
+<p>-g 侦测是否具有『 SGID 』的属性</p>
+<p>-k 侦测是否具有『 sticky bit 』的属性
+<code>4. 两个档案之间的判断与比较 ；例如[ test file1 -nt file2 ]</code>
+-nt 第一个档案比第二个档案新</p>
+<p>-ot 第一个档案比第二个档案旧</p>
+<p>-ef 第一个档案与第二个档案为同一个档案（ link 之类的档案）
+<code>5. 逻辑的『和(and)』『或(or)』</code>
+&amp;&amp; 逻辑的 AND 的意思</p>
+<p>|| 逻辑的 OR 的意思
+```</p>
+</li>
+</ol>
+<h4 id="2">2、运算符号 代表意义<a class="headerlink" href="#2" title="Permanent link">&para;</a></h4>
+<pre><code>=   等于 应用于：整型或字符串比较 如果在[] 中，只能是字符串
+
+!=  不等于 应用于：整型或字符串比较 如果在[] 中，只能是字符串
+
+&lt;   小于 应用于：整型比较 在[] 中，不能使用 表示字符串
+
+&gt;   大于 应用于：整型比较 在[] 中，不能使用 表示字符串
+
+-eq 等于 应用于：整型比较
+
+-ne 不等于 应用于：整型比较
+
+-lt 小于 应用于：整型比较
+
+-gt 大于 应用于：整型比较
+
+-le 小于或等于 应用于：整型比较
+
+-ge 大于或等于 应用于：整型比较
+
+-a  双方都成立（and） 逻辑表达式 –a 逻辑表达式
+
+-o  单方成立（or） 逻辑表达式 –o 逻辑表达式
+
+-z  空字符串
+
+-n  非空字符串
+</code></pre>
+<h3 id="_2">二、逻辑表达式<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<h4 id="1-test">1. test 命令<a class="headerlink" href="#1-test" title="Permanent link">&para;</a></h4>
+<ul>
+<li>使用方法：test EXPRESSION
+  ```
+  [root@localhost ~]# test 1 = 1 &amp;&amp; echo 'ok'
+  ok</li>
+</ul>
+<p>[root@localhost ~]# test -d /etc/ &amp;&amp; echo 'ok'
+  ok</p>
+<p>[root@localhost ~]# test 1 -eq 1 &amp;&amp; echo 'ok'
+  ok</p>
+<p>[root@localhost ~]# if test 1 = 1 ; then echo 'ok'; fi
+  ok
+  ```
+  ###### 注意：所有字符 与逻辑运算符直接用“空格”分开，不能连到一起。</p>
+<h4 id="2_1">2. 精简表达式<a class="headerlink" href="#2_1" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>[]</strong> 表达式
+  ```
+  [root@localhost ~]# [ 1 -eq 1 ] &amp;&amp; echo 'ok'
+  ok</li>
+</ul>
+<p>[root@localhost ~]# [ 2 &lt; 1 ] &amp;&amp; echo 'ok'
+  -bash: 2: No such file or directory</p>
+<p>[root@localhost ~]# [ 2 &lt; 1 ] &amp;&amp; echo 'ok'</p>
+<p>[root@localhost ~]# [ 2 -gt 1 -a 3 -lt 4 ] &amp;&amp; echo 'ok'
+  ok</p>
+<p>[root@localhost ~]# [ 2 -gt 1 &amp;&amp; 3 -lt 4 ] &amp;&amp; echo 'ok'
+  -bash: [: missing <code>]'
+  ```
+  ###### 注意：在</code>[]<code>表达式中，常见的</code>&gt;,&lt;<code>需要加转义字符，表示字符串大小比较，以acill码 位置作为比较。 不直接支持</code>&lt;&gt;<code>运算符，还有逻辑运算符</code>||<code></code>&amp;&amp;<code>它需要用</code>-a[and]<code></code>–o[or]`表示</p>
+<ul>
+<li><strong>[[]]</strong> 表达式
+  ```
+  [root@localhost ~]# [ 1 -eq 1 ] &amp;&amp; echo 'ok'
+  ok</li>
+</ul>
+<p>[root@localhost ~]$ [[ 2 &lt; 3 ]] &amp;&amp; echo 'ok'
+  ok</p>
+<p>[root@localhost ~]$ [[ 2 &lt; 3 &amp;&amp; 4 &gt; 5 ]] &amp;&amp; echo 'ok'
+  ok
+  <code>``
+  ###### 注意：</code>[[]]<code>运算符只是</code>[]<code>运算符的扩充。能够支持</code>&lt;,&gt;<code>符号运算不需要转义符，它还是以字符串比较大小。里面支持逻辑运算符：</code>||<code></code>&amp;&amp;`</p>
+<h4 id="3">3. 性能比较<a class="headerlink" href="#3" title="Permanent link">&para;</a></h4>
+<h5 id="bashtestif-thenabs">bash的条件表达式中有三个几乎等效的符号和命令：<code>test</code>，<code>[]</code>和<code>[[]]</code>。通常，大家习惯用<code>if [];then</code>这样的形式。而<code>[[]]</code>的出现，根据ABS所说，是为了兼容<code>&gt;&lt;</code>之类的运算符。以下是比较它们性能，发现<code>[[]]</code>是最快的。<a class="headerlink" href="#bashtestif-thenabs" title="Permanent link">&para;</a></h5>
+<p>```
+  $ time (for m in {1..100000}; do test -d .;done;)
+  real 0m0.658s
+  user 0m0.558s
+  sys 0m0.100s</p>
+<p>$ time (for m in {1..100000}; do [ -d . ];done;)
+  real 0m0.609s
+  user 0m0.524s
+  sys 0m0.085s</p>
+<p>$ time (for m in {1..100000}; do [[ -d . ]];done;)
+  real 0m0.311s
+  user 0m0.275s
+  sys 0m0.036s
+  ```</p>
+<h6 id="bashsh">不考虑对低版本bash和对sh的兼容的情况下，用<code>[[]]</code>是兼容性强，而且性能比较快，在做条件运算时候，可以使用该运算符<a class="headerlink" href="#bashsh" title="Permanent link">&para;</a></h6>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../Linux-Performance/" class="btn btn-neutral float-left" title="Linux Performance"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../LVM%E9%80%BB%E8%BE%91%E5%8D%B7%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5%E5%8F%8ALVM%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/" class="btn btn-neutral float-right" title="LVM逻辑卷基本概念及LVM的工作原理">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+      <p>Copyright © 2022 - 2023 - lyvivian0077</p>
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../Linux-Performance/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../LVM%E9%80%BB%E8%BE%91%E5%8D%B7%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5%E5%8F%8ALVM%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,1160 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>VIM - 总有刁民想要害朕</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "VIM";
+        var mkdocs_page_input_path = "vim.markdown";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> 总有刁民想要害朕
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Welcome</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../ansbile/">ansbile</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../awk/">awk</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../Bash%E7%BC%96%E7%A8%8B%E8%B6%85%E8%AF%A6%E7%BB%86%E8%AF%AD%E6%B3%95%E6%80%BB%E7%BB%93/">Bash编程超详细语法总结</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../centos7-set-kernel/">centos7-set-kernel</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../centos-network-device-naming/">centos-network-device-naming</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../Explain%E8%AF%A6%E8%A7%A3%E4%B8%8E%E7%B4%A2%E5%BC%95%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/">Explain详解与索引最佳实践</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../iptables/">iptables</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../linux-lvm/">linux-lvm</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../Linux-Performance/">Linux Performance</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../Linux-shell-%E9%80%BB%E8%BE%91%E8%BF%90%E7%AE%97%E7%AC%A6-%E9%80%BB%E8%BE%91%E8%A1%A8%E8%BE%BE%E5%BC%8F%E8%AF%A6%E8%A7%A3/">Linux-shell-逻辑运算符-逻辑表达式详解</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../LVM%E9%80%BB%E8%BE%91%E5%8D%B7%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5%E5%8F%8ALVM%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/">LVM逻辑卷基本概念及LVM的工作原理</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../macOS%E8%BD%AF%E4%BB%B6%E7%BC%96%E8%AF%91%E6%97%B6%E6%89%BE%E4%B8%8D%E5%88%B0%E5%A4%B4%E6%96%87%E4%BB%B6%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95-%E6%9B%B4%E6%96%B010-15/">macOS软件编译时找不到头文件解决方法[更新10.15]</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../MB-MiB%E7%9A%84%E5%8C%BA%E5%88%AB/">MB_MiB的区别</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../megacli/">Megacliの基本操作</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../megaraid/">MegaRAID Policy</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../mysql/">MySQL</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../mysql-table/">MySQL-table</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../mysql%E3%82%92%E3%82%BD%E3%83%BC%E3%82%B9%E3%81%8B%E3%82%89%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB/">mysqlをソースからインストール</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../MySQL-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">1000行 MySQL 学习笔记，不怕你不会，就怕你不学！</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../python-decorator/">跨过这道装饰器的坎，或许你就升级了</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../python-dunder/">Python中下划线的5种含义</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../python-function/">Python传入参数的几种方法</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../python/">python</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../python-mysql/">python 操作 mysql基础补充</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../Python-Re-%E6%A8%A1%E5%9D%97%E8%B6%85%E5%85%A8%E8%A7%A3%E8%AF%BB/">Python Re 模块超全解读</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../Python%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%8B%BC%E6%8E%A5%E6%80%BB%E7%BB%93/">Python字符串拼接总结</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../Regular-Expression/">正規表現（Regular Expression）とは？</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../taged-VLAN%E3%81%A8untagedVLAN%E3%81%AE%E9%81%95%E3%81%84/">タグVLANとネイティブVLAN (PVID)の違い</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../ubnt/">ubnt</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">VIM</a>
+    <ul class="current">
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../%E4%B8%80%E8%A1%8C-Python-%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0%E5%B9%B6%E8%A1%8C/">一行 Python 代码实现并行</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../about/">About</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">总有刁民想要害朕</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
+      <li>VIM</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h2 id="build-vim">build vim<a class="headerlink" href="#build-vim" title="Permanent link">&para;</a></h2>
+<pre><code class="language-shell">$ ./configure --prefix=$HOME/myetc \
+--with-features=huge \
+--enable-gui=gnome2 \
+--enable-perlinterp \
+--enable-pythoninterp \
+--enable-python3interp \
+--enable-fail-if-missing \
+--disable-selinux \
+--enable-pythoninterp=dynamic \
+--with-python-config-dir=/home/user/.pyenv/versions/2.7.14/lib/python2.7/config \
+--enable-python3interp=dynamic \
+--with-python3-config-dir=/home/user/.pyenv/versions/3.6.5/lib/python3.6/config-3.6m \
+--enable-rubyinterp=dynamic \
+--enable-cscope \
+--enable-fontset \
+--enable-multibyte \
+vi_cv_path_python3=/home/uers/.pyenv/versions/3.6.5/bin/python3.6
+
+make
+make install
+vim ~/.zshrc
+alias vi='~/myetc/bin/vim'
+alias vim='~/myetc/bin/vim'
+
+
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>キー入力</th>
+<th>動作</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>vi ファイル名</td>
+<td>対象ファイルを開く（複数ファイル可）</td>
+</tr>
+<tr>
+<td>vi +n ファイル名</td>
+<td>n 行目から対象ファイルを開く</td>
+</tr>
+<tr>
+<td>vi -r ファイル名</td>
+<td>壊れたファイルのリカバリ</td>
+</tr>
+<tr>
+<td>i</td>
+<td>カーソルの左から入力開始</td>
+</tr>
+<tr>
+<td>I</td>
+<td>行頭から入力開始</td>
+</tr>
+<tr>
+<td>a</td>
+<td>カーソルの右から入力開始</td>
+</tr>
+<tr>
+<td>A</td>
+<td>行末から入力開始</td>
+</tr>
+<tr>
+<td>ZZ</td>
+<td>vi を終了（内容が変更されている場合は保存）</td>
+</tr>
+<tr>
+<td>:wq</td>
+<td>ファイルに保存、vi を終了</td>
+</tr>
+<tr>
+<td>:#,# w</td>
+<td>#行目から#行目までを保存</td>
+</tr>
+<tr>
+<td>:q</td>
+<td>vi を終了（内容が変更されいる場合は警告）</td>
+</tr>
+<tr>
+<td>:q!</td>
+<td>vi を強制終了（内容が変更されていても保存しない）</td>
+</tr>
+<tr>
+<td>:ls</td>
+<td>バッファリストの表示</td>
+</tr>
+<tr>
+<td>:b バッファ</td>
+<td>バッファを表示</td>
+</tr>
+<tr>
+<td>:bn</td>
+<td>次のバッファを表示</td>
+</tr>
+<tr>
+<td>:bp</td>
+<td>前のバッファを表示</td>
+</tr>
+<tr>
+<td>[n] x</td>
+<td>カーソル上の1文字削除</td>
+</tr>
+<tr>
+<td>[n] X</td>
+<td>カーソルの左の文字を1文字削除</td>
+</tr>
+<tr>
+<td>p</td>
+<td>バッファ内のテキストを挿入（文字はカーソルの右、行はカーソルの下に挿入）</td>
+</tr>
+<tr>
+<td>P</td>
+<td>バッファ内のテキストを挿入（文字はカーソルの左、行はカーソルの上に挿入）</td>
+</tr>
+<tr>
+<td>:r [ファイル名]</td>
+<td>ファイルの中身を挿入する</td>
+</tr>
+<tr>
+<td>[n] d  目的語 \ d [n] 目的語</td>
+<td>目的語一覧:</td>
+</tr>
+<tr>
+<td>:::</td>
+<td>w - カーソル位置から空白を含む単語の末尾まで削除</td>
+</tr>
+<tr>
+<td>:::</td>
+<td>e - カーソル位置から空白を含まない単語の末尾まで削除</td>
+</tr>
+<tr>
+<td>:::</td>
+<td>$ - カーソル位置から行末まで削除</td>
+</tr>
+<tr>
+<td>:::</td>
+<td>d - 1行削除切り取り（カット）</td>
+</tr>
+<tr>
+<td>/&lt;文字列&gt;</td>
+<td>文字列 を検索する（順方向）</td>
+</tr>
+<tr>
+<td>?&lt;文字列&gt;</td>
+<td>文字列を検索する（逆方向）</td>
+</tr>
+<tr>
+<td>n</td>
+<td>順方向へ検索する</td>
+</tr>
+<tr>
+<td>N</td>
+<td>逆方向へ検索する</td>
+</tr>
+<tr>
+<td>%</td>
+<td>(,[に対して対応する ),] や } を検索</td>
+</tr>
+<tr>
+<td>r</td>
+<td>カーソルの下の文字を置き換える</td>
+</tr>
+<tr>
+<td>[n] c 目的語 \ c [n] 目的語</td>
+<td>目的語一覧:</td>
+</tr>
+<tr>
+<td>:::</td>
+<td>w - 単語の一部を変更する</td>
+</tr>
+<tr>
+<td>:::</td>
+<td>$ - 行の一部を変更する</td>
+</tr>
+<tr>
+<td>:s/[old]/[new]</td>
+<td>[old]を[new]に置換する</td>
+</tr>
+<tr>
+<td>:::</td>
+<td>現在行の最初の old を new に置換する :s/old/new</td>
+</tr>
+<tr>
+<td>:::</td>
+<td>現在行の全ての old を new に置換する :s/old/new/g</td>
+</tr>
+<tr>
+<td>:::</td>
+<td>2つの # 間で語句を置換する :#,#s/old/new/g</td>
+</tr>
+<tr>
+<td>:::</td>
+<td>ファイルの中の全ての検索語句を置換する: :%s/old/new/g</td>
+</tr>
+<tr>
+<td>:::</td>
+<td>'c' を加えると置換の度に確認を求める :%s/old/new/gc</td>
+</tr>
+<tr>
+<td>CTRL-g</td>
+<td>ファイル内での位置とファイルの状態を表示</td>
+</tr>
+<tr>
+<td>[n] Shift-g</td>
+<td>ファイル内のn行に移動（nが無ければファイル末に移動）</td>
+</tr>
+<tr>
+<td>:sp [ファイル]</td>
+<td>ウインドウを横に分割</td>
+</tr>
+<tr>
+<td>:vs [ファイル]</td>
+<td>ウインドウを縦に分割</td>
+</tr>
+<tr>
+<td>: q , :only</td>
+<td>カーソルのあるウィンドウ以外を全部閉じる</td>
+</tr>
+<tr>
+<td>:new</td>
+<td>空の横ウインドウを開く</td>
+</tr>
+<tr>
+<td>:vnew</td>
+<td>空の縦ウインドウを開く</td>
+</tr>
+<tr>
+<td>Ctrl-w w</td>
+<td>次のウインドウに移動</td>
+</tr>
+<tr>
+<td>Ctrl-w p</td>
+<td>前のウインドウに移動</td>
+</tr>
+<tr>
+<td>Ctrl-w o</td>
+<td>現在のウインドウ以外を閉じる</td>
+</tr>
+<tr>
+<td>u</td>
+<td>直前の操作を取りやめる</td>
+</tr>
+<tr>
+<td>U</td>
+<td>行全体の操作を取りやめる</td>
+</tr>
+<tr>
+<td>Ctrl-R</td>
+<td>取り消しの取り消し</td>
+</tr>
+<tr>
+<td>.</td>
+<td>直前の操作の繰り返し</td>
+</tr>
+<tr>
+<td>:! [外部コマンド]</td>
+<td>外部シェルコマンドが実行</td>
+</tr>
+<tr>
+<td>U</td>
+<td>行全体の操作を取りやめる</td>
+</tr>
+<tr>
+<td>:set number、 :set nu</td>
+<td>行番号を表示</td>
+</tr>
+<tr>
+<td>:set no number、 :set nonu</td>
+<td>行番号の表示をやめる</td>
+</tr>
+<tr>
+<td>:set showmode</td>
+<td>現在のモードを表示</td>
+</tr>
+<tr>
+<td>:set showmatch</td>
+<td>() や {} の対応を報告</td>
+</tr>
+<tr>
+<td>:set ignorecase</td>
+<td>大文字/小文字の区別なく検索</td>
+</tr>
+<tr>
+<td>:set autoindent</td>
+<td>自動インデントモード</td>
+</tr>
+<tr>
+<td>:set noautoindent</td>
+<td>自動インデントモードをやめる</td>
+</tr>
+<tr>
+<td>:set all</td>
+<td>すべてのオプションを表示</td>
+</tr>
+<tr>
+<td>:e [ファイル]</td>
+<td>ファイルを開く</td>
+</tr>
+<tr>
+<td>:syntax on</td>
+<td>キーワードをハイライト表示する</td>
+</tr>
+<tr>
+<td>:vert diffsplit [ファイル]</td>
+<td>今のファイルと、他のファイルとの差分を取るコマンド</td>
+</tr>
+<tr>
+<td>:Tutorial</td>
+<td>30分程度のVi利用方法のチュートリアル</td>
+</tr>
+</tbody>
+</table>
+<p><html></p>
+<div id="main">
+          <h1>Vimの使い方 基本操作まとめ</h1>
+          <p><strong>Vim</strong>の<strong>使い方</strong>, 特に自分がよく使う<strong>基本操作</strong>をまとめてみました.</p>
+          <h2>目次</h2>
+          <ul class="index">
+            <li><a href="#edit">編集, 保存, 終了</a></li>
+            <li><a href="#move">移動系</a></li>
+            <li><a href="#mode">モード変更</a></li>
+            <li><a href="#del">削除, コピー</a></li>
+            <li><a href="#search">検索</a></li>
+            <li><a href="#undo">Undo, Redo, 繰り返し</a></li>
+            <li><a href="#indent">インデント</a></li>
+            <li><a href="#substitution">置換</a></li>
+            <li><a href="#window">ウィンドウ操作</a></li>
+            <li><a href="#tab">タブ</a></li>
+            <li><a href="#increment">インクリメント, デクリメント</a></li>
+            <li><a href="#attention">注意</a></li>
+          </ul>
+          <h2 id="edit">編集, 保存, 終了</h2>
+          <table>
+            <thead>
+              <tr class="even">
+                <th>コマンド</th>
+                <th>動作</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="odd">
+                <td>:e [file]</td>
+                <td>fileを開く</td>
+              </tr>
+              <tr class="even">
+                <td>:e.</td>
+                <td>エクスプローラーを開く</td>
+              </tr>
+              <tr class="odd">
+                <td>:w</td>
+                <td>保存</td>
+              </tr>
+              <tr class="even">
+                <td>:q</td>
+                <td>終了</td>
+              </tr>
+              <tr class="odd">
+                <td>:q!</td>
+                <td>保存せず終了</td>
+              </tr>
+              <tr class="even">
+                <td>ZZ</td>
+                <td>保存して終了</td>
+              </tr>
+              <tr class="odd">
+                <td>ZQ</td>
+                <td>保存せずに終了</td>
+              </tr>
+            </tbody>
+          </table>
+          <h2 id="move">移動系</h2>
+          <table>
+            <thead>
+              <tr class="even">
+                <th>コマンド</th>
+                <th>動作</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="odd">
+                <td>h, j, k, l</td>
+                <td>左, 下, 上, 右</td>
+              </tr>
+              <tr class="even">
+                <td>gj, gk</td>
+                <td>下, 上に1行移動. (エディタで表示されている行上で移動, つまり, エディタの横幅の制約によって行が折り返されている場合でも, 移動可能)</td>
+              </tr>
+              <tr class="odd">
+                <td>w</td>
+                <td>1単語分進む</td>
+              </tr>
+              <tr class="even">
+                <td>W</td>
+                <td>1単語分進む(記号では区切られないので, 次のスペースや, 改行文字まで飛ぶ)</td>
+              </tr>
+              <tr class="odd">
+                <td>b</td>
+                <td>1単語分戻る</td>
+              </tr>
+              <tr class="even">
+                <td>B</td>
+                <td>1単語分戻る(記号では区切られないので, 前のスペースや, 改行文字まで飛ぶ)</td>
+              </tr>
+              <tr class="odd">
+                <td>f[文字]</td>
+                <td>次の[文字]まで飛ぶ</td>
+              </tr>
+              <tr class="even">
+                <td>F[文字]</td>
+                <td>前の[文字]まで飛ぶ</td>
+              </tr>
+              <tr class="odd">
+                <td>t[文字]</td>
+                <td>次の[文字]の手前まで飛ぶ</td>
+              </tr>
+              <tr class="even">
+                <td>T[文字]</td>
+                <td>前の[文字]の次まで飛ぶ</td>
+              </tr>
+              <tr class="odd">
+                <td>;</td>
+                <td>f, F, t, Tで検索した文字を同方向に繰り返し検索する</td>
+              </tr>
+              <tr class="even">
+                <td>,</td>
+                <td>f, F, t, Tで検索した文字を逆方向に繰り返し検索する</td>
+              </tr>
+              <tr class="odd">
+                <td>g;</td>
+                <td>直前に変更した位置にカーソルを移動(繰り返し入力することで, 変更リストを遡る)</td>
+              </tr>
+              <tr class="even">
+                <td>g,</td>
+                <td><span class="code">g#</span>を使用して遡った変更リストを逆順に進め, カーソルを移動する.</td>
+              </tr>
+              <tr class="odd">
+                <td>gg</td>
+                <td>ファイルの先頭に移動</td>
+              </tr>
+              <tr class="even">
+                <td>G</td>
+                <td>ファイルの最後に移動</td>
+              </tr>
+              <tr class="odd">
+                <td>[数値]gg, [数値]G, :[数値]</td>
+                <td>[数値]行に移動</td>
+              </tr>
+              <tr class="even">
+                <td>H, M, L</td>
+                <td>画面に表示されている行について, 最初の行(H), 真ん中の行(M), 最後の行(L)に移動</td>
+              </tr>
+              <tr class="odd">
+                <td>0</td>
+                <td>行の先頭に移動</td>
+              </tr>
+              <tr class="even">
+                <td>^</td>
+                <td>行のテキスト部分の先頭に移動</td>
+              </tr>
+              <tr class="odd">
+                <td>$</td>
+                <td>行の最後に移動</td>
+              </tr>
+              <tr class="even">
+                <td>%</td>
+                <td>対応する括弧に移動</td>
+              </tr>
+              <tr class="odd">
+                <td>(</td>
+                <td>文単位での移動. 前の文の先頭に移動</td>
+              </tr>
+              <tr class="even">
+                <td>)</td>
+                <td>文単位での移動. 後ろの文の先頭に移動</td>
+              </tr>
+              <tr class="odd">
+                <td>{</td>
+                <td>段落単位での移動. 前の段落の先頭に移動</td>
+              </tr>
+              <tr class="even">
+                <td>}</td>
+                <td>段落単位での移動. 後ろの段落の先頭に移動</td>
+              </tr>
+              <tr class="odd">
+                <td>Ctrl-u</td>
+                <td>半画面分戻る</td>
+              </tr>
+              <tr class="even">
+                <td>Ctrl-d</td>
+                <td>半画面分進む</td>
+              </tr>
+              <tr class="odd">
+                <td>Ctrl-b</td>
+                <td>1画面分戻る</td>
+              </tr>
+              <tr class="even">
+                <td>Ctrl-f</td>
+                <td>1画面分進む</td>
+              </tr>
+              <tr class="odd">
+                <td>Ctrl-o</td>
+                <td>ジャンプリストを遡ってカーソルを移動する(検索や行数指定移動などがジャンプリストに保存されている)</td>
+              </tr>
+              <tr class="even">
+                <td>Ctrl-i</td>
+                <td>ジャンプリストを進めてカーソルを移動する(検索や行数指定移動などがジャンプリストに保存されている)</td>
+              </tr>
+              <tr class="odd">
+                <td></td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+          <h2 id="mode">モード変更</h2>
+          <table>
+            <thead>
+              <tr class="even">
+                <th>コマンド</th>
+                <th>動作</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="odd">
+                <td>esc</td>
+                <td>ノーマルモードに戻る</td>
+              </tr>
+              <tr class="even">
+                <td>Ctrl-[</td>
+                <td>ノーマルモードに戻る</td>
+              </tr>
+              <tr class="odd">
+                <td>i</td>
+                <td>カーソル位置からインサートモードに入る</td>
+              </tr>
+              <tr class="even">
+                <td>a</td>
+                <td>カーソルの直後からインサートモードに入る</td>
+              </tr>
+              <tr class="odd">
+                <td>I</td>
+                <td>行頭からインサートモードに入る</td>
+              </tr>
+              <tr class="even">
+                <td>A</td>
+                <td>行末からインサートモードに入る</td>
+              </tr>
+              <tr class="odd">
+                <td>Ctrl-o(インサートモード中に)</td>
+                <td>インサートノーマルモードに入る(インサートモード中に1コマンドのみノーマルモードのコマンドを使用できる)</td>
+              </tr>
+              <tr class="even">
+                <td>v</td>
+                <td>ビジュアルモードに入る</td>
+              </tr>
+              <tr class="odd">
+                <td>V</td>
+                <td>行単位の選択をするビジュアルモードに入る</td>
+              </tr>
+              <tr class="even">
+                <td>Ctrl-v</td>
+                <td>矩形選択をするビジュアルモードに入る</td>
+              </tr>
+              <tr class="odd">
+                <td>gv</td>
+                <td>前回選択した範囲が再選択された状態でビジュアルモードに入る</td>
+              </tr>
+              <tr class="even">
+                <td>:</td>
+                <td>コマンドラインモードに入る(続けてコマンドを打ち, Enterで実行)</td>
+              </tr>
+              <tr class="odd">
+                <td></td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+          <p>矩形選択の使い方については, <a href="visual_block.html">｢矩形選択モードの使い方｣</a>でも解説していますので, よろしければ参考になさってください.</p>
+          <h2 id="del">削除, コピー</h2>
+          <table>
+            <thead>
+              <tr class="even">
+                <th>コマンド</th>
+                <th>動作</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="odd">
+                <td>x</td>
+                <td>カーソル上の文字を消す</td>
+              </tr>
+              <tr class="even">
+                <td>s</td>
+                <td>カーソル上の文字を消して, インサートモードに入る</td>
+              </tr>
+              <tr class="odd">
+                <td>dd</td>
+                <td>カーソルがある行を消す</td>
+              </tr>
+              <tr class="even">
+                <td>dw</td>
+                <td>カーソル位置から1単語分削除する</td>
+              </tr>
+              <tr class="odd">
+                <td>diw</td>
+                <td>カーソル位置にある単語を1つ削除する</td>
+              </tr>
+              <tr class="even">
+                <td>dt(</td>
+                <td>カーソル位置から, 次に最初に出現する<span class="code">(</span>までを削除する</td>
+              </tr>
+              <tr class="odd">
+                <td>cc</td>
+                <td>カーソルがある行を消して, インサートモードに入る</td>
+              </tr>
+              <tr class="even">
+                <td>cw</td>
+                <td>カーソル位置から1単語分削除して, インサートモードに入る</td>
+              </tr>
+              <tr class="odd">
+                <td>ciw</td>
+                <td>カーソル位置にある単語を1つ削除して, インサートモードに入る</td>
+              </tr>
+              <tr class="even">
+                <td>ct(</td>
+                <td>カーソル位置から, 次に最初に出現する<span class="code">(</span>までを削除して, インサートモードに入る</td>
+              </tr>
+              <tr class="odd">
+                <td>D</td>
+                <td>カーソル位置から行末まで削除</td>
+              </tr>
+              <tr class="even">
+                <td>C</td>
+                <td>カーソル位置から行末まで削除して, インサートモードに入る</td>
+              </tr>
+              <tr class="odd">
+                <td>yy</td>
+                <td>カーソルがある行をコピー</td>
+              </tr>
+              <tr class="even">
+                <td>y</td>
+                <td>ビジュアルモードで選択されている部分をコピー</td>
+              </tr>
+              <tr class="odd">
+                <td>p</td>
+                <td>カーソル行の下の行にペースト</td>
+              </tr>
+              <tr class="even">
+                <td>P</td>
+                <td>カーソル行の上の行にペースト</td>
+              </tr>
+              <tr class="odd">
+                <td>Ctrl-r 0(ゼロ)(インサートモード中に)</td>
+                <td>レジスタ0に保存されている文字列を貼り付ける. 通常, yを使用してコピーした文字列は, レジスタ0に保存される.</td>
+              </tr>
+              <!-- <tr>
+                <td></td>
+                <td></td>
+              </tr> -->
+            </tbody>
+          </table>
+          <h2 id="search">検索</h2>
+          <table>
+            <thead>
+              <tr class="even">
+                <th>コマンド</th>
+                <th>動作</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="odd">
+                <td>/</td>
+                <td>続けて文字を打ち, Enterで文字列を確定し, 後方検索をかける</td>
+              </tr>
+              <tr class="even">
+                <td>?</td>
+                <td>続けて文字を打ち, Enterで文字列を確定し, 前方検索をかける</td>
+              </tr>
+              <tr class="odd">
+                <td>*</td>
+                <td>カーソル下の単語を, 後方検索する</td>
+              </tr>
+              <tr class="even">
+                <td>#</td>
+                <td>カーソル下の単語を, 前方検索する</td>
+              </tr>
+              <tr class="odd">
+                <td>g*</td>
+                <td>カーソル下の単語を含む文字列を, 後方検索する</td>
+              </tr>
+              <tr class="even">
+                <td>g#</td>
+                <td>カーソル下の単語を含む文字列を, 前方検索する</td>
+              </tr>
+              <tr class="odd">
+                <td>n</td>
+                <td>次の単語に移る</td>
+              </tr>
+              <tr class="even">
+                <td>N</td>
+                <td>前の単語に移る</td>
+              </tr>
+              <tr class="odd">
+                <td></td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+          <h2 id="undo">Undo, Redo, 繰り返し</h2>
+          <table>
+            <thead>
+              <tr class="even">
+                <th>コマンド</th>
+                <th>動作</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="odd">
+                <td>u</td>
+                <td>Undo</td>
+              </tr>
+              <tr class="even">
+                <td>Ctrl-r</td>
+                <td>Redo</td>
+              </tr>
+              <tr class="odd">
+                <td>.</td>
+                <td>直前の操作の繰り返し</td>
+              </tr>
+            </tbody>
+          </table>
+          <p>Vimでコマンドを繰り返したいときに非常に便利な機能として, <span class="code">マクロ</span>があります. 任意のコマンドを記憶させて, それをいつでも繰り返せるようにできるというものです. 使い方を｢<a href="macro.html">Vimのマクロの使い方</a>｣, マクロを使った便利操作の一例を｢<a href="serno.html">Vimでマクロを使って連番の文を簡単に入力する方法</a>｣で解説しておりますので, よろしければ参考になさって下さい.</p>
+          <h2 id="indent">インデント</h2>
+          <table>
+            <thead>
+              <tr class="even">
+                <th>コマンド</th>
+                <th>動作</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="odd">
+                <td>=</td>
+                <td>カーソルがある行をインデント. ビジュアルモードで範囲を選択していれば, その範囲をインデント</td>
+              </tr>
+              <tr class="even">
+                <td>&gt;&gt;</td>
+                <td>インデントを追加</td>
+              </tr>
+              <tr class="odd">
+                <td>&lt;&lt;</td>
+                <td>インデントを削除</td>
+              </tr>
+            </tbody>
+          </table>
+          <h2 id="substitution">置換</h2>
+          <table>
+            <thead>
+              <tr class="even">
+                <th>コマンド</th>
+                <th>動作</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="odd">
+                <td>r[文字]</td>
+                <td>カーソル上の文字を[文字]に置換</td>
+              </tr>
+              <tr class="even">
+                <td>:%s/before/after/g</td>
+                <td>ファイル上の全ての"before"を"after"に置換</td>
+              </tr>
+              <tr class="odd">
+                <td>:s/before/after/g</td>
+                <td>カーソルの行の全ての"before"を"after"に置換</td>
+              </tr>
+              <tr class="even">
+                <td>:10,20s/before/after/g</td>
+                <td>10~20行目の全ての"before"を"after"に置換</td>
+              </tr>
+              <tr class="odd">
+                <td>:'&lt;,'&gt;s/before/after/g</td>
+                <td>ビジュアルモードで選択中の範囲の全ての"before"を"after"に置換. " '&lt;,'&gt; "の部分は, 範囲を選択中に":"を押すと自動的に出ます.</td>
+              </tr>
+            </tbody>
+          </table>
+          <p>置換については, <a href="substitution.html">｢Vimの置換コマンドの使い方｣</a>でも解説していますので, よろしければ参考になさってください.</p>
+          <h2 id="window">ウィンドウ操作</h2>
+          <table>
+            <thead>
+              <tr class="even">
+                <th>コマンド</th>
+                <th>動作</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="odd">
+                <td>:sp [file]</td>
+                <td>ウィンドウを横に分割し, fileを開く(file名はなくても良い)</td>
+              </tr>
+              <tr class="even">
+                <td>:vs [file]</td>
+                <td>ウィンドウを縦に分割し, fileを開く(file名はなくても良い)</td>
+              </tr>
+              <tr class="odd">
+                <td>Ctrl-w s</td>
+                <td>ウィンドウを横に分割する</td>
+              </tr>
+              <tr class="even">
+                <td>Ctrl-w v</td>
+                <td>ウィンドウを縦に分割する</td>
+              </tr>
+              <tr class="odd">
+                <td>:only</td>
+                <td>カーソルのあるウィンドウ以外閉じる</td>
+              </tr>
+              <tr class="even">
+                <td>Ctrl-w o</td>
+                <td>カーソルのあるウィンドウ以外閉じる</td>
+              </tr>
+              <tr class="odd">
+                <td>Ctrl-w w</td>
+                <td>次のウィンドウに移動</td>
+              </tr>
+              <tr class="even">
+                <td>Ctrl-w p</td>
+                <td>前のウィンドウに移動</td>
+              </tr>
+              <tr class="odd">
+                <td>Ctrl-w h, j, k, l</td>
+                <td>左, 下, 上, 右のウィンドウに移動する</td>
+              </tr>
+              <tr class="even">
+                <td>Ctrl-w H, J, K, L</td>
+                <td>カーソルがあるウィンドウを左, 下, 上, 右方向に移動する</td>
+              </tr>
+              <tr class="odd">
+                <td></td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+          <h2 id="tab">タブ</h2>
+          <table>
+            <thead>
+              <tr class="even">
+                <th>コマンド</th>
+                <th>動作</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="odd">
+                <td>:tabnew [file]</td>
+                <td>新しいタブを開く. ファイル名を入力した場合は, そのファイルを開く</td>
+              </tr>
+              <tr class="even">
+                <td>:tabclose</td>
+                <td>タブを閉じる(<span class="code">:q</span>などでも閉じられます)</td>
+              </tr>
+              <tr class="odd">
+                <td>:tabnext</td>
+                <td>次のタブに移動する</td>
+              </tr>
+              <tr class="even">
+                <td>:tabprevious</td>
+                <td>前のタブに移動する</td>
+              </tr>
+              <tr class="odd">
+                <td>:tabfirst</td>
+                <td>1番目のタブに移動する</td>
+              </tr>
+              <tr class="even">
+                <td>:tablast</td>
+                <td>最後のタブに移動する</td>
+              </tr>
+              <tr class="odd">
+                <td>:tabonly</td>
+                <td>現在のタブ以外全てのタブを閉じる</td>
+              </tr>
+              <tr class="even">
+                <td>gt</td>
+                <td>次のタブに移動する. gtの直前に数字をつけると, 数字番目のタブに移動する</td>
+              </tr>
+              <tr class="odd">
+                <td>gT</td>
+                <td>一つ前のタブに移動する</td>
+              </tr>
+            </tbody>
+          </table>
+          <h2 id="increment">インクリメント, デクリメント</h2>
+          <table>
+            <thead>
+              <tr class="even">
+                <th>コマンド</th>
+                <th>動作</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="odd">
+                <td>Ctrl-a</td>
+                <td>カーソル行上で, カーソル以降の最初に出現した数字をインクリメント</td>
+              </tr>
+              <tr class="even">
+                <td>Ctrl-x</td>
+                <td>カーソル行上で, カーソル以降の最初に出現した数字をデクリメント</td>
+              </tr>
+            </tbody>
+          </table>
+          <p>カーソル下に数字がなくても使用できるため, 移動にも使えます.</p>
+          <h2 id="attention">注意</h2>
+          <p>主にいつも使っているコマンドをまとめてみました. 多くのコマンドは, 直前に数字などを組み合わせて使うことができます. 例えば, 3ddとすれば3行削除できます. 10iでインサートモードに入って, 文字を入力した後にノーマルモードにもどれは, 入力した文字が10個分入力されます. あと, ここに書いてある以外にもたくさんコマンドはありますので, あしからず.</p>
+        </div>
+<p></html></p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../ubnt/" class="btn btn-neutral float-left" title="ubnt"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../%E4%B8%80%E8%A1%8C-Python-%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0%E5%B9%B6%E8%A1%8C/" class="btn btn-neutral float-right" title="一行 Python 代码实现并行">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+      <p>Copyright © 2022 - 2023 - lyvivian0077</p>
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../ubnt/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../%E4%B8%80%E8%A1%8C-Python-%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0%E5%B9%B6%E8%A1%8C/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

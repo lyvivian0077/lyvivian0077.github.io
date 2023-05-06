@@ -1,0 +1,1488 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Explain详解与索引最佳实践 - 总有刁民想要害朕</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Explain\u8be6\u89e3\u4e0e\u7d22\u5f15\u6700\u4f73\u5b9e\u8df5";
+        var mkdocs_page_input_path = "Explain\u8be6\u89e3\u4e0e\u7d22\u5f15\u6700\u4f73\u5b9e\u8df5.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> 总有刁民想要害朕
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Welcome</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../ansbile/">ansbile</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../awk/">awk</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../Bash%E7%BC%96%E7%A8%8B%E8%B6%85%E8%AF%A6%E7%BB%86%E8%AF%AD%E6%B3%95%E6%80%BB%E7%BB%93/">Bash编程超详细语法总结</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../centos7-set-kernel/">centos7-set-kernel</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../centos-network-device-naming/">centos-network-device-naming</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">Explain详解与索引最佳实践</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#info">info</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#explain-type">explain 之type</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#explain-key">explain 之key</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#explain-rows">explain 之rows</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#explain-extra">explain 之extra</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_1">查看索引索引情况</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#sql">SQL优化</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#_2">大批量插入</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#insert">优化insert语句</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#order-by">优化order by语句</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#filesort">Filesort的优化</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#group-by">优化group by语句</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_3">优化嵌套查询</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#or">优化OR条件</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_4">优化分页查询</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_5">查询缓存配置</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_6">开启查询缓存</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_7">查询缓存失效的情况</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#mysql">MySQL内存管理及优化</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#_8">内存优化原则</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#myisam">MyISAM 内存优化</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#key_buffer_size">key_buffer_size</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#read_buffer_size">read_buffer_size</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#read_rnd_buffer_size">read_rnd_buffer_size</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#innodb">InnoDB内存优化</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#innodb_buffer_pool_size">innodb_buffer_pool_size</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#innodb_log_buffer_size">innodb_log_buffer_size</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#mysql_1">MySQL并发参数调整</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#max_connections">max_connections</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#back_log">back_log</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#table_open_cache">table_open_cache</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#hread_cache_size">hread_cache_size</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#innodb_lock_wait_timeout">innodb_lock_wait_timeout</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../iptables/">iptables</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../linux-lvm/">linux-lvm</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../Linux-Performance/">Linux Performance</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../Linux-shell-%E9%80%BB%E8%BE%91%E8%BF%90%E7%AE%97%E7%AC%A6-%E9%80%BB%E8%BE%91%E8%A1%A8%E8%BE%BE%E5%BC%8F%E8%AF%A6%E8%A7%A3/">Linux-shell-逻辑运算符-逻辑表达式详解</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../LVM%E9%80%BB%E8%BE%91%E5%8D%B7%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5%E5%8F%8ALVM%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/">LVM逻辑卷基本概念及LVM的工作原理</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../macOS%E8%BD%AF%E4%BB%B6%E7%BC%96%E8%AF%91%E6%97%B6%E6%89%BE%E4%B8%8D%E5%88%B0%E5%A4%B4%E6%96%87%E4%BB%B6%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95-%E6%9B%B4%E6%96%B010-15/">macOS软件编译时找不到头文件解决方法[更新10.15]</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../MB-MiB%E7%9A%84%E5%8C%BA%E5%88%AB/">MB_MiB的区别</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../megacli/">Megacliの基本操作</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../megaraid/">MegaRAID Policy</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../mysql/">MySQL</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../mysql-table/">MySQL-table</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../mysql%E3%82%92%E3%82%BD%E3%83%BC%E3%82%B9%E3%81%8B%E3%82%89%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB/">mysqlをソースからインストール</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../MySQL-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">1000行 MySQL 学习笔记，不怕你不会，就怕你不学！</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../python-decorator/">跨过这道装饰器的坎，或许你就升级了</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../python-dunder/">Python中下划线的5种含义</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../python-function/">Python传入参数的几种方法</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../python/">python</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../python-mysql/">python 操作 mysql基础补充</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../Python-Re-%E6%A8%A1%E5%9D%97%E8%B6%85%E5%85%A8%E8%A7%A3%E8%AF%BB/">Python Re 模块超全解读</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../Python%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%8B%BC%E6%8E%A5%E6%80%BB%E7%BB%93/">Python字符串拼接总结</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../Regular-Expression/">正規表現（Regular Expression）とは？</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../taged-VLAN%E3%81%A8untagedVLAN%E3%81%AE%E9%81%95%E3%81%84/">タグVLANとネイティブVLAN (PVID)の違い</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../ubnt/">ubnt</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../vim/">VIM</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../%E4%B8%80%E8%A1%8C-Python-%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0%E5%B9%B6%E8%A1%8C/">一行 Python 代码实现并行</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../about/">About</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">总有刁民想要害朕</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
+      <li>Explain详解与索引最佳实践</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h2 id="explain">explain详解与索引最佳实践<a class="headerlink" href="#explain" title="Permanent link">&para;</a></h2>
+<h5 id="info">info<a class="headerlink" href="#info" title="Permanent link">&para;</a></h5>
+<ul>
+<li>1
+<img alt="info1" src="/assets/explain/image1.png" /></li>
+<li>2
+<img alt="info2" src="/assets/explain/image2.png" /></li>
+<li>3
+<img alt="info3" src="/assets/explain/image3.png" /></li>
+<li>4
+<img alt="info4" src="/assets/explain/image4.png" /></li>
+<li>5
+<img alt="info5" src="/assets/explain/image5.png" /></li>
+<li>6
+<img alt="info6" src="/assets/explain/image6.png" /></li>
+<li>7
+<img alt="info7" src="/assets/explain/image7.png" /></li>
+<li>8
+<img alt="info8" src="/assets/explain/image8.png" /></li>
+<li>9
+<img alt="info9" src="/assets/explain/image9.png" /></li>
+<li>10
+<img alt="info10" src="/assets/explain/image10.png" /></li>
+<li>11
+<img alt="info11" src="/assets/explain/image11.png" /></li>
+<li>12
+<img alt="info12" src="/assets/explain/image12.png" /></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>select_type</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SIMPLE</td>
+<td>简单的select查询,查询中不包含子查询或者UNION</td>
+</tr>
+<tr>
+<td>PRIMARY</td>
+<td>查询中若包含任何复杂的字查询,最外层查询标记为该标识</td>
+</tr>
+<tr>
+<td>SUBQUERY</td>
+<td>在SELECT或WHERE列表中包含了子查询</td>
+</tr>
+<tr>
+<td>DERIVED</td>
+<td>在FROM列表中包含的子查询,被标记为DERIVED(衍生)MySQL会递归执行这些子查询,把结果放在临时表中</td>
+</tr>
+<tr>
+<td>UNION</td>
+<td>若第二个SELECT出现在UNION之后,则标记为UNION;若UNION包含在FROM字句的子查询中,外层SELECT将被标记为:DERIVED</td>
+</tr>
+<tr>
+<td>UNION RESULT</td>
+<td>从UNION表获取结果的SELECT</td>
+</tr>
+</tbody>
+</table>
+<h5 id="explain-type">explain 之type<a class="headerlink" href="#explain-type" title="Permanent link">&para;</a></h5>
+<table>
+<thead>
+<tr>
+<th>type</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>NULL</td>
+<td>MySQL不访问任何表,索引,直接返回结果</td>
+</tr>
+<tr>
+<td>system</td>
+<td>表只有一行记录(等于系统表),这是const类型的特例,一般不会出现</td>
+</tr>
+<tr>
+<td>const</td>
+<td>表示通过索引一次就找到了,const用于比较primary key或者unique索引.因为只匹配一行数据,所以很快.如将主键置于where列表中,MySQL就能将该查询转换为一个常量.const于将"主键"或"唯一"索引的所有部分与常量值进行比较</td>
+</tr>
+<tr>
+<td>eq_ref</td>
+<td>类型ref,区别在于使用的是唯一索引,使用主键的并联查询,关联查询的记录只有一条.常见于主键或唯一索引描述</td>
+</tr>
+<tr>
+<td>ref</td>
+<td>非唯一性索引描述,返回匹配某个单独值得所有行.本质上也是一种索引访问,返回所有匹配某个单独值的所有行(多个)</td>
+</tr>
+<tr>
+<td>range</td>
+<td>只检索给定返回的行,使用一个索引来选择行.where之后出现between,&lt;,&gt;,in 等操作</td>
+</tr>
+<tr>
+<td>index</td>
+<td>index与ALL的区别为index类型只是遍历了索引树,通常比ALL快,ALL是遍历数据文件</td>
+</tr>
+<tr>
+<td>ALL</td>
+<td>将遍历全表以找到匹配的行</td>
+</tr>
+</tbody>
+</table>
+<p>结果值从 <strong>最好</strong> 到 <strong>最坏</strong> 依次是:</p>
+<pre><code>NULL &gt; system &gt; const &gt; eq_ref &gt; ref &gt; fulltext &gt; ref_or_null &gt; index_merge &gt; unique_subquery &gt; index_subquery &gt; range &gt; index &gt; ALL
+
+system &gt; const &gt; eq_ref &gt; ref &gt; range &gt; index &gt; ALL
+</code></pre>
+<p>一般来说,我们需要保证查询至少达到range级别, 最后达到ref.</p>
+<h5 id="explain-key">explain 之key<a class="headerlink" href="#explain-key" title="Permanent link">&para;</a></h5>
+<pre><code>possible_keys: 显示可能应用在这张表的索引, 一个或多个
+key: 实际使用的索引,如果为NULL,则没有使用索引
+key_len: 表示索引中使用的字节数, 该值为索引字段最大可能长度,并非实际使用长度,在不损失精确性的前提下,长度越短越好.
+</code></pre>
+<h5 id="explain-rows">explain 之rows<a class="headerlink" href="#explain-rows" title="Permanent link">&para;</a></h5>
+<p>扫描行的数量</p>
+<h5 id="explain-extra">explain 之extra<a class="headerlink" href="#explain-extra" title="Permanent link">&para;</a></h5>
+<p>其他的额外的执行计划信息,在该列显示.</p>
+<table>
+<thead>
+<tr>
+<th>extra</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>using filesort</td>
+<td>说明mysql会对数据使用一个外部的索引排序,而不是按照表内的索引顺序进行读取,称为"文件排序",效率低.</td>
+</tr>
+<tr>
+<td>using temporary</td>
+<td>使用了临时表保存中间结果,MySQL在对查询结果排序时使用临时表. 常见于order by 和 group by, 效率低.</td>
+</tr>
+<tr>
+<td>using index</td>
+<td>表示相应的select操作使用了覆盖索引,避免访问表的数据行,效率不错.</td>
+</tr>
+</tbody>
+</table>
+<p>6). 尽量使用覆盖索引,避免select *</p>
+<p>尽量使用覆盖索引(只访问索引的查询(<strong>索引列</strong> 完全包含 <strong>查询列</strong>)),减少<code>select *</code>.</p>
+<p>如果查询类,超出索引列,也会降低性能.</p>
+<pre><code>TIP:
+ using index: 使用覆盖索引的时候就会出现
+ using where: 在查找使用索引的情况下, 需要回表查询数据
+ using index condition: 查找使用了索引, 但是需要回表查询数据
+ using index; using where: 查找使用了索引, 但是需要的数据都在索引列中能找到, 所以不需要回表查询数据
+</code></pre>
+<p>12) 单列索引和复合索引</p>
+<p>尽量使用复合索引, 而少使用单列索引</p>
+<ul>
+<li>创建复合索引</li>
+</ul>
+<pre><code>create index idx_name_sta_address on tb_seller(name, status, address);
+就相当于创建了三个索引:
+
+name
+name + status
+name + status + address
+</code></pre>
+<ul>
+<li>创建单列索引</li>
+</ul>
+<pre><code>create index idx_seller_name on tb_sell(name);
+create index idx_seller_status on tb_sell(status);
+create index idx_seller_address on tb_sell(address);
+</code></pre>
+<p>数据库会选择一个最优的索引(辨识度最高索引)来使用,并不会使用全部索引.</p>
+<h4 id="_1">查看索引索引情况<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h4>
+<pre><code>show status like 'Handler_read%';
+show global status like 'Handler_read%';
+</code></pre>
+<pre><code>02:06:55 root@localhost[database1]&gt; show status like 'Handler_read%';
+
++-----------------------+-------+
+| Variable_name         | Value |
++-----------------------+-------+
+| Handler_read_first    | 0     |
+| Handler_read_key      | 0     |
+| Handler_read_last     | 0     |
+| Handler_read_next     | 0     |
+| Handler_read_prev     | 0     |
+| Handler_read_rnd      | 0     |
+| Handler_read_rnd_next | 34    |
++-----------------------+-------+
+7 rows in set (0.01 sec)
+
+05:08:03 root@localhost[database1]&gt; show global status like 'Handler_read%';
++-----------------------+--------------+
+| Variable_name         | Value        |
++-----------------------+--------------+
+| Handler_read_first    | 622670       |
+| Handler_read_key      | 254215292    |
+| Handler_read_last     | 29           |
+| Handler_read_next     | 273266451    |
+| Handler_read_prev     | 97           |
+| Handler_read_rnd      | 10101645     |
+| Handler_read_rnd_next | 166307007667 |
++-----------------------+--------------+
+7 rows in set (0.00 sec)
+
+05:08:11 root@localhost[database1]&gt;
+</code></pre>
+<pre><code>- Handler_read_first: 索引中第一条被读的次数.如果高,表示服务器正执行大量全索引扫描(这个值越低越好).
+
+- Handler_read_key: 如果索引正在工作,这个值代表一个行被索引值读的次数,如果值越低,表示索引得到的性能改善不高,因为索引不经常使用(这个值越高越好).
+
+- Handler_read_rnd: 根据固定位置读一行的请求值. 如果你正执行大量查询并需要对结果进行排序,该值应该较高. 你可能使用了大量需要MySQL扫描这个表的查询或你的连接没有正确使用键.这个值较高,意味着运行效率低,可以建立索引来补救.
+
+- Handler_read_rnd_next: 在数据文件中读下一行的请求数.如果你正在进行大量的表扫描,该值较高.通常说明你的表的索引不正确或写入的查询没有利用索引.
+</code></pre>
+<h4 id="sql">SQL优化<a class="headerlink" href="#sql" title="Permanent link">&para;</a></h4>
+<ol>
+<li>
+<h5 id="_2">大批量插入<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h5>
+</li>
+<li>
+<p>使用load命令导入数据的时候,适当的设置可以提高导入的效率.</p>
+<ul>
+<li>
+<p>对于InnoDB类型的表,有以下几种方式可以提高导入的效率:</p>
+<ul>
+<li>
+<p>主键顺序插入</p>
+<ul>
+<li>因为InnoDB类型的表示按照主键的顺序保存的,所以将导入的数据按照主键的顺序排列,可以有效的提高导入数据的效率. 如果InnoDB表没有主键,那么系统会自动默认创建一个内部列作为主键,所以如果可以给表创建一个主键,将可以利用这点,来提高导入数据的效率.</li>
+<li>插入ID顺序排列数据</li>
+<li>插入ID无序排列数据</li>
+</ul>
+</li>
+<li>
+<p>关闭唯一性校验</p>
+<ol>
+<li>在导入数据前执行 <code>SET UNIQUE_CHECKS = 0</code>, 关闭唯一性校验, 在导入结束后执行 <code>SET UNIQUE_CHECKS = 1</code>, 恢复唯一性校验, 可以提高导入的效率.</li>
+</ol>
+</li>
+<li>
+<p>手动提交事务</p>
+<ol>
+<li>如果应用使用自动提交的方式,建议在导入前执行 <code>SET AUTOCOMMIT=0</code>, 关闭自动提交, 导入结束后再执行 <code>SET AUTOCOMMIT=1</code>, 打开自动提交, 也可以提高导入的效率.</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<h5 id="insert">优化insert语句<a class="headerlink" href="#insert" title="Permanent link">&para;</a></h5>
+</li>
+<li>
+<p>当进行数据的insert操作的时候,可以考虑采用以下几种优化方案</p>
+<ul>
+<li>
+<p>如果需要同时对一张表插入很多行数据时,应该尽量使用多个值表的insert语句,这种方式将大大的缩减客户端与数据库之间的连接,关闭示例,原始方式为:</p>
+<ul>
+<li>
+<p>优化后的方案前:
+    insert into tb_test values(1,'Tom');
+    insert into tb_test values(2,'Cat');
+    insert into tb_test values(3,'Jerry');</p>
+</li>
+<li>
+<p>优化后的方案为:
+    insert into tb_test values(1,'Tom'),(2,'Cat'),(3,'Jerry');</p>
+</li>
+</ul>
+</li>
+<li>
+<p>在事务中进行数据插入
+      start transaction;
+      insert into tb_test values(1,'Tom');
+      insert into tb_test values(2,'Cat');
+      insert into tb_test values(3,'Jerry');
+      commit;</p>
+</li>
+<li>
+<p>数据有序插入
+      insert into tb_test values(1,'Tom');
+      insert into tb_test values(2,'Cat');
+      insert into tb_test values(3,'Jerry');
+      insert into tb_test values(4,'Tim');
+      insert into tb_test values(5,'Rose');</p>
+</li>
+</ul>
+</li>
+<li>
+<h5 id="order-by">优化order by语句<a class="headerlink" href="#order-by" title="Permanent link">&para;</a></h5>
+</li>
+</ol>
+<p><strong>两种排序方式</strong></p>
+<ol>
+<li>第一种是通过对返回数据进行排序,也就是通常说的 filesort 排序, 所有不是通过索引直接返回排序结果的排序都叫Filesort排序.</li>
+<li>第二种通过有序索引顺序扫描直接返回有序数据,这种情况即为<code>using index</code>, 不需要额外排序,操作效率高.</li>
+</ol>
+<p>了解了MySQL的排序方式,优化目标就清晰了: </p>
+<ul>
+<li>尽量减少额外的排序,通过索引直接返回有序数据.</li>
+<li>
+<p><code>where</code>条件和<code>order by</code> 使用<strong>相同的索引</strong>,并且<code>Order by</code> 的顺序和<code>索引顺序</code><strong>相同</strong>, 并且<code>order by</code> 的字段<strong>都是升序</strong>,或者<strong>都是降序</strong>. 否则肯定需要额外的操作, 这样就会出现FileSort.</p>
+</li>
+<li>
+<h5 id="filesort">Filesort的优化<a class="headerlink" href="#filesort" title="Permanent link">&para;</a></h5>
+</li>
+</ul>
+<p>通过创建合适的索引,能够减少filesort的出现,但是在某些情况下,条件限制不能让Filesort消失,那就需要加快Filesort的排序操作.对于FileSort, MySQL有两种排序算法:</p>
+<ul>
+<li>两次扫描算法: MySQL4.1 之前, 使用该方式排序. 首先根据条件取出排序字段和行指针信息,然后在排序区 sort buffer 中排序, 如果sort buffer 不够,则在临时表temporary table 中存储排序结果. 完成排序后, 再根据行指针回表读取记录, 该操作可能会导致大量随机IO操作.</li>
+<li>一次扫描算法: 一次性取出满足条件的索引字段,然后在排序区sort buffer 中排序后直接输出结果集. 排序时内存开销较大, 但是排序效率比两次扫描算法要高.</li>
+</ul>
+<p>MySQL通过比较系统变量 <code>max_length_for_sort_data</code>的大小和Query语句取出的字段总大小,来判断是否那种排序算法,如果<code>max_length_for_sort_data</code> 更大,那么使用第二种优化之后的算法,否则使用第一种.</p>
+<p>可以适当提高<code>sort_buffer_size</code>和<code>max_length_for_sort_date</code>系统变量,来增大排序区的大小,提高排序的效率.</p>
+<ol>
+<li>
+<h5 id="group-by">优化group by语句<a class="headerlink" href="#group-by" title="Permanent link">&para;</a></h5>
+</li>
+</ol>
+<p>由于group by 实际上也同样会进行排序操作, 而且于order by 相比,group by 只要只是多了排序之后的分组操作. 当然,如果在分组的时候还使用了其他的一些聚合函数, 那么还需要一些聚合函数的计算.所以,在group by 的实现过程中,于order by一样也可以利用到索引. </p>
+<p>如果查询包含group by 但是用户想要避免排序结果的消耗,则可以执行<code>order by null</code> 禁止排序. 如下:</p>
+<p><code>explain select age, count(*) from emp group by age;</code></p>
+<p>优化后</p>
+<p><code>explain select age,count(*) from emp group by age order by null;</code></p>
+<ol>
+<li>
+<h5 id="_3">优化嵌套查询<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h5>
+</li>
+</ol>
+<p>MySQL4.1 版本之后,开始支持SQL的子查询.这个技术可以使用select语句来创建一个单列的查询,然后把这个结果作为过滤条件用在另一个查询中. 使用子查询可以一次性的完成很多逻辑上需要多个步骤才能完成的SQL操作, 同时也可以避免事务或表锁死, 并且写起来也很容易. 但是,有些情况下,子查询是可以被跟高效的连接(JOIN)代替.</p>
+<ol>
+<li>
+<h5 id="or">优化OR条件<a class="headerlink" href="#or" title="Permanent link">&para;</a></h5>
+</li>
+</ol>
+<p>对于包含OR查询子句,如果要利用索引,则OR之间的每个条件列都必须用到索引, 而且不能使用到复合索引; 如果没有索引,则应该考虑增加索引.</p>
+<p><strong>建议使用union替换or</strong>.</p>
+<p>type显示的是访问类型,是较为重要的一个指标,结果值从好到坏依次是:</p>
+<p><code>system &gt; const &gt; eq_ref &gt; ref &gt; fulltext &gt; ref_or_null &gt; index_merger &gt; unique_subquery &gt; index_subquery &gt; range &gt; index &gt; ALL</code></p>
+<p>UNION 语句的type值为ref, OR语句的type值为range, 可以看到这是一个很明显的差距</p>
+<p>UNION 语句的ref值为const, OR语句的type值为null, const表示是常量值引用,非常快</p>
+<p>这两项的差距就说明了UNION要优于OR.</p>
+<ol>
+<li>
+<h5 id="_4">优化分页查询<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h5>
+</li>
+</ol>
+<p>一般分页查询时,通过创建覆盖索引能够比较好的提高性能. 一个常见又非常头疼的问题就是 limit 2000000, 10 , 此时需要MySQL排序前 2000010 记录, 仅仅返回2000000 - 2000010 的记录, 其他记录丢弃, 查询排序的代价非常大.</p>
+<ol>
+<li>
+<p>优化思路一</p>
+<p>在索引上完成排序分页操作, 最后根据主键关联回原表查询所需要的其他列内容.</p>
+</li>
+<li>
+<p>优化思路二</p>
+<p>该方案适应于主键自增的表,可以把Limit查询转换成某个位置的查询.</p>
+</li>
+<li></li>
+<li>
+<p>适应SQL提示</p>
+</li>
+</ol>
+<p>SQL提示, 是优化数据库的一个重要字段, 简单来说, 就是在SQL语句中加入一些人为的提示来达到优化操作的目的.</p>
+<ol>
+<li>
+<p><strong>USE INDEX</strong></p>
+<p>在查询语句中表名的后面,添加 use index 来提供希望MySQL去参考的索引列表,就可以让MySQL不再考虑其他可用的索引.</p>
+<p><code>create index idx_serller_name on tb_sellwe(name);</code></p>
+</li>
+<li>
+<p><strong>IGNORE INDEX</strong></p>
+<p>如果用户只是单纯的想让MySQL忽略一个或者多个索引, 则可以使用 ignore index 作为 hint.</p>
+<p><code>explain select * from tb_seller ignore index(idx_seller_name) where name = 'xxx';</code></p>
+</li>
+<li>
+<p><strong>FORCE INDEX</strong></p>
+<p>为强制MySQL使用一个特定的索引, 可在查询中使用 force index 作为hint.</p>
+<p><code>explain select * from tb_seller force index(idx_seller_address) wher address = 'xxx';</code></p>
+</li>
+</ol>
+<h4 id="_5">查询缓存配置<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h4>
+<pre><code>mysql&gt; show status like 'Qcache%';
++-------------------------+------------+
+| Variable_name           | Value      |
++-------------------------+------------+
+| Qcache_free_blocks      | 23822      | &lt;- 可用的内存的块的个数
+| Qcache_free_memory      | 70259792   | &lt;- 可用的内存的空间,容量
+| Qcache_hits             | 1594706026 | &lt;- 查询缓冲的命中次数
+| Qcache_inserts          | 678651145  | &lt;- 添加到查询缓冲的次数
+| Qcache_lowmem_prunes    | 237160055  | &lt;- 如果内存不足,将数据移除出内存空间的次数
+| Qcache_not_cached       | 1344572761 | &lt;- 未做缓存的次数
+| Qcache_queries_in_cache | 67682      | &lt;- 查询缓存中注册的查询数
+| Qcache_total_blocks     | 181973     | &lt;- 查询缓存中的块总数
++-------------------------+------------+
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Qcache_free_blocks</td>
+<td>查询缓存中的可以内存块数</td>
+</tr>
+<tr>
+<td>Qcache_free_memory</td>
+<td>查询缓存的可用内存量</td>
+</tr>
+<tr>
+<td>Qcache_hits</td>
+<td>查询缓存命中率</td>
+</tr>
+<tr>
+<td>Qcache_inserts</td>
+<td>添加到查询缓存的查询数</td>
+</tr>
+<tr>
+<td>Qcache_lowmem_prunes</td>
+<td>由于内存不足而从查询缓存中删除的查询数</td>
+</tr>
+<tr>
+<td>Qcache_not_cached</td>
+<td>非缓存查询的数量(由于query_cache_type设置而无法缓存或未缓存)</td>
+</tr>
+<tr>
+<td>Qcache_queries_in_cache</td>
+<td>查询缓存中注册的查询数</td>
+</tr>
+<tr>
+<td>Qcache_total_blocks</td>
+<td>查询缓存中的块总数</td>
+</tr>
+</tbody>
+</table>
+<h4 id="_6">开启查询缓存<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h4>
+<p>MySQL的查询缓存默认是关闭的, 需要手动配置参数 <code>query_cache_type</code>,来开启查询缓存. <code>query_cache_type</code>该参数的可取值有三个</p>
+<table>
+<thead>
+<tr>
+<th>值</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>OFF 或 0</td>
+<td>查询缓存功能关闭</td>
+</tr>
+<tr>
+<td>ON 或 1</td>
+<td>查询缓存功能打开, SELECT 的结果符合缓存条件即会缓存,否则,不予缓存, 显示指定SQL_NO_CACHE, 不予缓存</td>
+</tr>
+<tr>
+<td>DEMAND 或 2</td>
+<td>查询缓存功能按需进行, 显示指定SQL_CACHE的SELECT语句才会缓存; 其他均不予缓存</td>
+</tr>
+</tbody>
+</table>
+<h4 id="_7">查询缓存失效的情况<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h4>
+<p>1) SQL语句不一致的情况,想要命中查询缓存,查询的SQL语句必须一致.</p>
+<p>2) 当查询语句中有一些不确定的时,则不会缓存. 如: now(), current_date(),curdate(),curtime(),rand(),uuid(),user(),databases().</p>
+<p>3) 不使用任何表查询语句</p>
+<p>4) 查询 mysql, information_schema,或performance_schema 数据库中的表时,不会走查询缓存.</p>
+<p>5) 在存储的函数, 触发器或事件的主体内执行的查询.</p>
+<p>6) 如果表更改,则使用该表的所有高速缓存查询都将变为无效并从高速缓存中删除. 这包括使用<code>MERGE</code>映射到已更改表的查询.一个表可以被许多类型的语句, 如被改变 INSERT, UPDATE, DELETE, TRUNCATE TABLE, ALTER TABLE, DROP TABLE, 或 DROP DATABASE.</p>
+<h3 id="mysql">MySQL内存管理及优化<a class="headerlink" href="#mysql" title="Permanent link">&para;</a></h3>
+<h4 id="_8">内存优化原则<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h4>
+<p>1) 将尽量多的内存分配给MySQL做缓存, 但要给操作系统和其他查询预留足够内存.</p>
+<p>2) MyISAM存储引擎的数据文件读取依赖于操作系统自身的<code>IO</code>缓存,因此,如果有MyISAM表, 就要预留更多的内存给操作系统做IO缓存.</p>
+<p>3) 排序区, 连接区等缓存是分配给每个数据库对话(session)专业的,其默认值的设置要根据最大连接数合理分配, 如果设置太大, 不但浪费资源,而且在并发连接较高时会导致物理内存耗尽.</p>
+<h4 id="myisam">MyISAM 内存优化<a class="headerlink" href="#myisam" title="Permanent link">&para;</a></h4>
+<p>MyISAM存储引擎使用 <code>key_buffer</code> 缓存索引块, 加速MyISAM索引的读写速度. 对于MyISAM表的数据块, mysql没有特别的缓存机制, 完全依赖于操作系统的IO缓存.</p>
+<h4 id="key_buffer_size">key_buffer_size<a class="headerlink" href="#key_buffer_size" title="Permanent link">&para;</a></h4>
+<p><code>key_buffer_size</code> 决定MyISAM索引块缓冲区的大小, 直接影响到MyISAM表的读取效率. 可以在MySQL参数文件中设置key_buffer_size的值, 对于一般MyISAM数据库, 建议至少将 <code>1/4</code> 可用内存分配给key_buffer_size.</p>
+<h4 id="read_buffer_size">read_buffer_size<a class="headerlink" href="#read_buffer_size" title="Permanent link">&para;</a></h4>
+<p>如果需要经常顺序扫描myisam表,可以通过增大read_buffer_size的值来改善性能. 但需要注意的是read_buffer_size是每个session独占的,如果默认值设置太大,就好造成内存浪费.</p>
+<h4 id="read_rnd_buffer_size">read_rnd_buffer_size<a class="headerlink" href="#read_rnd_buffer_size" title="Permanent link">&para;</a></h4>
+<p>对于需要排序的myisam表的查询, 如带有order by 子句的sql, 适当增加 read_rnd_buffer_size的值, 可以改善此类的sql性能. 但需注意的是, read_rnd_buffer_size是每个session独占的, 如果默认值设置太大,就好造成内存浪费.</p>
+<h4 id="innodb">InnoDB内存优化<a class="headerlink" href="#innodb" title="Permanent link">&para;</a></h4>
+<p>innodb用一块内存区做IO缓存, 该缓存池不仅用来缓存innodb的索引块, 而且也用来缓存innodb的数据块.</p>
+<h5 id="innodb_buffer_pool_size">innodb_buffer_pool_size<a class="headerlink" href="#innodb_buffer_pool_size" title="Permanent link">&para;</a></h5>
+<p>该变量决定了Innodb存储引擎表数据和索引数据的最大缓存区大小. 在保证操作系统及其他程序有足够内存可用的情况下,innodb_buffer_pool_size 的值越大, 缓存命中率越高, 访问InnoDB表需要的磁盘IO就越少, 性能也就越高.</p>
+<h5 id="innodb_log_buffer_size">innodb_log_buffer_size<a class="headerlink" href="#innodb_log_buffer_size" title="Permanent link">&para;</a></h5>
+<p>决定了InnoDB重做日志缓存的大小, 对于可能产生大量更新记录的大事务, 增加innodb_log_buffer_size的大小, 可用避免innodb在事务提交前就执行不必要的日志写入磁盘.</p>
+<h4 id="mysql_1">MySQL并发参数调整<a class="headerlink" href="#mysql_1" title="Permanent link">&para;</a></h4>
+<p>从实现上来说, MySQL Server 是多线程结果, 包括后台线程和客户端线程. 多线程可用有效利用服务器资源,提高数据库的并发性能.</p>
+<p>在MySQL中, 控制并发连接和线程的主要参数包括 max_connections, back_log, thread_cache_size, table_open_cache.</p>
+<h5 id="max_connections">max_connections<a class="headerlink" href="#max_connections" title="Permanent link">&para;</a></h5>
+<p>采用max_connections控制允许连接到MySQL数据库的最大数量, 默认是151. 当客户端连接服务端时,当同时连接的请求超过151时,就没有可用的连接来处理客户端的请求,后面进来的连接都会进入等待状态.</p>
+<p><code>connections_errors_max_connections</code>为当连接达到最大请求值时,连接报错的信息.</p>
+<p>如果状态变量 <code>connections_errors_max_connections</code>不为零,并且一直增长, 则说明不断有连接请求因数据库连接已达到允许最大值而失败, 这时可以考虑增大max_connections的值.</p>
+<p>MySQL最大可支持的连接数, 取决于很多因素,包括给定操作系统平台的线程库的质量,内存大小,每个连接的负荷,CPU的处理速度,期望的响应时间等.在Linux平台下,性能好的服务器,支持500-1000个连接不是难事,需要根据服务器性能进行设定.</p>
+<h5 id="back_log">back_log<a class="headerlink" href="#back_log" title="Permanent link">&para;</a></h5>
+<p>back_log参数控制MySQL监听TCP端口时设置的积压请求栈大小. 如果MySQL的连接数达到max_connections时,新来的请求将会被存在堆栈中,以等待某一连接释放资源, 该堆栈的数量既是back_log. 如果等待的连接的数量超过back_log, 将不被授予连接资源,将会报错.</p>
+<p>5.5.5版本之前默认值为50, 之后的版本默认为50+(max_connections / 5), 但最大不超过900.</p>
+<p>如果需要数据库在短的时间内处理大量的连接请求, 可以考虑适当增大back_log的值.</p>
+<h5 id="table_open_cache">table_open_cache<a class="headerlink" href="#table_open_cache" title="Permanent link">&para;</a></h5>
+<p>该参数用来控制所有SQL语句执行线程可打开表缓存的数量, 而在执行SQL语句时, 每一个SQL执行线程至少要打开1个表缓存. 该参数的值应该根据设置的最大连接数max_connections一个每个连接执行关联查询中涉及的表的最大数量来设定:</p>
+<p><code>max_connections x N;</code></p>
+<h5 id="hread_cache_size">hread_cache_size<a class="headerlink" href="#hread_cache_size" title="Permanent link">&para;</a></h5>
+<p>为了加快数据库的速度，MySQL会缓存一定数量的客户服务线程以备重用，通过参数 thread_cache_size 可控制 MySQL 缓存客户端服务线程的数量。</p>
+<h5 id="innodb_lock_wait_timeout">innodb_lock_wait_timeout<a class="headerlink" href="#innodb_lock_wait_timeout" title="Permanent link">&para;</a></h5>
+<p>该参数是用来设置 InnoDB 事务等待行锁的时间，默认值是 50 ms，可以根据进行动态设置。对于需要快速反馈的业务系统来说，可以将行锁的等待时间调小，以避免事务长时间挂起；对于后台运行的批量处理程序来说，可以将行锁的等待时间调大，以避免发生大的回滚操作。</p>
+<h2 id="2mysql">2、MySQL 锁问题<a class="headerlink" href="#2mysql" title="Permanent link">&para;</a></h2>
+<h3 id="21">2.1、锁概述<a class="headerlink" href="#21" title="Permanent link">&para;</a></h3>
+<p>锁 是计算机协调多个进程或线程并发访问某一资源的机制（避免争抢）。</p>
+<p>在数据库中，除传统的计算资源（如：CPU、RAM、I/O 等）的争用以外，数据也是一种供许多用户共享的资源。如何保证数据并发访问的一致性、有效性是所有数据库必须解决的一个问题，锁冲突也是影响数据库并发访问性能的一个重要因素。</p>
+<h3 id="22">2.2、锁分类<a class="headerlink" href="#22" title="Permanent link">&para;</a></h3>
+<p>从对数据操作的粒度分：</p>
+<ol>
+<li>表锁：操作时，会锁定整个表</li>
+<li>行锁：操作时，会锁定当前操作行</li>
+</ol>
+<p>从对数据操作的类型分：</p>
+<ol>
+<li>读锁（共享锁）：针对同一份数据，多个读操作可以同时进行而不会相互影响</li>
+<li>写锁（排它锁）：当前操作没有完成之前，它会阻断其他写锁和读锁</li>
+</ol>
+<h3 id="23mysql">2.3、MySQL锁<a class="headerlink" href="#23mysql" title="Permanent link">&para;</a></h3>
+<p>相对于其他数据库而言，MySQL 的锁机制比较简单，其最显著的特点就是不同的存储引擎支持不同的锁机制。下表中罗列出了各个存储引擎对锁的支持情况</p>
+<table>
+<thead>
+<tr>
+<th>存储引擎</th>
+<th>表级锁</th>
+<th>行级锁</th>
+<th>页面锁</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>MyISAM</td>
+<td>支持</td>
+<td>不支持</td>
+<td>不支持</td>
+</tr>
+<tr>
+<td>InnoDB</td>
+<td>支持</td>
+<td>支持</td>
+<td>不支持</td>
+</tr>
+<tr>
+<td>MEMORY</td>
+<td>支持</td>
+<td>不支持</td>
+<td>不支持</td>
+</tr>
+<tr>
+<td>BDB</td>
+<td>支持</td>
+<td>不支持</td>
+<td>支持</td>
+</tr>
+</tbody>
+</table>
+<p>MySQL 这3中锁的特性可大致归纳如下：</p>
+<table>
+<thead>
+<tr>
+<th>锁类型</th>
+<th>特点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>表极锁</td>
+<td>偏向 MyISAM 存储引擎，开销小，加锁快；不会出现死锁；锁定粒度大，发生锁冲突的概率最高，并发度最低</td>
+</tr>
+<tr>
+<td>行极锁</td>
+<td>偏向 InnoDB 存储引擎，开销大，加锁慢；会出现死锁；锁定粒度最小，发生锁冲突的概率最低，并发度也最高</td>
+</tr>
+<tr>
+<td>页面锁</td>
+<td>开锁和加锁时间介于表锁和行锁之间；会出现死锁；锁定粒度介于表锁和行锁之间，并发度一般</td>
+</tr>
+</tbody>
+</table>
+<p>从上述来看，很难笼统地说哪种锁更好，只能就具体应用的特点来说哪种锁更合适。
+仅从锁的角度来说：<strong>表级锁</strong>更适合以查询为主，只有少量按索引条件更新数据的应用，如web应用；<strong>行级锁</strong> 更适合于有大量按索引条件并发更新少量不同数据，同时又有并查询的应用，如一些在线事务处理（OLTP）系统。</p>
+<h3 id="24myisam">2.4、MyISAM 表锁<a class="headerlink" href="#24myisam" title="Permanent link">&para;</a></h3>
+<p>MyISAM 存储引擎只支持表锁，这也是 MySQL 开始几个版本中唯一支持的锁类型。</p>
+<h4 id="241">2.4.1、如何加表锁<a class="headerlink" href="#241" title="Permanent link">&para;</a></h4>
+<p>MyISAM 在执行查询语句（SELECT）前，会自动给涉及的所有表加读锁，在执行更新操作（UPDATE、DELETE、INSERT等）前，会自动给涉及的表加写锁。</p>
+<p>这个过程并不需要用户干预，因此，用户一般不需要直接用 <code>LOCJ TABLE</code>命令给 MyISAM 表显示加锁。</p>
+<p>显示加表锁语法：</p>
+<pre><code class="language-sql">加读锁：lock table table_name read;
+加写锁：lock table table_name write;
+</code></pre>
+<h4 id="244">2.4.4、结论<a class="headerlink" href="#244" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>当前锁模式\请求锁模式</th>
+<th>None</th>
+<th>读锁</th>
+<th>写锁</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>读锁</td>
+<td>是</td>
+<td>是</td>
+<td>否</td>
+</tr>
+<tr>
+<td>写锁</td>
+<td>是</td>
+<td>否</td>
+<td>否</td>
+</tr>
+</tbody>
+</table>
+<p>由上表可见：
+1）对 MyISAM 表的读操作，不会阻塞其他用户对同一表的读请求，但会阻塞对统一表的写请求；
+2）对 MyISAM 表的写操作，则会阻塞其他用户对同一表的读和写操作；</p>
+<p>简而言之，<strong>就是读锁会阻塞写，但是不会阻塞读</strong>。而写锁，<strong>既会阻塞读，又会阻塞写</strong>。</p>
+<p>此外， MyISAM 的读写锁调度是 <strong>写</strong> 优先。这也是 MyISAM 不适合作为写为主的表的存储引擎的原因。因为写锁后，其他线程不能做任何操作，大量的更新会使查询很难得到锁，从而造成永远阻塞。</p>
+<h4 id="245">2.4.5、查看锁的争用情况<a class="headerlink" href="#245" title="Permanent link">&para;</a></h4>
+<pre><code class="language-sql">show open tables;
+</code></pre>
+<ol>
+<li>In_use：表当前被查询使用的次数，如果为零，则表是打开的，但是当前没有被使用。</li>
+<li>Name_locked：表名称是否被锁定。名称锁定用于取消表或对表进行重命名等操作。</li>
+</ol>
+<pre><code>show status like 'Table_locks%';
+
+mysql&gt; show status like 'Table_lock%';
++-----------------------+------------+
+| Variable_name         | Value      |
++-----------------------+------------+
+| Table_locks_immediate | 2772892035 |
+| Table_locks_waited    | 64713      |
++-----------------------+------------+
+2 rows in set (0.00 sec)
+</code></pre>
+<ol>
+<li>Table_locks_immediate：指的是能够立即获得表级锁的次数，每立即获取锁，值加 1。</li>
+<li>Table_locks_waited：指的是不能立即获取表极锁而需要等待的次数，每等待一次，该值加 1，此值越高说明存在着较为严重的表极锁争用情况。</li>
+</ol>
+<h3 id="25innodb">2.5、InnoDB 行锁<a class="headerlink" href="#25innodb" title="Permanent link">&para;</a></h3>
+<h4 id="251">2.5.1、行锁介绍<a class="headerlink" href="#251" title="Permanent link">&para;</a></h4>
+<p>行锁特点：偏向 InnoDB 存储引擎，开销大，加锁慢；会出现死锁；锁定粒度小，发生锁冲突的概率最低，并发度最高。</p>
+<p>InnoDB 与 MyISAM 的最大不同有两点：一是支持事务，二是采用了行级锁。</p>
+<h4 id="252">2.5.2、背景知识<a class="headerlink" href="#252" title="Permanent link">&para;</a></h4>
+<p>1、事务及其ACID属性
+事务是由一组 SQL 语句组成的逻辑处理单元。
+事务具有以下 4 个特性，简称为 <strong>事务ACID属性</strong>。</p>
+<table>
+<thead>
+<tr>
+<th>ACID属性</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>原子性（Atomicity）</td>
+<td>事务是一个原子操作单元，其对数据的修改，要么全部成功，要么全部失败</td>
+</tr>
+<tr>
+<td>一致性（Consistent）</td>
+<td>在事务开始和完成时，数据都必须保持一致状态</td>
+</tr>
+<tr>
+<td>隔离性（Isolation）</td>
+<td>数据库系统提供一定的隔离机制，保证事务在不受外部并发操作影响的“独立环境”下运行</td>
+</tr>
+<tr>
+<td>持久性（Durable）</td>
+<td>事务完成之后，对于数据的修改是永久的。</td>
+</tr>
+</tbody>
+</table>
+<p>2、并发事务处理带来的问题</p>
+<table>
+<thead>
+<tr>
+<th>问题</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>丢失更新（Lost Update）</td>
+<td>当两个或多个事务选择同一行，最初的事务修改的值，会被后面的事务修改的值覆盖。</td>
+</tr>
+<tr>
+<td>脏读（Dirty Reads）</td>
+<td>当一个事务正在访问数据，并对数据进行了修改，而这种修改还没有提交到数据库中。这时，另外一个事务也访问了这个数据，然后使用了这个数据。</td>
+</tr>
+<tr>
+<td>不可重复读（Non-Repeatable Reads）</td>
+<td>一个事务在读取某些数据后的某个时间，再次读取以前读过的数据，却发现和以前读出的数据不一致。</td>
+</tr>
+<tr>
+<td>幻读（Phantom Reads）</td>
+<td>一个事务按照相同的查询条件重新读取以前查询过的数据，却发现其他事务插入了满足查询条件的新数据。</td>
+</tr>
+</tbody>
+</table>
+<p>3、事务隔离级别
+为了解决上述提到的事务并发问题，数据库提供一定的事务隔离机制来解决这个问题。数据库的事务隔离越严格，并发副作用越小，但付出的代价也就越大，因为事务隔离实质上就是使用事务在一定程度上“串行化”进行，这显然与”并发“是矛盾的。</p>
+<p>数据库的隔离级别有 4 个，由低到高依次为 <code>Read uncommitted</code>、<code>Read committed</code>、<code>Repeatable read</code>、<code>Serializbale</code> ，这四个几杯可以逐个解决 脏写、脏读、不可重复读、幻读这几类问题。</p>
+<table>
+<thead>
+<tr>
+<th>隔离级别</th>
+<th>丢失更新</th>
+<th>脏读</th>
+<th>不可重复读</th>
+<th>幻读</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Read uncommitted</td>
+<td>×</td>
+<td>√</td>
+<td>√</td>
+<td>√</td>
+</tr>
+<tr>
+<td>Read committed</td>
+<td>×</td>
+<td>×</td>
+<td>√</td>
+<td>√</td>
+</tr>
+<tr>
+<td>Repeatable read（默认）</td>
+<td>×</td>
+<td>×</td>
+<td>×</td>
+<td>√</td>
+</tr>
+<tr>
+<td>Serializable</td>
+<td>×</td>
+<td>×</td>
+<td>×</td>
+<td>×</td>
+</tr>
+</tbody>
+</table>
+<p>备注 ： √ 代表可能出现 ， × 代表不会出现 。</p>
+<p><strong>MySQL 的数据库默认隔离级别为 Repeatable read</strong>，查看方式为：</p>
+<pre><code class="language-sql">show variables like 'tx_isolation';
+</code></pre>
+<h4 id="253innodb">2.5.3、InnoDB 的行锁模式<a class="headerlink" href="#253innodb" title="Permanent link">&para;</a></h4>
+<p>InnoDB 实现了以下两种类型的行锁。</p>
+<ul>
+<li>共享锁（S）：又称为 读锁，简称 S锁 ，共享锁就是多个事务对于同一数据可以共享一把锁，都能访问到数据，但是只能读不能修改。</li>
+<li>排他锁（X）：又称为 写锁，简称 X锁 ，排他锁不能与其他锁并存，如一个事务获取了一个数据行的排他锁，其他事务就不能再获取该行的其他锁，包括共享锁和排他锁，但是获取排他锁的事务是可以对数据就 行 读取和修改。</li>
+</ul>
+<p>对于 UPDATE、DELETE、INSERT 语句，InnoDB 会自动给涉及数据集加 排他锁（X）；
+对于普通 SELECT 语句， InnoDB 不会加任何锁；</p>
+<p>可以通过以下语句显示给记录集加共享锁或排他锁。</p>
+<pre><code class="language-sql">共享锁（S）：select * from table_name where ... lock in share mode
+排他锁（X）：select * from table_name where ... for update
+</code></pre>
+<h4 id="256">2.5.6、无索引行锁升级为表锁<a class="headerlink" href="#256" title="Permanent link">&para;</a></h4>
+<p>如果不通过索引条件检索数据，那么 InnoDB 将对表中的所有记录加锁，实际效果跟表锁一样。</p>
+<p>查看当前表的索引：</p>
+<pre><code class="language-sql">show index from test_innodb_lock;
+</code></pre>
+<p>由于执行更新时， name 字段本来为 varchar 类型，我们是作为数据类型使用，存在类型转换，索引失效，最终 行锁变为表锁。</p>
+<h4 id="257">2.5.7、间隙锁危害<a class="headerlink" href="#257" title="Permanent link">&para;</a></h4>
+<p>当我们用范围条件，而不是使用相等条件检索数据，并请求共享或排它锁时，InnoDB 会给符合条件的已有数据进行加锁；对于键值在条件范围内但不存在记录，叫做“<strong>间隙（GAP）</strong>”，InnoDB 也会对这个“间隙”加锁，这种机制就是所谓的 <strong>间隙锁（Next-key锁）</strong></p>
+<h4 id="258innodb">2.5.8、InnoDB行锁争用情况<a class="headerlink" href="#258innodb" title="Permanent link">&para;</a></h4>
+<pre><code class="language-sql">show status like 'innodb_row_lock%';
+</code></pre>
+<pre><code>Innodb_row_lock_current_waits: 当前正在等待锁定的数量
+
+Innodb_row_lock_time: 从系统启动到现在锁定总时间长度
+
+Innodb_row_lock_time_avg:每次等待所花平均时长
+
+Innodb_row_lock_time_max:从系统启动到现在等待最长的一次所花的时间
+
+Innodb_row_lock_waits: 系统启动后到现在总共等待的次数
+
+
+当等待的次数很高，而且每次等待的时长也不小的时候，我们就需要分析系统中为什么会有如此多的等待，然后根据分析结果着手制定优化计划。
+</code></pre>
+<h4 id="259">2.5.9、总结<a class="headerlink" href="#259" title="Permanent link">&para;</a></h4>
+<p>InnoDB 存储引擎由于实现了行级锁定，虽然在锁定机制的实现方面带来了性能损耗可能比表极锁会更高一些，但是在整体并发处理能力方面要远远优于MyISAM的表锁的。当系统并发量比较高的时候，InnoDB 的整体性能和 MyISAM 相比就会有比较明显的优势。</p>
+<p>但是，InnoDB 的行级锁也有脆弱的一面，当我们使用不当的时候，可能会让 InnoDB 的整体性能表现不仅不能比 MyISAM 高，甚至会更差。</p>
+<h4 id="2510">2.5.10、优化建议<a class="headerlink" href="#2510" title="Permanent link">&para;</a></h4>
+<ol>
+<li>尽可能让所有数据检索都能通过索引来完成，避免无索引行锁升级为表锁。</li>
+<li>合理设计索引，尽量缩小锁的范围</li>
+<li>尽可能减少索引条件，及索引范围，避免间隙锁</li>
+<li>尽量控制事务大小，减少锁定资源量和时间长度</li>
+<li>尽可能使用低级别事务隔离（但是需要业务层满足需求）</li>
+</ol>
+<h2 id="3mysql">3、常用MySQL技巧<a class="headerlink" href="#3mysql" title="Permanent link">&para;</a></h2>
+<h4 id="1-sql">1. SQL 执行顺序<a class="headerlink" href="#1-sql" title="Permanent link">&para;</a></h4>
+<p>编写顺序</p>
+<pre><code class="language-sql">SELECT DISTINCT
+ &lt;select list&gt;
+FROM
+ &lt;left_table&gt; &lt;join_type&gt;
+JOIN
+ &lt;right_table&gt; ON &lt;join_condition&gt;
+WHERE
+ &lt;where_condition&gt;
+GROUP BY
+ &lt;group_by_list&gt;
+HAVING
+ &lt;having_condition&gt;
+ORDER BY
+ &lt;order_by_condition&gt;
+LIMIT
+ &lt;limit_params&gt;
+12345678910111213141516
+</code></pre>
+<p>执行顺序</p>
+<pre><code class="language-sql">FROM    &lt;left_table&gt;
+
+ON      &lt;join_condition&gt;
+
+&lt;join_type&gt;     JOIN    &lt;right_table&gt;
+
+WHERE       &lt;where_condition&gt;
+
+GROUP BY    &lt;group_by_list&gt;
+
+HAVING      &lt;having_condition&gt;
+
+SELECT DISTINCT     &lt;select list&gt;
+
+ORDER BY    &lt;order_by_condition&gt;
+
+LIMIT       &lt;limit_params&gt;
+</code></pre>
+<h4 id="2">2. 正则表达式使用<a class="headerlink" href="#2" title="Permanent link">&para;</a></h4>
+<p>正则表达式（Regular Expression）是指一个用来描述或者匹配一系列符合某个句法规则的字符串的单个字符串。</p>
+<table>
+<thead>
+<tr>
+<th>符号</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>^</td>
+<td>在字符串开始处进行匹配</td>
+</tr>
+<tr>
+<td>$</td>
+<td>在字符串末尾处进行匹配</td>
+</tr>
+<tr>
+<td>.</td>
+<td>匹配任意单个字符, 包括换行符</td>
+</tr>
+<tr>
+<td>[…]</td>
+<td>匹配出括号内的任意字符</td>
+</tr>
+<tr>
+<td>[^…]</td>
+<td>匹配不出括号内的任意字符</td>
+</tr>
+<tr>
+<td>a*</td>
+<td>匹配零个或者多个a(包括空串)</td>
+</tr>
+<tr>
+<td>a+</td>
+<td>匹配一个或者多个a(不包括空串)</td>
+</tr>
+<tr>
+<td>a?</td>
+<td>匹配零个或者一个a</td>
+</tr>
+<tr>
+<td>a1|a2</td>
+<td>匹配a1或a2</td>
+</tr>
+<tr>
+<td>a(m)</td>
+<td>匹配m个a</td>
+</tr>
+<tr>
+<td>a(m,)</td>
+<td>至少匹配m个a</td>
+</tr>
+<tr>
+<td>a(m,n)</td>
+<td>匹配m个a 到 n个a</td>
+</tr>
+<tr>
+<td>a(,n)</td>
+<td>匹配0到n个a</td>
+</tr>
+<tr>
+<td>(…)</td>
+<td>将模式元素组成单一元素</td>
+</tr>
+</tbody>
+</table>
+<pre><code>select * from emp where name regexp '^T';
+select * from emp where name regexp '2$';
+select * from emp where name regexp '[uvw]';
+12345
+</code></pre>
+<h4 id="3-mysql">3. MySQL 常用函数<a class="headerlink" href="#3-mysql" title="Permanent link">&para;</a></h4>
+<p>数字函数</p>
+<table>
+<thead>
+<tr>
+<th>函数名称</th>
+<th>作 用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ABS</td>
+<td>求绝对值</td>
+</tr>
+<tr>
+<td>SQRT</td>
+<td>求二次方根</td>
+</tr>
+<tr>
+<td>MOD</td>
+<td>求余数</td>
+</tr>
+<tr>
+<td>CEIL 和 CEILING</td>
+<td>两个函数功能相同，都是返回不小于参数的最小整数，即向上取整</td>
+</tr>
+<tr>
+<td>FLOOR</td>
+<td>向下取整，返回值转化为一个BIGINT</td>
+</tr>
+<tr>
+<td>RAND</td>
+<td>生成一个0~1之间的随机数，传入整数参数是，用来产生重复序列</td>
+</tr>
+<tr>
+<td>ROUND</td>
+<td>对所传参数进行四舍五入</td>
+</tr>
+<tr>
+<td>SIGN</td>
+<td>返回参数的符号</td>
+</tr>
+<tr>
+<td>POW 和 POWER</td>
+<td>两个函数的功能相同，都是所传参数的次方的结果值</td>
+</tr>
+<tr>
+<td>SIN</td>
+<td>求正弦值</td>
+</tr>
+<tr>
+<td>ASIN</td>
+<td>求反正弦值，与函数 SIN 互为反函数</td>
+</tr>
+<tr>
+<td>COS</td>
+<td>求余弦值</td>
+</tr>
+<tr>
+<td>ACOS</td>
+<td>求反余弦值，与函数 COS 互为反函数</td>
+</tr>
+<tr>
+<td>TAN</td>
+<td>求正切值</td>
+</tr>
+<tr>
+<td>ATAN</td>
+<td>求反正切值，与函数 TAN 互为反函数</td>
+</tr>
+<tr>
+<td>COT</td>
+<td>求余切值</td>
+</tr>
+</tbody>
+</table>
+<p>字符串函数</p>
+<table>
+<thead>
+<tr>
+<th>函数名称</th>
+<th>作 用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>LENGTH</td>
+<td>计算字符串长度函数，返回字符串的字节长度</td>
+</tr>
+<tr>
+<td>CONCAT</td>
+<td>合并字符串函数，返回结果为连接参数产生的字符串，参数可以使一个或多个</td>
+</tr>
+<tr>
+<td>INSERT</td>
+<td>替换字符串函数</td>
+</tr>
+<tr>
+<td>LOWER</td>
+<td>将字符串中的字母转换为小写</td>
+</tr>
+<tr>
+<td>UPPER</td>
+<td>将字符串中的字母转换为大写</td>
+</tr>
+<tr>
+<td>LEFT</td>
+<td>从左侧字截取符串，返回字符串左边的若干个字符</td>
+</tr>
+<tr>
+<td>RIGHT</td>
+<td>从右侧字截取符串，返回字符串右边的若干个字符</td>
+</tr>
+<tr>
+<td>TRIM</td>
+<td>删除字符串左右两侧的空格</td>
+</tr>
+<tr>
+<td>REPLACE</td>
+<td>字符串替换函数，返回替换后的新字符串</td>
+</tr>
+<tr>
+<td>SUBSTRING</td>
+<td>截取字符串，返回从指定位置开始的指定长度的字符换</td>
+</tr>
+<tr>
+<td>REVERSE</td>
+<td>字符串反转（逆序）函数，返回与原始字符串顺序相反的字符串</td>
+</tr>
+</tbody>
+</table>
+<p>日期函数</p>
+<table>
+<thead>
+<tr>
+<th>函数名称</th>
+<th>作 用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CURDATE 和 CURRENT_DATE</td>
+<td>两个函数作用相同，返回当前系统的日期值</td>
+</tr>
+<tr>
+<td>CURTIME 和 CURRENT_TIME</td>
+<td>两个函数作用相同，返回当前系统的时间值</td>
+</tr>
+<tr>
+<td>NOW 和 SYSDATE</td>
+<td>两个函数作用相同，返回当前系统的日期和时间值</td>
+</tr>
+<tr>
+<td>MONTH</td>
+<td>获取指定日期中的月份</td>
+</tr>
+<tr>
+<td>MONTHNAME</td>
+<td>获取指定日期中的月份英文名称</td>
+</tr>
+<tr>
+<td>DAYNAME</td>
+<td>获取指定曰期对应的星期几的英文名称</td>
+</tr>
+<tr>
+<td>DAYOFWEEK</td>
+<td>获取指定日期对应的一周的索引位置值</td>
+</tr>
+<tr>
+<td>WEEK</td>
+<td>获取指定日期是一年中的第几周，返回值的范围是否为 0〜52 或 1〜53</td>
+</tr>
+<tr>
+<td>DAYOFYEAR</td>
+<td>获取指定曰期是一年中的第几天，返回值范围是1~366</td>
+</tr>
+<tr>
+<td>DAYOFMONTH</td>
+<td>获取指定日期是一个月中是第几天，返回值范围是1~31</td>
+</tr>
+<tr>
+<td>YEAR</td>
+<td>获取年份，返回值范围是 1970〜2069</td>
+</tr>
+<tr>
+<td>TIME_TO_SEC</td>
+<td>将时间参数转换为秒数</td>
+</tr>
+<tr>
+<td>SEC_TO_TIME</td>
+<td>将秒数转换为时间，与TIME_TO_SEC 互为反函数</td>
+</tr>
+<tr>
+<td>DATE_ADD 和 ADDDATE</td>
+<td>两个函数功能相同，都是向日期添加指定的时间间隔</td>
+</tr>
+<tr>
+<td>DATE_SUB 和 SUBDATE</td>
+<td>两个函数功能相同，都是向日期减去指定的时间间隔</td>
+</tr>
+<tr>
+<td>ADDTIME</td>
+<td>时间加法运算，在原始时间上添加指定的时间</td>
+</tr>
+<tr>
+<td>SUBTIME</td>
+<td>时间减法运算，在原始时间上减去指定的时间</td>
+</tr>
+<tr>
+<td>DATEDIFF</td>
+<td>获取两个日期之间间隔，返回参数 1 减去参数 2 的值</td>
+</tr>
+<tr>
+<td>DATE_FORMAT</td>
+<td>格式化指定的日期，根据参数返回指定格式的值</td>
+</tr>
+<tr>
+<td>WEEKDAY</td>
+<td>获取指定日期在一周内的对应的工作日索引</td>
+</tr>
+</tbody>
+</table>
+<p>聚合函数</p>
+<table>
+<thead>
+<tr>
+<th>函数名称</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>MAX</td>
+<td>查询指定列的最大值</td>
+</tr>
+<tr>
+<td>MIN</td>
+<td>查询指定列的最小值</td>
+</tr>
+<tr>
+<td>COUNT</td>
+<td>统计查询结果的行数</td>
+</tr>
+<tr>
+<td>SUM</td>
+<td>求和，返回指定列的总和</td>
+</tr>
+<tr>
+<td>AVG</td>
+<td>求平均值，返回指定列数据的平均值</td>
+</tr>
+</tbody>
+</table>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../centos-network-device-naming/" class="btn btn-neutral float-left" title="centos-network-device-naming"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../iptables/" class="btn btn-neutral float-right" title="iptables">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+      <p>Copyright © 2022 - 2023 - lyvivian0077</p>
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../centos-network-device-naming/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../iptables/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>MySQL-table - 总有刁民想要害朕</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "MySQL-table";
+        var mkdocs_page_input_path = "mysql-table.markdown";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> 总有刁民想要害朕
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Welcome</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../ansbile/">ansbile</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../awk/">awk</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../Bash%E7%BC%96%E7%A8%8B%E8%B6%85%E8%AF%A6%E7%BB%86%E8%AF%AD%E6%B3%95%E6%80%BB%E7%BB%93/">Bash编程超详细语法总结</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../centos7-set-kernel/">centos7-set-kernel</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../centos-network-device-naming/">centos-network-device-naming</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../Explain%E8%AF%A6%E8%A7%A3%E4%B8%8E%E7%B4%A2%E5%BC%95%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/">Explain详解与索引最佳实践</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../iptables/">iptables</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../linux-lvm/">linux-lvm</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../Linux-Performance/">Linux Performance</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../Linux-shell-%E9%80%BB%E8%BE%91%E8%BF%90%E7%AE%97%E7%AC%A6-%E9%80%BB%E8%BE%91%E8%A1%A8%E8%BE%BE%E5%BC%8F%E8%AF%A6%E8%A7%A3/">Linux-shell-逻辑运算符-逻辑表达式详解</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../LVM%E9%80%BB%E8%BE%91%E5%8D%B7%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5%E5%8F%8ALVM%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/">LVM逻辑卷基本概念及LVM的工作原理</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../macOS%E8%BD%AF%E4%BB%B6%E7%BC%96%E8%AF%91%E6%97%B6%E6%89%BE%E4%B8%8D%E5%88%B0%E5%A4%B4%E6%96%87%E4%BB%B6%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95-%E6%9B%B4%E6%96%B010-15/">macOS软件编译时找不到头文件解决方法[更新10.15]</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../MB-MiB%E7%9A%84%E5%8C%BA%E5%88%AB/">MB_MiB的区别</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../megacli/">Megacliの基本操作</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../megaraid/">MegaRAID Policy</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../mysql/">MySQL</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">MySQL-table</a>
+    <ul class="current">
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../mysql%E3%82%92%E3%82%BD%E3%83%BC%E3%82%B9%E3%81%8B%E3%82%89%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB/">mysqlをソースからインストール</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../MySQL-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">1000行 MySQL 学习笔记，不怕你不会，就怕你不学！</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../python-decorator/">跨过这道装饰器的坎，或许你就升级了</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../python-dunder/">Python中下划线的5种含义</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../python-function/">Python传入参数的几种方法</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../python/">python</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../python-mysql/">python 操作 mysql基础补充</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../Python-Re-%E6%A8%A1%E5%9D%97%E8%B6%85%E5%85%A8%E8%A7%A3%E8%AF%BB/">Python Re 模块超全解读</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../Python%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%8B%BC%E6%8E%A5%E6%80%BB%E7%BB%93/">Python字符串拼接总结</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../Regular-Expression/">正規表現（Regular Expression）とは？</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../taged-VLAN%E3%81%A8untagedVLAN%E3%81%AE%E9%81%95%E3%81%84/">タグVLANとネイティブVLAN (PVID)の違い</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../ubnt/">ubnt</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../vim/">VIM</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../%E4%B8%80%E8%A1%8C-Python-%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0%E5%B9%B6%E8%A1%8C/">一行 Python 代码实现并行</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../about/">About</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">总有刁民想要害朕</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
+      <li>MySQL-table</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <p>=========================================================================================================================================</p>
+<h2 id="databasetable">指定的Database里的指定的Table容量<a class="headerlink" href="#databasetable" title="Permanent link">&para;</a></h2>
+<pre><code>SELECT 
+    table_name AS `Table`, 
+    round(((data_length + index_length) / 1024 / 1024), 2) `Size in MB` 
+FROM information_schema.TABLES 
+WHERE table_schema = &quot;$DB_NAME&quot;
+    AND table_name = &quot;$TABLE_NAME&quot;;
+
+mysql -uroot -e
+  &quot;SELECT TABLE_NAME, round(((data_length+index_length) / 1024 / 1024 / 1024), 2) AS 'Size (GB)'
+   FROM information_schema.tables 
+   WHERE table_schema = '$DB_NAME' AND table_name = '$TABLE_NAME';&quot;
+ - mysql55-dev# mysql -uroot -e &quot; SELECT TABLE_NAME, round(((data_length+index_length) / 1024 / 1024 / 1024), 2) AS 'Size (GB)' FROM information_schema.tables WHERE table_schema = 'tigrex_mygoods2' AND table_name = 'g5_apms_like';&quot;
+</code></pre>
+<h2 id="databasetable_1">指定的Database里的所有的Table容量<a class="headerlink" href="#databasetable_1" title="Permanent link">&para;</a></h2>
+<pre><code>[root@mysqlxxx log]# mysql -uroot -e &quot;SELECT TABLE_SCHEMA, TABLE_NAME, round(((data_length+index_length) / 1024 / 1024 ),2)  AS 'Size (MB)' FROM information_schema.tables  WHERE table_schema = 'zeroen_wp'ORDER BY (data_length + index_length) DESC ;&quot;
++--------------+--------------------------------+-----------+
+| TABLE_SCHEMA | TABLE_NAME                     | Size (GB) |
++--------------+--------------------------------+-----------+
+| zeroen_wp    | wp74e2b1options                |      0.39 |
+| zeroen_wp    | wp74e2b1postmeta               |      0.28 |
+| zeroen_wp    | wp74e2b1posts                  |      0.13 |
+| zeroen_wp    | wp74e2b1comments               |      0.09 |
+| zeroen_wp    | wp74e2b1users                  |      0.06 |
+| zeroen_wp    | wp74e2b1usermeta               |      0.05 |
+| zeroen_wp    | wp74e2b1terms                  |      0.05 |
+| zeroen_wp    | wp74e2b1termmeta               |      0.05 |
+| zeroen_wp    | wp74e2b1term_taxonomy          |      0.05 |
+| zeroen_wp    | wp74e2b1commentmeta            |      0.05 |
+| zeroen_wp    | wp74e2b1term_relationships     |      0.03 |
+| zeroen_wp    | wp74e2b1links                  |      0.03 |
+| zeroen_wp    | wp74e2b1aiowps_login_lockdown  |      0.02 |
+| zeroen_wp    | wp74e2b1aiowps_login_activity  |      0.02 |
+| zeroen_wp    | wp74e2b1aiowps_global_meta     |      0.02 |
+| zeroen_wp    | wp74e2b1aiowps_failed_logins   |      0.02 |
+| zeroen_wp    | wp74e2b1aiowps_events          |      0.02 |
+| zeroen_wp    | wp74e2b1aiowps_permanent_block |      0.02 |
++--------------+--------------------------------+-----------+
+[root@mysqlxxx log]#
+</code></pre>
+<h2 id="databasetable_2">所有的Database里的所有的Table容量<a class="headerlink" href="#databasetable_2" title="Permanent link">&para;</a></h2>
+<pre><code>SELECT 
+     table_schema as `Database`, 
+     table_name AS `Table`, 
+     round(((data_length + index_length) / 1024 / 1024), 2) `Size in MB` 
+FROM information_schema.TABLES 
+ORDER BY (data_length + index_length) DESC;
+ - mysql -uroot -e &quot;SELECT TABLE_SCHEMA, TABLE_NAME, round(((data_length+index_length) / 1024),2)  AS 'Size (GB)' FROM information_schema.tables  ORDER BY (data_length + index_length) DESC;&quot;
+ - mysql55-dev# mysql -uroot -e &quot; SELECT TABLE_NAME, round(((data_length+index_length) / 1024 / 1024 / 1024), 2) AS 'Size (GB)' FROM information_schema.tables ORDER BY (data_length + index_length) DESC;&quot;
+</code></pre>
+<h2 id="databasetable_3">指定的Database里的所有的Table容量<a class="headerlink" href="#databasetable_3" title="Permanent link">&para;</a></h2>
+<pre><code>mysql -uroot -e
+  &quot;SELECT TABLE_SCHEMA AS 'Database Name',
+   TABLE_NAME AS 'TABLE_NAME',
+   SUM(data_length+index_length) / 1024 / 1024 / 1024 AS 'Size (GB)'
+   FROM information_schema.tables 
+   WHERE table_schema = '$DB_NAME'
+   ORDER BY (data_length + index_length) DESC;&quot;
+
+ - mysql -uroot -e &quot;SELECT TABLE_SCHEMA, TABLE_NAME, round(((data_length+index_length) / 1024),2)  AS 'Size (GB)' FROM information_schema.tables WHERE table_schema = 'tigrex_mygoods' ORDER BY (data_length + index_length) DESC;&quot;
+</code></pre>
+<pre><code>use databaseName;
+select  
+table_name, engine, table_rows as tbl_rows, avg_row_length as rlen,  
+floor((data_length+index_length)/1024/1024) as allMB,  #総容量
+floor((data_length)/1024/1024) as dMB,  #データ容量
+floor((index_length)/1024/1024) as iMB   #インデックス容量
+from information_schema.tables  
+where table_schema=database()  
+order by (data_length+index_length) desc; 
+</code></pre>
+<p>=========================================================================================================================================</p>
+<pre><code>mysql&gt; select TABLE_NAME from information_schema.TABLES where TABLE_SCHEMA = 'spacerental2_kikou' and  TABLE_TYPE = 'VIEW';
++------------------------+
+| TABLE_NAME             |
++------------------------+
+| roomtimetable_chk_v01  |
+| roomtimetable_disp     |
+| roomtimetable_disp_v01 |
+| roomtimetable_disp_v02 |
+| sagakuview             |
+| sagakuview1            |
+| sagakuview_Ytmp        |
+| sagakuview_n           |
+| sagakuview_ngaku       |
+| sagakuview_s           |
+| sagakuview_sgaku       |
+| sagakuview_y           |
+| sagakuview_ygaku       |
+| yoyakubihintable_v01   |
+| yoyakubihintable_v02   |
+| yoyakubihintable_v03   |
+| yoyakubihintable_v04   |
++------------------------+
+17 rows in set (0.01 sec)
+</code></pre>
+<h2 id="database">指定的Database里的総容量<a class="headerlink" href="#database" title="Permanent link">&para;</a></h2>
+<pre><code>mysql# mysql -uroot -e &quot;SELECT TABLE_SCHEMA, SUM(data_length+index_length) / 1024 / 1024 / 1024 AS 'Size (GB)' FROM information_schema.tables WHERE table_schema = 'test45_wdpress';&quot;
+
+mysql&gt; sELECT TABLE_SCHEMA, SUM(data_length+index_length) / 1024 / 1024 / 1024 AS 'Size (GB)' FROM information_schema.tables WHERE table_schema = 'test45_wdpress';
++----------------+----------------+
+| TABLE_SCHEMA   | Size (GB)      |
++----------------+----------------+
+| test45_wdpress | 0.000793457031 |
++----------------+----------------+
+1 row in set (0.01 sec)
+
+mysql&gt;
+</code></pre>
+<h2 id="database_1">複数Databaseの各容量<a class="headerlink" href="#database_1" title="Permanent link">&para;</a></h2>
+<pre><code>mysql&gt; SELECT TABLE_SCHEMA, SUM(data_length+index_length) / 1024 / 1024 AS 'Size'  FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA IN  (&quot;dbname_table1&quot;, &quot;dbname_table2&quot;) GROUP BY TABLE_SCHEMA;
++--------------------+--------------+
+| TABLE_SCHEMA       | Size         |
++--------------------+--------------+
+| dbname_table1      | 688.31250000 |
+| dbname_table2      | 657.39062500 |
++--------------------+--------------+
+2 rows in set (0.09 sec)
+
+mysql&gt;
+</code></pre>
+<h2 id="database-and">複数Databaseの総容量 and 各容量<a class="headerlink" href="#database-and" title="Permanent link">&para;</a></h2>
+<pre><code>mysql&gt; SELECT  SUM(data_length+index_length) / 1024 / 1024 / 1024 AS 'Size GB'  FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA like &quot;dbname_table_%&quot;  ;
++----------------+
+| Size GB        |
++----------------+
+| 3.150512695313 |
++----------------+
+1 row in set (0.58 sec)
+
+mysql&gt; SELECT TABLE_SCHEMA, SUM(data_length+index_length) / 1024 / 1024 AS 'Size'  FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA like &quot;dbname_table_%&quot;  GROUP BY TABLE_SCHEMA;
++---------------------------+--------------+
+| TABLE_SCHEMA              | Size         |
++---------------------------+--------------+
+| dbname_table_1            | 661.78125000 |
+| dbname_table_2            | 158.42187500 |
+| dbname_table_3            | 472.39062500 |
+| dbname_table_4            | 196.60937500 |
+| dbname_table_5            |  82.23437500 |
+| dbname_table_6            | 479.35937500 |
+| dbname_table_7            | 403.57812500 |
+| dbname_table_8            | 197.03125000 |
+| dbname_table_9            | 156.93750000 |
+| dbname_table_10           | 400.75000000 |
+| dbname_table_11           |  17.03125000 |
++---------------------------+--------------+
+11 rows in set (0.60 sec)
+
+mysql&gt;
+</code></pre>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../mysql/" class="btn btn-neutral float-left" title="MySQL"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../mysql%E3%82%92%E3%82%BD%E3%83%BC%E3%82%B9%E3%81%8B%E3%82%89%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB/" class="btn btn-neutral float-right" title="mysqlをソースからインストール">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+      <p>Copyright © 2022 - 2023 - lyvivian0077</p>
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../mysql/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../mysql%E3%82%92%E3%82%BD%E3%83%BC%E3%82%B9%E3%81%8B%E3%82%89%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>
