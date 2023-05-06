@@ -1,0 +1,1820 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../ubnt/">
+      
+      
+        <link rel="next" href="../about/">
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.9">
+    
+    
+      
+        <title>VIM - 总有刁民想要害朕</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.85bb2934.min.css">
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#build-vim" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="总有刁民想要害朕" class="md-header__button md-logo" aria-label="总有刁民想要害朕" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            总有刁民想要害朕
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              VIM
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="总有刁民想要害朕" class="md-nav__button md-logo" aria-label="总有刁民想要害朕" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    总有刁民想要害朕
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        Welcome
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ansbile/" class="md-nav__link">
+        ansbile
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../awk/" class="md-nav__link">
+        awk
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../MB-MiB%E7%9A%84%E5%8C%BA%E5%88%AB/" class="md-nav__link">
+        MB_MiB的区别
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+          MegaRAID
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          MegaRAID
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../megacli/" class="md-nav__link">
+        megacli
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../megaraid/" class="md-nav__link">
+        megaraid
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+          MySQL
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_6">
+          <span class="md-nav__icon md-icon"></span>
+          MySQL
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Explain%E8%AF%A6%E8%A7%A3%E4%B8%8E%E7%B4%A2%E5%BC%95%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/" class="md-nav__link">
+        Explain详解与索引最佳实践
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mysql/" class="md-nav__link">
+        Mysql参数优化
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mysql-table/" class="md-nav__link">
+        MySQL-table
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mysql%E3%82%92%E3%82%BD%E3%83%BC%E3%82%B9%E3%81%8B%E3%82%89%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB/" class="md-nav__link">
+        MySQLビルド
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../MySQL-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="md-nav__link">
+        学习笔记
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+          Python Tips
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_7">
+          <span class="md-nav__icon md-icon"></span>
+          Python Tips
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-config/" class="md-nav__link">
+        Python程序配置文件管理
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-decorator/" class="md-nav__link">
+        装饰器
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-dunder/" class="md-nav__link">
+        5种下划线
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-function/" class="md-nav__link">
+        传入参数的几种方法
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python/" class="md-nav__link">
+        非常规的技巧
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-mysql/" class="md-nav__link">
+        操作mysql基础
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Python-Re-%E6%A8%A1%E5%9D%97%E8%B6%85%E5%85%A8%E8%A7%A3%E8%AF%BB/" class="md-nav__link">
+        Re 模块
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Python%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%8B%BC%E6%8E%A5%E6%80%BB%E7%BB%93/" class="md-nav__link">
+        字符串拼接总结
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E4%B8%80%E8%A1%8C-Python-%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0%E5%B9%B6%E8%A1%8C/" class="md-nav__link">
+        代码并行
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Regular-Expression/" class="md-nav__link">
+        正規表現
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../taged-VLAN%E3%81%A8untagedVLAN%E3%81%AE%E9%81%95%E3%81%84/" class="md-nav__link">
+        タグVLAN
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Bash%E7%BC%96%E7%A8%8B%E8%B6%85%E8%AF%A6%E7%BB%86%E8%AF%AD%E6%B3%95%E6%80%BB%E7%BB%93/" class="md-nav__link">
+        Bash编程超详细语法总结
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../iptables/" class="md-nav__link">
+        iptables
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../linux-lvm/" class="md-nav__link">
+        linux-lvm
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../centos7-set-kernel/" class="md-nav__link">
+        centos7-set-kernel
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../centos-network-device-naming/" class="md-nav__link">
+        centos-network-device-naming
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Linux-Performance/" class="md-nav__link">
+        Linux Performance
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Linux-shell-%E9%80%BB%E8%BE%91%E8%BF%90%E7%AE%97%E7%AC%A6-%E9%80%BB%E8%BE%91%E8%A1%A8%E8%BE%BE%E5%BC%8F%E8%AF%A6%E8%A7%A3/" class="md-nav__link">
+        Linux-shell-逻辑运算符-逻辑表达式详解
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../LVM%E9%80%BB%E8%BE%91%E5%8D%B7%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5%E5%8F%8ALVM%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/" class="md-nav__link">
+        LVM逻辑卷基本概念及LVM的工作原理
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../macOS%E8%BD%AF%E4%BB%B6%E7%BC%96%E8%AF%91%E6%97%B6%E6%89%BE%E4%B8%8D%E5%88%B0%E5%A4%B4%E6%96%87%E4%BB%B6%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95-%E6%9B%B4%E6%96%B010-15/" class="md-nav__link">
+        macOS软件编译时找不到头文件解决方法[更新10.15]
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ubnt/" class="md-nav__link">
+        ubnt
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          VIM
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        VIM
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#build-vim" class="md-nav__link">
+    build vim
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../about/" class="md-nav__link">
+        About
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#build-vim" class="md-nav__link">
+    build vim
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h2 id="build-vim">build vim<a class="headerlink" href="#build-vim" title="Permanent link">&para;</a></h2>
+<pre><code class="language-shell">$ ./configure --prefix=$HOME/myetc \
+--with-features=huge \
+--enable-gui=gnome2 \
+--enable-perlinterp \
+--enable-pythoninterp \
+--enable-python3interp \
+--enable-fail-if-missing \
+--disable-selinux \
+--enable-pythoninterp=dynamic \
+--with-python-config-dir=/home/user/.pyenv/versions/2.7.14/lib/python2.7/config \
+--enable-python3interp=dynamic \
+--with-python3-config-dir=/home/user/.pyenv/versions/3.6.5/lib/python3.6/config-3.6m \
+--enable-rubyinterp=dynamic \
+--enable-cscope \
+--enable-fontset \
+--enable-multibyte \
+vi_cv_path_python3=/home/uers/.pyenv/versions/3.6.5/bin/python3.6
+
+make
+make install
+vim ~/.zshrc
+alias vi='~/myetc/bin/vim'
+alias vim='~/myetc/bin/vim'
+
+
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>キー入力</th>
+<th>動作</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>vi ファイル名</td>
+<td>対象ファイルを開く（複数ファイル可）</td>
+</tr>
+<tr>
+<td>vi +n ファイル名</td>
+<td>n 行目から対象ファイルを開く</td>
+</tr>
+<tr>
+<td>vi -r ファイル名</td>
+<td>壊れたファイルのリカバリ</td>
+</tr>
+<tr>
+<td>i</td>
+<td>カーソルの左から入力開始</td>
+</tr>
+<tr>
+<td>I</td>
+<td>行頭から入力開始</td>
+</tr>
+<tr>
+<td>a</td>
+<td>カーソルの右から入力開始</td>
+</tr>
+<tr>
+<td>A</td>
+<td>行末から入力開始</td>
+</tr>
+<tr>
+<td>ZZ</td>
+<td>vi を終了（内容が変更されている場合は保存）</td>
+</tr>
+<tr>
+<td>:wq</td>
+<td>ファイルに保存、vi を終了</td>
+</tr>
+<tr>
+<td>:#,# w</td>
+<td>#行目から#行目までを保存</td>
+</tr>
+<tr>
+<td>:q</td>
+<td>vi を終了（内容が変更されいる場合は警告）</td>
+</tr>
+<tr>
+<td>:q!</td>
+<td>vi を強制終了（内容が変更されていても保存しない）</td>
+</tr>
+<tr>
+<td>:ls</td>
+<td>バッファリストの表示</td>
+</tr>
+<tr>
+<td>:b バッファ</td>
+<td>バッファを表示</td>
+</tr>
+<tr>
+<td>:bn</td>
+<td>次のバッファを表示</td>
+</tr>
+<tr>
+<td>:bp</td>
+<td>前のバッファを表示</td>
+</tr>
+<tr>
+<td>[n] x</td>
+<td>カーソル上の1文字削除</td>
+</tr>
+<tr>
+<td>[n] X</td>
+<td>カーソルの左の文字を1文字削除</td>
+</tr>
+<tr>
+<td>p</td>
+<td>バッファ内のテキストを挿入（文字はカーソルの右、行はカーソルの下に挿入）</td>
+</tr>
+<tr>
+<td>P</td>
+<td>バッファ内のテキストを挿入（文字はカーソルの左、行はカーソルの上に挿入）</td>
+</tr>
+<tr>
+<td>:r [ファイル名]</td>
+<td>ファイルの中身を挿入する</td>
+</tr>
+<tr>
+<td>[n] d  目的語 \ d [n] 目的語</td>
+<td>目的語一覧:</td>
+</tr>
+<tr>
+<td>:::</td>
+<td>w - カーソル位置から空白を含む単語の末尾まで削除</td>
+</tr>
+<tr>
+<td>:::</td>
+<td>e - カーソル位置から空白を含まない単語の末尾まで削除</td>
+</tr>
+<tr>
+<td>:::</td>
+<td>$ - カーソル位置から行末まで削除</td>
+</tr>
+<tr>
+<td>:::</td>
+<td>d - 1行削除切り取り（カット）</td>
+</tr>
+<tr>
+<td>/&lt;文字列&gt;</td>
+<td>文字列 を検索する（順方向）</td>
+</tr>
+<tr>
+<td>?&lt;文字列&gt;</td>
+<td>文字列を検索する（逆方向）</td>
+</tr>
+<tr>
+<td>n</td>
+<td>順方向へ検索する</td>
+</tr>
+<tr>
+<td>N</td>
+<td>逆方向へ検索する</td>
+</tr>
+<tr>
+<td>%</td>
+<td>(,[に対して対応する ),] や } を検索</td>
+</tr>
+<tr>
+<td>r</td>
+<td>カーソルの下の文字を置き換える</td>
+</tr>
+<tr>
+<td>[n] c 目的語 \ c [n] 目的語</td>
+<td>目的語一覧:</td>
+</tr>
+<tr>
+<td>:::</td>
+<td>w - 単語の一部を変更する</td>
+</tr>
+<tr>
+<td>:::</td>
+<td>$ - 行の一部を変更する</td>
+</tr>
+<tr>
+<td>:s/[old]/[new]</td>
+<td>[old]を[new]に置換する</td>
+</tr>
+<tr>
+<td>:::</td>
+<td>現在行の最初の old を new に置換する :s/old/new</td>
+</tr>
+<tr>
+<td>:::</td>
+<td>現在行の全ての old を new に置換する :s/old/new/g</td>
+</tr>
+<tr>
+<td>:::</td>
+<td>2つの # 間で語句を置換する :#,#s/old/new/g</td>
+</tr>
+<tr>
+<td>:::</td>
+<td>ファイルの中の全ての検索語句を置換する: :%s/old/new/g</td>
+</tr>
+<tr>
+<td>:::</td>
+<td>'c' を加えると置換の度に確認を求める :%s/old/new/gc</td>
+</tr>
+<tr>
+<td>CTRL-g</td>
+<td>ファイル内での位置とファイルの状態を表示</td>
+</tr>
+<tr>
+<td>[n] Shift-g</td>
+<td>ファイル内のn行に移動（nが無ければファイル末に移動）</td>
+</tr>
+<tr>
+<td>:sp [ファイル]</td>
+<td>ウインドウを横に分割</td>
+</tr>
+<tr>
+<td>:vs [ファイル]</td>
+<td>ウインドウを縦に分割</td>
+</tr>
+<tr>
+<td>: q , :only</td>
+<td>カーソルのあるウィンドウ以外を全部閉じる</td>
+</tr>
+<tr>
+<td>:new</td>
+<td>空の横ウインドウを開く</td>
+</tr>
+<tr>
+<td>:vnew</td>
+<td>空の縦ウインドウを開く</td>
+</tr>
+<tr>
+<td>Ctrl-w w</td>
+<td>次のウインドウに移動</td>
+</tr>
+<tr>
+<td>Ctrl-w p</td>
+<td>前のウインドウに移動</td>
+</tr>
+<tr>
+<td>Ctrl-w o</td>
+<td>現在のウインドウ以外を閉じる</td>
+</tr>
+<tr>
+<td>u</td>
+<td>直前の操作を取りやめる</td>
+</tr>
+<tr>
+<td>U</td>
+<td>行全体の操作を取りやめる</td>
+</tr>
+<tr>
+<td>Ctrl-R</td>
+<td>取り消しの取り消し</td>
+</tr>
+<tr>
+<td>.</td>
+<td>直前の操作の繰り返し</td>
+</tr>
+<tr>
+<td>:! [外部コマンド]</td>
+<td>外部シェルコマンドが実行</td>
+</tr>
+<tr>
+<td>U</td>
+<td>行全体の操作を取りやめる</td>
+</tr>
+<tr>
+<td>:set number、 :set nu</td>
+<td>行番号を表示</td>
+</tr>
+<tr>
+<td>:set no number、 :set nonu</td>
+<td>行番号の表示をやめる</td>
+</tr>
+<tr>
+<td>:set showmode</td>
+<td>現在のモードを表示</td>
+</tr>
+<tr>
+<td>:set showmatch</td>
+<td>() や {} の対応を報告</td>
+</tr>
+<tr>
+<td>:set ignorecase</td>
+<td>大文字/小文字の区別なく検索</td>
+</tr>
+<tr>
+<td>:set autoindent</td>
+<td>自動インデントモード</td>
+</tr>
+<tr>
+<td>:set noautoindent</td>
+<td>自動インデントモードをやめる</td>
+</tr>
+<tr>
+<td>:set all</td>
+<td>すべてのオプションを表示</td>
+</tr>
+<tr>
+<td>:e [ファイル]</td>
+<td>ファイルを開く</td>
+</tr>
+<tr>
+<td>:syntax on</td>
+<td>キーワードをハイライト表示する</td>
+</tr>
+<tr>
+<td>:vert diffsplit [ファイル]</td>
+<td>今のファイルと、他のファイルとの差分を取るコマンド</td>
+</tr>
+<tr>
+<td>:Tutorial</td>
+<td>30分程度のVi利用方法のチュートリアル</td>
+</tr>
+</tbody>
+</table>
+<p><html></p>
+<div id="main">
+          <h1>Vimの使い方 基本操作まとめ</h1>
+          <p><strong>Vim</strong>の<strong>使い方</strong>, 特に自分がよく使う<strong>基本操作</strong>をまとめてみました.</p>
+          <h2>目次</h2>
+          <ul class="index">
+            <li><a href="#edit">編集, 保存, 終了</a></li>
+            <li><a href="#move">移動系</a></li>
+            <li><a href="#mode">モード変更</a></li>
+            <li><a href="#del">削除, コピー</a></li>
+            <li><a href="#search">検索</a></li>
+            <li><a href="#undo">Undo, Redo, 繰り返し</a></li>
+            <li><a href="#indent">インデント</a></li>
+            <li><a href="#substitution">置換</a></li>
+            <li><a href="#window">ウィンドウ操作</a></li>
+            <li><a href="#tab">タブ</a></li>
+            <li><a href="#increment">インクリメント, デクリメント</a></li>
+            <li><a href="#attention">注意</a></li>
+          </ul>
+          <h2 id="edit">編集, 保存, 終了</h2>
+          <table>
+            <thead>
+              <tr class="even">
+                <th>コマンド</th>
+                <th>動作</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="odd">
+                <td>:e [file]</td>
+                <td>fileを開く</td>
+              </tr>
+              <tr class="even">
+                <td>:e.</td>
+                <td>エクスプローラーを開く</td>
+              </tr>
+              <tr class="odd">
+                <td>:w</td>
+                <td>保存</td>
+              </tr>
+              <tr class="even">
+                <td>:q</td>
+                <td>終了</td>
+              </tr>
+              <tr class="odd">
+                <td>:q!</td>
+                <td>保存せず終了</td>
+              </tr>
+              <tr class="even">
+                <td>ZZ</td>
+                <td>保存して終了</td>
+              </tr>
+              <tr class="odd">
+                <td>ZQ</td>
+                <td>保存せずに終了</td>
+              </tr>
+            </tbody>
+          </table>
+          <h2 id="move">移動系</h2>
+          <table>
+            <thead>
+              <tr class="even">
+                <th>コマンド</th>
+                <th>動作</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="odd">
+                <td>h, j, k, l</td>
+                <td>左, 下, 上, 右</td>
+              </tr>
+              <tr class="even">
+                <td>gj, gk</td>
+                <td>下, 上に1行移動. (エディタで表示されている行上で移動, つまり, エディタの横幅の制約によって行が折り返されている場合でも, 移動可能)</td>
+              </tr>
+              <tr class="odd">
+                <td>w</td>
+                <td>1単語分進む</td>
+              </tr>
+              <tr class="even">
+                <td>W</td>
+                <td>1単語分進む(記号では区切られないので, 次のスペースや, 改行文字まで飛ぶ)</td>
+              </tr>
+              <tr class="odd">
+                <td>b</td>
+                <td>1単語分戻る</td>
+              </tr>
+              <tr class="even">
+                <td>B</td>
+                <td>1単語分戻る(記号では区切られないので, 前のスペースや, 改行文字まで飛ぶ)</td>
+              </tr>
+              <tr class="odd">
+                <td>f[文字]</td>
+                <td>次の[文字]まで飛ぶ</td>
+              </tr>
+              <tr class="even">
+                <td>F[文字]</td>
+                <td>前の[文字]まで飛ぶ</td>
+              </tr>
+              <tr class="odd">
+                <td>t[文字]</td>
+                <td>次の[文字]の手前まで飛ぶ</td>
+              </tr>
+              <tr class="even">
+                <td>T[文字]</td>
+                <td>前の[文字]の次まで飛ぶ</td>
+              </tr>
+              <tr class="odd">
+                <td>;</td>
+                <td>f, F, t, Tで検索した文字を同方向に繰り返し検索する</td>
+              </tr>
+              <tr class="even">
+                <td>,</td>
+                <td>f, F, t, Tで検索した文字を逆方向に繰り返し検索する</td>
+              </tr>
+              <tr class="odd">
+                <td>g;</td>
+                <td>直前に変更した位置にカーソルを移動(繰り返し入力することで, 変更リストを遡る)</td>
+              </tr>
+              <tr class="even">
+                <td>g,</td>
+                <td><span class="code">g#</span>を使用して遡った変更リストを逆順に進め, カーソルを移動する.</td>
+              </tr>
+              <tr class="odd">
+                <td>gg</td>
+                <td>ファイルの先頭に移動</td>
+              </tr>
+              <tr class="even">
+                <td>G</td>
+                <td>ファイルの最後に移動</td>
+              </tr>
+              <tr class="odd">
+                <td>[数値]gg, [数値]G, :[数値]</td>
+                <td>[数値]行に移動</td>
+              </tr>
+              <tr class="even">
+                <td>H, M, L</td>
+                <td>画面に表示されている行について, 最初の行(H), 真ん中の行(M), 最後の行(L)に移動</td>
+              </tr>
+              <tr class="odd">
+                <td>0</td>
+                <td>行の先頭に移動</td>
+              </tr>
+              <tr class="even">
+                <td>^</td>
+                <td>行のテキスト部分の先頭に移動</td>
+              </tr>
+              <tr class="odd">
+                <td>$</td>
+                <td>行の最後に移動</td>
+              </tr>
+              <tr class="even">
+                <td>%</td>
+                <td>対応する括弧に移動</td>
+              </tr>
+              <tr class="odd">
+                <td>(</td>
+                <td>文単位での移動. 前の文の先頭に移動</td>
+              </tr>
+              <tr class="even">
+                <td>)</td>
+                <td>文単位での移動. 後ろの文の先頭に移動</td>
+              </tr>
+              <tr class="odd">
+                <td>{</td>
+                <td>段落単位での移動. 前の段落の先頭に移動</td>
+              </tr>
+              <tr class="even">
+                <td>}</td>
+                <td>段落単位での移動. 後ろの段落の先頭に移動</td>
+              </tr>
+              <tr class="odd">
+                <td>Ctrl-u</td>
+                <td>半画面分戻る</td>
+              </tr>
+              <tr class="even">
+                <td>Ctrl-d</td>
+                <td>半画面分進む</td>
+              </tr>
+              <tr class="odd">
+                <td>Ctrl-b</td>
+                <td>1画面分戻る</td>
+              </tr>
+              <tr class="even">
+                <td>Ctrl-f</td>
+                <td>1画面分進む</td>
+              </tr>
+              <tr class="odd">
+                <td>Ctrl-o</td>
+                <td>ジャンプリストを遡ってカーソルを移動する(検索や行数指定移動などがジャンプリストに保存されている)</td>
+              </tr>
+              <tr class="even">
+                <td>Ctrl-i</td>
+                <td>ジャンプリストを進めてカーソルを移動する(検索や行数指定移動などがジャンプリストに保存されている)</td>
+              </tr>
+              <tr class="odd">
+                <td></td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+          <h2 id="mode">モード変更</h2>
+          <table>
+            <thead>
+              <tr class="even">
+                <th>コマンド</th>
+                <th>動作</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="odd">
+                <td>esc</td>
+                <td>ノーマルモードに戻る</td>
+              </tr>
+              <tr class="even">
+                <td>Ctrl-[</td>
+                <td>ノーマルモードに戻る</td>
+              </tr>
+              <tr class="odd">
+                <td>i</td>
+                <td>カーソル位置からインサートモードに入る</td>
+              </tr>
+              <tr class="even">
+                <td>a</td>
+                <td>カーソルの直後からインサートモードに入る</td>
+              </tr>
+              <tr class="odd">
+                <td>I</td>
+                <td>行頭からインサートモードに入る</td>
+              </tr>
+              <tr class="even">
+                <td>A</td>
+                <td>行末からインサートモードに入る</td>
+              </tr>
+              <tr class="odd">
+                <td>Ctrl-o(インサートモード中に)</td>
+                <td>インサートノーマルモードに入る(インサートモード中に1コマンドのみノーマルモードのコマンドを使用できる)</td>
+              </tr>
+              <tr class="even">
+                <td>v</td>
+                <td>ビジュアルモードに入る</td>
+              </tr>
+              <tr class="odd">
+                <td>V</td>
+                <td>行単位の選択をするビジュアルモードに入る</td>
+              </tr>
+              <tr class="even">
+                <td>Ctrl-v</td>
+                <td>矩形選択をするビジュアルモードに入る</td>
+              </tr>
+              <tr class="odd">
+                <td>gv</td>
+                <td>前回選択した範囲が再選択された状態でビジュアルモードに入る</td>
+              </tr>
+              <tr class="even">
+                <td>:</td>
+                <td>コマンドラインモードに入る(続けてコマンドを打ち, Enterで実行)</td>
+              </tr>
+              <tr class="odd">
+                <td></td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+          <p>矩形選択の使い方については, <a href="visual_block.html">｢矩形選択モードの使い方｣</a>でも解説していますので, よろしければ参考になさってください.</p>
+          <h2 id="del">削除, コピー</h2>
+          <table>
+            <thead>
+              <tr class="even">
+                <th>コマンド</th>
+                <th>動作</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="odd">
+                <td>x</td>
+                <td>カーソル上の文字を消す</td>
+              </tr>
+              <tr class="even">
+                <td>s</td>
+                <td>カーソル上の文字を消して, インサートモードに入る</td>
+              </tr>
+              <tr class="odd">
+                <td>dd</td>
+                <td>カーソルがある行を消す</td>
+              </tr>
+              <tr class="even">
+                <td>dw</td>
+                <td>カーソル位置から1単語分削除する</td>
+              </tr>
+              <tr class="odd">
+                <td>diw</td>
+                <td>カーソル位置にある単語を1つ削除する</td>
+              </tr>
+              <tr class="even">
+                <td>dt(</td>
+                <td>カーソル位置から, 次に最初に出現する<span class="code">(</span>までを削除する</td>
+              </tr>
+              <tr class="odd">
+                <td>cc</td>
+                <td>カーソルがある行を消して, インサートモードに入る</td>
+              </tr>
+              <tr class="even">
+                <td>cw</td>
+                <td>カーソル位置から1単語分削除して, インサートモードに入る</td>
+              </tr>
+              <tr class="odd">
+                <td>ciw</td>
+                <td>カーソル位置にある単語を1つ削除して, インサートモードに入る</td>
+              </tr>
+              <tr class="even">
+                <td>ct(</td>
+                <td>カーソル位置から, 次に最初に出現する<span class="code">(</span>までを削除して, インサートモードに入る</td>
+              </tr>
+              <tr class="odd">
+                <td>D</td>
+                <td>カーソル位置から行末まで削除</td>
+              </tr>
+              <tr class="even">
+                <td>C</td>
+                <td>カーソル位置から行末まで削除して, インサートモードに入る</td>
+              </tr>
+              <tr class="odd">
+                <td>yy</td>
+                <td>カーソルがある行をコピー</td>
+              </tr>
+              <tr class="even">
+                <td>y</td>
+                <td>ビジュアルモードで選択されている部分をコピー</td>
+              </tr>
+              <tr class="odd">
+                <td>p</td>
+                <td>カーソル行の下の行にペースト</td>
+              </tr>
+              <tr class="even">
+                <td>P</td>
+                <td>カーソル行の上の行にペースト</td>
+              </tr>
+              <tr class="odd">
+                <td>Ctrl-r 0(ゼロ)(インサートモード中に)</td>
+                <td>レジスタ0に保存されている文字列を貼り付ける. 通常, yを使用してコピーした文字列は, レジスタ0に保存される.</td>
+              </tr>
+              <!-- <tr>
+                <td></td>
+                <td></td>
+              </tr> -->
+            </tbody>
+          </table>
+          <h2 id="search">検索</h2>
+          <table>
+            <thead>
+              <tr class="even">
+                <th>コマンド</th>
+                <th>動作</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="odd">
+                <td>/</td>
+                <td>続けて文字を打ち, Enterで文字列を確定し, 後方検索をかける</td>
+              </tr>
+              <tr class="even">
+                <td>?</td>
+                <td>続けて文字を打ち, Enterで文字列を確定し, 前方検索をかける</td>
+              </tr>
+              <tr class="odd">
+                <td>*</td>
+                <td>カーソル下の単語を, 後方検索する</td>
+              </tr>
+              <tr class="even">
+                <td>#</td>
+                <td>カーソル下の単語を, 前方検索する</td>
+              </tr>
+              <tr class="odd">
+                <td>g*</td>
+                <td>カーソル下の単語を含む文字列を, 後方検索する</td>
+              </tr>
+              <tr class="even">
+                <td>g#</td>
+                <td>カーソル下の単語を含む文字列を, 前方検索する</td>
+              </tr>
+              <tr class="odd">
+                <td>n</td>
+                <td>次の単語に移る</td>
+              </tr>
+              <tr class="even">
+                <td>N</td>
+                <td>前の単語に移る</td>
+              </tr>
+              <tr class="odd">
+                <td></td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+          <h2 id="undo">Undo, Redo, 繰り返し</h2>
+          <table>
+            <thead>
+              <tr class="even">
+                <th>コマンド</th>
+                <th>動作</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="odd">
+                <td>u</td>
+                <td>Undo</td>
+              </tr>
+              <tr class="even">
+                <td>Ctrl-r</td>
+                <td>Redo</td>
+              </tr>
+              <tr class="odd">
+                <td>.</td>
+                <td>直前の操作の繰り返し</td>
+              </tr>
+            </tbody>
+          </table>
+          <p>Vimでコマンドを繰り返したいときに非常に便利な機能として, <span class="code">マクロ</span>があります. 任意のコマンドを記憶させて, それをいつでも繰り返せるようにできるというものです. 使い方を｢<a href="macro.html">Vimのマクロの使い方</a>｣, マクロを使った便利操作の一例を｢<a href="serno.html">Vimでマクロを使って連番の文を簡単に入力する方法</a>｣で解説しておりますので, よろしければ参考になさって下さい.</p>
+          <h2 id="indent">インデント</h2>
+          <table>
+            <thead>
+              <tr class="even">
+                <th>コマンド</th>
+                <th>動作</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="odd">
+                <td>=</td>
+                <td>カーソルがある行をインデント. ビジュアルモードで範囲を選択していれば, その範囲をインデント</td>
+              </tr>
+              <tr class="even">
+                <td>&gt;&gt;</td>
+                <td>インデントを追加</td>
+              </tr>
+              <tr class="odd">
+                <td>&lt;&lt;</td>
+                <td>インデントを削除</td>
+              </tr>
+            </tbody>
+          </table>
+          <h2 id="substitution">置換</h2>
+          <table>
+            <thead>
+              <tr class="even">
+                <th>コマンド</th>
+                <th>動作</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="odd">
+                <td>r[文字]</td>
+                <td>カーソル上の文字を[文字]に置換</td>
+              </tr>
+              <tr class="even">
+                <td>:%s/before/after/g</td>
+                <td>ファイル上の全ての"before"を"after"に置換</td>
+              </tr>
+              <tr class="odd">
+                <td>:s/before/after/g</td>
+                <td>カーソルの行の全ての"before"を"after"に置換</td>
+              </tr>
+              <tr class="even">
+                <td>:10,20s/before/after/g</td>
+                <td>10~20行目の全ての"before"を"after"に置換</td>
+              </tr>
+              <tr class="odd">
+                <td>:'&lt;,'&gt;s/before/after/g</td>
+                <td>ビジュアルモードで選択中の範囲の全ての"before"を"after"に置換. " '&lt;,'&gt; "の部分は, 範囲を選択中に":"を押すと自動的に出ます.</td>
+              </tr>
+            </tbody>
+          </table>
+          <p>置換については, <a href="substitution.html">｢Vimの置換コマンドの使い方｣</a>でも解説していますので, よろしければ参考になさってください.</p>
+          <h2 id="window">ウィンドウ操作</h2>
+          <table>
+            <thead>
+              <tr class="even">
+                <th>コマンド</th>
+                <th>動作</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="odd">
+                <td>:sp [file]</td>
+                <td>ウィンドウを横に分割し, fileを開く(file名はなくても良い)</td>
+              </tr>
+              <tr class="even">
+                <td>:vs [file]</td>
+                <td>ウィンドウを縦に分割し, fileを開く(file名はなくても良い)</td>
+              </tr>
+              <tr class="odd">
+                <td>Ctrl-w s</td>
+                <td>ウィンドウを横に分割する</td>
+              </tr>
+              <tr class="even">
+                <td>Ctrl-w v</td>
+                <td>ウィンドウを縦に分割する</td>
+              </tr>
+              <tr class="odd">
+                <td>:only</td>
+                <td>カーソルのあるウィンドウ以外閉じる</td>
+              </tr>
+              <tr class="even">
+                <td>Ctrl-w o</td>
+                <td>カーソルのあるウィンドウ以外閉じる</td>
+              </tr>
+              <tr class="odd">
+                <td>Ctrl-w w</td>
+                <td>次のウィンドウに移動</td>
+              </tr>
+              <tr class="even">
+                <td>Ctrl-w p</td>
+                <td>前のウィンドウに移動</td>
+              </tr>
+              <tr class="odd">
+                <td>Ctrl-w h, j, k, l</td>
+                <td>左, 下, 上, 右のウィンドウに移動する</td>
+              </tr>
+              <tr class="even">
+                <td>Ctrl-w H, J, K, L</td>
+                <td>カーソルがあるウィンドウを左, 下, 上, 右方向に移動する</td>
+              </tr>
+              <tr class="odd">
+                <td></td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+          <h2 id="tab">タブ</h2>
+          <table>
+            <thead>
+              <tr class="even">
+                <th>コマンド</th>
+                <th>動作</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="odd">
+                <td>:tabnew [file]</td>
+                <td>新しいタブを開く. ファイル名を入力した場合は, そのファイルを開く</td>
+              </tr>
+              <tr class="even">
+                <td>:tabclose</td>
+                <td>タブを閉じる(<span class="code">:q</span>などでも閉じられます)</td>
+              </tr>
+              <tr class="odd">
+                <td>:tabnext</td>
+                <td>次のタブに移動する</td>
+              </tr>
+              <tr class="even">
+                <td>:tabprevious</td>
+                <td>前のタブに移動する</td>
+              </tr>
+              <tr class="odd">
+                <td>:tabfirst</td>
+                <td>1番目のタブに移動する</td>
+              </tr>
+              <tr class="even">
+                <td>:tablast</td>
+                <td>最後のタブに移動する</td>
+              </tr>
+              <tr class="odd">
+                <td>:tabonly</td>
+                <td>現在のタブ以外全てのタブを閉じる</td>
+              </tr>
+              <tr class="even">
+                <td>gt</td>
+                <td>次のタブに移動する. gtの直前に数字をつけると, 数字番目のタブに移動する</td>
+              </tr>
+              <tr class="odd">
+                <td>gT</td>
+                <td>一つ前のタブに移動する</td>
+              </tr>
+            </tbody>
+          </table>
+          <h2 id="increment">インクリメント, デクリメント</h2>
+          <table>
+            <thead>
+              <tr class="even">
+                <th>コマンド</th>
+                <th>動作</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="odd">
+                <td>Ctrl-a</td>
+                <td>カーソル行上で, カーソル以降の最初に出現した数字をインクリメント</td>
+              </tr>
+              <tr class="even">
+                <td>Ctrl-x</td>
+                <td>カーソル行上で, カーソル以降の最初に出現した数字をデクリメント</td>
+              </tr>
+            </tbody>
+          </table>
+          <p>カーソル下に数字がなくても使用できるため, 移動にも使えます.</p>
+          <h2 id="attention">注意</h2>
+          <p>主にいつも使っているコマンドをまとめてみました. 多くのコマンドは, 直前に数字などを組み合わせて使うことができます. 例えば, 3ddとすれば3行削除できます. 10iでインサートモードに入って, 文字を入力した後にノーマルモードにもどれは, 入力した文字が10個分入力されます. あと, ここに書いてある以外にもたくさんコマンドはありますので, あしからず.</p>
+        </div>
+<p></html></p>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright © 2022 - 2023 - lyvivian0077
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tracking", "navigation.path"], "search": "../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.fac441b0.min.js"></script>
+      
+    
+  </body>
+</html>
