@@ -1,0 +1,1456 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../ansbile/">
+      
+      
+        <link rel="next" href="../awk/">
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.9">
+    
+    
+      
+        <title>ansbile_async - 总有刁民想要害朕</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.85bb2934.min.css">
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#ansible" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="总有刁民想要害朕" class="md-header__button md-logo" aria-label="总有刁民想要害朕" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            总有刁民想要害朕
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              ansbile_async
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="总有刁民想要害朕" class="md-nav__button md-logo" aria-label="总有刁民想要害朕" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    总有刁民想要害朕
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        Welcome
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+          ansbile
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          ansbile
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ansbile/" class="md-nav__link">
+        ansbileオプション
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          ansbile_async
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        ansbile_async
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#ansible" class="md-nav__link">
+    Ansible常用功能说明 [异步、并发、委托等]
+  </a>
+  
+    <nav class="md-nav" aria-label="Ansible常用功能说明 [异步、并发、委托等]">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ansible_1" class="md-nav__link">
+    Ansible的同步模式与异步模式
+  </a>
+  
+    <nav class="md-nav" aria-label="Ansible的同步模式与异步模式">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    同步模式：
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    异步模式：
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ansible-asyncpoll" class="md-nav__link">
+    一、Ansible的异步和轮询  [async、poll]
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ansible-serialmax_fail_percentage" class="md-nav__link">
+    二、Ansible的并发限制  [serial、max_fail_percentage]
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ansible-delegate_todelegate_factsrun_once" class="md-nav__link">
+    三、Ansible的任务委托  [delegate_to、delegate_facts、run_once]
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../awk/" class="md-nav__link">
+        awk
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../MB-MiB%E7%9A%84%E5%8C%BA%E5%88%AB/" class="md-nav__link">
+        MB_MiB的区别
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+          MegaRAID
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          MegaRAID
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../megacli/" class="md-nav__link">
+        megacli
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../megaraid/" class="md-nav__link">
+        megaraid
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+          MySQL
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_6">
+          <span class="md-nav__icon md-icon"></span>
+          MySQL
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Explain%E8%AF%A6%E8%A7%A3%E4%B8%8E%E7%B4%A2%E5%BC%95%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/" class="md-nav__link">
+        Explain详解与索引最佳实践
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mysql/" class="md-nav__link">
+        Mysql参数优化
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mysql-table/" class="md-nav__link">
+        MySQL-table
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mysql%E3%82%92%E3%82%BD%E3%83%BC%E3%82%B9%E3%81%8B%E3%82%89%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB/" class="md-nav__link">
+        MySQLビルド
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../MySQL-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="md-nav__link">
+        学习笔记
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+          Python Tips
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_7">
+          <span class="md-nav__icon md-icon"></span>
+          Python Tips
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-styleguide/" class="md-nav__link">
+        Python风格规范
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-config/" class="md-nav__link">
+        Python程序配置文件管理
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-decorator/" class="md-nav__link">
+        装饰器
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-dunder/" class="md-nav__link">
+        5种下划线
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-function/" class="md-nav__link">
+        传入参数的几种方法
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python/" class="md-nav__link">
+        非常规的技巧
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-mysql/" class="md-nav__link">
+        操作mysql基础
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Python-Re-%E6%A8%A1%E5%9D%97%E8%B6%85%E5%85%A8%E8%A7%A3%E8%AF%BB/" class="md-nav__link">
+        Re 模块
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Python%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%8B%BC%E6%8E%A5%E6%80%BB%E7%BB%93/" class="md-nav__link">
+        字符串拼接总结
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E4%B8%80%E8%A1%8C-Python-%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0%E5%B9%B6%E8%A1%8C/" class="md-nav__link">
+        代码并行
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Regular-Expression/" class="md-nav__link">
+        正規表現
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../taged-VLAN%E3%81%A8untagedVLAN%E3%81%AE%E9%81%95%E3%81%84/" class="md-nav__link">
+        タグVLAN
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sar/" class="md-nav__link">
+        sar
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Bash%E7%BC%96%E7%A8%8B%E8%B6%85%E8%AF%A6%E7%BB%86%E8%AF%AD%E6%B3%95%E6%80%BB%E7%BB%93/" class="md-nav__link">
+        Bash编程超详细语法总结
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../iptables/" class="md-nav__link">
+        iptables
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../linux-lvm/" class="md-nav__link">
+        linux-lvm
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../centos7-set-kernel/" class="md-nav__link">
+        centos7-set-kernel
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../centos-network-device-naming/" class="md-nav__link">
+        centos-network-device-naming
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Linux-Performance/" class="md-nav__link">
+        Linux Performance
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Linux-shell-%E9%80%BB%E8%BE%91%E8%BF%90%E7%AE%97%E7%AC%A6-%E9%80%BB%E8%BE%91%E8%A1%A8%E8%BE%BE%E5%BC%8F%E8%AF%A6%E8%A7%A3/" class="md-nav__link">
+        Linux-shell-逻辑运算符-逻辑表达式详解
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../LVM%E9%80%BB%E8%BE%91%E5%8D%B7%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5%E5%8F%8ALVM%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/" class="md-nav__link">
+        LVM逻辑卷基本概念及LVM的工作原理
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../macOS%E8%BD%AF%E4%BB%B6%E7%BC%96%E8%AF%91%E6%97%B6%E6%89%BE%E4%B8%8D%E5%88%B0%E5%A4%B4%E6%96%87%E4%BB%B6%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95-%E6%9B%B4%E6%96%B010-15/" class="md-nav__link">
+        macOS软件编译时找不到头文件解决方法[更新10.15]
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ubnt/" class="md-nav__link">
+        ubnt
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vim/" class="md-nav__link">
+        VIM
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../about/" class="md-nav__link">
+        About
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#ansible" class="md-nav__link">
+    Ansible常用功能说明 [异步、并发、委托等]
+  </a>
+  
+    <nav class="md-nav" aria-label="Ansible常用功能说明 [异步、并发、委托等]">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ansible_1" class="md-nav__link">
+    Ansible的同步模式与异步模式
+  </a>
+  
+    <nav class="md-nav" aria-label="Ansible的同步模式与异步模式">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    同步模式：
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    异步模式：
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ansible-asyncpoll" class="md-nav__link">
+    一、Ansible的异步和轮询  [async、poll]
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ansible-serialmax_fail_percentage" class="md-nav__link">
+    二、Ansible的并发限制  [serial、max_fail_percentage]
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ansible-delegate_todelegate_factsrun_once" class="md-nav__link">
+    三、Ansible的任务委托  [delegate_to、delegate_facts、run_once]
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  <h1>ansbile_async</h1>
+
+<h2 id="ansible">Ansible常用功能说明 [异步、并发、委托等]<a class="headerlink" href="#ansible" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="https://cloud.tencent.com/developer/beta/article/1519723">原文</a></li>
+</ul>
+<h3 id="ansible_1">Ansible的同步模式与异步模式<a class="headerlink" href="#ansible_1" title="Permanent link">&para;</a></h3>
+<h4 id="_1">同步模式：<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h4>
+<p>如果节点数太多，ansible无法一次在所有远程节点上执行任务，那么将先在一部分节点上执行一个任务(每一批节点的数量取决于fork进程数量，默认为5个，可设置)，直到这一批所有节点上该任务完全执行完毕才会接入下一个批节点，直到所有节点将该任务都执行完毕，然后重新回到第一批节点开始执行第二个任务。依次类推，直到所有节点执行完所有任务，ansible端才会释放shell。这是默认同步模式，也就是说在未执行完毕时，ansible是占用当前shell的，任务执行完后，释放shell了才可以输入其他命令做其他动作。</p>
+<h4 id="_2">异步模式：<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h4>
+<p>假如fork控制的并发进程数为5，远程控制节点为24个，则ansible一开始会将5个节点的任务扔在后台，并每隔一段时间去检查这些节点的任务完成情况，当某节点完成不会立即返回，而是继续等待直到5个进程都空闲了，才会将这5个节点的结果返回给ansible端，ansible会继续将下一批5个节点的任务扔在后台并每隔一段时间进行检查，依次类推，直到完成所有任务。</p>
+<p>在异步模式下，如果设置的检查时间间隔为0，在将每一批节点的任务丢到后台后都会立即返回ansible，并立即将下一批节点的任务丢到后台，直到所有任务都丢到后台完后，才返回ansible端，ansible才会立即释放占用的shell。即此时ansible是不会管各个节点任务执行情况的，不管执行成功或失败。因此在轮训检查时间内，ansible仍然正在运行(尽管某批任务已经被放到后台执行了)，当前shell进程仍被占用处于睡眠状态，只有指定的检查时间间隔为0，才会尽快将所有任务放到后台并释放shell。</p>
+<h4 id="ansible-asyncpoll">一、Ansible的异步和轮询  [async、poll]<a class="headerlink" href="#ansible-asyncpoll" title="Permanent link">&para;</a></h4>
+<p>Ansible有时候要执行等待时间很长的操作，这个操作可能要持续很长时间，设置超过ssh的timeout。这种情况下可以选择在step中指定async和poll来实现异步操作。其中：</p>
+<ul>
+<li>async：表示这个step的最长等待时长,  如果设置为0, 表示一直等待下去直到动作完成；</li>
+<li>poll：表示检查step操作结果的间隔时长。</li>
+</ul>
+<pre><code class="language-shell">ansible默认的清单文件是/etc/ansible/hosts，也就是ansible和ansible-ploybook执行时默认读的清单文件。这个可以自行定义。
+[root@hostname ~]# cat /etc/ansible/ansible.cfg|grep inventory
+#inventory      = /etc/ansible/hosts
+
+[root@hostname ~]# cat /etc/ansible/hosts|tail -2             
+[test_server]                   #组名最好不要使用&quot;-&quot;，可以使用&quot;_&quot;
+172.16.60.241
+
+1）先来看下面初始配置
+[root@hostname ~]# cat /etc/ansible/test.yml
+- hosts : test_server
+  tasks :
+    - name : ansible-test
+      shell : sleep 10
+      #async表示上述shell命令的等待时间,设置为0时会一直等待命令结束
+      async : 5
+      #poll表示检查step操作结果的间隔时长,设置为0表示 不用等待结果,继续做下面的操作,我们可以在下面的step中来验证这个命令是否成功执行.
+      poll : 2
+
+执行下看看是否成功：
+[root@hostname ~]# ansible-playbook /etc/ansible/test.yml
+
+PLAY [test_server] *******************************************************************************************************************************
+
+TASK [Gathering Facts] ***************************************************************************************************************************
+ok: [172.16.60.241]
+
+TASK [ansible-test] ******************************************************************************************************************************
+fatal: [172.16.60.241]: FAILED! =&gt; {&quot;changed&quot;: false, &quot;msg&quot;: &quot;async task did not complete within the requested time - 5s&quot;}
+
+PLAY RECAP ***************************************************************************************************************************************
+172.16.60.241              : ok=1    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0 
+
+如上，这个step失败, 因为ansible的任务(就是上面配置中的shell动作)操作时间(10s)超过了最大等待时长(5s)
+
+2）如果将上面的async异步等待时间设置为大于10s，比如12s，则执行就成功了！
+[root@hostname ~]# cat /etc/ansible/test.yml
+- hosts : test_server
+  tasks :
+    - name : ansible-test
+      shell : sleep 10
+      #async表示上述shell命令的等待时间,设置为0时会一直等待命令结束
+      async : 12
+      #poll表示检查step操作结果的间隔时长,设置为0表示 不用等待结果,继续做下面的操作,我们可以在下面的step中来验证这个命令是否成功执行.
+      poll : 2
+
+[root@hostname ~]# ansible-playbook /etc/ansible/test.yml             
+
+PLAY [test_server] *******************************************************************************************************************************
+
+TASK [Gathering Facts] ***************************************************************************************************************************
+ok: [172.16.60.241]
+
+TASK [ansible-test] ******************************************************************************************************************************
+changed: [172.16.60.241]
+
+PLAY RECAP ***************************************************************************************************************************************
+172.16.60.241              : ok=2    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+
+这时候就不怕任务超时了。可以执行一个12s的任务（大于上面shell执行的时间）。另外，如果poll为0，就相当于一个不关心结果的任务。
+
+3）或者将上面的poll数值设置为0，即不用等待ansible任务执行的结果，立即执行下一个step。
+即只需要将任务命令推送到ansible客户机上，不需要等待任务执行完成就立即执行下一个step。
+
+[root@hostname ~]# cat /etc/ansible/test.yml
+- hosts : test_server
+  tasks :
+    - name : ansible-test
+      shell : sleep 10
+      #async表示上述shell命令的等待时间,设置为0时会一直等待命令结束
+      async : 5
+      #poll表示检查step操作结果的间隔时长,设置为0表示 不用等待结果,继续做下面的操作,我们可以在下面的step中来验证这个命令是否成功执行.
+      poll : 0
+
+[root@hostname ~]# ansible-playbook /etc/ansible/test.yml
+
+PLAY [test_server] *******************************************************************************************************************************
+
+TASK [Gathering Facts] ***************************************************************************************************************************
+ok: [172.16.60.241]
+
+TASK [ansible-test] ******************************************************************************************************************************
+changed: [172.16.60.241]
+
+PLAY RECAP ***************************************************************************************************************************************
+172.16.60.241              : ok=2    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0  
+
+4）如果还想要更方便地看轮询结果，ansible还提供了这个模块async_status。
+[root@hostname ~]# cat /etc/ansible/test.yml             
+- hosts : test_server
+  tasks :
+    - name : ansible-test
+      shell : sleep 3
+      async : 8
+      poll : 2
+      register: kevin_result
+
+    - name: 'check ansible-test task polling results '
+      async_status: jid={{ kevin_result.ansible_job_id }}
+      register: job_result
+      until: job_result.finished
+      retries: 10
+
+[root@hostname ~]# ansible-playbook /etc/ansible/test.yml
+
+PLAY [test_server] *******************************************************************************************************************************
+
+TASK [Gathering Facts] ***************************************************************************************************************************
+ok: [172.16.60.241]
+
+TASK [ansible-test] ******************************************************************************************************************************
+changed: [172.16.60.241]
+
+TASK [check ansible-test task polling results] ***************************************************************************************************
+changed: [172.16.60.241]
+
+PLAY RECAP ***************************************************************************************************************************************
+172.16.60.241              : ok=3    changed=2    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+
+第一个job执行异步任务sleep，并且注册了一个名字叫kevin-result的register变量，用于提供给第二个job作为轮询对象，并且它自己poll设为2 (即自己轮询2次)。
+register用于在ansible的playbook中task之间的相互传递变量，
+register 这个功能非常有用。当我们需要判断对执行了某个操作或者某个命令后，如何做相应的响应处理（执行其他 ansible 语句），则一般会用到register 。
+until表示循环。
+
+第二个job使用async_status模块，进行轮询并返回轮询结果。准备检查10次。
+</code></pre>
+<ul>
+<li><code>async</code>参数值：代表了这个任务执行时间的上限值。即任务执行所用时间如果超出这个时间，则认为任务失败。此参数若未设置，则为同步执行。</li>
+<li><code>poll</code>参数值：代表了任务异步执行时轮询的时间间隔。</li>
+</ul>
+<h4 id="ansible-serialmax_fail_percentage">二、Ansible的并发限制  [serial、max_fail_percentage]<a class="headerlink" href="#ansible-serialmax_fail_percentage" title="Permanent link">&para;</a></h4>
+<p>当ansible清单文件里设置的组里有很多机器，可以限制一下ansible任务的并发。ansible的并发功能可以在ansible.cfg里修改配置，也可以在playbook中限制服务端的并发数量，这是ansible经常用到的一个关键功能。ansible默认情况下只会创建5个进程，所以一次任务只能同时控制5台机器执行。如果有大量的机器需要控制，或者希望减少进程数，那就可以采取异步执行（async），ansible的模块可以把task放进后台，然后轮询它（poll）。</p>
+<p>使用async和poll这两个关键字便可以并行运行一个任务，即在所有机器上一次性运行。async这个关键字会触发ansible并行运作任务，async的值是ansible等待运行这个任务的最大超时值(如果执行超时任务会强制中断导致失败)，而poll就是ansible检查这个任务是否完成的频率时间。</p>
+<pre><code>1) serial参数设置并发数
+=====================================================================
+一般情况下， ansible会同时在所有服务器上执行用户定义的操作， 但是用户可以通过serial参数来定义同时可以在多少太机器上执行操作。
+
+[root@hostname ~]# cat /etc/ansible/test.yml
+- hosts : test_server
+  serial: 3
+
+  tasks :
+    - name: Install telnet
+      yum: name=telnet state=installed
+
+即test_server组内的3台机器完全执行完成play后， 其他机器才能开始执行。
+
+接着看下面的配置
+[root@hostname ~]# cat /etc/ansible/test.yml
+- hosts : all
+  serial: 7
+
+  tasks :
+    - name: Install telnet
+      yum: name=telnet state=installed
+
+    - name : Run Serverstart.sh
+      command : /bin/bash /opt/scripts/Serverstart.sh
+      async : 300
+      poll : 10
+      register: kevin_result
+
+如上配置，发现当ansible配置控制超过5台机器时，上面ansible中：
+a）yum模块会先在5台机器上跑，完成后再继续剩余2台的机器；
+b）command模块的任务会一次性在所有机器上都执行了，然后监听它的回调结果；
+
+这里需要注意下面两种情况
+a）情况一： 设置poll=0
+如果上面command模块是控制机器开启一个进程放到后台,那就不需要检查这个任务是否完成了，只需要继续其他的动作, 
+最后再使用wait_for这个模块去检查之前的进程是否按预期中开启了便可。
+这时只需要把poll这个值设置为0, 便可以按上面的要求配置ansible不等待job的完成。
+b）情况二： 设置async=0
+如果有一种需求是有一个task它是需要运行很长的时间,那就需要设置一直等待这个job完成。
+这个时候只需要把async的值设成0便可。
+
+简单总结下，适合使用到ansible的polling特性的场景
+- 有一个task需要运行很长的时间,这个task很可能会达到timeout；
+- 有一个任务需要在大量的机器上面运行；
+- 有一个任务是不需要等待它完成的；
+
+不适合使用polling特性的场景
+- task任务是需要运行完后才能继续另外的任务的；
+- task任务能很快的完成；
+
+2) max_fail_percentage：最大失败百分比
+=====================================================================
+默认情况下, 只要ansible的group中还有server没有失败, ansible就是继续执行tasks。实际上, 用户可以通过max_fail_percentage（最大失败百分比）来限制ansible的并发执行。
+只要超过max_fail_percentage的server失败, ansible就可以中止tasks的执行。serial参数在ansible-1.8以后就开始支持百分比功能了！！
+
+试想一下如果group组里有200台机器，那么如果使用serial来限制并发数量，比如设置serial=10，意思就是一次只执行10台，一直到200台完成。
+只要组内还有server没有失败, ansible就是继续执行tasks。这样就显得效率很低了，很不方便！这时就可以使用类似控制流的max_fail_percentage功能了！！
+
+[root@hostname ~]# cat /etc/ansible/test.yml
+- hosts : all
+  max_fail_percentage: 30
+  serial: 10
+
+  tasks :
+    - name: Install telnet
+      yum: name=telnet state=installed
+
+    - name : Run Serverstart.sh
+      command : /bin/bash /opt/scripts/Serverstart.sh
+      async : 300
+      poll : 10
+      register: kevin_result
+
+如上配置，即10台机器里有30%的机器执行yum模块的task任务失败，那么就终止这个10台机器的task任务的执行，接着执行下一组10台机器的task任务，这样效果就很棒了。
+
+温馨提示：
+实际失败机器必须大于这个百分比时, tasks任务才会被中止；如果等于这个百分比时，task任务是不会被终止的！
+</code></pre>
+<p>踩坑经验：Ansible并发失败（fork=100. 但是真正执行playbook时并没有实现并发）</p>
+<pre><code>[root@hostname ~]# cd /usr/lib/python2.7/site-packages/ansible/
+[root@hostname ansible]# find . -name ssh.py
+./plugins/connection/ssh.py
+
+[root@hostname ansible]# vim plugins/connection/ssh.py
+.........
+.........
+   if C.HOST_KEY_CHECKING and not_in_host_file:
+        # lock around the initial SSH connectivity so the user prompt about whether to add
+        # the host to known hosts is not intermingled with multiprocess output.
+        fcntl.lockf(self.runner.process_lockfile, fcntl.LOCK_EX)
+        fcntl.lockf(self.runner.output_lockfile, fcntl.LOCK_EX)
+
+   # create process
+  (p, stdin) = self._run(ssh_cmd, in_data)
+.........
+.........
+
+通过以上文件代码可以看出：
+如果ansible配置&quot;HOST_KEY_CHECKING=True&quot;, 并且ansible客户机信息没有在ansible服务端的~/.ssh/known_hosts里面, 一个进程就会锁死~/.ssh/known_hosts文件。
+这样ansible就不能实现并发！
+
+解决方案:
+在ansible服务端的/etc/ansible/ansible.cfg文件里配置&quot;host_key_checking = False&quot;    [其实ansible.cfg文件里该项默认配置的就是False]
+</code></pre>
+<h4 id="ansible-delegate_todelegate_factsrun_once">三、Ansible的任务委托  [delegate_to、delegate_facts、run_once]<a class="headerlink" href="#ansible-delegate_todelegate_factsrun_once" title="Permanent link">&para;</a></h4>
+<p>默认情况下，ansible的所有任务都是在指定的机器上运行的。当在一个独立的群集环境中配置时，只是想操作其中的某一台主机，或者在特定的主机上运行task任务，此时就需要用到ansible的任务委托功能。使用delegate_to关键字可以配置task任务在指定的机器上执行，就是说其他的task任务还是在hosts关键字配置的机器上运行，到了这个关键字所在的任务时，就使用委托的机器运行。</p>
+<pre><code>1）委托
+=====================================================================
+通过&quot;delegate_to&quot;, ansible可以把某一个task任务放在委托的机器上执行。即在指定的组内的某一台或多台机器上执行task任务。
+
+[root@hostname ~]# cat /etc/ansible/test.yml
+- hosts : test_server
+  serial: 10
+
+  tasks :
+    - name: test-haha
+      shell: echo &quot;test&quot; &gt; /root/test.list
+      delegate_to: 172.16.60.245
+
+则上面的shell模块的task任务只会在172.16.60.245这台节点上执行，test_server组内其他的机器不会执行shell任务。
+
+---------------------
+如果 &quot;delegate_to: 127.0.0.1&quot; 则可以用local_action来代替。即下面两个配置效果是一样的！！
+[root@hostname ~]# cat /etc/ansible/test.yml 
+- hosts : test_server
+  serial: 10
+
+  tasks :
+    - name: test-haha
+      shell: echo &quot;test&quot; &gt; /root/test.list
+      delegate_to: 127.0.0.1
+
+[root@hostname ~]# cat /etc/ansible/test.yml
+- hosts : test_server
+  serial: 10
+
+  tasks :
+    - name: test-haha
+      local_action: shell echo &quot;test&quot; &gt; /root/test.list
+
+-------------------
+如果设置了多个delegate_to，则执行时只会匹配最下面那个。
+例如下面配置中，只会执行&quot;delegate_to: 172.16.60.245&quot;, 上面那个&quot;delegate_to: 172.16.60.241&quot;就会被忽略了。
+[root@hostname ansible]# cat /etc/ansible/test.yml
+- hosts : all
+  serial: 10
+
+  tasks :
+    - name: test-haha
+      shell: echo &quot;test&quot; &gt; /root/test.list
+      delegate_to: 172.16.60.241
+      delegate_to: 172.16.60.245
+
+-------------------
+delegate_to默认后面只能跟一个主机ip，不能跟多个主机ip。即默认委托到单个主机。
+如果有多个ip需要委托，则可以将这些ip重新放一个group，然后delegate_to委托给group组。
+delegate_to委托到组的方式：通过items变量方式！！！
+
+[root@hostname ansible]# cat /etc/ansible/hosts |tail -8
+[test_server]
+172.16.60.241
+172.16.60.245
+172.16.60.246
+127.0.0.1
+
+[kevin_server]
+172.16.60.246
+127.0.0.1
+
+[root@hostname ansible]# cat /etc/ansible/test.yml 
+- hosts: all
+  tasks:
+    - name: test-haha
+      shell: echo &quot;test&quot; &gt; /root/test.list
+      delegate_to: &quot;{{item}}&quot;
+      with_items: &quot;{{groups['kevin_server']}}&quot;
+
+即将shell这个task任务委托给kevin_server组内的机器执行。
+
+
+2）委托者的facts
+=====================================================================
+默认情况下, ansible委托任务的facts是inventory_hostname中主机的facts, 而不是被委托机器的facts。
+
+a) delegate_facts
+在ansible 2.0 中, 通过设置&quot;delegate_facts: True&quot;可以让task任务去收集被委托机器的facts。
+[root@hostname ~]# cat /etc/ansible/test.yml
+- hosts: test_server
+  tasks:
+    - name: test-haha
+      shell: echo &quot;test&quot; &gt; /root/test.list
+      delegate_to: &quot;{{item}}&quot;
+      delegate_facts: True
+      with_items: &quot;{{groups['kevin_server']}}&quot;
+
+如上配置，表示会收集kevin_server的facts并分配给这些机器, 而不会去收集test_server的facts
+
+b）RUN ONCE
+通过设置&quot;run_once: true&quot;来指定该task只能在委托的某一台机器或委托的组内机器上执行一次！！可以和delegate_to 结合使用。
+如果没有delegate_to, 那么这个task默认就会在第一台机器上执行！！！
+[root@hostname ~]# cat /etc/ansible/test.yml
+- hosts: test_server
+  tasks:
+    - name: test-haha
+      shell: echo &quot;test&quot; &gt; /root/test.list
+      delegate_to: &quot;{{item}}&quot;
+      run_once: true
+      delegate_facts: True
+      with_items: &quot;{{groups['kevin_server']}}&quot;
+</code></pre>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright © 2022 - 2023 - lyvivian0077
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tracking", "navigation.path"], "search": "../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.fac441b0.min.js"></script>
+      
+    
+  </body>
+</html>
