@@ -351,7 +351,7 @@ until表示循环。
 <h4 id="ansible-serialmax_fail_percentage">二、Ansible的并发限制  [serial、max_fail_percentage]<a class="headerlink" href="#ansible-serialmax_fail_percentage" title="Permanent link">&para;</a></h4>
 <p>当ansible清单文件里设置的组里有很多机器，可以限制一下ansible任务的并发。ansible的并发功能可以在ansible.cfg里修改配置，也可以在playbook中限制服务端的并发数量，这是ansible经常用到的一个关键功能。ansible默认情况下只会创建5个进程，所以一次任务只能同时控制5台机器执行。如果有大量的机器需要控制，或者希望减少进程数，那就可以采取异步执行（async），ansible的模块可以把task放进后台，然后轮询它（poll）。</p>
 <p>使用async和poll这两个关键字便可以并行运行一个任务，即在所有机器上一次性运行。async这个关键字会触发ansible并行运作任务，async的值是ansible等待运行这个任务的最大超时值(如果执行超时任务会强制中断导致失败)，而poll就是ansible检查这个任务是否完成的频率时间。</p>
-<pre><code>1) serial参数设置并发数
+<pre><code class="language-shell">1) serial参数设置并发数
 =====================================================================
 一般情况下， ansible会同时在所有服务器上执行用户定义的操作， 但是用户可以通过serial参数来定义同时可以在多少太机器上执行操作。
 
@@ -431,7 +431,7 @@ b）情况二： 设置async=0
 实际失败机器必须大于这个百分比时, tasks任务才会被中止；如果等于这个百分比时，task任务是不会被终止的！
 </code></pre>
 <p>踩坑经验：Ansible并发失败（fork=100. 但是真正执行playbook时并没有实现并发）</p>
-<pre><code>[root@hostname ~]# cd /usr/lib/python2.7/site-packages/ansible/
+<pre><code class="language-shell">[root@hostname ~]# cd /usr/lib/python2.7/site-packages/ansible/
 [root@hostname ansible]# find . -name ssh.py
 ./plugins/connection/ssh.py
 
@@ -458,7 +458,7 @@ b）情况二： 设置async=0
 </code></pre>
 <h4 id="ansible-delegate_todelegate_factsrun_once">三、Ansible的任务委托  [delegate_to、delegate_facts、run_once]<a class="headerlink" href="#ansible-delegate_todelegate_factsrun_once" title="Permanent link">&para;</a></h4>
 <p>默认情况下，ansible的所有任务都是在指定的机器上运行的。当在一个独立的群集环境中配置时，只是想操作其中的某一台主机，或者在特定的主机上运行task任务，此时就需要用到ansible的任务委托功能。使用delegate_to关键字可以配置task任务在指定的机器上执行，就是说其他的task任务还是在hosts关键字配置的机器上运行，到了这个关键字所在的任务时，就使用委托的机器运行。</p>
-<pre><code>1）委托
+<pre><code class="language-shell">1）委托
 =====================================================================
 通过&quot;delegate_to&quot;, ansible可以把某一个task任务放在委托的机器上执行。即在指定的组内的某一台或多台机器上执行task任务。
 
