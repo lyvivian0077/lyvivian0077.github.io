@@ -246,6 +246,787 @@
     三十分钟学会AWK
   </a>
   
+    <nav class="md-nav" aria-label="三十分钟学会AWK">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#awk_1" class="md-nav__link">
+    awk参数
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    内置变量
+  </a>
+  
+    <nav class="md-nav" aria-label="内置变量">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#nrnffnr" class="md-nav__link">
+    NR,NF,FNR
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    模式
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    自定义变量
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#awk_2" class="md-nav__link">
+    awk与正则表达式
+  </a>
+  
+    <nav class="md-nav" aria-label="awk与正则表达式">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    正则表达式
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    行访问模式
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#awk_3" class="md-nav__link">
+    awk命令执行流程
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    概述
+  </a>
+  
+    <nav class="md-nav" aria-label="概述">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#awk_4" class="md-nav__link">
+    AWK的类型
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#awk_5" class="md-nav__link">
+    AWK的典型用途
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    工作流
+  </a>
+  
+    <nav class="md-nav" aria-label="工作流">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    程序结构
+  </a>
+  
+    <nav class="md-nav" aria-label="程序结构">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#begin" class="md-nav__link">
+    BEGIN 语句块
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#body" class="md-nav__link">
+    BODY 语句块
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#end" class="md-nav__link">
+    END 语句块
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    基础语法
+  </a>
+  
+    <nav class="md-nav" aria-label="基础语法">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#awk_6" class="md-nav__link">
+    AWK命令行
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#awk_7" class="md-nav__link">
+    AWK程序文件
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#awk_8" class="md-nav__link">
+    AWK标准选项
+  </a>
+  
+    <nav class="md-nav" aria-label="AWK标准选项">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#-v" class="md-nav__link">
+    -v 变量赋值选项
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-dump-variablesfile" class="md-nav__link">
+    --dump-variables[=file] 选项
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-help" class="md-nav__link">
+    --help 选项
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-lintfatal" class="md-nav__link">
+    --lint[=fatal] 选项
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-posix" class="md-nav__link">
+    --posix 选项
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-profilefile" class="md-nav__link">
+    --profile[=file]选项
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-traditional" class="md-nav__link">
+    --traditional 选项
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-version" class="md-nav__link">
+    --version 选项
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    基本使用示例
+  </a>
+  
+    <nav class="md-nav" aria-label="基本使用示例">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    打印某列或者字段
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    打印所有的行
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    打印匹配模式的列
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    任意顺序打印列
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    统计匹配模式的行数
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#18" class="md-nav__link">
+    打印超过18个字符的行
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    内建变量
+  </a>
+  
+    <nav class="md-nav" aria-label="内建变量">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#awk_9" class="md-nav__link">
+    标准AWK变量
+  </a>
+  
+    <nav class="md-nav" aria-label="标准AWK变量">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#argc" class="md-nav__link">
+    ARGC 命令行参数个数
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#argv" class="md-nav__link">
+    ARGV 命令行参数数组
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#convfmt" class="md-nav__link">
+    CONVFMT 数字的约定格式
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#environ" class="md-nav__link">
+    ENVIRON 环境变量
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#filename" class="md-nav__link">
+    FILENAME 当前文件名
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fs" class="md-nav__link">
+    FS 输入字段的分隔符
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nf" class="md-nav__link">
+    NF 字段数目
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nr" class="md-nav__link">
+    NR 行号
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fnr" class="md-nav__link">
+    FNR 行号（相对当前文件）
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ofmt" class="md-nav__link">
+    OFMT 输出格式数字
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ofs" class="md-nav__link">
+    OFS 输出字段分隔符
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ors" class="md-nav__link">
+    ORS 输出行分隔符
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rlength" class="md-nav__link">
+    RLENGTH
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rs" class="md-nav__link">
+    RS 输入记录分隔符
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rstart" class="md-nav__link">
+    RSTART
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#subsep" class="md-nav__link">
+    SUBSEP 数组子脚本的分隔符
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#0" class="md-nav__link">
+    $ 0 代表了当前行
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#n" class="md-nav__link">
+    $n
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gnu-awk" class="md-nav__link">
+    GNU AWK的变量
+  </a>
+  
+    <nav class="md-nav" aria-label="GNU AWK的变量">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#argind" class="md-nav__link">
+    ARGIND
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#binmode" class="md-nav__link">
+    BINMODE
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#errorno" class="md-nav__link">
+    ERRORNO
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fieldwidths" class="md-nav__link">
+    FIELDWIDTHS
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ignorecase" class="md-nav__link">
+    IGNORECASE
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lint" class="md-nav__link">
+    LINT
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#procinfo" class="md-nav__link">
+    PROCINFO
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#textdomain" class="md-nav__link">
+    TEXTDOMAIN
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_17" class="md-nav__link">
+    操作符
+  </a>
+  
+    <nav class="md-nav" aria-label="操作符">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_18" class="md-nav__link">
+    算数操作符
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_19" class="md-nav__link">
+    增减运算符
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_20" class="md-nav__link">
+    赋值操作符
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_21" class="md-nav__link">
+    关系操作符
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_22" class="md-nav__link">
+    逻辑操作符
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_23" class="md-nav__link">
+    三元操作符
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_24" class="md-nav__link">
+    一元操作符
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_25" class="md-nav__link">
+    指数操作符
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_26" class="md-nav__link">
+    字符串连接操作符
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_27" class="md-nav__link">
+    数组成员操作符
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_28" class="md-nav__link">
+    正则表达式操作符
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_29" class="md-nav__link">
+    正则表达式
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_30" class="md-nav__link">
+    数组
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_31" class="md-nav__link">
+    流程控制
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_32" class="md-nav__link">
+    循环
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_33" class="md-nav__link">
+    函数
+  </a>
+  
+    <nav class="md-nav" aria-label="函数">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_34" class="md-nav__link">
+    内建函数
+  </a>
+  
+    <nav class="md-nav" aria-label="内建函数">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_35" class="md-nav__link">
+    数学函数
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_36" class="md-nav__link">
+    字符串函数
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_37" class="md-nav__link">
+    时间函数
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_38" class="md-nav__link">
+    字节操作函数
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_39" class="md-nav__link">
+    其它
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_40" class="md-nav__link">
+    用户自定义函数
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_41" class="md-nav__link">
+    输出重定向
+  </a>
+  
+    <nav class="md-nav" aria-label="输出重定向">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_42" class="md-nav__link">
+    重定向操作符
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_43" class="md-nav__link">
+    管道
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_44" class="md-nav__link">
+    美化输出
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#shell" class="md-nav__link">
+    执行shell命令
+  </a>
+  
+    <nav class="md-nav" aria-label="执行shell命令">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#system" class="md-nav__link">
+    使用system函数
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_45" class="md-nav__link">
+    使用管道
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_46" class="md-nav__link">
+    参考
+  </a>
+  
 </li>
       
     </ul>
@@ -839,6 +1620,787 @@
     三十分钟学会AWK
   </a>
   
+    <nav class="md-nav" aria-label="三十分钟学会AWK">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#awk_1" class="md-nav__link">
+    awk参数
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    内置变量
+  </a>
+  
+    <nav class="md-nav" aria-label="内置变量">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#nrnffnr" class="md-nav__link">
+    NR,NF,FNR
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    模式
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    自定义变量
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#awk_2" class="md-nav__link">
+    awk与正则表达式
+  </a>
+  
+    <nav class="md-nav" aria-label="awk与正则表达式">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    正则表达式
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    行访问模式
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#awk_3" class="md-nav__link">
+    awk命令执行流程
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    概述
+  </a>
+  
+    <nav class="md-nav" aria-label="概述">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#awk_4" class="md-nav__link">
+    AWK的类型
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#awk_5" class="md-nav__link">
+    AWK的典型用途
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    工作流
+  </a>
+  
+    <nav class="md-nav" aria-label="工作流">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    程序结构
+  </a>
+  
+    <nav class="md-nav" aria-label="程序结构">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#begin" class="md-nav__link">
+    BEGIN 语句块
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#body" class="md-nav__link">
+    BODY 语句块
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#end" class="md-nav__link">
+    END 语句块
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    基础语法
+  </a>
+  
+    <nav class="md-nav" aria-label="基础语法">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#awk_6" class="md-nav__link">
+    AWK命令行
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#awk_7" class="md-nav__link">
+    AWK程序文件
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#awk_8" class="md-nav__link">
+    AWK标准选项
+  </a>
+  
+    <nav class="md-nav" aria-label="AWK标准选项">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#-v" class="md-nav__link">
+    -v 变量赋值选项
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-dump-variablesfile" class="md-nav__link">
+    --dump-variables[=file] 选项
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-help" class="md-nav__link">
+    --help 选项
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-lintfatal" class="md-nav__link">
+    --lint[=fatal] 选项
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-posix" class="md-nav__link">
+    --posix 选项
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-profilefile" class="md-nav__link">
+    --profile[=file]选项
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-traditional" class="md-nav__link">
+    --traditional 选项
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-version" class="md-nav__link">
+    --version 选项
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    基本使用示例
+  </a>
+  
+    <nav class="md-nav" aria-label="基本使用示例">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    打印某列或者字段
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    打印所有的行
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    打印匹配模式的列
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    任意顺序打印列
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    统计匹配模式的行数
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#18" class="md-nav__link">
+    打印超过18个字符的行
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    内建变量
+  </a>
+  
+    <nav class="md-nav" aria-label="内建变量">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#awk_9" class="md-nav__link">
+    标准AWK变量
+  </a>
+  
+    <nav class="md-nav" aria-label="标准AWK变量">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#argc" class="md-nav__link">
+    ARGC 命令行参数个数
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#argv" class="md-nav__link">
+    ARGV 命令行参数数组
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#convfmt" class="md-nav__link">
+    CONVFMT 数字的约定格式
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#environ" class="md-nav__link">
+    ENVIRON 环境变量
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#filename" class="md-nav__link">
+    FILENAME 当前文件名
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fs" class="md-nav__link">
+    FS 输入字段的分隔符
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nf" class="md-nav__link">
+    NF 字段数目
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nr" class="md-nav__link">
+    NR 行号
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fnr" class="md-nav__link">
+    FNR 行号（相对当前文件）
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ofmt" class="md-nav__link">
+    OFMT 输出格式数字
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ofs" class="md-nav__link">
+    OFS 输出字段分隔符
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ors" class="md-nav__link">
+    ORS 输出行分隔符
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rlength" class="md-nav__link">
+    RLENGTH
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rs" class="md-nav__link">
+    RS 输入记录分隔符
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rstart" class="md-nav__link">
+    RSTART
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#subsep" class="md-nav__link">
+    SUBSEP 数组子脚本的分隔符
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#0" class="md-nav__link">
+    $ 0 代表了当前行
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#n" class="md-nav__link">
+    $n
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gnu-awk" class="md-nav__link">
+    GNU AWK的变量
+  </a>
+  
+    <nav class="md-nav" aria-label="GNU AWK的变量">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#argind" class="md-nav__link">
+    ARGIND
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#binmode" class="md-nav__link">
+    BINMODE
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#errorno" class="md-nav__link">
+    ERRORNO
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fieldwidths" class="md-nav__link">
+    FIELDWIDTHS
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ignorecase" class="md-nav__link">
+    IGNORECASE
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lint" class="md-nav__link">
+    LINT
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#procinfo" class="md-nav__link">
+    PROCINFO
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#textdomain" class="md-nav__link">
+    TEXTDOMAIN
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_17" class="md-nav__link">
+    操作符
+  </a>
+  
+    <nav class="md-nav" aria-label="操作符">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_18" class="md-nav__link">
+    算数操作符
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_19" class="md-nav__link">
+    增减运算符
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_20" class="md-nav__link">
+    赋值操作符
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_21" class="md-nav__link">
+    关系操作符
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_22" class="md-nav__link">
+    逻辑操作符
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_23" class="md-nav__link">
+    三元操作符
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_24" class="md-nav__link">
+    一元操作符
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_25" class="md-nav__link">
+    指数操作符
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_26" class="md-nav__link">
+    字符串连接操作符
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_27" class="md-nav__link">
+    数组成员操作符
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_28" class="md-nav__link">
+    正则表达式操作符
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_29" class="md-nav__link">
+    正则表达式
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_30" class="md-nav__link">
+    数组
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_31" class="md-nav__link">
+    流程控制
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_32" class="md-nav__link">
+    循环
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_33" class="md-nav__link">
+    函数
+  </a>
+  
+    <nav class="md-nav" aria-label="函数">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_34" class="md-nav__link">
+    内建函数
+  </a>
+  
+    <nav class="md-nav" aria-label="内建函数">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_35" class="md-nav__link">
+    数学函数
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_36" class="md-nav__link">
+    字符串函数
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_37" class="md-nav__link">
+    时间函数
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_38" class="md-nav__link">
+    字节操作函数
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_39" class="md-nav__link">
+    其它
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_40" class="md-nav__link">
+    用户自定义函数
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_41" class="md-nav__link">
+    输出重定向
+  </a>
+  
+    <nav class="md-nav" aria-label="输出重定向">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_42" class="md-nav__link">
+    重定向操作符
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_43" class="md-nav__link">
+    管道
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_44" class="md-nav__link">
+    美化输出
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#shell" class="md-nav__link">
+    执行shell命令
+  </a>
+  
+    <nav class="md-nav" aria-label="执行shell命令">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#system" class="md-nav__link">
+    使用system函数
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_45" class="md-nav__link">
+    使用管道
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_46" class="md-nav__link">
+    参考
+  </a>
+  
 </li>
       
     </ul>
@@ -859,7 +2421,1315 @@
   <h1>awk</h1>
 
 <h2 id="awk">三十分钟学会AWK<a class="headerlink" href="#awk" title="Permanent link">&para;</a></h2>
-<p><a href="/assets/三十分钟学会AWK.pdf">三十分钟学会AWK</a></p>
+<ul>
+<li><a href="/assets/三十分钟学会AWK.pdf">三十分钟学会AWK</a></li>
+<li><a href="https://github.com/mylxsw/growing-up/blob/master/doc/%E4%B8%89%E5%8D%81%E5%88%86%E9%92%9F%E5%AD%A6%E4%BC%9AAWK.md">原文GITHUB</a></li>
+<li><a href="https://github.com/mylxsw">mylxsw的 GITHUB</a></li>
+<li><a href="https://github.com/mylxsw/growing-up">程序猿成长计划</a></li>
+</ul>
+<p><code>模式</code>也可以理解为<code>条件</code></p>
+<pre><code>awk [option] 'pattern[action]' file...
+awk [option] '模式 {动作}' 文件
+</code></pre>
+<ul>
+<li>BEGIN模式是处理文本之前需要执行的操作</li>
+<li>END模式是处理完所有行之后执行的操作</li>
+</ul>
+<h3 id="awk_1">awk参数<a class="headerlink" href="#awk_1" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-F</td>
+<td>指定分割字段</td>
+</tr>
+<tr>
+<td>-v</td>
+<td>定义或修改awk内部的变量</td>
+</tr>
+<tr>
+<td>-f</td>
+<td>从脚本文件中读取awk命令</td>
+</tr>
+</tbody>
+</table>
+<p>对于awk而言,变量分为</p>
+<ul>
+<li>内置变量</li>
+<li>自定义变量</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>内置变量</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>FS</td>
+<td>FS: field separator, <br /><strong>输入</strong>字段分隔符,默认为空白字符</td>
+</tr>
+<tr>
+<td>OFS</td>
+<td>OFS:<strong>OFS</strong> is an output equivalent of awk FS variable,<br /><strong>输出</strong>字段分隔符,默认为空白字符</td>
+</tr>
+<tr>
+<td>RS</td>
+<td>RS: record separator,<br /> <strong>输入</strong>记录分隔符(输入换行符),指定输入时的换行符</td>
+</tr>
+<tr>
+<td>ORS</td>
+<td>ORS:<strong>ORS</strong> is an Output equivalent of RS<br /><strong>输出</strong>记录分隔符(输出换行符),输出时用指定符号代替换行符</td>
+</tr>
+<tr>
+<td>NF</td>
+<td>NF: number of Field, <br />当前行的字段的个数(即当前行被分割了几列),字段数量</td>
+</tr>
+<tr>
+<td>NR</td>
+<td>NR: number of records(行号), <br />当前处理的文本行的行号.</td>
+</tr>
+<tr>
+<td>FNR</td>
+<td>FNR: Number of Records relative to the current input file<br />各文件分别计数的行号</td>
+</tr>
+<tr>
+<td>FILENAME</td>
+<td>FILENAME: 当前文件名</td>
+</tr>
+<tr>
+<td>ARGC</td>
+<td>ARGC: 命令行参数的个数</td>
+</tr>
+<tr>
+<td>ARGV</td>
+<td>ARGV:数组,保存的是命令行所给定的各参数</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_1">内置变量<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<h3 id="nrnffnr">NR,NF,FNR<a class="headerlink" href="#nrnffnr" title="Permanent link">&para;</a></h3>
+<ul>
+<li>awk的内置变量NR,NF是不要添加$符号的</li>
+<li>而<code>$0 $1 $2...</code>是需要添加$符号的</li>
+</ul>
+<h3 id="_2">模式<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>关系运算符</th>
+<th>解释</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>&lt;</td>
+<td>小于</td>
+<td>x&lt;y</td>
+</tr>
+<tr>
+<td>&lt;=</td>
+<td>小于等于</td>
+<td>x&lt;=y</td>
+</tr>
+<tr>
+<td>==</td>
+<td>等于</td>
+<td>x==y</td>
+</tr>
+<tr>
+<td>!=</td>
+<td>不等于</td>
+<td>x!=y</td>
+</tr>
+<tr>
+<td>&gt;=</td>
+<td>大于等于</td>
+<td>x&gt;=y</td>
+</tr>
+<tr>
+<td>&gt;</td>
+<td>大于</td>
+<td>x&gt;y</td>
+</tr>
+<tr>
+<td>~</td>
+<td>匹配正则</td>
+<td>x~/正则/</td>
+</tr>
+<tr>
+<td>!~</td>
+<td>不匹配正则</td>
+<td>x!~/正则/</td>
+</tr>
+</tbody>
+</table>
+<pre><code>$ awk -F &quot;:&quot; 'BEGIN{print &quot;===&quot;} NR==3,NR==5 {printf &quot;%s %s\n&quot;, NR,$1} END{print &quot;@@@&quot;}' xxx_list
+===
+3 1-1
+4 1-8
+5 1000th
+@@@
+$ 
+
+
+$ awk -v FS=&quot;.&quot; 'BEGIN{print &quot;###&quot;} {print NR,NF,$1,$2,$3 }' xxx_list | head
+###
+1 5 xxx:mysql db xxx
+2 5 ttt:maria db ttt
+
+
+
+$ awk -v FS=&quot;.&quot; 'BEGIN{print &quot;###&quot;} {print ARGV[1], NR,NF,$1,$2,$3 }' xxx_list | head
+###
+xxx_list 1 5 xxx:mysql db xxx
+xxx_list 2 5 ttt:maria db ttt
+
+</code></pre>
+<h2 id="_3">自定义变量<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<ul>
+<li>方法一: <code>-v varName=value</code></li>
+<li>方法二: 在程序中直接定义</li>
+</ul>
+<h2 id="awk_2">awk与正则表达式<a class="headerlink" href="#awk_2" title="Permanent link">&para;</a></h2>
+<h4 id="_4">正则表达式<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h4>
+<pre><code>awk '/正则表达式/ {动作}' file
+</code></pre>
+<h4 id="_5">行访问模式<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h4>
+<pre><code>awk '/正则1/,/正则2/ {动作}' file
+</code></pre>
+<pre><code>$ awk -F &quot;:&quot; '/^5may/ {print $1,$NF}' osn_mysql40_acc_list
+5may mysql31.db.sakura.ne.jp
+
+www2323# cat /home/.logs/users/xxx/access_log.20230502 | awk '$1 ~ &quot;xxx.sa|xxx.org|xxx.xxx.ne.jp&quot; {print $3}' | uniq -n
+
+</code></pre>
+<h2 id="awk_3">awk命令执行流程<a class="headerlink" href="#awk_3" title="Permanent link">&para;</a></h2>
+<p>解读需求: 从文件中寻找想要的信息,按照以下顺序执行</p>
+<pre><code>awk 'BEGIN {commands} pattern{commands} END{commands}' file...
+</code></pre>
+<ol>
+<li>优先执行<code>BEGIN{}</code>模式中的语句</li>
+<li>从文件中读取第一行,然后执行<code>pattern{commads}</code>,进行正则匹配<code>/^n/</code>寻找n开头的行,找到之后执行<code>{print}</code>进行打印</li>
+<li>当awk读取文件数据流的结尾时, 会执行<code>END{commads}</code></li>
+</ol>
+<h2 id="_6">概述<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
+<p>AWK是一门解释型的编程语言。在文本处理领域它是非常强大的，它的名字来源于它的三位作者的姓氏：<strong>Alfred Aho</strong>， <strong>Peter Weinberger</strong> 和 <strong>Brian Kernighan</strong>。</p>
+<p>GNU/Linux发布的AWK目前由自由软件基金会（FSF）进行开发和维护，通常也称它为 <strong>GNU AWK</strong>。</p>
+<h3 id="awk_4">AWK的类型<a class="headerlink" href="#awk_4" title="Permanent link">&para;</a></h3>
+<p>下面是几个AWK的变体：</p>
+<ul>
+<li><strong>AWK</strong> - 原先来源于 AT &amp; T 实验室的的AWK</li>
+<li><strong>NAWK</strong> - AT &amp; T 实验室的AWK的升级版</li>
+<li><strong>GAWK</strong> - 这就是GNU AWK。所有的GNU/Linux发布版都自带GAWK，它与AWK和NAWK完全兼容</li>
+</ul>
+<h3 id="awk_5">AWK的典型用途<a class="headerlink" href="#awk_5" title="Permanent link">&para;</a></h3>
+<p>使用AWK可以做很多任务，下面是其中一些</p>
+<ul>
+<li>文本处理</li>
+<li>输出格式化的文本报表</li>
+<li>执行算数运算</li>
+<li>执行字符串操作等等</li>
+</ul>
+<h2 id="_7">工作流<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
+<p>要成为AWK编程专家，你需要先知道它的内部实现机制，AWK遵循了非常简单的工作流 - <strong>读取</strong>，<strong>执行</strong>和<strong>重复</strong>，下图描述了AWK的工作流。</p>
+<p><img alt="" src="https://oayrssjpa.qnssl.com/2016-10-31-14774633531266.jpg" /></p>
+<p><strong>Read</strong></p>
+<p>AWK从输入流（文件，管道或者标准输入）中读取一行，然后存储到内存中。</p>
+<p><strong>Execute</strong></p>
+<p>所有的AWK命令都依次在输入上执行。默认情况下，AWK会对每一行执行命令，我们可以通过提供模式限制这种行为。</p>
+<p><strong>Repeat</strong></p>
+<p>处理过程不断重复，直到到达文件结尾。</p>
+<h3 id="_8">程序结构<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
+<p>现在，让我们先学习一下AWK的程序结构。</p>
+<h4 id="begin">BEGIN 语句块<a class="headerlink" href="#begin" title="Permanent link">&para;</a></h4>
+<p>BEGIN语句块的语法</p>
+<pre class="codehilite"><code class="linenums">BEGIN {awk-commands}
+</code></pre>
+
+<p>BEGIN语句块在程序开始的使用执行，它只执行一次，在这里可以初始化变量。BEGIN是AWK的关键字，因此它必须为大写，注意，这个语句块是可选的。</p>
+<h4 id="body">BODY 语句块<a class="headerlink" href="#body" title="Permanent link">&para;</a></h4>
+<p>BODY语句块的语法</p>
+<pre class="codehilite"><code class="linenums">/pattern/ {awk-commands}
+</code></pre>
+
+<p>BODY语句块中的命令会对输入的每一行执行，我们也可以通过提供模式来控制这种行为。注意，BODY语句块没有关键字。</p>
+<h4 id="end">END 语句块<a class="headerlink" href="#end" title="Permanent link">&para;</a></h4>
+<p>END语句块的语法</p>
+<pre class="codehilite"><code class="linenums">END {awk-commands}
+</code></pre>
+
+<p>END语句块在程序的最后执行，END是AWK的关键字，因此必须为大写，它也是可选的。</p>
+<p>让我们创建一个包含序号，学生姓名，科目名称和得分的文件 <em>marks.txt</em>。</p>
+<pre class="codehilite"><code class="linenums">1)  Amit    Physics  80
+2)  Rahul   Maths    90
+3)  Shyam   Biology  87
+4)  Kedar   English  85
+5)  Hari    History  89
+</code></pre>
+
+<p>下面的例子中我们将会显示文件内容，并且添加每一列的标题</p>
+<pre class="codehilite"><code class="linenums">$ awk 'BEGIN{printf &quot;Sr No\tName\tSub\tMarks\n&quot;} {print}' marks.txt
+</code></pre>
+
+<p>上述代码执行后，输出以下内容</p>
+<pre class="codehilite"><code class="linenums">Sr No     Name     Sub          Marks
+ 1)       Amit     Physics      80
+ 2)       Rahul    Maths        90
+ 3)       Shyam    Biology      87
+ 4)       Kedar    English      85
+ 5)       Hari     History      89
+</code></pre>
+
+<p>在程序的开始，AWK在BEGIN语句中打印出标题。然后再BODY语句中，它会读取文件的每一行然后执行AWK的print命令将每一行的内容打印到标准输出。这个过程会一直重复直到文件的结尾。</p>
+<h2 id="_9">基础语法<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h2>
+<p>AWK的使用非常简单，我们可以直接在命令行中执行AWK的命令，也可以从包含AWK命令的文本文件中执行。</p>
+<h3 id="awk_6">AWK命令行<a class="headerlink" href="#awk_6" title="Permanent link">&para;</a></h3>
+<p>我们可以使用单引号在命令行中指定AWK命令</p>
+<pre class="codehilite"><code class="linenums">awk [options] file ...
+</code></pre>
+
+<p>比如我们有一个包含下面内容的文本文件 <em>marks.txt</em>:</p>
+<pre class="codehilite"><code class="linenums">1) Amit     Physics    80
+2) Rahul    Maths      90
+3) Shyam    Biology    87
+4) Kedar    English    85
+5) Hari     History    89
+</code></pre>
+
+<p>我们可以使用下面的命令显示该文件的完整内容</p>
+<pre class="codehilite"><code class="linenums">$ awk '{print}' marks.txt
+</code></pre>
+
+<h3 id="awk_7">AWK程序文件<a class="headerlink" href="#awk_7" title="Permanent link">&para;</a></h3>
+<p>我们可以使用脚本文件提供AWK命令</p>
+<pre class="codehilite"><code class="linenums">awk [options] -f file ....
+</code></pre>
+
+<p>首先，创建一个包含下面内容的文本文件 <em>command.awk</em></p>
+<pre class="codehilite"><code class="linenums">{print}
+</code></pre>
+
+<p>现在，我们可以让AWK执行该文件中的命令，这里我们实现了和上例同样的结果</p>
+<pre class="codehilite"><code class="linenums">$ awk -f command.awk marks.txt
+</code></pre>
+
+<h3 id="awk_8">AWK标准选项<a class="headerlink" href="#awk_8" title="Permanent link">&para;</a></h3>
+<p>AWK支持下列命令行标准选项</p>
+<h4 id="-v"><code>-v</code> 变量赋值选项<a class="headerlink" href="#-v" title="Permanent link">&para;</a></h4>
+<p>该选项将一个值赋予一个变量，它会在程序开始之前进行赋值，下面的例子描述了该选项的使用</p>
+<pre class="codehilite"><code class="linenums">$ awk -v name=Jerry 'BEGIN{printf &quot;Name = %s\n&quot;, name}'
+Name = Jerry
+</code></pre>
+
+<h4 id="-dump-variablesfile"><code>--dump-variables[=file]</code> 选项<a class="headerlink" href="#-dump-variablesfile" title="Permanent link">&para;</a></h4>
+<p>该选项会输出排好序的全局变量列表和它们最终的值到文件中，默认的文件是 <strong>awkvars.out</strong>。</p>
+<pre class="codehilite"><code class="linenums">$ awk --dump-variables ''
+$ cat awkvars.out 
+ARGC: 1
+ARGIND: 0
+ARGV: array, 1 elements
+BINMODE: 0
+CONVFMT: &quot;%.6g&quot;
+ERRNO: &quot;&quot;
+FIELDWIDTHS: &quot;&quot;
+FILENAME: &quot;&quot;
+FNR: 0
+FPAT: &quot;[^[:space:]]+&quot;
+FS: &quot; &quot;
+IGNORECASE: 0
+LINT: 0
+NF: 0
+NR: 0
+OFMT: &quot;%.6g&quot;
+OFS: &quot; &quot;
+ORS: &quot;\n&quot;
+RLENGTH: 0
+RS: &quot;\n&quot;
+RSTART: 0
+RT: &quot;&quot;
+SUBSEP: &quot;\034&quot;
+TEXTDOMAIN: &quot;messages&quot;
+</code></pre>
+
+<h4 id="-help"><code>--help</code> 选项<a class="headerlink" href="#-help" title="Permanent link">&para;</a></h4>
+<p>打印帮助信息。</p>
+<pre class="codehilite"><code class="linenums">$ awk --help
+Usage: awk [POSIX or GNU style options] -f progfile [--] file ...
+Usage: awk [POSIX or GNU style options] [--] 'program' file ...
+POSIX options : GNU long options: (standard)
+   -f progfile                --file=progfile
+   -F fs                      --field-separator=fs
+   -v var=val                 --assign=var=val
+Short options : GNU long options: (extensions)
+   -b                         --characters-as-bytes
+   -c                         --traditional
+   -C                         --copyright
+   -d[file]                   --dump-variables[=file]
+   -e 'program-text'          --source='program-text'
+   -E file                    --exec=file
+   -g                         --gen-pot
+   -h                         --help
+   -L [fatal]                 --lint[=fatal]
+   -n                         --non-decimal-data
+   -N                         --use-lc-numeric
+   -O                         --optimize
+   -p[file]                   --profile[=file]
+   -P                         --posix
+   -r                         --re-interval
+   -S                         --sandbox
+   -t                         --lint-old
+   -V                         --version
+</code></pre>
+
+<h4 id="-lintfatal"><code>--lint[=fatal]</code> 选项<a class="headerlink" href="#-lintfatal" title="Permanent link">&para;</a></h4>
+<p>该选项允许检查程序的不兼容性或者模棱两可的代码，当提供参数 <strong>fatal</strong>的时候，它会对待Warning消息作为Error。</p>
+<pre class="codehilite"><code class="linenums">$ awk --lint '' /bin/ls
+awk: cmd. line:1: warning: empty program text on command line
+awk: cmd. line:1: warning: source file does not end in newline
+awk: warning: no program text at all!
+</code></pre>
+
+<h4 id="-posix"><code>--posix</code> 选项<a class="headerlink" href="#-posix" title="Permanent link">&para;</a></h4>
+<p>该选项开启严格的POSIX兼容。</p>
+<h4 id="-profilefile"><code>--profile[=file]</code>选项<a class="headerlink" href="#-profilefile" title="Permanent link">&para;</a></h4>
+<p>该选项会输出一份格式化之后的程序到文件中，默认文件是 <em>awkprof.out</em>。</p>
+<pre class="codehilite"><code class="linenums">$ awk --profile 'BEGIN{printf&quot;---|Header|--\n&quot;} {print} 
+END{printf&quot;---|Footer|---\n&quot;}' marks.txt &gt; /dev/null 
+$ cat awkprof.out
+    # gawk 配置, 创建 Wed Oct 26 15:05:49 2016
+
+    # BEGIN 块
+
+    BEGIN {
+        printf &quot;---|Header|--\n&quot;
+    }
+
+    # 规则
+
+    {
+        print $0
+    }
+
+    # END 块
+
+    END {
+        printf &quot;---|Footer|---\n&quot;
+    }
+</code></pre>
+
+<h4 id="-traditional"><code>--traditional</code> 选项<a class="headerlink" href="#-traditional" title="Permanent link">&para;</a></h4>
+<p>该选项会禁止所有的gawk规范的扩展。</p>
+<h4 id="-version"><code>--version</code> 选项<a class="headerlink" href="#-version" title="Permanent link">&para;</a></h4>
+<p>输出版本号</p>
+<pre class="codehilite"><code class="linenums">$ awk --version
+GNU Awk 3.1.7
+版权所有 © 1989, 1991-2009 自由软件基金会(FSF)。
+
+该程序为自由软件，你可以在自由软件基金会发布的 GNU 通用公共许可证(GPL)第
+3版或以后版本下修改或重新发布。
+
+该程序之所以被发布是因为希望他能对你有所用处，但我们不作任何担保。这包含
+但不限于任何商业适售性以及针对特定目的的适用性的担保。详情参见 GNU 通用公
+共许可证(GPL)。
+
+你应该收到程序附带的一份 GNU 通用公共许可证(GPL)。如果没有收到，请参看 http://www.gnu.org/licenses/ 。
+You have new mail in /var/spool/mail/root
+</code></pre>
+
+<h2 id="_10">基本使用示例<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h2>
+<p>本部分会讲述一些有用的AWK命令和它们的使用示例，所有的例子都是以下面的文本文件 <em>marks.txt</em> 为基础的</p>
+<pre class="codehilite"><code class="linenums">1) Amit Physics     80
+2) Rahul    Maths       90
+3) Shyam    Biology     87
+4) Kedar    English     85
+5) Hari History     89
+</code></pre>
+
+<h3 id="_11">打印某列或者字段<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h3>
+<p>AWK可以只打印输入字段中的某些列。</p>
+<pre class="codehilite"><code class="linenums">$ awk '{print $3 &quot;\t&quot; $4}' marks.txt
+Physics 80
+Maths   90
+Biology 87
+English 85
+History 89
+</code></pre>
+
+<p>在文件<em>marks.txt</em>中，第三列包含了科目名，第四列则是得分，上面的例子中，我们只打印出了这两列，<strong>$3</strong> 和 <strong>$4</strong> 代表了输入记录中的第三和第四个字段。</p>
+<h3 id="_12">打印所有的行<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h3>
+<p>默认情况下，AWK会打印出所有匹配模式的行</p>
+<pre class="codehilite"><code class="linenums">$ awk '/a/ {print $0}' marks.txt
+2)  Rahul   Maths    90
+3)  Shyam   Biology  87
+4)  Kedar   English  85
+5)  Hari    History  89
+</code></pre>
+
+<p>上述命令会判断每一行中是否包含<code>a</code>，如果包含则打印该行，如果BODY部分缺失则默认会执行打印，因此，上述命令和下面这个是等价的</p>
+<pre class="codehilite"><code class="linenums">$ awk '/a/' marks.txt
+</code></pre>
+
+<h3 id="_13">打印匹配模式的列<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h3>
+<p>当模式匹配成功时，默认情况下AWK会打印该行，但是也可以让它只打印指定的字段。例如，下面的例子中，只会打印出匹配模式的第三和第四个字段。</p>
+<pre class="codehilite"><code class="linenums">$ awk '/a/ {print $3 &quot;\t&quot; $4}' marks.txt
+Maths   90
+Biology 87
+English 85
+History 89
+</code></pre>
+
+<h3 id="_14">任意顺序打印列<a class="headerlink" href="#_14" title="Permanent link">&para;</a></h3>
+<pre class="codehilite"><code class="linenums">$ awk '/a/ {print $4 &quot;\t&quot; $3}' marks.txt
+90  Maths
+87  Biology
+85  English
+89  History
+</code></pre>
+
+<h3 id="_15">统计匹配模式的行数<a class="headerlink" href="#_15" title="Permanent link">&para;</a></h3>
+<pre class="codehilite"><code class="linenums">$ awk '/a/{++cnt} END {print &quot;Count = &quot;, cnt}' marks.txt
+Count =  4
+</code></pre>
+
+<h3 id="18">打印超过18个字符的行<a class="headerlink" href="#18" title="Permanent link">&para;</a></h3>
+<pre class="codehilite"><code class="linenums">$ awk 'length($0) &gt; 18' marks.txt
+3) Shyam   Biology   87
+4) Kedar   English   85
+</code></pre>
+
+<h2 id="_16">内建变量<a class="headerlink" href="#_16" title="Permanent link">&para;</a></h2>
+<p>AWK提供了很多内置的变量，它们在开发AWK脚本的过程中起着非常重要的角色。</p>
+<h3 id="awk_9">标准AWK变量<a class="headerlink" href="#awk_9" title="Permanent link">&para;</a></h3>
+<h4 id="argc">ARGC 命令行参数个数<a class="headerlink" href="#argc" title="Permanent link">&para;</a></h4>
+<p>命令行中提供的参数个数</p>
+<pre class="codehilite"><code class="linenums">$ awk 'BEGIN {print &quot;Arguments =&quot;, ARGC}' One Two Three Four
+Arguments = 5
+</code></pre>
+
+<h4 id="argv">ARGV 命令行参数数组<a class="headerlink" href="#argv" title="Permanent link">&para;</a></h4>
+<p>存储命令行参数的数组，索引范围从<strong>0</strong> - <strong>ARGC - 1</strong>。</p>
+<pre class="codehilite"><code class="linenums">$ awk 'BEGIN { 
+   for (i = 0; i &lt; ARGC - 1; ++i) { 
+      printf &quot;ARGV[%d] = %s\n&quot;, i, ARGV[i] 
+   } 
+}' one two three four
+ARGV[0] = awk
+ARGV[1] = one
+ARGV[2] = two
+ARGV[3] = three
+</code></pre>
+
+<h4 id="convfmt">CONVFMT 数字的约定格式<a class="headerlink" href="#convfmt" title="Permanent link">&para;</a></h4>
+<p>代表了数字的约定格式，默认值是<strong>%.6g</strong></p>
+<pre class="codehilite"><code class="linenums">$ awk 'BEGIN { print &quot;Conversion Format =&quot;, CONVFMT }'
+Conversion Format = %.6g
+</code></pre>
+
+<h4 id="environ">ENVIRON 环境变量<a class="headerlink" href="#environ" title="Permanent link">&para;</a></h4>
+<p>环境变量的关联数组</p>
+<pre class="codehilite"><code class="linenums">$ awk 'BEGIN { print ENVIRON[&quot;USER&quot;] }'
+mylxsw
+</code></pre>
+
+<h4 id="filename">FILENAME 当前文件名<a class="headerlink" href="#filename" title="Permanent link">&para;</a></h4>
+<pre class="codehilite"><code class="linenums">$ awk 'END {print FILENAME}' marks.txt
+marks.txt
+</code></pre>
+
+<h4 id="fs">FS 输入字段的分隔符<a class="headerlink" href="#fs" title="Permanent link">&para;</a></h4>
+<p>代表了输入字段的分隔符，默认值为<strong>空格</strong>，可以通过<code>-F</code>选项在命令行选项中修改它。</p>
+<pre class="codehilite"><code class="linenums">$ awk 'BEGIN {print &quot;FS = &quot; FS}' | cat -vte
+FS =  $
+$ awk -F , 'BEGIN {print &quot;FS = &quot; FS}' | cat -vte
+FS = ,$
+</code></pre>
+
+<h4 id="nf">NF 字段数目<a class="headerlink" href="#nf" title="Permanent link">&para;</a></h4>
+<p>代表了当前行中的字段数目，例如下面例子打印出了包含大于两个字段的行</p>
+<pre class="codehilite"><code class="linenums">$ echo -e &quot;One Two\nOne Two Three\nOne Two Three Four&quot; | awk 'NF &gt; 2'
+One Two Three
+One Two Three Four
+</code></pre>
+
+<h4 id="nr">NR 行号<a class="headerlink" href="#nr" title="Permanent link">&para;</a></h4>
+<pre class="codehilite"><code class="linenums">$ echo -e &quot;One Two\nOne Two Three\nOne Two Three Four&quot; | awk 'NR &lt; 3'
+One Two
+One Two Three
+</code></pre>
+
+<h4 id="fnr">FNR 行号（相对当前文件）<a class="headerlink" href="#fnr" title="Permanent link">&para;</a></h4>
+<p>与NR相似，不过在处理多文件时更有用，获取的行号相对于当前文件。</p>
+<h4 id="ofmt">OFMT 输出格式数字<a class="headerlink" href="#ofmt" title="Permanent link">&para;</a></h4>
+<p>默认值为<strong>%.6g</strong></p>
+<pre class="codehilite"><code class="linenums">$ awk 'BEGIN {print &quot;OFMT = &quot; OFMT}'
+OFMT = %.6g
+</code></pre>
+
+<h4 id="ofs">OFS 输出字段分隔符<a class="headerlink" href="#ofs" title="Permanent link">&para;</a></h4>
+<p>输出字段分隔符，默认为空格</p>
+<pre class="codehilite"><code class="linenums">$ awk 'BEGIN {print &quot;OFS = &quot; OFS}' | cat -vte
+OFS =  $
+</code></pre>
+
+<h4 id="ors">ORS 输出行分隔符<a class="headerlink" href="#ors" title="Permanent link">&para;</a></h4>
+<p>默认值为换行符</p>
+<pre class="codehilite"><code class="linenums">$ awk 'BEGIN {print &quot;ORS = &quot; ORS}' | cat -vte
+ORS = $
+$
+</code></pre>
+
+<h4 id="rlength">RLENGTH<a class="headerlink" href="#rlength" title="Permanent link">&para;</a></h4>
+<p>代表了 <strong>match</strong> 函数匹配的字符串长度。</p>
+<pre class="codehilite"><code class="linenums">$ awk 'BEGIN { if (match(&quot;One Two Three&quot;, &quot;re&quot;)) { print RLENGTH } }'
+2
+</code></pre>
+
+<h4 id="rs">RS 输入记录分隔符<a class="headerlink" href="#rs" title="Permanent link">&para;</a></h4>
+<pre class="codehilite"><code class="linenums">$ awk 'BEGIN {print &quot;RS = &quot; RS}' | cat -vte
+RS = $
+$
+</code></pre>
+
+<h4 id="rstart">RSTART<a class="headerlink" href="#rstart" title="Permanent link">&para;</a></h4>
+<p><strong>match</strong>函数匹配的第一次出现位置</p>
+<pre class="codehilite"><code class="linenums">$ awk 'BEGIN { if (match(&quot;One Two Three&quot;, &quot;Thre&quot;)) { print RSTART } }
+9
+</code></pre>
+
+<h4 id="subsep">SUBSEP 数组子脚本的分隔符<a class="headerlink" href="#subsep" title="Permanent link">&para;</a></h4>
+<p>数组子脚本的分隔符，默认为<strong>\034</strong></p>
+<pre class="codehilite"><code class="linenums">$ awk 'BEGIN { print &quot;SUBSEP = &quot; SUBSEP }' | cat -vte
+SUBSEP = ^\$
+</code></pre>
+
+<h4 id="0"><strong>$ 0</strong> 代表了当前行<a class="headerlink" href="#0" title="Permanent link">&para;</a></h4>
+<p>代表了当前行</p>
+<pre class="codehilite"><code class="linenums">$ awk '{print $0}' marks.txt
+1) Amit     Physics   80
+2) Rahul    Maths     90
+3) Shyam    Biology   87
+4) Kedar    English   85
+5) Hari     History   89
+</code></pre>
+
+<h4 id="n">$n<a class="headerlink" href="#n" title="Permanent link">&para;</a></h4>
+<p>当前行中的第n个字段</p>
+<pre class="codehilite"><code class="linenums">$ awk '{print $3 &quot;\t&quot; $4}' marks.txt
+Physics   80
+Maths     90
+Biology   87
+English   85
+History   89
+</code></pre>
+
+<h3 id="gnu-awk">GNU AWK的变量<a class="headerlink" href="#gnu-awk" title="Permanent link">&para;</a></h3>
+<h4 id="argind">ARGIND<a class="headerlink" href="#argind" title="Permanent link">&para;</a></h4>
+<p>当前被处理的ARGV的索引</p>
+<pre class="codehilite"><code class="linenums">$ awk '{ 
+   print &quot;ARGIND   = &quot;, ARGIND; print &quot;Filename = &quot;, ARGV[ARGIND] 
+}' junk1 junk2 junk3
+ARGIND   =  1
+Filename =  junk1
+ARGIND   =  2
+Filename =  junk2
+ARGIND   =  3
+Filename =  junk3
+</code></pre>
+
+<h4 id="binmode">BINMODE<a class="headerlink" href="#binmode" title="Permanent link">&para;</a></h4>
+<p>在非POSIX系统上指定对所有的文件I/O采用二进制模式。</p>
+<h4 id="errorno">ERRORNO<a class="headerlink" href="#errorno" title="Permanent link">&para;</a></h4>
+<p>一个代表了<strong>getline</strong>跳转失败或者是<strong>close</strong>调用失败的错误的字符串。</p>
+<pre class="codehilite"><code class="linenums">$ awk 'BEGIN { ret = getline &lt; &quot;junk.txt&quot;; if (ret == -1) print &quot;Error:&quot;, ERRNO }'
+Error: No such file or directory
+</code></pre>
+
+<h4 id="fieldwidths">FIELDWIDTHS<a class="headerlink" href="#fieldwidths" title="Permanent link">&para;</a></h4>
+<p>设置了空格分隔的字段宽度变量列表的话，GAWK会将输入解析为固定宽度的字段，而不是使用<strong>FS</strong>进行分隔。</p>
+<h4 id="ignorecase">IGNORECASE<a class="headerlink" href="#ignorecase" title="Permanent link">&para;</a></h4>
+<p>设置了这个变量的话，AWK会忽略大小写。</p>
+<pre class="codehilite"><code class="linenums">$ awk 'BEGIN{IGNORECASE = 1} /amit/' marks.txt
+1) Amit  Physics   80
+</code></pre>
+
+<h4 id="lint">LINT<a class="headerlink" href="#lint" title="Permanent link">&para;</a></h4>
+<p>提供了对<strong>--lint</strong>选项的动态控制。</p>
+<pre class="codehilite"><code class="linenums">$ awk 'BEGIN {LINT = 1; a}'
+awk: cmd. line:1: warning: reference to uninitialized variable `a'
+awk: cmd. line:1: warning: statement has no effect
+</code></pre>
+
+<h4 id="procinfo">PROCINFO<a class="headerlink" href="#procinfo" title="Permanent link">&para;</a></h4>
+<p>包含进程信息的关联数组，例如UID，进程ID等</p>
+<pre class="codehilite"><code class="linenums">$ awk 'BEGIN { print PROCINFO[&quot;pid&quot;] }'
+4316
+</code></pre>
+
+<h4 id="textdomain">TEXTDOMAIN<a class="headerlink" href="#textdomain" title="Permanent link">&para;</a></h4>
+<p>代表了AWK的文本域，用于查找字符串的本地化翻译。</p>
+<pre class="codehilite"><code class="linenums">$ awk 'BEGIN { print TEXTDOMAIN }'
+messages
+</code></pre>
+
+<h2 id="_17">操作符<a class="headerlink" href="#_17" title="Permanent link">&para;</a></h2>
+<p>与其它编程语言一样，AWK也提供了大量的操作符。</p>
+<h3 id="_18">算数操作符<a class="headerlink" href="#_18" title="Permanent link">&para;</a></h3>
+<p>算数操作符不多说，直接看例子，无非就是<strong>+-*/%</strong></p>
+<pre class="codehilite"><code class="linenums">$ awk 'BEGIN { a = 50; b = 20; print &quot;(a + b) = &quot;, (a + b) }'
+(a + b) =  70
+
+$ awk 'BEGIN { a = 50; b = 20; print &quot;(a - b) = &quot;, (a - b) }'
+(a - b) =  30
+
+$ awk 'BEGIN { a = 50; b = 20; print &quot;(a * b) = &quot;, (a * b) }'
+(a * b) =  1000
+
+$ awk 'BEGIN { a = 50; b = 20; print &quot;(a / b) = &quot;, (a / b) }'
+(a / b) =  2.5
+
+$ awk 'BEGIN { a = 50; b = 20; print &quot;(a % b) = &quot;, (a % b) }'
+(a % b) =  10
+</code></pre>
+
+<h3 id="_19">增减运算符<a class="headerlink" href="#_19" title="Permanent link">&para;</a></h3>
+<p>自增自减与C语言一致。</p>
+<pre class="codehilite"><code class="linenums">$ awk 'BEGIN { a = 10; b = ++a; printf &quot;a = %d, b = %d\n&quot;, a, b }'
+a = 11, b = 11
+
+$ awk 'BEGIN { a = 10; b = --a; printf &quot;a = %d, b = %d\n&quot;, a, b }'
+a = 9, b = 9
+
+$ awk 'BEGIN { a = 10; b = a++; printf &quot;a = %d, b = %d\n&quot;, a, b }'
+a = 11, b = 10
+
+$ awk 'BEGIN { a = 10; b = a--; printf &quot;a = %d, b = %d\n&quot;, a, b }'
+a = 9, b = 10
+</code></pre>
+
+<h3 id="_20">赋值操作符<a class="headerlink" href="#_20" title="Permanent link">&para;</a></h3>
+<pre class="codehilite"><code class="linenums">$ awk 'BEGIN { name = &quot;Jerry&quot;; print &quot;My name is&quot;, name }'
+My name is Jerry
+$ awk 'BEGIN { cnt = 10; cnt += 10; print &quot;Counter =&quot;, cnt }'
+Counter = 20
+$ awk 'BEGIN { cnt = 100; cnt -= 10; print &quot;Counter =&quot;, cnt }'
+Counter = 90
+$ awk 'BEGIN { cnt = 10; cnt *= 10; print &quot;Counter =&quot;, cnt }'
+Counter = 100
+$ awk 'BEGIN { cnt = 100; cnt /= 5; print &quot;Counter =&quot;, cnt }'
+Counter = 20
+$ awk 'BEGIN { cnt = 100; cnt %= 8; print &quot;Counter =&quot;, cnt }'
+Counter = 4
+$ awk 'BEGIN { cnt = 2; cnt ^= 4; print &quot;Counter =&quot;, cnt }'
+Counter = 16
+$ awk 'BEGIN { cnt = 2; cnt **= 4; print &quot;Counter =&quot;, cnt }'
+Counter = 16
+</code></pre>
+
+<h3 id="_21">关系操作符<a class="headerlink" href="#_21" title="Permanent link">&para;</a></h3>
+<pre class="codehilite"><code class="linenums">$ awk 'BEGIN { a = 10; b = 10; if (a == b) print &quot;a == b&quot; }'
+a == b
+$ awk 'BEGIN { a = 10; b = 20; if (a != b) print &quot;a != b&quot; }'
+a != b
+$ awk 'BEGIN { a = 10; b = 20; if (a &lt; b) print &quot;a  &lt; b&quot; }'
+a  &lt; b
+$ awk 'BEGIN { a = 10; b = 10; if (a &lt;= b) print &quot;a &lt;= b&quot; }'
+a &lt;= b
+$ awk 'BEGIN { a = 10; b = 20; if (b &gt; a ) print &quot;b &gt; a&quot; }'
+b &gt; a
+</code></pre>
+
+<h3 id="_22">逻辑操作符<a class="headerlink" href="#_22" title="Permanent link">&para;</a></h3>
+<pre class="codehilite"><code class="linenums">$ awk 'BEGIN {
+   num = 5; if (num &gt;= 0 &amp;&amp; num &lt;= 7) printf &quot;%d is in octal format\n&quot;, num
+}'
+5 is in octal format
+$ awk 'BEGIN {
+   ch = &quot;\n&quot;; if (ch == &quot; &quot; || ch == &quot;\t&quot; || ch == &quot;\n&quot;)
+   print &quot;Current character is whitespace.&quot;
+}'
+Current character is whitespace.
+$ awk 'BEGIN { name = &quot;&quot;; if (! length(name)) print &quot;name is empty string.&quot; }'
+name is empty string.
+</code></pre>
+
+<h3 id="_23">三元操作符<a class="headerlink" href="#_23" title="Permanent link">&para;</a></h3>
+<pre class="codehilite"><code class="linenums">$ awk 'BEGIN { a = 10; b = 20; (a &gt; b) ? max = a : max = b; print &quot;Max =&quot;, max}'
+Max = 20
+</code></pre>
+
+<h3 id="_24">一元操作符<a class="headerlink" href="#_24" title="Permanent link">&para;</a></h3>
+<pre class="codehilite"><code class="linenums">$ awk 'BEGIN { a = -10; a = +a; print &quot;a =&quot;, a }'
+a = -10
+$ awk 'BEGIN { a = -10; a = -a; print &quot;a =&quot;, a }'
+a = 10
+</code></pre>
+
+<h3 id="_25">指数操作符<a class="headerlink" href="#_25" title="Permanent link">&para;</a></h3>
+<pre class="codehilite"><code class="linenums">$ awk 'BEGIN { a = 10; a = a ^ 2; print &quot;a =&quot;, a }'
+a = 100
+
+$ awk 'BEGIN { a = 10; a ^= 2; print &quot;a =&quot;, a }'
+a = 100
+</code></pre>
+
+<h3 id="_26">字符串连接操作符<a class="headerlink" href="#_26" title="Permanent link">&para;</a></h3>
+<pre class="codehilite"><code class="linenums">$ awk 'BEGIN { str1 = &quot;Hello, &quot;; str2 = &quot;World&quot;; str3 = str1 str2; print str3 }'
+Hello, World
+</code></pre>
+
+<h3 id="_27">数组成员操作符<a class="headerlink" href="#_27" title="Permanent link">&para;</a></h3>
+<pre class="codehilite"><code class="linenums">$ awk 'BEGIN { 
+   arr[0] = 1; arr[1] = 2; arr[2] = 3; for (i in arr) printf &quot;arr[%d] = %d\n&quot;, i, arr[i]
+}'
+arr[2] = 3
+arr[0] = 1
+arr[1] = 2
+</code></pre>
+
+<h3 id="_28">正则表达式操作符<a class="headerlink" href="#_28" title="Permanent link">&para;</a></h3>
+<p>正则表达式操作符使用 <strong>~</strong> 和 <strong>!~</strong> 分别代表匹配和不匹配。</p>
+<pre class="codehilite"><code class="linenums">$ awk '$0 ~ 9' marks.txt
+2) Rahul   Maths    90
+5) Hari    History  89
+
+$ awk '$0 !~ 9' marks.txt
+1) Amit     Physics   80
+3) Shyam    Biology   87
+4) Kedar    English   85
+
+# 匹配正则表达式需要在表达式前后添加反斜线，与js类似吧
+$ tail -n 40 /var/log/nginx/access.log | awk '$0 ~ /ip\[127\.0\.0\.1\]/'
+</code></pre>
+
+<blockquote>
+<p>更多关于正则表达式请看后面的正则表达式部分</p>
+</blockquote>
+<h2 id="_29">正则表达式<a class="headerlink" href="#_29" title="Permanent link">&para;</a></h2>
+<p>AWK在处理正则表达式方面是非常强大的，使用简单的正则表达式可以处理非常复杂的问题。</p>
+<pre class="codehilite"><code class="linenums">$ echo -e &quot;cat\nbat\nfun\nfin\nfan&quot; | awk '/f.n/'
+fun
+fin
+fan
+
+$ echo -e &quot;This\nThat\nThere\nTheir\nthese&quot; | awk '/^The/'
+There
+Their
+
+$ echo -e &quot;knife\nknow\nfun\nfin\nfan\nnine&quot; | awk '/n$/'
+fun
+fin
+fan
+
+$ echo -e &quot;Call\nTall\nBall&quot; | awk '/[CT]all/'
+Call
+Tall
+
+$ echo -e &quot;Call\nTall\nBall&quot; | awk '/[^CT]all/'
+Ball
+
+$ echo -e &quot;Call\nTall\nBall\nSmall\nShall&quot; | awk '/Call|Ball/'
+Call
+Ball
+
+$ echo -e &quot;Colour\nColor&quot; | awk '/Colou?r/'
+Colour
+Color
+
+$ echo -e &quot;ca\ncat\ncatt&quot; | awk '/cat*/'
+ca
+cat
+catt
+
+$ echo -e &quot;111\n22\n123\n234\n456\n222&quot;  | awk '/2+/'
+22
+123
+234
+222
+
+$ echo -e &quot;Apple Juice\nApple Pie\nApple Tart\nApple Cake&quot; | awk '/Apple (Juice|Cake)/'
+Apple Juice
+Apple Cake
+</code></pre>
+
+<h2 id="_30">数组<a class="headerlink" href="#_30" title="Permanent link">&para;</a></h2>
+<p>AWK支持关联数组，也就是说，不仅可以使用数字索引的数组，还可以使用字符串作为索引，而且数字索引也不要求是连续的。数组不需要声明可以直接使用，语法如下：</p>
+<pre class="codehilite"><code class="linenums">array_name[index] = value
+</code></pre>
+
+<p>创建数组的方式非常简单，直接为变量赋值即可</p>
+<pre class="codehilite"><code class="linenums">$ awk 'BEGIN {
+   fruits[&quot;mango&quot;] = &quot;yellow&quot;;
+   fruits[&quot;orange&quot;] = &quot;orange&quot;
+   print fruits[&quot;orange&quot;] &quot;\n&quot; fruits[&quot;mango&quot;]
+}'
+orange
+yellow
+</code></pre>
+
+<p>删除数组元素使用<code>delete</code>语句</p>
+<pre class="codehilite"><code class="linenums">$ awk 'BEGIN {
+   fruits[&quot;mango&quot;] = &quot;yellow&quot;;
+   fruits[&quot;orange&quot;] = &quot;orange&quot;;
+   delete fruits[&quot;orange&quot;];
+   print fruits[&quot;orange&quot;]
+}'
+</code></pre>
+
+<p>在AWK中，只支持一维数组，但是可以通过一维数组模拟多维，例如我们有一个3x3的三维数组</p>
+<pre class="codehilite"><code class="linenums">100   200   300
+400   500   600
+700   800   900
+</code></pre>
+
+<p>可以这样操作</p>
+<pre class="codehilite"><code class="linenums">$ awk 'BEGIN {
+   array[&quot;0,0&quot;] = 100;
+   array[&quot;0,1&quot;] = 200;
+   array[&quot;0,2&quot;] = 300;
+   array[&quot;1,0&quot;] = 400;
+   array[&quot;1,1&quot;] = 500;
+   array[&quot;1,2&quot;] = 600;
+
+   # print array elements
+   print &quot;array[0,0] = &quot; array[&quot;0,0&quot;];
+   print &quot;array[0,1] = &quot; array[&quot;0,1&quot;];
+   print &quot;array[0,2] = &quot; array[&quot;0,2&quot;];
+   print &quot;array[1,0] = &quot; array[&quot;1,0&quot;];
+   print &quot;array[1,1] = &quot; array[&quot;1,1&quot;];
+   print &quot;array[1,2] = &quot; array[&quot;1,2&quot;];
+}'
+array[0,0] = 100
+array[0,1] = 200
+array[0,2] = 300
+array[1,0] = 400
+array[1,1] = 500
+array[1,2] = 600
+</code></pre>
+
+<h2 id="_31">流程控制<a class="headerlink" href="#_31" title="Permanent link">&para;</a></h2>
+<p>流程控制语句与大多数语言一样，基本格式如下</p>
+<pre class="codehilite"><code class="linenums">if (condition)
+   action
+
+if (condition) {
+   action-1
+   action-1
+   .
+   .
+   action-n
+}
+
+if (condition)
+   action-1
+else if (condition2)
+   action-2
+else
+   action-3
+</code></pre>
+
+<p>例如：</p>
+<pre class="codehilite"><code class="linenums">$ awk 'BEGIN {
+   num = 11; if (num % 2 == 0) printf &quot;%d is even number.\n&quot;, num; 
+      else printf &quot;%d is odd number.\n&quot;, num 
+}'
+
+$ awk 'BEGIN {
+   a = 30;
+
+   if (a==10)
+   print &quot;a = 10&quot;;
+   else if (a == 20)
+   print &quot;a = 20&quot;;
+   else if (a == 30)
+   print &quot;a = 30&quot;;
+}'
+</code></pre>
+
+<h2 id="_32">循环<a class="headerlink" href="#_32" title="Permanent link">&para;</a></h2>
+<p>循环操作与其他C系语言一样，主要包括 <code>for</code>，<code>while</code>，<code>do...while</code>，<code>break</code>，<code>continue</code> 语句，当然，还有一个 <code>exit</code>语句用于退出脚本执行。</p>
+<pre class="codehilite"><code class="linenums">for (initialisation; condition; increment/decrement)
+   action
+
+while (condition)
+   action
+
+do
+   action
+while (condition)
+</code></pre>
+
+<p>例子：</p>
+<pre class="codehilite"><code class="linenums">$ awk 'BEGIN { for (i = 1; i &lt;= 5; ++i) print i }'
+
+$ awk 'BEGIN {i = 1; while (i &lt; 6) { print i; ++i } }'
+
+$ awk 'BEGIN {i = 1; do { print i; ++i } while (i &lt; 6) }'
+
+$ awk 'BEGIN {
+   sum = 0; for (i = 0; i &lt; 20; ++i) { 
+      sum += i; if (sum &gt; 50) break; else print &quot;Sum =&quot;, sum 
+   } 
+}'
+
+$ awk 'BEGIN {
+   for (i = 1; i &lt;= 20; ++i) {
+      if (i % 2 == 0) print i ; else continue
+   } 
+}'
+
+$ awk 'BEGIN {
+   sum = 0; for (i = 0; i &lt; 20; ++i) {
+      sum += i; if (sum &gt; 50) exit(10); else print &quot;Sum =&quot;, sum 
+   } 
+}'
+</code></pre>
+
+<blockquote>
+<p><code>exit</code>用于退出脚本，参数为退出的状态码，可以通过shell中的<code>$?</code>获取</p>
+</blockquote>
+<h2 id="_33">函数<a class="headerlink" href="#_33" title="Permanent link">&para;</a></h2>
+<h3 id="_34">内建函数<a class="headerlink" href="#_34" title="Permanent link">&para;</a></h3>
+<p>AWK提供了很多方便的内建函数供编程人员使用。由于函数比较多，个人觉得单纯看每个函数的使用也没有什么实际意义，比较容易遗忘，因此，这里只简单的列出常用的一些函数，只需要对其有个印象即可，使用的时候再去 <a href="https://www.gnu.org/software/gawk/manual/gawk.html#Built_002din">查手册</a> 效果会更好一些吧。</p>
+<h4 id="_35">数学函数<a class="headerlink" href="#_35" title="Permanent link">&para;</a></h4>
+<ul>
+<li><code>atan2(y, x)</code> </li>
+<li><code>cos(expr)</code> </li>
+<li><code>exp(expr)</code> </li>
+<li><code>int(expr)</code> </li>
+<li><code>log(expr)</code> </li>
+<li><code>rand</code> </li>
+<li><code>sin(expr)</code> </li>
+<li><code>sqrt(expr)</code> </li>
+<li><code>srand([expr])</code> </li>
+</ul>
+<h4 id="_36">字符串函数<a class="headerlink" href="#_36" title="Permanent link">&para;</a></h4>
+<ul>
+<li><code>asort(arr [, d [, how] ])</code> </li>
+<li><code>asorti(arr [, d [, how] ])</code> </li>
+<li><code>gsub(regex, sub, string)</code> </li>
+<li><code>index(str, sub)</code> </li>
+<li><code>length(str)</code> </li>
+<li><code>match(str, regex)</code> </li>
+<li><code>split(str, arr, regex)</code> </li>
+<li><code>sprintf(format, expr-list)</code> </li>
+<li><code>strtonum(str)</code> </li>
+<li><code>sub(regex, sub, string)</code> </li>
+<li><code>substr(str, start, l)</code> </li>
+<li><code>tolower(str)</code> </li>
+<li><code>toupper(str)</code></li>
+</ul>
+<h4 id="_37">时间函数<a class="headerlink" href="#_37" title="Permanent link">&para;</a></h4>
+<ul>
+<li><code>systime</code> </li>
+<li><code>mktime(datespec)</code> </li>
+<li><code>strftime([format [, timestamp[, utc-flag]]])</code> </li>
+</ul>
+<h4 id="_38">字节操作函数<a class="headerlink" href="#_38" title="Permanent link">&para;</a></h4>
+<ul>
+<li><code>and</code> </li>
+<li><code>compl</code> </li>
+<li><code>lshift</code> </li>
+<li><code>rshift</code> </li>
+<li><code>or</code> </li>
+<li><code>xor</code> </li>
+</ul>
+<h4 id="_39">其它<a class="headerlink" href="#_39" title="Permanent link">&para;</a></h4>
+<ul>
+<li>
+<p><code>close(expr)</code> 关闭管道文件</p>
+<p>请看下面这段代码</p>
+<pre class="codehilite"><code class="linenums">$ awk 'BEGIN {
+   cmd = &quot;tr [a-z] [A-Z]&quot;
+   print &quot;hello, world !!!&quot; |&amp; cmd
+
+   close(cmd, &quot;to&quot;)
+   cmd |&amp; getline out
+   print out;
+
+   close(cmd);
+}'
+HELLO, WORLD !!!
+</code></pre>
+
+<p>是不是感觉很难懂？让我来解释一下</p>
+<ul>
+<li>第一个语句<code>cmd = "tr [a-z] [A-Z]"</code>是我们在AWK中要用来建立双向连接的命令。</li>
+<li>第二个语句<code>print</code>提供了<code>tr</code>命令的输入，使用 <strong>&amp;|</strong> 表名建立双向连接。</li>
+<li>第三个语句<code>close(cmd, "to")</code>用于执行完成后关闭<strong>to</strong>进程</li>
+<li>第四个语句<code>cmd |&amp; getline out</code>使用<code>getline</code>函数存储输出到<strong>out</strong>变量</li>
+<li>接下来打印变量out的内容，然后关闭cmd</li>
+</ul>
+</li>
+<li>
+<p><code>delete</code>  用于删除数组元素</p>
+</li>
+<li><code>exit</code>  退出脚本执行，并返回状态码参数</li>
+<li><code>fflush</code>  </li>
+<li>
+<p><code>getline</code> 该命令让awk读取下一行内容</p>
+<p>该命令让awk读取下一行内容，比如</p>
+<pre class="codehilite"><code class="linenums">$ awk '{getline; print $0}' marks.txt
+2) Rahul   Maths     90
+4) Kedar   English   85
+5) Hari    History   89
+</code></pre>
+
+<p>使用<code>getline var &lt; file</code>可以从file中读取输入，存储到变量var中</p>
+<pre class="codehilite"><code class="linenums">{
+     if (NF == 2 &amp;&amp; $1 == &quot;@include&quot;) {
+          while ((getline line &lt; $2) &gt; 0)
+               print line
+          # 这里的close确保如果文件中两个@include，可以让其读取两次
+          close($2)
+     } else
+          print
+}
+</code></pre>
+
+<p>命令的输出也可以通过管道输入到<code>getline</code>，使用<code>command | getline</code>这种方式。在这种情况下，字符串命令会作为shell命令执行，其标准输出会通过管道传递个awk作为其输入，这种形式的getline会从管道中一次读取一条记录。例如下面的命令会从输入中逐行读取，如果遇到<code>@execute</code>，则将该行作为命令执行，将命令的输出作为最终的输出内容</p>
+<pre class="codehilite"><code class="linenums">{
+     if ($1 == &quot;@execute&quot;) {
+          tmp = substr($0, 10)        # Remove &quot;@execute&quot;
+          while ((tmp | getline) &gt; 0)
+               # 这里实际上设置了$0为这一行的内容
+               print
+          close(tmp)
+     } else
+          print
+}
+</code></pre>
+
+<p>如果文件包含以下内容</p>
+<pre class="codehilite"><code class="linenums">foo
+bar
+baz
+@execute who
+bletch
+</code></pre>
+
+<p>则会输出</p>
+<pre class="codehilite"><code class="linenums">foo
+bar
+baz
+arnold     ttyv0   Jul 13 14:22
+miriam     ttyp0   Jul 13 14:23     (murphy:0)
+bill       ttyp1   Jul 13 14:23     (murphy:0)
+bletch
+</code></pre>
+
+<p>使用<code>command | getline var</code>可以实现将命令的输出写入到变量var。</p>
+<pre class="codehilite"><code class="linenums">BEGIN {
+     &quot;date&quot; | getline current_time
+     close(&quot;date&quot;)
+     print &quot;Report printed on &quot; current_time
+}
+</code></pre>
+
+<p><code>getline</code>使用管道读取输入是一种单向的操作，在某些场景下，你可能希望发送数据到另一个进程，然后从这个进程中读取处理后的结果，  这就用到了协同进程，我们可以使用<code>|&amp;</code>打开一个双向管道。</p>
+<pre class="codehilite"><code class="linenums">print &quot;some query&quot; |&amp; &quot;db_server&quot;
+&quot;db_server&quot; |&amp; getline
+</code></pre>
+
+<p>同样，我们也可以使用<code>command |&amp; getline var</code>将协同进程的输出写入到变量var。</p>
+</li>
+<li>
+<p><code>next</code> </p>
+</li>
+<li><code>nextfile</code> </li>
+<li>
+<p><code>return</code> </p>
+<p>用于用户自定义函数的返回值。
+首先，创建一个<strong>functions.awk</strong>文件，包含下面的awk命令</p>
+<pre class="codehilite"><code class="linenums">function addition(num1, num2) {
+   result = num1 + num2
+   return result
+}
+BEGIN {
+   res = addition(10, 20)
+   print &quot;10 + 20 = &quot; res
+}
+</code></pre>
+
+<p>执行上述代码，输出</p>
+<pre class="codehilite"><code class="linenums">10 + 20 = 30
+</code></pre>
+
+</li>
+<li>
+<p><code>system</code> </p>
+<p>该函数用于执行指定的命令并且返回它的退出状态，返回状态码0表示命令成功执行。</p>
+<pre class="codehilite"><code class="linenums">$ awk 'BEGIN { ret = system(&quot;date&quot;); print &quot;Return value = &quot; ret }'
+2016年 10月 27日 星期四 22:08:36 CST
+Return value = 0
+</code></pre>
+
+</li>
+</ul>
+<h3 id="_40">用户自定义函数<a class="headerlink" href="#_40" title="Permanent link">&para;</a></h3>
+<p>函数是程序基本的组成部分，AWK允许我们自己创建自定义的函数。一个大型的程序可以被划分为多个函数，每个函数之间可以独立的开发和测试，提供可重用的代码。</p>
+<p>下面是用户自定义函数的基本语法</p>
+<pre class="codehilite"><code class="linenums">function function_name(argument1, argument2, ...) { 
+   function body
+}
+</code></pre>
+
+<p>例如，我们创建一个名为functions.awk的文件，包含下面的代码</p>
+<pre class="codehilite"><code class="linenums"># Returns minimum number
+function find_min(num1, num2){
+   if (num1 &lt; num2)
+   return num1
+   return num2
+}
+# Returns maximum number
+function find_max(num1, num2){
+   if (num1 &gt; num2)
+   return num1
+   return num2
+}
+# Main function
+function main(num1, num2){
+   # Find minimum number
+   result = find_min(10, 20)
+   print &quot;Minimum =&quot;, result
+
+   # Find maximum number
+   result = find_max(10, 20)
+   print &quot;Maximum =&quot;, result
+}
+# Script execution starts here
+BEGIN {
+   main(10, 20)
+}
+</code></pre>
+
+<p>执行上述代码，会得到下面的输出</p>
+<pre class="codehilite"><code class="linenums">Minimum = 10
+Maximum = 20
+</code></pre>
+
+<h2 id="_41">输出重定向<a class="headerlink" href="#_41" title="Permanent link">&para;</a></h2>
+<h3 id="_42">重定向操作符<a class="headerlink" href="#_42" title="Permanent link">&para;</a></h3>
+<p>到目前为止，我们所有的程序都是直接显示数据到了标准输出流，其实，我们也可以将输出重定向到文件。重定向操作符跟在<code>print</code>和<code>printf</code>函数的后面，与shell中的用法基本一致。</p>
+<pre class="codehilite"><code class="linenums">print DATA &gt; output-file
+print DATA &gt;&gt; output-file
+</code></pre>
+
+<p>例如，下面两条命令输出是一致的</p>
+<pre class="codehilite"><code class="linenums">$ echo &quot;Hello, World !!!&quot; &gt; /tmp/message.txt
+$ awk 'BEGIN { print &quot;Hello, World !!!&quot; &gt; &quot;/tmp/message.txt&quot; }'
+</code></pre>
+
+<blockquote>
+<p>与shell中一样，<code>&gt;</code>用于将输出写入到指定的文件中，如果文件中有内容则覆盖，而<code>&gt;&gt;</code>则为追加模式写入。</p>
+</blockquote>
+<pre class="codehilite"><code class="linenums">$ awk 'BEGIN { print &quot;Hello, World !!!&quot; &gt;&gt; &quot;/tmp/message.txt&quot; }'
+$ cat /tmp/message.txt
+</code></pre>
+
+<h3 id="_43">管道<a class="headerlink" href="#_43" title="Permanent link">&para;</a></h3>
+<p>除了将输出重定向到文件之外，我们还可以将输出重定向到其它程序，与shell中一样，我们可以使用管道操作符<code>|</code>。</p>
+<pre class="codehilite"><code class="linenums">$ awk 'BEGIN { print &quot;hello, world !!!&quot; | &quot;tr [a-z] [A-Z]&quot; }'
+HELLO, WORLD !!!
+</code></pre>
+
+<p>AWK中可以使用<code>|&amp;</code>进行<strong>双向连接</strong>，那么什么是双向连接呢？一种常见的场景是我们发送数据到另一个程序处理，然后读取处理结果，这种场景下就需要打开一个到另外一个进程的双向管道了。第二个进程会与<strong>gawk</strong>程序并行执行，这里称其为 <strong>协作进程</strong>。与单向连接使用<code>|</code>操作符不同的是，双向连接使用<code>|&amp;</code>操作符。</p>
+<pre class="codehilite"><code class="linenums">do {
+    print data |&amp; &quot;subprogram&quot;
+    &quot;subprogram&quot; |&amp; getline results
+} while (data left to process)
+close(&quot;subprogram&quot;)
+</code></pre>
+
+<p>第一次I/O操作使用了<code>|&amp;</code>操作符，gawk会创建一个到运行其它程序的子进程的双向管道，<code>print</code>的输出被写入到了<code>subprogram</code>的标准输入，而这个<code>subprogram</code>的标准输出在gawk中使用<code>getline</code>函数进行读取。</p>
+<blockquote>
+<p>注意：目前协同进程的标准错误输出将会和gawk的标准错误输出混杂在一起，无法单独获取标准错误输出。另外，I/O缓冲可能存在问题，gawk程序会自动的刷新所有输出到下游的协同进程的管道。但是，如果协同进程没有刷新其标准输出的话，gawk将可能会在使用<code>getline</code>函数从协同进程读取输出的时候挂起，这就可能引起死锁。</p>
+</blockquote>
+<p>我们可以使用<code>close</code>函数关闭双向管道的<strong>to</strong>或者<strong>from</strong>一端，这两个字符串值告诉gawk发送数据到协同进程完成时或者从协同进程读取完毕时关闭管道。在使用系统命令<code>sort</code>的时候是这样做是非常必要的，因为它必须等所有输出都读取完毕时才能进行排序。</p>
+<pre class="codehilite"><code class="linenums">BEGIN {
+    command = &quot;LC_ALL=C sort&quot;
+    n = split(&quot;abcdefghijklmnopqrstuvwxyz&quot;, a, &quot;&quot;)
+
+    for (i = n; i &gt; 0; i--)
+        print a[i] |&amp; command
+    close(command, &quot;to&quot;)
+
+    while ((command |&amp; getline line) &gt; 0)
+        print &quot;got&quot;, line
+    close(command)
+}
+</code></pre>
+
+<p>例如，下面的例子中使用<code>tr</code>命令转换小写为大写。我们的<strong>command.awk</strong>文件包含以下内容</p>
+<pre class="codehilite"><code class="linenums">BEGIN {
+   cmd = &quot;tr [a-z] [A-Z]&quot;
+   print &quot;hello, world !!!&quot; |&amp; cmd
+   close(cmd, &quot;to&quot;)
+
+   cmd |&amp; getline out
+   print out;
+   close(cmd);
+}
+</code></pre>
+
+<p>输出 </p>
+<pre class="codehilite"><code class="linenums">HELLO, WORLD !!!
+</code></pre>
+
+<p>上例看起来有些复杂，我们逐行分析一下</p>
+<ul>
+<li>首先，第一行 <strong>cmd = "tr [a-z] [A-Z]"</strong> 是在AWK中要建立双向连接的命令</li>
+<li>第二行的<strong>print</strong>命令用于为<strong>tr</strong>命令提供输入，而 <code>|&amp;</code> 用于指出要建立双向连接</li>
+<li>第三行用于在上面的语句<strong>close(cmd, "to"),</strong>在执行完成后关闭其<strong>to</strong>进程</li>
+<li>第四行 <strong>cmd |&amp; getline out</strong>使用getline函数存储输出到变量out中</li>
+<li>最后一行使用<strong>close</strong>函数关闭命令</li>
+</ul>
+<h2 id="_44">美化输出<a class="headerlink" href="#_44" title="Permanent link">&para;</a></h2>
+<p>到目前为止，我们已经使用过<code>print</code>和<code>printf</code>函数显示数据到标准输出，但是<code>printf</code>函数实际上要比我们之前使用的情况更加强大得多。该函数是从C语言中借鉴来的，在处理格式化的输出时非常有用。</p>
+<pre class="codehilite"><code class="linenums">$ awk 'BEGIN { printf &quot;Hello\nWorld\n&quot; }'
+Hello
+World
+
+$ awk 'BEGIN { printf &quot;ASCII value 65 = character %c\n&quot;, 65 }'
+ASCII value 65 = character A
+</code></pre>
+
+<blockquote>
+<p>格式化输出标识有 <code>%c</code>， <code>%d</code>，<code>%s</code> 等，基本与C语言一致，这里就不多赘述了。</p>
+</blockquote>
+<h2 id="shell">执行shell命令<a class="headerlink" href="#shell" title="Permanent link">&para;</a></h2>
+<p>在AWK中执行shell命令有两种方式</p>
+<ul>
+<li>使用<code>system</code>函数</li>
+<li>使用管道</li>
+</ul>
+<h3 id="system">使用system函数<a class="headerlink" href="#system" title="Permanent link">&para;</a></h3>
+<p><strong>system</strong>函数用于执行操作系统命令并且返回命令的退出码到awk。</p>
+<pre class="codehilite"><code class="linenums">END {
+     system(&quot;date | mail -s 'awk run done' root&quot;)
+}
+</code></pre>
+
+<h3 id="_45">使用管道<a class="headerlink" href="#_45" title="Permanent link">&para;</a></h3>
+<p>如果要执行的命令很多，可以将输出的命令直接用管道传递给<strong>"/bin/sh"</strong>执行</p>
+<pre class="codehilite"><code class="linenums">while (more stuff to do)
+    print command | &quot;/bin/sh&quot;
+close(&quot;/bin/sh&quot;)
+</code></pre>
+
+<h2 id="_46">参考<a class="headerlink" href="#_46" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="https://www.tutorialspoint.com/awk/index.htm">AWK Tutorial</a></li>
+<li><a href="https://www.gnu.org/software/gawk/manual/gawk.html">The GNU Awk User's Guide</a></li>
+</ul>
+<p>本文将会持续修正和更新，最新内容请参考我的 <a href="https://github.com/mylxsw">GITHUB</a> 上的 <a href="https://github.com/mylxsw/growing-up">程序猿成长计划</a> 项目，欢迎 Star。</p>
 
 
 
