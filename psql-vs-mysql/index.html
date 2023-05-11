@@ -5,15 +5,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <link rel="shortcut icon" href="../img/favicon.ico" />
-    <title>传入参数的几种方法 - 总有刁民想要害朕</title>
+    <title>MySQLとPostgreSQLコマンド比較表 - 总有刁民想要害朕</title>
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
     
       <script>
         // Current page data
-        var mkdocs_page_name = "\u4f20\u5165\u53c2\u6570\u7684\u51e0\u79cd\u65b9\u6cd5";
-        var mkdocs_page_input_path = "python-function.markdown";
+        var mkdocs_page_name = "MySQL\u3068PostgreSQL\u30b3\u30de\u30f3\u30c9\u6bd4\u8f03\u8868";
+        var mkdocs_page_input_path = "psql-vs-mysql.md";
         var mkdocs_page_url = null;
       </script>
     
@@ -79,8 +79,10 @@
                   </li>
               </ul>
               <p class="caption"><span class="caption-text">PostgreSQL</span></p>
-              <ul>
-                  <li class="toctree-l1"><a class="reference internal" href="../psql-vs-mysql/">MySQLとPostgreSQLコマンド比較表</a>
+              <ul class="current">
+                  <li class="toctree-l1 current"><a class="reference internal current" href="./">MySQLとPostgreSQLコマンド比較表</a>
+    <ul class="current">
+    </ul>
                   </li>
               </ul>
               <p class="caption"><span class="caption-text">MySQL</span></p>
@@ -99,7 +101,7 @@
                   </li>
               </ul>
               <p class="caption"><span class="caption-text">Python Tips</span></p>
-              <ul class="current">
+              <ul>
                   <li class="toctree-l1"><a class="reference internal" href="../python-styleguide/">Python风格规范</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../python-config/">Python程序配置文件管理</a>
@@ -108,39 +110,7 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../python-dunder/">5种下划线</a>
                   </li>
-                  <li class="toctree-l1 current"><a class="reference internal current" href="./">传入参数的几种方法</a>
-    <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#_1">写在前面</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#_2">位置参数</a>
-        <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#_3">演示一：</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#_4">演示二：</a>
-    </li>
-        </ul>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#_5">默认参数</a>
-        <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#_6">定义默认参数要牢记一点：默认参数必须指向不变对象！</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#_7">可变参数</a>
-    </li>
-        </ul>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#_8">关键字参数</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#_9">命名关键字参数</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#_10">参数组合</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#_11">写在后面</a>
-        <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#pythoncc">Python的通过赋值进行传递的机制与C++的引用参数选项不完全相同，但是实际中，它与C语言的参数传递模型相当类似：</a>
-    </li>
-        </ul>
-    </li>
-    </ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../python-function/">传入参数的几种方法</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../python/">非常规的技巧</a>
                   </li>
@@ -227,8 +197,8 @@
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href=".." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
-          <li>Python Tips &raquo;</li>
-      <li>传入参数的几种方法</li>
+          <li>PostgreSQL &raquo;</li>
+      <li>MySQLとPostgreSQLコマンド比較表</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -237,168 +207,193 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="python">Python传入参数的几种方法<a class="headerlink" href="#python" title="Permanent link">&para;</a></h1>
-<blockquote>
-<p>Python传入参数的方法有：位置参数、默认参数、可变参数、关键字参数、和命名关键字参数、以及各种参数调用的组合</p>
-</blockquote>
-<h2 id="_1">写在前面<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
-<p>Python唯一支持的参数传递方式是『共享传参』（call by sharing）</p>
-<p>多数面向对象语言都采用这一模式，包括Ruby、Smalltalk和Java（Java的引用类型是这样，基本类型按值传递）</p>
-<p>共享传参是指函数的各个形式参数获得实参中各个引用的副本；也就是说，函数内部的形参是实参的别名（alias）</p>
-<p>这种方案的结果是，函数可能会修改作为参数传入的可变对象，但是无法修改那些对象的标识（即不能把一个对象替换为另一个对象）</p>
-<h2 id="_2">位置参数<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
-<p>位置参数是最简单的传入参数的方式，在其它的语言中也常常被使用</p>
-<h5 id="_3">演示一：<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h5>
-<pre><code class="language-python">def func(a, b):
-    print(a+b)
+                <h2 id="mysqlpostgresql">MySQLとPostgreSQLコマンド比較表<a class="headerlink" href="#mysqlpostgresql" title="Permanent link">&para;</a></h2>
+<p><a href="https://qiita.com/aosho235/items/c657e2fcd15fa0647471">本文</a></p>
+<table>
+<thead>
+<tr>
+<th align="left">機能</th>
+<th align="left">MySQL</th>
+<th align="left">PostgreSQL</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">起動</td>
+<td align="left"><code>$ mysql -p -h ホスト名 -P ポート番号 -u ユーザ名 DB名</code></td>
+<td align="left"><code>$ psql -h ホスト名 -p ポート番号 -U ユーザ名 DB名</code></td>
+</tr>
+<tr>
+<td align="left">データベース一覧</td>
+<td align="left">show databases;</td>
+<td align="left">\l</td>
+</tr>
+<tr>
+<td align="left">データベース切替</td>
+<td align="left">use DB名 \u DB名</td>
+<td align="left">\c DB名</td>
+</tr>
+<tr>
+<td align="left">テーブル一覧</td>
+<td align="left">show tables;</td>
+<td align="left">\d、\dt、\d+、\dt+</td>
+</tr>
+<tr>
+<td align="left">テーブル定義確認</td>
+<td align="left">desc テーブル名;</td>
+<td align="left">\d テーブル名</td>
+</tr>
+<tr>
+<td align="left">テーブルCREATE文確認</td>
+<td align="left">show create table テーブル名</td>
+<td align="left">pg_dump DB名 -U ユーザ名 -s -t テーブル名</td>
+</tr>
+<tr>
+<td align="left">インデックス一覧</td>
+<td align="left">SHOW INDEX FROM tbl_name;</td>
+<td align="left">\d table_name</td>
+</tr>
+<tr>
+<td align="left">行表示の切り替え</td>
+<td align="left">select * from t \G</td>
+<td align="left">\x select * from t; ※mysql同様、1回のクエリだけ\xしたい場合は select * from t \gx <a href="https://qiita.com/aosho235/items/7e580c6302610346f80d">psql 9以前の場合はこちら</a></td>
+</tr>
+<tr>
+<td align="left">SQLファイル実行</td>
+<td align="left">.</td>
+<td align="left">\i</td>
+</tr>
+<tr>
+<td align="left">SQLダンプ</td>
+<td align="left">mysqldump</td>
+<td align="left">pg_dump</td>
+</tr>
+<tr>
+<td align="left">TSVダンプ</td>
+<td align="left">mysqldump -u USER --password=PASS DATABASE_NAME TABLE_NAME -T /tmp</td>
+<td align="left">\copy テーブル名 to 'data.tsv' csv delimiter E'\t' header; または \copy (select * from テーブル名) to 'data.tsv' csv delimiter E'\t' header;</td>
+</tr>
+<tr>
+<td align="left">TSVインポート</td>
+<td align="left">LOAD DATA LOCAL INFILE ファイル名 REPLACE INTO TABLE テーブル名 IGNORE 1 LINES;</td>
+<td align="left">copy テーブル名 from '/absolute_path/to/data.tsv' ( delimiter E'\t', format csv, header true );</td>
+</tr>
+<tr>
+<td align="left">SQL時間計測</td>
+<td align="left">デフォルトで表示される</td>
+<td align="left">\timing on</td>
+</tr>
+<tr>
+<td align="left">ログ出力開始</td>
+<td align="left">\T log.txt</td>
+<td align="left">\o log.txt</td>
+</tr>
+<tr>
+<td align="left">ログ出力終了</td>
+<td align="left">\t</td>
+<td align="left">\o</td>
+</tr>
+<tr>
+<td align="left">1回のクエリだけファイルに出力</td>
+<td align="left">不明</td>
+<td align="left">SQLの末尾に\g FILENAMEをつける</td>
+</tr>
+<tr>
+<td align="left">1回のクエリだけvimで表示</td>
+<td align="left">不明</td>
+<td align="left">SQLの末尾に\g |vim -をつける</td>
+</tr>
+<tr>
+<td align="left">定義をコピーしてテーブル作成</td>
+<td align="left">create table t2 like t1;</td>
+<td align="left">create table t2 (like t1);</td>
+</tr>
+<tr>
+<td align="left">実行計画</td>
+<td align="left">SQLの先頭にEXPLAINをつける</td>
+<td align="left">SQLの先頭にEXPLAINをつける</td>
+</tr>
+<tr>
+<td align="left">接続先サーバ確認</td>
+<td align="left">\s</td>
+<td align="left">\conninfo SELECT version();</td>
+</tr>
+<tr>
+<td align="left">接続を確認</td>
+<td align="left">show processlist;</td>
+<td align="left">select * from pg_stat_activity;</td>
+</tr>
+<tr>
+<td align="left">連番ID</td>
+<td align="left">カラム名 int auto_increment</td>
+<td align="left">カラム名 serial</td>
+</tr>
+<tr>
+<td align="left">今日の日付</td>
+<td align="left">curdate()</td>
+<td align="left">current_date</td>
+</tr>
+<tr>
+<td align="left">現在時刻</td>
+<td align="left">now()</td>
+<td align="left">now()</td>
+</tr>
+<tr>
+<td align="left">ヘルプ</td>
+<td align="left">\h または \?</td>
+<td align="left">\h と \? （内容が異なる）</td>
+</tr>
+<tr>
+<td align="left">設定ファイル</td>
+<td align="left">~/.my.cnf</td>
+<td align="left">~/.psqlrc</td>
+</tr>
+</tbody>
+</table>
+<h2 id="information_schema">information_schemaは両方に共通<a class="headerlink" href="#information_schema" title="Permanent link">&para;</a></h2>
+<p>information_schemaはSQL標準なので、どちらでも同じSQLが使える。</p>
+<h3 id="_1">テーブル一覧を表示<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
+<pre><code>SELECT table_catalog
+       ,table_schema
+       ,table_name
+       ,table_type
+FROM   information_schema.tables;
+</code></pre>
+<h3 id="_2">カラム一覧を表示<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<pre><code>SELECT table_schema
+       ,table_name
+       ,column_name
+       ,data_type
+       ,character_maximum_length
+       ,numeric_precision
+       ,column_default
+FROM   information_schema.columns
+WHERE  table_name = 't1'
+ORDER  BY table_name
+          ,ordinal_position;
+</code></pre>
+<h2 id="_3">デフォルト接続先<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<p>PostgreSQL：環境変数で設定</p>
+<pre><code>export PGDATABASE=DB名
+export PGHOST=ホスト
+export PGPORT=ポート番号
+export PGUSER=ユーザー名
+export PGPASSWORD=パスワード
 
-func(1, 2)  #3
+パスワードは~/.pgpassでも設定できる。
 </code></pre>
-<h5 id="_4">演示二：<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h5>
-<pre><code class="language-python">def power(x, n):
-    s = 1
-    while(n &gt; 0):
-        n -= 1
-        s *= n
-    return s
-
-power(2, 3) #8
+<p>MySQL：~/.my.cnfで設定</p>
+<pre><code>[client]
+database=DB名
+user=ユーザー名
+password=パスワード
 </code></pre>
-<h2 id="_5">默认参数<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
-<p>默认参数就是在调用函数的时候使用一些包含默认值的参数</p>
-<pre><code class="language-python">def power(x, n=2):
-    s = 1
-    while(n &gt; 0):
-        n -= 1
-        s *= n
-    reutrn s
-
-power(3)    #9
-power(2, 3) #8
-</code></pre>
-<h3 id="_6">定义默认参数要牢记一点：默认参数必须指向不变对象！<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
-<pre><code class="language-python">#以下这个函数如果被多次调用会在默认添加多个END字符串
-def add_end(l = []):
-    l.append('END')
-    return l
-</code></pre>
-<pre><code class="language-python">#为了避免这个问题，应该把传入的默认参数设置为不可变的
-def add_end(l = None):
-    l = []
-    l.append('END')
-    return l
-</code></pre>
-<h3 id="_7">可变参数<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
-<p>可变参数就是允许在调用参数的时候传入多个（≥0个）参数（类似于列表、字典）</p>
-<pre><code class="language-python">#传入一个列表，严格地说这不是可变参数
-def calc(l):
-    sum = 0
-    for n in l:
-        sum += n
-    return sum
-
-&gt;&gt;&gt; calc([1,2,3])
-</code></pre>
-<pre><code class="language-python">#这才是可变参数，虽然在使用上和列表没有区别，但是参数nums接收到的是一个tuple（这些参数在传入时被自动组组装为一个元祖）
-def calc(*nums):
-    sum = 0
-    for n in nums:
-        sum += n
-    return sum
-
-&gt;&gt;&gt; calc(1,2,3)
-7
-
-&gt;&gt;&gt; my_ls = [1,2,3]
-&gt;&gt;&gt; calc(*my_ls)
-7
-</code></pre>
-<h2 id="_8">关键字参数<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
-<p>可变参数允许传入0个～多个参数，而关键字参数允许在调用时以字典形式传入0个或多个参数（注意区别，一个是字典一个是列表）；在传递参数时用等号（=）连接键和值</p>
-<pre><code class="language-python">#用两个星号表示关键字参数
-def person_info(name, age, **kw):
-    print(&quot;name&quot;, name, &quot;age&quot;, age, &quot;other&quot;, kw)
-
-&gt;&gt;&gt; person_info(&quot;Xiaoming&quot;, 12)
-name Xiaoming age 12 other{}
-&gt;&gt;&gt; person_info(&quot;Dahuang&quot;, 35, city = &quot;Beijing&quot;)
-name Dahuang age 35 other {'city':'Beijing'}
-</code></pre>
-<h2 id="_9">命名关键字参数<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h2>
-<p>命名关键字参数在关键字参数的基础上限制传入的的关键字的变量名</p>
-<p>和普通关键字参数不同，命名关键字参数需要一个用来区分的分隔符*，它后面的参数被认为是命名关键字参数</p>
-<pre><code class="language-python">#这里星号分割符后面的city、job是命名关键字参数
-person_info(name, age, *, city, job):
-    print(name, age, city, job)
-
-&gt;&gt;&gt; person_info(&quot;Alex&quot;, 17, city = &quot;Beijing&quot;, job = &quot;Engineer&quot;)
-Alex 17 Beijing Engineer    #看来这里不再被自动组装为字典
-</code></pre>
-<p>不过也有例外，如果参数中已经有一个可变参数的话，前面讲的星号分割符就不要写了（其实星号是写给Python解释器看的，如果一个星号也没有的话就无法区分命名关键字参数和位置参数了，而如果有一个星号即使来自变长参数就可以区分开来）</p>
-<pre><code class="language-python">#args是变长参数，而city和job是命名关键字参数
-person_info(name, age, *args, city, job):
-    print(name, age, args, city)
-
-&gt;&gt;&gt; person_info(&quot;Liqiang&quot;, 43, &quot;balabala&quot;, city = &quot;Wuhan&quot;, job = &quot;Coder&quot;)
-Liqiang 43 balabala Wuhan Coder
-</code></pre>
-<h2 id="_10">参数组合<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h2>
-<p>总结一下，在Python中一种可以使用5中传递参数的方式（位置参数、默认参数、变长参数、关键字参数、命名关键字参数）</p>
-<p>注意，这些参数在书写时要遵循一定的顺序即：位置参数、默认参数、变长参数、关键字参数、命名关键字参数（和本文的行文顺序一致）</p>
-<p>这里简单举两个栗子</p>
-<pre><code class="language-python">def f1(a, b, c=0, *args, **kw):
-    print(&quot;a = &quot;, a, &quot;b = &quot;, b, &quot;args = &quot;, args, &quot;kw = &quot;,kw)
-def f2(a, b, c=0, *, d, **kw):
-    print(&quot;a = &quot;, a, &quot;b = &quot;, b, &quot;c = &quot;, c, &quot;d = &quot;, d, &quot;kw = &quot;, kw)
-
-&gt;&gt;&gt; f1(1, 2)
-a = 1 b = 2 c = 0 args =() kw = {}
-&gt;&gt;&gt; f1(1, 2, c=3)
-a = 1 b = 2 c = 3 args = () kw = {}
-&gt;&gt;&gt; f1(1, 2, 3, 'a', 'b')
-a = 1 b = 2 c = 3 args = ('a', 'b') kw = {}
-&gt;&gt;&gt; f1(1, 2, 3, 'a', 'b', x = 99)
-a = 1 b = 2 c = 3 args = ('a', 'b') kw = {'x':99}
-&gt;&gt;&gt; f2(1, 2, d = 99, ext = None)
-a = 1 b =2 c = 0 d = 99 kw = {'ext':None}
-</code></pre>
-<h2 id="_11">写在后面<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h2>
-<p>关于Python参数传递，有以下几点提请注意：</p>
-<ol>
-<li>参数的传递是通过自动将对象赋值给本地变量名来实现的</li>
-<li>
-<p>函数参数在实际中只是Python赋值的另一个实例而已，因为引用可以是以指针的形式来实现的，所有的参数实际上都是通过指针进行传递的，作为参数被传递的对象从来不自动拷贝</p>
-</li>
-<li>
-<p>在函数内部的参数名的赋值不会影响调用者 </p>
-</li>
-<li>
-<p>在函数运行时，在函数头部的参数名时一个新的、本地的变量名，这个变量名是在函数的本地作用域内的，函数参数名和调用者作用域中的变量是没有区别的</p>
-</li>
-<li>
-<p>改变函数的可变对象参数的值也许会对调用者有影响 </p>
-</li>
-<li>换句话说，因为参数是简单地赋值给传入的对象，函数就能够就地改变传入的可变对象，因此其结果会影响调用者；可变参数对函数来说可以做输入和输出的</li>
-</ol>
-<h5 id="pythoncc">Python的通过赋值进行传递的机制与C++的引用参数选项不完全相同，但是实际中，它与C语言的参数传递模型相当类似：<a class="headerlink" href="#pythoncc" title="Permanent link">&para;</a></h5>
-<ol>
-<li>不可变参数“通过值”进行传递 </li>
-<li>
-<p>像整数和字符串这样的对象是不可变对象，它们通过对象引用而不是拷贝进行传递的，但是因为无论如何都不可能在原处改变不可变对象，实际的效果就很像创建了一份拷贝</p>
-</li>
-<li>
-<p>可变对象是通过“指针”进行传递的 </p>
-</li>
-<li>列表和字典这样的对象也是通过对象引用进行传递的，这一点与C语言使用指针传递数组很相似，可变对象能够在函数内部进行原处的改变，这一点和C数组很像</li>
-</ol>
-<p><img alt="python_code" src="/assets/python_code.jpg" />
-<img alt="python_res" src="/assets/python_res.jpg" /></p>
               
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-        <a href="../python-dunder/" class="btn btn-neutral float-left" title="5种下划线"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-        <a href="../python/" class="btn btn-neutral float-right" title="非常规的技巧">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../megaraid/" class="btn btn-neutral float-left" title="megaraid"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../Explain%E8%AF%A6%E8%A7%A3%E4%B8%8E%E7%B4%A2%E5%BC%95%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/" class="btn btn-neutral float-right" title="Explain详解与索引最佳实践">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
   <hr/>
@@ -422,10 +417,10 @@ a = 1 b =2 c = 0 d = 99 kw = {'ext':None}
   <span class="rst-current-version" data-toggle="rst-current-version">
     
     
-      <span><a href="../python-dunder/" style="color: #fcfcfc">&laquo; Previous</a></span>
+      <span><a href="../megaraid/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
     
-      <span><a href="../python/" style="color: #fcfcfc">Next &raquo;</a></span>
+      <span><a href="../Explain%E8%AF%A6%E8%A7%A3%E4%B8%8E%E7%B4%A2%E5%BC%95%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>
