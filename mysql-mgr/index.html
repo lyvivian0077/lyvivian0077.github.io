@@ -61,7 +61,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#mgr" class="md-skip">
+        <a href="#mysql-mgr" class="md-skip">
           Skip to content
         </a>
       
@@ -570,6 +570,8 @@
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
+        
+      
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
           MGR
@@ -586,12 +588,21 @@
   
   
   
+    
+  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
       Table of contents
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    参考
+  </a>
+  
+</li>
       
         <li class="md-nav__item">
   <a href="#mgr" class="md-nav__link">
@@ -616,7 +627,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     各节点配置
   </a>
   
@@ -624,7 +635,7 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
+  <a href="#_3" class="md-nav__link">
     设置复制账号
   </a>
   
@@ -645,7 +656,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
+  <a href="#_4" class="md-nav__link">
     確認
   </a>
   
@@ -1152,17 +1163,25 @@
                   
 
 
-  <h1>MGR</h1>
-
+<h1 id="mysql-mgr">MYSQL MGR<a class="headerlink" href="#mysql-mgr" title="Permanent link">&para;</a></h1>
+<h4 id="_1">参考<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h4>
+<ul>
+<li>https://www.modb.pro/db/337457</li>
+<li>https://www.modb.pro/db/377620</li>
+<li>https://www.modb.pro/db/25554</li>
+<li>https://blog.51cto.com/imysql/3199719</li>
+<li>https://dev.mysql.com/doc/refman/8.0/ja/group-replication-adding-instances.html</li>
+</ul>
 <h2 id="mgr">MGR的使用约束<a class="headerlink" href="#mgr" title="Permanent link">&para;</a></h2>
 <ol>
-<li>仅支持InnoDB表,并且每张表一定要有一个主键,用于做write set 的冲突检测</li>
-<li>
-<p>mgr模式下所有表都需要设置主键，不然会报错
-      <code>ERROR 3098 (HY000): The table does not comply with the requirements by an external plugin.</code></p>
+<li>仅支持InnoDB表,并且每张表一定要有一个主键,用于做write set 的冲突检测<ul>
+<li>mgr模式下所有表都需要设置主键，不然会报错</li>
+<li><code>ERROR 3098 (HY000): The table does not comply with the requirements by an external plugin.</code></li>
+</ul>
 </li>
-<li>
-<p>必须打开GTID特性,二进制日志格式必须设置为ROW,用于选主与write set; 主从状态信息存于表中,(--master-info-repository=TABLE, --relay-log-info-repository=TABLE), --log-slave-updates打开.</p>
+<li>必须打开GTID特性,二进制日志格式必须设置为ROW,用于选主与write set; <ul>
+<li>主从状态信息存于表中,(--master-info-repository=TABLE, --relay-log-info-repository=TABLE), --log-slave-updates打开.</li>
+</ul>
 </li>
 <li>MGR不支持大事务,事务大小最好不超过143MB, 当事务过大,无法在5秒的时间内通过网络在组成员之间复制消息,则可能会怀疑成员失败了,然后将其逐出局</li>
 <li>目前一个MGR群集最多支持9个节点</li>
@@ -1364,7 +1383,7 @@ innodb_purge_threads=1
 
 </details>
 
-<h3 id="_1">各节点配置<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
+<h3 id="_2">各节点配置<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
 <tr>
@@ -1481,7 +1500,7 @@ innodb_purge_threads=1
 </tr>
 </tbody>
 </table>
-<h4 id="_2">设置复制账号<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h4>
+<h4 id="_3">设置复制账号<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h4>
 <ul>
 <li>下記作業は全nodeで実施する</li>
 </ul>
@@ -1656,7 +1675,7 @@ mysql&gt; select * from performance_schema.replication_connection_status;
 
 2 rows in set (0.00 sec)
 </code></pre>
-<h4 id="_3">確認<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h4>
+<h4 id="_4">確認<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h4>
 <ul>
 <li>master側はNOT READ_ONLY、slave側はREAD_ONLY</li>
 </ul>
