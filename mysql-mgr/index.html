@@ -1,0 +1,1982 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../MySQL-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+      
+      
+        <link rel="next" href="../mysql-ha/">
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.9">
+    
+    
+      
+        <title>MGR - 总有刁民想要害朕</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.85bb2934.min.css">
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#mgr" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="总有刁民想要害朕" class="md-header__button md-logo" aria-label="总有刁民想要害朕" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            总有刁民想要害朕
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              MGR
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="总有刁民想要害朕" class="md-nav__button md-logo" aria-label="总有刁民想要害朕" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    总有刁民想要害朕
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        Welcome
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+      
+      
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+          ansbile
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          ansbile
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ansbile/" class="md-nav__link">
+        ansbileオプション
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ansbile_async/" class="md-nav__link">
+        ansbile_async
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../awk/" class="md-nav__link">
+        awk
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sed/" class="md-nav__link">
+        sed
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../MB-MiB%E7%9A%84%E5%8C%BA%E5%88%AB/" class="md-nav__link">
+        MB_MiB的区别
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+      
+      
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+          MegaRAID
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_6">
+          <span class="md-nav__icon md-icon"></span>
+          MegaRAID
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../megacli/" class="md-nav__link">
+        megacli
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../megaraid/" class="md-nav__link">
+        megaraid
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7" >
+      
+      
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+          PostgreSQL
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_7">
+          <span class="md-nav__icon md-icon"></span>
+          PostgreSQL
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../psql-vs-mysql/" class="md-nav__link">
+        MySQLとPostgreSQLコマンド比較表
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" checked>
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+          MySQL
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="true">
+        <label class="md-nav__title" for="__nav_8">
+          <span class="md-nav__icon md-icon"></span>
+          MySQL
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Explain%E8%AF%A6%E8%A7%A3%E4%B8%8E%E7%B4%A2%E5%BC%95%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/" class="md-nav__link">
+        Explain详解与索引最佳实践
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mysql/" class="md-nav__link">
+        Mysql参数优化
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mysql-table/" class="md-nav__link">
+        MySQL-table
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mysql%E3%82%92%E3%82%BD%E3%83%BC%E3%82%B9%E3%81%8B%E3%82%89%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB/" class="md-nav__link">
+        MySQLビルド
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../MySQL-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="md-nav__link">
+        学习笔记
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          MGR
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        MGR
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#mgr" class="md-nav__link">
+    MGR的使用约束
+  </a>
+  
+    <nav class="md-nav" aria-label="MGR的使用约束">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#vm" class="md-nav__link">
+    検証VM
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mycnf" class="md-nav__link">
+    my.cnf
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    各节点配置
+  </a>
+  
+    <nav class="md-nav" aria-label="各节点配置">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    设置复制账号
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#master" class="md-nav__link">
+    MASTERサーバ
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#slave" class="md-nav__link">
+    SLAVEサーバ追加
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    確認
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sysbench" class="md-nav__link">
+    sysbenchの検証
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#master_1" class="md-nav__link">
+    MASTER死んだ場合の確認
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#master_2" class="md-nav__link">
+    MASTERサーバを障害から復活の場合
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mysql-ha/" class="md-nav__link">
+        mysql+keepalived搭建教程
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_9" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+          Python Tips
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_9">
+          <span class="md-nav__icon md-icon"></span>
+          Python Tips
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-styleguide/" class="md-nav__link">
+        Python风格规范
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-config/" class="md-nav__link">
+        Python程序配置文件管理
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-decorator/" class="md-nav__link">
+        装饰器
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-dunder/" class="md-nav__link">
+        5种下划线
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-function/" class="md-nav__link">
+        传入参数的几种方法
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python/" class="md-nav__link">
+        非常规的技巧
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-mysql/" class="md-nav__link">
+        操作mysql基础
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Python-Re-%E6%A8%A1%E5%9D%97%E8%B6%85%E5%85%A8%E8%A7%A3%E8%AF%BB/" class="md-nav__link">
+        Re 模块
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Python%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%8B%BC%E6%8E%A5%E6%80%BB%E7%BB%93/" class="md-nav__link">
+        字符串拼接总结
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E4%B8%80%E8%A1%8C-Python-%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0%E5%B9%B6%E8%A1%8C/" class="md-nav__link">
+        代码并行
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Regular-Expression/" class="md-nav__link">
+        正規表現
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../taged-VLAN%E3%81%A8untagedVLAN%E3%81%AE%E9%81%95%E3%81%84/" class="md-nav__link">
+        タグVLAN
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sar/" class="md-nav__link">
+        sar
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Bash%E7%BC%96%E7%A8%8B%E8%B6%85%E8%AF%A6%E7%BB%86%E8%AF%AD%E6%B3%95%E6%80%BB%E7%BB%93/" class="md-nav__link">
+        Bash编程超详细语法总结
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../iptables/" class="md-nav__link">
+        iptables
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../linux-lvm/" class="md-nav__link">
+        linux-lvm
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../centos7-set-kernel/" class="md-nav__link">
+        centos7-set-kernel
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../centos-network-device-naming/" class="md-nav__link">
+        centos-network-device-naming
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Linux-Performance/" class="md-nav__link">
+        Linux Performance
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Linux-shell-%E9%80%BB%E8%BE%91%E8%BF%90%E7%AE%97%E7%AC%A6-%E9%80%BB%E8%BE%91%E8%A1%A8%E8%BE%BE%E5%BC%8F%E8%AF%A6%E8%A7%A3/" class="md-nav__link">
+        Linux-shell-逻辑运算符-逻辑表达式详解
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../LVM%E9%80%BB%E8%BE%91%E5%8D%B7%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5%E5%8F%8ALVM%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/" class="md-nav__link">
+        LVM逻辑卷基本概念及LVM的工作原理
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../macOS%E8%BD%AF%E4%BB%B6%E7%BC%96%E8%AF%91%E6%97%B6%E6%89%BE%E4%B8%8D%E5%88%B0%E5%A4%B4%E6%96%87%E4%BB%B6%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95-%E6%9B%B4%E6%96%B010-15/" class="md-nav__link">
+        macOS软件编译时找不到头文件解决方法[更新10.15]
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ubnt/" class="md-nav__link">
+        ubnt
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vim/" class="md-nav__link">
+        VIM
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../about/" class="md-nav__link">
+        About
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  <h1>MGR</h1>
+
+<h2 id="mgr">MGR的使用约束<a class="headerlink" href="#mgr" title="Permanent link">&para;</a></h2>
+<ol>
+<li>仅支持InnoDB表,并且每张表一定要有一个主键,用于做write set 的冲突检测</li>
+<li>
+<p>mgr模式下所有表都需要设置主键，不然会报错
+      <code>ERROR 3098 (HY000): The table does not comply with the requirements by an external plugin.</code></p>
+</li>
+<li>
+<p>必须打开GTID特性,二进制日志格式必须设置为ROW,用于选主与write set; 主从状态信息存于表中,(--master-info-repository=TABLE, --relay-log-info-repository=TABLE), --log-slave-updates打开.</p>
+</li>
+<li>MGR不支持大事务,事务大小最好不超过143MB, 当事务过大,无法在5秒的时间内通过网络在组成员之间复制消息,则可能会怀疑成员失败了,然后将其逐出局</li>
+<li>目前一个MGR群集最多支持9个节点</li>
+<li>不支持外键于save point特性, 无法做全局间的约束检测与部分事务回滚</li>
+<li>二进制日志不支持binlog Event Checksum</li>
+</ol>
+<h3 id="vm">検証VM<a class="headerlink" href="#vm" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th align="left">IP</th>
+<th align="left">Hostname</th>
+<th align="left">virt_name</th>
+<th align="left">spec</th>
+<th align="left">HV</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">xx.yyy.zzz.1</td>
+<td align="left">node1 (<strong>rocky8</strong>)</td>
+<td align="left">mysql8-test</td>
+<td align="left">22c/160g</td>
+<td align="left">hv1</td>
+</tr>
+<tr>
+<td align="left">xx.yyy.zzz.2</td>
+<td align="left">node2 (<strong>rocky87-mysql8</strong>)</td>
+<td align="left">rocky87-test</td>
+<td align="left">8c/16g</td>
+<td align="left">hv2</td>
+</tr>
+<tr>
+<td align="left">xx.yyy.zzz.3</td>
+<td align="left">node3 (<strong>amd-rocky8</strong>)</td>
+<td align="left">rocky-mysql8</td>
+<td align="left">22c/160g</td>
+<td align="left">hv2</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>
+<p>MySQL再インストール</p>
+</li>
+<li>
+<p>mysql8はインストール済のため、一旦削除する</p>
+</li>
+</ul>
+<pre><code># backup
+
+[root@node3 work]# pwd
+/root/work
+[root@node3 work]#
+cp /etc/my.cnf my.cnf.20230515
+cp /root/.my.cnf .my.cnf.20230515
+cp /root/.mytop .mytop.20230515
+
+# rpmを削除
+
+[root@node1 work]# for i in `rpm -aq | grep mysql`; do yum -y remove $i; done
+[root@node2 work]# for i in `rpm -aq | grep mysql`; do yum -y remove $i; done
+[root@node3 work]# for i in `rpm -aq | grep mysql`; do yum -y remove $i; done
+
+# 不要ファイル削除
+
+rm -rf /etc/my.cnf.rpmsave
+rm -rf /etc/my.cnf
+rm -rf /etc/mysql-version.txt
+rm -rf /home/mysql
+rm -rf /root/.my.cnf
+rm -rf /root/.mytop
+
+
+# AnsibleでMySQL8.0を再インストールする
+
+$ sudo /usr/local/bin/ansible-playbook mysql80.yml --limit xx.yyy.zzz.1,xx.yyy.zzz.2,xx.yyy.zzz.3  -t systool,mysql80 -v
+PLAY RECAP *********************************************************************************************************************
+xx.yyy.zzz.1              : ok=29   changed=12   unreachable=0    failed=0    skipped=6    rescued=0    ignored=0
+xx.yyy.zzz.2              : ok=29   changed=12   unreachable=0    failed=0    skipped=6    rescued=0    ignored=0
+xx.yyy.zzz.3              : ok=28   changed=14   unreachable=0    failed=0    skipped=6    rescued=0    ignored=0
+
+</code></pre>
+<h3 id="mycnf">my.cnf<a class="headerlink" href="#mycnf" title="Permanent link">&para;</a></h3>
+<details>
+<summary>my.cnf</summary>
+
+<pre><code>[mysql]
+default-character-set=utf8mb4
+socket=/tmp/mysql.sock
+auto-rehash
+prompt=&quot;\\r:\\m:\\s \\u@\\h[\\d]&gt; &quot;
+
+[mysqld]
+# mgr
+server_id=1
+gtid_mode=ON
+enforce_gtid_consistency=ON
+binlog_checksum=NONE
+log_replica_updates=ON
+log_bin=binlog
+relay_log=relay_log
+binlog_format=ROW
+plugin-load=mysql_clone.so;group_replication.so
+
+loose-group_replication_group_name=&quot;aaaaaaaa-1111-2222-3333-bbbbbbbbbbbb&quot;
+loose-group_replication_start_on_boot=off
+loose-group_replication_local_address=&quot;node1:33061&quot;
+loose-group_replication_group_seeds=&quot;node1:33061,node2:33061,node3:33061&quot;
+loose-group_replication_bootstrap_group=off
+loose-group_replication_ip_allowlist=&quot;xx.yyy.zzz.0/25&quot;
+report-host=&quot;node1&quot;
+
+binlog_expire_logs_seconds=86400 # 表示自动删除1天以前的binlog，可选
+
+# general
+user=mysql
+datadir=/home/mysql
+socket=/tmp/mysql.sock
+tmpdir=/home/tmp
+bind-address=0.0.0.0
+
+performance_schema_show_processlist=1
+default_storage_engine=INNODB
+skip-name-resolve
+skip-mysqlx
+# skip-log-bin # MGRのため、コメントアウト
+event_scheduler=OFF
+
+tls_version=TLSv1.2,TLSv1.3
+sql_mode=&quot;ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION&quot;
+
+max_connections=100
+max_connect_errors=300
+max_allowed_packet=32M
+connect_timeout=30
+max_user_connections=30
+table_open_cache=9600
+interactive_timeout=300
+wait_timeout=300
+tmp_table_size=256M
+max_heap_table_size=256M
+default_password_lifetime=0
+explicit_defaults_for_timestamp=1
+log_timestamps=SYSTEM
+character-set-server=utf8mb4
+collation-server=utf8mb4_general_ci
+
+# auth
+authentication_policy = 'mysql_native_password,,'
+
+# ssl_rsa
+auto_generate_certs=ON
+caching_sha2_password_auto_generate_rsa_keys=0
+sha256_password_auto_generate_rsa_keys=0
+
+# innodb doublewrite
+innodb_doublewrite_dir=&quot;/home/mysql/#innodb_dblwr&quot;
+# innodb_doublewrite_files=16 # (innodb_buffer_pool_instances * 2)
+
+# undo log
+innodb_max_undo_log_size=1G
+
+# log
+slow_query_log=1
+log_error_verbosity=3
+long_query_time=10
+slow_query_log_file=/var/log/mysql/slow_query.log
+log_error=/var/log/mysql/error.log
+log_output=FILE
+
+# buffer
+sort_buffer_size=1M
+read_buffer_size=1M
+read_rnd_buffer_size=1M
+
+# MyISAM
+myisam_sort_buffer_size=128M
+key_buffer_size=512M
+
+# InnoDB
+innodb-adaptive-hash-index=OFF
+innodb-strict-mode=1
+innodb_file_per_table=1
+innodb_temp_data_file_path=ibtmp1:12M:autoextend:max:10G
+innodb_buffer_pool_size=4G
+innodb_buffer_pool_dump_pct=100
+innodb_buffer_pool_dump_at_shutdown=1
+innodb_buffer_pool_load_at_startup=0
+innodb_redo_log_capacity=512M
+innodb_io_capacity=2000
+innodb_io_capacity_max=5000
+innodb_flush_log_at_trx_commit=2
+innodb_flush_method=O_DIRECT
+innodb_flush_neighbors=0
+innodb_read_ahead_threshold=0
+innodb_purge_threads=1
+</code></pre>
+
+</details>
+
+<h3 id="_1">各节点配置<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>配置项</th>
+<th>值</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>server_id</td>
+<td>1</td>
+<td>唯一标识MySQL实例</td>
+</tr>
+<tr>
+<td>gtid_mode</td>
+<td>ON</td>
+<td>开启事务的gtid</td>
+</tr>
+<tr>
+<td>enforce_gtid_consistency</td>
+<td>ON</td>
+<td>强制gtid一致性</td>
+</tr>
+<tr>
+<td>master_info_repository(deprecated)</td>
+<td>TABLE</td>
+<td><code>master.info</code>使用数据表方式记录</td>
+</tr>
+<tr>
+<td>log_bin</td>
+<td>ON</td>
+<td>开启binlog</td>
+</tr>
+<tr>
+<td>binlog_format</td>
+<td>ROW</td>
+<td>binlog的复制模式</td>
+</tr>
+<tr>
+<td>binlog_checksum</td>
+<td>NONE</td>
+<td>不使用binlog校验和</td>
+</tr>
+<tr>
+<td>relay_log_info_repository(deprecated)</td>
+<td>TABLE</td>
+<td>作为从库同步事务后，记录至数据表</td>
+</tr>
+<tr>
+<td>transaction_write_set_extraction (deprecated)</td>
+<td>XXHASH64</td>
+<td>deprecated as of MySQL 8.0.26</td>
+</tr>
+<tr>
+<td>default_authentication_plugin</td>
+<td>mysql_native_password</td>
+<td>配置用户账户的加密方式</td>
+</tr>
+<tr>
+<td>plugin_load</td>
+<td>mysql_clone.so;group_replication.so</td>
+<td>加载组复制插件</td>
+</tr>
+<tr>
+<td>loose-group_replication_group_name</td>
+<td>"aaaaaaaa-1111-2222-3333-bbbbbbbbbbbb"</td>
+<td>UUID，分组的节点需配置一致</td>
+</tr>
+<tr>
+<td>loose-group_replication_start_on_boot</td>
+<td>OFF</td>
+<td>启动MySQL时不自动开启组复制</td>
+</tr>
+<tr>
+<td>loose-group_replication_bootstrap_group</td>
+<td>OFF</td>
+<td>关闭此MySQL实例的组引导</td>
+</tr>
+<tr>
+<td>loose-group_replication_single_primary_mode</td>
+<td>OFF</td>
+<td>关闭单主模式，即使用多主模式</td>
+</tr>
+<tr>
+<td>loose-group_replication_enforce_update_everywhere_checks</td>
+<td>ON</td>
+<td>在多主模式下，建议开启此选项，严格检查一致性</td>
+</tr>
+<tr>
+<td>loose-group_replication_ssl_mode</td>
+<td>DISABLED</td>
+<td>组复制节点通信禁用SSL</td>
+</tr>
+<tr>
+<td>loose-group_replication_local_address</td>
+<td>"node1:33061"</td>
+<td>当前MySQL实例的组复制通信地址</td>
+</tr>
+<tr>
+<td>loose-group_replication_group_seeds</td>
+<td>"node1:33061,node2:33061,node3:33061"</td>
+<td>组复制的节点通信地址</td>
+</tr>
+<tr>
+<td>loose-group_replication_ip_whitelist or<br />loose-group_replication_ip_allowlist</td>
+<td>xx.yyy.zzz.0/25,127.0.0.1"</td>
+<td>设置组复制节点通信的IP白名单，同网段可省略</td>
+</tr>
+<tr>
+<td>report-host</td>
+<td>"node1"</td>
+<td>设置本机MEMBER_HOST,默认为hostname,由于开启了skip-name-resolve,此处用IP方式通讯</td>
+</tr>
+</tbody>
+</table>
+<h4 id="_2">设置复制账号<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h4>
+<ul>
+<li>下記作業は全nodeで実施する</li>
+</ul>
+<pre><code class="language-sql">mysql&gt; SET SQL_LOG_BIN=0;
+mysql&gt; CREATE USER 'repl_user'@'%' IDENTIFIED BY 'password';
+mysql&gt; GRANT REPLICATION SLAVE ON *.* TO repl_user@'%';
+mysql&gt; FLUSH PRIVILEGES;
+mysql&gt; SET SQL_LOG_BIN=1;
+# mysql&gt; CHANGE REPLICATION SOURCE TO SOURCE_USER='repl_user', SOURCE_PASSWORD='password' FOR CHANNEL 'group_replication_recovery';
+# mysql&gt; START REPLICA UNTIL SQL_AFTER_MTS_GAPS;
+mysql&gt; START GROUP_REPLICATION USER='repl_user', PASSWORD='password';
+mysql&gt; CHANGE REPLICATION SOURCE TO SOURCE_PORT='3306' FOR CHANNEL 'group_replication_recovery';
+
+# 另一种写法.
+# CHANGE REPLICATION SOURCE TO SOURCE_HOST='xx.yyy.zzz.1', SOURCE_PORT=33061 FOR CHANNEL 'group_replication_recovery'
+CHANGE REPLICATION SOURCE TO
+  SOURCE_HOST='xx.yyy.zzz.1',
+  SOURCE_USER='repl_user',
+  SOURCE_PASSWORD='password',
+  SOURCE_PORT=33061;
+
+START GROUP_REPLICATION USER='repl_user', PASSWORD='password';
+</code></pre>
+<ul>
+<li>warningメッセージが出る場合</li>
+</ul>
+<pre><code class="language-sql"># replicationユーザを追加時、下記のwarningメッセージが出る。
+01:52:21 root@localhost[(none)]&gt; CHANGE REPLICATION SOURCE TO SOURCE_USER='repl_user', SOURCE_PASSWORD='password' FOR CHANNEL 'group_replication_recovery';
+Query OK, 0 rows affected, 2 warnings (0.00 sec)
+
+01:52:21 root@localhost[(none)]&gt; show warnings\G
+*************************** 1. row ***************************
+  Level: Note
+   Code: 1759
+Message: Sending passwords in plain text without SSL/TLS is extremely insecure.
+*************************** 2. row ***************************
+  Level: Note
+   Code: 1760
+Message: Storing MySQL user name or password information in the connection metadata repository is not secure and is therefore not recommended. Please consider using the USER and PASSWORD connection options for START REPLICA; see the 'START REPLICA Syntax' in the MySQL Manual for more information.
+2 rows in set (0.00 sec)
+
+01:52:29 root@localhost[(none)]&gt;
+
+# 原因はmysqlクライアントが接続時sslなしで接続しているためです。 (node1)
+01:42:17 root@localhost[(none)]&gt; \s
+--------------
+mysql  Ver 8.0.33 for Linux on x86_64 (MySQL Community Server - GPL)
+
+Current user:           root@localhost
+SSL:                    Not in use     &lt;&lt;-- ここがSSLなし
+&lt;SKIP&gt;
+--------------
+
+01:44:41 root@localhost[(none)]&gt;
+
+# 対応方法 (node2)
+- /root/.my.cnf に下記の通りに変更
+
+01:53:27 root@localhost[(none)]&gt; \! cat /root/.my.cnf
+[client]
+socket=/tmp/mysql.sock
+user=root
+password=password
+host=localhost
+ssl-mode=required  &lt;--- ssl-modeを追加する。強制的にsslを利用する
+01:53:30 root@localhost[(none)]&gt;
+
+## 結果
+- warningメッセージは一つになりました。
+01:55:10 root@localhost[(none)]&gt; CHANGE REPLICATION SOURCE TO SOURCE_USER='repl_user', SOURCE_PASSWORD='password' FOR CHANNEL 'group_replication_recovery';
+Query OK, 0 rows affected, 1 warning (0.01 sec)
+
+01:55:10 root@localhost[(none)]&gt;
+01:55:10 root@localhost[(none)]&gt; show warnings\G
+*************************** 1. row ***************************
+  Level: Note
+   Code: 1760
+Message: Storing MySQL user name or password information in the connection metadata repository is not secure and is therefore not recommended. Please consider using the USER and PASSWORD connection options for START REPLICA; see the 'START REPLICA Syntax' in the MySQL Manual for more information.
+1 row in set (0.00 sec)
+
+01:55:17 root@localhost[(none)]&gt;
+</code></pre>
+<h4 id="master">MASTERサーバ<a class="headerlink" href="#master" title="Permanent link">&para;</a></h4>
+<pre><code class="language-sql"># 主服务器
+mysql&gt; reset master;
+mysql&gt; SET GLOBAL group_replication_bootstrap_group=ON;
+mysql&gt; START GROUP_REPLICATION;
+mysql&gt; SET GLOBAL group_replication_bootstrap_group=OFF;
+
+mysql&gt; SHOW VARIABLES LIKE 'gtid_executed';
++---------------+------------------------------------------+
+| Variable_name | Value                                    |
++---------------+------------------------------------------+
+| gtid_executed | aaaaaaaa-1111-2222-3333-bbbbbbbbbbbb:1-3 |
++---------------+------------------------------------------+
+1 row in set (0.00 sec)
+
+-- 查看MGR组信息
+mysql&gt; SELECT * FROM performance_schema.replication_group_members;
++---------------------------+--------------------------------------+-------------+-------------+--------------+-------------+----------------+----------------------------+
+| CHANNEL_NAME              | MEMBER_ID                            | MEMBER_HOST | MEMBER_PORT | MEMBER_STATE | MEMBER_ROLE | MEMBER_VERSION | MEMBER_COMMUNICATION_STACK |
++---------------------------+--------------------------------------+-------------+-------------+--------------+-------------+----------------+----------------------------+
+| group_replication_applier | defba275-f2ef-11ed-9eae-525400e752a2 | node1       |        3306 | ONLINE       | PRIMARY     | 8.0.33         | XCom                       |
++---------------------------+--------------------------------------+-------------+-------------+--------------+-------------+----------------+----------------------------+
+1 row in set (0.00 sec)
+</code></pre>
+<h4 id="slave">SLAVEサーバ追加<a class="headerlink" href="#slave" title="Permanent link">&para;</a></h4>
+<pre><code class="language-sql">mysql&gt; stop replica;
+mysql&gt; reset replica all;
+mysql&gt; start group_replication;
+mysql&gt; SHOW VARIABLES LIKE 'gtid_executed';
+mysql&gt; select * from performance_schema.replication_group_members;
+mysql&gt; select * from performance_schema.replication_connection_status;
+
+
+# 確認
+04:15:18 root@localhost[(none)]&gt; select * from performance_schema.replication_group_members ;
++---------------------------+--------------------------------------+-------------+-------------+--------------+-------------+----------------+----------------------------+
+| CHANNEL_NAME              | MEMBER_ID                            | MEMBER_HOST | MEMBER_PORT | MEMBER_STATE | MEMBER_ROLE | MEMBER_VERSION | MEMBER_COMMUNICATION_STACK |
++---------------------------+--------------------------------------+-------------+-------------+--------------+-------------+----------------+----------------------------+
+| group_replication_applier | 74ba497e-f2f1-11ed-9e8e-5254007b60ca | node2       |        3306 | ONLINE       | SECONDARY   | 8.0.33         | XCom                       |
+| group_replication_applier | d7239f8c-f2f1-11ed-aeeb-525400c72882 | node3       |        3306 | ONLINE       | SECONDARY   | 8.0.33         | XCom                       |
+| group_replication_applier | defba275-f2ef-11ed-9eae-525400e752a2 | node1       |        3306 | ONLINE       | PRIMARY     | 8.0.33         | XCom                       |
++---------------------------+--------------------------------------+-------------+-------------+--------------+-------------+----------------+----------------------------+
+3 rows in set (0.00 sec)
+
+04:15:48 root@localhost[(none)]&gt;
+
+</code></pre>
+<ul>
+<li>RECOVERINGになった場合</li>
+</ul>
+<pre><code class="language-sql"># slaveサーバ追加の際、MEMBER_STATEがずっとRECOVERINGになった場合
+-- select * from performance_schema.replication_connection_status\G でエラーを確認
+-- 基本的にはreplicationユーザの追加できてないのが原因です。
+
+## 対策
+-- replicationユーザを追加する
+-- CHANGE REPLICATION SOURCE TO SOURCE_USER='repl_user', SOURCE_PASSWORD='password' FOR CHANNEL 'group_replication_recovery';
+-- SELECT MEMBER_ID,MEMBER_HOST,MEMBER_STATE, MEMBER_ROLE FROM performance_schema.replication_group_members; で確認
+
+    04:14:34 root@localhost[(none)]&gt; SELECT MEMBER_ID,MEMBER_HOST,MEMBER_STATE, MEMBER_ROLE FROM performance_schema.replication_group_members;
+    +--------------------------------------+-------------+--------------+-------------+
+    | MEMBER_ID                            | MEMBER_HOST | MEMBER_STATE | MEMBER_ROLE |
+    +--------------------------------------+-------------+--------------+-------------+
+    | 74ba497e-f2f1-11ed-9e8e-5254007b60ca | node2       | ONLINE       | SECONDARY   |
+    | d7239f8c-f2f1-11ed-aeeb-525400c72882 | node3       | ONLINE       | SECONDARY   |
+    | defba275-f2ef-11ed-9eae-525400e752a2 | node1       | ONLINE       | PRIMARY     |
+    +--------------------------------------+-------------+--------------+-------------+
+    3 rows in set (0.00 sec)
+
+    04:15:18 root@localhost[(none)]&gt;
+
+
+
+04:17:57 root@localhost[(none)]&gt; select * from performance_schema.replication_group_members ;
++---------------------------+--------------------------------------+-------------+-------------+--------------+-------------+----------------+----------------------------+
+| CHANNEL_NAME              | MEMBER_ID                            | MEMBER_HOST | MEMBER_PORT | MEMBER_STATE | MEMBER_ROLE | MEMBER_VERSION | MEMBER_COMMUNICATION_STACK |
++---------------------------+--------------------------------------+-------------+-------------+--------------+-------------+----------------+----------------------------+
+| group_replication_applier | 74ba497e-f2f1-11ed-9e8e-5254007b60ca | node2       |        3306 | ONLINE       | SECONDARY   | 8.0.33         | XCom                       |
+| group_replication_applier | d7239f8c-f2f1-11ed-aeeb-525400c72882 | node3       |        3306 | RECOVERING   | SECONDARY   | 8.0.33         | XCom                       |
+| group_replication_applier | defba275-f2ef-11ed-9eae-525400e752a2 | node1       |        3306 | ONLINE       | PRIMARY     | 8.0.33         | XCom                       |
++---------------------------+--------------------------------------+-------------+-------------+--------------+-------------+----------------+----------------------------+
+3 rows in set (0.00 sec)
+
+04:18:01 root@localhost[(none)]&gt; select * from performance_schema.replication_connection_status\G
+*************************** 2. row ***************************
+           CHANNEL_NAME: group_replication_recovery
+      LAST_ERROR_NUMBER: 13117
+     LAST_ERROR_MESSAGE: Fatal error: Invalid (empty) username when attempting to connect to the source server. Connection attempt terminated.
+   LAST_ERROR_TIMESTAMP: 2023-05-16 16:17:55.939759
+
+2 rows in set (0.00 sec)
+</code></pre>
+<h4 id="_3">確認<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h4>
+<ul>
+<li>master側はNOT READ_ONLY、slave側はREAD_ONLY</li>
+</ul>
+<pre><code class="language-sql"># node1
+04:29:11 root@localhost[(none)]&gt; show global variables where Variable_name  like '%hostname%' or Variable_name like '%read_only%';
++-----------------------+-------+
+| Variable_name         | Value |
++-----------------------+-------+
+| hostname              | node1 |
+| innodb_read_only      | OFF   |
+| read_only             | OFF   |
+| super_read_only       | OFF   |
+| transaction_read_only | OFF   |
++-----------------------+-------+
+5 rows in set (0.01 sec)
+
+04:29:44 root@localhost[(none)]&gt;
+
+# node2
+04:33:09 root@localhost[(none)]&gt; show global variables where Variable_name  like '%hostname%' or Variable_name like '%read_only%';
++-----------------------+-------+
+| Variable_name         | Value |
++-----------------------+-------+
+| hostname              | node2 |
+| innodb_read_only      | OFF   |
+| read_only             | ON    |
+| super_read_only       | ON    |
+| transaction_read_only | OFF   |
++-----------------------+-------+
+5 rows in set (0.01 sec)
+
+04:37:22 root@localhost[(none)]&gt;
+
+# node3
+04:35:53 root@localhost[(none)]&gt; show global variables where Variable_name  like '%hostname%' or Variable_name like '%read_only%';
++-----------------------+-------+
+| Variable_name         | Value |
++-----------------------+-------+
+| hostname              | node3 |
+| innodb_read_only      | OFF   |
+| read_only             | ON    |
+| super_read_only       | ON    |
+| transaction_read_only | OFF   |
++-----------------------+-------+
+5 rows in set (0.00 sec)
+
+04:40:09 root@localhost[(none)]&gt;
+
+</code></pre>
+<h4 id="sysbench">sysbenchの検証<a class="headerlink" href="#sysbench" title="Permanent link">&para;</a></h4>
+<pre><code class="language-bash">## DB作成
+&gt; CREATE DATABASE sbtest;
+
+## ユーザー作成
+&gt; CREATE USER 'sbtest'@'%' IDENTIFIED BY 'sbtest';
+
+## ユーザーに全権限追加
+&gt; GRANT all ON *.* TO 'sbtest'@'%';
+
+## 権限の変更をデータベースに反映
+&gt; FLUSH PRIVILEGES;
+
+## 確認
+&gt; show databases;
+&gt; select user,host,authentication_string from mysql.user;
+
+## 検証用スクリプト作成
+#!/usr/bin/env bash
+PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin:~/bin
+export PATH
+set -e
+
+clear
+
+THR=$1
+CMD=$2
+
+if [ ! &quot;$THR&quot; ]; then
+  echo &quot;Not threads set! &quot;
+  exit 1;
+fi
+
+if [ ! &quot;$CMD&quot; ]; then
+  echo &quot;Not command selected! &quot;
+  exit 1;
+fi
+
+sysbench oltp_read_write \
+--mysql-host=xx.yyy.zzz.1 \
+--mysql-dry-run=off \
+--db-driver=mysql \
+--mysql-user=sbtest \
+--mysql-password=sbtest \
+--table_size=10000 \
+--threads=$THR \
+--tables=30 \
+--time=120 \
+--report-interval=10 \
+$CMD
+
+## 2. テーブル準備
+&gt; bash sysbench_mgr.sh 300 prepare
+
+## 性能検証
+&gt; for i in $(seq 10 10 300); do echo $i; bash sysbench_mgr.sh $i run &gt;&gt; mgr_sysbench.log; done
+
+</code></pre>
+<h4 id="master_1">MASTER死んだ場合の確認<a class="headerlink" href="#master_1" title="Permanent link">&para;</a></h4>
+<ul>
+<li>masterが正常に切り替えたかどうかを確認</li>
+</ul>
+<pre><code class="language-sql"># master
+04:49:35 root@localhost[sbtest]&gt; select * from performance_schema.replication_group_members ;
++---------------------------+--------------------------------------+-------------+-------------+--------------+-------------+----------------+----------------------------+
+| CHANNEL_NAME              | MEMBER_ID                            | MEMBER_HOST | MEMBER_PORT | MEMBER_STATE | MEMBER_ROLE | MEMBER_VERSION | MEMBER_COMMUNICATION_STACK |
++---------------------------+--------------------------------------+-------------+-------------+--------------+-------------+----------------+----------------------------+
+| group_replication_applier | 74ba497e-f2f1-11ed-9e8e-5254007b60ca | node2       |        3306 | ONLINE       | SECONDARY   | 8.0.33         | XCom                       |
+| group_replication_applier | d7239f8c-f2f1-11ed-aeeb-525400c72882 | node3       |        3306 | ONLINE       | SECONDARY   | 8.0.33         | XCom                       |
+| group_replication_applier | defba275-f2ef-11ed-9eae-525400e752a2 | node1       |        3306 | ONLINE       | PRIMARY     | 8.0.33         | XCom                       |
++---------------------------+--------------------------------------+-------------+-------------+--------------+-------------+----------------+----------------------------+
+3 rows in set (0.00 sec)
+
+04:50:18 root@localhost[sbtest]&gt; select @@hostname;
++------------+
+| @@hostname |
++------------+
+| node1      |
++------------+
+1 row in set (0.00 sec)
+
+04:50:23 root@localhost[sbtest]&gt;
+</code></pre>
+<ul>
+<li>masterのmysqldを停止</li>
+</ul>
+<pre><code class="language-sql"># masterのmysqldを停止
+[root@node1 work]# systemctl stop mysqld
+</code></pre>
+<ul>
+<li>slave上で確認</li>
+</ul>
+<pre><code class="language-sql"># slave上で確認
+## node2
+04:59:20 root@localhost[(none)]&gt; SELECT MEMBER_ID,MEMBER_HOST,MEMBER_STATE, MEMBER_ROLE FROM performance_schema.replication_group_members;
++--------------------------------------+-------------+--------------+-------------+
+| MEMBER_ID                            | MEMBER_HOST | MEMBER_STATE | MEMBER_ROLE |
++--------------------------------------+-------------+--------------+-------------+
+| 74ba497e-f2f1-11ed-9e8e-5254007b60ca | node2       | ONLINE       | PRIMARY     |  &lt;&lt;-- masterがnode2に切り替えたこと確認できた。
+| d7239f8c-f2f1-11ed-aeeb-525400c72882 | node3       | ONLINE       | SECONDARY   |
++--------------------------------------+-------------+--------------+-------------+
+2 rows in set (0.00 sec)
+
+05:00:19 root@localhost[(none)]&gt;
+
+## node3
+05:01:55 root@localhost[(none)]&gt; SELECT MEMBER_ID,MEMBER_HOST,MEMBER_STATE, MEMBER_ROLE FROM performance_schema.replication_group_members;
++--------------------------------------+-------------+--------------+-------------+
+| MEMBER_ID                            | MEMBER_HOST | MEMBER_STATE | MEMBER_ROLE |
++--------------------------------------+-------------+--------------+-------------+
+| 74ba497e-f2f1-11ed-9e8e-5254007b60ca | node2       | ONLINE       | PRIMARY     |  &lt;&lt;-- masterがnode2に切り替えたこと確認できた。
+| d7239f8c-f2f1-11ed-aeeb-525400c72882 | node3       | ONLINE       | SECONDARY   |
++--------------------------------------+-------------+--------------+-------------+
+2 rows in set (0.00 sec)
+
+
+
+# mysqlログ
+
+## mysqldを停止の際
+2023-05-16T16:50:39.420249+09:00 13 [Note] [MY-010559] [Repl] Multi-threaded replica statistics for channel 'group_replication_applier': seconds elapsed = 3044; events assigned = 1025; worker queues filled over overrun level = 0; waited due a Worker queue full = 0; waited due the total size = 0; waited at clock conflicts = 433423400 waited (count) when Workers occupied = 0 waited when Workers occupied = 0
+2023-05-16T16:50:56.719644+09:00 41 [Note] [MY-013730] [Server] 'wait_timeout' period of 300 seconds was exceeded for `root`@`localhost`. The idle time since last command was too long.
+2023-05-16T16:50:56.719745+09:00 41 [Note] [MY-010914] [Server] Aborted connection 41 to db: 'unconnected' user: 'root' host: 'localhost' (The client was disconnected by the server because of inactivity.).
+2023-05-16T16:52:39.039940+09:00 13 [Note] [MY-010559] [Repl] Multi-threaded replica statistics for channel 'group_replication_applier': seconds elapsed = 120; events assigned = 1155073; worker queues filled over overrun level = 0; waited due a Worker queue full = 0; waited due the total size = 0; waited at clock conflicts = 1878944800 waited (count) when Workers occupied = 20404 waited when Workers occupied = 11202672000
+2023-05-16T16:54:39.060182+09:00 13 [Note] [MY-010559] [Repl] Multi-threaded replica statistics for channel 'group_replication_applier': seconds elapsed = 120; events assigned = 3861505; worker queues filled over overrun level = 0; waited due a Worker queue full = 0; waited due the total size = 0; waited at clock conflicts = 1881781000 waited (count) when Workers occupied = 134123 waited when Workers occupied = 63201443400
+2023-05-16T16:56:39.016324+09:00 13 [Note] [MY-010559] [Repl] Multi-threaded replica statistics for channel 'group_replication_applier': seconds elapsed = 120; events assigned = 7382017; worker queues filled over overrun level = 0; waited due a Worker queue full = 0; waited due the total size = 0; waited at clock conflicts = 1883981300 waited (count) when Workers occupied = 361966 waited when Workers occupied = 163103230800
+2023-05-16T16:58:58.960486+09:00 0 [Note] [MY-011735] [Repl] Plugin group_replication reported: '[GCS] Updating physical connections to other servers'
+2023-05-16T16:58:58.960609+09:00 0 [Note] [MY-011735] [Repl] Plugin group_replication reported: '[GCS] Using existing server node 0 host node2:33061'
+2023-05-16T16:58:58.960624+09:00 0 [Note] [MY-011735] [Repl] Plugin group_replication reported: '[GCS] Using existing server node 1 host node3:33061'
+2023-05-16T16:58:58.960636+09:00 0 [Note] [MY-011735] [Repl] Plugin group_replication reported: '[GCS] Sucessfully installed new site definition. Start synode for this configuration is {dd63b25c 719175 0}, boot key synode is {dd63b25c 719164 0}, configured event horizon=10, my node identifier is 0'
+2023-05-16T16:58:59.735276+09:00 0 [Note] [MY-011735] [Repl] Plugin group_replication reported: '[GCS] A configuration change was detected. Sending a Global View Message to all nodes. My node identifier is 0 and my address is node2:33061'
+2023-05-16T16:58:59.739469+09:00 0 [Note] [MY-011735] [Repl] Plugin group_replication reported: '[GCS] Group is able to support up to communication protocol version 8.0.27'
+
+## MGRからnode1を除外される
+2023-05-16T16:58:59.739611+09:00 0 [Warning] [MY-011499] [Repl] Plugin group_replication reported: 'Members removed from the group: node1:3306'
+2023-05-16T16:58:59.739642+09:00 0 [System] [MY-011500] [Repl] Plugin group_replication reported: 'Primary server with address node1:3306 left the group. Electing new Primary.'
+2023-05-16T16:58:59.739912+09:00 0 [Note] [MY-013519] [Repl] Plugin group_replication reported: 'Elected primary member gtid_executed: aaaaaaaa-1111-2222-3333-bbbbbbbbbbbb:1-852676'
+2023-05-16T16:58:59.739948+09:00 0 [Note] [MY-013519] [Repl] Plugin group_replication reported: 'Elected primary member applier channel received_transaction_set: aaaaaaaa-1111-2222-3333-bbbbbbbbbbbb:1-852676'
+
+## 新たな Primary server をnode2に選択された
+2023-05-16T16:58:59.740007+09:00 0 [System] [MY-011507] [Repl] Plugin group_replication reported: 'A new primary with address node2:3306 was elected. The new primary will execute all previous group transactions before allowing writes.'
+2023-05-16T16:58:59.740757+09:00 0 [System] [MY-011503] [Repl] Plugin group_replication reported: 'Group membership changed to node2:3306, node3:3306 on view 16842195647561739:10.'
+2023-05-16T16:58:59.741723+09:00 46 [System] [MY-011565] [Repl] Plugin group_replication reported: 'Setting super_read_only=ON.'
+2023-05-16T16:58:59.742265+09:00 19 [System] [MY-013731] [Repl] Plugin group_replication reported: 'The member action &quot;mysql_disable_super_read_only_if_primary&quot; for event &quot;AFTER_PRIMARY_ELECTION&quot; with priority &quot;1&quot; will be run.'
+2023-05-16T16:58:59.742318+09:00 19 [System] [MY-011566] [Repl] Plugin group_replication reported: 'Setting super_read_only=OFF.'
+2023-05-16T16:58:59.742649+09:00 19 [System] [MY-013731] [Repl] Plugin group_replication reported: 'The member action &quot;mysql_start_failover_channels_if_primary&quot; for event &quot;AFTER_PRIMARY_ELECTION&quot; with priority &quot;10&quot; will be run.'
+
+2023-05-16T16:58:59.743420+09:00 46 [System] [MY-011510] [Repl] Plugin group_replication reported: 'This server is working as primary member.'
+2023-05-16T16:58:59.743453+09:00 11 [Note] [MY-011485] [Repl] Plugin group_replication reported: 'Primary had applied all relay logs, disabled conflict detection.'
+2023-05-16T16:59:01.971224+09:00 0 [Note] [MY-011735] [Repl] Plugin group_replication reported: '[GCS] Failure reading from fd=56 n=0 from node1:33061'
+2023-05-16T17:05:19.471719+09:00 42 [Note] [MY-013730] [Server] 'wait_timeout' period of 300 seconds was exceeded for `root`@`localhost`. The idle time since last command was too long.
+2023-05-16T17:05:19.472016+09:00 42 [Note] [MY-010914] [Server] Aborted connection 42 to db: 'unconnected' user: 'root' host: 'localhost' (The client was disconnected by the server because of inactivity.).
+
+## node1のmysqldを起動し、start group_replicationしました。
+2023-05-16T17:06:30.683150+09:00 0 [Note] [MY-011735] [Repl] Plugin group_replication reported: '[GCS] Adding new node to the configuration: node1:33061'
+2023-05-16T17:06:30.683570+09:00 0 [Note] [MY-011735] [Repl] Plugin group_replication reported: '[GCS] Updating physical connections to other servers'
+2023-05-16T17:06:30.683610+09:00 0 [Note] [MY-011735] [Repl] Plugin group_replication reported: '[GCS] Using existing server node 0 host node2:33061'
+2023-05-16T17:06:30.683623+09:00 0 [Note] [MY-011735] [Repl] Plugin group_replication reported: '[GCS] Using existing server node 1 host node3:33061'
+2023-05-16T17:06:30.683634+09:00 0 [Note] [MY-011735] [Repl] Plugin group_replication reported: '[GCS] Using existing server node 2 host node1:33061'
+2023-05-16T17:06:30.683652+09:00 0 [Note] [MY-011735] [Repl] Plugin group_replication reported: '[GCS] Sucessfully installed new site definition. Start synode for this configuration is {dd63b25c 834186 0}, boot key synode is {dd63b25c 834175 0}, configured event horizon=10, my node identifier is 0'
+2023-05-16T17:06:30.684085+09:00 0 [Note] [MY-011735] [Repl] Plugin group_replication reported: '[GCS] Sender task disconnected from node1:33061'
+2023-05-16T17:06:30.684112+09:00 0 [Note] [MY-011735] [Repl] Plugin group_replication reported: '[GCS] Connecting to node1:33061'
+2023-05-16T17:06:30.684368+09:00 0 [Note] [MY-011735] [Repl] Plugin group_replication reported: '[GCS] Connected to node1:33061'
+2023-05-16T17:06:31.487931+09:00 0 [Note] [MY-011735] [Repl] Plugin group_replication reported: '[GCS] A configuration change was detected. Sending a Global View Message to all nodes. My node identifier is 0 and my address is node2:33061'
+2023-05-16T17:06:37.966205+09:00 0 [Note] [MY-011735] [Repl] Plugin group_replication reported: '[GCS] A configuration change was detected. Sending a Global View Message to all nodes. My node identifier is 0 and my address is node2:33061'
+2023-05-16T17:06:38.065989+09:00 0 [Note] [MY-011735] [Repl] Plugin group_replication reported: '[GCS] Group is able to support up to communication protocol version 8.0.27'
+2023-05-16T17:06:38.066211+09:00 0 [Note] [MY-011501] [Repl] Plugin group_replication reported: 'Members joined the group: node1:3306'
+2023-05-16T17:06:38.066410+09:00 0 [System] [MY-011503] [Repl] Plugin group_replication reported: 'Group membership changed to node2:3306, node3:3306, node1:3306 on view 16842195647561739:11.'
+
+## binlogをnode1に転送する
+2023-05-16T17:06:38.092124+09:00 62 [Note] [MY-010462] [Repl] Start binlog_dump to source_thread_id(62) replica_server(1), pos(, 4)
+
+## node1をMGRの一員としてjoinしました。
+2023-05-16T17:07:48.293141+09:00 0 [System] [MY-011492] [Repl] Plugin group_replication reported: 'The member with address node1:3306 was declared online within the replication group.'
+2023-05-16T17:08:20.217670+09:00 62 [Note] [MY-010914] [Server] Aborted connection 62 to db: 'unconnected' user: 'repl_user' host: '49.212.126.51' (failed on flush_net()).
+2023-05-16T17:10:49.417733+09:00 58 [Note] [MY-013730] [Server] 'wait_timeout' period of 300 seconds was exceeded for `root`@`localhost`. The idle time since last command was too long.
+2023-05-16T17:10:49.418050+09:00 58 [Note] [MY-010914] [Server] Aborted connection 58 to db: 'unconnected' user: 'root' host: 'localhost' (The client was disconnected by the server because of inactivity.).
+
+</code></pre>
+<h4 id="master_2">MASTERサーバを障害から復活の場合<a class="headerlink" href="#master_2" title="Permanent link">&para;</a></h4>
+<pre><code class="language-sql"># mysqldを起動
+[root@node1 work]# systemctl start mysqld
+
+# 現状確認
+-- offlineであること
+04:59:07 root@localhost[(none)]&gt; select * from performance_schema.replication_group_members ;
++---------------------------+-----------+-------------+-------------+--------------+-------------+----------------+----------------------------+
+| CHANNEL_NAME              | MEMBER_ID | MEMBER_HOST | MEMBER_PORT | MEMBER_STATE | MEMBER_ROLE | MEMBER_VERSION | MEMBER_COMMUNICATION_STACK |
++---------------------------+-----------+-------------+-------------+--------------+-------------+----------------+----------------------------+
+| group_replication_applier |           |             |        NULL | OFFLINE      |             |                |                            |
++---------------------------+-----------+-------------+-------------+--------------+-------------+----------------+----------------------------+
+1 row in set (0.00 sec)
+
+# MGRを起動する
+04:59:10 root@localhost[(none)]&gt; start group_replication;
+Query OK, 0 rows affected (8.60 sec)
+
+# MGRのステータスを確認
+# 起動直後のMEMBER_STATEがRECOVERINGであること
+-- データの自動同期中
+
+04:59:25 root@localhost[(none)]&gt; select * from performance_schema.replication_group_members ;
++---------------------------+--------------------------------------+-------------+-------------+--------------+-------------+----------------+----------------------------+
+| CHANNEL_NAME              | MEMBER_ID                            | MEMBER_HOST | MEMBER_PORT | MEMBER_STATE | MEMBER_ROLE | MEMBER_VERSION | MEMBER_COMMUNICATION_STACK |
++---------------------------+--------------------------------------+-------------+-------------+--------------+-------------+----------------+----------------------------+
+| group_replication_applier | 74ba497e-f2f1-11ed-9e8e-5254007b60ca | node2       |        3306 | ONLINE       | PRIMARY     | 8.0.33         | XCom                       |
+| group_replication_applier | d7239f8c-f2f1-11ed-aeeb-525400c72882 | node3       |        3306 | ONLINE       | SECONDARY   | 8.0.33         | XCom                       |
+| group_replication_applier | defba275-f2ef-11ed-9eae-525400e752a2 | node1       |        3306 | RECOVERING   | SECONDARY   | 8.0.33         | XCom                       |
++---------------------------+--------------------------------------+-------------+-------------+--------------+-------------+----------------+----------------------------+
+3 rows in set (0.00 sec)
+
+# しばらく後状況を確認
+05:04:19 root@localhost[(none)]&gt; SELECT MEMBER_ID,MEMBER_HOST,MEMBER_STATE, MEMBER_ROLE FROM performance_schema.replication_group_members;
++--------------------------------------+-------------+--------------+-------------+
+| MEMBER_ID                            | MEMBER_HOST | MEMBER_STATE | MEMBER_ROLE |
++--------------------------------------+-------------+--------------+-------------+
+| 74ba497e-f2f1-11ed-9e8e-5254007b60ca | node2       | ONLINE       | PRIMARY     |
+| d7239f8c-f2f1-11ed-aeeb-525400c72882 | node3       | ONLINE       | SECONDARY   |
+| defba275-f2ef-11ed-9eae-525400e752a2 | node1       | ONLINE       | SECONDARY   |  &lt;&lt;-- ONLINEに戻りました。
++--------------------------------------+-------------+--------------+-------------+
+3 rows in set (0.00 sec)
+
+05:04:19 root@localhost[(none)]&gt;
+
+</code></pre>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright © 2022 - 2023 - lyvivian0077
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tracking", "navigation.expand", "navigation.sections", "navigation.indexes", "navigation.path", "toc.integrate"], "search": "../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.fac441b0.min.js"></script>
+      
+    
+  </body>
+</html>
