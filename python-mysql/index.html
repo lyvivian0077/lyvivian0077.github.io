@@ -206,9 +206,7 @@
       
       
       
-        
-      
-      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
       
       
         
@@ -324,9 +322,7 @@
       
       
       
-        
-      
-      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
       
       
         
@@ -397,9 +393,7 @@
       
       
       
-        
-      
-      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
       
       
         
@@ -454,11 +448,11 @@
       
       
       
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+      
+      
         
-      
-      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_8" >
-      
-      
+          
         
           
         
@@ -566,6 +560,20 @@
     <li class="md-nav__item">
       <a href="../mysql-mgr/" class="md-nav__link">
         MGR
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mysql-mgr-copy/" class="md-nav__link">
+        転載MGR
       </a>
     </li>
   
@@ -1112,18 +1120,18 @@ http://www.cnblogs.com/wenchengxiaopenyou/p/5701899.html</p>
 <h3 id="_1">前言<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
 <p>本篇的主要内容为整理mysql的基础内容，分享的同时方便日后查阅，同时结合python的学习整理python操作mysql的方法以及python的ORM。</p>
 <h2 id="_2">一.数据库初探<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
-<pre><code>在开始mysql之前先了解下什么是数据库：
-数据库（Database）是按照数据结构来组织、存储和管理数据的仓库，它产生于距今六十多年前，随着信息技术和市场的发展，特别是二十世纪九十年代以后，数据管理不再仅仅是存储和管理数据，而转变成用户所需要的各种数据管理的方式。数据库有很多种类型，从最简单的存储有各种数据的表格到能够进行海量数据存储的大型数据库系统都在各个方面得到了广泛的应用。
-通俗的讲数据库就是讲数据保存在文件或者内存中，接收特定的命令然后对文件进行操作，而数据库就是一个工具它可以帮助我们去管理这些文件夹或者文件，我门只需要通过命令的方式告诉他们去执行就行了。
-
-那么mysql又是什么呢？
-
-MySQL是一个关系型数据库管理系统，由瑞典MySQL AB 公司开发，目前属于 Oracle 旗下公司。MySQL 最流行的关系型数据库管理系统，在 WEB 应用方面MySQL是最好的 RDBMS (Relational Database Management System，关系数据库管理系统) 应用软件之一。 与mysql相类似功能的数据库还有：MySQL、Oracle、SQLite、Access、MS SQL Server等
-
-再了解下什么是SQL：
-
-SQL是Structured Query Language(结构化查询语言)的缩写。SQL是专为数据库而建立的操作命令集，是一种功能齐全的数据库语言。在使用它时，只需要发出“做什么”的命令，“怎么做”是不用使用者考虑的。SQL功能强大、简单易学、使用方便，已经成为了数据库操作的基础，并且现在几乎所有的数据库均支持SQL。正如上文提到的SQl就是我们控制数据库的方法，命令。
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>在开始mysql之前先了解下什么是数据库：
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>数据库（Database）是按照数据结构来组织、存储和管理数据的仓库，它产生于距今六十多年前，随着信息技术和市场的发展，特别是二十世纪九十年代以后，数据管理不再仅仅是存储和管理数据，而转变成用户所需要的各种数据管理的方式。数据库有很多种类型，从最简单的存储有各种数据的表格到能够进行海量数据存储的大型数据库系统都在各个方面得到了广泛的应用。
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>通俗的讲数据库就是讲数据保存在文件或者内存中，接收特定的命令然后对文件进行操作，而数据库就是一个工具它可以帮助我们去管理这些文件夹或者文件，我门只需要通过命令的方式告诉他们去执行就行了。
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>那么mysql又是什么呢？
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>MySQL是一个关系型数据库管理系统，由瑞典MySQL AB 公司开发，目前属于 Oracle 旗下公司。MySQL 最流行的关系型数据库管理系统，在 WEB 应用方面MySQL是最好的 RDBMS (Relational Database Management System，关系数据库管理系统) 应用软件之一。 与mysql相类似功能的数据库还有：MySQL、Oracle、SQLite、Access、MS SQL Server等
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>再了解下什么是SQL：
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>SQL是Structured Query Language(结构化查询语言)的缩写。SQL是专为数据库而建立的操作命令集，是一种功能齐全的数据库语言。在使用它时，只需要发出“做什么”的命令，“怎么做”是不用使用者考虑的。SQL功能强大、简单易学、使用方便，已经成为了数据库操作的基础，并且现在几乎所有的数据库均支持SQL。正如上文提到的SQl就是我们控制数据库的方法，命令。
+</span></code></pre></div>
 <h2 id="_3">三.真正的数据库操作：<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
 <p>1.显示数据库</p>
 <p><code>SHOW DATABASES;</code></p>
@@ -1133,357 +1141,355 @@ SQL是Structured Query Language(结构化查询语言)的缩写。SQL是专为�
 <li>test - 用于用户测试数据</li>
 <li>information_schema - MySQL本身架构相关数据</li>
 </ul>
-<p>2.使用数据库</p>
-<pre><code>USE db_name;   ＃指定要操作的数据库名字
-</code></pre>
-<p>3.显示所有表</p>
-<pre><code>SHOW TABLES;
-</code></pre>
-<p>4.用户授权</p>
+<p>2.使用数据库
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>USE db_name;   ＃指定要操作的数据库名字
+</span></code></pre></div></p>
+<p>3.显示所有表
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>SHOW TABLES;
+</span></code></pre></div>
+4.用户授权</p>
 <p>在用户授权部分包括：</p>
 <ul>
 <li>用户管理</li>
 <li>授权管理 </li>
 </ul>
-<p>用户管理：</p>
-<pre><code>创建用户
-    create user '用户名'@'IP地址' identified by '密码';
-删除用户
-    drop user '用户名'@'IP地址';
-修改用户
-    rename user '用户名'@'IP地址'; to '新用户名'@'IP地址';
-修改密码
-    set password for '用户名'@'IP地址' = Password('新密码');
-
-注意：用户权限相关数据保存在默认的mysql数据库的user表中，虽然也可以直接对其进行操作，但是未来安全性不建议那么做。
-</code></pre>
-<p>授权管理：</p>
-<pre><code>show grants for '用户'@'IP地址'                  -- 查看权限
-grant  权限 on 数据库.表 to   '用户'@'IP地址'      -- 授权
-revoke 权限 on 数据库.表 from '用户'@'IP地址'      -- 取消权限
-</code></pre>
-<p>更加详细：</p>
-<pre><code>all privileges  除grant外的所有权限
-            select          仅查权限
-            select,insert   查和插入权限
-            ...
-            usage                   无访问权限
-            alter                   使用alter table
-            alter routine           使用alter procedure和drop procedure
-            create                  使用create table
-            create routine          使用create procedure
-            create temporary tables 使用create temporary tables
-            create user             使用create user、drop user、rename user和revoke  all privileges
-            create view             使用create view
-            delete                  使用delete
-            drop                    使用drop table
-            execute                 使用call和存储过程
-            file                    使用select into outfile 和 load data infile
-            grant option            使用grant 和 revoke
-            index                   使用index
-            insert                  使用insert
-            lock tables             使用lock table
-            process                 使用show full processlist
-            select                  使用select
-            show databases          使用show databases
-            show view               使用show view
-            update                  使用update
-            reload                  使用flush
-            shutdown                使用mysqladmin shutdown(关闭MySQL)
-            super                   􏱂􏰈使用change master、kill、logs、purge、master和set global。还允许mysqladmin􏵗􏵘􏲊􏲋调试登陆
-            replication client      服务器位置的访问
-            replication slave       由复制从属使用
-
-
-        对于目标数据库以及内部其他：
-            数据库名.*           数据库中的所有
-            数据库名.表          指定数据库中的某张表
-            数据库名.存储过程     指定数据库中的存储过程
-            *.*                所有数据库
-
-            用户名@IP地址         用户只能在改IP下才能访问
-            用户名@192.168.1.%   用户只能在改IP段下才能访问(通配符%表示任意)
-            用户名@%             用户可以再任意IP下访问(默认IP地址为%)
-
-</code></pre>
+<p>用户管理：
+<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>创建用户
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>    create user &#39;用户名&#39;@&#39;IP地址&#39; identified by &#39;密码&#39;;
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>删除用户
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>    drop user &#39;用户名&#39;@&#39;IP地址&#39;;
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>修改用户
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>    rename user &#39;用户名&#39;@&#39;IP地址&#39;; to &#39;新用户名&#39;@&#39;IP地址&#39;;
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>修改密码
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>    set password for &#39;用户名&#39;@&#39;IP地址&#39; = Password(&#39;新密码&#39;);
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>注意：用户权限相关数据保存在默认的mysql数据库的user表中，虽然也可以直接对其进行操作，但是未来安全性不建议那么做。
+</span></code></pre></div></p>
+<p>授权管理：
+<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>show grants for &#39;用户&#39;@&#39;IP地址&#39;                  -- 查看权限
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>grant  权限 on 数据库.表 to   &#39;用户&#39;@&#39;IP地址&#39;      -- 授权
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>revoke 权限 on 数据库.表 from &#39;用户&#39;@&#39;IP地址&#39;      -- 取消权限
+</span></code></pre></div></p>
+<p>更加详细：
+<div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>all privileges  除grant外的所有权限
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>            select          仅查权限
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>            select,insert   查和插入权限
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>            ...
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>            usage                   无访问权限
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>            alter                   使用alter table
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>            alter routine           使用alter procedure和drop procedure
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>            create                  使用create table
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>            create routine          使用create procedure
+</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a>            create temporary tables 使用create temporary tables
+</span><span id="__span-5-11"><a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a>            create user             使用create user、drop user、rename user和revoke  all privileges
+</span><span id="__span-5-12"><a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a>            create view             使用create view
+</span><span id="__span-5-13"><a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a>            delete                  使用delete
+</span><span id="__span-5-14"><a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a>            drop                    使用drop table
+</span><span id="__span-5-15"><a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a>            execute                 使用call和存储过程
+</span><span id="__span-5-16"><a id="__codelineno-5-16" name="__codelineno-5-16" href="#__codelineno-5-16"></a>            file                    使用select into outfile 和 load data infile
+</span><span id="__span-5-17"><a id="__codelineno-5-17" name="__codelineno-5-17" href="#__codelineno-5-17"></a>            grant option            使用grant 和 revoke
+</span><span id="__span-5-18"><a id="__codelineno-5-18" name="__codelineno-5-18" href="#__codelineno-5-18"></a>            index                   使用index
+</span><span id="__span-5-19"><a id="__codelineno-5-19" name="__codelineno-5-19" href="#__codelineno-5-19"></a>            insert                  使用insert
+</span><span id="__span-5-20"><a id="__codelineno-5-20" name="__codelineno-5-20" href="#__codelineno-5-20"></a>            lock tables             使用lock table
+</span><span id="__span-5-21"><a id="__codelineno-5-21" name="__codelineno-5-21" href="#__codelineno-5-21"></a>            process                 使用show full processlist
+</span><span id="__span-5-22"><a id="__codelineno-5-22" name="__codelineno-5-22" href="#__codelineno-5-22"></a>            select                  使用select
+</span><span id="__span-5-23"><a id="__codelineno-5-23" name="__codelineno-5-23" href="#__codelineno-5-23"></a>            show databases          使用show databases
+</span><span id="__span-5-24"><a id="__codelineno-5-24" name="__codelineno-5-24" href="#__codelineno-5-24"></a>            show view               使用show view
+</span><span id="__span-5-25"><a id="__codelineno-5-25" name="__codelineno-5-25" href="#__codelineno-5-25"></a>            update                  使用update
+</span><span id="__span-5-26"><a id="__codelineno-5-26" name="__codelineno-5-26" href="#__codelineno-5-26"></a>            reload                  使用flush
+</span><span id="__span-5-27"><a id="__codelineno-5-27" name="__codelineno-5-27" href="#__codelineno-5-27"></a>            shutdown                使用mysqladmin shutdown(关闭MySQL)
+</span><span id="__span-5-28"><a id="__codelineno-5-28" name="__codelineno-5-28" href="#__codelineno-5-28"></a>            super                   􏱂􏰈使用change master、kill、logs、purge、master和set global。还允许mysqladmin􏵗􏵘􏲊􏲋调试登陆
+</span><span id="__span-5-29"><a id="__codelineno-5-29" name="__codelineno-5-29" href="#__codelineno-5-29"></a>            replication client      服务器位置的访问
+</span><span id="__span-5-30"><a id="__codelineno-5-30" name="__codelineno-5-30" href="#__codelineno-5-30"></a>            replication slave       由复制从属使用
+</span><span id="__span-5-31"><a id="__codelineno-5-31" name="__codelineno-5-31" href="#__codelineno-5-31"></a>
+</span><span id="__span-5-32"><a id="__codelineno-5-32" name="__codelineno-5-32" href="#__codelineno-5-32"></a>
+</span><span id="__span-5-33"><a id="__codelineno-5-33" name="__codelineno-5-33" href="#__codelineno-5-33"></a>        对于目标数据库以及内部其他：
+</span><span id="__span-5-34"><a id="__codelineno-5-34" name="__codelineno-5-34" href="#__codelineno-5-34"></a>            数据库名.*           数据库中的所有
+</span><span id="__span-5-35"><a id="__codelineno-5-35" name="__codelineno-5-35" href="#__codelineno-5-35"></a>            数据库名.表          指定数据库中的某张表
+</span><span id="__span-5-36"><a id="__codelineno-5-36" name="__codelineno-5-36" href="#__codelineno-5-36"></a>            数据库名.存储过程     指定数据库中的存储过程
+</span><span id="__span-5-37"><a id="__codelineno-5-37" name="__codelineno-5-37" href="#__codelineno-5-37"></a>            *.*                所有数据库
+</span><span id="__span-5-38"><a id="__codelineno-5-38" name="__codelineno-5-38" href="#__codelineno-5-38"></a>
+</span><span id="__span-5-39"><a id="__codelineno-5-39" name="__codelineno-5-39" href="#__codelineno-5-39"></a>            用户名@IP地址         用户只能在改IP下才能访问
+</span><span id="__span-5-40"><a id="__codelineno-5-40" name="__codelineno-5-40" href="#__codelineno-5-40"></a>            用户名@192.168.1.%   用户只能在改IP段下才能访问(通配符%表示任意)
+</span><span id="__span-5-41"><a id="__codelineno-5-41" name="__codelineno-5-41" href="#__codelineno-5-41"></a>            用户名@%             用户可以再任意IP下访问(默认IP地址为%)
+</span></code></pre></div></p>
 <h2 id="_4">四.表操作<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
 <p>1.创建表</p>
-<pre><code>create table 表名(
-    列名  类型  是否可以为空，
-    列名  类型  是否可以为空
-)
-</code></pre>
+<p><div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>create table 表名(
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>    列名  类型  是否可以为空，
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>    列名  类型  是否可以为空
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>)
+</span></code></pre></div>
+* 是否可空
+<div class="language-text highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>        是否可空，null表示空，非字符串
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>            not null    - 不可空
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>            null        - 可空
+</span></code></pre></div></p>
 <ul>
-<li>是否可空</li>
+<li>
+<p>默认值
+<div class="language-text highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>        默认值，创建列时可以指定默认值，当插入数据时如果未主动设置，则自动添加默认值
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>            create table tb1(
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>                nid int not null defalut 2,
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>                num int not null
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>            )
+</span></code></pre></div></p>
+</li>
+<li>
+<p>自增
+<div class="language-text highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>自增，如果为某列设置自增列，插入数据时无需设置此列，默认将自增（表中只能有一个自增列）
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>            create table tb1(
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>                nid int not null auto_increment primary key,
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>                num int null
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>            )
+</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>            或
+</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a>            create table tb1(
+</span><span id="__span-9-8"><a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a>                nid int not null auto_increment,
+</span><span id="__span-9-9"><a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a>                num int null,
+</span><span id="__span-9-10"><a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a>                index(nid)
+</span><span id="__span-9-11"><a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a>            )
+</span><span id="__span-9-12"><a id="__codelineno-9-12" name="__codelineno-9-12" href="#__codelineno-9-12"></a>            注意：1、对于自增列，必须是索引（含主键）。
+</span><span id="__span-9-13"><a id="__codelineno-9-13" name="__codelineno-9-13" href="#__codelineno-9-13"></a>                 2、对于自增可以设置步长和起始值
+</span><span id="__span-9-14"><a id="__codelineno-9-14" name="__codelineno-9-14" href="#__codelineno-9-14"></a>                     show session variables like &#39;auto_inc%&#39;;
+</span><span id="__span-9-15"><a id="__codelineno-9-15" name="__codelineno-9-15" href="#__codelineno-9-15"></a>                     set session auto_increment_increment=2;
+</span><span id="__span-9-16"><a id="__codelineno-9-16" name="__codelineno-9-16" href="#__codelineno-9-16"></a>                     set session auto_increment_offset=10;
+</span><span id="__span-9-17"><a id="__codelineno-9-17" name="__codelineno-9-17" href="#__codelineno-9-17"></a>
+</span><span id="__span-9-18"><a id="__codelineno-9-18" name="__codelineno-9-18" href="#__codelineno-9-18"></a>                     shwo global  variables like &#39;auto_inc%&#39;;
+</span><span id="__span-9-19"><a id="__codelineno-9-19" name="__codelineno-9-19" href="#__codelineno-9-19"></a>                     set global auto_increment_increment=2;
+</span><span id="__span-9-20"><a id="__codelineno-9-20" name="__codelineno-9-20" href="#__codelineno-9-20"></a>                     set global auto_increment_offset=10;
+</span></code></pre></div></p>
+</li>
+<li>
+<p>主键
+<div class="language-text highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>外键，一个特殊的索引，只能是指定内容
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>            creat table color(
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>                nid int not null primary key,
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>                name char(16) not null
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>            )
+</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>
+</span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a>            create table fruit(
+</span><span id="__span-10-8"><a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a>                nid int not null primary key,
+</span><span id="__span-10-9"><a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a>                smt char(32) null ,
+</span><span id="__span-10-10"><a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a>                color_id int not null,
+</span><span id="__span-10-11"><a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a>                constraint fk_cc foreign key (color_id) references color(nid)
+</span><span id="__span-10-12"><a id="__codelineno-10-12" name="__codelineno-10-12" href="#__codelineno-10-12"></a>            )
+</span></code></pre></div></p>
+</li>
 </ul>
-<pre><code>        是否可空，null表示空，非字符串
-            not null    - 不可空
-            null        - 可空
-</code></pre>
-<ul>
-<li>默认值</li>
-</ul>
-<pre><code>        默认值，创建列时可以指定默认值，当插入数据时如果未主动设置，则自动添加默认值
-            create table tb1(
-                nid int not null defalut 2,
-                num int not null
-            )
-</code></pre>
-<ul>
-<li>自增</li>
-</ul>
-<pre><code>自增，如果为某列设置自增列，插入数据时无需设置此列，默认将自增（表中只能有一个自增列）
-            create table tb1(
-                nid int not null auto_increment primary key,
-                num int null
-            )
-            或
-            create table tb1(
-                nid int not null auto_increment,
-                num int null,
-                index(nid)
-            )
-            注意：1、对于自增列，必须是索引（含主键）。
-                 2、对于自增可以设置步长和起始值
-                     show session variables like 'auto_inc%';
-                     set session auto_increment_increment=2;
-                     set session auto_increment_offset=10;
-
-                     shwo global  variables like 'auto_inc%';
-                     set global auto_increment_increment=2;
-                     set global auto_increment_offset=10;
-</code></pre>
-<ul>
-<li>主键</li>
-</ul>
-<pre><code>外键，一个特殊的索引，只能是指定内容
-            creat table color(
-                nid int not null primary key,
-                name char(16) not null
-            )
-
-            create table fruit(
-                nid int not null primary key,
-                smt char(32) null ,
-                color_id int not null,
-                constraint fk_cc foreign key (color_id) references color(nid)
-            )
-</code></pre>
-<p>2.删除表</p>
-<pre><code>drop table 表名
-</code></pre>
-<p>3.清空表</p>
-<pre><code>delete from 表名
-truncate table 表名
-</code></pre>
-<p>4.修改表</p>
-<pre><code>
-添加列：alter table 表名 add 列名 类型
-删除列：alter table 表名 drop column 列名
-修改列：
-        alter table 表名 modify column 列名 类型;  -- 类型
-        alter table 表名 change 原列名 新列名 类型; -- 列名，类型
-
-添加主键：
-        alter table 表名 add primary key(列名);
-删除主键：
-        alter table 表名 drop primary key;
-        alter table 表名  modify  列名 int, drop primary key;
-
-添加外键：alter table 从表 add constraint 外键名称（形如：FK_从表_主表） foreign key 从表(外键字段) references 主表(主键字段);
-删除外键：alter table 表名 drop foreign key 外键名称
-
-修改默认值：ALTER TABLE testalter_tbl ALTER i SET DEFAULT 1000;
-删除默认值：ALTER TABLE testalter_tbl ALTER i DROP DEFAULT;
-</code></pre>
+<p>2.删除表
+<div class="language-text highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>drop table 表名
+</span></code></pre></div></p>
+<p>3.清空表
+<div class="language-text highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>delete from 表名
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>truncate table 表名
+</span></code></pre></div></p>
+<p>4.修改表
+<div class="language-text highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>添加列：alter table 表名 add 列名 类型
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>删除列：alter table 表名 drop column 列名
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>修改列：
+</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>        alter table 表名 modify column 列名 类型;  -- 类型
+</span><span id="__span-13-5"><a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a>        alter table 表名 change 原列名 新列名 类型; -- 列名，类型
+</span><span id="__span-13-6"><a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a>
+</span><span id="__span-13-7"><a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a>添加主键：
+</span><span id="__span-13-8"><a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a>        alter table 表名 add primary key(列名);
+</span><span id="__span-13-9"><a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a>删除主键：
+</span><span id="__span-13-10"><a id="__codelineno-13-10" name="__codelineno-13-10" href="#__codelineno-13-10"></a>        alter table 表名 drop primary key;
+</span><span id="__span-13-11"><a id="__codelineno-13-11" name="__codelineno-13-11" href="#__codelineno-13-11"></a>        alter table 表名  modify  列名 int, drop primary key;
+</span><span id="__span-13-12"><a id="__codelineno-13-12" name="__codelineno-13-12" href="#__codelineno-13-12"></a>
+</span><span id="__span-13-13"><a id="__codelineno-13-13" name="__codelineno-13-13" href="#__codelineno-13-13"></a>添加外键：alter table 从表 add constraint 外键名称（形如：FK_从表_主表） foreign key 从表(外键字段) references 主表(主键字段);
+</span><span id="__span-13-14"><a id="__codelineno-13-14" name="__codelineno-13-14" href="#__codelineno-13-14"></a>删除外键：alter table 表名 drop foreign key 外键名称
+</span><span id="__span-13-15"><a id="__codelineno-13-15" name="__codelineno-13-15" href="#__codelineno-13-15"></a>
+</span><span id="__span-13-16"><a id="__codelineno-13-16" name="__codelineno-13-16" href="#__codelineno-13-16"></a>修改默认值：ALTER TABLE testalter_tbl ALTER i SET DEFAULT 1000;
+</span><span id="__span-13-17"><a id="__codelineno-13-17" name="__codelineno-13-17" href="#__codelineno-13-17"></a>删除默认值：ALTER TABLE testalter_tbl ALTER i DROP DEFAULT;
+</span></code></pre></div></p>
 <h2 id="mysql">五.mysql的基本操作<a class="headerlink" href="#mysql" title="Permanent link">&para;</a></h2>
-<p>1.增</p>
-<pre><code>        insert into 表 (列名,列名...) values (值,值,值...)
-        insert into 表 (列名,列名...) values (值,值,值...),(值,值,值...)
-        insert into 表 (列名,列名...) select (列名,列名...) from 表
-</code></pre>
-<p>2.删</p>
-<pre><code>        delete from 表
-        delete from 表 where id＝1 and name＝'zhaowencheng'
-</code></pre>
-<p>3.改</p>
-<pre><code>        update 表 set name ＝ 'zhaowencheng' where id&gt;1
-</code></pre>
-<p>4.查</p>
-<pre><code>        select * from 表
-        select * from 表 where id &gt; 1
-        select nid,name,gender as gg from 表 where id &gt; 1
-</code></pre>
-<p>5.其它</p>
-<pre><code>1、条件
-        select * from 表 where id &gt; 1 and name != 'zhaowencheng' and num = 12;
-
-        select * from 表 where id between 5 and 16;
-
-        select * from 表 where id in (11,22,33)
-        select * from 表 where id not in (11,22,33)
-        select * from 表 where id in (select nid from 表)
-
-    2、通配符
-        select * from 表 where name like 'zhao%'  - zhao开头的所有（多个字符串）
-        select * from 表 where name like 'zhao_'  - zhao开头的所有（一个字符）
-
-    3、限制
-        select * from 表 limit 5;            - 前5行
-        select * from 表 limit 4,5;          - 从第4行开始的5行
-        select * from 表 limit 5 offset 4    - 从第4行开始的5行
-
-    4、排序
-        select * from 表 order by 列 asc              - 根据 “列” 从小到大排列
-        select * from 表 order by 列 desc             - 根据 “列” 从大到小排列
-        select * from 表 order by 列1 desc,列2 asc    - 根据 “列1” 从大到小排列，如果相同则按列2从小到大排序
-
-    5、分组
-        select num from 表 group by num
-        select num,nid from 表 group by num,nid
-        select num,nid from 表  where nid &gt; 10 group by num,nid order nid desc
-        select num,nid,count(*),sum(score),max(score),min(score) from 表 group by num,nid
-
-        select num from 表 group by num having max(id) &gt; 10
-
-        特别的：group by 必须在where之后，order by之前
-
-    6、连表
-        无对应关系则不显示
-        select A.num, A.name, B.name
-        from A,B
-        Where A.nid = B.nid
-
-        无对应关系则不显示
-        select A.num, A.name, B.name
-        from A inner join B
-        on A.nid = B.nid
-
-        A表所有显示，如果B中无对应关系，则值为null
-        select A.num, A.name, B.name
-        from A left join B
-        on A.nid = B.nid
-
-        B表所有显示，如果B中无对应关系，则值为null
-        select A.num, A.name, B.name
-        from A right join B
-        on A.nid = B.nid
-
-    7、组合
-        组合，自动处理重合
-        select nickname
-        from A
-        union
-        select name
-        from B
-
-        组合，不处理重合
-        select nickname
-        from A
-        union all
-        select name
-        from B
-</code></pre>
+<p>1.增
+<div class="language-text highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>        insert into 表 (列名,列名...) values (值,值,值...)
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>        insert into 表 (列名,列名...) values (值,值,值...),(值,值,值...)
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>        insert into 表 (列名,列名...) select (列名,列名...) from 表
+</span></code></pre></div></p>
+<p>2.删
+<div class="language-text highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>        delete from 表
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>        delete from 表 where id＝1 and name＝&#39;zhaowencheng&#39;
+</span></code></pre></div></p>
+<p>3.改
+<div class="language-text highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>        update 表 set name ＝ &#39;zhaowencheng&#39; where id&gt;1
+</span></code></pre></div></p>
+<p>4.查
+<div class="language-text highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>        select * from 表
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>        select * from 表 where id &gt; 1
+</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>        select nid,name,gender as gg from 表 where id &gt; 1
+</span></code></pre></div></p>
+<p>5.其它
+<div class="language-text highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>1、条件
+</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>        select * from 表 where id &gt; 1 and name != &#39;zhaowencheng&#39; and num = 12;
+</span><span id="__span-18-3"><a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>
+</span><span id="__span-18-4"><a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a>        select * from 表 where id between 5 and 16;
+</span><span id="__span-18-5"><a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a>
+</span><span id="__span-18-6"><a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a>        select * from 表 where id in (11,22,33)
+</span><span id="__span-18-7"><a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a>        select * from 表 where id not in (11,22,33)
+</span><span id="__span-18-8"><a id="__codelineno-18-8" name="__codelineno-18-8" href="#__codelineno-18-8"></a>        select * from 表 where id in (select nid from 表)
+</span><span id="__span-18-9"><a id="__codelineno-18-9" name="__codelineno-18-9" href="#__codelineno-18-9"></a>
+</span><span id="__span-18-10"><a id="__codelineno-18-10" name="__codelineno-18-10" href="#__codelineno-18-10"></a>    2、通配符
+</span><span id="__span-18-11"><a id="__codelineno-18-11" name="__codelineno-18-11" href="#__codelineno-18-11"></a>        select * from 表 where name like &#39;zhao%&#39;  - zhao开头的所有（多个字符串）
+</span><span id="__span-18-12"><a id="__codelineno-18-12" name="__codelineno-18-12" href="#__codelineno-18-12"></a>        select * from 表 where name like &#39;zhao_&#39;  - zhao开头的所有（一个字符）
+</span><span id="__span-18-13"><a id="__codelineno-18-13" name="__codelineno-18-13" href="#__codelineno-18-13"></a>
+</span><span id="__span-18-14"><a id="__codelineno-18-14" name="__codelineno-18-14" href="#__codelineno-18-14"></a>    3、限制
+</span><span id="__span-18-15"><a id="__codelineno-18-15" name="__codelineno-18-15" href="#__codelineno-18-15"></a>        select * from 表 limit 5;            - 前5行
+</span><span id="__span-18-16"><a id="__codelineno-18-16" name="__codelineno-18-16" href="#__codelineno-18-16"></a>        select * from 表 limit 4,5;          - 从第4行开始的5行
+</span><span id="__span-18-17"><a id="__codelineno-18-17" name="__codelineno-18-17" href="#__codelineno-18-17"></a>        select * from 表 limit 5 offset 4    - 从第4行开始的5行
+</span><span id="__span-18-18"><a id="__codelineno-18-18" name="__codelineno-18-18" href="#__codelineno-18-18"></a>
+</span><span id="__span-18-19"><a id="__codelineno-18-19" name="__codelineno-18-19" href="#__codelineno-18-19"></a>    4、排序
+</span><span id="__span-18-20"><a id="__codelineno-18-20" name="__codelineno-18-20" href="#__codelineno-18-20"></a>        select * from 表 order by 列 asc              - 根据 “列” 从小到大排列
+</span><span id="__span-18-21"><a id="__codelineno-18-21" name="__codelineno-18-21" href="#__codelineno-18-21"></a>        select * from 表 order by 列 desc             - 根据 “列” 从大到小排列
+</span><span id="__span-18-22"><a id="__codelineno-18-22" name="__codelineno-18-22" href="#__codelineno-18-22"></a>        select * from 表 order by 列1 desc,列2 asc    - 根据 “列1” 从大到小排列，如果相同则按列2从小到大排序
+</span><span id="__span-18-23"><a id="__codelineno-18-23" name="__codelineno-18-23" href="#__codelineno-18-23"></a>
+</span><span id="__span-18-24"><a id="__codelineno-18-24" name="__codelineno-18-24" href="#__codelineno-18-24"></a>    5、分组
+</span><span id="__span-18-25"><a id="__codelineno-18-25" name="__codelineno-18-25" href="#__codelineno-18-25"></a>        select num from 表 group by num
+</span><span id="__span-18-26"><a id="__codelineno-18-26" name="__codelineno-18-26" href="#__codelineno-18-26"></a>        select num,nid from 表 group by num,nid
+</span><span id="__span-18-27"><a id="__codelineno-18-27" name="__codelineno-18-27" href="#__codelineno-18-27"></a>        select num,nid from 表  where nid &gt; 10 group by num,nid order nid desc
+</span><span id="__span-18-28"><a id="__codelineno-18-28" name="__codelineno-18-28" href="#__codelineno-18-28"></a>        select num,nid,count(*),sum(score),max(score),min(score) from 表 group by num,nid
+</span><span id="__span-18-29"><a id="__codelineno-18-29" name="__codelineno-18-29" href="#__codelineno-18-29"></a>
+</span><span id="__span-18-30"><a id="__codelineno-18-30" name="__codelineno-18-30" href="#__codelineno-18-30"></a>        select num from 表 group by num having max(id) &gt; 10
+</span><span id="__span-18-31"><a id="__codelineno-18-31" name="__codelineno-18-31" href="#__codelineno-18-31"></a>
+</span><span id="__span-18-32"><a id="__codelineno-18-32" name="__codelineno-18-32" href="#__codelineno-18-32"></a>        特别的：group by 必须在where之后，order by之前
+</span><span id="__span-18-33"><a id="__codelineno-18-33" name="__codelineno-18-33" href="#__codelineno-18-33"></a>
+</span><span id="__span-18-34"><a id="__codelineno-18-34" name="__codelineno-18-34" href="#__codelineno-18-34"></a>    6、连表
+</span><span id="__span-18-35"><a id="__codelineno-18-35" name="__codelineno-18-35" href="#__codelineno-18-35"></a>        无对应关系则不显示
+</span><span id="__span-18-36"><a id="__codelineno-18-36" name="__codelineno-18-36" href="#__codelineno-18-36"></a>        select A.num, A.name, B.name
+</span><span id="__span-18-37"><a id="__codelineno-18-37" name="__codelineno-18-37" href="#__codelineno-18-37"></a>        from A,B
+</span><span id="__span-18-38"><a id="__codelineno-18-38" name="__codelineno-18-38" href="#__codelineno-18-38"></a>        Where A.nid = B.nid
+</span><span id="__span-18-39"><a id="__codelineno-18-39" name="__codelineno-18-39" href="#__codelineno-18-39"></a>
+</span><span id="__span-18-40"><a id="__codelineno-18-40" name="__codelineno-18-40" href="#__codelineno-18-40"></a>        无对应关系则不显示
+</span><span id="__span-18-41"><a id="__codelineno-18-41" name="__codelineno-18-41" href="#__codelineno-18-41"></a>        select A.num, A.name, B.name
+</span><span id="__span-18-42"><a id="__codelineno-18-42" name="__codelineno-18-42" href="#__codelineno-18-42"></a>        from A inner join B
+</span><span id="__span-18-43"><a id="__codelineno-18-43" name="__codelineno-18-43" href="#__codelineno-18-43"></a>        on A.nid = B.nid
+</span><span id="__span-18-44"><a id="__codelineno-18-44" name="__codelineno-18-44" href="#__codelineno-18-44"></a>
+</span><span id="__span-18-45"><a id="__codelineno-18-45" name="__codelineno-18-45" href="#__codelineno-18-45"></a>        A表所有显示，如果B中无对应关系，则值为null
+</span><span id="__span-18-46"><a id="__codelineno-18-46" name="__codelineno-18-46" href="#__codelineno-18-46"></a>        select A.num, A.name, B.name
+</span><span id="__span-18-47"><a id="__codelineno-18-47" name="__codelineno-18-47" href="#__codelineno-18-47"></a>        from A left join B
+</span><span id="__span-18-48"><a id="__codelineno-18-48" name="__codelineno-18-48" href="#__codelineno-18-48"></a>        on A.nid = B.nid
+</span><span id="__span-18-49"><a id="__codelineno-18-49" name="__codelineno-18-49" href="#__codelineno-18-49"></a>
+</span><span id="__span-18-50"><a id="__codelineno-18-50" name="__codelineno-18-50" href="#__codelineno-18-50"></a>        B表所有显示，如果B中无对应关系，则值为null
+</span><span id="__span-18-51"><a id="__codelineno-18-51" name="__codelineno-18-51" href="#__codelineno-18-51"></a>        select A.num, A.name, B.name
+</span><span id="__span-18-52"><a id="__codelineno-18-52" name="__codelineno-18-52" href="#__codelineno-18-52"></a>        from A right join B
+</span><span id="__span-18-53"><a id="__codelineno-18-53" name="__codelineno-18-53" href="#__codelineno-18-53"></a>        on A.nid = B.nid
+</span><span id="__span-18-54"><a id="__codelineno-18-54" name="__codelineno-18-54" href="#__codelineno-18-54"></a>
+</span><span id="__span-18-55"><a id="__codelineno-18-55" name="__codelineno-18-55" href="#__codelineno-18-55"></a>    7、组合
+</span><span id="__span-18-56"><a id="__codelineno-18-56" name="__codelineno-18-56" href="#__codelineno-18-56"></a>        组合，自动处理重合
+</span><span id="__span-18-57"><a id="__codelineno-18-57" name="__codelineno-18-57" href="#__codelineno-18-57"></a>        select nickname
+</span><span id="__span-18-58"><a id="__codelineno-18-58" name="__codelineno-18-58" href="#__codelineno-18-58"></a>        from A
+</span><span id="__span-18-59"><a id="__codelineno-18-59" name="__codelineno-18-59" href="#__codelineno-18-59"></a>        union
+</span><span id="__span-18-60"><a id="__codelineno-18-60" name="__codelineno-18-60" href="#__codelineno-18-60"></a>        select name
+</span><span id="__span-18-61"><a id="__codelineno-18-61" name="__codelineno-18-61" href="#__codelineno-18-61"></a>        from B
+</span><span id="__span-18-62"><a id="__codelineno-18-62" name="__codelineno-18-62" href="#__codelineno-18-62"></a>
+</span><span id="__span-18-63"><a id="__codelineno-18-63" name="__codelineno-18-63" href="#__codelineno-18-63"></a>        组合，不处理重合
+</span><span id="__span-18-64"><a id="__codelineno-18-64" name="__codelineno-18-64" href="#__codelineno-18-64"></a>        select nickname
+</span><span id="__span-18-65"><a id="__codelineno-18-65" name="__codelineno-18-65" href="#__codelineno-18-65"></a>        from A
+</span><span id="__span-18-66"><a id="__codelineno-18-66" name="__codelineno-18-66" href="#__codelineno-18-66"></a>        union all
+</span><span id="__span-18-67"><a id="__codelineno-18-67" name="__codelineno-18-67" href="#__codelineno-18-67"></a>        select name
+</span><span id="__span-18-68"><a id="__codelineno-18-68" name="__codelineno-18-68" href="#__codelineno-18-68"></a>        from B
+</span></code></pre></div></p>
 <h2 id="pymsql">六.pymsql<a class="headerlink" href="#pymsql" title="Permanent link">&para;</a></h2>
-<p>1.安装pymysql</p>
-<pre><code>＃直接pip安装
-pip3 install pymysql
-</code></pre>
+<p>1.安装pymysql
+<div class="language-text highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>＃直接pip安装
+</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>pip3 install pymysql
+</span></code></pre></div></p>
 <p>2.使用</p>
 <ul>
 <li>执行sql</li>
 </ul>
-<pre><code>#!/usr/bin/env python
-# -*- coding:utf-8 -*-
-import pymysql
-
-# 创建连接
-conn = pymysql.connect(host='127.0.0.1', port=3306, user='root', passwd='123', db='t1')
-# 创建游标
-cursor = conn.cursor()
-
-# 执行SQL，并返回收影响行数
-effect_row = cursor.execute(&quot;update hosts set host = '1.1.1.2'&quot;)
-
-# 执行SQL，并返回受影响行数
-#effect_row = cursor.execute(&quot;update hosts set host = '1.1.1.2' where nid &gt; %s&quot;, (1,))
-
-# 执行SQL，并返回受影响行数
-#effect_row = cursor.executemany(&quot;insert into hosts(host,color_id)values(%s,%s)&quot;, [(&quot;1.1.1.11&quot;,1),(&quot;1.1.1.11&quot;,2)])
-
-
-# 提交，不然无法保存新建或者修改的数据
-conn.commit()
-
-# 关闭游标
-cursor.close()
-# 关闭连接
-conn.close()
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>#!/usr/bin/env python
+</span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a># -*- coding:utf-8 -*-
+</span><span id="__span-20-3"><a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a>import pymysql
+</span><span id="__span-20-4"><a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a>
+</span><span id="__span-20-5"><a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a># 创建连接
+</span><span id="__span-20-6"><a id="__codelineno-20-6" name="__codelineno-20-6" href="#__codelineno-20-6"></a>conn = pymysql.connect(host=&#39;127.0.0.1&#39;, port=3306, user=&#39;root&#39;, passwd=&#39;123&#39;, db=&#39;t1&#39;)
+</span><span id="__span-20-7"><a id="__codelineno-20-7" name="__codelineno-20-7" href="#__codelineno-20-7"></a># 创建游标
+</span><span id="__span-20-8"><a id="__codelineno-20-8" name="__codelineno-20-8" href="#__codelineno-20-8"></a>cursor = conn.cursor()
+</span><span id="__span-20-9"><a id="__codelineno-20-9" name="__codelineno-20-9" href="#__codelineno-20-9"></a>
+</span><span id="__span-20-10"><a id="__codelineno-20-10" name="__codelineno-20-10" href="#__codelineno-20-10"></a># 执行SQL，并返回收影响行数
+</span><span id="__span-20-11"><a id="__codelineno-20-11" name="__codelineno-20-11" href="#__codelineno-20-11"></a>effect_row = cursor.execute(&quot;update hosts set host = &#39;1.1.1.2&#39;&quot;)
+</span><span id="__span-20-12"><a id="__codelineno-20-12" name="__codelineno-20-12" href="#__codelineno-20-12"></a>
+</span><span id="__span-20-13"><a id="__codelineno-20-13" name="__codelineno-20-13" href="#__codelineno-20-13"></a># 执行SQL，并返回受影响行数
+</span><span id="__span-20-14"><a id="__codelineno-20-14" name="__codelineno-20-14" href="#__codelineno-20-14"></a>#effect_row = cursor.execute(&quot;update hosts set host = &#39;1.1.1.2&#39; where nid &gt; %s&quot;, (1,))
+</span><span id="__span-20-15"><a id="__codelineno-20-15" name="__codelineno-20-15" href="#__codelineno-20-15"></a>
+</span><span id="__span-20-16"><a id="__codelineno-20-16" name="__codelineno-20-16" href="#__codelineno-20-16"></a># 执行SQL，并返回受影响行数
+</span><span id="__span-20-17"><a id="__codelineno-20-17" name="__codelineno-20-17" href="#__codelineno-20-17"></a>#effect_row = cursor.executemany(&quot;insert into hosts(host,color_id)values(%s,%s)&quot;, [(&quot;1.1.1.11&quot;,1),(&quot;1.1.1.11&quot;,2)])
+</span><span id="__span-20-18"><a id="__codelineno-20-18" name="__codelineno-20-18" href="#__codelineno-20-18"></a>
+</span><span id="__span-20-19"><a id="__codelineno-20-19" name="__codelineno-20-19" href="#__codelineno-20-19"></a>
+</span><span id="__span-20-20"><a id="__codelineno-20-20" name="__codelineno-20-20" href="#__codelineno-20-20"></a># 提交，不然无法保存新建或者修改的数据
+</span><span id="__span-20-21"><a id="__codelineno-20-21" name="__codelineno-20-21" href="#__codelineno-20-21"></a>conn.commit()
+</span><span id="__span-20-22"><a id="__codelineno-20-22" name="__codelineno-20-22" href="#__codelineno-20-22"></a>
+</span><span id="__span-20-23"><a id="__codelineno-20-23" name="__codelineno-20-23" href="#__codelineno-20-23"></a># 关闭游标
+</span><span id="__span-20-24"><a id="__codelineno-20-24" name="__codelineno-20-24" href="#__codelineno-20-24"></a>cursor.close()
+</span><span id="__span-20-25"><a id="__codelineno-20-25" name="__codelineno-20-25" href="#__codelineno-20-25"></a># 关闭连接
+</span><span id="__span-20-26"><a id="__codelineno-20-26" name="__codelineno-20-26" href="#__codelineno-20-26"></a>conn.close()
+</span></code></pre></div>
 <ul>
 <li>获取新创建数据自增ID</li>
 </ul>
-<pre><code>#!/usr/bin/env python
-# -*- coding:utf-8 -*-
-import pymysql
-
-conn = pymysql.connect(host='127.0.0.1', port=3306, user='root', passwd='123', db='t1')
-cursor = conn.cursor()
-cursor.executemany(&quot;insert into hosts(host,color_id)values(%s,%s)&quot;, [(&quot;1.1.1.11&quot;,1),(&quot;1.1.1.11&quot;,2)])
-conn.commit()
-cursor.close()
-conn.close()
-
-# 获取最新自增ID
-new_id = cursor.lastrowid
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>#!/usr/bin/env python
+</span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a># -*- coding:utf-8 -*-
+</span><span id="__span-21-3"><a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a>import pymysql
+</span><span id="__span-21-4"><a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a>
+</span><span id="__span-21-5"><a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a>conn = pymysql.connect(host=&#39;127.0.0.1&#39;, port=3306, user=&#39;root&#39;, passwd=&#39;123&#39;, db=&#39;t1&#39;)
+</span><span id="__span-21-6"><a id="__codelineno-21-6" name="__codelineno-21-6" href="#__codelineno-21-6"></a>cursor = conn.cursor()
+</span><span id="__span-21-7"><a id="__codelineno-21-7" name="__codelineno-21-7" href="#__codelineno-21-7"></a>cursor.executemany(&quot;insert into hosts(host,color_id)values(%s,%s)&quot;, [(&quot;1.1.1.11&quot;,1),(&quot;1.1.1.11&quot;,2)])
+</span><span id="__span-21-8"><a id="__codelineno-21-8" name="__codelineno-21-8" href="#__codelineno-21-8"></a>conn.commit()
+</span><span id="__span-21-9"><a id="__codelineno-21-9" name="__codelineno-21-9" href="#__codelineno-21-9"></a>cursor.close()
+</span><span id="__span-21-10"><a id="__codelineno-21-10" name="__codelineno-21-10" href="#__codelineno-21-10"></a>conn.close()
+</span><span id="__span-21-11"><a id="__codelineno-21-11" name="__codelineno-21-11" href="#__codelineno-21-11"></a>
+</span><span id="__span-21-12"><a id="__codelineno-21-12" name="__codelineno-21-12" href="#__codelineno-21-12"></a># 获取最新自增ID
+</span><span id="__span-21-13"><a id="__codelineno-21-13" name="__codelineno-21-13" href="#__codelineno-21-13"></a>new_id = cursor.lastrowid
+</span></code></pre></div>
 <ul>
 <li>获取查询数据</li>
 </ul>
-<pre><code>#!/usr/bin/env python
-# -*- coding:utf-8 -*-
-import pymysql
-
-conn = pymysql.connect(host='127.0.0.1', port=3306, user='root', passwd='123', db='t1')
-cursor = conn.cursor()
-cursor.execute(&quot;select * from hosts&quot;)
-
-# 获取第一行数据
-row_1 = cursor.fetchone()
-
-# 获取前n行数据
-# row_2 = cursor.fetchmany(3)
-# 获取所有数据
-# row_3 = cursor.fetchall()
-
-conn.commit()
-cursor.close()
-conn.close()
-
-注：在fetch数据时按照顺序进行，可以使用cursor.scroll(num,mode)来移动游标位置，如：
-cursor.scroll(1,mode='relative')  # 相对当前位置移动
-cursor.scroll(2,mode='absolute') # 相对绝对位置移动
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>#!/usr/bin/env python
+</span><span id="__span-22-2"><a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a># -*- coding:utf-8 -*-
+</span><span id="__span-22-3"><a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a>import pymysql
+</span><span id="__span-22-4"><a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a>
+</span><span id="__span-22-5"><a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a>conn = pymysql.connect(host=&#39;127.0.0.1&#39;, port=3306, user=&#39;root&#39;, passwd=&#39;123&#39;, db=&#39;t1&#39;)
+</span><span id="__span-22-6"><a id="__codelineno-22-6" name="__codelineno-22-6" href="#__codelineno-22-6"></a>cursor = conn.cursor()
+</span><span id="__span-22-7"><a id="__codelineno-22-7" name="__codelineno-22-7" href="#__codelineno-22-7"></a>cursor.execute(&quot;select * from hosts&quot;)
+</span><span id="__span-22-8"><a id="__codelineno-22-8" name="__codelineno-22-8" href="#__codelineno-22-8"></a>
+</span><span id="__span-22-9"><a id="__codelineno-22-9" name="__codelineno-22-9" href="#__codelineno-22-9"></a># 获取第一行数据
+</span><span id="__span-22-10"><a id="__codelineno-22-10" name="__codelineno-22-10" href="#__codelineno-22-10"></a>row_1 = cursor.fetchone()
+</span><span id="__span-22-11"><a id="__codelineno-22-11" name="__codelineno-22-11" href="#__codelineno-22-11"></a>
+</span><span id="__span-22-12"><a id="__codelineno-22-12" name="__codelineno-22-12" href="#__codelineno-22-12"></a># 获取前n行数据
+</span><span id="__span-22-13"><a id="__codelineno-22-13" name="__codelineno-22-13" href="#__codelineno-22-13"></a># row_2 = cursor.fetchmany(3)
+</span><span id="__span-22-14"><a id="__codelineno-22-14" name="__codelineno-22-14" href="#__codelineno-22-14"></a># 获取所有数据
+</span><span id="__span-22-15"><a id="__codelineno-22-15" name="__codelineno-22-15" href="#__codelineno-22-15"></a># row_3 = cursor.fetchall()
+</span><span id="__span-22-16"><a id="__codelineno-22-16" name="__codelineno-22-16" href="#__codelineno-22-16"></a>
+</span><span id="__span-22-17"><a id="__codelineno-22-17" name="__codelineno-22-17" href="#__codelineno-22-17"></a>conn.commit()
+</span><span id="__span-22-18"><a id="__codelineno-22-18" name="__codelineno-22-18" href="#__codelineno-22-18"></a>cursor.close()
+</span><span id="__span-22-19"><a id="__codelineno-22-19" name="__codelineno-22-19" href="#__codelineno-22-19"></a>conn.close()
+</span><span id="__span-22-20"><a id="__codelineno-22-20" name="__codelineno-22-20" href="#__codelineno-22-20"></a>
+</span><span id="__span-22-21"><a id="__codelineno-22-21" name="__codelineno-22-21" href="#__codelineno-22-21"></a>注：在fetch数据时按照顺序进行，可以使用cursor.scroll(num,mode)来移动游标位置，如：
+</span><span id="__span-22-22"><a id="__codelineno-22-22" name="__codelineno-22-22" href="#__codelineno-22-22"></a>cursor.scroll(1,mode=&#39;relative&#39;)  # 相对当前位置移动
+</span><span id="__span-22-23"><a id="__codelineno-22-23" name="__codelineno-22-23" href="#__codelineno-22-23"></a>cursor.scroll(2,mode=&#39;absolute&#39;) # 相对绝对位置移动
+</span></code></pre></div>
 <ul>
 <li>fetch数据类型</li>
 </ul>
-<p>关于默认获取的数据是元祖类型，如果想要或者字典类型的数据，即：</p>
-<pre><code>#!/usr/bin/env python
-# -*- coding:utf-8 -*-
-import pymysql
-
-conn = pymysql.connect(host='127.0.0.1', port=3306, user='root', passwd='123', db='t1')
-
-# 游标设置为字典类型
-cursor = conn.cursor(cursor=pymysql.cursors.DictCursor)
-r = cursor.execute(&quot;call p1()&quot;)
-
-result = cursor.fetchone()
-
-conn.commit()
-cursor.close()
-conn.close()
-</code></pre>
+<p>关于默认获取的数据是元祖类型，如果想要或者字典类型的数据，即：
+<div class="language-text highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>#!/usr/bin/env python
+</span><span id="__span-23-2"><a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a># -*- coding:utf-8 -*-
+</span><span id="__span-23-3"><a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a>import pymysql
+</span><span id="__span-23-4"><a id="__codelineno-23-4" name="__codelineno-23-4" href="#__codelineno-23-4"></a>
+</span><span id="__span-23-5"><a id="__codelineno-23-5" name="__codelineno-23-5" href="#__codelineno-23-5"></a>conn = pymysql.connect(host=&#39;127.0.0.1&#39;, port=3306, user=&#39;root&#39;, passwd=&#39;123&#39;, db=&#39;t1&#39;)
+</span><span id="__span-23-6"><a id="__codelineno-23-6" name="__codelineno-23-6" href="#__codelineno-23-6"></a>
+</span><span id="__span-23-7"><a id="__codelineno-23-7" name="__codelineno-23-7" href="#__codelineno-23-7"></a># 游标设置为字典类型
+</span><span id="__span-23-8"><a id="__codelineno-23-8" name="__codelineno-23-8" href="#__codelineno-23-8"></a>cursor = conn.cursor(cursor=pymysql.cursors.DictCursor)
+</span><span id="__span-23-9"><a id="__codelineno-23-9" name="__codelineno-23-9" href="#__codelineno-23-9"></a>r = cursor.execute(&quot;call p1()&quot;)
+</span><span id="__span-23-10"><a id="__codelineno-23-10" name="__codelineno-23-10" href="#__codelineno-23-10"></a>
+</span><span id="__span-23-11"><a id="__codelineno-23-11" name="__codelineno-23-11" href="#__codelineno-23-11"></a>result = cursor.fetchone()
+</span><span id="__span-23-12"><a id="__codelineno-23-12" name="__codelineno-23-12" href="#__codelineno-23-12"></a>
+</span><span id="__span-23-13"><a id="__codelineno-23-13" name="__codelineno-23-13" href="#__codelineno-23-13"></a>conn.commit()
+</span><span id="__span-23-14"><a id="__codelineno-23-14" name="__codelineno-23-14" href="#__codelineno-23-14"></a>cursor.close()
+</span><span id="__span-23-15"><a id="__codelineno-23-15" name="__codelineno-23-15" href="#__codelineno-23-15"></a>conn.close()
+</span></code></pre></div></p>
 
 
 
@@ -1495,6 +1501,11 @@ conn.close()
           
           
         </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+            Back to top
+          </button>
         
       </main>
       
@@ -1525,7 +1536,7 @@ conn.close()
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tracking", "navigation.expand", "navigation.sections", "navigation.indexes", "navigation.path", "toc.integrate"], "search": "../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tracking", "navigation.top", "navigation.sections", "navigation.indexes", "navigation.path", "toc.integrate", "content.code.copy"], "search": "../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
       <script src="../assets/javascripts/bundle.fac441b0.min.js"></script>

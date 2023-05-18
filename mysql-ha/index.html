@@ -9,7 +9,7 @@
       
       
       
-        <link rel="prev" href="../mysql-mgr/">
+        <link rel="prev" href="../mysql-mgr-copy/">
       
       
         <link rel="next" href="../python-styleguide/">
@@ -206,9 +206,7 @@
       
       
       
-        
-      
-      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
       
       
         
@@ -324,9 +322,7 @@
       
       
       
-        
-      
-      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
       
       
         
@@ -397,9 +393,7 @@
       
       
       
-        
-      
-      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
       
       
         
@@ -459,6 +453,8 @@
       <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" checked>
       
       
+        
+          
         
           
         
@@ -576,6 +572,20 @@
               
   
   
+  
+    <li class="md-nav__item">
+      <a href="../mysql-mgr-copy/" class="md-nav__link">
+        転載MGR
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
     
   
   
@@ -679,9 +689,7 @@
       
       
       
-        
-      
-      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_9" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
       
       
         
@@ -1146,302 +1154,302 @@
 <p>在128、129两台服务器根据《linux安装mysql服务-两种安装方式教程》安装好mysql应用。</p>
 </li>
 <li>
-<p>修改128服务器/etc/my.cnf配置文件，没有的话可自行创建，配置如下：</p>
+<p>修改128服务器/etc/my.cnf配置文件，没有的话可自行创建，配置如下：
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="o">[</span>client<span class="o">]</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="c1"># 客户端连接端口</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="nv">port</span><span class="o">=</span><span class="m">3306</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="c1"># 客户端连接sock</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="nv">socket</span><span class="o">=</span>/opt/mysql5.7/log/mysql.socka
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="c1"># 客户端编码</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>default-character-set<span class="o">=</span>utf8
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="o">[</span>mysqld<span class="o">]</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="c1"># mysql服务端口</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="nv">port</span><span class="o">=</span><span class="m">3306</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="c1">#安装目录</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="nv">basedir</span><span class="o">=</span>/opt/mysql5.7
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="c1">#数据存放目录</span>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="nv">datadir</span><span class="o">=</span>/opt/mysql5.7/data
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="c1">#sock文件地址</span>
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="nv">socket</span><span class="o">=</span>/opt/mysql5.7/log/mysql.sock
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="c1">#错误日志存放地址</span>
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>log-error<span class="o">=</span>/opt/mysql5.7/log/mysql.log
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="c1">#pid文件地址</span>
+</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>pid-file<span class="o">=</span>/opt/mysql5.7/log/mysql.pid
+</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="c1">#下面内容为mysq主备时配置，单mysql部署护理下面配置</span>
+</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="c1">#server-id 多台服务器时，此表示需要唯一</span>
+</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>server-id<span class="o">=</span><span class="m">1</span>
+</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a><span class="c1">#主从同步bin-log日志文件名</span>
+</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>log-bin<span class="o">=</span>mysql-bin
+</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a><span class="c1">#主从同步时，需要同步的数据库，多个数据库写多行binlog_do_db配置</span>
+</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a><span class="nv">binlog_do_db</span><span class="o">=</span>test_db
+</span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a><span class="c1">#主从同步时，不需要同步的数据库，多个数据库写多行binlog_ignore_db配置</span>
+</span><span id="__span-0-29"><a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a><span class="c1">#binlog_ignore_db=mysql</span>
+</span><span id="__span-0-30"><a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a><span class="c1">#binlog_ignore_db=information_schema</span>
+</span><span id="__span-0-31"><a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a><span class="c1">#binlog_ignore_db=sys</span>
+</span><span id="__span-0-32"><a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a><span class="c1">#binlog_ignore_db=performance_schema</span>
+</span><span id="__span-0-33"><a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a><span class="c1">#主从同步方式</span>
+</span><span id="__span-0-34"><a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a><span class="nv">binlog_format</span><span class="o">=</span>row
+</span><span id="__span-0-35"><a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a><span class="c1">#服务端编码</span>
+</span><span id="__span-0-36"><a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a>character-set-server<span class="o">=</span>utf8
+</span><span id="__span-0-37"><a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a>!includedir<span class="w"> </span>/etc/my.cnf.d
+</span></code></pre></div></p>
+</li>
+<li>
+<p>修改129服务器/etc/my.cnf配置文件，只有server-id不同，为2配置如下</p>
 </li>
 </ol>
-<pre><code class="language-shell">[client]
-# 客户端连接端口
-port=3306
-# 客户端连接sock
-socket=/opt/mysql5.7/log/mysql.socka
-# 客户端编码
-default-character-set=utf8
-[mysqld]
-# mysql服务端口
-port=3306
-#安装目录
-basedir=/opt/mysql5.7
-#数据存放目录
-datadir=/opt/mysql5.7/data
-#sock文件地址
-socket=/opt/mysql5.7/log/mysql.sock
-#错误日志存放地址
-log-error=/opt/mysql5.7/log/mysql.log
-#pid文件地址
-pid-file=/opt/mysql5.7/log/mysql.pid
-#下面内容为mysq主备时配置，单mysql部署护理下面配置
-#server-id 多台服务器时，此表示需要唯一
-server-id=1
-#主从同步bin-log日志文件名
-log-bin=mysql-bin
-#主从同步时，需要同步的数据库，多个数据库写多行binlog_do_db配置
-binlog_do_db=test_db
-#主从同步时，不需要同步的数据库，多个数据库写多行binlog_ignore_db配置
-#binlog_ignore_db=mysql
-#binlog_ignore_db=information_schema
-#binlog_ignore_db=sys
-#binlog_ignore_db=performance_schema
-#主从同步方式
-binlog_format=row
-#服务端编码
-character-set-server=utf8
-!includedir /etc/my.cnf.d
-</code></pre>
-<ol>
-<li>修改129服务器/etc/my.cnf配置文件，只有server-id不同，为2配置如下</li>
-</ol>
-<pre><code class="language-shell">[client]
-#客户端连接端口
-port=3306
-#客户端连接sock
-socket=/opt/mysql5.7/log/mysql.socka
-#客户端编码
-default-character-set=utf8
-
-[mysqld]
-#mysql服务端口
-port=3306
-#安装目录
-basedir=/opt/mysql5.7
-#数据存放目录
-datadir=/opt/mysql5.7/data
-#sock文件地址
-socket=/opt/mysql5.7/log/mysql.sock
-#错误日志存放地址
-log-error=/opt/mysql5.7/log/mysql.log
-#pid文件地址
-pid-file=/opt/mysql5.7/log/mysql.pid
-
-#下面内容为mysq主备时配置，单mysql部署护理下面配置
-#server-id 多台服务器时，此表示需要唯一
-server-id=2
-#主从同步bin-log日志文件名
-log-bin=mysql-bin
-#主从同步时，需要同步的数据库，多个数据库写多行binlog_do_db配置
-binlog_do_db=test_db
-#主从同步时，不需要同步的数据库，多个数据库写多行binlog_ignore_db配置
-#binlog_ignore_db=mysql
-#binlog_ignore_db=information_schema
-#binlog_ignore_db=sys
-#binlog_ignore_db=performance_schema
-#主从同步方式
-binlog_format=row
-#服务端编码
-character-set-server=utf8
-
-!includedir /etc/my.cnf.d
-</code></pre>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="o">[</span>client<span class="o">]</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="c1">#客户端连接端口</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="nv">port</span><span class="o">=</span><span class="m">3306</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="c1">#客户端连接sock</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="nv">socket</span><span class="o">=</span>/opt/mysql5.7/log/mysql.socka
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="c1">#客户端编码</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>default-character-set<span class="o">=</span>utf8
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="o">[</span>mysqld<span class="o">]</span>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="c1">#mysql服务端口</span>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="nv">port</span><span class="o">=</span><span class="m">3306</span>
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="c1">#安装目录</span>
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="nv">basedir</span><span class="o">=</span>/opt/mysql5.7
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="c1">#数据存放目录</span>
+</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="nv">datadir</span><span class="o">=</span>/opt/mysql5.7/data
+</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="c1">#sock文件地址</span>
+</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a><span class="nv">socket</span><span class="o">=</span>/opt/mysql5.7/log/mysql.sock
+</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a><span class="c1">#错误日志存放地址</span>
+</span><span id="__span-1-19"><a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a>log-error<span class="o">=</span>/opt/mysql5.7/log/mysql.log
+</span><span id="__span-1-20"><a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a><span class="c1">#pid文件地址</span>
+</span><span id="__span-1-21"><a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a>pid-file<span class="o">=</span>/opt/mysql5.7/log/mysql.pid
+</span><span id="__span-1-22"><a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a>
+</span><span id="__span-1-23"><a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a><span class="c1">#下面内容为mysq主备时配置，单mysql部署护理下面配置</span>
+</span><span id="__span-1-24"><a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a><span class="c1">#server-id 多台服务器时，此表示需要唯一</span>
+</span><span id="__span-1-25"><a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a>server-id<span class="o">=</span><span class="m">2</span>
+</span><span id="__span-1-26"><a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a><span class="c1">#主从同步bin-log日志文件名</span>
+</span><span id="__span-1-27"><a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a>log-bin<span class="o">=</span>mysql-bin
+</span><span id="__span-1-28"><a id="__codelineno-1-28" name="__codelineno-1-28" href="#__codelineno-1-28"></a><span class="c1">#主从同步时，需要同步的数据库，多个数据库写多行binlog_do_db配置</span>
+</span><span id="__span-1-29"><a id="__codelineno-1-29" name="__codelineno-1-29" href="#__codelineno-1-29"></a><span class="nv">binlog_do_db</span><span class="o">=</span>test_db
+</span><span id="__span-1-30"><a id="__codelineno-1-30" name="__codelineno-1-30" href="#__codelineno-1-30"></a><span class="c1">#主从同步时，不需要同步的数据库，多个数据库写多行binlog_ignore_db配置</span>
+</span><span id="__span-1-31"><a id="__codelineno-1-31" name="__codelineno-1-31" href="#__codelineno-1-31"></a><span class="c1">#binlog_ignore_db=mysql</span>
+</span><span id="__span-1-32"><a id="__codelineno-1-32" name="__codelineno-1-32" href="#__codelineno-1-32"></a><span class="c1">#binlog_ignore_db=information_schema</span>
+</span><span id="__span-1-33"><a id="__codelineno-1-33" name="__codelineno-1-33" href="#__codelineno-1-33"></a><span class="c1">#binlog_ignore_db=sys</span>
+</span><span id="__span-1-34"><a id="__codelineno-1-34" name="__codelineno-1-34" href="#__codelineno-1-34"></a><span class="c1">#binlog_ignore_db=performance_schema</span>
+</span><span id="__span-1-35"><a id="__codelineno-1-35" name="__codelineno-1-35" href="#__codelineno-1-35"></a><span class="c1">#主从同步方式</span>
+</span><span id="__span-1-36"><a id="__codelineno-1-36" name="__codelineno-1-36" href="#__codelineno-1-36"></a><span class="nv">binlog_format</span><span class="o">=</span>row
+</span><span id="__span-1-37"><a id="__codelineno-1-37" name="__codelineno-1-37" href="#__codelineno-1-37"></a><span class="c1">#服务端编码</span>
+</span><span id="__span-1-38"><a id="__codelineno-1-38" name="__codelineno-1-38" href="#__codelineno-1-38"></a>character-set-server<span class="o">=</span>utf8
+</span><span id="__span-1-39"><a id="__codelineno-1-39" name="__codelineno-1-39" href="#__codelineno-1-39"></a>
+</span><span id="__span-1-40"><a id="__codelineno-1-40" name="__codelineno-1-40" href="#__codelineno-1-40"></a>!includedir<span class="w"> </span>/etc/my.cnf.d
+</span></code></pre></div>
 <ol>
 <li>重启mysql服务</li>
 </ol>
-<pre><code class="language-shell">[root@128 mysql5.7]# systemctl stop mysqld
-[root@128 mysql5.7]# systemctl start mysqld
-</code></pre>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="o">[</span>root@128<span class="w"> </span>mysql5.7<span class="o">]</span><span class="c1"># systemctl stop mysqld</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="o">[</span>root@128<span class="w"> </span>mysql5.7<span class="o">]</span><span class="c1"># systemctl start mysqld</span>
+</span></code></pre></div>
 <h2 id="mysql_1">四、mysql数据库双主双从配置<a class="headerlink" href="#mysql_1" title="Permanent link">&para;</a></h2>
 <p>1.连接128服务器mysql，并创建主从同步账户slavebak，并查看master状态，记录下file、psition值，配置129mysql从库时使用</p>
-<pre><code class="language-shell">[root@128 ~]# /opt/mysql5.7/bin/mysql -uroot -proot
-mysql: [Warning] Using a password on the command line interface can be insecure.
-......
-Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
-
-mysql&gt; grant replication slave on *.* to slavebak@'%' identified by 'slavebak';
-mysql&gt; flush privileges;
-mysql&gt; show master status;
-+------------------+----------+--------------+------------------+-------------------+
-| File             | Position | Binlog_Do_DB | Binlog_Ignore_DB | Executed_Gtid_Set |
-+------------------+----------+--------------+------------------+-------------------+
-| mysql-bin.000002 |     1287 | test_db      |                  |                   |
-+------------------+----------+--------------+------------------+-------------------+
-1 row in set (0.01 sec)
-mysql&gt;
-</code></pre>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="o">[</span>root@128<span class="w"> </span>~<span class="o">]</span><span class="c1"># /opt/mysql5.7/bin/mysql -uroot -proot</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>mysql:<span class="w"> </span><span class="o">[</span>Warning<span class="o">]</span><span class="w"> </span>Using<span class="w"> </span>a<span class="w"> </span>password<span class="w"> </span>on<span class="w"> </span>the<span class="w"> </span><span class="nb">command</span><span class="w"> </span>line<span class="w"> </span>interface<span class="w"> </span>can<span class="w"> </span>be<span class="w"> </span>insecure.
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>......
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>Type<span class="w"> </span><span class="s1">&#39;help;&#39;</span><span class="w"> </span>or<span class="w"> </span><span class="s1">&#39;\h&#39;</span><span class="w"> </span><span class="k">for</span><span class="w"> </span>help.<span class="w"> </span>Type<span class="w"> </span><span class="s1">&#39;\c&#39;</span><span class="w"> </span>to<span class="w"> </span>clear<span class="w"> </span>the<span class="w"> </span>current<span class="w"> </span>input<span class="w"> </span>statement.
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>mysql&gt;<span class="w"> </span>grant<span class="w"> </span>replication<span class="w"> </span>slave<span class="w"> </span>on<span class="w"> </span>*.*<span class="w"> </span>to<span class="w"> </span>slavebak@<span class="s1">&#39;%&#39;</span><span class="w"> </span>identified<span class="w"> </span>by<span class="w"> </span><span class="s1">&#39;slavebak&#39;</span><span class="p">;</span>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>mysql&gt;<span class="w"> </span>flush<span class="w"> </span>privileges<span class="p">;</span>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>mysql&gt;<span class="w"> </span>show<span class="w"> </span>master<span class="w"> </span>status<span class="p">;</span>
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>+------------------+----------+--------------+------------------+-------------------+
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="p">|</span><span class="w"> </span>File<span class="w">             </span><span class="p">|</span><span class="w"> </span>Position<span class="w"> </span><span class="p">|</span><span class="w"> </span>Binlog_Do_DB<span class="w"> </span><span class="p">|</span><span class="w"> </span>Binlog_Ignore_DB<span class="w"> </span><span class="p">|</span><span class="w"> </span>Executed_Gtid_Set<span class="w"> </span><span class="p">|</span>
+</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>+------------------+----------+--------------+------------------+-------------------+
+</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="p">|</span><span class="w"> </span>mysql-bin.000002<span class="w"> </span><span class="p">|</span><span class="w">     </span><span class="m">1287</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>test_db<span class="w">      </span><span class="p">|</span><span class="w">                  </span><span class="p">|</span><span class="w">                   </span><span class="p">|</span>
+</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>+------------------+----------+--------------+------------------+-------------------+
+</span><span id="__span-3-14"><a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a><span class="m">1</span><span class="w"> </span>row<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="nb">set</span><span class="w"> </span><span class="o">(</span><span class="m">0</span>.01<span class="w"> </span>sec<span class="o">)</span>
+</span><span id="__span-3-15"><a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a>mysql&gt;
+</span></code></pre></div>
 <p>2.连接129服务器，使用slavebak用户远程登录128mysql，测试连接是否正常。</p>
-<pre><code class="language-shell">[root@129 ~]# /opt/mysql5.7/bin/mysql -h192.168.222.128 -uslavebak -pslavebak
-mysql: [Warning] Using a password on the command line interface can be insecure.
-......
-Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
-
-mysql&gt; exit;
-[root@129 ~]# 
-</code></pre>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="o">[</span>root@129<span class="w"> </span>~<span class="o">]</span><span class="c1"># /opt/mysql5.7/bin/mysql -h192.168.222.128 -uslavebak -pslavebak</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>mysql:<span class="w"> </span><span class="o">[</span>Warning<span class="o">]</span><span class="w"> </span>Using<span class="w"> </span>a<span class="w"> </span>password<span class="w"> </span>on<span class="w"> </span>the<span class="w"> </span><span class="nb">command</span><span class="w"> </span>line<span class="w"> </span>interface<span class="w"> </span>can<span class="w"> </span>be<span class="w"> </span>insecure.
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>......
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>Type<span class="w"> </span><span class="s1">&#39;help;&#39;</span><span class="w"> </span>or<span class="w"> </span><span class="s1">&#39;\h&#39;</span><span class="w"> </span><span class="k">for</span><span class="w"> </span>help.<span class="w"> </span>Type<span class="w"> </span><span class="s1">&#39;\c&#39;</span><span class="w"> </span>to<span class="w"> </span>clear<span class="w"> </span>the<span class="w"> </span>current<span class="w"> </span>input<span class="w"> </span>statement.
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>mysql&gt;<span class="w"> </span>exit<span class="p">;</span>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="o">[</span>root@129<span class="w"> </span>~<span class="o">]</span><span class="c1"># </span>
+</span></code></pre></div>
 <p>3.在129服务器用root连接本服务器mysql，并配置128的主库信息</p>
-<pre><code class="language-shell">[root@129 ~]# /opt/mysql5.7/bin/mysql -uroot -proot
-mysql: [Warning] Using a password on the command line interface can be insecure.
-......
-Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
-
-mysql&gt; change master to 
-    -&gt; master_host='192.168.222.128',            #128服务器mysql ip
-    -&gt; master_port=3306,                         #128服务器mysql端口
-    -&gt; master_user='slavebak',                   #128服务器mysql从库同步用户
-    -&gt; master_password='slavebak',               #128服务器mysql从库同步用户密码
-    -&gt; master_log_file='mysql-bin.000002',       #前面记录的128服务mysql file值
-    -&gt; master_log_pos=1287;                      #前面记录的128服务mysql psition值
-Query OK, 0 rows affected, 2 warnings (0.02 sec)
-
-mysql&gt; start slave;            #启动从库配置
-</code></pre>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="o">[</span>root@129<span class="w"> </span>~<span class="o">]</span><span class="c1"># /opt/mysql5.7/bin/mysql -uroot -proot</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>mysql:<span class="w"> </span><span class="o">[</span>Warning<span class="o">]</span><span class="w"> </span>Using<span class="w"> </span>a<span class="w"> </span>password<span class="w"> </span>on<span class="w"> </span>the<span class="w"> </span><span class="nb">command</span><span class="w"> </span>line<span class="w"> </span>interface<span class="w"> </span>can<span class="w"> </span>be<span class="w"> </span>insecure.
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>......
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>Type<span class="w"> </span><span class="s1">&#39;help;&#39;</span><span class="w"> </span>or<span class="w"> </span><span class="s1">&#39;\h&#39;</span><span class="w"> </span><span class="k">for</span><span class="w"> </span>help.<span class="w"> </span>Type<span class="w"> </span><span class="s1">&#39;\c&#39;</span><span class="w"> </span>to<span class="w"> </span>clear<span class="w"> </span>the<span class="w"> </span>current<span class="w"> </span>input<span class="w"> </span>statement.
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>mysql&gt;<span class="w"> </span>change<span class="w"> </span>master<span class="w"> </span>to<span class="w"> </span>
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="w">    </span>-&gt;<span class="w"> </span><span class="nv">master_host</span><span class="o">=</span><span class="s1">&#39;192.168.222.128&#39;</span>,<span class="w">            </span><span class="c1">#128服务器mysql ip</span>
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="w">    </span>-&gt;<span class="w"> </span><span class="nv">master_port</span><span class="o">=</span><span class="m">3306</span>,<span class="w">                         </span><span class="c1">#128服务器mysql端口</span>
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="w">    </span>-&gt;<span class="w"> </span><span class="nv">master_user</span><span class="o">=</span><span class="s1">&#39;slavebak&#39;</span>,<span class="w">                   </span><span class="c1">#128服务器mysql从库同步用户</span>
+</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="w">    </span>-&gt;<span class="w"> </span><span class="nv">master_password</span><span class="o">=</span><span class="s1">&#39;slavebak&#39;</span>,<span class="w">               </span><span class="c1">#128服务器mysql从库同步用户密码</span>
+</span><span id="__span-5-11"><a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a><span class="w">    </span>-&gt;<span class="w"> </span><span class="nv">master_log_file</span><span class="o">=</span><span class="s1">&#39;mysql-bin.000002&#39;</span>,<span class="w">       </span><span class="c1">#前面记录的128服务mysql file值</span>
+</span><span id="__span-5-12"><a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a><span class="w">    </span>-&gt;<span class="w"> </span><span class="nv">master_log_pos</span><span class="o">=</span><span class="m">1287</span><span class="p">;</span><span class="w">                      </span><span class="c1">#前面记录的128服务mysql psition值</span>
+</span><span id="__span-5-13"><a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a>Query<span class="w"> </span>OK,<span class="w"> </span><span class="m">0</span><span class="w"> </span>rows<span class="w"> </span>affected,<span class="w"> </span><span class="m">2</span><span class="w"> </span>warnings<span class="w"> </span><span class="o">(</span><span class="m">0</span>.02<span class="w"> </span>sec<span class="o">)</span>
+</span><span id="__span-5-14"><a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a>
+</span><span id="__span-5-15"><a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a>mysql&gt;<span class="w"> </span>start<span class="w"> </span>slave<span class="p">;</span><span class="w">            </span><span class="c1">#启动从库配置</span>
+</span></code></pre></div>
 <p>4.查看129从库配置是否成功Slave_IO_Running、Slave_SQL_Running都为yes则成功</p>
-<pre><code class="language-shell">mysql&gt; show slave status;
-mysql&gt; show slave status \G;
-*************************** 1. row ***************************
-            ......
-            Slave_IO_Running:  Yes                    #此值为yes配置成功
-            Slave_SQL_Running: Yes                    #此值为yes配置i成功
-            ......
-1 row in set (0.01 sec)
-</code></pre>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>mysql&gt;<span class="w"> </span>show<span class="w"> </span>slave<span class="w"> </span>status<span class="p">;</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>mysql&gt;<span class="w"> </span>show<span class="w"> </span>slave<span class="w"> </span>status<span class="w"> </span><span class="se">\G</span><span class="p">;</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>***************************<span class="w"> </span><span class="m">1</span>.<span class="w"> </span>row<span class="w"> </span>***************************
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="w">            </span>......
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="w">            </span>Slave_IO_Running:<span class="w">  </span>Yes<span class="w">                    </span><span class="c1">#此值为yes配置成功</span>
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="w">            </span>Slave_SQL_Running:<span class="w"> </span>Yes<span class="w">                    </span><span class="c1">#此值为yes配置i成功</span>
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="w">            </span>......
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="m">1</span><span class="w"> </span>row<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="nb">set</span><span class="w"> </span><span class="o">(</span><span class="m">0</span>.01<span class="w"> </span>sec<span class="o">)</span>
+</span></code></pre></div>
 <p>5.在129服务器mysql创建主从同步账户slavebak，查看master状态，记录下file、psition值</p>
-<pre><code class="language-shell">mysql&gt; grant replication slave on *.* to slavebak@'%' identified by 'slavebak';
-mysql&gt; flush privileges;
-mysql&gt; show master status;
-+------------------+----------+--------------+------------------+-------------------+
-| File             | Position | Binlog_Do_DB | Binlog_Ignore_DB | Executed_Gtid_Set |
-+------------------+----------+--------------+------------------+-------------------+
-| mysql-bin.000002 |     848  | test_db      |                  |                   |
-+------------------+----------+--------------+------------------+-------------------+
-1 row in set (0.01 sec)
-</code></pre>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>mysql&gt;<span class="w"> </span>grant<span class="w"> </span>replication<span class="w"> </span>slave<span class="w"> </span>on<span class="w"> </span>*.*<span class="w"> </span>to<span class="w"> </span>slavebak@<span class="s1">&#39;%&#39;</span><span class="w"> </span>identified<span class="w"> </span>by<span class="w"> </span><span class="s1">&#39;slavebak&#39;</span><span class="p">;</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>mysql&gt;<span class="w"> </span>flush<span class="w"> </span>privileges<span class="p">;</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>mysql&gt;<span class="w"> </span>show<span class="w"> </span>master<span class="w"> </span>status<span class="p">;</span>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>+------------------+----------+--------------+------------------+-------------------+
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="p">|</span><span class="w"> </span>File<span class="w">             </span><span class="p">|</span><span class="w"> </span>Position<span class="w"> </span><span class="p">|</span><span class="w"> </span>Binlog_Do_DB<span class="w"> </span><span class="p">|</span><span class="w"> </span>Binlog_Ignore_DB<span class="w"> </span><span class="p">|</span><span class="w"> </span>Executed_Gtid_Set<span class="w"> </span><span class="p">|</span>
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>+------------------+----------+--------------+------------------+-------------------+
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="p">|</span><span class="w"> </span>mysql-bin.000002<span class="w"> </span><span class="p">|</span><span class="w">     </span><span class="m">848</span><span class="w">  </span><span class="p">|</span><span class="w"> </span>test_db<span class="w">      </span><span class="p">|</span><span class="w">                  </span><span class="p">|</span><span class="w">                   </span><span class="p">|</span>
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>+------------------+----------+--------------+------------------+-------------------+
+</span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a><span class="m">1</span><span class="w"> </span>row<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="nb">set</span><span class="w"> </span><span class="o">(</span><span class="m">0</span>.01<span class="w"> </span>sec<span class="o">)</span>
+</span></code></pre></div>
 <p>6.连接128服务器并使用root用户连接本服务器mysql，配置129的主库信息</p>
-<pre><code class="language-shell">[root@128 ~]# /opt/mysql5.7/bin/mysql -uroot -proot
-mysql: [Warning] Using a password on the command line interface can be insecure.
-......
-Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
-
-mysql&gt; change master to 
-    -&gt; master_host='192.168.222.129',            #129服务器mysql ip
-    -&gt; master_port=3306,                         #129服务器mysql端口
-    -&gt; master_user='slavebak',                   #129服务器mysql从库同步用户
-    -&gt; master_password='slavebak',               #129服务器mysql从库同步用户密码
-    -&gt; master_log_file='mysql-bin.000002',       #前面记录的129服务mysql file值
-    -&gt; master_log_pos=848;                       #前面记录的129服务mysql psition值
-Query OK, 0 rows affected, 2 warnings (0.02 sec)
-
-mysql&gt; start slave;            #启动从库配置
-</code></pre>
-<p>7.查看128从库配置是否成功Slave_IO_Running、Slave_SQL_Running都为yes则成功</p>
-<pre><code class="language-shell">mysql&gt; show slave status;
-mysql&gt; show slave status \G;
-*************************** 1. row ***************************
-            ......
-            Slave_IO_Running:  Yes                    #此值为yes配置成功
-            Slave_SQL_Running: Yes                    #此值为yes配置i成功
-            ......
-1 row in set (0.01 sec)
-    至此，128服务器，129服务器双主双从配置完成
-</code></pre>
+<p><div class="language-shell highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="o">[</span>root@128<span class="w"> </span>~<span class="o">]</span><span class="c1"># /opt/mysql5.7/bin/mysql -uroot -proot</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>mysql:<span class="w"> </span><span class="o">[</span>Warning<span class="o">]</span><span class="w"> </span>Using<span class="w"> </span>a<span class="w"> </span>password<span class="w"> </span>on<span class="w"> </span>the<span class="w"> </span><span class="nb">command</span><span class="w"> </span>line<span class="w"> </span>interface<span class="w"> </span>can<span class="w"> </span>be<span class="w"> </span>insecure.
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>......
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>Type<span class="w"> </span><span class="s1">&#39;help;&#39;</span><span class="w"> </span>or<span class="w"> </span><span class="s1">&#39;\h&#39;</span><span class="w"> </span><span class="k">for</span><span class="w"> </span>help.<span class="w"> </span>Type<span class="w"> </span><span class="s1">&#39;\c&#39;</span><span class="w"> </span>to<span class="w"> </span>clear<span class="w"> </span>the<span class="w"> </span>current<span class="w"> </span>input<span class="w"> </span>statement.
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>mysql&gt;<span class="w"> </span>change<span class="w"> </span>master<span class="w"> </span>to<span class="w"> </span>
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="w">    </span>-&gt;<span class="w"> </span><span class="nv">master_host</span><span class="o">=</span><span class="s1">&#39;192.168.222.129&#39;</span>,<span class="w">            </span><span class="c1">#129服务器mysql ip</span>
+</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="w">    </span>-&gt;<span class="w"> </span><span class="nv">master_port</span><span class="o">=</span><span class="m">3306</span>,<span class="w">                         </span><span class="c1">#129服务器mysql端口</span>
+</span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a><span class="w">    </span>-&gt;<span class="w"> </span><span class="nv">master_user</span><span class="o">=</span><span class="s1">&#39;slavebak&#39;</span>,<span class="w">                   </span><span class="c1">#129服务器mysql从库同步用户</span>
+</span><span id="__span-8-10"><a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a><span class="w">    </span>-&gt;<span class="w"> </span><span class="nv">master_password</span><span class="o">=</span><span class="s1">&#39;slavebak&#39;</span>,<span class="w">               </span><span class="c1">#129服务器mysql从库同步用户密码</span>
+</span><span id="__span-8-11"><a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a><span class="w">    </span>-&gt;<span class="w"> </span><span class="nv">master_log_file</span><span class="o">=</span><span class="s1">&#39;mysql-bin.000002&#39;</span>,<span class="w">       </span><span class="c1">#前面记录的129服务mysql file值</span>
+</span><span id="__span-8-12"><a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a><span class="w">    </span>-&gt;<span class="w"> </span><span class="nv">master_log_pos</span><span class="o">=</span><span class="m">848</span><span class="p">;</span><span class="w">                       </span><span class="c1">#前面记录的129服务mysql psition值</span>
+</span><span id="__span-8-13"><a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a>Query<span class="w"> </span>OK,<span class="w"> </span><span class="m">0</span><span class="w"> </span>rows<span class="w"> </span>affected,<span class="w"> </span><span class="m">2</span><span class="w"> </span>warnings<span class="w"> </span><span class="o">(</span><span class="m">0</span>.02<span class="w"> </span>sec<span class="o">)</span>
+</span><span id="__span-8-14"><a id="__codelineno-8-14" name="__codelineno-8-14" href="#__codelineno-8-14"></a>
+</span><span id="__span-8-15"><a id="__codelineno-8-15" name="__codelineno-8-15" href="#__codelineno-8-15"></a>mysql&gt;<span class="w"> </span>start<span class="w"> </span>slave<span class="p">;</span><span class="w">            </span><span class="c1">#启动从库配置</span>
+</span></code></pre></div>
+7.查看128从库配置是否成功Slave_IO_Running、Slave_SQL_Running都为yes则成功</p>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>mysql&gt;<span class="w"> </span>show<span class="w"> </span>slave<span class="w"> </span>status<span class="p">;</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>mysql&gt;<span class="w"> </span>show<span class="w"> </span>slave<span class="w"> </span>status<span class="w"> </span><span class="se">\G</span><span class="p">;</span>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>***************************<span class="w"> </span><span class="m">1</span>.<span class="w"> </span>row<span class="w"> </span>***************************
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="w">            </span>......
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="w">            </span>Slave_IO_Running:<span class="w">  </span>Yes<span class="w">                    </span><span class="c1">#此值为yes配置成功</span>
+</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="w">            </span>Slave_SQL_Running:<span class="w"> </span>Yes<span class="w">                    </span><span class="c1">#此值为yes配置i成功</span>
+</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="w">            </span>......
+</span><span id="__span-9-8"><a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a><span class="m">1</span><span class="w"> </span>row<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="nb">set</span><span class="w"> </span><span class="o">(</span><span class="m">0</span>.01<span class="w"> </span>sec<span class="o">)</span>
+</span><span id="__span-9-9"><a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a><span class="w">    </span>至此，128服务器，129服务器双主双从配置完成
+</span></code></pre></div>
 <h2 id="mysql_2">五、MySQL双主双从测试<a class="headerlink" href="#mysql_2" title="Permanent link">&para;</a></h2>
 <ol>
 <li>连接128服务器，使用root用户连接本机mysql，并创建test_db数据库，t_test表，并插入一条数据id=1,name='zhangsan'</li>
 </ol>
-<pre><code class="language-shell">[root@128 ~]# /opt/mysql5.7/bin/mysql -uroot -proot
-mysql: [Warning] Using a password on the command line interface can be insecure.
-......
-Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
-
-mysql&gt; create database test_db;
-Query OK, 1 row affected (0.00 sec)
-
-mysql&gt; use test_db;
-mysql&gt; create table t_test(id int primary key, name varchar(30));
-Query OK, 0 row affected (0.01 sec)
-mysql&gt; insert into t_test values (1, 'zhangsan');
-Query OK, 1 row affected (0.01 sec)
-mysql&gt; select * from t_test;
-+----+----------+
-| id | name     |
-+----+----------+
-|  1 | zhangsan |
-+----+----------+
-1 rows in set (0.00 sec)
-</code></pre>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="o">[</span>root@128<span class="w"> </span>~<span class="o">]</span><span class="c1"># /opt/mysql5.7/bin/mysql -uroot -proot</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>mysql:<span class="w"> </span><span class="o">[</span>Warning<span class="o">]</span><span class="w"> </span>Using<span class="w"> </span>a<span class="w"> </span>password<span class="w"> </span>on<span class="w"> </span>the<span class="w"> </span><span class="nb">command</span><span class="w"> </span>line<span class="w"> </span>interface<span class="w"> </span>can<span class="w"> </span>be<span class="w"> </span>insecure.
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>......
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>Type<span class="w"> </span><span class="s1">&#39;help;&#39;</span><span class="w"> </span>or<span class="w"> </span><span class="s1">&#39;\h&#39;</span><span class="w"> </span><span class="k">for</span><span class="w"> </span>help.<span class="w"> </span>Type<span class="w"> </span><span class="s1">&#39;\c&#39;</span><span class="w"> </span>to<span class="w"> </span>clear<span class="w"> </span>the<span class="w"> </span>current<span class="w"> </span>input<span class="w"> </span>statement.
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>
+</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>mysql&gt;<span class="w"> </span>create<span class="w"> </span>database<span class="w"> </span>test_db<span class="p">;</span>
+</span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a>Query<span class="w"> </span>OK,<span class="w"> </span><span class="m">1</span><span class="w"> </span>row<span class="w"> </span>affected<span class="w"> </span><span class="o">(</span><span class="m">0</span>.00<span class="w"> </span>sec<span class="o">)</span>
+</span><span id="__span-10-8"><a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a>
+</span><span id="__span-10-9"><a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a>mysql&gt;<span class="w"> </span>use<span class="w"> </span>test_db<span class="p">;</span>
+</span><span id="__span-10-10"><a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a>mysql&gt;<span class="w"> </span>create<span class="w"> </span>table<span class="w"> </span>t_test<span class="o">(</span>id<span class="w"> </span>int<span class="w"> </span>primary<span class="w"> </span>key,<span class="w"> </span>name<span class="w"> </span>varchar<span class="o">(</span><span class="m">30</span><span class="o">))</span><span class="p">;</span>
+</span><span id="__span-10-11"><a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a>Query<span class="w"> </span>OK,<span class="w"> </span><span class="m">0</span><span class="w"> </span>row<span class="w"> </span>affected<span class="w"> </span><span class="o">(</span><span class="m">0</span>.01<span class="w"> </span>sec<span class="o">)</span>
+</span><span id="__span-10-12"><a id="__codelineno-10-12" name="__codelineno-10-12" href="#__codelineno-10-12"></a>mysql&gt;<span class="w"> </span>insert<span class="w"> </span>into<span class="w"> </span>t_test<span class="w"> </span>values<span class="w"> </span><span class="o">(</span><span class="m">1</span>,<span class="w"> </span><span class="s1">&#39;zhangsan&#39;</span><span class="o">)</span><span class="p">;</span>
+</span><span id="__span-10-13"><a id="__codelineno-10-13" name="__codelineno-10-13" href="#__codelineno-10-13"></a>Query<span class="w"> </span>OK,<span class="w"> </span><span class="m">1</span><span class="w"> </span>row<span class="w"> </span>affected<span class="w"> </span><span class="o">(</span><span class="m">0</span>.01<span class="w"> </span>sec<span class="o">)</span>
+</span><span id="__span-10-14"><a id="__codelineno-10-14" name="__codelineno-10-14" href="#__codelineno-10-14"></a>mysql&gt;<span class="w"> </span><span class="k">select</span><span class="w"> </span>*<span class="w"> </span>from<span class="w"> </span>t_test<span class="p">;</span>
+</span><span id="__span-10-15"><a id="__codelineno-10-15" name="__codelineno-10-15" href="#__codelineno-10-15"></a>+----+----------+
+</span><span id="__span-10-16"><a id="__codelineno-10-16" name="__codelineno-10-16" href="#__codelineno-10-16"></a><span class="p">|</span><span class="w"> </span>id<span class="w"> </span><span class="p">|</span><span class="w"> </span>name<span class="w">     </span><span class="p">|</span>
+</span><span id="__span-10-17"><a id="__codelineno-10-17" name="__codelineno-10-17" href="#__codelineno-10-17"></a>+----+----------+
+</span><span id="__span-10-18"><a id="__codelineno-10-18" name="__codelineno-10-18" href="#__codelineno-10-18"></a><span class="p">|</span><span class="w">  </span><span class="m">1</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>zhangsan<span class="w"> </span><span class="p">|</span>
+</span><span id="__span-10-19"><a id="__codelineno-10-19" name="__codelineno-10-19" href="#__codelineno-10-19"></a>+----+----------+
+</span><span id="__span-10-20"><a id="__codelineno-10-20" name="__codelineno-10-20" href="#__codelineno-10-20"></a><span class="m">1</span><span class="w"> </span>rows<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="nb">set</span><span class="w"> </span><span class="o">(</span><span class="m">0</span>.00<span class="w"> </span>sec<span class="o">)</span>
+</span></code></pre></div>
 <ol>
 <li>连接129服务器，使用root用户连接mysql，查看test_db数据库、t_test表以及数据是否同步，并插入id=2，name=‘lisi’ </li>
 </ol>
-<pre><code class="language-shell">[root@129 ~]# /opt/mysql5.7/bin/mysql -uroot -proot
-mysql: [Warning] Using a password on the command line interface can be insecure.
-......
-Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
-
-mysql&gt; show databases;
-+--------------------+
-| Database           |
-+--------------------+
-| information_schema |
-| mysql              |
-| performance_schema |
-| sys                |
-| test_db            |        #test_db数据库已同步过来
-+--------------------+
-5 rows in set (0.01 sec)
-
-mysql&gt; use test_db;
-mysql&gt; show tables;
-+-------------------+
-| Tables_in_test_db |
-+-------------------+
-| t_test            |        #t_test表已同步过来
-+-------------------+
-1 row in set (0.01 sec)
-
-mysql&gt; select * from t_test;
-+----+----------+
-| id | name     |
-+----+----------+
-|  1 | zhangsan |            #数据已同步过来
-+----+----------+
-1 rows in set (0.00 sec)
-
-mysql&gt; insert into t_test values (2, 'lisi');
-Query OK, 1 row affected (0.01 sec)
-</code></pre>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="o">[</span>root@129<span class="w"> </span>~<span class="o">]</span><span class="c1"># /opt/mysql5.7/bin/mysql -uroot -proot</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>mysql:<span class="w"> </span><span class="o">[</span>Warning<span class="o">]</span><span class="w"> </span>Using<span class="w"> </span>a<span class="w"> </span>password<span class="w"> </span>on<span class="w"> </span>the<span class="w"> </span><span class="nb">command</span><span class="w"> </span>line<span class="w"> </span>interface<span class="w"> </span>can<span class="w"> </span>be<span class="w"> </span>insecure.
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>......
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>Type<span class="w"> </span><span class="s1">&#39;help;&#39;</span><span class="w"> </span>or<span class="w"> </span><span class="s1">&#39;\h&#39;</span><span class="w"> </span><span class="k">for</span><span class="w"> </span>help.<span class="w"> </span>Type<span class="w"> </span><span class="s1">&#39;\c&#39;</span><span class="w"> </span>to<span class="w"> </span>clear<span class="w"> </span>the<span class="w"> </span>current<span class="w"> </span>input<span class="w"> </span>statement.
+</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>
+</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>mysql&gt;<span class="w"> </span>show<span class="w"> </span>databases<span class="p">;</span>
+</span><span id="__span-11-7"><a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a>+--------------------+
+</span><span id="__span-11-8"><a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a><span class="p">|</span><span class="w"> </span>Database<span class="w">           </span><span class="p">|</span>
+</span><span id="__span-11-9"><a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a>+--------------------+
+</span><span id="__span-11-10"><a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a><span class="p">|</span><span class="w"> </span>information_schema<span class="w"> </span><span class="p">|</span>
+</span><span id="__span-11-11"><a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a><span class="p">|</span><span class="w"> </span>mysql<span class="w">              </span><span class="p">|</span>
+</span><span id="__span-11-12"><a id="__codelineno-11-12" name="__codelineno-11-12" href="#__codelineno-11-12"></a><span class="p">|</span><span class="w"> </span>performance_schema<span class="w"> </span><span class="p">|</span>
+</span><span id="__span-11-13"><a id="__codelineno-11-13" name="__codelineno-11-13" href="#__codelineno-11-13"></a><span class="p">|</span><span class="w"> </span>sys<span class="w">                </span><span class="p">|</span>
+</span><span id="__span-11-14"><a id="__codelineno-11-14" name="__codelineno-11-14" href="#__codelineno-11-14"></a><span class="p">|</span><span class="w"> </span>test_db<span class="w">            </span><span class="p">|</span><span class="w">        </span><span class="c1">#test_db数据库已同步过来</span>
+</span><span id="__span-11-15"><a id="__codelineno-11-15" name="__codelineno-11-15" href="#__codelineno-11-15"></a>+--------------------+
+</span><span id="__span-11-16"><a id="__codelineno-11-16" name="__codelineno-11-16" href="#__codelineno-11-16"></a><span class="m">5</span><span class="w"> </span>rows<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="nb">set</span><span class="w"> </span><span class="o">(</span><span class="m">0</span>.01<span class="w"> </span>sec<span class="o">)</span>
+</span><span id="__span-11-17"><a id="__codelineno-11-17" name="__codelineno-11-17" href="#__codelineno-11-17"></a>
+</span><span id="__span-11-18"><a id="__codelineno-11-18" name="__codelineno-11-18" href="#__codelineno-11-18"></a>mysql&gt;<span class="w"> </span>use<span class="w"> </span>test_db<span class="p">;</span>
+</span><span id="__span-11-19"><a id="__codelineno-11-19" name="__codelineno-11-19" href="#__codelineno-11-19"></a>mysql&gt;<span class="w"> </span>show<span class="w"> </span>tables<span class="p">;</span>
+</span><span id="__span-11-20"><a id="__codelineno-11-20" name="__codelineno-11-20" href="#__codelineno-11-20"></a>+-------------------+
+</span><span id="__span-11-21"><a id="__codelineno-11-21" name="__codelineno-11-21" href="#__codelineno-11-21"></a><span class="p">|</span><span class="w"> </span>Tables_in_test_db<span class="w"> </span><span class="p">|</span>
+</span><span id="__span-11-22"><a id="__codelineno-11-22" name="__codelineno-11-22" href="#__codelineno-11-22"></a>+-------------------+
+</span><span id="__span-11-23"><a id="__codelineno-11-23" name="__codelineno-11-23" href="#__codelineno-11-23"></a><span class="p">|</span><span class="w"> </span>t_test<span class="w">            </span><span class="p">|</span><span class="w">        </span><span class="c1">#t_test表已同步过来</span>
+</span><span id="__span-11-24"><a id="__codelineno-11-24" name="__codelineno-11-24" href="#__codelineno-11-24"></a>+-------------------+
+</span><span id="__span-11-25"><a id="__codelineno-11-25" name="__codelineno-11-25" href="#__codelineno-11-25"></a><span class="m">1</span><span class="w"> </span>row<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="nb">set</span><span class="w"> </span><span class="o">(</span><span class="m">0</span>.01<span class="w"> </span>sec<span class="o">)</span>
+</span><span id="__span-11-26"><a id="__codelineno-11-26" name="__codelineno-11-26" href="#__codelineno-11-26"></a>
+</span><span id="__span-11-27"><a id="__codelineno-11-27" name="__codelineno-11-27" href="#__codelineno-11-27"></a>mysql&gt;<span class="w"> </span><span class="k">select</span><span class="w"> </span>*<span class="w"> </span>from<span class="w"> </span>t_test<span class="p">;</span>
+</span><span id="__span-11-28"><a id="__codelineno-11-28" name="__codelineno-11-28" href="#__codelineno-11-28"></a>+----+----------+
+</span><span id="__span-11-29"><a id="__codelineno-11-29" name="__codelineno-11-29" href="#__codelineno-11-29"></a><span class="p">|</span><span class="w"> </span>id<span class="w"> </span><span class="p">|</span><span class="w"> </span>name<span class="w">     </span><span class="p">|</span>
+</span><span id="__span-11-30"><a id="__codelineno-11-30" name="__codelineno-11-30" href="#__codelineno-11-30"></a>+----+----------+
+</span><span id="__span-11-31"><a id="__codelineno-11-31" name="__codelineno-11-31" href="#__codelineno-11-31"></a><span class="p">|</span><span class="w">  </span><span class="m">1</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>zhangsan<span class="w"> </span><span class="p">|</span><span class="w">            </span><span class="c1">#数据已同步过来</span>
+</span><span id="__span-11-32"><a id="__codelineno-11-32" name="__codelineno-11-32" href="#__codelineno-11-32"></a>+----+----------+
+</span><span id="__span-11-33"><a id="__codelineno-11-33" name="__codelineno-11-33" href="#__codelineno-11-33"></a><span class="m">1</span><span class="w"> </span>rows<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="nb">set</span><span class="w"> </span><span class="o">(</span><span class="m">0</span>.00<span class="w"> </span>sec<span class="o">)</span>
+</span><span id="__span-11-34"><a id="__codelineno-11-34" name="__codelineno-11-34" href="#__codelineno-11-34"></a>
+</span><span id="__span-11-35"><a id="__codelineno-11-35" name="__codelineno-11-35" href="#__codelineno-11-35"></a>mysql&gt;<span class="w"> </span>insert<span class="w"> </span>into<span class="w"> </span>t_test<span class="w"> </span>values<span class="w"> </span><span class="o">(</span><span class="m">2</span>,<span class="w"> </span><span class="s1">&#39;lisi&#39;</span><span class="o">)</span><span class="p">;</span>
+</span><span id="__span-11-36"><a id="__codelineno-11-36" name="__codelineno-11-36" href="#__codelineno-11-36"></a>Query<span class="w"> </span>OK,<span class="w"> </span><span class="m">1</span><span class="w"> </span>row<span class="w"> </span>affected<span class="w"> </span><span class="o">(</span><span class="m">0</span>.01<span class="w"> </span>sec<span class="o">)</span>
+</span></code></pre></div>
 <ol>
 <li>在128服务器查看id=2，name="lisi" 是否同步</li>
 </ol>
-<pre><code class="language-shell">[root@128 ~]# /opt/mysql5.7/bin/mysql -uroot -proot
-mysql: [Warning] Using a password on the command line interface can be insecure.
-......
-Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
-
-mysql&gt; select * from t_test;
-+----+----------+
-| id | name     |
-+----+----------+
-|  1 | zhangsan |
-|  2 | lisi     |            #lisi数据已同步
-+----+----------+
-1 rows in set (0.00 sec)
-    至此，数据库双主双从测试完成。
-</code></pre>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="o">[</span>root@128<span class="w"> </span>~<span class="o">]</span><span class="c1"># /opt/mysql5.7/bin/mysql -uroot -proot</span>
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>mysql:<span class="w"> </span><span class="o">[</span>Warning<span class="o">]</span><span class="w"> </span>Using<span class="w"> </span>a<span class="w"> </span>password<span class="w"> </span>on<span class="w"> </span>the<span class="w"> </span><span class="nb">command</span><span class="w"> </span>line<span class="w"> </span>interface<span class="w"> </span>can<span class="w"> </span>be<span class="w"> </span>insecure.
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>......
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>Type<span class="w"> </span><span class="s1">&#39;help;&#39;</span><span class="w"> </span>or<span class="w"> </span><span class="s1">&#39;\h&#39;</span><span class="w"> </span><span class="k">for</span><span class="w"> </span>help.<span class="w"> </span>Type<span class="w"> </span><span class="s1">&#39;\c&#39;</span><span class="w"> </span>to<span class="w"> </span>clear<span class="w"> </span>the<span class="w"> </span>current<span class="w"> </span>input<span class="w"> </span>statement.
+</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>
+</span><span id="__span-12-6"><a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a>mysql&gt;<span class="w"> </span><span class="k">select</span><span class="w"> </span>*<span class="w"> </span>from<span class="w"> </span>t_test<span class="p">;</span>
+</span><span id="__span-12-7"><a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a>+----+----------+
+</span><span id="__span-12-8"><a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a><span class="p">|</span><span class="w"> </span>id<span class="w"> </span><span class="p">|</span><span class="w"> </span>name<span class="w">     </span><span class="p">|</span>
+</span><span id="__span-12-9"><a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a>+----+----------+
+</span><span id="__span-12-10"><a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a><span class="p">|</span><span class="w">  </span><span class="m">1</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>zhangsan<span class="w"> </span><span class="p">|</span>
+</span><span id="__span-12-11"><a id="__codelineno-12-11" name="__codelineno-12-11" href="#__codelineno-12-11"></a><span class="p">|</span><span class="w">  </span><span class="m">2</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>lisi<span class="w">     </span><span class="p">|</span><span class="w">            </span><span class="c1">#lisi数据已同步</span>
+</span><span id="__span-12-12"><a id="__codelineno-12-12" name="__codelineno-12-12" href="#__codelineno-12-12"></a>+----+----------+
+</span><span id="__span-12-13"><a id="__codelineno-12-13" name="__codelineno-12-13" href="#__codelineno-12-13"></a><span class="m">1</span><span class="w"> </span>rows<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="nb">set</span><span class="w"> </span><span class="o">(</span><span class="m">0</span>.00<span class="w"> </span>sec<span class="o">)</span>
+</span><span id="__span-12-14"><a id="__codelineno-12-14" name="__codelineno-12-14" href="#__codelineno-12-14"></a><span class="w">    </span>至此，数据库双主双从测试完成。
+</span></code></pre></div>
 <h2 id="keepalived">六、keepalived安装<a class="headerlink" href="#keepalived" title="Permanent link">&para;</a></h2>
 <p>128、129两台服务器安装步骤相同，配置文件不同，下面有介绍。</p>
 <ol>
 <li>安装相关依赖包，并下载keepalived安装包，解压，配置，编译</li>
 </ol>
-<pre><code class="language-shell">[root@128 ~]# cd /opt
-[root@128 opt]# yum -y install gcc openssl-devel popt-devel psmisc
-[root@128 opt]# wget https://www.keepalived.org/software/keepalived-2.2.7.tar.gz
-[root@128 opt]# tar -zxvf keepalived-2.2.7.tar.gz
-[root@128 opt]# cd keepalived-2.2.7
-[root@128 keepalived-2.2.7]# ./configure --prefix=/opt/keepalived-2.2.7
-[root@128 keepalived-2.2.7]# make &amp;&amp; make install
-</code></pre>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="o">[</span>root@128<span class="w"> </span>~<span class="o">]</span><span class="c1"># cd /opt</span>
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="o">[</span>root@128<span class="w"> </span>opt<span class="o">]</span><span class="c1"># yum -y install gcc openssl-devel popt-devel psmisc</span>
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="o">[</span>root@128<span class="w"> </span>opt<span class="o">]</span><span class="c1"># wget https://www.keepalived.org/software/keepalived-2.2.7.tar.gz</span>
+</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="o">[</span>root@128<span class="w"> </span>opt<span class="o">]</span><span class="c1"># tar -zxvf keepalived-2.2.7.tar.gz</span>
+</span><span id="__span-13-5"><a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a><span class="o">[</span>root@128<span class="w"> </span>opt<span class="o">]</span><span class="c1"># cd keepalived-2.2.7</span>
+</span><span id="__span-13-6"><a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a><span class="o">[</span>root@128<span class="w"> </span>keepalived-2.2.7<span class="o">]</span><span class="c1"># ./configure --prefix=/opt/keepalived-2.2.7</span>
+</span><span id="__span-13-7"><a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a><span class="o">[</span>root@128<span class="w"> </span>keepalived-2.2.7<span class="o">]</span><span class="c1"># make &amp;&amp; make install</span>
+</span></code></pre></div>
 <ol>
 <li>将文件复制到对应目录下</li>
 </ol>
-<pre><code class="language-shell">[root@128 keepalived-2.2.7]# mkdir /etc/keepalived
-[root@128 keepalived-2.2.7]# cp keepalived/etc/keepalived/keepalived.conf.sample /etc/keepalived/keepalived.conf
-[root@128 keepalived-2.2.7]# cp keepalived/etc/init.d/keepalived /etc/init.d/
-[root@128 keepalived-2.2.7]# cp keepalived/etc/sysconfig/keepalived /etc/sysconfig/
-[root@128 keepalived-2.2.7]# cp bin/keepalived /usr/sbin/
-</code></pre>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="o">[</span>root@128<span class="w"> </span>keepalived-2.2.7<span class="o">]</span><span class="c1"># mkdir /etc/keepalived</span>
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="o">[</span>root@128<span class="w"> </span>keepalived-2.2.7<span class="o">]</span><span class="c1"># cp keepalived/etc/keepalived/keepalived.conf.sample /etc/keepalived/keepalived.conf</span>
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="o">[</span>root@128<span class="w"> </span>keepalived-2.2.7<span class="o">]</span><span class="c1"># cp keepalived/etc/init.d/keepalived /etc/init.d/</span>
+</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span class="o">[</span>root@128<span class="w"> </span>keepalived-2.2.7<span class="o">]</span><span class="c1"># cp keepalived/etc/sysconfig/keepalived /etc/sysconfig/</span>
+</span><span id="__span-14-5"><a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a><span class="o">[</span>root@128<span class="w"> </span>keepalived-2.2.7<span class="o">]</span><span class="c1"># cp bin/keepalived /usr/sbin/</span>
+</span></code></pre></div>
 <ol>
 <li>新建/etc/keepalived/shutdown.sh文件，内容为：</li>
 </ol>
-<pre><code class="language-shell">#!/bin/bash
-#该脚本是在mysql服务出现异常时，将keepalived应用停止，从而使虚拟vip主机自动连接到另一台mysql上
-killall keepalived
-</code></pre>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="ch">#!/bin/bash</span>
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="c1">#该脚本是在mysql服务出现异常时，将keepalived应用停止，从而使虚拟vip主机自动连接到另一台mysql上</span>
+</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>killall<span class="w"> </span>keepalived
+</span></code></pre></div>
 <ol>
 <li>
 <p>使用ifconfig命令查看下网卡名称，本机网卡名称为ens33</p>
@@ -1450,140 +1458,140 @@ killall keepalived
 <p>修改128服务器/etc/keepalived/keepalived.conf配置文件，内容如下：</p>
 </li>
 </ol>
-<pre><code class="language-shell">! Configuration File for keepalived
-
-global_defs {
-   notification_email {
-     acassen@firewall.loc
-     failover@firewall.loc
-     sysadmin@firewall.loc
-   }
-   notification_email_from Alexandre.Cassen@firewall.loc
-   smtp_server 192.168.200.1
-   smtp_connect_timeout 30
-   router_id LVS_MASTER
-   vrrp_skip_check_adv_addr
-   vrrp_strict
-   vrrp_garp_interval 0
-   vrrp_gna_interval 0
-}
-
-vrrp_instance VI_1 {
-    state MASTER
-    #interface为刚才查到的本机网卡名称
-    interface ens33
-    #同一网段中同一组virtual_router_id值相同。不同组virtual_router_id值唯一。
-    #如server-1、server-2为一组，virtual_router_id=51
-    #server-3、server-4为一组，则virtual_router_id不能为51
-    virtual_router_id 51
-    #字数越大，优先级越高，master必须大于backup
-    priority 100
-    advert_int 1
-    authentication {
-        auth_type PASS
-        auth_pass 1111
-    }
-    virtual_ipaddress {
-       #该ip为虚拟出来的vip地址
-       192.168.222.130
-    }
-}
-
-#配置virtual_server  ip为上面配置的虚拟vip地址  端口为mysql的端口
-virtual_server 192.168.222.130 3306 {
-    delay_loop 6
-    lb_algo rr
-    lb_kind NAT
-    persistence_timeout 50
-    protocol TCP
-    #real_server 该配置为实际物理机ip地址 以及实际物理机mysql端口
-    real_server 192.168.222.128 3306 {
-        #当该ip 端口连接异常时，执行该脚本
-        notify_down /etc/keepalived/shutdow.sh
-        TCP_CHECK {
-            #实际物理机ip地址
-            connect_ip 192.168.222.128
-            #实际物理机port端口
-            connect_port 3306
-            connect_timeout 3
-            nb_get_retry 3
-            delay_before_retry 3
-        }
-    }
-}
-</code></pre>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>!<span class="w"> </span>Configuration<span class="w"> </span>File<span class="w"> </span><span class="k">for</span><span class="w"> </span>keepalived
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>
+</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>global_defs<span class="w"> </span><span class="o">{</span>
+</span><span id="__span-16-4"><a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a><span class="w">   </span>notification_email<span class="w"> </span><span class="o">{</span>
+</span><span id="__span-16-5"><a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a><span class="w">     </span>acassen@firewall.loc
+</span><span id="__span-16-6"><a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a><span class="w">     </span>failover@firewall.loc
+</span><span id="__span-16-7"><a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a><span class="w">     </span>sysadmin@firewall.loc
+</span><span id="__span-16-8"><a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a><span class="w">   </span><span class="o">}</span>
+</span><span id="__span-16-9"><a id="__codelineno-16-9" name="__codelineno-16-9" href="#__codelineno-16-9"></a><span class="w">   </span>notification_email_from<span class="w"> </span>Alexandre.Cassen@firewall.loc
+</span><span id="__span-16-10"><a id="__codelineno-16-10" name="__codelineno-16-10" href="#__codelineno-16-10"></a><span class="w">   </span>smtp_server<span class="w"> </span><span class="m">192</span>.168.200.1
+</span><span id="__span-16-11"><a id="__codelineno-16-11" name="__codelineno-16-11" href="#__codelineno-16-11"></a><span class="w">   </span>smtp_connect_timeout<span class="w"> </span><span class="m">30</span>
+</span><span id="__span-16-12"><a id="__codelineno-16-12" name="__codelineno-16-12" href="#__codelineno-16-12"></a><span class="w">   </span>router_id<span class="w"> </span>LVS_MASTER
+</span><span id="__span-16-13"><a id="__codelineno-16-13" name="__codelineno-16-13" href="#__codelineno-16-13"></a><span class="w">   </span>vrrp_skip_check_adv_addr
+</span><span id="__span-16-14"><a id="__codelineno-16-14" name="__codelineno-16-14" href="#__codelineno-16-14"></a><span class="w">   </span>vrrp_strict
+</span><span id="__span-16-15"><a id="__codelineno-16-15" name="__codelineno-16-15" href="#__codelineno-16-15"></a><span class="w">   </span>vrrp_garp_interval<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-16-16"><a id="__codelineno-16-16" name="__codelineno-16-16" href="#__codelineno-16-16"></a><span class="w">   </span>vrrp_gna_interval<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-16-17"><a id="__codelineno-16-17" name="__codelineno-16-17" href="#__codelineno-16-17"></a><span class="o">}</span>
+</span><span id="__span-16-18"><a id="__codelineno-16-18" name="__codelineno-16-18" href="#__codelineno-16-18"></a>
+</span><span id="__span-16-19"><a id="__codelineno-16-19" name="__codelineno-16-19" href="#__codelineno-16-19"></a>vrrp_instance<span class="w"> </span>VI_1<span class="w"> </span><span class="o">{</span>
+</span><span id="__span-16-20"><a id="__codelineno-16-20" name="__codelineno-16-20" href="#__codelineno-16-20"></a><span class="w">    </span>state<span class="w"> </span>MASTER
+</span><span id="__span-16-21"><a id="__codelineno-16-21" name="__codelineno-16-21" href="#__codelineno-16-21"></a><span class="w">    </span><span class="c1">#interface为刚才查到的本机网卡名称</span>
+</span><span id="__span-16-22"><a id="__codelineno-16-22" name="__codelineno-16-22" href="#__codelineno-16-22"></a><span class="w">    </span>interface<span class="w"> </span>ens33
+</span><span id="__span-16-23"><a id="__codelineno-16-23" name="__codelineno-16-23" href="#__codelineno-16-23"></a><span class="w">    </span><span class="c1">#同一网段中同一组virtual_router_id值相同。不同组virtual_router_id值唯一。</span>
+</span><span id="__span-16-24"><a id="__codelineno-16-24" name="__codelineno-16-24" href="#__codelineno-16-24"></a><span class="w">    </span><span class="c1">#如server-1、server-2为一组，virtual_router_id=51</span>
+</span><span id="__span-16-25"><a id="__codelineno-16-25" name="__codelineno-16-25" href="#__codelineno-16-25"></a><span class="w">    </span><span class="c1">#server-3、server-4为一组，则virtual_router_id不能为51</span>
+</span><span id="__span-16-26"><a id="__codelineno-16-26" name="__codelineno-16-26" href="#__codelineno-16-26"></a><span class="w">    </span>virtual_router_id<span class="w"> </span><span class="m">51</span>
+</span><span id="__span-16-27"><a id="__codelineno-16-27" name="__codelineno-16-27" href="#__codelineno-16-27"></a><span class="w">    </span><span class="c1">#字数越大，优先级越高，master必须大于backup</span>
+</span><span id="__span-16-28"><a id="__codelineno-16-28" name="__codelineno-16-28" href="#__codelineno-16-28"></a><span class="w">    </span>priority<span class="w"> </span><span class="m">100</span>
+</span><span id="__span-16-29"><a id="__codelineno-16-29" name="__codelineno-16-29" href="#__codelineno-16-29"></a><span class="w">    </span>advert_int<span class="w"> </span><span class="m">1</span>
+</span><span id="__span-16-30"><a id="__codelineno-16-30" name="__codelineno-16-30" href="#__codelineno-16-30"></a><span class="w">    </span>authentication<span class="w"> </span><span class="o">{</span>
+</span><span id="__span-16-31"><a id="__codelineno-16-31" name="__codelineno-16-31" href="#__codelineno-16-31"></a><span class="w">        </span>auth_type<span class="w"> </span>PASS
+</span><span id="__span-16-32"><a id="__codelineno-16-32" name="__codelineno-16-32" href="#__codelineno-16-32"></a><span class="w">        </span>auth_pass<span class="w"> </span><span class="m">1111</span>
+</span><span id="__span-16-33"><a id="__codelineno-16-33" name="__codelineno-16-33" href="#__codelineno-16-33"></a><span class="w">    </span><span class="o">}</span>
+</span><span id="__span-16-34"><a id="__codelineno-16-34" name="__codelineno-16-34" href="#__codelineno-16-34"></a><span class="w">    </span>virtual_ipaddress<span class="w"> </span><span class="o">{</span>
+</span><span id="__span-16-35"><a id="__codelineno-16-35" name="__codelineno-16-35" href="#__codelineno-16-35"></a><span class="w">       </span><span class="c1">#该ip为虚拟出来的vip地址</span>
+</span><span id="__span-16-36"><a id="__codelineno-16-36" name="__codelineno-16-36" href="#__codelineno-16-36"></a><span class="w">       </span><span class="m">192</span>.168.222.130
+</span><span id="__span-16-37"><a id="__codelineno-16-37" name="__codelineno-16-37" href="#__codelineno-16-37"></a><span class="w">    </span><span class="o">}</span>
+</span><span id="__span-16-38"><a id="__codelineno-16-38" name="__codelineno-16-38" href="#__codelineno-16-38"></a><span class="o">}</span>
+</span><span id="__span-16-39"><a id="__codelineno-16-39" name="__codelineno-16-39" href="#__codelineno-16-39"></a>
+</span><span id="__span-16-40"><a id="__codelineno-16-40" name="__codelineno-16-40" href="#__codelineno-16-40"></a><span class="c1">#配置virtual_server  ip为上面配置的虚拟vip地址  端口为mysql的端口</span>
+</span><span id="__span-16-41"><a id="__codelineno-16-41" name="__codelineno-16-41" href="#__codelineno-16-41"></a>virtual_server<span class="w"> </span><span class="m">192</span>.168.222.130<span class="w"> </span><span class="m">3306</span><span class="w"> </span><span class="o">{</span>
+</span><span id="__span-16-42"><a id="__codelineno-16-42" name="__codelineno-16-42" href="#__codelineno-16-42"></a><span class="w">    </span>delay_loop<span class="w"> </span><span class="m">6</span>
+</span><span id="__span-16-43"><a id="__codelineno-16-43" name="__codelineno-16-43" href="#__codelineno-16-43"></a><span class="w">    </span>lb_algo<span class="w"> </span>rr
+</span><span id="__span-16-44"><a id="__codelineno-16-44" name="__codelineno-16-44" href="#__codelineno-16-44"></a><span class="w">    </span>lb_kind<span class="w"> </span>NAT
+</span><span id="__span-16-45"><a id="__codelineno-16-45" name="__codelineno-16-45" href="#__codelineno-16-45"></a><span class="w">    </span>persistence_timeout<span class="w"> </span><span class="m">50</span>
+</span><span id="__span-16-46"><a id="__codelineno-16-46" name="__codelineno-16-46" href="#__codelineno-16-46"></a><span class="w">    </span>protocol<span class="w"> </span>TCP
+</span><span id="__span-16-47"><a id="__codelineno-16-47" name="__codelineno-16-47" href="#__codelineno-16-47"></a><span class="w">    </span><span class="c1">#real_server 该配置为实际物理机ip地址 以及实际物理机mysql端口</span>
+</span><span id="__span-16-48"><a id="__codelineno-16-48" name="__codelineno-16-48" href="#__codelineno-16-48"></a><span class="w">    </span>real_server<span class="w"> </span><span class="m">192</span>.168.222.128<span class="w"> </span><span class="m">3306</span><span class="w"> </span><span class="o">{</span>
+</span><span id="__span-16-49"><a id="__codelineno-16-49" name="__codelineno-16-49" href="#__codelineno-16-49"></a><span class="w">        </span><span class="c1">#当该ip 端口连接异常时，执行该脚本</span>
+</span><span id="__span-16-50"><a id="__codelineno-16-50" name="__codelineno-16-50" href="#__codelineno-16-50"></a><span class="w">        </span>notify_down<span class="w"> </span>/etc/keepalived/shutdow.sh
+</span><span id="__span-16-51"><a id="__codelineno-16-51" name="__codelineno-16-51" href="#__codelineno-16-51"></a><span class="w">        </span>TCP_CHECK<span class="w"> </span><span class="o">{</span>
+</span><span id="__span-16-52"><a id="__codelineno-16-52" name="__codelineno-16-52" href="#__codelineno-16-52"></a><span class="w">            </span><span class="c1">#实际物理机ip地址</span>
+</span><span id="__span-16-53"><a id="__codelineno-16-53" name="__codelineno-16-53" href="#__codelineno-16-53"></a><span class="w">            </span>connect_ip<span class="w"> </span><span class="m">192</span>.168.222.128
+</span><span id="__span-16-54"><a id="__codelineno-16-54" name="__codelineno-16-54" href="#__codelineno-16-54"></a><span class="w">            </span><span class="c1">#实际物理机port端口</span>
+</span><span id="__span-16-55"><a id="__codelineno-16-55" name="__codelineno-16-55" href="#__codelineno-16-55"></a><span class="w">            </span>connect_port<span class="w"> </span><span class="m">3306</span>
+</span><span id="__span-16-56"><a id="__codelineno-16-56" name="__codelineno-16-56" href="#__codelineno-16-56"></a><span class="w">            </span>connect_timeout<span class="w"> </span><span class="m">3</span>
+</span><span id="__span-16-57"><a id="__codelineno-16-57" name="__codelineno-16-57" href="#__codelineno-16-57"></a><span class="w">            </span>nb_get_retry<span class="w"> </span><span class="m">3</span>
+</span><span id="__span-16-58"><a id="__codelineno-16-58" name="__codelineno-16-58" href="#__codelineno-16-58"></a><span class="w">            </span>delay_before_retry<span class="w"> </span><span class="m">3</span>
+</span><span id="__span-16-59"><a id="__codelineno-16-59" name="__codelineno-16-59" href="#__codelineno-16-59"></a><span class="w">        </span><span class="o">}</span>
+</span><span id="__span-16-60"><a id="__codelineno-16-60" name="__codelineno-16-60" href="#__codelineno-16-60"></a><span class="w">    </span><span class="o">}</span>
+</span><span id="__span-16-61"><a id="__codelineno-16-61" name="__codelineno-16-61" href="#__codelineno-16-61"></a><span class="o">}</span>
+</span></code></pre></div>
 <ol>
 <li>修改129服务器/etc/keepalived/keepalived.conf配置文件，与128的配置不同地方为real_server、connect_ip 两个配置，需要配置对应的实际主机ip，详细内容如下：</li>
 </ol>
-<pre><code class="language-shell">! Configuration File for keepalived
-
-global_defs {
-   notification_email {
-     acassen@firewall.loc
-     failover@firewall.loc
-     sysadmin@firewall.loc
-   }
-   notification_email_from Alexandre.Cassen@firewall.loc
-   smtp_server 192.168.200.1
-   smtp_connect_timeout 30
-   router_id LVS_MASTER
-   vrrp_skip_check_adv_addr
-   vrrp_strict
-   vrrp_garp_interval 0
-   vrrp_gna_interval 0
-}
-
-vrrp_instance VI_1 {
-    state BACKUP
-    #interface为刚才查到的本机网卡名称
-    interface ens33
-    #同一网段中同一组virtual_router_id值相同。不同组virtual_router_id值唯一。
-    #如server-1、server-2为一组，virtual_router_id=51
-    #server-3、server-4为一组，则virtual_router_id不能为51
-    virtual_router_id 51
-    #字数越大，优先级越高，master必须大于backup
-    priority 90
-    advert_int 1
-    authentication {
-        auth_type PASS
-        auth_pass 1111
-    }
-    virtual_ipaddress {
-       #该ip为虚拟出来的vip地址
-       192.168.222.130
-    }
-}
-
-#配置virtual_server  ip为上面配置的虚拟vip地址  端口为mysql的端口
-virtual_server 192.168.222.130 3306 {
-    delay_loop 6
-    lb_algo rr
-    lb_kind NAT
-    persistence_timeout 50
-    protocol TCP
-    #real_server 该配置为实际物理机ip地址 以及实际物理机mysql端口
-    real_server 192.168.222.129 3306 {
-        #当该ip 端口连接异常时，执行该脚本
-        notify_down /etc/keepalived/shutdow.sh
-        TCP_CHECK {
-            #实际物理机ip地址
-            connect_ip 192.168.222.129
-            #实际物理机port端口
-            connect_port 3306
-            connect_timeout 3
-            nb_get_retry 3
-            delay_before_retry 3
-        }
-    }
-}
-</code></pre>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>!<span class="w"> </span>Configuration<span class="w"> </span>File<span class="w"> </span><span class="k">for</span><span class="w"> </span>keepalived
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>
+</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>global_defs<span class="w"> </span><span class="o">{</span>
+</span><span id="__span-17-4"><a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a><span class="w">   </span>notification_email<span class="w"> </span><span class="o">{</span>
+</span><span id="__span-17-5"><a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a><span class="w">     </span>acassen@firewall.loc
+</span><span id="__span-17-6"><a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a><span class="w">     </span>failover@firewall.loc
+</span><span id="__span-17-7"><a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a><span class="w">     </span>sysadmin@firewall.loc
+</span><span id="__span-17-8"><a id="__codelineno-17-8" name="__codelineno-17-8" href="#__codelineno-17-8"></a><span class="w">   </span><span class="o">}</span>
+</span><span id="__span-17-9"><a id="__codelineno-17-9" name="__codelineno-17-9" href="#__codelineno-17-9"></a><span class="w">   </span>notification_email_from<span class="w"> </span>Alexandre.Cassen@firewall.loc
+</span><span id="__span-17-10"><a id="__codelineno-17-10" name="__codelineno-17-10" href="#__codelineno-17-10"></a><span class="w">   </span>smtp_server<span class="w"> </span><span class="m">192</span>.168.200.1
+</span><span id="__span-17-11"><a id="__codelineno-17-11" name="__codelineno-17-11" href="#__codelineno-17-11"></a><span class="w">   </span>smtp_connect_timeout<span class="w"> </span><span class="m">30</span>
+</span><span id="__span-17-12"><a id="__codelineno-17-12" name="__codelineno-17-12" href="#__codelineno-17-12"></a><span class="w">   </span>router_id<span class="w"> </span>LVS_MASTER
+</span><span id="__span-17-13"><a id="__codelineno-17-13" name="__codelineno-17-13" href="#__codelineno-17-13"></a><span class="w">   </span>vrrp_skip_check_adv_addr
+</span><span id="__span-17-14"><a id="__codelineno-17-14" name="__codelineno-17-14" href="#__codelineno-17-14"></a><span class="w">   </span>vrrp_strict
+</span><span id="__span-17-15"><a id="__codelineno-17-15" name="__codelineno-17-15" href="#__codelineno-17-15"></a><span class="w">   </span>vrrp_garp_interval<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-17-16"><a id="__codelineno-17-16" name="__codelineno-17-16" href="#__codelineno-17-16"></a><span class="w">   </span>vrrp_gna_interval<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-17-17"><a id="__codelineno-17-17" name="__codelineno-17-17" href="#__codelineno-17-17"></a><span class="o">}</span>
+</span><span id="__span-17-18"><a id="__codelineno-17-18" name="__codelineno-17-18" href="#__codelineno-17-18"></a>
+</span><span id="__span-17-19"><a id="__codelineno-17-19" name="__codelineno-17-19" href="#__codelineno-17-19"></a>vrrp_instance<span class="w"> </span>VI_1<span class="w"> </span><span class="o">{</span>
+</span><span id="__span-17-20"><a id="__codelineno-17-20" name="__codelineno-17-20" href="#__codelineno-17-20"></a><span class="w">    </span>state<span class="w"> </span>BACKUP
+</span><span id="__span-17-21"><a id="__codelineno-17-21" name="__codelineno-17-21" href="#__codelineno-17-21"></a><span class="w">    </span><span class="c1">#interface为刚才查到的本机网卡名称</span>
+</span><span id="__span-17-22"><a id="__codelineno-17-22" name="__codelineno-17-22" href="#__codelineno-17-22"></a><span class="w">    </span>interface<span class="w"> </span>ens33
+</span><span id="__span-17-23"><a id="__codelineno-17-23" name="__codelineno-17-23" href="#__codelineno-17-23"></a><span class="w">    </span><span class="c1">#同一网段中同一组virtual_router_id值相同。不同组virtual_router_id值唯一。</span>
+</span><span id="__span-17-24"><a id="__codelineno-17-24" name="__codelineno-17-24" href="#__codelineno-17-24"></a><span class="w">    </span><span class="c1">#如server-1、server-2为一组，virtual_router_id=51</span>
+</span><span id="__span-17-25"><a id="__codelineno-17-25" name="__codelineno-17-25" href="#__codelineno-17-25"></a><span class="w">    </span><span class="c1">#server-3、server-4为一组，则virtual_router_id不能为51</span>
+</span><span id="__span-17-26"><a id="__codelineno-17-26" name="__codelineno-17-26" href="#__codelineno-17-26"></a><span class="w">    </span>virtual_router_id<span class="w"> </span><span class="m">51</span>
+</span><span id="__span-17-27"><a id="__codelineno-17-27" name="__codelineno-17-27" href="#__codelineno-17-27"></a><span class="w">    </span><span class="c1">#字数越大，优先级越高，master必须大于backup</span>
+</span><span id="__span-17-28"><a id="__codelineno-17-28" name="__codelineno-17-28" href="#__codelineno-17-28"></a><span class="w">    </span>priority<span class="w"> </span><span class="m">90</span>
+</span><span id="__span-17-29"><a id="__codelineno-17-29" name="__codelineno-17-29" href="#__codelineno-17-29"></a><span class="w">    </span>advert_int<span class="w"> </span><span class="m">1</span>
+</span><span id="__span-17-30"><a id="__codelineno-17-30" name="__codelineno-17-30" href="#__codelineno-17-30"></a><span class="w">    </span>authentication<span class="w"> </span><span class="o">{</span>
+</span><span id="__span-17-31"><a id="__codelineno-17-31" name="__codelineno-17-31" href="#__codelineno-17-31"></a><span class="w">        </span>auth_type<span class="w"> </span>PASS
+</span><span id="__span-17-32"><a id="__codelineno-17-32" name="__codelineno-17-32" href="#__codelineno-17-32"></a><span class="w">        </span>auth_pass<span class="w"> </span><span class="m">1111</span>
+</span><span id="__span-17-33"><a id="__codelineno-17-33" name="__codelineno-17-33" href="#__codelineno-17-33"></a><span class="w">    </span><span class="o">}</span>
+</span><span id="__span-17-34"><a id="__codelineno-17-34" name="__codelineno-17-34" href="#__codelineno-17-34"></a><span class="w">    </span>virtual_ipaddress<span class="w"> </span><span class="o">{</span>
+</span><span id="__span-17-35"><a id="__codelineno-17-35" name="__codelineno-17-35" href="#__codelineno-17-35"></a><span class="w">       </span><span class="c1">#该ip为虚拟出来的vip地址</span>
+</span><span id="__span-17-36"><a id="__codelineno-17-36" name="__codelineno-17-36" href="#__codelineno-17-36"></a><span class="w">       </span><span class="m">192</span>.168.222.130
+</span><span id="__span-17-37"><a id="__codelineno-17-37" name="__codelineno-17-37" href="#__codelineno-17-37"></a><span class="w">    </span><span class="o">}</span>
+</span><span id="__span-17-38"><a id="__codelineno-17-38" name="__codelineno-17-38" href="#__codelineno-17-38"></a><span class="o">}</span>
+</span><span id="__span-17-39"><a id="__codelineno-17-39" name="__codelineno-17-39" href="#__codelineno-17-39"></a>
+</span><span id="__span-17-40"><a id="__codelineno-17-40" name="__codelineno-17-40" href="#__codelineno-17-40"></a><span class="c1">#配置virtual_server  ip为上面配置的虚拟vip地址  端口为mysql的端口</span>
+</span><span id="__span-17-41"><a id="__codelineno-17-41" name="__codelineno-17-41" href="#__codelineno-17-41"></a>virtual_server<span class="w"> </span><span class="m">192</span>.168.222.130<span class="w"> </span><span class="m">3306</span><span class="w"> </span><span class="o">{</span>
+</span><span id="__span-17-42"><a id="__codelineno-17-42" name="__codelineno-17-42" href="#__codelineno-17-42"></a><span class="w">    </span>delay_loop<span class="w"> </span><span class="m">6</span>
+</span><span id="__span-17-43"><a id="__codelineno-17-43" name="__codelineno-17-43" href="#__codelineno-17-43"></a><span class="w">    </span>lb_algo<span class="w"> </span>rr
+</span><span id="__span-17-44"><a id="__codelineno-17-44" name="__codelineno-17-44" href="#__codelineno-17-44"></a><span class="w">    </span>lb_kind<span class="w"> </span>NAT
+</span><span id="__span-17-45"><a id="__codelineno-17-45" name="__codelineno-17-45" href="#__codelineno-17-45"></a><span class="w">    </span>persistence_timeout<span class="w"> </span><span class="m">50</span>
+</span><span id="__span-17-46"><a id="__codelineno-17-46" name="__codelineno-17-46" href="#__codelineno-17-46"></a><span class="w">    </span>protocol<span class="w"> </span>TCP
+</span><span id="__span-17-47"><a id="__codelineno-17-47" name="__codelineno-17-47" href="#__codelineno-17-47"></a><span class="w">    </span><span class="c1">#real_server 该配置为实际物理机ip地址 以及实际物理机mysql端口</span>
+</span><span id="__span-17-48"><a id="__codelineno-17-48" name="__codelineno-17-48" href="#__codelineno-17-48"></a><span class="w">    </span>real_server<span class="w"> </span><span class="m">192</span>.168.222.129<span class="w"> </span><span class="m">3306</span><span class="w"> </span><span class="o">{</span>
+</span><span id="__span-17-49"><a id="__codelineno-17-49" name="__codelineno-17-49" href="#__codelineno-17-49"></a><span class="w">        </span><span class="c1">#当该ip 端口连接异常时，执行该脚本</span>
+</span><span id="__span-17-50"><a id="__codelineno-17-50" name="__codelineno-17-50" href="#__codelineno-17-50"></a><span class="w">        </span>notify_down<span class="w"> </span>/etc/keepalived/shutdow.sh
+</span><span id="__span-17-51"><a id="__codelineno-17-51" name="__codelineno-17-51" href="#__codelineno-17-51"></a><span class="w">        </span>TCP_CHECK<span class="w"> </span><span class="o">{</span>
+</span><span id="__span-17-52"><a id="__codelineno-17-52" name="__codelineno-17-52" href="#__codelineno-17-52"></a><span class="w">            </span><span class="c1">#实际物理机ip地址</span>
+</span><span id="__span-17-53"><a id="__codelineno-17-53" name="__codelineno-17-53" href="#__codelineno-17-53"></a><span class="w">            </span>connect_ip<span class="w"> </span><span class="m">192</span>.168.222.129
+</span><span id="__span-17-54"><a id="__codelineno-17-54" name="__codelineno-17-54" href="#__codelineno-17-54"></a><span class="w">            </span><span class="c1">#实际物理机port端口</span>
+</span><span id="__span-17-55"><a id="__codelineno-17-55" name="__codelineno-17-55" href="#__codelineno-17-55"></a><span class="w">            </span>connect_port<span class="w"> </span><span class="m">3306</span>
+</span><span id="__span-17-56"><a id="__codelineno-17-56" name="__codelineno-17-56" href="#__codelineno-17-56"></a><span class="w">            </span>connect_timeout<span class="w"> </span><span class="m">3</span>
+</span><span id="__span-17-57"><a id="__codelineno-17-57" name="__codelineno-17-57" href="#__codelineno-17-57"></a><span class="w">            </span>nb_get_retry<span class="w"> </span><span class="m">3</span>
+</span><span id="__span-17-58"><a id="__codelineno-17-58" name="__codelineno-17-58" href="#__codelineno-17-58"></a><span class="w">            </span>delay_before_retry<span class="w"> </span><span class="m">3</span>
+</span><span id="__span-17-59"><a id="__codelineno-17-59" name="__codelineno-17-59" href="#__codelineno-17-59"></a><span class="w">        </span><span class="o">}</span>
+</span><span id="__span-17-60"><a id="__codelineno-17-60" name="__codelineno-17-60" href="#__codelineno-17-60"></a><span class="w">    </span><span class="o">}</span>
+</span><span id="__span-17-61"><a id="__codelineno-17-61" name="__codelineno-17-61" href="#__codelineno-17-61"></a><span class="o">}</span>
+</span></code></pre></div>
 <p>详细配置参考<a href="https://blog.csdn.net/a360284634/article/details/89892028#:~:text=5.%E4%BF%AE%E6%94%B9128,%E9%85%8D%E7%BD%AE%E8%AF%A6%E8%A7%A3%E3%80%8B">《Keepalived 安装和配置详解》</a></p>
 <ol>
 <li>将128、129服务器keepalived加入开机自启，并启动服务</li>
 </ol>
-<pre><code class="language-shell">[root@128 keepalived-2.2.7]# systemctl enable keepalived
-[root@128 keepalived-2.2.7]# systemctl start keepalived
-</code></pre>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="o">[</span>root@128<span class="w"> </span>keepalived-2.2.7<span class="o">]</span><span class="c1"># systemctl enable keepalived</span>
+</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="o">[</span>root@128<span class="w"> </span>keepalived-2.2.7<span class="o">]</span><span class="c1"># systemctl start keepalived</span>
+</span></code></pre></div>
 <ol>
 <li>
 <p>启动后keepalived状态为：active(running)则正常</p>
@@ -1607,6 +1615,11 @@ virtual_server 192.168.222.130 3306 {
           
           
         </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+            Back to top
+          </button>
         
       </main>
       
@@ -1637,7 +1650,7 @@ virtual_server 192.168.222.130 3306 {
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tracking", "navigation.expand", "navigation.sections", "navigation.indexes", "navigation.path", "toc.integrate"], "search": "../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tracking", "navigation.top", "navigation.sections", "navigation.indexes", "navigation.path", "toc.integrate", "content.code.copy"], "search": "../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
       <script src="../assets/javascripts/bundle.fac441b0.min.js"></script>

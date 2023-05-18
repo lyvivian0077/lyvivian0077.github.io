@@ -206,9 +206,7 @@
       
       
       
-        
-      
-      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
       
       
         
@@ -324,9 +322,7 @@
       
       
       
-        
-      
-      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
       
       
         
@@ -397,9 +393,7 @@
       
       
       
-        
-      
-      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
       
       
         
@@ -459,6 +453,8 @@
       <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" checked>
       
       
+        
+          
         
           
         
@@ -1047,6 +1043,20 @@
   
   
     <li class="md-nav__item">
+      <a href="../mysql-mgr-copy/" class="md-nav__link">
+        転載MGR
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../mysql-ha/" class="md-nav__link">
         mysql+keepalived搭建教程
       </a>
@@ -1076,9 +1086,7 @@
       
       
       
-        
-      
-      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_9" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
       
       
         
@@ -1610,16 +1618,16 @@
 </tbody>
 </table>
 <p>结果值从 <strong>最好</strong> 到 <strong>最坏</strong> 依次是:</p>
-<pre><code>NULL &gt; system &gt; const &gt; eq_ref &gt; ref &gt; fulltext &gt; ref_or_null &gt; index_merge &gt; unique_subquery &gt; index_subquery &gt; range &gt; index &gt; ALL
-
-system &gt; const &gt; eq_ref &gt; ref &gt; range &gt; index &gt; ALL
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>NULL &gt; system &gt; const &gt; eq_ref &gt; ref &gt; fulltext &gt; ref_or_null &gt; index_merge &gt; unique_subquery &gt; index_subquery &gt; range &gt; index &gt; ALL
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>system &gt; const &gt; eq_ref &gt; ref &gt; range &gt; index &gt; ALL
+</span></code></pre></div>
 <p>一般来说,我们需要保证查询至少达到range级别, 最后达到ref.</p>
 <h5 id="explain-key">explain 之key<a class="headerlink" href="#explain-key" title="Permanent link">&para;</a></h5>
-<pre><code>possible_keys: 显示可能应用在这张表的索引, 一个或多个
-key: 实际使用的索引,如果为NULL,则没有使用索引
-key_len: 表示索引中使用的字节数, 该值为索引字段最大可能长度,并非实际使用长度,在不损失精确性的前提下,长度越短越好.
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>possible_keys: 显示可能应用在这张表的索引, 一个或多个
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>key: 实际使用的索引,如果为NULL,则没有使用索引
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>key_len: 表示索引中使用的字节数, 该值为索引字段最大可能长度,并非实际使用长度,在不损失精确性的前提下,长度越短越好.
+</span></code></pre></div>
 <h5 id="explain-rows">explain 之rows<a class="headerlink" href="#explain-rows" title="Permanent link">&para;</a></h5>
 <p>扫描行的数量</p>
 <h5 id="explain-extra">explain 之extra<a class="headerlink" href="#explain-extra" title="Permanent link">&para;</a></h5>
@@ -1649,75 +1657,75 @@ key_len: 表示索引中使用的字节数, 该值为索引字段最大可能长
 <p>6). 尽量使用覆盖索引,避免select *</p>
 <p>尽量使用覆盖索引(只访问索引的查询(<strong>索引列</strong> 完全包含 <strong>查询列</strong>)),减少<code>select *</code>.</p>
 <p>如果查询类,超出索引列,也会降低性能.</p>
-<pre><code>TIP:
- using index: 使用覆盖索引的时候就会出现
- using where: 在查找使用索引的情况下, 需要回表查询数据
- using index condition: 查找使用了索引, 但是需要回表查询数据
- using index; using where: 查找使用了索引, 但是需要的数据都在索引列中能找到, 所以不需要回表查询数据
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>TIP:
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a> using index: 使用覆盖索引的时候就会出现
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a> using where: 在查找使用索引的情况下, 需要回表查询数据
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a> using index condition: 查找使用了索引, 但是需要回表查询数据
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a> using index; using where: 查找使用了索引, 但是需要的数据都在索引列中能找到, 所以不需要回表查询数据
+</span></code></pre></div>
 <p>12) 单列索引和复合索引</p>
 <p>尽量使用复合索引, 而少使用单列索引</p>
 <ul>
 <li>创建复合索引</li>
 </ul>
-<pre><code>create index idx_name_sta_address on tb_seller(name, status, address);
-就相当于创建了三个索引:
-
-name
-name + status
-name + status + address
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>create index idx_name_sta_address on tb_seller(name, status, address);
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>就相当于创建了三个索引:
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>name
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>name + status
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>name + status + address
+</span></code></pre></div>
 <ul>
 <li>创建单列索引</li>
 </ul>
-<pre><code>create index idx_seller_name on tb_sell(name);
-create index idx_seller_status on tb_sell(status);
-create index idx_seller_address on tb_sell(address);
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>create index idx_seller_name on tb_sell(name);
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>create index idx_seller_status on tb_sell(status);
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>create index idx_seller_address on tb_sell(address);
+</span></code></pre></div>
 <p>数据库会选择一个最优的索引(辨识度最高索引)来使用,并不会使用全部索引.</p>
 <h4 id="_1">查看索引索引情况<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h4>
-<pre><code>show status like 'Handler_read%';
-show global status like 'Handler_read%';
-</code></pre>
-<pre><code>02:06:55 root@localhost[database1]&gt; show status like 'Handler_read%';
-
-+-----------------------+-------+
-| Variable_name         | Value |
-+-----------------------+-------+
-| Handler_read_first    | 0     |
-| Handler_read_key      | 0     |
-| Handler_read_last     | 0     |
-| Handler_read_next     | 0     |
-| Handler_read_prev     | 0     |
-| Handler_read_rnd      | 0     |
-| Handler_read_rnd_next | 34    |
-+-----------------------+-------+
-7 rows in set (0.01 sec)
-
-05:08:03 root@localhost[database1]&gt; show global status like 'Handler_read%';
-+-----------------------+--------------+
-| Variable_name         | Value        |
-+-----------------------+--------------+
-| Handler_read_first    | 622670       |
-| Handler_read_key      | 254215292    |
-| Handler_read_last     | 29           |
-| Handler_read_next     | 273266451    |
-| Handler_read_prev     | 97           |
-| Handler_read_rnd      | 10101645     |
-| Handler_read_rnd_next | 166307007667 |
-+-----------------------+--------------+
-7 rows in set (0.00 sec)
-
-05:08:11 root@localhost[database1]&gt;
-</code></pre>
-<pre><code>- Handler_read_first: 索引中第一条被读的次数.如果高,表示服务器正执行大量全索引扫描(这个值越低越好).
-
-- Handler_read_key: 如果索引正在工作,这个值代表一个行被索引值读的次数,如果值越低,表示索引得到的性能改善不高,因为索引不经常使用(这个值越高越好).
-
-- Handler_read_rnd: 根据固定位置读一行的请求值. 如果你正执行大量查询并需要对结果进行排序,该值应该较高. 你可能使用了大量需要MySQL扫描这个表的查询或你的连接没有正确使用键.这个值较高,意味着运行效率低,可以建立索引来补救.
-
-- Handler_read_rnd_next: 在数据文件中读下一行的请求数.如果你正在进行大量的表扫描,该值较高.通常说明你的表的索引不正确或写入的查询没有利用索引.
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>show status like &#39;Handler_read%&#39;;
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>show global status like &#39;Handler_read%&#39;;
+</span></code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>02:06:55 root@localhost[database1]&gt; show status like &#39;Handler_read%&#39;;
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>+-----------------------+-------+
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>| Variable_name         | Value |
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>+-----------------------+-------+
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>| Handler_read_first    | 0     |
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>| Handler_read_key      | 0     |
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>| Handler_read_last     | 0     |
+</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>| Handler_read_next     | 0     |
+</span><span id="__span-6-10"><a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a>| Handler_read_prev     | 0     |
+</span><span id="__span-6-11"><a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a>| Handler_read_rnd      | 0     |
+</span><span id="__span-6-12"><a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a>| Handler_read_rnd_next | 34    |
+</span><span id="__span-6-13"><a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a>+-----------------------+-------+
+</span><span id="__span-6-14"><a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a>7 rows in set (0.01 sec)
+</span><span id="__span-6-15"><a id="__codelineno-6-15" name="__codelineno-6-15" href="#__codelineno-6-15"></a>
+</span><span id="__span-6-16"><a id="__codelineno-6-16" name="__codelineno-6-16" href="#__codelineno-6-16"></a>05:08:03 root@localhost[database1]&gt; show global status like &#39;Handler_read%&#39;;
+</span><span id="__span-6-17"><a id="__codelineno-6-17" name="__codelineno-6-17" href="#__codelineno-6-17"></a>+-----------------------+--------------+
+</span><span id="__span-6-18"><a id="__codelineno-6-18" name="__codelineno-6-18" href="#__codelineno-6-18"></a>| Variable_name         | Value        |
+</span><span id="__span-6-19"><a id="__codelineno-6-19" name="__codelineno-6-19" href="#__codelineno-6-19"></a>+-----------------------+--------------+
+</span><span id="__span-6-20"><a id="__codelineno-6-20" name="__codelineno-6-20" href="#__codelineno-6-20"></a>| Handler_read_first    | 622670       |
+</span><span id="__span-6-21"><a id="__codelineno-6-21" name="__codelineno-6-21" href="#__codelineno-6-21"></a>| Handler_read_key      | 254215292    |
+</span><span id="__span-6-22"><a id="__codelineno-6-22" name="__codelineno-6-22" href="#__codelineno-6-22"></a>| Handler_read_last     | 29           |
+</span><span id="__span-6-23"><a id="__codelineno-6-23" name="__codelineno-6-23" href="#__codelineno-6-23"></a>| Handler_read_next     | 273266451    |
+</span><span id="__span-6-24"><a id="__codelineno-6-24" name="__codelineno-6-24" href="#__codelineno-6-24"></a>| Handler_read_prev     | 97           |
+</span><span id="__span-6-25"><a id="__codelineno-6-25" name="__codelineno-6-25" href="#__codelineno-6-25"></a>| Handler_read_rnd      | 10101645     |
+</span><span id="__span-6-26"><a id="__codelineno-6-26" name="__codelineno-6-26" href="#__codelineno-6-26"></a>| Handler_read_rnd_next | 166307007667 |
+</span><span id="__span-6-27"><a id="__codelineno-6-27" name="__codelineno-6-27" href="#__codelineno-6-27"></a>+-----------------------+--------------+
+</span><span id="__span-6-28"><a id="__codelineno-6-28" name="__codelineno-6-28" href="#__codelineno-6-28"></a>7 rows in set (0.00 sec)
+</span><span id="__span-6-29"><a id="__codelineno-6-29" name="__codelineno-6-29" href="#__codelineno-6-29"></a>
+</span><span id="__span-6-30"><a id="__codelineno-6-30" name="__codelineno-6-30" href="#__codelineno-6-30"></a>05:08:11 root@localhost[database1]&gt;
+</span></code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>- Handler_read_first: 索引中第一条被读的次数.如果高,表示服务器正执行大量全索引扫描(这个值越低越好).
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>- Handler_read_key: 如果索引正在工作,这个值代表一个行被索引值读的次数,如果值越低,表示索引得到的性能改善不高,因为索引不经常使用(这个值越高越好).
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>- Handler_read_rnd: 根据固定位置读一行的请求值. 如果你正执行大量查询并需要对结果进行排序,该值应该较高. 你可能使用了大量需要MySQL扫描这个表的查询或你的连接没有正确使用键.这个值较高,意味着运行效率低,可以建立索引来补救.
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>- Handler_read_rnd_next: 在数据文件中读下一行的请求数.如果你正在进行大量的表扫描,该值较高.通常说明你的表的索引不正确或写入的查询没有利用索引.
+</span></code></pre></div>
 <h4 id="sql">SQL优化<a class="headerlink" href="#sql" title="Permanent link">&para;</a></h4>
 <ol>
 <li>
@@ -1825,9 +1833,11 @@ show global status like 'Handler_read%';
 </ol>
 <p>由于group by 实际上也同样会进行排序操作, 而且于order by 相比,group by 只要只是多了排序之后的分组操作. 当然,如果在分组的时候还使用了其他的一些聚合函数, 那么还需要一些聚合函数的计算.所以,在group by 的实现过程中,于order by一样也可以利用到索引. </p>
 <p>如果查询包含group by 但是用户想要避免排序结果的消耗,则可以执行<code>order by null</code> 禁止排序. 如下:</p>
-<p><code>explain select age, count(*) from emp group by age;</code></p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>explain select age, count(*) from emp group by age;
+</span></code></pre></div>
 <p>优化后</p>
-<p><code>explain select age,count(*) from emp group by age order by null;</code></p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>explain select age,count(*) from emp group by age order by null;
+</span></code></pre></div>
 <ol>
 <li>
 <h5 id="_3">优化嵌套查询<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h5>
@@ -1842,7 +1852,8 @@ show global status like 'Handler_read%';
 <p>对于包含OR查询子句,如果要利用索引,则OR之间的每个条件列都必须用到索引, 而且不能使用到复合索引; 如果没有索引,则应该考虑增加索引.</p>
 <p><strong>建议使用union替换or</strong>.</p>
 <p>type显示的是访问类型,是较为重要的一个指标,结果值从好到坏依次是:</p>
-<p><code>system &gt; const &gt; eq_ref &gt; ref &gt; fulltext &gt; ref_or_null &gt; index_merger &gt; unique_subquery &gt; index_subquery &gt; range &gt; index &gt; ALL</code></p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>system &gt; const &gt; eq_ref &gt; ref &gt; fulltext &gt; ref_or_null &gt; index_merger &gt; unique_subquery &gt; index_subquery &gt; range &gt; index &gt; ALL
+</span></code></pre></div>
 <p>UNION 语句的type值为ref, OR语句的type值为range, 可以看到这是一个很明显的差距</p>
 <p>UNION 语句的ref值为const, OR语句的type值为null, const表示是常量值引用,非常快</p>
 <p>这两项的差距就说明了UNION要优于OR.</p>
@@ -1885,20 +1896,20 @@ show global status like 'Handler_read%';
 </li>
 </ol>
 <h4 id="_5">查询缓存配置<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h4>
-<pre><code>mysql&gt; show status like 'Qcache%';
-+-------------------------+------------+
-| Variable_name           | Value      |
-+-------------------------+------------+
-| Qcache_free_blocks      | 23822      | &lt;- 可用的内存的块的个数
-| Qcache_free_memory      | 70259792   | &lt;- 可用的内存的空间,容量
-| Qcache_hits             | 1594706026 | &lt;- 查询缓冲的命中次数
-| Qcache_inserts          | 678651145  | &lt;- 添加到查询缓冲的次数
-| Qcache_lowmem_prunes    | 237160055  | &lt;- 如果内存不足,将数据移除出内存空间的次数
-| Qcache_not_cached       | 1344572761 | &lt;- 未做缓存的次数
-| Qcache_queries_in_cache | 67682      | &lt;- 查询缓存中注册的查询数
-| Qcache_total_blocks     | 181973     | &lt;- 查询缓存中的块总数
-+-------------------------+------------+
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>mysql&gt; show status like &#39;Qcache%&#39;;
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>+-------------------------+------------+
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>| Variable_name           | Value      |
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>+-------------------------+------------+
+</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>| Qcache_free_blocks      | 23822      | &lt;- 可用的内存的块的个数
+</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>| Qcache_free_memory      | 70259792   | &lt;- 可用的内存的空间,容量
+</span><span id="__span-11-7"><a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a>| Qcache_hits             | 1594706026 | &lt;- 查询缓冲的命中次数
+</span><span id="__span-11-8"><a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a>| Qcache_inserts          | 678651145  | &lt;- 添加到查询缓冲的次数
+</span><span id="__span-11-9"><a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a>| Qcache_lowmem_prunes    | 237160055  | &lt;- 如果内存不足,将数据移除出内存空间的次数
+</span><span id="__span-11-10"><a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a>| Qcache_not_cached       | 1344572761 | &lt;- 未做缓存的次数
+</span><span id="__span-11-11"><a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a>| Qcache_queries_in_cache | 67682      | &lt;- 查询缓存中注册的查询数
+</span><span id="__span-11-12"><a id="__codelineno-11-12" name="__codelineno-11-12" href="#__codelineno-11-12"></a>| Qcache_total_blocks     | 181973     | &lt;- 查询缓存中的块总数
+</span><span id="__span-11-13"><a id="__codelineno-11-13" name="__codelineno-11-13" href="#__codelineno-11-13"></a>+-------------------------+------------+
+</span></code></pre></div>
 <table>
 <thead>
 <tr>
@@ -2094,9 +2105,9 @@ show global status like 'Handler_read%';
 <p>MyISAM 在执行查询语句（SELECT）前，会自动给涉及的所有表加读锁，在执行更新操作（UPDATE、DELETE、INSERT等）前，会自动给涉及的表加写锁。</p>
 <p>这个过程并不需要用户干预，因此，用户一般不需要直接用 <code>LOCJ TABLE</code>命令给 MyISAM 表显示加锁。</p>
 <p>显示加表锁语法：</p>
-<pre><code class="language-sql">加读锁：lock table table_name read;
-加写锁：lock table table_name write;
-</code></pre>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="err">加读锁：</span><span class="k">lock</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="k">table_name</span><span class="w"> </span><span class="k">read</span><span class="p">;</span>
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="err">加写锁：</span><span class="k">lock</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="k">table_name</span><span class="w"> </span><span class="k">write</span><span class="p">;</span>
+</span></code></pre></div>
 <h4 id="244">2.4.4、结论<a class="headerlink" href="#244" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
@@ -2128,23 +2139,23 @@ show global status like 'Handler_read%';
 <p>简而言之，<strong>就是读锁会阻塞写，但是不会阻塞读</strong>。而写锁，<strong>既会阻塞读，又会阻塞写</strong>。</p>
 <p>此外， MyISAM 的读写锁调度是 <strong>写</strong> 优先。这也是 MyISAM 不适合作为写为主的表的存储引擎的原因。因为写锁后，其他线程不能做任何操作，大量的更新会使查询很难得到锁，从而造成永远阻塞。</p>
 <h4 id="245">2.4.5、查看锁的争用情况<a class="headerlink" href="#245" title="Permanent link">&para;</a></h4>
-<pre><code class="language-sql">show open tables;
-</code></pre>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="k">show</span><span class="w"> </span><span class="k">open</span><span class="w"> </span><span class="n">tables</span><span class="p">;</span>
+</span></code></pre></div>
 <ol>
 <li>In_use：表当前被查询使用的次数，如果为零，则表是打开的，但是当前没有被使用。</li>
 <li>Name_locked：表名称是否被锁定。名称锁定用于取消表或对表进行重命名等操作。</li>
 </ol>
-<pre><code>show status like 'Table_locks%';
-
-mysql&gt; show status like 'Table_lock%';
-+-----------------------+------------+
-| Variable_name         | Value      |
-+-----------------------+------------+
-| Table_locks_immediate | 2772892035 |
-| Table_locks_waited    | 64713      |
-+-----------------------+------------+
-2 rows in set (0.00 sec)
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>show status like &#39;Table_locks%&#39;;
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>mysql&gt; show status like &#39;Table_lock%&#39;;
+</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>+-----------------------+------------+
+</span><span id="__span-14-5"><a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a>| Variable_name         | Value      |
+</span><span id="__span-14-6"><a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a>+-----------------------+------------+
+</span><span id="__span-14-7"><a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a>| Table_locks_immediate | 2772892035 |
+</span><span id="__span-14-8"><a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a>| Table_locks_waited    | 64713      |
+</span><span id="__span-14-9"><a id="__codelineno-14-9" name="__codelineno-14-9" href="#__codelineno-14-9"></a>+-----------------------+------------+
+</span><span id="__span-14-10"><a id="__codelineno-14-10" name="__codelineno-14-10" href="#__codelineno-14-10"></a>2 rows in set (0.00 sec)
+</span></code></pre></div>
 <ol>
 <li>Table_locks_immediate：指的是能够立即获得表级锁的次数，每立即获取锁，值加 1。</li>
 <li>Table_locks_waited：指的是不能立即获取表极锁而需要等待的次数，每等待一次，该值加 1，此值越高说明存在着较为严重的表极锁争用情况。</li>
@@ -2256,8 +2267,8 @@ mysql&gt; show status like 'Table_lock%';
 </table>
 <p>备注 ： √ 代表可能出现 ， × 代表不会出现 。</p>
 <p><strong>MySQL 的数据库默认隔离级别为 Repeatable read</strong>，查看方式为：</p>
-<pre><code class="language-sql">show variables like 'tx_isolation';
-</code></pre>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="k">show</span><span class="w"> </span><span class="n">variables</span><span class="w"> </span><span class="k">like</span><span class="w"> </span><span class="s1">&#39;tx_isolation&#39;</span><span class="p">;</span>
+</span></code></pre></div>
 <h4 id="253innodb">2.5.3、InnoDB 的行锁模式<a class="headerlink" href="#253innodb" title="Permanent link">&para;</a></h4>
 <p>InnoDB 实现了以下两种类型的行锁。</p>
 <ul>
@@ -2267,33 +2278,33 @@ mysql&gt; show status like 'Table_lock%';
 <p>对于 UPDATE、DELETE、INSERT 语句，InnoDB 会自动给涉及数据集加 排他锁（X）；
 对于普通 SELECT 语句， InnoDB 不会加任何锁；</p>
 <p>可以通过以下语句显示给记录集加共享锁或排他锁。</p>
-<pre><code class="language-sql">共享锁（S）：select * from table_name where ... lock in share mode
-排他锁（X）：select * from table_name where ... for update
-</code></pre>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="err">共享锁（</span><span class="n">S</span><span class="err">）：</span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="k">table_name</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="k">lock</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">share</span><span class="w"> </span><span class="k">mode</span>
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="err">排他锁（</span><span class="n">X</span><span class="err">）：</span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="k">table_name</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="k">update</span>
+</span></code></pre></div>
 <h4 id="256">2.5.6、无索引行锁升级为表锁<a class="headerlink" href="#256" title="Permanent link">&para;</a></h4>
 <p>如果不通过索引条件检索数据，那么 InnoDB 将对表中的所有记录加锁，实际效果跟表锁一样。</p>
 <p>查看当前表的索引：</p>
-<pre><code class="language-sql">show index from test_innodb_lock;
-</code></pre>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="k">show</span><span class="w"> </span><span class="k">index</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">test_innodb_lock</span><span class="p">;</span>
+</span></code></pre></div>
 <p>由于执行更新时， name 字段本来为 varchar 类型，我们是作为数据类型使用，存在类型转换，索引失效，最终 行锁变为表锁。</p>
 <h4 id="257">2.5.7、间隙锁危害<a class="headerlink" href="#257" title="Permanent link">&para;</a></h4>
 <p>当我们用范围条件，而不是使用相等条件检索数据，并请求共享或排它锁时，InnoDB 会给符合条件的已有数据进行加锁；对于键值在条件范围内但不存在记录，叫做“<strong>间隙（GAP）</strong>”，InnoDB 也会对这个“间隙”加锁，这种机制就是所谓的 <strong>间隙锁（Next-key锁）</strong></p>
 <h4 id="258innodb">2.5.8、InnoDB行锁争用情况<a class="headerlink" href="#258innodb" title="Permanent link">&para;</a></h4>
-<pre><code class="language-sql">show status like 'innodb_row_lock%';
-</code></pre>
-<pre><code>Innodb_row_lock_current_waits: 当前正在等待锁定的数量
-
-Innodb_row_lock_time: 从系统启动到现在锁定总时间长度
-
-Innodb_row_lock_time_avg:每次等待所花平均时长
-
-Innodb_row_lock_time_max:从系统启动到现在等待最长的一次所花的时间
-
-Innodb_row_lock_waits: 系统启动后到现在总共等待的次数
-
-
-当等待的次数很高，而且每次等待的时长也不小的时候，我们就需要分析系统中为什么会有如此多的等待，然后根据分析结果着手制定优化计划。
-</code></pre>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="k">show</span><span class="w"> </span><span class="n">status</span><span class="w"> </span><span class="k">like</span><span class="w"> </span><span class="s1">&#39;innodb_row_lock%&#39;</span><span class="p">;</span>
+</span></code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>Innodb_row_lock_current_waits: 当前正在等待锁定的数量
+</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>
+</span><span id="__span-19-3"><a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a>Innodb_row_lock_time: 从系统启动到现在锁定总时间长度
+</span><span id="__span-19-4"><a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a>
+</span><span id="__span-19-5"><a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a>Innodb_row_lock_time_avg:每次等待所花平均时长
+</span><span id="__span-19-6"><a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a>
+</span><span id="__span-19-7"><a id="__codelineno-19-7" name="__codelineno-19-7" href="#__codelineno-19-7"></a>Innodb_row_lock_time_max:从系统启动到现在等待最长的一次所花的时间
+</span><span id="__span-19-8"><a id="__codelineno-19-8" name="__codelineno-19-8" href="#__codelineno-19-8"></a>
+</span><span id="__span-19-9"><a id="__codelineno-19-9" name="__codelineno-19-9" href="#__codelineno-19-9"></a>Innodb_row_lock_waits: 系统启动后到现在总共等待的次数
+</span><span id="__span-19-10"><a id="__codelineno-19-10" name="__codelineno-19-10" href="#__codelineno-19-10"></a>
+</span><span id="__span-19-11"><a id="__codelineno-19-11" name="__codelineno-19-11" href="#__codelineno-19-11"></a>
+</span><span id="__span-19-12"><a id="__codelineno-19-12" name="__codelineno-19-12" href="#__codelineno-19-12"></a>当等待的次数很高，而且每次等待的时长也不小的时候，我们就需要分析系统中为什么会有如此多的等待，然后根据分析结果着手制定优化计划。
+</span></code></pre></div>
 <h4 id="259">2.5.9、总结<a class="headerlink" href="#259" title="Permanent link">&para;</a></h4>
 <p>InnoDB 存储引擎由于实现了行级锁定，虽然在锁定机制的实现方面带来了性能损耗可能比表极锁会更高一些，但是在整体并发处理能力方面要远远优于MyISAM的表锁的。当系统并发量比较高的时候，InnoDB 的整体性能和 MyISAM 相比就会有比较明显的优势。</p>
 <p>但是，InnoDB 的行级锁也有脆弱的一面，当我们使用不当的时候，可能会让 InnoDB 的整体性能表现不仅不能比 MyISAM 高，甚至会更差。</p>
@@ -2308,43 +2319,43 @@ Innodb_row_lock_waits: 系统启动后到现在总共等待的次数
 <h2 id="3mysql">3、常用MySQL技巧<a class="headerlink" href="#3mysql" title="Permanent link">&para;</a></h2>
 <h4 id="1-sql">1. SQL 执行顺序<a class="headerlink" href="#1-sql" title="Permanent link">&para;</a></h4>
 <p>编写顺序</p>
-<pre><code class="language-sql">SELECT DISTINCT
- &lt;select list&gt;
-FROM
- &lt;left_table&gt; &lt;join_type&gt;
-JOIN
- &lt;right_table&gt; ON &lt;join_condition&gt;
-WHERE
- &lt;where_condition&gt;
-GROUP BY
- &lt;group_by_list&gt;
-HAVING
- &lt;having_condition&gt;
-ORDER BY
- &lt;order_by_condition&gt;
-LIMIT
- &lt;limit_params&gt;
-12345678910111213141516
-</code></pre>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="k">DISTINCT</span>
+</span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a><span class="w"> </span><span class="o">&lt;</span><span class="k">select</span><span class="w"> </span><span class="n">list</span><span class="o">&gt;</span>
+</span><span id="__span-20-3"><a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a><span class="k">FROM</span>
+</span><span id="__span-20-4"><a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a><span class="w"> </span><span class="o">&lt;</span><span class="n">left_table</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&lt;</span><span class="n">join_type</span><span class="o">&gt;</span>
+</span><span id="__span-20-5"><a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a><span class="k">JOIN</span>
+</span><span id="__span-20-6"><a id="__codelineno-20-6" name="__codelineno-20-6" href="#__codelineno-20-6"></a><span class="w"> </span><span class="o">&lt;</span><span class="n">right_table</span><span class="o">&gt;</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="o">&lt;</span><span class="n">join_condition</span><span class="o">&gt;</span>
+</span><span id="__span-20-7"><a id="__codelineno-20-7" name="__codelineno-20-7" href="#__codelineno-20-7"></a><span class="k">WHERE</span>
+</span><span id="__span-20-8"><a id="__codelineno-20-8" name="__codelineno-20-8" href="#__codelineno-20-8"></a><span class="w"> </span><span class="o">&lt;</span><span class="n">where_condition</span><span class="o">&gt;</span>
+</span><span id="__span-20-9"><a id="__codelineno-20-9" name="__codelineno-20-9" href="#__codelineno-20-9"></a><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span>
+</span><span id="__span-20-10"><a id="__codelineno-20-10" name="__codelineno-20-10" href="#__codelineno-20-10"></a><span class="w"> </span><span class="o">&lt;</span><span class="n">group_by_list</span><span class="o">&gt;</span>
+</span><span id="__span-20-11"><a id="__codelineno-20-11" name="__codelineno-20-11" href="#__codelineno-20-11"></a><span class="k">HAVING</span>
+</span><span id="__span-20-12"><a id="__codelineno-20-12" name="__codelineno-20-12" href="#__codelineno-20-12"></a><span class="w"> </span><span class="o">&lt;</span><span class="n">having_condition</span><span class="o">&gt;</span>
+</span><span id="__span-20-13"><a id="__codelineno-20-13" name="__codelineno-20-13" href="#__codelineno-20-13"></a><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span>
+</span><span id="__span-20-14"><a id="__codelineno-20-14" name="__codelineno-20-14" href="#__codelineno-20-14"></a><span class="w"> </span><span class="o">&lt;</span><span class="n">order_by_condition</span><span class="o">&gt;</span>
+</span><span id="__span-20-15"><a id="__codelineno-20-15" name="__codelineno-20-15" href="#__codelineno-20-15"></a><span class="k">LIMIT</span>
+</span><span id="__span-20-16"><a id="__codelineno-20-16" name="__codelineno-20-16" href="#__codelineno-20-16"></a><span class="w"> </span><span class="o">&lt;</span><span class="n">limit_params</span><span class="o">&gt;</span>
+</span><span id="__span-20-17"><a id="__codelineno-20-17" name="__codelineno-20-17" href="#__codelineno-20-17"></a><span class="mi">12345678910111213141516</span>
+</span></code></pre></div>
 <p>执行顺序</p>
-<pre><code class="language-sql">FROM    &lt;left_table&gt;
-
-ON      &lt;join_condition&gt;
-
-&lt;join_type&gt;     JOIN    &lt;right_table&gt;
-
-WHERE       &lt;where_condition&gt;
-
-GROUP BY    &lt;group_by_list&gt;
-
-HAVING      &lt;having_condition&gt;
-
-SELECT DISTINCT     &lt;select list&gt;
-
-ORDER BY    &lt;order_by_condition&gt;
-
-LIMIT       &lt;limit_params&gt;
-</code></pre>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="k">FROM</span><span class="w">    </span><span class="o">&lt;</span><span class="n">left_table</span><span class="o">&gt;</span>
+</span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>
+</span><span id="__span-21-3"><a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a><span class="k">ON</span><span class="w">      </span><span class="o">&lt;</span><span class="n">join_condition</span><span class="o">&gt;</span>
+</span><span id="__span-21-4"><a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a>
+</span><span id="__span-21-5"><a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a><span class="o">&lt;</span><span class="n">join_type</span><span class="o">&gt;</span><span class="w">     </span><span class="k">JOIN</span><span class="w">    </span><span class="o">&lt;</span><span class="n">right_table</span><span class="o">&gt;</span>
+</span><span id="__span-21-6"><a id="__codelineno-21-6" name="__codelineno-21-6" href="#__codelineno-21-6"></a>
+</span><span id="__span-21-7"><a id="__codelineno-21-7" name="__codelineno-21-7" href="#__codelineno-21-7"></a><span class="k">WHERE</span><span class="w">       </span><span class="o">&lt;</span><span class="n">where_condition</span><span class="o">&gt;</span>
+</span><span id="__span-21-8"><a id="__codelineno-21-8" name="__codelineno-21-8" href="#__codelineno-21-8"></a>
+</span><span id="__span-21-9"><a id="__codelineno-21-9" name="__codelineno-21-9" href="#__codelineno-21-9"></a><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w">    </span><span class="o">&lt;</span><span class="n">group_by_list</span><span class="o">&gt;</span>
+</span><span id="__span-21-10"><a id="__codelineno-21-10" name="__codelineno-21-10" href="#__codelineno-21-10"></a>
+</span><span id="__span-21-11"><a id="__codelineno-21-11" name="__codelineno-21-11" href="#__codelineno-21-11"></a><span class="k">HAVING</span><span class="w">      </span><span class="o">&lt;</span><span class="n">having_condition</span><span class="o">&gt;</span>
+</span><span id="__span-21-12"><a id="__codelineno-21-12" name="__codelineno-21-12" href="#__codelineno-21-12"></a>
+</span><span id="__span-21-13"><a id="__codelineno-21-13" name="__codelineno-21-13" href="#__codelineno-21-13"></a><span class="k">SELECT</span><span class="w"> </span><span class="k">DISTINCT</span><span class="w">     </span><span class="o">&lt;</span><span class="k">select</span><span class="w"> </span><span class="n">list</span><span class="o">&gt;</span>
+</span><span id="__span-21-14"><a id="__codelineno-21-14" name="__codelineno-21-14" href="#__codelineno-21-14"></a>
+</span><span id="__span-21-15"><a id="__codelineno-21-15" name="__codelineno-21-15" href="#__codelineno-21-15"></a><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w">    </span><span class="o">&lt;</span><span class="n">order_by_condition</span><span class="o">&gt;</span>
+</span><span id="__span-21-16"><a id="__codelineno-21-16" name="__codelineno-21-16" href="#__codelineno-21-16"></a>
+</span><span id="__span-21-17"><a id="__codelineno-21-17" name="__codelineno-21-17" href="#__codelineno-21-17"></a><span class="k">LIMIT</span><span class="w">       </span><span class="o">&lt;</span><span class="n">limit_params</span><span class="o">&gt;</span>
+</span></code></pre></div>
 <h4 id="2">2. 正则表达式使用<a class="headerlink" href="#2" title="Permanent link">&para;</a></h4>
 <p>正则表达式（Regular Expression）是指一个用来描述或者匹配一系列符合某个句法规则的字符串的单个字符串。</p>
 <table>
@@ -2413,11 +2424,11 @@ LIMIT       &lt;limit_params&gt;
 </tr>
 </tbody>
 </table>
-<pre><code>select * from emp where name regexp '^T';
-select * from emp where name regexp '2$';
-select * from emp where name regexp '[uvw]';
-12345
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>select * from emp where name regexp &#39;^T&#39;;
+</span><span id="__span-22-2"><a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>select * from emp where name regexp &#39;2$&#39;;
+</span><span id="__span-22-3"><a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a>select * from emp where name regexp &#39;[uvw]&#39;;
+</span><span id="__span-22-4"><a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a>12345
+</span></code></pre></div>
 <h4 id="3-mysql">3. MySQL 常用函数<a class="headerlink" href="#3-mysql" title="Permanent link">&para;</a></h4>
 <p>数字函数</p>
 <table>
@@ -2683,6 +2694,11 @@ select * from emp where name regexp '[uvw]';
           
         </div>
         
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+            Back to top
+          </button>
+        
       </main>
       
         <footer class="md-footer">
@@ -2712,7 +2728,7 @@ select * from emp where name regexp '[uvw]';
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tracking", "navigation.expand", "navigation.sections", "navigation.indexes", "navigation.path", "toc.integrate"], "search": "../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tracking", "navigation.top", "navigation.sections", "navigation.indexes", "navigation.path", "toc.integrate", "content.code.copy"], "search": "../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
       <script src="../assets/javascripts/bundle.fac441b0.min.js"></script>

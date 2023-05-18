@@ -206,9 +206,7 @@
       
       
       
-        
-      
-      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
       
       
         
@@ -324,9 +322,7 @@
       
       
       
-        
-      
-      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
       
       
         
@@ -397,9 +393,7 @@
       
       
       
-        
-      
-      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
       
       
         
@@ -454,11 +448,11 @@
       
       
       
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+      
+      
         
-      
-      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_8" >
-      
-      
+          
         
           
         
@@ -578,6 +572,20 @@
   
   
     <li class="md-nav__item">
+      <a href="../mysql-mgr-copy/" class="md-nav__link">
+        転載MGR
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../mysql-ha/" class="md-nav__link">
         mysql+keepalived搭建教程
       </a>
@@ -607,9 +615,7 @@
       
       
       
-        
-      
-      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_9" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
       
       
         
@@ -1071,32 +1077,30 @@
 
 
 <h2 id="build-vim">build vim<a class="headerlink" href="#build-vim" title="Permanent link">&para;</a></h2>
-<pre><code class="language-shell">$ ./configure --prefix=$HOME/myetc \
---with-features=huge \
---enable-gui=gnome2 \
---enable-perlinterp \
---enable-pythoninterp \
---enable-python3interp \
---enable-fail-if-missing \
---disable-selinux \
---enable-pythoninterp=dynamic \
---with-python-config-dir=/home/user/.pyenv/versions/2.7.14/lib/python2.7/config \
---enable-python3interp=dynamic \
---with-python3-config-dir=/home/user/.pyenv/versions/3.6.5/lib/python3.6/config-3.6m \
---enable-rubyinterp=dynamic \
---enable-cscope \
---enable-fontset \
---enable-multibyte \
-vi_cv_path_python3=/home/uers/.pyenv/versions/3.6.5/bin/python3.6
-
-make
-make install
-vim ~/.zshrc
-alias vi='~/myetc/bin/vim'
-alias vim='~/myetc/bin/vim'
-
-
-</code></pre>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>$<span class="w"> </span>./configure<span class="w"> </span>--prefix<span class="o">=</span><span class="nv">$HOME</span>/myetc<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>--with-features<span class="o">=</span>huge<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>--enable-gui<span class="o">=</span>gnome2<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>--enable-perlinterp<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>--enable-pythoninterp<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>--enable-python3interp<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>--enable-fail-if-missing<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>--disable-selinux<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>--enable-pythoninterp<span class="o">=</span>dynamic<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>--with-python-config-dir<span class="o">=</span>/home/user/.pyenv/versions/2.7.14/lib/python2.7/config<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>--enable-python3interp<span class="o">=</span>dynamic<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>--with-python3-config-dir<span class="o">=</span>/home/user/.pyenv/versions/3.6.5/lib/python3.6/config-3.6m<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>--enable-rubyinterp<span class="o">=</span>dynamic<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>--enable-cscope<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>--enable-fontset<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>--enable-multibyte<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="nv">vi_cv_path_python3</span><span class="o">=</span>/home/uers/.pyenv/versions/3.6.5/bin/python3.6
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>make
+</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>make<span class="w"> </span>install
+</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>vim<span class="w"> </span>~/.zshrc
+</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="nb">alias</span><span class="w"> </span><span class="nv">vi</span><span class="o">=</span><span class="s1">&#39;~/myetc/bin/vim&#39;</span>
+</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a><span class="nb">alias</span><span class="w"> </span><span class="nv">vim</span><span class="o">=</span><span class="s1">&#39;~/myetc/bin/vim&#39;</span>
+</span></code></pre></div>
 <table>
 <thead>
 <tr>
@@ -1995,6 +1999,11 @@ alias vim='~/myetc/bin/vim'
           
         </div>
         
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+            Back to top
+          </button>
+        
       </main>
       
         <footer class="md-footer">
@@ -2024,7 +2033,7 @@ alias vim='~/myetc/bin/vim'
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tracking", "navigation.expand", "navigation.sections", "navigation.indexes", "navigation.path", "toc.integrate"], "search": "../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tracking", "navigation.top", "navigation.sections", "navigation.indexes", "navigation.path", "toc.integrate", "content.code.copy"], "search": "../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
       <script src="../assets/javascripts/bundle.fac441b0.min.js"></script>

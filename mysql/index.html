@@ -206,9 +206,7 @@
       
       
       
-        
-      
-      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
       
       
         
@@ -324,9 +322,7 @@
       
       
       
-        
-      
-      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
       
       
         
@@ -397,9 +393,7 @@
       
       
       
-        
-      
-      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
       
       
         
@@ -459,6 +453,8 @@
       <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" checked>
       
       
+        
+          
         
           
         
@@ -703,6 +699,20 @@
   
   
     <li class="md-nav__item">
+      <a href="../mysql-mgr-copy/" class="md-nav__link">
+        転載MGR
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../mysql-ha/" class="md-nav__link">
         mysql+keepalived搭建教程
       </a>
@@ -732,9 +742,7 @@
       
       
       
-        
-      
-      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_9" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
       
       
         
@@ -1160,231 +1168,231 @@
 
 <h4 id="mysql">Mysql参数优化对于新手来讲，是比较难懂的东西，其实这个参数优化，是个很复杂的东西，<a class="headerlink" href="#mysql" title="Permanent link">&para;</a></h4>
 <p>对于不同的网站，及其在线量，访问量，帖子数量，网络情况，以及机器硬件配置都有关系，优化不可能一次性完成，需要不断的观察以及调试，才有可能得到最佳效果。</p>
-<pre><code>[client]
-port = 3306
-socket = /tmp/mysql.sock
-[mysqld]
-port = 3306
-socket = /tmp/mysql.sock
-basedir = /usr/local/mysql
-datadir = /data/mysql
-pid-file = /data/mysql/mysql.pid
-user = mysql
-bind-address = 0.0.0.0
-server-id = 1 #表示是本机的序号为1,一般来讲就是master的意思
-skip-name-resolve
-# 禁止MySQL对外部连接进行DNS解析，使用这一选项可以消除MySQL进行DNS解析的时间。但需要注意，如果开启该选项，
-# 则所有远程主机连接授权都要使用IP地址方式，否则MySQL将无法正常处理连接请求
-#skip-networking
-back_log = 600
-# MySQL能有的连接数量。当主要MySQL线程在一个很短时间内得到非常多的连接请求，这就起作用，
-# 然后主线程花些时间(尽管很短)检查连接并且启动一个新线程。back_log值指出在MySQL暂时停止回答新请求之前的短时间内多少个请求可以被存在堆栈中。
-# 如果期望在一个短时间内有很多连接，你需要增加它。也就是说，如果MySQL的连接数据达到max_connections时，新来的请求将会被存在堆栈中，
-# 以等待某一连接释放资源，该堆栈的数量即back_log，如果等待连接的数量超过back_log，将不被授予连接资源。
-# 另外，这值（back_log）限于您的操作系统对到来的TCP/IP连接的侦听队列的大小。
-# 你的操作系统在这个队列大小上有它自己的限制（可以检查你的OS文档找出这个变量的最大值），试图设定back_log高于你的操作系统的限制将是无效的。
-
-max_connections = 1000
-# MySQL的最大连接数，如果服务器的并发连接请求量比较大，建议调高此值，以增加并行连接数量，
-# 当然这建立在机器能支撑的情况下，因为如果连接数越多，介于MySQL会为每个连接提供连接缓冲区，
-# 就会开销越多的内存，所以要适当调整该值，不能盲目提高设值。可以过'conn%'通配符查看当前状态的连接数量，以定夺该值的大小。
-
-max_connect_errors = 6000
-# 对于同一主机，如果有超出该参数值个数的中断错误连接，则该主机将被禁止连接。如需对该主机进行解禁，执行：FLUSH HOST。
-
-open_files_limit = 65535
-# MySQL打开的文件描述符限制，默认最小1024;当open_files_limit没有被配置的时候，比较max_connections*5和ulimit -n的值，哪个大用哪个，
-# 当open_file_limit被配置的时候，比较open_files_limit和max_connections*5的值，哪个大用哪个。
-
-table_open_cache = 128
-# MySQL每打开一个表，都会读入一些数据到table_open_cache缓存中，当MySQL在这个缓存中找不到相应信息时，才会去磁盘上读取。默认值64
-# 假定系统有200个并发连接，则需将此参数设置为200*N(N为每个连接所需的文件描述符数目)；
-# 当把table_open_cache设置为很大时，如果系统处理不了那么多文件描述符，那么就会出现客户端失效，连接不上
-
-max_allowed_packet = 4M
-# 接受的数据包大小；增加该变量的值十分安全，这是因为仅当需要时才会分配额外内存。
-# 例如，仅当你发出长查询或MySQLd必须返回大的结果行时MySQLd才会分配更多内存。
-# 该变量之所以取较小默认值是一种预防措施，以捕获客户端和服务器之间的错误信息包，并确保不会因偶然使用大的信息包而导致内存溢出。
-
-binlog_cache_size = 1M
-# 一个事务，在没有提交的时候，产生的日志，记录到Cache中；等到事务提交需要提交的时候，则把日志持久化到磁盘。默认binlog_cache_size大小32K
-
-max_heap_table_size = 8M
-# 定义了用户可以创建的内存表(memory table)的大小。这个值用来计算内存表的最大行数值。这个变量支持动态改变
-
-tmp_table_size = 16M
-# MySQL的heap（堆积）表缓冲大小。所有联合在一个DML指令内完成，并且大多数联合甚至可以不用临时表即可以完成。
-# 大多数临时表是基于内存的(HEAP)表。具有大的记录长度的临时表 (所有列的长度的和)或包含BLOB列的表存储在硬盘上。
-# 如果某个内部heap（堆积）表大小超过tmp_table_size，MySQL可以根据需要自动将内存中的heap表改为基于硬盘的MyISAM表。
-# 还可以通过设置tmp_table_size选项来增加临时表的大小。也就是说，如果调高该值，MySQL同时将增加heap表的大小，可达到提高联接查询速度的效果
-
-read_buffer_size = 2M
-# MySQL读入缓冲区大小。对表进行顺序扫描的请求将分配一个读入缓冲区，MySQL会为它分配一段内存缓冲区。
-# read_buffer_size变量控制这一缓冲区的大小。
-# 如果对表的顺序扫描请求非常频繁，并且你认为频繁扫描进行得太慢，可以通过增加该变量值以及内存缓冲区大小提高其性能
-
-read_rnd_buffer_size = 8M
-# MySQL的随机读缓冲区大小。当按任意顺序读取行时(例如，按照排序顺序)，将分配一个随机读缓存区。进行排序查询时，
-# MySQL会首先扫描一遍该缓冲，以避免磁盘搜索，提高查询速度，如果需要排序大量数据，
-# 可适当调高该值。但MySQL会为每个客户连接发放该缓冲空间，所以应尽量适当设置该值，以避免内存开销过大
-
-sort_buffer_size = 8M
-# MySQL执行排序使用的缓冲大小。如果想要增加ORDER BY的速度，首先看是否可以让MySQL使用索引而不是额外的排序阶段。
-# 如果不能，可以尝试增加sort_buffer_size变量的大小
-
-join_buffer_size = 8M
-# 联合查询操作所能使用的缓冲区大小，和sort_buffer_size一样，该参数对应的分配内存也是每连接独享
-
-thread_cache_size = 8
-# 这个值（默认8）表示可以重新利用保存在缓存中线程的数量，当断开连接时如果缓存中还有空间，那么客户端的线程将被放到缓存中，
-# 如果线程重新被请求，那么请求将从缓存中读取,如果缓存中是空的或者是新的请求，那么这个线程将被重新创建,如果有很多新的线程，
-# 增加这个值可以改善系统性能.通过比较Connections和Threads_created状态的变量，可以看到这个变量的作用。(–&gt;表示要调整的值)
-# 根据物理内存设置规则如下：
-# 1G - &gt; 8
-# 2G - &gt; 16
-# 3G - &gt; 32
-# 大于3G - &gt; 64
-
-query_cache_size = 8M
-# MySQL的查询缓冲大小（从4.0.1开始，MySQL提供了查询缓冲机制）使用查询缓冲，MySQL将SELECT语句和查询结果存放在缓冲区中，
-# 今后对于同样的SELECT语句（区分大小写），将直接从缓冲区中读取结果。根据MySQL用户手册，使用查询缓冲最多可以达到238%的效率。
-# 通过检查状态值'Qcache_%'，可以知道query_cache_size设置是否合理：如果Qcache_lowmem_prunes的值非常大，则表明经常出现缓冲不够的情况，
-# 如果Qcache_hits的值也非常大，则表明查询缓冲使用非常频繁，此时需要增加缓冲大小；如果Qcache_hits的值不大，则表明你的查询重复率很低，
-# 这种情况下使用查询缓冲反而会影响效率，那么可以考虑不用查询缓冲。此外，在SELECT语句中加入SQL_NO_CACHE可以明确表示不使用查询缓冲
-
-query_cache_limit = 2M
-#指定单个查询能够使用的缓冲区大小，默认1M
-
-key_buffer_size = 4M
-# 指定用于索引的缓冲区大小，增加它可得到更好处理的索引(对所有读和多重写)，到你能负担得起那样多。如果你使它太大，
-# 系统将开始换页并且真的变慢了。对于内存在4GB左右的服务器该参数可设置为384M或512M。通过检查状态值Key_read_requests和Key_reads，
-# 可以知道key_buffer_size设置是否合理。比例key_reads/key_read_requests应该尽可能的低，
-# 至少是1:100，1:1000更好(上述状态值可以使用SHOW STATUS LIKE 'key_read%'获得)。注意：该参数值设置的过大反而会是服务器整体效率降低
-
-ft_min_word_len = 4
-# 分词词汇最小长度，默认4
-
-transaction_isolation = REPEATABLE-READ
-# MySQL支持4种事务隔离级别，他们分别是：
-# READ-UNCOMMITTED, READ-COMMITTED, REPEATABLE-READ, SERIALIZABLE.
-# 如没有指定，MySQL默认采用的是REPEATABLE-READ，ORACLE默认的是READ-COMMITTED
-
-log_bin = mysql-bin
-binlog_format = mixed
-expire_logs_days = 30 #超过30天的binlog删除
-log_error = /data/mysql/mysql-error.log #错误日志路径
-slow_query_log = 1
-long_query_time = 1 #慢查询时间 超过1秒则为慢查询
-slow_query_log_file = /data/mysql/mysql-slow.log
-performance_schema = 0
-explicit_defaults_for_timestamp
-#lower_case_table_names = 1 #不区分大小写
-skip-external-locking #MySQL选项以避免外部锁定。该选项默认开启
-default-storage-engine = InnoDB #默认存储引擎
-
-innodb_file_per_table = 1
-# InnoDB为独立表空间模式，每个数据库的每个表都会生成一个数据空间
-# 独立表空间优点：
-# 1．每个表都有自已独立的表空间。
-# 2．每个表的数据和索引都会存在自已的表空间中。
-# 3．可以实现单表在不同的数据库中移动。
-# 4．空间可以回收（除drop table操作处，表空不能自已回收）
-# 缺点：
-# 单表增加过大，如超过100G
-# 结论：
-# 共享表空间在Insert操作上少有优势。其它都没独立表空间表现好。当启用独立表空间时，请合理调整：innodb_open_files
-
-innodb_open_files = 500
-# 限制Innodb能打开的表的数据，如果库里的表特别多的情况，请增加这个。这个值默认是300
-
-innodb_buffer_pool_size = 64M
-# InnoDB使用一个缓冲池来保存索引和原始数据, 不像MyISAM.
-# 这里你设置越大,你在存取表里面数据时所需要的磁盘I/O越少.
-# 在一个独立使用的数据库服务器上,你可以设置这个变量到服务器物理内存大小的80%
-# 不要设置过大,否则,由于物理内存的竞争可能导致操作系统的换页颠簸.
-# 注意在32位系统上你每个进程可能被限制在 2-3.5G 用户层面内存限制,
-# 所以不要设置的太高.
-
-innodb_write_io_threads = 4
-innodb_read_io_threads = 4
-# innodb使用后台线程处理数据页上的读写 I/O(输入输出)请求,根据你的 CPU 核数来更改,默认是4
-# 注:这两个参数不支持动态改变,需要把该参数加入到my.cnf里，修改完后重启MySQL服务,允许值的范围从 1-64
-
-innodb_thread_concurrency = 0
-# 默认设置为 0,表示不限制并发数，这里推荐设置为0，更好去发挥CPU多核处理能力，提高并发量
-
-innodb_purge_threads = 1
-# InnoDB中的清除操作是一类定期回收无用数据的操作。在之前的几个版本中，
-# 清除操作是主线程的一部分，这意味着运行时它可能会堵塞其它的数据库操作。
-# 从MySQL5.5.X版本开始，该操作运行于独立的线程中,并支持更多的并发数。用户可通过设置innodb_purge_threads配置参数来选择清除操作是否使用单
-# 独线程,默认情况下参数设置为0(不使用单独线程),设置为 1 时表示使用单独的清除线程。建议为1
-
-innodb_flush_log_at_trx_commit = 2
-# 0：如果innodb_flush_log_at_trx_commit的值为0,
-#    log buffer每秒就会被刷写日志文件到磁盘，提交事务的时候不做任何操作（执行是由mysql的master thread线程来执行的。
-#    主线程中每秒会将重做日志缓冲写入磁盘的重做日志文件(REDO LOG)中。不论事务是否已经提交）默认的日志文件是ib_logfile0,ib_logfile1
-# 1：当设为默认值1的时候，每次提交事务的时候，都会将log buffer刷写到日志。
-# 2：如果设为2,每次提交事务都会写日志，但并不会执行刷的操作。每秒定时会刷到日志文件。
-#    要注意的是，并不能保证100%每秒一定都会刷到磁盘，这要取决于进程的调度。
-#    每次事务提交的时候将数据写入事务日志，而这里的写入仅是调用了文件系统的写入操作，
-#    而文件系统是有 缓存的，所以这个写入并不能保证数据已经写入到物理磁盘
-# 默认值1是为了保证完整的ACID。当然，你可以将这个配置项设为1以外的值来换取更高的性能，但是在系统崩溃的时候，你将会丢失1秒的数据。
-# 设为0的话，mysqld进程崩溃的时候，就会丢失最后1秒的事务。
-# 设为2,只有在操作系统崩溃或者断电的时候才会丢失最后1秒的数据。InnoDB在做恢复的时候会忽略这个值。
-### 总结 ###
-# 设为1当然是最安全的，但性能页是最差的（相对其他两个参数而言，但不是不能接受）。
-# 如果对数据一致性和完整性要求不高，完全可以设为2，如果只最求性能，例如高并发写的日志服务器，设为0来获得更高性能
-
-innodb_log_buffer_size = 2M
-# 此参数确定些日志文件所用的内存大小，以M为单位。缓冲区更大能提高性能，但意外的故障将会丢失数据。MySQL开发人员建议设置为1－8M之间
-
-innodb_log_file_size = 32M
-# 此参数确定数据日志文件的大小，更大的设置可以提高性能，但也会增加恢复故障数据库所需的时间
-
-innodb_log_files_in_group = 3
-# 为提高性能，MySQL可以以循环方式将日志文件写到多个文件。推荐设置为3
-
-innodb_max_dirty_pages_pct = 90
-# innodb主线程刷新缓存池中的数据，使脏数据比例小于90%
-
-innodb_lock_wait_timeout = 120 
-# InnoDB事务在被回滚之前可以等待一个锁定的超时秒数。
-# InnoDB在它自己的锁定表中自动检测事务死锁并且回滚事务。InnoDB用LOCK TABLES语句注意到锁定设置。默认值是50秒
-
-bulk_insert_buffer_size = 8M
-# 批量插入缓存大小， 这个参数是针对MyISAM存储引擎来说的。
-# 适用于在一次性插入100-1000+条记录时， 提高效率。默认值是8M。可以针对数据量的大小，翻倍增加。
-
-myisam_sort_buffer_size = 8M
-# MyISAM设置恢复表之时使用的缓冲区的尺寸，当在REPAIR TABLE或用CREATE INDEX创建索引或ALTER TABLE过程中排序 MyISAM索引分配的缓冲区
-
-myisam_max_sort_file_size = 10G
-# 如果临时文件会变得超过索引，不要使用快速排序索引方法来创建一个索引。注释：这个参数以字节的形式给出
-
-myisam_repair_threads = 1
-# 如果该值大于1，在Repair by sorting过程中并行创建MyISAM表索引(每个索引在自己的线程内) 
-
-interactive_timeout = 28800
-# 服务器关闭交互式连接前等待活动的秒数。交互式客户端定义为在
-# mysql_real_connect()中使用CLIENT_INTERACTIVE选项的客户端。默认值：28800秒（8小时）
-
-wait_timeout = 28800
-# 服务器关闭非交互连接之前等待活动的秒数。在线程启动时，根据全局wait_timeout值或全局interactive_timeout值初始化会话wait_timeout值，
-# 取决于客户端类型(由mysql_real_connect()的连接选项CLIENT_INTERACTIVE定义)。参数默认值：28800秒（8小时）
-# MySQL服务器所支持的最大连接数是有上限的，因为每个连接的建立都会消耗内存，因此我们希望客户端在连接到MySQL Server处理完相应的操作后，
-# 应该断开连接并释放占用的内存。如果你的MySQL Server有大量的闲置连接，他们不仅会白白消耗内存，而且如果连接一直在累加而不断开，
-# 最终肯定会达到MySQL Server的连接上限数，这会报'too many connections'的错误。对于wait_timeout的值设定，应该根据系统的运行情况来判断。
-# 在系统运行一段时间后，可以通过show processlist命令查看当前系统的连接状态，如果发现有大量的sleep状态的连接进程，则说明该参数设置的过大，
-# 可以进行适当的调整小些。要同时设置interactive_timeout和wait_timeout才会生效。
-[mysqldump]
-quick
-max_allowed_packet = 16M #服务器发送和接受的最大包长度
-[myisamchk]
-key_buffer_size = 8M
-sort_buffer_size = 8M
-read_buffer = 4M
-write_buffer = 4M
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>[client]
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>port = 3306
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>socket = /tmp/mysql.sock
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>[mysqld]
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>port = 3306
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>socket = /tmp/mysql.sock
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>basedir = /usr/local/mysql
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>datadir = /data/mysql
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>pid-file = /data/mysql/mysql.pid
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>user = mysql
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>bind-address = 0.0.0.0
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>server-id = 1 #表示是本机的序号为1,一般来讲就是master的意思
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>skip-name-resolve
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a># 禁止MySQL对外部连接进行DNS解析，使用这一选项可以消除MySQL进行DNS解析的时间。但需要注意，如果开启该选项，
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a># 则所有远程主机连接授权都要使用IP地址方式，否则MySQL将无法正常处理连接请求
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>#skip-networking
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>back_log = 600
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a># MySQL能有的连接数量。当主要MySQL线程在一个很短时间内得到非常多的连接请求，这就起作用，
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a># 然后主线程花些时间(尽管很短)检查连接并且启动一个新线程。back_log值指出在MySQL暂时停止回答新请求之前的短时间内多少个请求可以被存在堆栈中。
+</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a># 如果期望在一个短时间内有很多连接，你需要增加它。也就是说，如果MySQL的连接数据达到max_connections时，新来的请求将会被存在堆栈中，
+</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a># 以等待某一连接释放资源，该堆栈的数量即back_log，如果等待连接的数量超过back_log，将不被授予连接资源。
+</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a># 另外，这值（back_log）限于您的操作系统对到来的TCP/IP连接的侦听队列的大小。
+</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a># 你的操作系统在这个队列大小上有它自己的限制（可以检查你的OS文档找出这个变量的最大值），试图设定back_log高于你的操作系统的限制将是无效的。
+</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>
+</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>max_connections = 1000
+</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a># MySQL的最大连接数，如果服务器的并发连接请求量比较大，建议调高此值，以增加并行连接数量，
+</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a># 当然这建立在机器能支撑的情况下，因为如果连接数越多，介于MySQL会为每个连接提供连接缓冲区，
+</span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a># 就会开销越多的内存，所以要适当调整该值，不能盲目提高设值。可以过&#39;conn%&#39;通配符查看当前状态的连接数量，以定夺该值的大小。
+</span><span id="__span-0-29"><a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a>
+</span><span id="__span-0-30"><a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a>max_connect_errors = 6000
+</span><span id="__span-0-31"><a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a># 对于同一主机，如果有超出该参数值个数的中断错误连接，则该主机将被禁止连接。如需对该主机进行解禁，执行：FLUSH HOST。
+</span><span id="__span-0-32"><a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a>
+</span><span id="__span-0-33"><a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a>open_files_limit = 65535
+</span><span id="__span-0-34"><a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a># MySQL打开的文件描述符限制，默认最小1024;当open_files_limit没有被配置的时候，比较max_connections*5和ulimit -n的值，哪个大用哪个，
+</span><span id="__span-0-35"><a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a># 当open_file_limit被配置的时候，比较open_files_limit和max_connections*5的值，哪个大用哪个。
+</span><span id="__span-0-36"><a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a>
+</span><span id="__span-0-37"><a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a>table_open_cache = 128
+</span><span id="__span-0-38"><a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a># MySQL每打开一个表，都会读入一些数据到table_open_cache缓存中，当MySQL在这个缓存中找不到相应信息时，才会去磁盘上读取。默认值64
+</span><span id="__span-0-39"><a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a># 假定系统有200个并发连接，则需将此参数设置为200*N(N为每个连接所需的文件描述符数目)；
+</span><span id="__span-0-40"><a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a># 当把table_open_cache设置为很大时，如果系统处理不了那么多文件描述符，那么就会出现客户端失效，连接不上
+</span><span id="__span-0-41"><a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a>
+</span><span id="__span-0-42"><a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a>max_allowed_packet = 4M
+</span><span id="__span-0-43"><a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a># 接受的数据包大小；增加该变量的值十分安全，这是因为仅当需要时才会分配额外内存。
+</span><span id="__span-0-44"><a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a># 例如，仅当你发出长查询或MySQLd必须返回大的结果行时MySQLd才会分配更多内存。
+</span><span id="__span-0-45"><a id="__codelineno-0-45" name="__codelineno-0-45" href="#__codelineno-0-45"></a># 该变量之所以取较小默认值是一种预防措施，以捕获客户端和服务器之间的错误信息包，并确保不会因偶然使用大的信息包而导致内存溢出。
+</span><span id="__span-0-46"><a id="__codelineno-0-46" name="__codelineno-0-46" href="#__codelineno-0-46"></a>
+</span><span id="__span-0-47"><a id="__codelineno-0-47" name="__codelineno-0-47" href="#__codelineno-0-47"></a>binlog_cache_size = 1M
+</span><span id="__span-0-48"><a id="__codelineno-0-48" name="__codelineno-0-48" href="#__codelineno-0-48"></a># 一个事务，在没有提交的时候，产生的日志，记录到Cache中；等到事务提交需要提交的时候，则把日志持久化到磁盘。默认binlog_cache_size大小32K
+</span><span id="__span-0-49"><a id="__codelineno-0-49" name="__codelineno-0-49" href="#__codelineno-0-49"></a>
+</span><span id="__span-0-50"><a id="__codelineno-0-50" name="__codelineno-0-50" href="#__codelineno-0-50"></a>max_heap_table_size = 8M
+</span><span id="__span-0-51"><a id="__codelineno-0-51" name="__codelineno-0-51" href="#__codelineno-0-51"></a># 定义了用户可以创建的内存表(memory table)的大小。这个值用来计算内存表的最大行数值。这个变量支持动态改变
+</span><span id="__span-0-52"><a id="__codelineno-0-52" name="__codelineno-0-52" href="#__codelineno-0-52"></a>
+</span><span id="__span-0-53"><a id="__codelineno-0-53" name="__codelineno-0-53" href="#__codelineno-0-53"></a>tmp_table_size = 16M
+</span><span id="__span-0-54"><a id="__codelineno-0-54" name="__codelineno-0-54" href="#__codelineno-0-54"></a># MySQL的heap（堆积）表缓冲大小。所有联合在一个DML指令内完成，并且大多数联合甚至可以不用临时表即可以完成。
+</span><span id="__span-0-55"><a id="__codelineno-0-55" name="__codelineno-0-55" href="#__codelineno-0-55"></a># 大多数临时表是基于内存的(HEAP)表。具有大的记录长度的临时表 (所有列的长度的和)或包含BLOB列的表存储在硬盘上。
+</span><span id="__span-0-56"><a id="__codelineno-0-56" name="__codelineno-0-56" href="#__codelineno-0-56"></a># 如果某个内部heap（堆积）表大小超过tmp_table_size，MySQL可以根据需要自动将内存中的heap表改为基于硬盘的MyISAM表。
+</span><span id="__span-0-57"><a id="__codelineno-0-57" name="__codelineno-0-57" href="#__codelineno-0-57"></a># 还可以通过设置tmp_table_size选项来增加临时表的大小。也就是说，如果调高该值，MySQL同时将增加heap表的大小，可达到提高联接查询速度的效果
+</span><span id="__span-0-58"><a id="__codelineno-0-58" name="__codelineno-0-58" href="#__codelineno-0-58"></a>
+</span><span id="__span-0-59"><a id="__codelineno-0-59" name="__codelineno-0-59" href="#__codelineno-0-59"></a>read_buffer_size = 2M
+</span><span id="__span-0-60"><a id="__codelineno-0-60" name="__codelineno-0-60" href="#__codelineno-0-60"></a># MySQL读入缓冲区大小。对表进行顺序扫描的请求将分配一个读入缓冲区，MySQL会为它分配一段内存缓冲区。
+</span><span id="__span-0-61"><a id="__codelineno-0-61" name="__codelineno-0-61" href="#__codelineno-0-61"></a># read_buffer_size变量控制这一缓冲区的大小。
+</span><span id="__span-0-62"><a id="__codelineno-0-62" name="__codelineno-0-62" href="#__codelineno-0-62"></a># 如果对表的顺序扫描请求非常频繁，并且你认为频繁扫描进行得太慢，可以通过增加该变量值以及内存缓冲区大小提高其性能
+</span><span id="__span-0-63"><a id="__codelineno-0-63" name="__codelineno-0-63" href="#__codelineno-0-63"></a>
+</span><span id="__span-0-64"><a id="__codelineno-0-64" name="__codelineno-0-64" href="#__codelineno-0-64"></a>read_rnd_buffer_size = 8M
+</span><span id="__span-0-65"><a id="__codelineno-0-65" name="__codelineno-0-65" href="#__codelineno-0-65"></a># MySQL的随机读缓冲区大小。当按任意顺序读取行时(例如，按照排序顺序)，将分配一个随机读缓存区。进行排序查询时，
+</span><span id="__span-0-66"><a id="__codelineno-0-66" name="__codelineno-0-66" href="#__codelineno-0-66"></a># MySQL会首先扫描一遍该缓冲，以避免磁盘搜索，提高查询速度，如果需要排序大量数据，
+</span><span id="__span-0-67"><a id="__codelineno-0-67" name="__codelineno-0-67" href="#__codelineno-0-67"></a># 可适当调高该值。但MySQL会为每个客户连接发放该缓冲空间，所以应尽量适当设置该值，以避免内存开销过大
+</span><span id="__span-0-68"><a id="__codelineno-0-68" name="__codelineno-0-68" href="#__codelineno-0-68"></a>
+</span><span id="__span-0-69"><a id="__codelineno-0-69" name="__codelineno-0-69" href="#__codelineno-0-69"></a>sort_buffer_size = 8M
+</span><span id="__span-0-70"><a id="__codelineno-0-70" name="__codelineno-0-70" href="#__codelineno-0-70"></a># MySQL执行排序使用的缓冲大小。如果想要增加ORDER BY的速度，首先看是否可以让MySQL使用索引而不是额外的排序阶段。
+</span><span id="__span-0-71"><a id="__codelineno-0-71" name="__codelineno-0-71" href="#__codelineno-0-71"></a># 如果不能，可以尝试增加sort_buffer_size变量的大小
+</span><span id="__span-0-72"><a id="__codelineno-0-72" name="__codelineno-0-72" href="#__codelineno-0-72"></a>
+</span><span id="__span-0-73"><a id="__codelineno-0-73" name="__codelineno-0-73" href="#__codelineno-0-73"></a>join_buffer_size = 8M
+</span><span id="__span-0-74"><a id="__codelineno-0-74" name="__codelineno-0-74" href="#__codelineno-0-74"></a># 联合查询操作所能使用的缓冲区大小，和sort_buffer_size一样，该参数对应的分配内存也是每连接独享
+</span><span id="__span-0-75"><a id="__codelineno-0-75" name="__codelineno-0-75" href="#__codelineno-0-75"></a>
+</span><span id="__span-0-76"><a id="__codelineno-0-76" name="__codelineno-0-76" href="#__codelineno-0-76"></a>thread_cache_size = 8
+</span><span id="__span-0-77"><a id="__codelineno-0-77" name="__codelineno-0-77" href="#__codelineno-0-77"></a># 这个值（默认8）表示可以重新利用保存在缓存中线程的数量，当断开连接时如果缓存中还有空间，那么客户端的线程将被放到缓存中，
+</span><span id="__span-0-78"><a id="__codelineno-0-78" name="__codelineno-0-78" href="#__codelineno-0-78"></a># 如果线程重新被请求，那么请求将从缓存中读取,如果缓存中是空的或者是新的请求，那么这个线程将被重新创建,如果有很多新的线程，
+</span><span id="__span-0-79"><a id="__codelineno-0-79" name="__codelineno-0-79" href="#__codelineno-0-79"></a># 增加这个值可以改善系统性能.通过比较Connections和Threads_created状态的变量，可以看到这个变量的作用。(–&gt;表示要调整的值)
+</span><span id="__span-0-80"><a id="__codelineno-0-80" name="__codelineno-0-80" href="#__codelineno-0-80"></a># 根据物理内存设置规则如下：
+</span><span id="__span-0-81"><a id="__codelineno-0-81" name="__codelineno-0-81" href="#__codelineno-0-81"></a># 1G - &gt; 8
+</span><span id="__span-0-82"><a id="__codelineno-0-82" name="__codelineno-0-82" href="#__codelineno-0-82"></a># 2G - &gt; 16
+</span><span id="__span-0-83"><a id="__codelineno-0-83" name="__codelineno-0-83" href="#__codelineno-0-83"></a># 3G - &gt; 32
+</span><span id="__span-0-84"><a id="__codelineno-0-84" name="__codelineno-0-84" href="#__codelineno-0-84"></a># 大于3G - &gt; 64
+</span><span id="__span-0-85"><a id="__codelineno-0-85" name="__codelineno-0-85" href="#__codelineno-0-85"></a>
+</span><span id="__span-0-86"><a id="__codelineno-0-86" name="__codelineno-0-86" href="#__codelineno-0-86"></a>query_cache_size = 8M
+</span><span id="__span-0-87"><a id="__codelineno-0-87" name="__codelineno-0-87" href="#__codelineno-0-87"></a># MySQL的查询缓冲大小（从4.0.1开始，MySQL提供了查询缓冲机制）使用查询缓冲，MySQL将SELECT语句和查询结果存放在缓冲区中，
+</span><span id="__span-0-88"><a id="__codelineno-0-88" name="__codelineno-0-88" href="#__codelineno-0-88"></a># 今后对于同样的SELECT语句（区分大小写），将直接从缓冲区中读取结果。根据MySQL用户手册，使用查询缓冲最多可以达到238%的效率。
+</span><span id="__span-0-89"><a id="__codelineno-0-89" name="__codelineno-0-89" href="#__codelineno-0-89"></a># 通过检查状态值&#39;Qcache_%&#39;，可以知道query_cache_size设置是否合理：如果Qcache_lowmem_prunes的值非常大，则表明经常出现缓冲不够的情况，
+</span><span id="__span-0-90"><a id="__codelineno-0-90" name="__codelineno-0-90" href="#__codelineno-0-90"></a># 如果Qcache_hits的值也非常大，则表明查询缓冲使用非常频繁，此时需要增加缓冲大小；如果Qcache_hits的值不大，则表明你的查询重复率很低，
+</span><span id="__span-0-91"><a id="__codelineno-0-91" name="__codelineno-0-91" href="#__codelineno-0-91"></a># 这种情况下使用查询缓冲反而会影响效率，那么可以考虑不用查询缓冲。此外，在SELECT语句中加入SQL_NO_CACHE可以明确表示不使用查询缓冲
+</span><span id="__span-0-92"><a id="__codelineno-0-92" name="__codelineno-0-92" href="#__codelineno-0-92"></a>
+</span><span id="__span-0-93"><a id="__codelineno-0-93" name="__codelineno-0-93" href="#__codelineno-0-93"></a>query_cache_limit = 2M
+</span><span id="__span-0-94"><a id="__codelineno-0-94" name="__codelineno-0-94" href="#__codelineno-0-94"></a>#指定单个查询能够使用的缓冲区大小，默认1M
+</span><span id="__span-0-95"><a id="__codelineno-0-95" name="__codelineno-0-95" href="#__codelineno-0-95"></a>
+</span><span id="__span-0-96"><a id="__codelineno-0-96" name="__codelineno-0-96" href="#__codelineno-0-96"></a>key_buffer_size = 4M
+</span><span id="__span-0-97"><a id="__codelineno-0-97" name="__codelineno-0-97" href="#__codelineno-0-97"></a># 指定用于索引的缓冲区大小，增加它可得到更好处理的索引(对所有读和多重写)，到你能负担得起那样多。如果你使它太大，
+</span><span id="__span-0-98"><a id="__codelineno-0-98" name="__codelineno-0-98" href="#__codelineno-0-98"></a># 系统将开始换页并且真的变慢了。对于内存在4GB左右的服务器该参数可设置为384M或512M。通过检查状态值Key_read_requests和Key_reads，
+</span><span id="__span-0-99"><a id="__codelineno-0-99" name="__codelineno-0-99" href="#__codelineno-0-99"></a># 可以知道key_buffer_size设置是否合理。比例key_reads/key_read_requests应该尽可能的低，
+</span><span id="__span-0-100"><a id="__codelineno-0-100" name="__codelineno-0-100" href="#__codelineno-0-100"></a># 至少是1:100，1:1000更好(上述状态值可以使用SHOW STATUS LIKE &#39;key_read%&#39;获得)。注意：该参数值设置的过大反而会是服务器整体效率降低
+</span><span id="__span-0-101"><a id="__codelineno-0-101" name="__codelineno-0-101" href="#__codelineno-0-101"></a>
+</span><span id="__span-0-102"><a id="__codelineno-0-102" name="__codelineno-0-102" href="#__codelineno-0-102"></a>ft_min_word_len = 4
+</span><span id="__span-0-103"><a id="__codelineno-0-103" name="__codelineno-0-103" href="#__codelineno-0-103"></a># 分词词汇最小长度，默认4
+</span><span id="__span-0-104"><a id="__codelineno-0-104" name="__codelineno-0-104" href="#__codelineno-0-104"></a>
+</span><span id="__span-0-105"><a id="__codelineno-0-105" name="__codelineno-0-105" href="#__codelineno-0-105"></a>transaction_isolation = REPEATABLE-READ
+</span><span id="__span-0-106"><a id="__codelineno-0-106" name="__codelineno-0-106" href="#__codelineno-0-106"></a># MySQL支持4种事务隔离级别，他们分别是：
+</span><span id="__span-0-107"><a id="__codelineno-0-107" name="__codelineno-0-107" href="#__codelineno-0-107"></a># READ-UNCOMMITTED, READ-COMMITTED, REPEATABLE-READ, SERIALIZABLE.
+</span><span id="__span-0-108"><a id="__codelineno-0-108" name="__codelineno-0-108" href="#__codelineno-0-108"></a># 如没有指定，MySQL默认采用的是REPEATABLE-READ，ORACLE默认的是READ-COMMITTED
+</span><span id="__span-0-109"><a id="__codelineno-0-109" name="__codelineno-0-109" href="#__codelineno-0-109"></a>
+</span><span id="__span-0-110"><a id="__codelineno-0-110" name="__codelineno-0-110" href="#__codelineno-0-110"></a>log_bin = mysql-bin
+</span><span id="__span-0-111"><a id="__codelineno-0-111" name="__codelineno-0-111" href="#__codelineno-0-111"></a>binlog_format = mixed
+</span><span id="__span-0-112"><a id="__codelineno-0-112" name="__codelineno-0-112" href="#__codelineno-0-112"></a>expire_logs_days = 30 #超过30天的binlog删除
+</span><span id="__span-0-113"><a id="__codelineno-0-113" name="__codelineno-0-113" href="#__codelineno-0-113"></a>log_error = /data/mysql/mysql-error.log #错误日志路径
+</span><span id="__span-0-114"><a id="__codelineno-0-114" name="__codelineno-0-114" href="#__codelineno-0-114"></a>slow_query_log = 1
+</span><span id="__span-0-115"><a id="__codelineno-0-115" name="__codelineno-0-115" href="#__codelineno-0-115"></a>long_query_time = 1 #慢查询时间 超过1秒则为慢查询
+</span><span id="__span-0-116"><a id="__codelineno-0-116" name="__codelineno-0-116" href="#__codelineno-0-116"></a>slow_query_log_file = /data/mysql/mysql-slow.log
+</span><span id="__span-0-117"><a id="__codelineno-0-117" name="__codelineno-0-117" href="#__codelineno-0-117"></a>performance_schema = 0
+</span><span id="__span-0-118"><a id="__codelineno-0-118" name="__codelineno-0-118" href="#__codelineno-0-118"></a>explicit_defaults_for_timestamp
+</span><span id="__span-0-119"><a id="__codelineno-0-119" name="__codelineno-0-119" href="#__codelineno-0-119"></a>#lower_case_table_names = 1 #不区分大小写
+</span><span id="__span-0-120"><a id="__codelineno-0-120" name="__codelineno-0-120" href="#__codelineno-0-120"></a>skip-external-locking #MySQL选项以避免外部锁定。该选项默认开启
+</span><span id="__span-0-121"><a id="__codelineno-0-121" name="__codelineno-0-121" href="#__codelineno-0-121"></a>default-storage-engine = InnoDB #默认存储引擎
+</span><span id="__span-0-122"><a id="__codelineno-0-122" name="__codelineno-0-122" href="#__codelineno-0-122"></a>
+</span><span id="__span-0-123"><a id="__codelineno-0-123" name="__codelineno-0-123" href="#__codelineno-0-123"></a>innodb_file_per_table = 1
+</span><span id="__span-0-124"><a id="__codelineno-0-124" name="__codelineno-0-124" href="#__codelineno-0-124"></a># InnoDB为独立表空间模式，每个数据库的每个表都会生成一个数据空间
+</span><span id="__span-0-125"><a id="__codelineno-0-125" name="__codelineno-0-125" href="#__codelineno-0-125"></a># 独立表空间优点：
+</span><span id="__span-0-126"><a id="__codelineno-0-126" name="__codelineno-0-126" href="#__codelineno-0-126"></a># 1．每个表都有自已独立的表空间。
+</span><span id="__span-0-127"><a id="__codelineno-0-127" name="__codelineno-0-127" href="#__codelineno-0-127"></a># 2．每个表的数据和索引都会存在自已的表空间中。
+</span><span id="__span-0-128"><a id="__codelineno-0-128" name="__codelineno-0-128" href="#__codelineno-0-128"></a># 3．可以实现单表在不同的数据库中移动。
+</span><span id="__span-0-129"><a id="__codelineno-0-129" name="__codelineno-0-129" href="#__codelineno-0-129"></a># 4．空间可以回收（除drop table操作处，表空不能自已回收）
+</span><span id="__span-0-130"><a id="__codelineno-0-130" name="__codelineno-0-130" href="#__codelineno-0-130"></a># 缺点：
+</span><span id="__span-0-131"><a id="__codelineno-0-131" name="__codelineno-0-131" href="#__codelineno-0-131"></a># 单表增加过大，如超过100G
+</span><span id="__span-0-132"><a id="__codelineno-0-132" name="__codelineno-0-132" href="#__codelineno-0-132"></a># 结论：
+</span><span id="__span-0-133"><a id="__codelineno-0-133" name="__codelineno-0-133" href="#__codelineno-0-133"></a># 共享表空间在Insert操作上少有优势。其它都没独立表空间表现好。当启用独立表空间时，请合理调整：innodb_open_files
+</span><span id="__span-0-134"><a id="__codelineno-0-134" name="__codelineno-0-134" href="#__codelineno-0-134"></a>
+</span><span id="__span-0-135"><a id="__codelineno-0-135" name="__codelineno-0-135" href="#__codelineno-0-135"></a>innodb_open_files = 500
+</span><span id="__span-0-136"><a id="__codelineno-0-136" name="__codelineno-0-136" href="#__codelineno-0-136"></a># 限制Innodb能打开的表的数据，如果库里的表特别多的情况，请增加这个。这个值默认是300
+</span><span id="__span-0-137"><a id="__codelineno-0-137" name="__codelineno-0-137" href="#__codelineno-0-137"></a>
+</span><span id="__span-0-138"><a id="__codelineno-0-138" name="__codelineno-0-138" href="#__codelineno-0-138"></a>innodb_buffer_pool_size = 64M
+</span><span id="__span-0-139"><a id="__codelineno-0-139" name="__codelineno-0-139" href="#__codelineno-0-139"></a># InnoDB使用一个缓冲池来保存索引和原始数据, 不像MyISAM.
+</span><span id="__span-0-140"><a id="__codelineno-0-140" name="__codelineno-0-140" href="#__codelineno-0-140"></a># 这里你设置越大,你在存取表里面数据时所需要的磁盘I/O越少.
+</span><span id="__span-0-141"><a id="__codelineno-0-141" name="__codelineno-0-141" href="#__codelineno-0-141"></a># 在一个独立使用的数据库服务器上,你可以设置这个变量到服务器物理内存大小的80%
+</span><span id="__span-0-142"><a id="__codelineno-0-142" name="__codelineno-0-142" href="#__codelineno-0-142"></a># 不要设置过大,否则,由于物理内存的竞争可能导致操作系统的换页颠簸.
+</span><span id="__span-0-143"><a id="__codelineno-0-143" name="__codelineno-0-143" href="#__codelineno-0-143"></a># 注意在32位系统上你每个进程可能被限制在 2-3.5G 用户层面内存限制,
+</span><span id="__span-0-144"><a id="__codelineno-0-144" name="__codelineno-0-144" href="#__codelineno-0-144"></a># 所以不要设置的太高.
+</span><span id="__span-0-145"><a id="__codelineno-0-145" name="__codelineno-0-145" href="#__codelineno-0-145"></a>
+</span><span id="__span-0-146"><a id="__codelineno-0-146" name="__codelineno-0-146" href="#__codelineno-0-146"></a>innodb_write_io_threads = 4
+</span><span id="__span-0-147"><a id="__codelineno-0-147" name="__codelineno-0-147" href="#__codelineno-0-147"></a>innodb_read_io_threads = 4
+</span><span id="__span-0-148"><a id="__codelineno-0-148" name="__codelineno-0-148" href="#__codelineno-0-148"></a># innodb使用后台线程处理数据页上的读写 I/O(输入输出)请求,根据你的 CPU 核数来更改,默认是4
+</span><span id="__span-0-149"><a id="__codelineno-0-149" name="__codelineno-0-149" href="#__codelineno-0-149"></a># 注:这两个参数不支持动态改变,需要把该参数加入到my.cnf里，修改完后重启MySQL服务,允许值的范围从 1-64
+</span><span id="__span-0-150"><a id="__codelineno-0-150" name="__codelineno-0-150" href="#__codelineno-0-150"></a>
+</span><span id="__span-0-151"><a id="__codelineno-0-151" name="__codelineno-0-151" href="#__codelineno-0-151"></a>innodb_thread_concurrency = 0
+</span><span id="__span-0-152"><a id="__codelineno-0-152" name="__codelineno-0-152" href="#__codelineno-0-152"></a># 默认设置为 0,表示不限制并发数，这里推荐设置为0，更好去发挥CPU多核处理能力，提高并发量
+</span><span id="__span-0-153"><a id="__codelineno-0-153" name="__codelineno-0-153" href="#__codelineno-0-153"></a>
+</span><span id="__span-0-154"><a id="__codelineno-0-154" name="__codelineno-0-154" href="#__codelineno-0-154"></a>innodb_purge_threads = 1
+</span><span id="__span-0-155"><a id="__codelineno-0-155" name="__codelineno-0-155" href="#__codelineno-0-155"></a># InnoDB中的清除操作是一类定期回收无用数据的操作。在之前的几个版本中，
+</span><span id="__span-0-156"><a id="__codelineno-0-156" name="__codelineno-0-156" href="#__codelineno-0-156"></a># 清除操作是主线程的一部分，这意味着运行时它可能会堵塞其它的数据库操作。
+</span><span id="__span-0-157"><a id="__codelineno-0-157" name="__codelineno-0-157" href="#__codelineno-0-157"></a># 从MySQL5.5.X版本开始，该操作运行于独立的线程中,并支持更多的并发数。用户可通过设置innodb_purge_threads配置参数来选择清除操作是否使用单
+</span><span id="__span-0-158"><a id="__codelineno-0-158" name="__codelineno-0-158" href="#__codelineno-0-158"></a># 独线程,默认情况下参数设置为0(不使用单独线程),设置为 1 时表示使用单独的清除线程。建议为1
+</span><span id="__span-0-159"><a id="__codelineno-0-159" name="__codelineno-0-159" href="#__codelineno-0-159"></a>
+</span><span id="__span-0-160"><a id="__codelineno-0-160" name="__codelineno-0-160" href="#__codelineno-0-160"></a>innodb_flush_log_at_trx_commit = 2
+</span><span id="__span-0-161"><a id="__codelineno-0-161" name="__codelineno-0-161" href="#__codelineno-0-161"></a># 0：如果innodb_flush_log_at_trx_commit的值为0,
+</span><span id="__span-0-162"><a id="__codelineno-0-162" name="__codelineno-0-162" href="#__codelineno-0-162"></a>#    log buffer每秒就会被刷写日志文件到磁盘，提交事务的时候不做任何操作（执行是由mysql的master thread线程来执行的。
+</span><span id="__span-0-163"><a id="__codelineno-0-163" name="__codelineno-0-163" href="#__codelineno-0-163"></a>#    主线程中每秒会将重做日志缓冲写入磁盘的重做日志文件(REDO LOG)中。不论事务是否已经提交）默认的日志文件是ib_logfile0,ib_logfile1
+</span><span id="__span-0-164"><a id="__codelineno-0-164" name="__codelineno-0-164" href="#__codelineno-0-164"></a># 1：当设为默认值1的时候，每次提交事务的时候，都会将log buffer刷写到日志。
+</span><span id="__span-0-165"><a id="__codelineno-0-165" name="__codelineno-0-165" href="#__codelineno-0-165"></a># 2：如果设为2,每次提交事务都会写日志，但并不会执行刷的操作。每秒定时会刷到日志文件。
+</span><span id="__span-0-166"><a id="__codelineno-0-166" name="__codelineno-0-166" href="#__codelineno-0-166"></a>#    要注意的是，并不能保证100%每秒一定都会刷到磁盘，这要取决于进程的调度。
+</span><span id="__span-0-167"><a id="__codelineno-0-167" name="__codelineno-0-167" href="#__codelineno-0-167"></a>#    每次事务提交的时候将数据写入事务日志，而这里的写入仅是调用了文件系统的写入操作，
+</span><span id="__span-0-168"><a id="__codelineno-0-168" name="__codelineno-0-168" href="#__codelineno-0-168"></a>#    而文件系统是有 缓存的，所以这个写入并不能保证数据已经写入到物理磁盘
+</span><span id="__span-0-169"><a id="__codelineno-0-169" name="__codelineno-0-169" href="#__codelineno-0-169"></a># 默认值1是为了保证完整的ACID。当然，你可以将这个配置项设为1以外的值来换取更高的性能，但是在系统崩溃的时候，你将会丢失1秒的数据。
+</span><span id="__span-0-170"><a id="__codelineno-0-170" name="__codelineno-0-170" href="#__codelineno-0-170"></a># 设为0的话，mysqld进程崩溃的时候，就会丢失最后1秒的事务。
+</span><span id="__span-0-171"><a id="__codelineno-0-171" name="__codelineno-0-171" href="#__codelineno-0-171"></a># 设为2,只有在操作系统崩溃或者断电的时候才会丢失最后1秒的数据。InnoDB在做恢复的时候会忽略这个值。
+</span><span id="__span-0-172"><a id="__codelineno-0-172" name="__codelineno-0-172" href="#__codelineno-0-172"></a>### 总结 ###
+</span><span id="__span-0-173"><a id="__codelineno-0-173" name="__codelineno-0-173" href="#__codelineno-0-173"></a># 设为1当然是最安全的，但性能页是最差的（相对其他两个参数而言，但不是不能接受）。
+</span><span id="__span-0-174"><a id="__codelineno-0-174" name="__codelineno-0-174" href="#__codelineno-0-174"></a># 如果对数据一致性和完整性要求不高，完全可以设为2，如果只最求性能，例如高并发写的日志服务器，设为0来获得更高性能
+</span><span id="__span-0-175"><a id="__codelineno-0-175" name="__codelineno-0-175" href="#__codelineno-0-175"></a>
+</span><span id="__span-0-176"><a id="__codelineno-0-176" name="__codelineno-0-176" href="#__codelineno-0-176"></a>innodb_log_buffer_size = 2M
+</span><span id="__span-0-177"><a id="__codelineno-0-177" name="__codelineno-0-177" href="#__codelineno-0-177"></a># 此参数确定些日志文件所用的内存大小，以M为单位。缓冲区更大能提高性能，但意外的故障将会丢失数据。MySQL开发人员建议设置为1－8M之间
+</span><span id="__span-0-178"><a id="__codelineno-0-178" name="__codelineno-0-178" href="#__codelineno-0-178"></a>
+</span><span id="__span-0-179"><a id="__codelineno-0-179" name="__codelineno-0-179" href="#__codelineno-0-179"></a>innodb_log_file_size = 32M
+</span><span id="__span-0-180"><a id="__codelineno-0-180" name="__codelineno-0-180" href="#__codelineno-0-180"></a># 此参数确定数据日志文件的大小，更大的设置可以提高性能，但也会增加恢复故障数据库所需的时间
+</span><span id="__span-0-181"><a id="__codelineno-0-181" name="__codelineno-0-181" href="#__codelineno-0-181"></a>
+</span><span id="__span-0-182"><a id="__codelineno-0-182" name="__codelineno-0-182" href="#__codelineno-0-182"></a>innodb_log_files_in_group = 3
+</span><span id="__span-0-183"><a id="__codelineno-0-183" name="__codelineno-0-183" href="#__codelineno-0-183"></a># 为提高性能，MySQL可以以循环方式将日志文件写到多个文件。推荐设置为3
+</span><span id="__span-0-184"><a id="__codelineno-0-184" name="__codelineno-0-184" href="#__codelineno-0-184"></a>
+</span><span id="__span-0-185"><a id="__codelineno-0-185" name="__codelineno-0-185" href="#__codelineno-0-185"></a>innodb_max_dirty_pages_pct = 90
+</span><span id="__span-0-186"><a id="__codelineno-0-186" name="__codelineno-0-186" href="#__codelineno-0-186"></a># innodb主线程刷新缓存池中的数据，使脏数据比例小于90%
+</span><span id="__span-0-187"><a id="__codelineno-0-187" name="__codelineno-0-187" href="#__codelineno-0-187"></a>
+</span><span id="__span-0-188"><a id="__codelineno-0-188" name="__codelineno-0-188" href="#__codelineno-0-188"></a>innodb_lock_wait_timeout = 120 
+</span><span id="__span-0-189"><a id="__codelineno-0-189" name="__codelineno-0-189" href="#__codelineno-0-189"></a># InnoDB事务在被回滚之前可以等待一个锁定的超时秒数。
+</span><span id="__span-0-190"><a id="__codelineno-0-190" name="__codelineno-0-190" href="#__codelineno-0-190"></a># InnoDB在它自己的锁定表中自动检测事务死锁并且回滚事务。InnoDB用LOCK TABLES语句注意到锁定设置。默认值是50秒
+</span><span id="__span-0-191"><a id="__codelineno-0-191" name="__codelineno-0-191" href="#__codelineno-0-191"></a>
+</span><span id="__span-0-192"><a id="__codelineno-0-192" name="__codelineno-0-192" href="#__codelineno-0-192"></a>bulk_insert_buffer_size = 8M
+</span><span id="__span-0-193"><a id="__codelineno-0-193" name="__codelineno-0-193" href="#__codelineno-0-193"></a># 批量插入缓存大小， 这个参数是针对MyISAM存储引擎来说的。
+</span><span id="__span-0-194"><a id="__codelineno-0-194" name="__codelineno-0-194" href="#__codelineno-0-194"></a># 适用于在一次性插入100-1000+条记录时， 提高效率。默认值是8M。可以针对数据量的大小，翻倍增加。
+</span><span id="__span-0-195"><a id="__codelineno-0-195" name="__codelineno-0-195" href="#__codelineno-0-195"></a>
+</span><span id="__span-0-196"><a id="__codelineno-0-196" name="__codelineno-0-196" href="#__codelineno-0-196"></a>myisam_sort_buffer_size = 8M
+</span><span id="__span-0-197"><a id="__codelineno-0-197" name="__codelineno-0-197" href="#__codelineno-0-197"></a># MyISAM设置恢复表之时使用的缓冲区的尺寸，当在REPAIR TABLE或用CREATE INDEX创建索引或ALTER TABLE过程中排序 MyISAM索引分配的缓冲区
+</span><span id="__span-0-198"><a id="__codelineno-0-198" name="__codelineno-0-198" href="#__codelineno-0-198"></a>
+</span><span id="__span-0-199"><a id="__codelineno-0-199" name="__codelineno-0-199" href="#__codelineno-0-199"></a>myisam_max_sort_file_size = 10G
+</span><span id="__span-0-200"><a id="__codelineno-0-200" name="__codelineno-0-200" href="#__codelineno-0-200"></a># 如果临时文件会变得超过索引，不要使用快速排序索引方法来创建一个索引。注释：这个参数以字节的形式给出
+</span><span id="__span-0-201"><a id="__codelineno-0-201" name="__codelineno-0-201" href="#__codelineno-0-201"></a>
+</span><span id="__span-0-202"><a id="__codelineno-0-202" name="__codelineno-0-202" href="#__codelineno-0-202"></a>myisam_repair_threads = 1
+</span><span id="__span-0-203"><a id="__codelineno-0-203" name="__codelineno-0-203" href="#__codelineno-0-203"></a># 如果该值大于1，在Repair by sorting过程中并行创建MyISAM表索引(每个索引在自己的线程内) 
+</span><span id="__span-0-204"><a id="__codelineno-0-204" name="__codelineno-0-204" href="#__codelineno-0-204"></a>
+</span><span id="__span-0-205"><a id="__codelineno-0-205" name="__codelineno-0-205" href="#__codelineno-0-205"></a>interactive_timeout = 28800
+</span><span id="__span-0-206"><a id="__codelineno-0-206" name="__codelineno-0-206" href="#__codelineno-0-206"></a># 服务器关闭交互式连接前等待活动的秒数。交互式客户端定义为在
+</span><span id="__span-0-207"><a id="__codelineno-0-207" name="__codelineno-0-207" href="#__codelineno-0-207"></a># mysql_real_connect()中使用CLIENT_INTERACTIVE选项的客户端。默认值：28800秒（8小时）
+</span><span id="__span-0-208"><a id="__codelineno-0-208" name="__codelineno-0-208" href="#__codelineno-0-208"></a>
+</span><span id="__span-0-209"><a id="__codelineno-0-209" name="__codelineno-0-209" href="#__codelineno-0-209"></a>wait_timeout = 28800
+</span><span id="__span-0-210"><a id="__codelineno-0-210" name="__codelineno-0-210" href="#__codelineno-0-210"></a># 服务器关闭非交互连接之前等待活动的秒数。在线程启动时，根据全局wait_timeout值或全局interactive_timeout值初始化会话wait_timeout值，
+</span><span id="__span-0-211"><a id="__codelineno-0-211" name="__codelineno-0-211" href="#__codelineno-0-211"></a># 取决于客户端类型(由mysql_real_connect()的连接选项CLIENT_INTERACTIVE定义)。参数默认值：28800秒（8小时）
+</span><span id="__span-0-212"><a id="__codelineno-0-212" name="__codelineno-0-212" href="#__codelineno-0-212"></a># MySQL服务器所支持的最大连接数是有上限的，因为每个连接的建立都会消耗内存，因此我们希望客户端在连接到MySQL Server处理完相应的操作后，
+</span><span id="__span-0-213"><a id="__codelineno-0-213" name="__codelineno-0-213" href="#__codelineno-0-213"></a># 应该断开连接并释放占用的内存。如果你的MySQL Server有大量的闲置连接，他们不仅会白白消耗内存，而且如果连接一直在累加而不断开，
+</span><span id="__span-0-214"><a id="__codelineno-0-214" name="__codelineno-0-214" href="#__codelineno-0-214"></a># 最终肯定会达到MySQL Server的连接上限数，这会报&#39;too many connections&#39;的错误。对于wait_timeout的值设定，应该根据系统的运行情况来判断。
+</span><span id="__span-0-215"><a id="__codelineno-0-215" name="__codelineno-0-215" href="#__codelineno-0-215"></a># 在系统运行一段时间后，可以通过show processlist命令查看当前系统的连接状态，如果发现有大量的sleep状态的连接进程，则说明该参数设置的过大，
+</span><span id="__span-0-216"><a id="__codelineno-0-216" name="__codelineno-0-216" href="#__codelineno-0-216"></a># 可以进行适当的调整小些。要同时设置interactive_timeout和wait_timeout才会生效。
+</span><span id="__span-0-217"><a id="__codelineno-0-217" name="__codelineno-0-217" href="#__codelineno-0-217"></a>[mysqldump]
+</span><span id="__span-0-218"><a id="__codelineno-0-218" name="__codelineno-0-218" href="#__codelineno-0-218"></a>quick
+</span><span id="__span-0-219"><a id="__codelineno-0-219" name="__codelineno-0-219" href="#__codelineno-0-219"></a>max_allowed_packet = 16M #服务器发送和接受的最大包长度
+</span><span id="__span-0-220"><a id="__codelineno-0-220" name="__codelineno-0-220" href="#__codelineno-0-220"></a>[myisamchk]
+</span><span id="__span-0-221"><a id="__codelineno-0-221" name="__codelineno-0-221" href="#__codelineno-0-221"></a>key_buffer_size = 8M
+</span><span id="__span-0-222"><a id="__codelineno-0-222" name="__codelineno-0-222" href="#__codelineno-0-222"></a>sort_buffer_size = 8M
+</span><span id="__span-0-223"><a id="__codelineno-0-223" name="__codelineno-0-223" href="#__codelineno-0-223"></a>read_buffer = 4M
+</span><span id="__span-0-224"><a id="__codelineno-0-224" name="__codelineno-0-224" href="#__codelineno-0-224"></a>write_buffer = 4M
+</span></code></pre></div>
 <h2 id="innodb_flush_log_at_trx_commit">innodb_flush_log_at_trx_commit<a class="headerlink" href="#innodb_flush_log_at_trx_commit" title="Permanent link">&para;</a></h2>
 <h4 id="innodb_buffer_pool_size">innodb_buffer_pool_size<a class="headerlink" href="#innodb_buffer_pool_size" title="Permanent link">&para;</a></h4>
 <p>如 果用Innodb，那么这是一个重要变量。相对于MyISAM来说，Innodb对于buffer size更敏感。MySIAM可能对于大数据量使用默认的key_buffer_size也还好，但Innodb在大数据量时用默认值就感觉在爬了。 Innodb的缓冲池会缓存数据和索引，所以不需要给系统的缓存留空间，如果只用Innodb，可以把这个值设为内存的70%-80%。和 key_buffer相同，如果数据量比较小也不怎么增加，那么不要把这个值设太高也可以提高内存的使用率。</p>
@@ -1397,279 +1405,278 @@ write_buffer = 4M
 <h4 id="innodb_flush_log_at_trx_commit_1">innodb_flush_log_at_trx_commit  （这个很管用）<a class="headerlink" href="#innodb_flush_log_at_trx_commit_1" title="Permanent link">&para;</a></h4>
 <p>抱怨Innodb比MyISAM慢 100倍？那么你大概是忘了调整这个值。默认值1的意思是每一次事务提交或事务外的指令都需要把日志写入（flush）硬盘，这是很费时的。特别是使用电 池供电缓存（Battery backed up cache）时。设成2对于很多运用，特别是从MyISAM表转过来的是可以的，它的意思是不写入硬盘而是写入系统缓存。日志仍然会每秒flush到硬 盘，所以你一般不会丢失超过1-2秒的更新。设成0会更快一点，但安全方面比较差，即使MySQL挂了也可能会丢失事务的数据。而值2只会在整个操作系统 挂了时才可能丢数据。 </p>
 <h4 id="innodb_flush_log_at_trx_commit_2">innodb_flush_log_at_trx_commit<a class="headerlink" href="#innodb_flush_log_at_trx_commit_2" title="Permanent link">&para;</a></h4>
-<pre><code class="language-text">If the value of innodb_flush_log_at_trx_commit is 0, the log buffer is written out to the log file once per second and the flush to disk operation is performed on the log file, but nothing is done at a transaction commit. When the value is 1, the log buffer is written out to the log file at each transaction commit and the flush to disk operation is performed on the log file. When the value is 2, the log buffer is written out to the file at each commit, but the flush to disk operation is not performed on it. However, the flushing on the log file takes place once per second also when the value is 2. Note that the once-per-second flushing is not 100% guaranteed to happen every second, due to process scheduling issues.
-
-The default value of this variable is 1 (prior to MySQL 4.0.13, the default is 0).
-
-A value of 1 is required for ACID compliance. You can achieve better performance by setting the value different from 1, but then you can lose at most one second worth of transactions in a crash. With a value of 0, any mysqldprocess crash can erase the last second of transactions. With a value of 2, then only an operating system crash or a power outage can erase the last second of transactions. However, InnoDB's crash recovery is not affected and thus crash recovery does work regardless of the value.
-Note
-
-For the greatest possible durability and consistency in a replication setup using InnoDB with transactions, use innodb_flush_log_at_trx_commit=1, sync_binlog=1, and innodb-safe-binlog in your master server my.cnf file.
-Caution
-
-Many operating systems and some disk hardware fool the flush-to-disk operation. They may tellmysqld that the flush has taken place, even though it has not. Then the durability of transactions is not guaranteed even with the setting 1, and in the worst case a power outage can even corrupt theInnoDB database. Using a battery-backed disk cache in the SCSI disk controller or in the disk itself speeds up file flushes, and makes the operation safer. You can also try using the Unix commandhdparm to disable the caching of disk writes in hardware caches, or use some other command specific to the hardware vendor.
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>If the value of innodb_flush_log_at_trx_commit is 0, the log buffer is written out to the log file once per second and the flush to disk operation is performed on the log file, but nothing is done at a transaction commit. When the value is 1, the log buffer is written out to the log file at each transaction commit and the flush to disk operation is performed on the log file. When the value is 2, the log buffer is written out to the file at each commit, but the flush to disk operation is not performed on it. However, the flushing on the log file takes place once per second also when the value is 2. Note that the once-per-second flushing is not 100% guaranteed to happen every second, due to process scheduling issues.
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>The default value of this variable is 1 (prior to MySQL 4.0.13, the default is 0).
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>A value of 1 is required for ACID compliance. You can achieve better performance by setting the value different from 1, but then you can lose at most one second worth of transactions in a crash. With a value of 0, any mysqldprocess crash can erase the last second of transactions. With a value of 2, then only an operating system crash or a power outage can erase the last second of transactions. However, InnoDB&#39;s crash recovery is not affected and thus crash recovery does work regardless of the value.
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>Note
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>For the greatest possible durability and consistency in a replication setup using InnoDB with transactions, use innodb_flush_log_at_trx_commit=1, sync_binlog=1, and innodb-safe-binlog in your master server my.cnf file.
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>Caution
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>Many operating systems and some disk hardware fool the flush-to-disk operation. They may tellmysqld that the flush has taken place, even though it has not. Then the durability of transactions is not guaranteed even with the setting 1, and in the worst case a power outage can even corrupt theInnoDB database. Using a battery-backed disk cache in the SCSI disk controller or in the disk itself speeds up file flushes, and makes the operation safer. You can also try using the Unix commandhdparm to disable the caching of disk writes in hardware caches, or use some other command specific to the hardware vendor.
+</span></code></pre></div>
 <h1 id="mycnf">my.cnf 最終形態<a class="headerlink" href="#mycnf" title="Permanent link">&para;</a></h1>
-<pre><code>[mysql]
-default-character-set=utf8
-socket=/tmp/mysql.sock
-
-[mysqld]
-user=mysql
-datadir=/home/mysql
-socket=/tmp/mysql.sock
-tmpdir=/home/tmp
-slow_query_log=1
-# slow query 機能をONにする
-long_query_time=10
-# slow query 時間を10秒に設定
-slow_query_log_file=/var/log/mysql/slow_query.log
-log-error=/var/log/mysql/error.log
-log_output=FILE
-# log形式をfile式に設定
-
-#myisam
-myisam_sort_buffer_size=128M
-# MyISAMで以下の時のインデックスのソートに使われるメモリ上の領域です。 
-# REPAIR TABLE、CREATE INDEX、ALTER INDEX。通常のクエリ(DML)では使われないようなので、それほど多くする必要はないでしょう。
-
-key_buffer_size=512M
-# MyISAMのインデックスをキャッシュするメモリ上の領域です。
-# 多く割り当てた方がパフォーマンスが向上します。グローバルバッファなのでどかんと割り当てられます。
-# もし、MyISAMを(あまり)使ってないのならば、小さくしてほかのパラメータに回すのもアリです。
-
-sort_buffer_size=2M
-# ORDER BYやGROUP BYのときに使われるメモリ上の領域です。
-
-read_buffer_size=2M
-# インデックスを用いないテーブルスキャンのときに使われるメモリ上の領域です。
-
-read_rnd_buffer_size=2M
-# ソート後にレコードを読むときに使われるメモリ上の領域です。
-# ディスクI/Oが減るのでORDER BYの性能向上が期待できます。
-
-#server
-default-storage-engine=INNODB
-skip-name-resolve
-# DNS解決をOFFにする
-skip-ssl
-# MySQL5.7ではSSL利用しないため、OFFにする
-
-max_connections=300
-# 最大接続数を300にする、サーバのパフォーマンスとネット帯域によるもので、
-# 今後サーバリプレースと10G化した後、変更する必要あります。
-
-max_connect_errors=300
-# 連続して接続要求が中断された場合にそれを許可する回数を決定します。
-
-max_allowed_packet=16M
-# MySQL Server およびクライアント間で転送可能なパケット数。
-
-query_cache_size=512M
-# クエリキャッシュ領域。
-
-query_cache_limit=32M
-# キャッシュするクエリ結果の最大サイズ。
-query_cache_type=1
-# SELECT SQL_NO_CACHE 以外のクエリをキャッシュする
-
-connect_timeout=30
-# connect timeout 時間を30秒に設定
-
-max_user_connections=30
-# 単一アカウントによる同時接続の数
-
-thread_cache_size=300
-# スレッドをコネクションの切断後にもキャッシュしておく数。
-# thread_cache_sizeをNに設定すると、N個のアクティブでない接続スレッドをキャッシュできる。
-# 関連付けられたクライアント接続が終了すると、接続スレッドはアクティブでなくなる。
-
-back_log=50
-# MySQL で保持できる未処理の接続リクエストの数。
-
-table_open_cache=19200
-# すべてのスレッドについて開いているテーブルの数。
-
-table_definition_cache=16000
-# 定義キャッシュに格納可能な (.frm ファイルからの) テーブル定義の数。
-
-delayed_insert_timeout=60
-# 終了する前に、INSERT DELAYED ハンドラスレッドが INSERT ステートメントを待機する秒数。
-
-interactive_timeout=300
-# サーバーが対話型の接続で、対話型の接続を閉じる前にアクティビティーを待機する秒数。
-
-wait_timeout=300
-# 非インタラクティブな接続を閉じる前に、サーバーがその接続上でアクティビティーを待機する秒数。
-
-tmp_table_size=256M
-# 内部インメモリーの一時テーブルの最大サイズ。
-
-max_heap_table_size=256M
-# ユーザーが作成した MEMORY テーブルの増加が許可される最大サイズを設定します。
-# 
-character-set-server=utf8
-collation-server=utf8_general_ci
-
-#innodb options
-innodb_thread_concurrency=32
-# InnoDB は、この変数で指定された制限以下の数のオペレーティングシステムスレッドを同時に InnoDB 内部に保持しようと試みます 
-# スレッド数がこの制限に達すると、それ以降のスレッドは実行されるまで,
-# 「先入れ先出し」 (FIFO) キュー内で待機状態になります。ロックを待機しているスレッドは、並列実行中のスレッドの数にカウントされません。
-
-innodb_buffer_pool_size=48G
-# 全体メモリの50%〜60%に設定する。8の倍数。
-
-innodb_buffer_pool_dump_pct=100
-innodb_buffer_pool_dump_at_shutdown=1
-innodb_buffer_pool_load_at_startup=0
-# http://tech.gmo-media.jp/post/128523146249/innodb-buffer-pool-load-at-startup
-
-innodb_log_file_size=2G
-innodb_log_files_in_group=2
-# ロググループ内の各ログファイルのサイズです。通常はinnodb_buffer_pool_sizeの25％が良いと言われてますが、
-# 12Gのib_logfileが生成され、クラッシュリカバリ時の速度が遅くなるため、4Gにしました。
-# もし、SSDではなく、NVMEであれば、適当な値に変更するべきだろう。
-
-innodb_log_buffer_size=4M
-# ディスク上のログファイルに書き込む際に InnoDB で使用されるバッファーのサイズです。
-# ログバッファーを大きくすると、ディスク I/O を節約できますが、障害時ロースするデータも多い、
-# 推奨は1〜8Mです。
-
-innodb_file_per_table
-# 新たに作成された各テーブルのデータおよびインデックスがシステムテーブルスペースではなく,
-# 個別の .ibd ファイルに格納されます。これらの InnoDB テーブル用のストレージは、テーブルが削除されたり、
-# 切り捨てられたりすると再利用されます。5.6.6 以上はデフォルトONです。
-
-innodb_open_files=9600
-# この変数は、複数の InnoDB テーブルスペースを使用する場合にのみ関連します。
-# MySQL で一度に開いたままにできる .ibd ファイルの最大数が指定されます。
-
-innodb_flush_method=O_DIRECT
-# InnoDB のデータファイルおよびログファイルにデータをフラッシュする際に使用される方法を定義します。
-# これにより、I/O スループットが影響を受ける可能性があります。この変数は、Unix および Linux システムでのみ構成可能です。
-# Windows システムでは、フラッシュ方法は常に async_unbuffered であり、変更できません。
-
-# - fsync: InnoDB は fsync() システムコールを使用して、データファイルとログファイルの両方をフラッシュします。fsync はデフォルト設定です。
-# 
-# - O_DSYNC: InnoDB は、O_SYNC を使用してログファイルを開いてフラッシュし、fsync() を使用してデータファイルをフラッシュします。さまざまな種類の Unix で問題が発生しているため、InnoDB では直接 O_DSYNC が使用されません。
-# 
-# - O_DIRECT: InnoDB は、O_DIRECT (Solaris では directio()) を使用してデータファイルを開き、fsync() を使用してデータファイルとログファイルの両方をフラッシュします。このオプションは、一部の GNU/Linux バージョン、FreeBSD、および Solaris で使用可能です。
-# 
-# - O_DIRECT_NO_FSYNC: InnoDB は、I/O のフラッシュ時に O_DIRECT を使用しますが、後続の fsync() システムコールはスキップします。この設定は、一部のタイプのファイルシステムには適していますが、その他には適していません。たとえば、XFS には適していません。たとえば、使用中のファイルシステムですべてのファイルメタデータを保持するために、fsync() が必要であるのかどうかが不明な場合は、代わりに O_DIRECT を使用してください。このオプションは MySQL 5.6.7 (Bug #11754304、Bug #45892) で導入されました。
-
-default_password_lifetime=0
-# パスワードの有効期限、レンサバと連携しているため、OFFにしました。
-#enforce-gtid-consistency=1
-#gtid-mode=ON
-#safe-user-create=1
-#explicit_defaults_for_timestamp=1
-log_timestamps=SYSTEM
-# ログに出力される時刻変数です、デフォルトはUTCですが、読みにくいため、SYSTEMに変更しました。
-
-disable-partition-engine-check=1
-# https://yoku0825.blogspot.jp/2017/04/mysql-5717-deprecated-partition-engine.html
-# MySQL8 の過渡期にあたるMySQL 5.7に追加されたものです、今後MySQL8リリースした場合、
-# ユーザがDB移設する時約立つだろう（と思う）、しかし、毎回MySQL起動時にtableとチェックするため、
-# 時間かかるため、disableしました。 
-
-show_compatibility_56=on
-# https://yakst.com/ja/posts/2733
-
-innodb_buffer_pool_instances=8
-# InnoDB のバッファープールが分割される領域の数です。CPUコア数に合わせる。
-
-innodb_rollback_segments=32
-# トランザクション内で InnoDB が使用するシステムテーブルスペースにあるロールバックセグメントの数を定義します。
-
-innodb_write_io_threads=16
-innodb_read_io_threads=16
-
-innodb_io_capacity=2000
-innodb_io_capacity_max=5000
-# MySQLサーバはSSDのため、io_capacityを2000〜5000に設定する。
-
-innodb_max_dirty_pages_pct=40
-# InnoDB は、ダーティーページの割合がこの値を超えないように、バッファープールからデータをフラッシュしようと試みます。
-
-innodb_flush_log_at_trx_commit=2
-
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>[mysql]
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>default-character-set=utf8
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>socket=/tmp/mysql.sock
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>[mysqld]
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>user=mysql
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>datadir=/home/mysql
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>socket=/tmp/mysql.sock
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>tmpdir=/home/tmp
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>slow_query_log=1
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a># slow query 機能をONにする
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>long_query_time=10
+</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a># slow query 時間を10秒に設定
+</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>slow_query_log_file=/var/log/mysql/slow_query.log
+</span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>log-error=/var/log/mysql/error.log
+</span><span id="__span-2-16"><a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a>log_output=FILE
+</span><span id="__span-2-17"><a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a># log形式をfile式に設定
+</span><span id="__span-2-18"><a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a>
+</span><span id="__span-2-19"><a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a>#myisam
+</span><span id="__span-2-20"><a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a>myisam_sort_buffer_size=128M
+</span><span id="__span-2-21"><a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a># MyISAMで以下の時のインデックスのソートに使われるメモリ上の領域です。 
+</span><span id="__span-2-22"><a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a># REPAIR TABLE、CREATE INDEX、ALTER INDEX。通常のクエリ(DML)では使われないようなので、それほど多くする必要はないでしょう。
+</span><span id="__span-2-23"><a id="__codelineno-2-23" name="__codelineno-2-23" href="#__codelineno-2-23"></a>
+</span><span id="__span-2-24"><a id="__codelineno-2-24" name="__codelineno-2-24" href="#__codelineno-2-24"></a>key_buffer_size=512M
+</span><span id="__span-2-25"><a id="__codelineno-2-25" name="__codelineno-2-25" href="#__codelineno-2-25"></a># MyISAMのインデックスをキャッシュするメモリ上の領域です。
+</span><span id="__span-2-26"><a id="__codelineno-2-26" name="__codelineno-2-26" href="#__codelineno-2-26"></a># 多く割り当てた方がパフォーマンスが向上します。グローバルバッファなのでどかんと割り当てられます。
+</span><span id="__span-2-27"><a id="__codelineno-2-27" name="__codelineno-2-27" href="#__codelineno-2-27"></a># もし、MyISAMを(あまり)使ってないのならば、小さくしてほかのパラメータに回すのもアリです。
+</span><span id="__span-2-28"><a id="__codelineno-2-28" name="__codelineno-2-28" href="#__codelineno-2-28"></a>
+</span><span id="__span-2-29"><a id="__codelineno-2-29" name="__codelineno-2-29" href="#__codelineno-2-29"></a>sort_buffer_size=2M
+</span><span id="__span-2-30"><a id="__codelineno-2-30" name="__codelineno-2-30" href="#__codelineno-2-30"></a># ORDER BYやGROUP BYのときに使われるメモリ上の領域です。
+</span><span id="__span-2-31"><a id="__codelineno-2-31" name="__codelineno-2-31" href="#__codelineno-2-31"></a>
+</span><span id="__span-2-32"><a id="__codelineno-2-32" name="__codelineno-2-32" href="#__codelineno-2-32"></a>read_buffer_size=2M
+</span><span id="__span-2-33"><a id="__codelineno-2-33" name="__codelineno-2-33" href="#__codelineno-2-33"></a># インデックスを用いないテーブルスキャンのときに使われるメモリ上の領域です。
+</span><span id="__span-2-34"><a id="__codelineno-2-34" name="__codelineno-2-34" href="#__codelineno-2-34"></a>
+</span><span id="__span-2-35"><a id="__codelineno-2-35" name="__codelineno-2-35" href="#__codelineno-2-35"></a>read_rnd_buffer_size=2M
+</span><span id="__span-2-36"><a id="__codelineno-2-36" name="__codelineno-2-36" href="#__codelineno-2-36"></a># ソート後にレコードを読むときに使われるメモリ上の領域です。
+</span><span id="__span-2-37"><a id="__codelineno-2-37" name="__codelineno-2-37" href="#__codelineno-2-37"></a># ディスクI/Oが減るのでORDER BYの性能向上が期待できます。
+</span><span id="__span-2-38"><a id="__codelineno-2-38" name="__codelineno-2-38" href="#__codelineno-2-38"></a>
+</span><span id="__span-2-39"><a id="__codelineno-2-39" name="__codelineno-2-39" href="#__codelineno-2-39"></a>#server
+</span><span id="__span-2-40"><a id="__codelineno-2-40" name="__codelineno-2-40" href="#__codelineno-2-40"></a>default-storage-engine=INNODB
+</span><span id="__span-2-41"><a id="__codelineno-2-41" name="__codelineno-2-41" href="#__codelineno-2-41"></a>skip-name-resolve
+</span><span id="__span-2-42"><a id="__codelineno-2-42" name="__codelineno-2-42" href="#__codelineno-2-42"></a># DNS解決をOFFにする
+</span><span id="__span-2-43"><a id="__codelineno-2-43" name="__codelineno-2-43" href="#__codelineno-2-43"></a>skip-ssl
+</span><span id="__span-2-44"><a id="__codelineno-2-44" name="__codelineno-2-44" href="#__codelineno-2-44"></a># MySQL5.7ではSSL利用しないため、OFFにする
+</span><span id="__span-2-45"><a id="__codelineno-2-45" name="__codelineno-2-45" href="#__codelineno-2-45"></a>
+</span><span id="__span-2-46"><a id="__codelineno-2-46" name="__codelineno-2-46" href="#__codelineno-2-46"></a>max_connections=300
+</span><span id="__span-2-47"><a id="__codelineno-2-47" name="__codelineno-2-47" href="#__codelineno-2-47"></a># 最大接続数を300にする、サーバのパフォーマンスとネット帯域によるもので、
+</span><span id="__span-2-48"><a id="__codelineno-2-48" name="__codelineno-2-48" href="#__codelineno-2-48"></a># 今後サーバリプレースと10G化した後、変更する必要あります。
+</span><span id="__span-2-49"><a id="__codelineno-2-49" name="__codelineno-2-49" href="#__codelineno-2-49"></a>
+</span><span id="__span-2-50"><a id="__codelineno-2-50" name="__codelineno-2-50" href="#__codelineno-2-50"></a>max_connect_errors=300
+</span><span id="__span-2-51"><a id="__codelineno-2-51" name="__codelineno-2-51" href="#__codelineno-2-51"></a># 連続して接続要求が中断された場合にそれを許可する回数を決定します。
+</span><span id="__span-2-52"><a id="__codelineno-2-52" name="__codelineno-2-52" href="#__codelineno-2-52"></a>
+</span><span id="__span-2-53"><a id="__codelineno-2-53" name="__codelineno-2-53" href="#__codelineno-2-53"></a>max_allowed_packet=16M
+</span><span id="__span-2-54"><a id="__codelineno-2-54" name="__codelineno-2-54" href="#__codelineno-2-54"></a># MySQL Server およびクライアント間で転送可能なパケット数。
+</span><span id="__span-2-55"><a id="__codelineno-2-55" name="__codelineno-2-55" href="#__codelineno-2-55"></a>
+</span><span id="__span-2-56"><a id="__codelineno-2-56" name="__codelineno-2-56" href="#__codelineno-2-56"></a>query_cache_size=512M
+</span><span id="__span-2-57"><a id="__codelineno-2-57" name="__codelineno-2-57" href="#__codelineno-2-57"></a># クエリキャッシュ領域。
+</span><span id="__span-2-58"><a id="__codelineno-2-58" name="__codelineno-2-58" href="#__codelineno-2-58"></a>
+</span><span id="__span-2-59"><a id="__codelineno-2-59" name="__codelineno-2-59" href="#__codelineno-2-59"></a>query_cache_limit=32M
+</span><span id="__span-2-60"><a id="__codelineno-2-60" name="__codelineno-2-60" href="#__codelineno-2-60"></a># キャッシュするクエリ結果の最大サイズ。
+</span><span id="__span-2-61"><a id="__codelineno-2-61" name="__codelineno-2-61" href="#__codelineno-2-61"></a>query_cache_type=1
+</span><span id="__span-2-62"><a id="__codelineno-2-62" name="__codelineno-2-62" href="#__codelineno-2-62"></a># SELECT SQL_NO_CACHE 以外のクエリをキャッシュする
+</span><span id="__span-2-63"><a id="__codelineno-2-63" name="__codelineno-2-63" href="#__codelineno-2-63"></a>
+</span><span id="__span-2-64"><a id="__codelineno-2-64" name="__codelineno-2-64" href="#__codelineno-2-64"></a>connect_timeout=30
+</span><span id="__span-2-65"><a id="__codelineno-2-65" name="__codelineno-2-65" href="#__codelineno-2-65"></a># connect timeout 時間を30秒に設定
+</span><span id="__span-2-66"><a id="__codelineno-2-66" name="__codelineno-2-66" href="#__codelineno-2-66"></a>
+</span><span id="__span-2-67"><a id="__codelineno-2-67" name="__codelineno-2-67" href="#__codelineno-2-67"></a>max_user_connections=30
+</span><span id="__span-2-68"><a id="__codelineno-2-68" name="__codelineno-2-68" href="#__codelineno-2-68"></a># 単一アカウントによる同時接続の数
+</span><span id="__span-2-69"><a id="__codelineno-2-69" name="__codelineno-2-69" href="#__codelineno-2-69"></a>
+</span><span id="__span-2-70"><a id="__codelineno-2-70" name="__codelineno-2-70" href="#__codelineno-2-70"></a>thread_cache_size=300
+</span><span id="__span-2-71"><a id="__codelineno-2-71" name="__codelineno-2-71" href="#__codelineno-2-71"></a># スレッドをコネクションの切断後にもキャッシュしておく数。
+</span><span id="__span-2-72"><a id="__codelineno-2-72" name="__codelineno-2-72" href="#__codelineno-2-72"></a># thread_cache_sizeをNに設定すると、N個のアクティブでない接続スレッドをキャッシュできる。
+</span><span id="__span-2-73"><a id="__codelineno-2-73" name="__codelineno-2-73" href="#__codelineno-2-73"></a># 関連付けられたクライアント接続が終了すると、接続スレッドはアクティブでなくなる。
+</span><span id="__span-2-74"><a id="__codelineno-2-74" name="__codelineno-2-74" href="#__codelineno-2-74"></a>
+</span><span id="__span-2-75"><a id="__codelineno-2-75" name="__codelineno-2-75" href="#__codelineno-2-75"></a>back_log=50
+</span><span id="__span-2-76"><a id="__codelineno-2-76" name="__codelineno-2-76" href="#__codelineno-2-76"></a># MySQL で保持できる未処理の接続リクエストの数。
+</span><span id="__span-2-77"><a id="__codelineno-2-77" name="__codelineno-2-77" href="#__codelineno-2-77"></a>
+</span><span id="__span-2-78"><a id="__codelineno-2-78" name="__codelineno-2-78" href="#__codelineno-2-78"></a>table_open_cache=19200
+</span><span id="__span-2-79"><a id="__codelineno-2-79" name="__codelineno-2-79" href="#__codelineno-2-79"></a># すべてのスレッドについて開いているテーブルの数。
+</span><span id="__span-2-80"><a id="__codelineno-2-80" name="__codelineno-2-80" href="#__codelineno-2-80"></a>
+</span><span id="__span-2-81"><a id="__codelineno-2-81" name="__codelineno-2-81" href="#__codelineno-2-81"></a>table_definition_cache=16000
+</span><span id="__span-2-82"><a id="__codelineno-2-82" name="__codelineno-2-82" href="#__codelineno-2-82"></a># 定義キャッシュに格納可能な (.frm ファイルからの) テーブル定義の数。
+</span><span id="__span-2-83"><a id="__codelineno-2-83" name="__codelineno-2-83" href="#__codelineno-2-83"></a>
+</span><span id="__span-2-84"><a id="__codelineno-2-84" name="__codelineno-2-84" href="#__codelineno-2-84"></a>delayed_insert_timeout=60
+</span><span id="__span-2-85"><a id="__codelineno-2-85" name="__codelineno-2-85" href="#__codelineno-2-85"></a># 終了する前に、INSERT DELAYED ハンドラスレッドが INSERT ステートメントを待機する秒数。
+</span><span id="__span-2-86"><a id="__codelineno-2-86" name="__codelineno-2-86" href="#__codelineno-2-86"></a>
+</span><span id="__span-2-87"><a id="__codelineno-2-87" name="__codelineno-2-87" href="#__codelineno-2-87"></a>interactive_timeout=300
+</span><span id="__span-2-88"><a id="__codelineno-2-88" name="__codelineno-2-88" href="#__codelineno-2-88"></a># サーバーが対話型の接続で、対話型の接続を閉じる前にアクティビティーを待機する秒数。
+</span><span id="__span-2-89"><a id="__codelineno-2-89" name="__codelineno-2-89" href="#__codelineno-2-89"></a>
+</span><span id="__span-2-90"><a id="__codelineno-2-90" name="__codelineno-2-90" href="#__codelineno-2-90"></a>wait_timeout=300
+</span><span id="__span-2-91"><a id="__codelineno-2-91" name="__codelineno-2-91" href="#__codelineno-2-91"></a># 非インタラクティブな接続を閉じる前に、サーバーがその接続上でアクティビティーを待機する秒数。
+</span><span id="__span-2-92"><a id="__codelineno-2-92" name="__codelineno-2-92" href="#__codelineno-2-92"></a>
+</span><span id="__span-2-93"><a id="__codelineno-2-93" name="__codelineno-2-93" href="#__codelineno-2-93"></a>tmp_table_size=256M
+</span><span id="__span-2-94"><a id="__codelineno-2-94" name="__codelineno-2-94" href="#__codelineno-2-94"></a># 内部インメモリーの一時テーブルの最大サイズ。
+</span><span id="__span-2-95"><a id="__codelineno-2-95" name="__codelineno-2-95" href="#__codelineno-2-95"></a>
+</span><span id="__span-2-96"><a id="__codelineno-2-96" name="__codelineno-2-96" href="#__codelineno-2-96"></a>max_heap_table_size=256M
+</span><span id="__span-2-97"><a id="__codelineno-2-97" name="__codelineno-2-97" href="#__codelineno-2-97"></a># ユーザーが作成した MEMORY テーブルの増加が許可される最大サイズを設定します。
+</span><span id="__span-2-98"><a id="__codelineno-2-98" name="__codelineno-2-98" href="#__codelineno-2-98"></a># 
+</span><span id="__span-2-99"><a id="__codelineno-2-99" name="__codelineno-2-99" href="#__codelineno-2-99"></a>character-set-server=utf8
+</span><span id="__span-2-100"><a id="__codelineno-2-100" name="__codelineno-2-100" href="#__codelineno-2-100"></a>collation-server=utf8_general_ci
+</span><span id="__span-2-101"><a id="__codelineno-2-101" name="__codelineno-2-101" href="#__codelineno-2-101"></a>
+</span><span id="__span-2-102"><a id="__codelineno-2-102" name="__codelineno-2-102" href="#__codelineno-2-102"></a>#innodb options
+</span><span id="__span-2-103"><a id="__codelineno-2-103" name="__codelineno-2-103" href="#__codelineno-2-103"></a>innodb_thread_concurrency=32
+</span><span id="__span-2-104"><a id="__codelineno-2-104" name="__codelineno-2-104" href="#__codelineno-2-104"></a># InnoDB は、この変数で指定された制限以下の数のオペレーティングシステムスレッドを同時に InnoDB 内部に保持しようと試みます 
+</span><span id="__span-2-105"><a id="__codelineno-2-105" name="__codelineno-2-105" href="#__codelineno-2-105"></a># スレッド数がこの制限に達すると、それ以降のスレッドは実行されるまで,
+</span><span id="__span-2-106"><a id="__codelineno-2-106" name="__codelineno-2-106" href="#__codelineno-2-106"></a># 「先入れ先出し」 (FIFO) キュー内で待機状態になります。ロックを待機しているスレッドは、並列実行中のスレッドの数にカウントされません。
+</span><span id="__span-2-107"><a id="__codelineno-2-107" name="__codelineno-2-107" href="#__codelineno-2-107"></a>
+</span><span id="__span-2-108"><a id="__codelineno-2-108" name="__codelineno-2-108" href="#__codelineno-2-108"></a>innodb_buffer_pool_size=48G
+</span><span id="__span-2-109"><a id="__codelineno-2-109" name="__codelineno-2-109" href="#__codelineno-2-109"></a># 全体メモリの50%〜60%に設定する。8の倍数。
+</span><span id="__span-2-110"><a id="__codelineno-2-110" name="__codelineno-2-110" href="#__codelineno-2-110"></a>
+</span><span id="__span-2-111"><a id="__codelineno-2-111" name="__codelineno-2-111" href="#__codelineno-2-111"></a>innodb_buffer_pool_dump_pct=100
+</span><span id="__span-2-112"><a id="__codelineno-2-112" name="__codelineno-2-112" href="#__codelineno-2-112"></a>innodb_buffer_pool_dump_at_shutdown=1
+</span><span id="__span-2-113"><a id="__codelineno-2-113" name="__codelineno-2-113" href="#__codelineno-2-113"></a>innodb_buffer_pool_load_at_startup=0
+</span><span id="__span-2-114"><a id="__codelineno-2-114" name="__codelineno-2-114" href="#__codelineno-2-114"></a># http://tech.gmo-media.jp/post/128523146249/innodb-buffer-pool-load-at-startup
+</span><span id="__span-2-115"><a id="__codelineno-2-115" name="__codelineno-2-115" href="#__codelineno-2-115"></a>
+</span><span id="__span-2-116"><a id="__codelineno-2-116" name="__codelineno-2-116" href="#__codelineno-2-116"></a>innodb_log_file_size=2G
+</span><span id="__span-2-117"><a id="__codelineno-2-117" name="__codelineno-2-117" href="#__codelineno-2-117"></a>innodb_log_files_in_group=2
+</span><span id="__span-2-118"><a id="__codelineno-2-118" name="__codelineno-2-118" href="#__codelineno-2-118"></a># ロググループ内の各ログファイルのサイズです。通常はinnodb_buffer_pool_sizeの25％が良いと言われてますが、
+</span><span id="__span-2-119"><a id="__codelineno-2-119" name="__codelineno-2-119" href="#__codelineno-2-119"></a># 12Gのib_logfileが生成され、クラッシュリカバリ時の速度が遅くなるため、4Gにしました。
+</span><span id="__span-2-120"><a id="__codelineno-2-120" name="__codelineno-2-120" href="#__codelineno-2-120"></a># もし、SSDではなく、NVMEであれば、適当な値に変更するべきだろう。
+</span><span id="__span-2-121"><a id="__codelineno-2-121" name="__codelineno-2-121" href="#__codelineno-2-121"></a>
+</span><span id="__span-2-122"><a id="__codelineno-2-122" name="__codelineno-2-122" href="#__codelineno-2-122"></a>innodb_log_buffer_size=4M
+</span><span id="__span-2-123"><a id="__codelineno-2-123" name="__codelineno-2-123" href="#__codelineno-2-123"></a># ディスク上のログファイルに書き込む際に InnoDB で使用されるバッファーのサイズです。
+</span><span id="__span-2-124"><a id="__codelineno-2-124" name="__codelineno-2-124" href="#__codelineno-2-124"></a># ログバッファーを大きくすると、ディスク I/O を節約できますが、障害時ロースするデータも多い、
+</span><span id="__span-2-125"><a id="__codelineno-2-125" name="__codelineno-2-125" href="#__codelineno-2-125"></a># 推奨は1〜8Mです。
+</span><span id="__span-2-126"><a id="__codelineno-2-126" name="__codelineno-2-126" href="#__codelineno-2-126"></a>
+</span><span id="__span-2-127"><a id="__codelineno-2-127" name="__codelineno-2-127" href="#__codelineno-2-127"></a>innodb_file_per_table
+</span><span id="__span-2-128"><a id="__codelineno-2-128" name="__codelineno-2-128" href="#__codelineno-2-128"></a># 新たに作成された各テーブルのデータおよびインデックスがシステムテーブルスペースではなく,
+</span><span id="__span-2-129"><a id="__codelineno-2-129" name="__codelineno-2-129" href="#__codelineno-2-129"></a># 個別の .ibd ファイルに格納されます。これらの InnoDB テーブル用のストレージは、テーブルが削除されたり、
+</span><span id="__span-2-130"><a id="__codelineno-2-130" name="__codelineno-2-130" href="#__codelineno-2-130"></a># 切り捨てられたりすると再利用されます。5.6.6 以上はデフォルトONです。
+</span><span id="__span-2-131"><a id="__codelineno-2-131" name="__codelineno-2-131" href="#__codelineno-2-131"></a>
+</span><span id="__span-2-132"><a id="__codelineno-2-132" name="__codelineno-2-132" href="#__codelineno-2-132"></a>innodb_open_files=9600
+</span><span id="__span-2-133"><a id="__codelineno-2-133" name="__codelineno-2-133" href="#__codelineno-2-133"></a># この変数は、複数の InnoDB テーブルスペースを使用する場合にのみ関連します。
+</span><span id="__span-2-134"><a id="__codelineno-2-134" name="__codelineno-2-134" href="#__codelineno-2-134"></a># MySQL で一度に開いたままにできる .ibd ファイルの最大数が指定されます。
+</span><span id="__span-2-135"><a id="__codelineno-2-135" name="__codelineno-2-135" href="#__codelineno-2-135"></a>
+</span><span id="__span-2-136"><a id="__codelineno-2-136" name="__codelineno-2-136" href="#__codelineno-2-136"></a>innodb_flush_method=O_DIRECT
+</span><span id="__span-2-137"><a id="__codelineno-2-137" name="__codelineno-2-137" href="#__codelineno-2-137"></a># InnoDB のデータファイルおよびログファイルにデータをフラッシュする際に使用される方法を定義します。
+</span><span id="__span-2-138"><a id="__codelineno-2-138" name="__codelineno-2-138" href="#__codelineno-2-138"></a># これにより、I/O スループットが影響を受ける可能性があります。この変数は、Unix および Linux システムでのみ構成可能です。
+</span><span id="__span-2-139"><a id="__codelineno-2-139" name="__codelineno-2-139" href="#__codelineno-2-139"></a># Windows システムでは、フラッシュ方法は常に async_unbuffered であり、変更できません。
+</span><span id="__span-2-140"><a id="__codelineno-2-140" name="__codelineno-2-140" href="#__codelineno-2-140"></a>
+</span><span id="__span-2-141"><a id="__codelineno-2-141" name="__codelineno-2-141" href="#__codelineno-2-141"></a># - fsync: InnoDB は fsync() システムコールを使用して、データファイルとログファイルの両方をフラッシュします。fsync はデフォルト設定です。
+</span><span id="__span-2-142"><a id="__codelineno-2-142" name="__codelineno-2-142" href="#__codelineno-2-142"></a># 
+</span><span id="__span-2-143"><a id="__codelineno-2-143" name="__codelineno-2-143" href="#__codelineno-2-143"></a># - O_DSYNC: InnoDB は、O_SYNC を使用してログファイルを開いてフラッシュし、fsync() を使用してデータファイルをフラッシュします。さまざまな種類の Unix で問題が発生しているため、InnoDB では直接 O_DSYNC が使用されません。
+</span><span id="__span-2-144"><a id="__codelineno-2-144" name="__codelineno-2-144" href="#__codelineno-2-144"></a># 
+</span><span id="__span-2-145"><a id="__codelineno-2-145" name="__codelineno-2-145" href="#__codelineno-2-145"></a># - O_DIRECT: InnoDB は、O_DIRECT (Solaris では directio()) を使用してデータファイルを開き、fsync() を使用してデータファイルとログファイルの両方をフラッシュします。このオプションは、一部の GNU/Linux バージョン、FreeBSD、および Solaris で使用可能です。
+</span><span id="__span-2-146"><a id="__codelineno-2-146" name="__codelineno-2-146" href="#__codelineno-2-146"></a># 
+</span><span id="__span-2-147"><a id="__codelineno-2-147" name="__codelineno-2-147" href="#__codelineno-2-147"></a># - O_DIRECT_NO_FSYNC: InnoDB は、I/O のフラッシュ時に O_DIRECT を使用しますが、後続の fsync() システムコールはスキップします。この設定は、一部のタイプのファイルシステムには適していますが、その他には適していません。たとえば、XFS には適していません。たとえば、使用中のファイルシステムですべてのファイルメタデータを保持するために、fsync() が必要であるのかどうかが不明な場合は、代わりに O_DIRECT を使用してください。このオプションは MySQL 5.6.7 (Bug #11754304、Bug #45892) で導入されました。
+</span><span id="__span-2-148"><a id="__codelineno-2-148" name="__codelineno-2-148" href="#__codelineno-2-148"></a>
+</span><span id="__span-2-149"><a id="__codelineno-2-149" name="__codelineno-2-149" href="#__codelineno-2-149"></a>default_password_lifetime=0
+</span><span id="__span-2-150"><a id="__codelineno-2-150" name="__codelineno-2-150" href="#__codelineno-2-150"></a># パスワードの有効期限、レンサバと連携しているため、OFFにしました。
+</span><span id="__span-2-151"><a id="__codelineno-2-151" name="__codelineno-2-151" href="#__codelineno-2-151"></a>#enforce-gtid-consistency=1
+</span><span id="__span-2-152"><a id="__codelineno-2-152" name="__codelineno-2-152" href="#__codelineno-2-152"></a>#gtid-mode=ON
+</span><span id="__span-2-153"><a id="__codelineno-2-153" name="__codelineno-2-153" href="#__codelineno-2-153"></a>#safe-user-create=1
+</span><span id="__span-2-154"><a id="__codelineno-2-154" name="__codelineno-2-154" href="#__codelineno-2-154"></a>#explicit_defaults_for_timestamp=1
+</span><span id="__span-2-155"><a id="__codelineno-2-155" name="__codelineno-2-155" href="#__codelineno-2-155"></a>log_timestamps=SYSTEM
+</span><span id="__span-2-156"><a id="__codelineno-2-156" name="__codelineno-2-156" href="#__codelineno-2-156"></a># ログに出力される時刻変数です、デフォルトはUTCですが、読みにくいため、SYSTEMに変更しました。
+</span><span id="__span-2-157"><a id="__codelineno-2-157" name="__codelineno-2-157" href="#__codelineno-2-157"></a>
+</span><span id="__span-2-158"><a id="__codelineno-2-158" name="__codelineno-2-158" href="#__codelineno-2-158"></a>disable-partition-engine-check=1
+</span><span id="__span-2-159"><a id="__codelineno-2-159" name="__codelineno-2-159" href="#__codelineno-2-159"></a># https://yoku0825.blogspot.jp/2017/04/mysql-5717-deprecated-partition-engine.html
+</span><span id="__span-2-160"><a id="__codelineno-2-160" name="__codelineno-2-160" href="#__codelineno-2-160"></a># MySQL8 の過渡期にあたるMySQL 5.7に追加されたものです、今後MySQL8リリースした場合、
+</span><span id="__span-2-161"><a id="__codelineno-2-161" name="__codelineno-2-161" href="#__codelineno-2-161"></a># ユーザがDB移設する時約立つだろう（と思う）、しかし、毎回MySQL起動時にtableとチェックするため、
+</span><span id="__span-2-162"><a id="__codelineno-2-162" name="__codelineno-2-162" href="#__codelineno-2-162"></a># 時間かかるため、disableしました。 
+</span><span id="__span-2-163"><a id="__codelineno-2-163" name="__codelineno-2-163" href="#__codelineno-2-163"></a>
+</span><span id="__span-2-164"><a id="__codelineno-2-164" name="__codelineno-2-164" href="#__codelineno-2-164"></a>show_compatibility_56=on
+</span><span id="__span-2-165"><a id="__codelineno-2-165" name="__codelineno-2-165" href="#__codelineno-2-165"></a># https://yakst.com/ja/posts/2733
+</span><span id="__span-2-166"><a id="__codelineno-2-166" name="__codelineno-2-166" href="#__codelineno-2-166"></a>
+</span><span id="__span-2-167"><a id="__codelineno-2-167" name="__codelineno-2-167" href="#__codelineno-2-167"></a>innodb_buffer_pool_instances=8
+</span><span id="__span-2-168"><a id="__codelineno-2-168" name="__codelineno-2-168" href="#__codelineno-2-168"></a># InnoDB のバッファープールが分割される領域の数です。CPUコア数に合わせる。
+</span><span id="__span-2-169"><a id="__codelineno-2-169" name="__codelineno-2-169" href="#__codelineno-2-169"></a>
+</span><span id="__span-2-170"><a id="__codelineno-2-170" name="__codelineno-2-170" href="#__codelineno-2-170"></a>innodb_rollback_segments=32
+</span><span id="__span-2-171"><a id="__codelineno-2-171" name="__codelineno-2-171" href="#__codelineno-2-171"></a># トランザクション内で InnoDB が使用するシステムテーブルスペースにあるロールバックセグメントの数を定義します。
+</span><span id="__span-2-172"><a id="__codelineno-2-172" name="__codelineno-2-172" href="#__codelineno-2-172"></a>
+</span><span id="__span-2-173"><a id="__codelineno-2-173" name="__codelineno-2-173" href="#__codelineno-2-173"></a>innodb_write_io_threads=16
+</span><span id="__span-2-174"><a id="__codelineno-2-174" name="__codelineno-2-174" href="#__codelineno-2-174"></a>innodb_read_io_threads=16
+</span><span id="__span-2-175"><a id="__codelineno-2-175" name="__codelineno-2-175" href="#__codelineno-2-175"></a>
+</span><span id="__span-2-176"><a id="__codelineno-2-176" name="__codelineno-2-176" href="#__codelineno-2-176"></a>innodb_io_capacity=2000
+</span><span id="__span-2-177"><a id="__codelineno-2-177" name="__codelineno-2-177" href="#__codelineno-2-177"></a>innodb_io_capacity_max=5000
+</span><span id="__span-2-178"><a id="__codelineno-2-178" name="__codelineno-2-178" href="#__codelineno-2-178"></a># MySQLサーバはSSDのため、io_capacityを2000〜5000に設定する。
+</span><span id="__span-2-179"><a id="__codelineno-2-179" name="__codelineno-2-179" href="#__codelineno-2-179"></a>
+</span><span id="__span-2-180"><a id="__codelineno-2-180" name="__codelineno-2-180" href="#__codelineno-2-180"></a>innodb_max_dirty_pages_pct=40
+</span><span id="__span-2-181"><a id="__codelineno-2-181" name="__codelineno-2-181" href="#__codelineno-2-181"></a># InnoDB は、ダーティーページの割合がこの値を超えないように、バッファープールからデータをフラッシュしようと試みます。
+</span><span id="__span-2-182"><a id="__codelineno-2-182" name="__codelineno-2-182" href="#__codelineno-2-182"></a>
+</span><span id="__span-2-183"><a id="__codelineno-2-183" name="__codelineno-2-183" href="#__codelineno-2-183"></a>innodb_flush_log_at_trx_commit=2
+</span></code></pre></div>
 <h2 id="_1">现在的设置<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <h3 id="_2">生产环境<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
-<pre><code>[mysql]
-default-character-set=utf8mb4
-socket=/tmp/mysql.sock
-
-[mysqld]
-server_id=1
-user=mysql
-datadir=/home/mysql
-socket=/tmp/mysql.sock
-tmpdir=/home/tmp
-bind-address=0.0.0.0
-
-# log
-log_bin=mysql-bin
-binlog_error_action=IGNORE_ERROR
-expire_logs_days=2
-slow_query_log=1
-long_query_time=10
-slow_query_log_file=/var/log/mysql/slow_query.log
-log_error=/var/log/mysql/error.log
-log_output=FILE
-
-# server
-sql_mode=&quot;ONLY_FULL_GROUP_BY,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION&quot;
-default_storage_engine=INNODB
-skip-partition
-skip-name-resolve
-skip-ssl
-skip-symbolic-links
-max_connections=600
-max_connect_errors=300
-max_allowed_packet=16M
-connect_timeout=30
-max_user_connections=30
-table_open_cache=19200
-interactive_timeout=300
-wait_timeout=300
-tmp_table_size=256M
-max_heap_table_size=256M
-default_password_lifetime=0
-explicit_defaults_for_timestamp=1
-log_timestamps=SYSTEM
-disable_partition_engine_check=1
-character-set-server=utf8mb4
-collation-server=utf8mb4_general_ci
-
-# buffer
-sort_buffer_size=1M
-read_buffer_size=1M
-read_rnd_buffer_size=1M
-
-# MyISAM
-myisam_sort_buffer_size=128M
-key_buffer_size=512M
-
-# InnoDB
-innodb_strict_mode=1
-innodb_file_per_table
-innodb_temp_data_file_path=ibtmp1:12M:autoextend:max:10G
-innodb_buffer_pool_size=56G
-innodb_buffer_pool_dump_pct=100
-innodb_buffer_pool_dump_at_shutdown=1
-innodb_buffer_pool_load_at_startup=0
-innodb_log_file_size=512M
-innodb_write_io_threads=16
-innodb_read_io_threads=16
-innodb_io_capacity=2000
-innodb_io_capacity_max=5000
-innodb_flush_log_at_trx_commit=2
-innodb_flush_method=O_DIRECT
-innodb_flush_neighbors=0
-innodb_read_ahead_threshold=0
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>[mysql]
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>default-character-set=utf8mb4
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>socket=/tmp/mysql.sock
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>[mysqld]
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>server_id=1
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>user=mysql
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>datadir=/home/mysql
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>socket=/tmp/mysql.sock
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>tmpdir=/home/tmp
+</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>bind-address=0.0.0.0
+</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>
+</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a># log
+</span><span id="__span-3-14"><a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a>log_bin=mysql-bin
+</span><span id="__span-3-15"><a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a>binlog_error_action=IGNORE_ERROR
+</span><span id="__span-3-16"><a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a>expire_logs_days=2
+</span><span id="__span-3-17"><a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a>slow_query_log=1
+</span><span id="__span-3-18"><a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a>long_query_time=10
+</span><span id="__span-3-19"><a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a>slow_query_log_file=/var/log/mysql/slow_query.log
+</span><span id="__span-3-20"><a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a>log_error=/var/log/mysql/error.log
+</span><span id="__span-3-21"><a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a>log_output=FILE
+</span><span id="__span-3-22"><a id="__codelineno-3-22" name="__codelineno-3-22" href="#__codelineno-3-22"></a>
+</span><span id="__span-3-23"><a id="__codelineno-3-23" name="__codelineno-3-23" href="#__codelineno-3-23"></a># server
+</span><span id="__span-3-24"><a id="__codelineno-3-24" name="__codelineno-3-24" href="#__codelineno-3-24"></a>sql_mode=&quot;ONLY_FULL_GROUP_BY,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION&quot;
+</span><span id="__span-3-25"><a id="__codelineno-3-25" name="__codelineno-3-25" href="#__codelineno-3-25"></a>default_storage_engine=INNODB
+</span><span id="__span-3-26"><a id="__codelineno-3-26" name="__codelineno-3-26" href="#__codelineno-3-26"></a>skip-partition
+</span><span id="__span-3-27"><a id="__codelineno-3-27" name="__codelineno-3-27" href="#__codelineno-3-27"></a>skip-name-resolve
+</span><span id="__span-3-28"><a id="__codelineno-3-28" name="__codelineno-3-28" href="#__codelineno-3-28"></a>skip-ssl
+</span><span id="__span-3-29"><a id="__codelineno-3-29" name="__codelineno-3-29" href="#__codelineno-3-29"></a>skip-symbolic-links
+</span><span id="__span-3-30"><a id="__codelineno-3-30" name="__codelineno-3-30" href="#__codelineno-3-30"></a>max_connections=600
+</span><span id="__span-3-31"><a id="__codelineno-3-31" name="__codelineno-3-31" href="#__codelineno-3-31"></a>max_connect_errors=300
+</span><span id="__span-3-32"><a id="__codelineno-3-32" name="__codelineno-3-32" href="#__codelineno-3-32"></a>max_allowed_packet=16M
+</span><span id="__span-3-33"><a id="__codelineno-3-33" name="__codelineno-3-33" href="#__codelineno-3-33"></a>connect_timeout=30
+</span><span id="__span-3-34"><a id="__codelineno-3-34" name="__codelineno-3-34" href="#__codelineno-3-34"></a>max_user_connections=30
+</span><span id="__span-3-35"><a id="__codelineno-3-35" name="__codelineno-3-35" href="#__codelineno-3-35"></a>table_open_cache=19200
+</span><span id="__span-3-36"><a id="__codelineno-3-36" name="__codelineno-3-36" href="#__codelineno-3-36"></a>interactive_timeout=300
+</span><span id="__span-3-37"><a id="__codelineno-3-37" name="__codelineno-3-37" href="#__codelineno-3-37"></a>wait_timeout=300
+</span><span id="__span-3-38"><a id="__codelineno-3-38" name="__codelineno-3-38" href="#__codelineno-3-38"></a>tmp_table_size=256M
+</span><span id="__span-3-39"><a id="__codelineno-3-39" name="__codelineno-3-39" href="#__codelineno-3-39"></a>max_heap_table_size=256M
+</span><span id="__span-3-40"><a id="__codelineno-3-40" name="__codelineno-3-40" href="#__codelineno-3-40"></a>default_password_lifetime=0
+</span><span id="__span-3-41"><a id="__codelineno-3-41" name="__codelineno-3-41" href="#__codelineno-3-41"></a>explicit_defaults_for_timestamp=1
+</span><span id="__span-3-42"><a id="__codelineno-3-42" name="__codelineno-3-42" href="#__codelineno-3-42"></a>log_timestamps=SYSTEM
+</span><span id="__span-3-43"><a id="__codelineno-3-43" name="__codelineno-3-43" href="#__codelineno-3-43"></a>disable_partition_engine_check=1
+</span><span id="__span-3-44"><a id="__codelineno-3-44" name="__codelineno-3-44" href="#__codelineno-3-44"></a>character-set-server=utf8mb4
+</span><span id="__span-3-45"><a id="__codelineno-3-45" name="__codelineno-3-45" href="#__codelineno-3-45"></a>collation-server=utf8mb4_general_ci
+</span><span id="__span-3-46"><a id="__codelineno-3-46" name="__codelineno-3-46" href="#__codelineno-3-46"></a>
+</span><span id="__span-3-47"><a id="__codelineno-3-47" name="__codelineno-3-47" href="#__codelineno-3-47"></a># buffer
+</span><span id="__span-3-48"><a id="__codelineno-3-48" name="__codelineno-3-48" href="#__codelineno-3-48"></a>sort_buffer_size=1M
+</span><span id="__span-3-49"><a id="__codelineno-3-49" name="__codelineno-3-49" href="#__codelineno-3-49"></a>read_buffer_size=1M
+</span><span id="__span-3-50"><a id="__codelineno-3-50" name="__codelineno-3-50" href="#__codelineno-3-50"></a>read_rnd_buffer_size=1M
+</span><span id="__span-3-51"><a id="__codelineno-3-51" name="__codelineno-3-51" href="#__codelineno-3-51"></a>
+</span><span id="__span-3-52"><a id="__codelineno-3-52" name="__codelineno-3-52" href="#__codelineno-3-52"></a># MyISAM
+</span><span id="__span-3-53"><a id="__codelineno-3-53" name="__codelineno-3-53" href="#__codelineno-3-53"></a>myisam_sort_buffer_size=128M
+</span><span id="__span-3-54"><a id="__codelineno-3-54" name="__codelineno-3-54" href="#__codelineno-3-54"></a>key_buffer_size=512M
+</span><span id="__span-3-55"><a id="__codelineno-3-55" name="__codelineno-3-55" href="#__codelineno-3-55"></a>
+</span><span id="__span-3-56"><a id="__codelineno-3-56" name="__codelineno-3-56" href="#__codelineno-3-56"></a># InnoDB
+</span><span id="__span-3-57"><a id="__codelineno-3-57" name="__codelineno-3-57" href="#__codelineno-3-57"></a>innodb_strict_mode=1
+</span><span id="__span-3-58"><a id="__codelineno-3-58" name="__codelineno-3-58" href="#__codelineno-3-58"></a>innodb_file_per_table
+</span><span id="__span-3-59"><a id="__codelineno-3-59" name="__codelineno-3-59" href="#__codelineno-3-59"></a>innodb_temp_data_file_path=ibtmp1:12M:autoextend:max:10G
+</span><span id="__span-3-60"><a id="__codelineno-3-60" name="__codelineno-3-60" href="#__codelineno-3-60"></a>innodb_buffer_pool_size=56G
+</span><span id="__span-3-61"><a id="__codelineno-3-61" name="__codelineno-3-61" href="#__codelineno-3-61"></a>innodb_buffer_pool_dump_pct=100
+</span><span id="__span-3-62"><a id="__codelineno-3-62" name="__codelineno-3-62" href="#__codelineno-3-62"></a>innodb_buffer_pool_dump_at_shutdown=1
+</span><span id="__span-3-63"><a id="__codelineno-3-63" name="__codelineno-3-63" href="#__codelineno-3-63"></a>innodb_buffer_pool_load_at_startup=0
+</span><span id="__span-3-64"><a id="__codelineno-3-64" name="__codelineno-3-64" href="#__codelineno-3-64"></a>innodb_log_file_size=512M
+</span><span id="__span-3-65"><a id="__codelineno-3-65" name="__codelineno-3-65" href="#__codelineno-3-65"></a>innodb_write_io_threads=16
+</span><span id="__span-3-66"><a id="__codelineno-3-66" name="__codelineno-3-66" href="#__codelineno-3-66"></a>innodb_read_io_threads=16
+</span><span id="__span-3-67"><a id="__codelineno-3-67" name="__codelineno-3-67" href="#__codelineno-3-67"></a>innodb_io_capacity=2000
+</span><span id="__span-3-68"><a id="__codelineno-3-68" name="__codelineno-3-68" href="#__codelineno-3-68"></a>innodb_io_capacity_max=5000
+</span><span id="__span-3-69"><a id="__codelineno-3-69" name="__codelineno-3-69" href="#__codelineno-3-69"></a>innodb_flush_log_at_trx_commit=2
+</span><span id="__span-3-70"><a id="__codelineno-3-70" name="__codelineno-3-70" href="#__codelineno-3-70"></a>innodb_flush_method=O_DIRECT
+</span><span id="__span-3-71"><a id="__codelineno-3-71" name="__codelineno-3-71" href="#__codelineno-3-71"></a>innodb_flush_neighbors=0
+</span><span id="__span-3-72"><a id="__codelineno-3-72" name="__codelineno-3-72" href="#__codelineno-3-72"></a>innodb_read_ahead_threshold=0
+</span></code></pre></div>
 
 
 
@@ -1681,6 +1688,11 @@ innodb_read_ahead_threshold=0
           
           
         </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+            Back to top
+          </button>
         
       </main>
       
@@ -1711,7 +1723,7 @@ innodb_read_ahead_threshold=0
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tracking", "navigation.expand", "navigation.sections", "navigation.indexes", "navigation.path", "toc.integrate"], "search": "../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tracking", "navigation.top", "navigation.sections", "navigation.indexes", "navigation.path", "toc.integrate", "content.code.copy"], "search": "../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
       <script src="../assets/javascripts/bundle.fac441b0.min.js"></script>

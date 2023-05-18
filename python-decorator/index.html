@@ -206,9 +206,7 @@
       
       
       
-        
-      
-      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
       
       
         
@@ -324,9 +322,7 @@
       
       
       
-        
-      
-      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
       
       
         
@@ -397,9 +393,7 @@
       
       
       
-        
-      
-      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
       
       
         
@@ -454,11 +448,11 @@
       
       
       
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+      
+      
         
-      
-      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_8" >
-      
-      
+          
         
           
         
@@ -566,6 +560,20 @@
     <li class="md-nav__item">
       <a href="../mysql-mgr/" class="md-nav__link">
         MGR
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mysql-mgr-copy/" class="md-nav__link">
+        転載MGR
       </a>
     </li>
   
@@ -1209,54 +1217,54 @@
 <p>Python 中的装饰器是你进入 Python 大门的一道坎，不管你跨不跨过去它都在那里。</p>
 <h2 id="_1">为什么需要装饰器<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <p>我们假设你的程序实现了 <code>say_hello ()</code> 和 <code>say_goodbye ()</code> 两个函数。</p>
-<pre><code class="language-python">def say_hello():
-   print &quot;hello!&quot;
-
-def say_goodbye():
-   print &quot;hello!&quot;  # bug here
-
-if __name__ == '__main__':
-   say_hello()
-   say_goodbye()
-</code></pre>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">def</span> <span class="nf">say_hello</span><span class="p">():</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>   <span class="nb">print</span> <span class="s2">&quot;hello!&quot;</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="k">def</span> <span class="nf">say_goodbye</span><span class="p">():</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>   <span class="nb">print</span> <span class="s2">&quot;hello!&quot;</span>  <span class="c1"># bug here</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>   <span class="n">say_hello</span><span class="p">()</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>   <span class="n">say_goodbye</span><span class="p">()</span>
+</span></code></pre></div>
 <p>但是在实际调用中，我们发现程序出错了，上面的代码打印了两个 hello 。经过调试你发现是 <code>say_goodbye ()</code> 出错了。老板要求调用每个方法前都要记录进入函数的时间和名称，比如这样：</p>
-<pre><code class="language-python">[DEBUG] 2016 - 10 - 27 11:11:11 - Enter say_hello()
-Hello!
-
-[DEBUG] 2016 - 10 - 27 11:11:11 - Enter say_goodbye()
-Goodbye!
-</code></pre>
-<p>好，小 A 是个毕业生，他是这样实现的。</p>
-<pre><code class="language-python">def say_hello():
-   print &quot;[DEBUG]: enter say_hello()&quot;
-   print &quot;hello!&quot;
-
-def say_goodbye():
-   print &quot;[DEBUG]: enter say_goodbye()&quot;
-   print &quot;hello!&quot;
-
-if __name__ == '__main__':
-   say_hello()
-   say_goodbye()
-</code></pre>
-<p>很 low 吧？ 嗯是的。小 B 工作有一段时间了，他告诉小 A 应该这样写。</p>
-<pre><code class="language-python">def debug():
-   import inspect
-   caller_name = inspect.stack()[1][3]    
-   print &quot;[DEBUG]: enter {}()&quot;.format(caller_name)
-
-def say_hello():
-   debug()    
-   print &quot;hello!&quot;
-
-def say_goodbye():
-   debug()    
-   print &quot;goodbye!&quot;
-
-if __name__ == '__main__':
-   say_hello()
-   say_goodbye()
-</code></pre>
+<p><div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="p">[</span><span class="n">DEBUG</span><span class="p">]</span> <span class="mi">2016</span> <span class="o">-</span> <span class="mi">10</span> <span class="o">-</span> <span class="mi">27</span> <span class="mi">11</span><span class="p">:</span><span class="mi">11</span><span class="p">:</span><span class="mi">11</span> <span class="o">-</span> <span class="n">Enter</span> <span class="n">say_hello</span><span class="p">()</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="n">Hello</span><span class="err">!</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="p">[</span><span class="n">DEBUG</span><span class="p">]</span> <span class="mi">2016</span> <span class="o">-</span> <span class="mi">10</span> <span class="o">-</span> <span class="mi">27</span> <span class="mi">11</span><span class="p">:</span><span class="mi">11</span><span class="p">:</span><span class="mi">11</span> <span class="o">-</span> <span class="n">Enter</span> <span class="n">say_goodbye</span><span class="p">()</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="n">Goodbye</span><span class="err">!</span>
+</span></code></pre></div>
+好，小 A 是个毕业生，他是这样实现的。</p>
+<p><div class="language-python highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">def</span> <span class="nf">say_hello</span><span class="p">():</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>   <span class="nb">print</span> <span class="s2">&quot;[DEBUG]: enter say_hello()&quot;</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>   <span class="nb">print</span> <span class="s2">&quot;hello!&quot;</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="k">def</span> <span class="nf">say_goodbye</span><span class="p">():</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>   <span class="nb">print</span> <span class="s2">&quot;[DEBUG]: enter say_goodbye()&quot;</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>   <span class="nb">print</span> <span class="s2">&quot;hello!&quot;</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>   <span class="n">say_hello</span><span class="p">()</span>
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>   <span class="n">say_goodbye</span><span class="p">()</span>
+</span></code></pre></div>
+很 low 吧？ 嗯是的。小 B 工作有一段时间了，他告诉小 A 应该这样写。</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">def</span> <span class="nf">debug</span><span class="p">():</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>   <span class="kn">import</span> <span class="nn">inspect</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>   <span class="n">caller_name</span> <span class="o">=</span> <span class="n">inspect</span><span class="o">.</span><span class="n">stack</span><span class="p">()[</span><span class="mi">1</span><span class="p">][</span><span class="mi">3</span><span class="p">]</span>    
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>   <span class="nb">print</span> <span class="s2">&quot;[DEBUG]: enter </span><span class="si">{}</span><span class="s2">()&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">caller_name</span><span class="p">)</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="k">def</span> <span class="nf">say_hello</span><span class="p">():</span>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>   <span class="n">debug</span><span class="p">()</span>    
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>   <span class="nb">print</span> <span class="s2">&quot;hello!&quot;</span>
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="k">def</span> <span class="nf">say_goodbye</span><span class="p">():</span>
+</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>   <span class="n">debug</span><span class="p">()</span>    
+</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>   <span class="nb">print</span> <span class="s2">&quot;goodbye!&quot;</span>
+</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>
+</span><span id="__span-3-14"><a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+</span><span id="__span-3-15"><a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a>   <span class="n">say_hello</span><span class="p">()</span>
+</span><span id="__span-3-16"><a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a>   <span class="n">say_goodbye</span><span class="p">()</span>
+</span></code></pre></div>
 <p>是不是好一点？那当然，但是每个业务函数里都要调用一下 debug () 函数，是不是很难受？万一老板说 say 相关的函数不用 debug ， do 相关的才需要呢？</p>
 <p>那么装饰器这时候应该登场了。</p>
 <blockquote>
@@ -1265,319 +1273,319 @@ if __name__ == '__main__':
 <p>概括的讲，装饰器的作用就是<code>为已经存在的函数或对象添加额外的功能。</code></p>
 <p>怎么写一个装饰器</p>
 <p>在早些时候  (Python Version &lt; 2.4，2004年以前)，为一个函数添加额外功能的写法是这样的。</p>
-<pre><code class="language-python">def debug(func):
-   def wrapper():
-       print &quot;[DEBUG]: enter {}()&quot;.format(func.__name__)        
-       return func()    
-   return wrapper
-
-def say_hello():
-   print &quot;hello!&quot;
-
-say_hello = debug(say_hello)  # 添加功能并保持原函数名不变
-</code></pre>
-<p>上面的 debug 函数其实已经是一个装饰器了，它对原函数做了包装并返回了另外一个函数，额外添加了一些功能。因为这样写实在不太优雅，下面代码等同于早期的写法。</p>
-<pre><code class="language-python">def debug(func):
-   def wrapper():
-       print &quot;[DEBUG]: enter {}()&quot;.format(func.__name__)        
-       return func()    
-   return wrapper
-
-@debug
-def say_hello():
-   print &quot;hello!&quot;
-</code></pre>
+<p><div class="language-python highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">def</span> <span class="nf">debug</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>   <span class="k">def</span> <span class="nf">wrapper</span><span class="p">():</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>       <span class="nb">print</span> <span class="s2">&quot;[DEBUG]: enter </span><span class="si">{}</span><span class="s2">()&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">func</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span>        
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>       <span class="k">return</span> <span class="n">func</span><span class="p">()</span>    
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>   <span class="k">return</span> <span class="n">wrapper</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="k">def</span> <span class="nf">say_hello</span><span class="p">():</span>
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>   <span class="nb">print</span> <span class="s2">&quot;hello!&quot;</span>
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>
+</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="n">say_hello</span> <span class="o">=</span> <span class="n">debug</span><span class="p">(</span><span class="n">say_hello</span><span class="p">)</span>  <span class="c1"># 添加功能并保持原函数名不变</span>
+</span></code></pre></div>
+上面的 debug 函数其实已经是一个装饰器了，它对原函数做了包装并返回了另外一个函数，额外添加了一些功能。因为这样写实在不太优雅，下面代码等同于早期的写法。</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="k">def</span> <span class="nf">debug</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>   <span class="k">def</span> <span class="nf">wrapper</span><span class="p">():</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>       <span class="nb">print</span> <span class="s2">&quot;[DEBUG]: enter </span><span class="si">{}</span><span class="s2">()&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">func</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span>        
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>       <span class="k">return</span> <span class="n">func</span><span class="p">()</span>    
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>   <span class="k">return</span> <span class="n">wrapper</span>
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="nd">@debug</span>
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="k">def</span> <span class="nf">say_hello</span><span class="p">():</span>
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>   <span class="nb">print</span> <span class="s2">&quot;hello!&quot;</span>
+</span></code></pre></div>
 <p>这是最简单的装饰器，但是有一个问题，如果被装饰的函数需要传入参数，那么这个装饰器就坏了。因为返回的函数并不能接受参数，你可以指定装饰器函数 <code>wrapper</code> 接受和原函数一样的参数，比如：</p>
-<pre><code class="language-python">def debug(func):
-   def wrapper(something):  # 指定一毛一样的参数
-       print &quot;[DEBUG]: enter {}()&quot;.format(func.__name__)        
-       return func(something)    
-   return wrapper  # 返回包装过函数
-
-@debug
-def say(something):
-   print &quot;hello {}!&quot;.format(something)
-</code></pre>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="k">def</span> <span class="nf">debug</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>   <span class="k">def</span> <span class="nf">wrapper</span><span class="p">(</span><span class="n">something</span><span class="p">):</span>  <span class="c1"># 指定一毛一样的参数</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>       <span class="nb">print</span> <span class="s2">&quot;[DEBUG]: enter </span><span class="si">{}</span><span class="s2">()&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">func</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span>        
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>       <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="n">something</span><span class="p">)</span>    
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>   <span class="k">return</span> <span class="n">wrapper</span>  <span class="c1"># 返回包装过函数</span>
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="nd">@debug</span>
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="k">def</span> <span class="nf">say</span><span class="p">(</span><span class="n">something</span><span class="p">):</span>
+</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>   <span class="nb">print</span> <span class="s2">&quot;hello </span><span class="si">{}</span><span class="s2">!&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">something</span><span class="p">)</span>
+</span></code></pre></div>
 <p>这样你就解决了一个问题，但又多了 N 个问题。因为函数有千千万，你只管你自己的函数，别人的函数参数是什么样子，鬼知道？还好 Python 提供了可变参数 <code>* args</code> 和关键字参数 <code>** kwargs</code> ，有了这两个参数，装饰器就可以用于任意目标函数了。</p>
-<pre><code class="language-python">def debug(func):
-   def wrapper(*args, **kwargs):  # 指定宇宙无敌参数
-       print &quot;[DEBUG]: enter {}()&quot;.format(func.__name__)        
-       print 'Prepare and say...',        
-       return func(*args, **kwargs)    
-   return wrapper  # 返回
-
-@debug
-def say(something):
-   print &quot;hello {}!&quot;.format(something)
-</code></pre>
-<p>至此，你已完全掌握初级的装饰器写法。</p>
+<p><div class="language-python highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="k">def</span> <span class="nf">debug</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>   <span class="k">def</span> <span class="nf">wrapper</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>  <span class="c1"># 指定宇宙无敌参数</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>       <span class="nb">print</span> <span class="s2">&quot;[DEBUG]: enter </span><span class="si">{}</span><span class="s2">()&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">func</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span>        
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>       <span class="nb">print</span> <span class="s1">&#39;Prepare and say...&#39;</span><span class="p">,</span>        
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>       <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>    
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>   <span class="k">return</span> <span class="n">wrapper</span>  <span class="c1"># 返回</span>
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="nd">@debug</span>
+</span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a><span class="k">def</span> <span class="nf">say</span><span class="p">(</span><span class="n">something</span><span class="p">):</span>
+</span><span id="__span-7-10"><a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a>   <span class="nb">print</span> <span class="s2">&quot;hello </span><span class="si">{}</span><span class="s2">!&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">something</span><span class="p">)</span>
+</span></code></pre></div>
+至此，你已完全掌握初级的装饰器写法。</p>
 <h2 id="_2">高级一点的装饰器<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <p>带参数的装饰器和类装饰器属于进阶的内容。在理解这些装饰器之前，最好对函数的闭包和装饰器的接口约定有一定了解。(参见http://betacat.online/posts/python- closure/)</p>
 <h3 id="_3">带参数的装饰器<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
 <p>假设我们前文的装饰器需要完成的功能不仅仅是能在进入某个函数后打出 log 信息，而且还需指定 log 的级别，那么装饰器就会是这样的。</p>
-<pre><code class="language-python">def debug(func):
-def logging(level):
-   def wrapper(func):
-       def inner_wrapper(*args, **kwargs):
-           print &quot;[{level}]: enter function {func}()&quot;.format(
-               level=level,
-               func=func.__name__)            
-           return func(*args, **kwargs)        
-       return inner_wrapper    
-   return wrapper
-
-@logging(level='INFO')
-def say(something):
-   print &quot;say {}!&quot;.format(something)
-
-@logging(level='DEBUG')
-def do(something):
-   print &quot;do {}...&quot;.format(something)
-
-if __name__ == '__main__':
-   say('hello')
-   do(&quot;my work&quot;)
-</code></pre>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="k">def</span> <span class="nf">debug</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="k">def</span> <span class="nf">logging</span><span class="p">(</span><span class="n">level</span><span class="p">):</span>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>   <span class="k">def</span> <span class="nf">wrapper</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>       <span class="k">def</span> <span class="nf">inner_wrapper</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>           <span class="nb">print</span> <span class="s2">&quot;[</span><span class="si">{level}</span><span class="s2">]: enter function </span><span class="si">{func}</span><span class="s2">()&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>               <span class="n">level</span><span class="o">=</span><span class="n">level</span><span class="p">,</span>
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>               <span class="n">func</span><span class="o">=</span><span class="n">func</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span>            
+</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>           <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>        
+</span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a>       <span class="k">return</span> <span class="n">inner_wrapper</span>    
+</span><span id="__span-8-10"><a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a>   <span class="k">return</span> <span class="n">wrapper</span>
+</span><span id="__span-8-11"><a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a>
+</span><span id="__span-8-12"><a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a><span class="nd">@logging</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="s1">&#39;INFO&#39;</span><span class="p">)</span>
+</span><span id="__span-8-13"><a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a><span class="k">def</span> <span class="nf">say</span><span class="p">(</span><span class="n">something</span><span class="p">):</span>
+</span><span id="__span-8-14"><a id="__codelineno-8-14" name="__codelineno-8-14" href="#__codelineno-8-14"></a>   <span class="nb">print</span> <span class="s2">&quot;say </span><span class="si">{}</span><span class="s2">!&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">something</span><span class="p">)</span>
+</span><span id="__span-8-15"><a id="__codelineno-8-15" name="__codelineno-8-15" href="#__codelineno-8-15"></a>
+</span><span id="__span-8-16"><a id="__codelineno-8-16" name="__codelineno-8-16" href="#__codelineno-8-16"></a><span class="nd">@logging</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="s1">&#39;DEBUG&#39;</span><span class="p">)</span>
+</span><span id="__span-8-17"><a id="__codelineno-8-17" name="__codelineno-8-17" href="#__codelineno-8-17"></a><span class="k">def</span> <span class="nf">do</span><span class="p">(</span><span class="n">something</span><span class="p">):</span>
+</span><span id="__span-8-18"><a id="__codelineno-8-18" name="__codelineno-8-18" href="#__codelineno-8-18"></a>   <span class="nb">print</span> <span class="s2">&quot;do </span><span class="si">{}</span><span class="s2">...&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">something</span><span class="p">)</span>
+</span><span id="__span-8-19"><a id="__codelineno-8-19" name="__codelineno-8-19" href="#__codelineno-8-19"></a>
+</span><span id="__span-8-20"><a id="__codelineno-8-20" name="__codelineno-8-20" href="#__codelineno-8-20"></a><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+</span><span id="__span-8-21"><a id="__codelineno-8-21" name="__codelineno-8-21" href="#__codelineno-8-21"></a>   <span class="n">say</span><span class="p">(</span><span class="s1">&#39;hello&#39;</span><span class="p">)</span>
+</span><span id="__span-8-22"><a id="__codelineno-8-22" name="__codelineno-8-22" href="#__codelineno-8-22"></a>   <span class="n">do</span><span class="p">(</span><span class="s2">&quot;my work&quot;</span><span class="p">)</span>
+</span></code></pre></div>
 <p>是不是有一些晕？你可以这么理解，当带参数的装饰器被打在某个函数上时，比如 <code>@ logging ( level =' DEBUG ')</code> ，它其实是一个函数，会马上被执行，只要这个它返回的结果是一个装饰器时，那就没问题。细细再体会一下。</p>
 <h2 id="_4">基于类实现的装饰器<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
 <p>装饰器函数其实是这样一个接口约束，它必须接受一个 callable 对象作为参数，然后返回一个 callable 对象。在 Python 中一般 callable 对象都是函数，但也有例外。只要某个对象重载了 <code>__call__ ()</code> 方法，那么这个对象就是 callable 的。</p>
-<pre><code class="language-python">class Test():
-   def __call__(self):
-       print 'call me!'t = Test()
-t()  # call me
-</code></pre>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="k">class</span> <span class="nc">Test</span><span class="p">():</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>   <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>       <span class="nb">print</span> <span class="s1">&#39;call me!&#39;</span><span class="n">t</span> <span class="o">=</span> <span class="n">Test</span><span class="p">()</span>
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="n">t</span><span class="p">()</span>  <span class="c1"># call me</span>
+</span></code></pre></div>
 <p>像 <code>__call__</code> 这样前后都带下划线的方法在 Python 中被称为内置方法，有时候也被称为魔法方法。重载这些魔法方法一般会改变对象的内部行为。上面这个例子就让一个类对象拥有了被调用的行为。</p>
 <p>回到装饰器上的概念上来，装饰器要求接受一个 callable 对象，并返回一个 callable 对象（不太严谨，详见后文）。那么用类来实现也是也可以的。我们可以让类的构造函数 <code>__init__ ()</code> 接受一个函数，然后重载 <code>__call__ ()</code> 并返回一个函数，也可以达到装饰器函数的效果。</p>
-<pre><code class="language-python">class logging(object):
-   def __init__(self, func):
-       self.func = func    
-   def __call__(self, *args, **kwargs):
-       print &quot;[DEBUG]: enter function {func}()&quot;.format(
-           func=self.func.__name__)        
-       return self.func(*args, **kwargs)
-
-@logging
-def say(something):
-   print &quot;say {}!&quot;.format(something)
-</code></pre>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="k">class</span> <span class="nc">logging</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>   <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="p">):</span>
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>       <span class="bp">self</span><span class="o">.</span><span class="n">func</span> <span class="o">=</span> <span class="n">func</span>    
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>   <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>       <span class="nb">print</span> <span class="s2">&quot;[DEBUG]: enter function </span><span class="si">{func}</span><span class="s2">()&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>           <span class="n">func</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">func</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span>        
+</span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a>       <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+</span><span id="__span-10-8"><a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a>
+</span><span id="__span-10-9"><a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a><span class="nd">@logging</span>
+</span><span id="__span-10-10"><a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a><span class="k">def</span> <span class="nf">say</span><span class="p">(</span><span class="n">something</span><span class="p">):</span>
+</span><span id="__span-10-11"><a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a>   <span class="nb">print</span> <span class="s2">&quot;say </span><span class="si">{}</span><span class="s2">!&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">something</span><span class="p">)</span>
+</span></code></pre></div>
 <h2 id="_5">带参数的类装饰器<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
 <p>如果需要通过类形式实现带参数的装饰器，那么会比前面的例子稍微复杂一点。那么在构造函数里接受的就不是一个函数，而是传入的参数。通过类把这些参数保存起来。然后在重载 <code>__call__</code> 方法是就需要接受一个函数并返回一个函数。</p>
-<pre><code class="language-python">class logging(object):
-   def __init__(self, level='INFO'):
-       self.level = level    
-   def __call__(self, func):  # 接受函数
-       def wrapper(*args, **kwargs):
-           print &quot;[{level}]: enter function {func}()&quot;.format(
-               level=self.level,
-               func=func.__name__)
-           func(*args, **kwargs)        
-           return wrapper  # 返回函数
-
-@logging(level='INFO')
-def say(something):
-   print &quot;say {}!&quot;.format(something)
-</code></pre>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="k">class</span> <span class="nc">logging</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>   <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="s1">&#39;INFO&#39;</span><span class="p">):</span>
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>       <span class="bp">self</span><span class="o">.</span><span class="n">level</span> <span class="o">=</span> <span class="n">level</span>    
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>   <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="p">):</span>  <span class="c1"># 接受函数</span>
+</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>       <span class="k">def</span> <span class="nf">wrapper</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>           <span class="nb">print</span> <span class="s2">&quot;[</span><span class="si">{level}</span><span class="s2">]: enter function </span><span class="si">{func}</span><span class="s2">()&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+</span><span id="__span-11-7"><a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a>               <span class="n">level</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">level</span><span class="p">,</span>
+</span><span id="__span-11-8"><a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a>               <span class="n">func</span><span class="o">=</span><span class="n">func</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span>
+</span><span id="__span-11-9"><a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a>           <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>        
+</span><span id="__span-11-10"><a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a>           <span class="k">return</span> <span class="n">wrapper</span>  <span class="c1"># 返回函数</span>
+</span><span id="__span-11-11"><a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a>
+</span><span id="__span-11-12"><a id="__codelineno-11-12" name="__codelineno-11-12" href="#__codelineno-11-12"></a><span class="nd">@logging</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="s1">&#39;INFO&#39;</span><span class="p">)</span>
+</span><span id="__span-11-13"><a id="__codelineno-11-13" name="__codelineno-11-13" href="#__codelineno-11-13"></a><span class="k">def</span> <span class="nf">say</span><span class="p">(</span><span class="n">something</span><span class="p">):</span>
+</span><span id="__span-11-14"><a id="__codelineno-11-14" name="__codelineno-11-14" href="#__codelineno-11-14"></a>   <span class="nb">print</span> <span class="s2">&quot;say </span><span class="si">{}</span><span class="s2">!&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">something</span><span class="p">)</span>
+</span></code></pre></div>
 <h2 id="_6">内置的装饰器<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
 <p>内置的装饰器和普通的装饰器原理是一样的，只不过返回的不是函数，而是类对象，所以更难理解一些。</p>
 <h3 id="property">@ property<a class="headerlink" href="#property" title="Permanent link">&para;</a></h3>
 <p>在了解这个装饰器前，你需要知道在不使用装饰器怎么写一个属性。</p>
-<pre><code class="language-python">def getx(self):
-   return self._x
-def setx(self, value):
-   self._x = value
-def delx(self):
-   del self._x# create a property
-x = property(getx, setx, delx, &quot;I am doc for x property&quot;)
-</code></pre>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="k">def</span> <span class="nf">getx</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>   <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_x</span>
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="k">def</span> <span class="nf">setx</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>   <span class="bp">self</span><span class="o">.</span><span class="n">_x</span> <span class="o">=</span> <span class="n">value</span>
+</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a><span class="k">def</span> <span class="nf">delx</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="__span-12-6"><a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a>   <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">_x</span><span class="c1"># create a property</span>
+</span><span id="__span-12-7"><a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a><span class="n">x</span> <span class="o">=</span> <span class="nb">property</span><span class="p">(</span><span class="n">getx</span><span class="p">,</span> <span class="n">setx</span><span class="p">,</span> <span class="n">delx</span><span class="p">,</span> <span class="s2">&quot;I am doc for x property&quot;</span><span class="p">)</span>
+</span></code></pre></div>
 <p>以上就是一个Python属性的标准写法，其实和Java挺像的，能达到一样的效果但看起来更简单。</p>
-<pre><code class="language-python">@property
-def x(self): ...
-# 等同于
-def x(self): ...
-x = property(x)
-</code></pre>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="nd">@property</span>
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="k">def</span> <span class="nf">x</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span> <span class="o">...</span>
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="c1"># 等同于</span>
+</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="k">def</span> <span class="nf">x</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span> <span class="o">...</span>
+</span><span id="__span-13-5"><a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a><span class="n">x</span> <span class="o">=</span> <span class="nb">property</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</span></code></pre></div>
 <p>属性有三个装饰器： <code>setter</code> , <code>getter</code> , <code>deleter</code> ，都是在 <code>property ()</code> 的基础上做了一些封装，因为 <code>setter</code> 和 <code>deleter</code> 是 <code>property ()</code> 的第二和第三个参数，<code>getter</code> 装饰器和不带 <code>getter</code> 的属性装饰器效果是一样的，估计只是为了凑数，本身没有任何存在的意义。经过 <code>@ property</code> 装饰过的函数返回的不再是一个函数，而是一个 <code>property</code> 对象。</p>
-<pre><code class="language-python">&gt;&gt;&gt; property()
-&lt;property object at 0x10ff07940 &gt;
-</code></pre>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="o">&gt;&gt;&gt;</span> <span class="nb">property</span><span class="p">()</span>
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="o">&lt;</span><span class="nb">property</span> <span class="nb">object</span> <span class="n">at</span> <span class="mh">0x10ff07940</span> <span class="o">&gt;</span>
+</span></code></pre></div>
 <h3 id="classmethod">@ classmethod<a class="headerlink" href="#classmethod" title="Permanent link">&para;</a></h3>
 <p>有了 <code>@ property</code> 装饰器的了解，这两个装饰器的原理是差不多的。 <code>@ staticmethod</code> 返回的是一个 <code>staticmethod</code> 类对象，而 <code>@ classmethod</code> 返回的是一个 <code>classmethod</code> 类对象。他们都是调用的是各自的 <code>__init__ ()</code> 构造函数。</p>
-<pre><code class="language-python">class classmethod(object):
-   &quot;&quot;&quot;
-   classmethod(function) -&gt; method
-   &quot;&quot;&quot;
-   def __init__(self, function):  # for @classmethod decorator
-       pass
-   # ...
-class staticmethod(object):
-   &quot;&quot;&quot;
-   staticmethod(function) -&gt; method
-   &quot;&quot;&quot;
-   def __init__(self, function):  # for @staticmethod decorator
-       pass
-   # ...
-class Foo(object):
-   @staticmethod
-   def bar():
-       pass
-   # 等同于 bar = staticmethod(bar)
-</code></pre>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="k">class</span> <span class="nc">classmethod</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="w">   </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="sd">   classmethod(function) -&gt; method</span>
+</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a><span class="sd">   &quot;&quot;&quot;</span>
+</span><span id="__span-15-5"><a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a>   <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">function</span><span class="p">):</span>  <span class="c1"># for @classmethod decorator</span>
+</span><span id="__span-15-6"><a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a>       <span class="k">pass</span>
+</span><span id="__span-15-7"><a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a>   <span class="c1"># ...</span>
+</span><span id="__span-15-8"><a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a><span class="k">class</span> <span class="nc">staticmethod</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+</span><span id="__span-15-9"><a id="__codelineno-15-9" name="__codelineno-15-9" href="#__codelineno-15-9"></a><span class="w">   </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="__span-15-10"><a id="__codelineno-15-10" name="__codelineno-15-10" href="#__codelineno-15-10"></a><span class="sd">   staticmethod(function) -&gt; method</span>
+</span><span id="__span-15-11"><a id="__codelineno-15-11" name="__codelineno-15-11" href="#__codelineno-15-11"></a><span class="sd">   &quot;&quot;&quot;</span>
+</span><span id="__span-15-12"><a id="__codelineno-15-12" name="__codelineno-15-12" href="#__codelineno-15-12"></a>   <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">function</span><span class="p">):</span>  <span class="c1"># for @staticmethod decorator</span>
+</span><span id="__span-15-13"><a id="__codelineno-15-13" name="__codelineno-15-13" href="#__codelineno-15-13"></a>       <span class="k">pass</span>
+</span><span id="__span-15-14"><a id="__codelineno-15-14" name="__codelineno-15-14" href="#__codelineno-15-14"></a>   <span class="c1"># ...</span>
+</span><span id="__span-15-15"><a id="__codelineno-15-15" name="__codelineno-15-15" href="#__codelineno-15-15"></a><span class="k">class</span> <span class="nc">Foo</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+</span><span id="__span-15-16"><a id="__codelineno-15-16" name="__codelineno-15-16" href="#__codelineno-15-16"></a>   <span class="nd">@staticmethod</span>
+</span><span id="__span-15-17"><a id="__codelineno-15-17" name="__codelineno-15-17" href="#__codelineno-15-17"></a>   <span class="k">def</span> <span class="nf">bar</span><span class="p">():</span>
+</span><span id="__span-15-18"><a id="__codelineno-15-18" name="__codelineno-15-18" href="#__codelineno-15-18"></a>       <span class="k">pass</span>
+</span><span id="__span-15-19"><a id="__codelineno-15-19" name="__codelineno-15-19" href="#__codelineno-15-19"></a>   <span class="c1"># 等同于 bar = staticmethod(bar)</span>
+</span></code></pre></div>
 <p>至此，我们上文提到的装饰器接口定义可以更加明确一些，装饰器必须接受一个 callable 对象，其实它并不关心你返回什么，可以是另外一个 callable 对象（大部分情况），也可以是其他类对象，比如 property 。</p>
 <h2 id="_7">装饰器里的那些坑<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
 <p>装饰器可以让你代码更加优雅，减少重复，但也不全是优点，也会带来一些问题。</p>
 <h3 id="_8">位置错误的代码<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
 <p>让我们直接看示例代码。</p>
-<pre><code class="language-python">def html_tags(tag_name):
-   print 'begin outer function.'
-   def wrapper_(func):
-       print &quot;begin of inner wrapper function.&quot;
-       def wrapper(*args, **kwargs):
-           content = func(*args, **kwargs)            
-           print &quot;&lt;{tag}&gt;{content}&lt;/{tag}&gt;&quot;.format(tag=tag_name, content=content)               print 'end of inner wrapper function.'
-       return wrapper    
-   print 'end of outer function'
-   return wrapper_@html_tags('b')
-
-def hello(name='Toby'):
-   return 'Hello {}!'.format(name)
-hello()
-hello()
-</code></pre>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="k">def</span> <span class="nf">html_tags</span><span class="p">(</span><span class="n">tag_name</span><span class="p">):</span>
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>   <span class="nb">print</span> <span class="s1">&#39;begin outer function.&#39;</span>
+</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>   <span class="k">def</span> <span class="nf">wrapper_</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
+</span><span id="__span-16-4"><a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a>       <span class="nb">print</span> <span class="s2">&quot;begin of inner wrapper function.&quot;</span>
+</span><span id="__span-16-5"><a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a>       <span class="k">def</span> <span class="nf">wrapper</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+</span><span id="__span-16-6"><a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a>           <span class="n">content</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>            
+</span><span id="__span-16-7"><a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a>           <span class="nb">print</span> <span class="s2">&quot;&lt;</span><span class="si">{tag}</span><span class="s2">&gt;</span><span class="si">{content}</span><span class="s2">&lt;/</span><span class="si">{tag}</span><span class="s2">&gt;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">tag</span><span class="o">=</span><span class="n">tag_name</span><span class="p">,</span> <span class="n">content</span><span class="o">=</span><span class="n">content</span><span class="p">)</span>               <span class="nb">print</span> <span class="s1">&#39;end of inner wrapper function.&#39;</span>
+</span><span id="__span-16-8"><a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a>       <span class="k">return</span> <span class="n">wrapper</span>    
+</span><span id="__span-16-9"><a id="__codelineno-16-9" name="__codelineno-16-9" href="#__codelineno-16-9"></a>   <span class="nb">print</span> <span class="s1">&#39;end of outer function&#39;</span>
+</span><span id="__span-16-10"><a id="__codelineno-16-10" name="__codelineno-16-10" href="#__codelineno-16-10"></a>   <span class="k">return</span> <span class="n">wrapper_</span><span class="nd">@html_tags</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">)</span>
+</span><span id="__span-16-11"><a id="__codelineno-16-11" name="__codelineno-16-11" href="#__codelineno-16-11"></a>
+</span><span id="__span-16-12"><a id="__codelineno-16-12" name="__codelineno-16-12" href="#__codelineno-16-12"></a><span class="k">def</span> <span class="nf">hello</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;Toby&#39;</span><span class="p">):</span>
+</span><span id="__span-16-13"><a id="__codelineno-16-13" name="__codelineno-16-13" href="#__codelineno-16-13"></a>   <span class="k">return</span> <span class="s1">&#39;Hello </span><span class="si">{}</span><span class="s1">!&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+</span><span id="__span-16-14"><a id="__codelineno-16-14" name="__codelineno-16-14" href="#__codelineno-16-14"></a><span class="n">hello</span><span class="p">()</span>
+</span><span id="__span-16-15"><a id="__codelineno-16-15" name="__codelineno-16-15" href="#__codelineno-16-15"></a><span class="n">hello</span><span class="p">()</span>
+</span></code></pre></div>
 <p>在装饰器中我在各个可能的位置都加上了 print 语句，用于记录被调用的情况。你知道他们最后打印出来的顺序吗？如果你心里没底，那么最好不要在装饰器函数之外添加逻辑功能，否则这个装饰器就不受你控制了。以下是输出结果：</p>
-<pre><code class="language-python">begin outer function.
-end of outer function
-begin of inner wrapper function.
-end of inner wrapper function.
-&lt;b &gt; Hello Toby!&lt; /b &gt;
-&lt;b &gt; Hello Toby!&lt; /b &gt;
-</code></pre>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="n">begin</span> <span class="n">outer</span> <span class="n">function</span><span class="o">.</span>
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="n">end</span> <span class="n">of</span> <span class="n">outer</span> <span class="n">function</span>
+</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a><span class="n">begin</span> <span class="n">of</span> <span class="n">inner</span> <span class="n">wrapper</span> <span class="n">function</span><span class="o">.</span>
+</span><span id="__span-17-4"><a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a><span class="n">end</span> <span class="n">of</span> <span class="n">inner</span> <span class="n">wrapper</span> <span class="n">function</span><span class="o">.</span>
+</span><span id="__span-17-5"><a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a><span class="o">&lt;</span><span class="n">b</span> <span class="o">&gt;</span> <span class="n">Hello</span> <span class="n">Toby</span><span class="err">!</span><span class="o">&lt;</span> <span class="o">/</span><span class="n">b</span> <span class="o">&gt;</span>
+</span><span id="__span-17-6"><a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a><span class="o">&lt;</span><span class="n">b</span> <span class="o">&gt;</span> <span class="n">Hello</span> <span class="n">Toby</span><span class="err">!</span><span class="o">&lt;</span> <span class="o">/</span><span class="n">b</span> <span class="o">&gt;</span>
+</span></code></pre></div>
 <h3 id="_9">错误的函数签名和文档<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h3>
 <p>装饰器装饰过的函数看上去名字没变，其实已经变了。</p>
-<pre><code class="language-python">def logging(func):
-   def wrapper(*args, **kwargs):
-       &quot;&quot;&quot;print log before a function.&quot;&quot;&quot;
-       print &quot;[DEBUG] {}: enter {}()&quot;.format(datetime.now(), func.__name__)        
-       return func(*args, **kwargs)    
-   return wrapper
-
-@logging
-def say(something):
-   &quot;&quot;&quot;say something&quot;&quot;&quot;
-   print &quot;say {}!&quot;.format(something)
-print say.__name__  # wrapper
-</code></pre>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="k">def</span> <span class="nf">logging</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
+</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>   <span class="k">def</span> <span class="nf">wrapper</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+</span><span id="__span-18-3"><a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a><span class="w">       </span><span class="sd">&quot;&quot;&quot;print log before a function.&quot;&quot;&quot;</span>
+</span><span id="__span-18-4"><a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a>       <span class="nb">print</span> <span class="s2">&quot;[DEBUG] </span><span class="si">{}</span><span class="s2">: enter </span><span class="si">{}</span><span class="s2">()&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">(),</span> <span class="n">func</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span>        
+</span><span id="__span-18-5"><a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a>       <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>    
+</span><span id="__span-18-6"><a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a>   <span class="k">return</span> <span class="n">wrapper</span>
+</span><span id="__span-18-7"><a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a>
+</span><span id="__span-18-8"><a id="__codelineno-18-8" name="__codelineno-18-8" href="#__codelineno-18-8"></a><span class="nd">@logging</span>
+</span><span id="__span-18-9"><a id="__codelineno-18-9" name="__codelineno-18-9" href="#__codelineno-18-9"></a><span class="k">def</span> <span class="nf">say</span><span class="p">(</span><span class="n">something</span><span class="p">):</span>
+</span><span id="__span-18-10"><a id="__codelineno-18-10" name="__codelineno-18-10" href="#__codelineno-18-10"></a><span class="w">   </span><span class="sd">&quot;&quot;&quot;say something&quot;&quot;&quot;</span>
+</span><span id="__span-18-11"><a id="__codelineno-18-11" name="__codelineno-18-11" href="#__codelineno-18-11"></a>   <span class="nb">print</span> <span class="s2">&quot;say </span><span class="si">{}</span><span class="s2">!&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">something</span><span class="p">)</span>
+</span><span id="__span-18-12"><a id="__codelineno-18-12" name="__codelineno-18-12" href="#__codelineno-18-12"></a><span class="nb">print</span> <span class="n">say</span><span class="o">.</span><span class="vm">__name__</span>  <span class="c1"># wrapper</span>
+</span></code></pre></div>
 <p>为什么会这样呢？@等同于这样的写法。</p>
-<pre><code class="language-python">say = logging(say)
-</code></pre>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="n">say</span> <span class="o">=</span> <span class="n">logging</span><span class="p">(</span><span class="n">say</span><span class="p">)</span>
+</span></code></pre></div>
 <p><code>logging</code> 其实返回的函数名字刚好是 <code>wrapper</code> ，那么上面的这个语句刚好就是把这个结果赋值给 <code>say</code> ， <code>say</code> 的 <code>__name__</code> 自然也就是 <code>wrapper</code> 了，不仅仅是 <code>name</code> ，其他属性也都是来自 <code>wrapper</code> ，比如 <code>doc</code> ， <code>source</code> 等等。</p>
 <p>使用标准库里的 functools.wraps ，可以基本解决这个问题。</p>
-<pre><code class="language-python">from functools import wrapsdef logging(func):
-   @wraps(func)
-   def wrapper(*args, **kwargs):
-       &quot;&quot;&quot;print log before a function.&quot;&quot;&quot;
-       print &quot;[DEBUG] {}: enter {}()&quot;.format(datetime.now(), func.__name__)        
-       return func(*args, **kwargs)    
-   return wrapper
-
-@logging
-def say(something):
-   &quot;&quot;&quot;say something&quot;&quot;&quot;
-
-   print &quot;say {}!&quot;.format(something)
-   print say.__name__  # say
-   print say.__doc__  # say something
-</code></pre>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">wrapsdef</span> <span class="n">logging</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
+</span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>   <span class="nd">@wraps</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
+</span><span id="__span-20-3"><a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a>   <span class="k">def</span> <span class="nf">wrapper</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+</span><span id="__span-20-4"><a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a><span class="w">       </span><span class="sd">&quot;&quot;&quot;print log before a function.&quot;&quot;&quot;</span>
+</span><span id="__span-20-5"><a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a>       <span class="nb">print</span> <span class="s2">&quot;[DEBUG] </span><span class="si">{}</span><span class="s2">: enter </span><span class="si">{}</span><span class="s2">()&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">(),</span> <span class="n">func</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span>        
+</span><span id="__span-20-6"><a id="__codelineno-20-6" name="__codelineno-20-6" href="#__codelineno-20-6"></a>       <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>    
+</span><span id="__span-20-7"><a id="__codelineno-20-7" name="__codelineno-20-7" href="#__codelineno-20-7"></a>   <span class="k">return</span> <span class="n">wrapper</span>
+</span><span id="__span-20-8"><a id="__codelineno-20-8" name="__codelineno-20-8" href="#__codelineno-20-8"></a>
+</span><span id="__span-20-9"><a id="__codelineno-20-9" name="__codelineno-20-9" href="#__codelineno-20-9"></a><span class="nd">@logging</span>
+</span><span id="__span-20-10"><a id="__codelineno-20-10" name="__codelineno-20-10" href="#__codelineno-20-10"></a><span class="k">def</span> <span class="nf">say</span><span class="p">(</span><span class="n">something</span><span class="p">):</span>
+</span><span id="__span-20-11"><a id="__codelineno-20-11" name="__codelineno-20-11" href="#__codelineno-20-11"></a><span class="w">   </span><span class="sd">&quot;&quot;&quot;say something&quot;&quot;&quot;</span>
+</span><span id="__span-20-12"><a id="__codelineno-20-12" name="__codelineno-20-12" href="#__codelineno-20-12"></a>
+</span><span id="__span-20-13"><a id="__codelineno-20-13" name="__codelineno-20-13" href="#__codelineno-20-13"></a>   <span class="nb">print</span> <span class="s2">&quot;say </span><span class="si">{}</span><span class="s2">!&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">something</span><span class="p">)</span>
+</span><span id="__span-20-14"><a id="__codelineno-20-14" name="__codelineno-20-14" href="#__codelineno-20-14"></a>   <span class="nb">print</span> <span class="n">say</span><span class="o">.</span><span class="vm">__name__</span>  <span class="c1"># say</span>
+</span><span id="__span-20-15"><a id="__codelineno-20-15" name="__codelineno-20-15" href="#__codelineno-20-15"></a>   <span class="nb">print</span> <span class="n">say</span><span class="o">.</span><span class="vm">__doc__</span>  <span class="c1"># say something</span>
+</span></code></pre></div>
 <p>看上去不错！主要问题解决了，但其实还不太完美。因为函数的签名和源码还是拿不到的。</p>
-<pre><code class="language-python">import inspect
-print inspect.getargspec(say)  # failed
-print inspect.getsource(say)  # failed
-</code></pre>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="kn">import</span> <span class="nn">inspect</span>
+</span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a><span class="nb">print</span> <span class="n">inspect</span><span class="o">.</span><span class="n">getargspec</span><span class="p">(</span><span class="n">say</span><span class="p">)</span>  <span class="c1"># failed</span>
+</span><span id="__span-21-3"><a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a><span class="nb">print</span> <span class="n">inspect</span><span class="o">.</span><span class="n">getsource</span><span class="p">(</span><span class="n">say</span><span class="p">)</span>  <span class="c1"># failed</span>
+</span></code></pre></div>
 <p>如果要彻底解决这个问题可以借用第三方包，比如 <code>wrapt</code> 。后文有介绍。</p>
 <h2 id="staticmethod-classmethod">不能装饰@staticmethod 或者 @classmethod<a class="headerlink" href="#staticmethod-classmethod" title="Permanent link">&para;</a></h2>
 <p>当你想把装饰器用在一个静态方法或者类方法时，不好意思，报错了。</p>
-<pre><code class="language-python">class Car(object):
-
-   def __init__(self, model):
-       self.model = model    
-
-   @logging  # 装饰实例方法，OK
-   def run(self):
-       print &quot;{} is running!&quot;.format(self.model)    
-
-   @logging  # 装饰静态方法，Failed
-   @staticmethod
-   def check_model_for(obj):
-       if isinstance(obj, Car):            
-           print &quot;The model of your car is {}&quot;.format(obj.model)        
-       else:            
-           print &quot;{} is not a car!&quot;.format(obj)     
-&quot;&quot;&quot;
-Traceback (most recent call last):
-...
- File &quot;example_4.py&quot;, line 10, in logging
-
-   @wraps(func)
- File &quot;C:\Python27\lib\functools.py&quot;, line 33, in update_wrapper
-
-   setattr(wrapper, attr, getattr(wrapped, attr))
-AttributeError: 'staticmethod' object has no attribute '__module__'
-
-&quot;&quot;&quot;
-</code></pre>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="k">class</span> <span class="nc">Car</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+</span><span id="__span-22-2"><a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>
+</span><span id="__span-22-3"><a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a>   <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">):</span>
+</span><span id="__span-22-4"><a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a>       <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">model</span>    
+</span><span id="__span-22-5"><a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a>
+</span><span id="__span-22-6"><a id="__codelineno-22-6" name="__codelineno-22-6" href="#__codelineno-22-6"></a>   <span class="nd">@logging</span>  <span class="c1"># 装饰实例方法，OK</span>
+</span><span id="__span-22-7"><a id="__codelineno-22-7" name="__codelineno-22-7" href="#__codelineno-22-7"></a>   <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="__span-22-8"><a id="__codelineno-22-8" name="__codelineno-22-8" href="#__codelineno-22-8"></a>       <span class="nb">print</span> <span class="s2">&quot;</span><span class="si">{}</span><span class="s2"> is running!&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">)</span>    
+</span><span id="__span-22-9"><a id="__codelineno-22-9" name="__codelineno-22-9" href="#__codelineno-22-9"></a>
+</span><span id="__span-22-10"><a id="__codelineno-22-10" name="__codelineno-22-10" href="#__codelineno-22-10"></a>   <span class="nd">@logging</span>  <span class="c1"># 装饰静态方法，Failed</span>
+</span><span id="__span-22-11"><a id="__codelineno-22-11" name="__codelineno-22-11" href="#__codelineno-22-11"></a>   <span class="nd">@staticmethod</span>
+</span><span id="__span-22-12"><a id="__codelineno-22-12" name="__codelineno-22-12" href="#__codelineno-22-12"></a>   <span class="k">def</span> <span class="nf">check_model_for</span><span class="p">(</span><span class="n">obj</span><span class="p">):</span>
+</span><span id="__span-22-13"><a id="__codelineno-22-13" name="__codelineno-22-13" href="#__codelineno-22-13"></a>       <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">Car</span><span class="p">):</span>            
+</span><span id="__span-22-14"><a id="__codelineno-22-14" name="__codelineno-22-14" href="#__codelineno-22-14"></a>           <span class="nb">print</span> <span class="s2">&quot;The model of your car is </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">obj</span><span class="o">.</span><span class="n">model</span><span class="p">)</span>        
+</span><span id="__span-22-15"><a id="__codelineno-22-15" name="__codelineno-22-15" href="#__codelineno-22-15"></a>       <span class="k">else</span><span class="p">:</span>            
+</span><span id="__span-22-16"><a id="__codelineno-22-16" name="__codelineno-22-16" href="#__codelineno-22-16"></a>           <span class="nb">print</span> <span class="s2">&quot;</span><span class="si">{}</span><span class="s2"> is not a car!&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>     
+</span><span id="__span-22-17"><a id="__codelineno-22-17" name="__codelineno-22-17" href="#__codelineno-22-17"></a><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="__span-22-18"><a id="__codelineno-22-18" name="__codelineno-22-18" href="#__codelineno-22-18"></a><span class="sd">Traceback (most recent call last):</span>
+</span><span id="__span-22-19"><a id="__codelineno-22-19" name="__codelineno-22-19" href="#__codelineno-22-19"></a><span class="sd">...</span>
+</span><span id="__span-22-20"><a id="__codelineno-22-20" name="__codelineno-22-20" href="#__codelineno-22-20"></a><span class="sd"> File &quot;example_4.py&quot;, line 10, in logging</span>
+</span><span id="__span-22-21"><a id="__codelineno-22-21" name="__codelineno-22-21" href="#__codelineno-22-21"></a>
+</span><span id="__span-22-22"><a id="__codelineno-22-22" name="__codelineno-22-22" href="#__codelineno-22-22"></a><span class="sd">   @wraps(func)</span>
+</span><span id="__span-22-23"><a id="__codelineno-22-23" name="__codelineno-22-23" href="#__codelineno-22-23"></a><span class="sd"> File &quot;C:\Python27\lib\functools.py&quot;, line 33, in update_wrapper</span>
+</span><span id="__span-22-24"><a id="__codelineno-22-24" name="__codelineno-22-24" href="#__codelineno-22-24"></a>
+</span><span id="__span-22-25"><a id="__codelineno-22-25" name="__codelineno-22-25" href="#__codelineno-22-25"></a><span class="sd">   setattr(wrapper, attr, getattr(wrapped, attr))</span>
+</span><span id="__span-22-26"><a id="__codelineno-22-26" name="__codelineno-22-26" href="#__codelineno-22-26"></a><span class="sd">AttributeError: &#39;staticmethod&#39; object has no attribute &#39;__module__&#39;</span>
+</span><span id="__span-22-27"><a id="__codelineno-22-27" name="__codelineno-22-27" href="#__codelineno-22-27"></a>
+</span><span id="__span-22-28"><a id="__codelineno-22-28" name="__codelineno-22-28" href="#__codelineno-22-28"></a><span class="sd">&quot;&quot;&quot;</span>
+</span></code></pre></div>
 <p>前面已经解释了 <code>@ staticmethod</code> 这个装饰器，其实它返回的并不是一个 <code>callable</code> 对象，而是一个 <code>staticmethod</code> 对象，那么它是不符合装饰器要求的（比如传入一个 callable 对象），你自然不能在它之上再加别的装饰器。要解决这个问题很简单，只要把你的装饰器放在 <code>@ staticmethod</code> 之前就好了，因为你的装饰器返回的还是一个正常的函数，然后再加上一个 <code>@ staticmethod</code> 是不会出问题的。</p>
-<pre><code class="language-python">class Car(object):
-   def __init__(self, model):
-       self.model = model    
-
-   @staticmethod
-   @logging  
-   def check_model_for(obj):
-       pass
-</code></pre>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="k">class</span> <span class="nc">Car</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+</span><span id="__span-23-2"><a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a>   <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">):</span>
+</span><span id="__span-23-3"><a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a>       <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">model</span>    
+</span><span id="__span-23-4"><a id="__codelineno-23-4" name="__codelineno-23-4" href="#__codelineno-23-4"></a>
+</span><span id="__span-23-5"><a id="__codelineno-23-5" name="__codelineno-23-5" href="#__codelineno-23-5"></a>   <span class="nd">@staticmethod</span>
+</span><span id="__span-23-6"><a id="__codelineno-23-6" name="__codelineno-23-6" href="#__codelineno-23-6"></a>   <span class="nd">@logging</span>  
+</span><span id="__span-23-7"><a id="__codelineno-23-7" name="__codelineno-23-7" href="#__codelineno-23-7"></a>   <span class="k">def</span> <span class="nf">check_model_for</span><span class="p">(</span><span class="n">obj</span><span class="p">):</span>
+</span><span id="__span-23-8"><a id="__codelineno-23-8" name="__codelineno-23-8" href="#__codelineno-23-8"></a>       <span class="k">pass</span>
+</span></code></pre></div>
 <h2 id="_10">如何优化你的装饰器<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h2>
 <p>嵌套的装饰函数不太直观，我们可以使用第三方包类改进这样的情况，让装饰器函数可读性更好。</p>
 <h3 id="decoratorpy">decorator.py<a class="headerlink" href="#decoratorpy" title="Permanent link">&para;</a></h3>
 <p><code>decorator.py</code>是一个非常简单的装饰器加强包。你可以很直观的先定义包装函数 <code>wrapper ()</code> ，再使用 <code>decorate ( func , wrapper )</code> 方法就可以完成一个装饰器。</p>
-<pre><code class="language-python">from decorator import decorate
-def wrapper(func, *args, **kwargs):
-   &quot;&quot;&quot;print log before a function.&quot;&quot;&quot;
-   print &quot;[DEBUG] {}: enter {}()&quot;.format(datetime.now(), func.__name__)    
-   return func(*args, **kwargs)
-
-def logging(func):
-   return decorate(func, wrapper)  # 用wrapper装饰func
-</code></pre>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="kn">from</span> <span class="nn">decorator</span> <span class="kn">import</span> <span class="n">decorate</span>
+</span><span id="__span-24-2"><a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a><span class="k">def</span> <span class="nf">wrapper</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+</span><span id="__span-24-3"><a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a><span class="w">   </span><span class="sd">&quot;&quot;&quot;print log before a function.&quot;&quot;&quot;</span>
+</span><span id="__span-24-4"><a id="__codelineno-24-4" name="__codelineno-24-4" href="#__codelineno-24-4"></a>   <span class="nb">print</span> <span class="s2">&quot;[DEBUG] </span><span class="si">{}</span><span class="s2">: enter </span><span class="si">{}</span><span class="s2">()&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">(),</span> <span class="n">func</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span>    
+</span><span id="__span-24-5"><a id="__codelineno-24-5" name="__codelineno-24-5" href="#__codelineno-24-5"></a>   <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+</span><span id="__span-24-6"><a id="__codelineno-24-6" name="__codelineno-24-6" href="#__codelineno-24-6"></a>
+</span><span id="__span-24-7"><a id="__codelineno-24-7" name="__codelineno-24-7" href="#__codelineno-24-7"></a><span class="k">def</span> <span class="nf">logging</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
+</span><span id="__span-24-8"><a id="__codelineno-24-8" name="__codelineno-24-8" href="#__codelineno-24-8"></a>   <span class="k">return</span> <span class="n">decorate</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="n">wrapper</span><span class="p">)</span>  <span class="c1"># 用wrapper装饰func</span>
+</span></code></pre></div>
 <p>你也可以使用它自带的 <code>@ decorator</code> 装饰器来完成你的装饰器。</p>
-<pre><code class="language-python">from decorator import decorator
-@decorator
-def logging(func, *args, **kwargs):
-   print &quot;[DEBUG] {}: enter {}()&quot;.format(datetime.now(), func.__name__)    
-   return func(*args, **kwargs)
-</code></pre>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="kn">from</span> <span class="nn">decorator</span> <span class="kn">import</span> <span class="n">decorator</span>
+</span><span id="__span-25-2"><a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a><span class="nd">@decorator</span>
+</span><span id="__span-25-3"><a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a><span class="k">def</span> <span class="nf">logging</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+</span><span id="__span-25-4"><a id="__codelineno-25-4" name="__codelineno-25-4" href="#__codelineno-25-4"></a>   <span class="nb">print</span> <span class="s2">&quot;[DEBUG] </span><span class="si">{}</span><span class="s2">: enter </span><span class="si">{}</span><span class="s2">()&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">(),</span> <span class="n">func</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span>    
+</span><span id="__span-25-5"><a id="__codelineno-25-5" name="__codelineno-25-5" href="#__codelineno-25-5"></a>   <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+</span></code></pre></div>
 <p><code>decorator.py</code> 实现的装饰器能完整保留原函数的 <code>name</code> ， <code>doc</code> 和 <code>args</code> ，唯一有问题的就是 <code>inspect.getsource ( func )</code> 返回的还是装饰器的源代码，你需要改成 <code>inspect.getsource ( func.__wrapped__ )</code> 。</p>
 <h3 id="wrapt">wrapt<a class="headerlink" href="#wrapt" title="Permanent link">&para;</a></h3>
 <p><code>wrapt</code>是一个功能非常完善的包，用于实现各种你想到或者你没想到的装饰器。使用 wrapt 实现的装饰器你不需要担心之前 inspect 中遇到的所有问题，因为它都帮你处理了，甚至 <code>inspect.getsource ( func )</code> 也准确无误。</p>
-<pre><code class="language-python">import wrapt# without argument in decorator
-
-@wrapt.decorator
-def logging(wrapped, instance, args, kwargs):  # instance is must
-   print &quot;[DEBUG]: enter {}()&quot;.format(wrapped.__name__)    
-   return wrapped(*args, **kwargs)
-
-@logging
-def say(something): pass
-</code></pre>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-26-1"><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="kn">import</span> <span class="nn">wrapt</span><span class="c1"># without argument in decorator</span>
+</span><span id="__span-26-2"><a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a>
+</span><span id="__span-26-3"><a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a><span class="nd">@wrapt</span><span class="o">.</span><span class="n">decorator</span>
+</span><span id="__span-26-4"><a id="__codelineno-26-4" name="__codelineno-26-4" href="#__codelineno-26-4"></a><span class="k">def</span> <span class="nf">logging</span><span class="p">(</span><span class="n">wrapped</span><span class="p">,</span> <span class="n">instance</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">):</span>  <span class="c1"># instance is must</span>
+</span><span id="__span-26-5"><a id="__codelineno-26-5" name="__codelineno-26-5" href="#__codelineno-26-5"></a>   <span class="nb">print</span> <span class="s2">&quot;[DEBUG]: enter </span><span class="si">{}</span><span class="s2">()&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">wrapped</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span>    
+</span><span id="__span-26-6"><a id="__codelineno-26-6" name="__codelineno-26-6" href="#__codelineno-26-6"></a>   <span class="k">return</span> <span class="n">wrapped</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+</span><span id="__span-26-7"><a id="__codelineno-26-7" name="__codelineno-26-7" href="#__codelineno-26-7"></a>
+</span><span id="__span-26-8"><a id="__codelineno-26-8" name="__codelineno-26-8" href="#__codelineno-26-8"></a><span class="nd">@logging</span>
+</span><span id="__span-26-9"><a id="__codelineno-26-9" name="__codelineno-26-9" href="#__codelineno-26-9"></a><span class="k">def</span> <span class="nf">say</span><span class="p">(</span><span class="n">something</span><span class="p">):</span> <span class="k">pass</span>
+</span></code></pre></div>
 <p>使用 <code>wrapt</code> 你只需要定义一个装饰器函数，但是函数签名是固定的，必须是 <code>( wrapped , instance, args, kwargs )</code> ，注意第二个参数 <code>instance</code> 是必须的，就算你不用它。当装饰器装饰在不同位置时它将得到不同的值，比如装饰在类实例方法时你可以拿到这个类实例。根据 <code>instance</code> 的值你能够更加灵活的调整你的装饰器。另外， <code>args</code> 和 <code>kwargs</code> 也是固定的，注意前面没有星号。在装饰器内部调用原函数时才带星号。</p>
 <p>如果你需要使用 wrapt 写一个带参数的装饰器，可以这样写。</p>
-<pre><code class="language-python">def logging(level):
-   @wrapt.decorator
-   def wrapper(wrapped, instance, args, kwargs):
-       print &quot;[{}]: enter {}()&quot;.format(level, wrapped.__name__)        
-       return wrapped(*args, **kwargs)    
-   return wrapper@logging(level=&quot;INFO&quot;)
-
-def do(work): pass
-</code></pre>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-27-1"><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a><span class="k">def</span> <span class="nf">logging</span><span class="p">(</span><span class="n">level</span><span class="p">):</span>
+</span><span id="__span-27-2"><a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a>   <span class="nd">@wrapt</span><span class="o">.</span><span class="n">decorator</span>
+</span><span id="__span-27-3"><a id="__codelineno-27-3" name="__codelineno-27-3" href="#__codelineno-27-3"></a>   <span class="k">def</span> <span class="nf">wrapper</span><span class="p">(</span><span class="n">wrapped</span><span class="p">,</span> <span class="n">instance</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">):</span>
+</span><span id="__span-27-4"><a id="__codelineno-27-4" name="__codelineno-27-4" href="#__codelineno-27-4"></a>       <span class="nb">print</span> <span class="s2">&quot;[</span><span class="si">{}</span><span class="s2">]: enter </span><span class="si">{}</span><span class="s2">()&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">level</span><span class="p">,</span> <span class="n">wrapped</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span>        
+</span><span id="__span-27-5"><a id="__codelineno-27-5" name="__codelineno-27-5" href="#__codelineno-27-5"></a>       <span class="k">return</span> <span class="n">wrapped</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>    
+</span><span id="__span-27-6"><a id="__codelineno-27-6" name="__codelineno-27-6" href="#__codelineno-27-6"></a>   <span class="k">return</span> <span class="n">wrapper</span><span class="nd">@logging</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="s2">&quot;INFO&quot;</span><span class="p">)</span>
+</span><span id="__span-27-7"><a id="__codelineno-27-7" name="__codelineno-27-7" href="#__codelineno-27-7"></a>
+</span><span id="__span-27-8"><a id="__codelineno-27-8" name="__codelineno-27-8" href="#__codelineno-27-8"></a><span class="k">def</span> <span class="nf">do</span><span class="p">(</span><span class="n">work</span><span class="p">):</span> <span class="k">pass</span>
+</span></code></pre></div>
 <p>关于 wrapt 的使用，建议查阅官方文档，在此不在赘述。
 http://wrapt.readthedocs.io/en/latest/quick-start.html</p>
 <h2 id="_11">小结<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h2>
@@ -1599,6 +1607,11 @@ http://wrapt.readthedocs.io/en/latest/quick-start.html</p>
           
           
         </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+            Back to top
+          </button>
         
       </main>
       
@@ -1629,7 +1642,7 @@ http://wrapt.readthedocs.io/en/latest/quick-start.html</p>
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tracking", "navigation.expand", "navigation.sections", "navigation.indexes", "navigation.path", "toc.integrate"], "search": "../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tracking", "navigation.top", "navigation.sections", "navigation.indexes", "navigation.path", "toc.integrate", "content.code.copy"], "search": "../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
       <script src="../assets/javascripts/bundle.fac441b0.min.js"></script>

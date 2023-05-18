@@ -216,6 +216,13 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#collapsible-blocks" class="md-nav__link">
+    Collapsible blocks¶
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#commands" class="md-nav__link">
     Commands
   </a>
@@ -259,9 +266,7 @@
       
       
       
-        
-      
-      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
       
       
         
@@ -377,9 +382,7 @@
       
       
       
-        
-      
-      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
       
       
         
@@ -450,9 +453,7 @@
       
       
       
-        
-      
-      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
       
       
         
@@ -507,11 +508,11 @@
       
       
       
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+      
+      
         
-      
-      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_8" >
-      
-      
+          
         
           
         
@@ -631,6 +632,20 @@
   
   
     <li class="md-nav__item">
+      <a href="mysql-mgr-copy/" class="md-nav__link">
+        転載MGR
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="mysql-ha/" class="md-nav__link">
         mysql+keepalived搭建教程
       </a>
@@ -660,9 +675,7 @@
       
       
       
-        
-      
-      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_9" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
       
       
         
@@ -1092,18 +1105,41 @@
 
 detailsタグ 折りたたみ
 
-
-<pre><code class="language-bash">&lt;details&gt;
-&lt;summary&gt;xxx&lt;/summary&gt;
-
-aaaaaaaaaaaaaaaaaaaaa
-bbbbbbbbbbbbbbbbbbb
-ccccccccccccccccccccc
-&lt;/details&gt;
-</code></pre>
-
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>&lt;details&gt;
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>&lt;summary&gt;xxx&lt;/summary&gt;
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>aaaaaaaaaaaaaaaaaaaaa
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>bbbbbbbbbbbbbbbbbbb
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>ccccccccccccccccccccc
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>&lt;/details&gt;
+</span></code></pre></div>
 </details>
 
+<h3 id="collapsible-blocks">Collapsible blocks¶<a class="headerlink" href="#collapsible-blocks" title="Permanent link">&para;</a></h3>
+<ul>
+<li>https://squidfunk.github.io/mkdocs-material/reference/admonitions/#collapsible-blocks</li>
+<li>https://squidfunk.github.io/mkdocs-material/reference/admonitions/#supported-types</li>
+<li>note</li>
+<li>abstract</li>
+<li>info</li>
+<li>tip</li>
+<li>success</li>
+<li>question</li>
+<li>warning</li>
+<li>failure</li>
+<li>danger</li>
+<li>bug</li>
+<li>example</li>
+<li>quote</li>
+</ul>
+<details class="note">
+<summary>Note</summary>
+<p><div class="language-yaml annotate highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># Code block content</span>
+</span></code></pre></div>
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla et euismod
+nulla. Curabitur feugiat, tortor non consequat finibus, justo purus auctor
+massa, nec semper lorem quam in massa.</p>
+</details>
 <h2 id="commands">Commands<a class="headerlink" href="#commands" title="Permanent link">&para;</a></h2>
 <ul>
 <li><code>mkdocs new [dir-name]</code> - Create a new project.</li>
@@ -1125,29 +1161,29 @@ docs/
 <li>https://www.mkdocs.org/getting-started/</li>
 <li>https://www.mkdocs.org/user-guide/deploying-your-docs/</li>
 </ul>
-<pre><code>#  python3 -m pip install --upgrade pip
-#  pip install mkdocs
-#  pip install mkdocs-material
-#  mkdocs serve -a 127.0.0.1:8000 -v
-</code></pre>
-<pre><code>my-project/
-    mkdocs.yml
-    docs/
-orgname.github.io/
-
-
-cd ../orgname.github.io/
-mkdocs gh-deploy --config-file ../my-project/mkdocs.yml --remote-branch master
-
-  or
-cd ../my-project/
-#  mkdocs build -d ../lyvivian0077.github.io/
-
-#  cd ../lyvivian0077.github.io/
-#  git add .
-#  git commit -m 'test'
-#  git push
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>#  python3 -m pip install --upgrade pip
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>#  pip install mkdocs
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>#  pip install mkdocs-material
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>#  mkdocs serve -a 127.0.0.1:8000 -v
+</span></code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>my-project/
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>    mkdocs.yml
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>    docs/
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>orgname.github.io/
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>cd ../orgname.github.io/
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>mkdocs gh-deploy --config-file ../my-project/mkdocs.yml --remote-branch master
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>  or
+</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>cd ../my-project/
+</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>#  mkdocs build -d ../lyvivian0077.github.io/
+</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>
+</span><span id="__span-3-14"><a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a>#  cd ../lyvivian0077.github.io/
+</span><span id="__span-3-15"><a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a>#  git add .
+</span><span id="__span-3-16"><a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a>#  git commit -m &#39;test&#39;
+</span><span id="__span-3-17"><a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a>#  git push
+</span></code></pre></div>
 
 
 
@@ -1159,6 +1195,11 @@ cd ../my-project/
           
           
         </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+            Back to top
+          </button>
         
       </main>
       
@@ -1189,7 +1230,7 @@ cd ../my-project/
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": ".", "features": ["navigation.tracking", "navigation.expand", "navigation.sections", "navigation.indexes", "navigation.path", "toc.integrate"], "search": "assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": ".", "features": ["navigation.tracking", "navigation.top", "navigation.sections", "navigation.indexes", "navigation.path", "toc.integrate", "content.code.copy"], "search": "assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
       <script src="assets/javascripts/bundle.fac441b0.min.js"></script>

@@ -206,9 +206,7 @@
       
       
       
-        
-      
-      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
       
       
         
@@ -324,9 +322,7 @@
       
       
       
-        
-      
-      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
       
       
         
@@ -397,9 +393,7 @@
       
       
       
-        
-      
-      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
       
       
         
@@ -454,11 +448,11 @@
       
       
       
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+      
+      
         
-      
-      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_8" >
-      
-      
+          
         
           
         
@@ -578,6 +572,20 @@
   
   
     <li class="md-nav__item">
+      <a href="../mysql-mgr-copy/" class="md-nav__link">
+        転載MGR
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../mysql-ha/" class="md-nav__link">
         mysql+keepalived搭建教程
       </a>
@@ -607,9 +615,7 @@
       
       
       
-        
-      
-      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_9" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
       
       
         
@@ -1215,12 +1221,12 @@ Linux系统的命名原来是eth0,eth1这样的形式，但是这个编号往往
 为解决这类问题,dell开发了biosdevname方案(systemd v197版本中将dell的方案作了进一步的一般化拓展)。  </p>
 <p>目前的Centos既支持dell的biosdevname，也支持systemd的方案。</p>
 <h3 id="centos7_1">二、Centos7中的命名策略<a class="headerlink" href="#centos7_1" title="Permanent link">&para;</a></h3>
-<pre><code>Scheme 1: 如果从BIOS中能够取到可用的，板载网卡的索引号，则使用这个索引号命名，例如: eno1，如不能则尝试Scheme 2
-Scheme 2: 如果从BIOS中能够取到可以用的，网卡所在的PCI-E热插拔插槽的索引号，则使用这个索引号命名，例如: ens1，如不能则尝试Scheme 3
-Scheme 3: 如果能拿到设备所连接的物理位置信息，则使用这个信息命名，例如:enp2s0，如不能则尝试Scheme 5
-Scheme 4: 使用网卡的MAC地址来命名，这个方法一般不使用。
-Scheme 5：传统的kernel命名方法，例如: eth0，这种命名方法的结果不可预知的，即可能第二块网卡对应eth0，第一块网卡对应eth1。
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>Scheme 1: 如果从BIOS中能够取到可用的，板载网卡的索引号，则使用这个索引号命名，例如: eno1，如不能则尝试Scheme 2
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>Scheme 2: 如果从BIOS中能够取到可以用的，网卡所在的PCI-E热插拔插槽的索引号，则使用这个索引号命名，例如: ens1，如不能则尝试Scheme 3
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>Scheme 3: 如果能拿到设备所连接的物理位置信息，则使用这个信息命名，例如:enp2s0，如不能则尝试Scheme 5
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>Scheme 4: 使用网卡的MAC地址来命名，这个方法一般不使用。
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>Scheme 5：传统的kernel命名方法，例如: eth0，这种命名方法的结果不可预知的，即可能第二块网卡对应eth0，第一块网卡对应eth1。
+</span></code></pre></div>
 <h3 id="biosdevnamenetifnames">三、biosdevname和net.ifnames两种命名规范<a class="headerlink" href="#biosdevnamenetifnames" title="Permanent link">&para;</a></h3>
 <p>net.ifnames命名规范为:设备类型+设备位置+数字</p>
 <p><img alt="net.ifnames命名规范" src="/assets/net.ifnames.png" /></p>
@@ -1291,10 +1297,10 @@ udev通过检查网卡信息，填写如下这些udev的属性值  </p>
 <p>根据上述的过程，可见网卡命名受 biosdevname和net.ifnames这两个内核参数影响。</p>
 <h3 id="biosdevnamenetifnames_1">五、biosdevname/net.ifnames应用<a class="headerlink" href="#biosdevnamenetifnames_1" title="Permanent link">&para;</a></h3>
 <p>这两个参数都可以在grub配置中提供，biosdevname=0是系统默认值（dell服务器默认是1），net.ifnames=1是系统默认值。</p>
-<pre><code>#vi /boot/grub/grub.conf
-kernel /boot/vmlinuz biosdevname=1
-initrd /boot/initrd.img
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>#vi /boot/grub/grub.conf
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>kernel /boot/vmlinuz biosdevname=1
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>initrd /boot/initrd.img
+</span></code></pre></div>
 <p>第二节所说的Scheme的策略顺序是系统默认的。<br />
 如系统BIOS符合要求，且系统中安装了biosdevname，且biosdevname=1启用，则biosdevname优先；<br />
 如果BIOS不符合biosdevname要求或biosdevname=0，则仍然是systemd的规则优先。<br />
@@ -1310,9 +1316,9 @@ net.ifnames=0 biosdevname=0</p>
 <p><code>cobbler profile edit --name=Centos-7.3-x86_64 --kopts='net.ifnames=0 biosdevname=0'</code></p>
 <p>如果你已经安装完了，希望改成eth0这样的名称，那么执行如下操作需要：</p>
 <p>1.修改grub2启动参数，在GRUB_CMDLINE_LINUX的中加上"net.ifnames=0 biosdevname=0"的参数</p>
-<pre><code>vi /etc/sysconfig/grub
-GRUB_CMDLINE_LINUX=”rd.lvm.lv=vg0/swap vconsole.keymap=us crashkernel=auto vconsole.font=latarcyrheb-sun16 net.ifnames=0 biosdevname=0 rd.lvm.lv=vg0/usr rhgb quiet”
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>vi /etc/sysconfig/grub
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>GRUB_CMDLINE_LINUX=”rd.lvm.lv=vg0/swap vconsole.keymap=us crashkernel=auto vconsole.font=latarcyrheb-sun16 net.ifnames=0 biosdevname=0 rd.lvm.lv=vg0/usr rhgb quiet”
+</span></code></pre></div>
 <p>2.重新加载到启动中</p>
 <p><code>grub2-mkconfig -o /boot/grub2/grub.cfg</code></p>
 <p>3.重新对网卡配置文件进行命名（网卡文件全部重命名，顺便修改配置文件NAME、DEVICE的名称）</p>
@@ -1394,6 +1400,11 @@ https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/ne
           
         </div>
         
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+            Back to top
+          </button>
+        
       </main>
       
         <footer class="md-footer">
@@ -1423,7 +1434,7 @@ https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/ne
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tracking", "navigation.expand", "navigation.sections", "navigation.indexes", "navigation.path", "toc.integrate"], "search": "../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tracking", "navigation.top", "navigation.sections", "navigation.indexes", "navigation.path", "toc.integrate", "content.code.copy"], "search": "../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
       <script src="../assets/javascripts/bundle.fac441b0.min.js"></script>

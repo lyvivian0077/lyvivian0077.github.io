@@ -206,9 +206,7 @@
       
       
       
-        
-      
-      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
       
       
         
@@ -324,9 +322,7 @@
       
       
       
-        
-      
-      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
       
       
         
@@ -397,9 +393,7 @@
       
       
       
-        
-      
-      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
       
       
         
@@ -459,6 +453,8 @@
       <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" checked>
       
       
+        
+          
         
           
         
@@ -657,6 +653,20 @@
   
   
     <li class="md-nav__item">
+      <a href="../mysql-mgr-copy/" class="md-nav__link">
+        転載MGR
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../mysql-ha/" class="md-nav__link">
         mysql+keepalived搭建教程
       </a>
@@ -686,9 +696,7 @@
       
       
       
-        
-      
-      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_9" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
       
       
         
@@ -1116,155 +1124,155 @@
 
 <p>=========================================================================================================================================</p>
 <h2 id="databasetable">指定的Database里的指定的Table容量<a class="headerlink" href="#databasetable" title="Permanent link">&para;</a></h2>
-<pre><code>SELECT 
-    table_name AS `Table`, 
-    round(((data_length + index_length) / 1024 / 1024), 2) `Size in MB` 
-FROM information_schema.TABLES 
-WHERE table_schema = &quot;$DB_NAME&quot;
-    AND table_name = &quot;$TABLE_NAME&quot;;
-
-mysql -uroot -e
-  &quot;SELECT TABLE_NAME, round(((data_length+index_length) / 1024 / 1024 / 1024), 2) AS 'Size (GB)'
-   FROM information_schema.tables 
-   WHERE table_schema = '$DB_NAME' AND table_name = '$TABLE_NAME';&quot;
- - mysql55-dev# mysql -uroot -e &quot; SELECT TABLE_NAME, round(((data_length+index_length) / 1024 / 1024 / 1024), 2) AS 'Size (GB)' FROM information_schema.tables WHERE table_schema = 'tigrex_mygoods2' AND table_name = 'g5_apms_like';&quot;
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>SELECT 
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    table_name AS `Table`, 
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    round(((data_length + index_length) / 1024 / 1024), 2) `Size in MB` 
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>FROM information_schema.TABLES 
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>WHERE table_schema = &quot;$DB_NAME&quot;
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>    AND table_name = &quot;$TABLE_NAME&quot;;
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>mysql -uroot -e
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>  &quot;SELECT TABLE_NAME, round(((data_length+index_length) / 1024 / 1024 / 1024), 2) AS &#39;Size (GB)&#39;
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>   FROM information_schema.tables 
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>   WHERE table_schema = &#39;$DB_NAME&#39; AND table_name = &#39;$TABLE_NAME&#39;;&quot;
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a> - mysql55-dev# mysql -uroot -e &quot; SELECT TABLE_NAME, round(((data_length+index_length) / 1024 / 1024 / 1024), 2) AS &#39;Size (GB)&#39; FROM information_schema.tables WHERE table_schema = &#39;tigrex_mygoods2&#39; AND table_name = &#39;g5_apms_like&#39;;&quot;
+</span></code></pre></div>
 <h2 id="databasetable_1">指定的Database里的所有的Table容量<a class="headerlink" href="#databasetable_1" title="Permanent link">&para;</a></h2>
-<pre><code>[root@mysqlxxx log]# mysql -uroot -e &quot;SELECT TABLE_SCHEMA, TABLE_NAME, round(((data_length+index_length) / 1024 / 1024 ),2)  AS 'Size (MB)' FROM information_schema.tables  WHERE table_schema = 'zeroen_wp'ORDER BY (data_length + index_length) DESC ;&quot;
-+--------------+--------------------------------+-----------+
-| TABLE_SCHEMA | TABLE_NAME                     | Size (GB) |
-+--------------+--------------------------------+-----------+
-| zeroen_wp    | wp74e2b1options                |      0.39 |
-| zeroen_wp    | wp74e2b1postmeta               |      0.28 |
-| zeroen_wp    | wp74e2b1posts                  |      0.13 |
-| zeroen_wp    | wp74e2b1comments               |      0.09 |
-| zeroen_wp    | wp74e2b1users                  |      0.06 |
-| zeroen_wp    | wp74e2b1usermeta               |      0.05 |
-| zeroen_wp    | wp74e2b1terms                  |      0.05 |
-| zeroen_wp    | wp74e2b1termmeta               |      0.05 |
-| zeroen_wp    | wp74e2b1term_taxonomy          |      0.05 |
-| zeroen_wp    | wp74e2b1commentmeta            |      0.05 |
-| zeroen_wp    | wp74e2b1term_relationships     |      0.03 |
-| zeroen_wp    | wp74e2b1links                  |      0.03 |
-| zeroen_wp    | wp74e2b1aiowps_login_lockdown  |      0.02 |
-| zeroen_wp    | wp74e2b1aiowps_login_activity  |      0.02 |
-| zeroen_wp    | wp74e2b1aiowps_global_meta     |      0.02 |
-| zeroen_wp    | wp74e2b1aiowps_failed_logins   |      0.02 |
-| zeroen_wp    | wp74e2b1aiowps_events          |      0.02 |
-| zeroen_wp    | wp74e2b1aiowps_permanent_block |      0.02 |
-+--------------+--------------------------------+-----------+
-[root@mysqlxxx log]#
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>[root@mysqlxxx log]# mysql -uroot -e &quot;SELECT TABLE_SCHEMA, TABLE_NAME, round(((data_length+index_length) / 1024 / 1024 ),2)  AS &#39;Size (MB)&#39; FROM information_schema.tables  WHERE table_schema = &#39;zeroen_wp&#39;ORDER BY (data_length + index_length) DESC ;&quot;
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>+--------------+--------------------------------+-----------+
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>| TABLE_SCHEMA | TABLE_NAME                     | Size (GB) |
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>+--------------+--------------------------------+-----------+
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>| zeroen_wp    | wp74e2b1options                |      0.39 |
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>| zeroen_wp    | wp74e2b1postmeta               |      0.28 |
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>| zeroen_wp    | wp74e2b1posts                  |      0.13 |
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>| zeroen_wp    | wp74e2b1comments               |      0.09 |
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>| zeroen_wp    | wp74e2b1users                  |      0.06 |
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>| zeroen_wp    | wp74e2b1usermeta               |      0.05 |
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>| zeroen_wp    | wp74e2b1terms                  |      0.05 |
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>| zeroen_wp    | wp74e2b1termmeta               |      0.05 |
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>| zeroen_wp    | wp74e2b1term_taxonomy          |      0.05 |
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>| zeroen_wp    | wp74e2b1commentmeta            |      0.05 |
+</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>| zeroen_wp    | wp74e2b1term_relationships     |      0.03 |
+</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>| zeroen_wp    | wp74e2b1links                  |      0.03 |
+</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>| zeroen_wp    | wp74e2b1aiowps_login_lockdown  |      0.02 |
+</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>| zeroen_wp    | wp74e2b1aiowps_login_activity  |      0.02 |
+</span><span id="__span-1-19"><a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a>| zeroen_wp    | wp74e2b1aiowps_global_meta     |      0.02 |
+</span><span id="__span-1-20"><a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a>| zeroen_wp    | wp74e2b1aiowps_failed_logins   |      0.02 |
+</span><span id="__span-1-21"><a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a>| zeroen_wp    | wp74e2b1aiowps_events          |      0.02 |
+</span><span id="__span-1-22"><a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a>| zeroen_wp    | wp74e2b1aiowps_permanent_block |      0.02 |
+</span><span id="__span-1-23"><a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a>+--------------+--------------------------------+-----------+
+</span><span id="__span-1-24"><a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a>[root@mysqlxxx log]#
+</span></code></pre></div>
 <h2 id="databasetable_2">所有的Database里的所有的Table容量<a class="headerlink" href="#databasetable_2" title="Permanent link">&para;</a></h2>
-<pre><code>SELECT 
-     table_schema as `Database`, 
-     table_name AS `Table`, 
-     round(((data_length + index_length) / 1024 / 1024), 2) `Size in MB` 
-FROM information_schema.TABLES 
-ORDER BY (data_length + index_length) DESC;
- - mysql -uroot -e &quot;SELECT TABLE_SCHEMA, TABLE_NAME, round(((data_length+index_length) / 1024),2)  AS 'Size (GB)' FROM information_schema.tables  ORDER BY (data_length + index_length) DESC;&quot;
- - mysql55-dev# mysql -uroot -e &quot; SELECT TABLE_NAME, round(((data_length+index_length) / 1024 / 1024 / 1024), 2) AS 'Size (GB)' FROM information_schema.tables ORDER BY (data_length + index_length) DESC;&quot;
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>SELECT 
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>     table_schema as `Database`, 
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>     table_name AS `Table`, 
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>     round(((data_length + index_length) / 1024 / 1024), 2) `Size in MB` 
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>FROM information_schema.TABLES 
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>ORDER BY (data_length + index_length) DESC;
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a> - mysql -uroot -e &quot;SELECT TABLE_SCHEMA, TABLE_NAME, round(((data_length+index_length) / 1024),2)  AS &#39;Size (GB)&#39; FROM information_schema.tables  ORDER BY (data_length + index_length) DESC;&quot;
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a> - mysql55-dev# mysql -uroot -e &quot; SELECT TABLE_NAME, round(((data_length+index_length) / 1024 / 1024 / 1024), 2) AS &#39;Size (GB)&#39; FROM information_schema.tables ORDER BY (data_length + index_length) DESC;&quot;
+</span></code></pre></div>
 <h2 id="databasetable_3">指定的Database里的所有的Table容量<a class="headerlink" href="#databasetable_3" title="Permanent link">&para;</a></h2>
-<pre><code>mysql -uroot -e
-  &quot;SELECT TABLE_SCHEMA AS 'Database Name',
-   TABLE_NAME AS 'TABLE_NAME',
-   SUM(data_length+index_length) / 1024 / 1024 / 1024 AS 'Size (GB)'
-   FROM information_schema.tables 
-   WHERE table_schema = '$DB_NAME'
-   ORDER BY (data_length + index_length) DESC;&quot;
-
- - mysql -uroot -e &quot;SELECT TABLE_SCHEMA, TABLE_NAME, round(((data_length+index_length) / 1024),2)  AS 'Size (GB)' FROM information_schema.tables WHERE table_schema = 'tigrex_mygoods' ORDER BY (data_length + index_length) DESC;&quot;
-</code></pre>
-<pre><code>use databaseName;
-select  
-table_name, engine, table_rows as tbl_rows, avg_row_length as rlen,  
-floor((data_length+index_length)/1024/1024) as allMB,  #総容量
-floor((data_length)/1024/1024) as dMB,  #データ容量
-floor((index_length)/1024/1024) as iMB   #インデックス容量
-from information_schema.tables  
-where table_schema=database()  
-order by (data_length+index_length) desc; 
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>mysql -uroot -e
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>  &quot;SELECT TABLE_SCHEMA AS &#39;Database Name&#39;,
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>   TABLE_NAME AS &#39;TABLE_NAME&#39;,
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>   SUM(data_length+index_length) / 1024 / 1024 / 1024 AS &#39;Size (GB)&#39;
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>   FROM information_schema.tables 
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>   WHERE table_schema = &#39;$DB_NAME&#39;
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>   ORDER BY (data_length + index_length) DESC;&quot;
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a> - mysql -uroot -e &quot;SELECT TABLE_SCHEMA, TABLE_NAME, round(((data_length+index_length) / 1024),2)  AS &#39;Size (GB)&#39; FROM information_schema.tables WHERE table_schema = &#39;tigrex_mygoods&#39; ORDER BY (data_length + index_length) DESC;&quot;
+</span></code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>use databaseName;
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>select  
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>table_name, engine, table_rows as tbl_rows, avg_row_length as rlen,  
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>floor((data_length+index_length)/1024/1024) as allMB,  #総容量
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>floor((data_length)/1024/1024) as dMB,  #データ容量
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>floor((index_length)/1024/1024) as iMB   #インデックス容量
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>from information_schema.tables  
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>where table_schema=database()  
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>order by (data_length+index_length) desc; 
+</span></code></pre></div>
 <p>=========================================================================================================================================</p>
-<pre><code>mysql&gt; select TABLE_NAME from information_schema.TABLES where TABLE_SCHEMA = 'spacerental2_kikou' and  TABLE_TYPE = 'VIEW';
-+------------------------+
-| TABLE_NAME             |
-+------------------------+
-| roomtimetable_chk_v01  |
-| roomtimetable_disp     |
-| roomtimetable_disp_v01 |
-| roomtimetable_disp_v02 |
-| sagakuview             |
-| sagakuview1            |
-| sagakuview_Ytmp        |
-| sagakuview_n           |
-| sagakuview_ngaku       |
-| sagakuview_s           |
-| sagakuview_sgaku       |
-| sagakuview_y           |
-| sagakuview_ygaku       |
-| yoyakubihintable_v01   |
-| yoyakubihintable_v02   |
-| yoyakubihintable_v03   |
-| yoyakubihintable_v04   |
-+------------------------+
-17 rows in set (0.01 sec)
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>mysql&gt; select TABLE_NAME from information_schema.TABLES where TABLE_SCHEMA = &#39;spacerental2_kikou&#39; and  TABLE_TYPE = &#39;VIEW&#39;;
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>+------------------------+
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>| TABLE_NAME             |
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>+------------------------+
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>| roomtimetable_chk_v01  |
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>| roomtimetable_disp     |
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>| roomtimetable_disp_v01 |
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>| roomtimetable_disp_v02 |
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>| sagakuview             |
+</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a>| sagakuview1            |
+</span><span id="__span-5-11"><a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a>| sagakuview_Ytmp        |
+</span><span id="__span-5-12"><a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a>| sagakuview_n           |
+</span><span id="__span-5-13"><a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a>| sagakuview_ngaku       |
+</span><span id="__span-5-14"><a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a>| sagakuview_s           |
+</span><span id="__span-5-15"><a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a>| sagakuview_sgaku       |
+</span><span id="__span-5-16"><a id="__codelineno-5-16" name="__codelineno-5-16" href="#__codelineno-5-16"></a>| sagakuview_y           |
+</span><span id="__span-5-17"><a id="__codelineno-5-17" name="__codelineno-5-17" href="#__codelineno-5-17"></a>| sagakuview_ygaku       |
+</span><span id="__span-5-18"><a id="__codelineno-5-18" name="__codelineno-5-18" href="#__codelineno-5-18"></a>| yoyakubihintable_v01   |
+</span><span id="__span-5-19"><a id="__codelineno-5-19" name="__codelineno-5-19" href="#__codelineno-5-19"></a>| yoyakubihintable_v02   |
+</span><span id="__span-5-20"><a id="__codelineno-5-20" name="__codelineno-5-20" href="#__codelineno-5-20"></a>| yoyakubihintable_v03   |
+</span><span id="__span-5-21"><a id="__codelineno-5-21" name="__codelineno-5-21" href="#__codelineno-5-21"></a>| yoyakubihintable_v04   |
+</span><span id="__span-5-22"><a id="__codelineno-5-22" name="__codelineno-5-22" href="#__codelineno-5-22"></a>+------------------------+
+</span><span id="__span-5-23"><a id="__codelineno-5-23" name="__codelineno-5-23" href="#__codelineno-5-23"></a>17 rows in set (0.01 sec)
+</span></code></pre></div>
 <h2 id="database">指定的Database里的総容量<a class="headerlink" href="#database" title="Permanent link">&para;</a></h2>
-<pre><code>mysql# mysql -uroot -e &quot;SELECT TABLE_SCHEMA, SUM(data_length+index_length) / 1024 / 1024 / 1024 AS 'Size (GB)' FROM information_schema.tables WHERE table_schema = 'test45_wdpress';&quot;
-
-mysql&gt; sELECT TABLE_SCHEMA, SUM(data_length+index_length) / 1024 / 1024 / 1024 AS 'Size (GB)' FROM information_schema.tables WHERE table_schema = 'test45_wdpress';
-+----------------+----------------+
-| TABLE_SCHEMA   | Size (GB)      |
-+----------------+----------------+
-| test45_wdpress | 0.000793457031 |
-+----------------+----------------+
-1 row in set (0.01 sec)
-
-mysql&gt;
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>mysql# mysql -uroot -e &quot;SELECT TABLE_SCHEMA, SUM(data_length+index_length) / 1024 / 1024 / 1024 AS &#39;Size (GB)&#39; FROM information_schema.tables WHERE table_schema = &#39;test45_wdpress&#39;;&quot;
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>mysql&gt; sELECT TABLE_SCHEMA, SUM(data_length+index_length) / 1024 / 1024 / 1024 AS &#39;Size (GB)&#39; FROM information_schema.tables WHERE table_schema = &#39;test45_wdpress&#39;;
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>+----------------+----------------+
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>| TABLE_SCHEMA   | Size (GB)      |
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>+----------------+----------------+
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>| test45_wdpress | 0.000793457031 |
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>+----------------+----------------+
+</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>1 row in set (0.01 sec)
+</span><span id="__span-6-10"><a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a>
+</span><span id="__span-6-11"><a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a>mysql&gt;
+</span></code></pre></div>
 <h2 id="database_1">複数Databaseの各容量<a class="headerlink" href="#database_1" title="Permanent link">&para;</a></h2>
-<pre><code>mysql&gt; SELECT TABLE_SCHEMA, SUM(data_length+index_length) / 1024 / 1024 AS 'Size'  FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA IN  (&quot;dbname_table1&quot;, &quot;dbname_table2&quot;) GROUP BY TABLE_SCHEMA;
-+--------------------+--------------+
-| TABLE_SCHEMA       | Size         |
-+--------------------+--------------+
-| dbname_table1      | 688.31250000 |
-| dbname_table2      | 657.39062500 |
-+--------------------+--------------+
-2 rows in set (0.09 sec)
-
-mysql&gt;
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>mysql&gt; SELECT TABLE_SCHEMA, SUM(data_length+index_length) / 1024 / 1024 AS &#39;Size&#39;  FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA IN  (&quot;dbname_table1&quot;, &quot;dbname_table2&quot;) GROUP BY TABLE_SCHEMA;
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>+--------------------+--------------+
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>| TABLE_SCHEMA       | Size         |
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>+--------------------+--------------+
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>| dbname_table1      | 688.31250000 |
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>| dbname_table2      | 657.39062500 |
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>+--------------------+--------------+
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>2 rows in set (0.09 sec)
+</span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a>
+</span><span id="__span-7-10"><a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a>mysql&gt;
+</span></code></pre></div>
 <h2 id="database-and">複数Databaseの総容量 and 各容量<a class="headerlink" href="#database-and" title="Permanent link">&para;</a></h2>
-<pre><code>mysql&gt; SELECT  SUM(data_length+index_length) / 1024 / 1024 / 1024 AS 'Size GB'  FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA like &quot;dbname_table_%&quot;  ;
-+----------------+
-| Size GB        |
-+----------------+
-| 3.150512695313 |
-+----------------+
-1 row in set (0.58 sec)
-
-mysql&gt; SELECT TABLE_SCHEMA, SUM(data_length+index_length) / 1024 / 1024 AS 'Size'  FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA like &quot;dbname_table_%&quot;  GROUP BY TABLE_SCHEMA;
-+---------------------------+--------------+
-| TABLE_SCHEMA              | Size         |
-+---------------------------+--------------+
-| dbname_table_1            | 661.78125000 |
-| dbname_table_2            | 158.42187500 |
-| dbname_table_3            | 472.39062500 |
-| dbname_table_4            | 196.60937500 |
-| dbname_table_5            |  82.23437500 |
-| dbname_table_6            | 479.35937500 |
-| dbname_table_7            | 403.57812500 |
-| dbname_table_8            | 197.03125000 |
-| dbname_table_9            | 156.93750000 |
-| dbname_table_10           | 400.75000000 |
-| dbname_table_11           |  17.03125000 |
-+---------------------------+--------------+
-11 rows in set (0.60 sec)
-
-mysql&gt;
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>mysql&gt; SELECT  SUM(data_length+index_length) / 1024 / 1024 / 1024 AS &#39;Size GB&#39;  FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA like &quot;dbname_table_%&quot;  ;
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>+----------------+
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>| Size GB        |
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>+----------------+
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>| 3.150512695313 |
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>+----------------+
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>1 row in set (0.58 sec)
+</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>
+</span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a>mysql&gt; SELECT TABLE_SCHEMA, SUM(data_length+index_length) / 1024 / 1024 AS &#39;Size&#39;  FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA like &quot;dbname_table_%&quot;  GROUP BY TABLE_SCHEMA;
+</span><span id="__span-8-10"><a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a>+---------------------------+--------------+
+</span><span id="__span-8-11"><a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a>| TABLE_SCHEMA              | Size         |
+</span><span id="__span-8-12"><a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a>+---------------------------+--------------+
+</span><span id="__span-8-13"><a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a>| dbname_table_1            | 661.78125000 |
+</span><span id="__span-8-14"><a id="__codelineno-8-14" name="__codelineno-8-14" href="#__codelineno-8-14"></a>| dbname_table_2            | 158.42187500 |
+</span><span id="__span-8-15"><a id="__codelineno-8-15" name="__codelineno-8-15" href="#__codelineno-8-15"></a>| dbname_table_3            | 472.39062500 |
+</span><span id="__span-8-16"><a id="__codelineno-8-16" name="__codelineno-8-16" href="#__codelineno-8-16"></a>| dbname_table_4            | 196.60937500 |
+</span><span id="__span-8-17"><a id="__codelineno-8-17" name="__codelineno-8-17" href="#__codelineno-8-17"></a>| dbname_table_5            |  82.23437500 |
+</span><span id="__span-8-18"><a id="__codelineno-8-18" name="__codelineno-8-18" href="#__codelineno-8-18"></a>| dbname_table_6            | 479.35937500 |
+</span><span id="__span-8-19"><a id="__codelineno-8-19" name="__codelineno-8-19" href="#__codelineno-8-19"></a>| dbname_table_7            | 403.57812500 |
+</span><span id="__span-8-20"><a id="__codelineno-8-20" name="__codelineno-8-20" href="#__codelineno-8-20"></a>| dbname_table_8            | 197.03125000 |
+</span><span id="__span-8-21"><a id="__codelineno-8-21" name="__codelineno-8-21" href="#__codelineno-8-21"></a>| dbname_table_9            | 156.93750000 |
+</span><span id="__span-8-22"><a id="__codelineno-8-22" name="__codelineno-8-22" href="#__codelineno-8-22"></a>| dbname_table_10           | 400.75000000 |
+</span><span id="__span-8-23"><a id="__codelineno-8-23" name="__codelineno-8-23" href="#__codelineno-8-23"></a>| dbname_table_11           |  17.03125000 |
+</span><span id="__span-8-24"><a id="__codelineno-8-24" name="__codelineno-8-24" href="#__codelineno-8-24"></a>+---------------------------+--------------+
+</span><span id="__span-8-25"><a id="__codelineno-8-25" name="__codelineno-8-25" href="#__codelineno-8-25"></a>11 rows in set (0.60 sec)
+</span><span id="__span-8-26"><a id="__codelineno-8-26" name="__codelineno-8-26" href="#__codelineno-8-26"></a>
+</span><span id="__span-8-27"><a id="__codelineno-8-27" name="__codelineno-8-27" href="#__codelineno-8-27"></a>mysql&gt;
+</span></code></pre></div>
 
 
 
@@ -1276,6 +1284,11 @@ mysql&gt;
           
           
         </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+            Back to top
+          </button>
         
       </main>
       
@@ -1306,7 +1319,7 @@ mysql&gt;
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tracking", "navigation.expand", "navigation.sections", "navigation.indexes", "navigation.path", "toc.integrate"], "search": "../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tracking", "navigation.top", "navigation.sections", "navigation.indexes", "navigation.path", "toc.integrate", "content.code.copy"], "search": "../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
       <script src="../assets/javascripts/bundle.fac441b0.min.js"></script>

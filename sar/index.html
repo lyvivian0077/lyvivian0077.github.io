@@ -206,9 +206,7 @@
       
       
       
-        
-      
-      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
       
       
         
@@ -324,9 +322,7 @@
       
       
       
-        
-      
-      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
       
       
         
@@ -397,9 +393,7 @@
       
       
       
-        
-      
-      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
       
       
         
@@ -454,11 +448,11 @@
       
       
       
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+      
+      
         
-      
-      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_8" >
-      
-      
+          
         
           
         
@@ -578,6 +572,20 @@
   
   
     <li class="md-nav__item">
+      <a href="../mysql-mgr-copy/" class="md-nav__link">
+        転載MGR
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../mysql-ha/" class="md-nav__link">
         mysql+keepalived搭建教程
       </a>
@@ -607,9 +615,7 @@
       
       
       
-        
-      
-      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_9" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
       
       
         
@@ -1186,324 +1192,324 @@
 <p>原文地址: <a href="https://link.segmentfault.com/?url=https%3A%2F%2Fshockerli.net%2Fpost%2Flinux-tool-sar%2F">https://shockerli.net/post/li...</a></p>
 </blockquote>
 <h2 id="_1">命令参数<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
-<pre><code class="language-smali">用法: sar [ 选项 ] [ &lt;时间间隔&gt; [ &lt;次数&gt; ] ]
-
-主选项和报告：
-    -b    I/O 和传输速率信息状况
-    -B    分页状况
-    -d    块设备状况
-    -I { &lt;中断&gt; | SUM | ALL | XALL }
-        中断信息状况
-    -m    电源管理信息状况
-    -n { &lt;关键词&gt; [,...] | ALL }
-        网络统计信息
-        关键词可以是：
-        DEV     网卡
-        EDEV     网卡 (错误)
-        NFS     NFS 客户端
-        NFSD     NFS 服务器
-        SOCK     Sockets (套接字)    (v4)
-        IP    IP  流          (v4)
-        EIP     IP 流       (v4) (错误)
-        ICMP     ICMP 流    (v4)
-        EICMP     ICMP 流    (v4) (错误)
-        TCP     TCP 流  (v4)
-        ETCP     TCP 流  (v4) (错误)
-        UDP     UDP 流  (v4)
-        SOCK6     Sockets (套接字)    (v6)
-        IP6     IP 流       (v6)
-        EIP6     IP 流       (v6) (错误)
-        ICMP6     ICMP 流 (v6)
-        EICMP6 ICMP 流 (v6) (错误)
-        UDP6    UDP 流       (v6)
-    -q    队列长度和平均负载
-    -r    内存利用率
-    -R    内存状况
-    -S    交换空间利用率
-    -u [ ALL ]
-        CPU 利用率
-    -v    Kernel table 状况
-    -w    任务创建与系统转换统计信息
-    -W    交换信息
-    -y    TTY 设备状况
-    -o {&lt;文件路径&gt;}
-       将命令结果以二进制格式存放在指定文件中
-</code></pre>
+<div class="language-smali highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nv">用法</span><span class="p">:</span><span class="w"> </span>sar<span class="w"> </span><span class="kt">[</span><span class="w"> </span><span class="err">选项</span><span class="w"> </span><span class="err">]</span><span class="w"> </span><span class="kt">[</span><span class="w"> </span><span class="err">&lt;时间间隔&gt;</span><span class="w"> </span><span class="kt">[</span><span class="w"> </span><span class="err">&lt;次数&gt;</span><span class="w"> </span><span class="err">]</span><span class="w"> </span><span class="err">]</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="err">主选项和报告：</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">    </span><span class="p">-</span><span class="err">b</span><span class="w">    </span><span class="kt">I</span><span class="err">/O</span><span class="w"> </span><span class="err">和传输速率信息状况</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">    </span><span class="p">-</span><span class="kt">B</span><span class="w">    </span><span class="err">分页状况</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">    </span><span class="p">-</span><span class="err">d</span><span class="w">    </span><span class="err">块设备状况</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">    </span><span class="p">-</span><span class="kt">I</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="err">&lt;中断&gt;</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="kt">S</span><span class="err">UM</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="err">ALL</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="err">XALL</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">        </span><span class="err">中断信息状况</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">    </span><span class="p">-</span><span class="err">m</span><span class="w">    </span><span class="err">电源管理信息状况</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">    </span><span class="p">-</span><span class="err">n</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="err">&lt;关键词&gt;</span><span class="w"> </span><span class="kt">[</span><span class="p">,...</span><span class="err">]</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="err">ALL</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">        </span><span class="err">网络统计信息</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">        </span><span class="err">关键词可以是：</span>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="w">        </span><span class="kt">D</span><span class="err">E</span><span class="kt">V</span><span class="w">     </span><span class="err">网卡</span>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="w">        </span><span class="err">E</span><span class="kt">D</span><span class="err">E</span><span class="kt">V</span><span class="w">     </span><span class="err">网卡</span><span class="w"> </span><span class="p">(</span><span class="err">错误</span><span class="p">)</span>
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="w">        </span><span class="err">N</span><span class="kt">FS</span><span class="w">     </span><span class="err">N</span><span class="kt">FS</span><span class="w"> </span><span class="err">客户端</span>
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="w">        </span><span class="err">N</span><span class="kt">FSD</span><span class="w">     </span><span class="err">N</span><span class="kt">FS</span><span class="w"> </span><span class="err">服务器</span>
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="w">        </span><span class="kt">S</span><span class="err">O</span><span class="kt">C</span><span class="err">K</span><span class="w">     </span><span class="kt">S</span><span class="err">ockets</span><span class="w"> </span><span class="p">(</span><span class="err">套接字</span><span class="p">)</span><span class="w">    </span><span class="p">(</span><span class="nb">v4</span><span class="p">)</span>
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="w">        </span><span class="kt">I</span><span class="err">P</span><span class="w">    </span><span class="kt">I</span><span class="err">P</span><span class="w">  </span><span class="err">流</span><span class="w">          </span><span class="p">(</span><span class="nb">v4</span><span class="p">)</span>
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="w">        </span><span class="err">E</span><span class="kt">I</span><span class="err">P</span><span class="w">     </span><span class="kt">I</span><span class="err">P</span><span class="w"> </span><span class="err">流</span><span class="w">       </span><span class="p">(</span><span class="nb">v4</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="err">错误</span><span class="p">)</span>
+</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="w">        </span><span class="kt">IC</span><span class="err">MP</span><span class="w">     </span><span class="kt">IC</span><span class="err">MP</span><span class="w"> </span><span class="err">流</span><span class="w">    </span><span class="p">(</span><span class="nb">v4</span><span class="p">)</span>
+</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="w">        </span><span class="err">E</span><span class="kt">IC</span><span class="err">MP</span><span class="w">     </span><span class="kt">IC</span><span class="err">MP</span><span class="w"> </span><span class="err">流</span><span class="w">    </span><span class="p">(</span><span class="nb">v4</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="err">错误</span><span class="p">)</span>
+</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="w">        </span><span class="err">T</span><span class="kt">C</span><span class="err">P</span><span class="w">     </span><span class="err">T</span><span class="kt">C</span><span class="err">P</span><span class="w"> </span><span class="err">流</span><span class="w">  </span><span class="p">(</span><span class="nb">v4</span><span class="p">)</span>
+</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a><span class="w">        </span><span class="err">ET</span><span class="kt">C</span><span class="err">P</span><span class="w">     </span><span class="err">T</span><span class="kt">C</span><span class="err">P</span><span class="w"> </span><span class="err">流</span><span class="w">  </span><span class="p">(</span><span class="nb">v4</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="err">错误</span><span class="p">)</span>
+</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a><span class="w">        </span><span class="err">U</span><span class="kt">D</span><span class="err">P</span><span class="w">     </span><span class="err">U</span><span class="kt">D</span><span class="err">P</span><span class="w"> </span><span class="err">流</span><span class="w">  </span><span class="p">(</span><span class="nb">v4</span><span class="p">)</span>
+</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a><span class="w">        </span><span class="kt">S</span><span class="err">O</span><span class="kt">C</span><span class="err">K</span><span class="mi">6</span><span class="w">     </span><span class="kt">S</span><span class="err">ockets</span><span class="w"> </span><span class="p">(</span><span class="err">套接字</span><span class="p">)</span><span class="w">    </span><span class="p">(</span><span class="nb">v6</span><span class="p">)</span>
+</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a><span class="w">        </span><span class="kt">I</span><span class="err">P</span><span class="mi">6</span><span class="w">     </span><span class="kt">I</span><span class="err">P</span><span class="w"> </span><span class="err">流</span><span class="w">       </span><span class="p">(</span><span class="nb">v6</span><span class="p">)</span>
+</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a><span class="w">        </span><span class="err">E</span><span class="kt">I</span><span class="err">P</span><span class="mi">6</span><span class="w">     </span><span class="kt">I</span><span class="err">P</span><span class="w"> </span><span class="err">流</span><span class="w">       </span><span class="p">(</span><span class="nb">v6</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="err">错误</span><span class="p">)</span>
+</span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a><span class="w">        </span><span class="kt">IC</span><span class="err">MP</span><span class="mi">6</span><span class="w">     </span><span class="kt">IC</span><span class="err">MP</span><span class="w"> </span><span class="err">流</span><span class="w"> </span><span class="p">(</span><span class="nb">v6</span><span class="p">)</span>
+</span><span id="__span-0-29"><a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a><span class="w">        </span><span class="err">E</span><span class="kt">IC</span><span class="err">MP</span><span class="mi">6</span><span class="w"> </span><span class="kt">IC</span><span class="err">MP</span><span class="w"> </span><span class="err">流</span><span class="w"> </span><span class="p">(</span><span class="nb">v6</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="err">错误</span><span class="p">)</span>
+</span><span id="__span-0-30"><a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a><span class="w">        </span><span class="err">U</span><span class="kt">D</span><span class="err">P</span><span class="mi">6</span><span class="w">    </span><span class="err">U</span><span class="kt">D</span><span class="err">P</span><span class="w"> </span><span class="err">流</span><span class="w">       </span><span class="p">(</span><span class="nb">v6</span><span class="p">)</span>
+</span><span id="__span-0-31"><a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a><span class="w">    </span><span class="p">-</span><span class="err">q</span><span class="w">    </span><span class="err">队列长度和平均负载</span>
+</span><span id="__span-0-32"><a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a><span class="w">    </span><span class="p">-</span><span class="err">r</span><span class="w">    </span><span class="err">内存利用率</span>
+</span><span id="__span-0-33"><a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a><span class="w">    </span><span class="p">-</span><span class="err">R</span><span class="w">    </span><span class="err">内存状况</span>
+</span><span id="__span-0-34"><a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a><span class="w">    </span><span class="p">-</span><span class="kt">S</span><span class="w">    </span><span class="err">交换空间利用率</span>
+</span><span id="__span-0-35"><a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a><span class="w">    </span><span class="p">-</span><span class="err">u</span><span class="w"> </span><span class="kt">[</span><span class="w"> </span><span class="err">ALL</span><span class="w"> </span><span class="err">]</span>
+</span><span id="__span-0-36"><a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a><span class="w">        </span><span class="kt">C</span><span class="err">PU</span><span class="w"> </span><span class="err">利用率</span>
+</span><span id="__span-0-37"><a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a><span class="w">    </span><span class="p">-</span><span class="err">v</span><span class="w">    </span><span class="err">Kernel</span><span class="w"> </span>table<span class="w"> </span><span class="err">状况</span>
+</span><span id="__span-0-38"><a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a><span class="w">    </span><span class="p">-</span><span class="err">w</span><span class="w">    </span><span class="err">任务创建与系统转换统计信息</span>
+</span><span id="__span-0-39"><a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a><span class="w">    </span><span class="p">-</span><span class="err">W</span><span class="w">    </span><span class="err">交换信息</span>
+</span><span id="__span-0-40"><a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a><span class="w">    </span><span class="p">-</span><span class="err">y</span><span class="w">    </span><span class="err">TTY</span><span class="w"> </span><span class="err">设备状况</span>
+</span><span id="__span-0-41"><a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a><span class="w">    </span><span class="p">-</span><span class="err">o</span><span class="w"> </span><span class="p">{</span><span class="err">&lt;文件路径&gt;</span><span class="p">}</span>
+</span><span id="__span-0-42"><a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a><span class="w">       </span><span class="err">将命令结果以二进制格式存放在指定文件中</span>
+</span></code></pre></div>
 <h2 id="_2">常用命令<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <blockquote>
 <p><code>sar</code>命令来自于<code>sysstat</code>工具包，如果提示<code>sar</code>命令不存在，需先安装<code>sysstat</code>。</p>
 </blockquote>
 <h3 id="_3">网络统计信息<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
-<pre><code class="language-bnf">sar -n &lt;关键词&gt; [ &lt;时间间隔&gt; [ &lt;次数&gt; ] ]
-</code></pre>
+<div class="language-bnf highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>sar -n &lt;关键词&gt; [ &lt;时间间隔&gt; [ &lt;次数&gt; ] ]
+</span></code></pre></div>
 <p><strong>示例：</strong></p>
-<pre><code class="language-awk">sar -n DEV 1 5
-
-平均时间:     IFACE   rxpck/s   txpck/s    rxkB/s    txkB/s   rxcmp/s   txcmp/s  rxmcst/s
-平均时间:        lo      2.21      2.21      0.18      0.18      0.00      0.00      0.00
-平均时间:      eth0      4.62      3.82      0.37      1.90      0.00      0.00      0.00
-</code></pre>
+<div class="language-awk highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nx">sar</span> <span class="o">-</span><span class="nx">n</span> <span class="nx">DEV</span> <span class="mi">1</span> <span class="mi">5</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="err">平均时间:</span>     <span class="nx">IFACE</span>   <span class="nx">rxpck</span><span class="o">/</span><span class="nx">s</span>   <span class="nx">txpck</span><span class="o">/</span><span class="nx">s</span>    <span class="nx">rxkB</span><span class="o">/</span><span class="nx">s</span>    <span class="nx">txkB</span><span class="o">/</span><span class="nx">s</span>   <span class="nx">rxcmp</span><span class="o">/</span><span class="nx">s</span>   <span class="nx">txcmp</span><span class="o">/</span><span class="nx">s</span>  <span class="nx">rxmcst</span><span class="o">/</span><span class="nx">s</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="err">平均时间:</span>        <span class="nx">lo</span>      <span class="mf">2.21</span>      <span class="mf">2.21</span>      <span class="mf">0.18</span>      <span class="mf">0.18</span>      <span class="mf">0.00</span>      <span class="mf">0.00</span>      <span class="mf">0.00</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="err">平均时间:</span>      <span class="nx">eth0</span>      <span class="mf">4.62</span>      <span class="mf">3.82</span>      <span class="mf">0.37</span>      <span class="mf">1.90</span>      <span class="mf">0.00</span>      <span class="mf">0.00</span>      <span class="mf">0.00</span>
+</span></code></pre></div>
 <p>命令中 1 5 表示每一秒钟取 1 次值，一共取 5 次。</p>
 <p>命令执行后会列出每个网卡这 5 次取值的平均数据，根据实际情况来确定带宽跑满的网卡名称，默认情况下 eth0 为内网网卡，eth1 为外网网卡。</p>
 <h3 id="cpu">CPU 利用率<a class="headerlink" href="#cpu" title="Permanent link">&para;</a></h3>
-<pre><code class="language-bnf">sar -u [ &lt;时间间隔&gt; [ &lt;次数&gt; ] ]
-</code></pre>
+<div class="language-bnf highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>sar -u [ &lt;时间间隔&gt; [ &lt;次数&gt; ] ]
+</span></code></pre></div>
 <p><strong>示例：</strong></p>
-<pre><code class="language-llvm">sar -u 1 3
-
-Linux 2.6.32-642.13.1.el6.x86_64 (upfor106) 2018年04月25日 _x86_64_ (1 CPU)
-
-10时33分08秒     CPU     %user     %nice   %system   %iowait    %steal     %idle
-10时33分09秒     all      0.00      0.00      0.00      0.00      0.00    100.00
-10时33分10秒     all      0.99      0.00      0.99      0.00      0.00     98.02
-10时33分11秒     all      0.00      0.00      0.00      0.00      0.00    100.00
-平均时间:        all      0.33      0.00      0.33      0.00      0.00     99.33
-</code></pre>
+<div class="language-llvm highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="err">sar</span><span class="w"> </span><span class="err">-u</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">3</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="err">Linu</span><span class="k">x</span><span class="w"> </span><span class="m">2.6</span><span class="p">.</span><span class="m">32-642.13</span><span class="p">.</span><span class="m">1</span><span class="p">.</span><span class="err">el</span><span class="m">6</span><span class="p">.</span><span class="err">x</span><span class="m">86</span><span class="err">_</span><span class="m">64</span><span class="w"> </span><span class="p">(</span><span class="err">upfor</span><span class="m">106</span><span class="p">)</span><span class="w"> </span><span class="m">2018</span><span class="err">年</span><span class="m">04</span><span class="err">月</span><span class="m">25</span><span class="err">日</span><span class="w"> </span><span class="err">_x</span><span class="m">86</span><span class="err">_</span><span class="m">64</span><span class="err">_</span><span class="w"> </span><span class="p">(</span><span class="m">1</span><span class="w"> </span><span class="err">CPU</span><span class="p">)</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="m">10</span><span class="err">时</span><span class="m">33</span><span class="err">分</span><span class="m">08</span><span class="err">秒</span><span class="w">     </span><span class="err">CPU</span><span class="w">     </span><span class="nv">%user</span><span class="w">     </span><span class="nv">%nice</span><span class="w">   </span><span class="nv">%system</span><span class="w">   </span><span class="nv">%iowait</span><span class="w">    </span><span class="nv">%steal</span><span class="w">     </span><span class="nv">%idle</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="m">10</span><span class="err">时</span><span class="m">33</span><span class="err">分</span><span class="m">09</span><span class="err">秒</span><span class="w">     </span><span class="err">all</span><span class="w">      </span><span class="m">0.00</span><span class="w">      </span><span class="m">0.00</span><span class="w">      </span><span class="m">0.00</span><span class="w">      </span><span class="m">0.00</span><span class="w">      </span><span class="m">0.00</span><span class="w">    </span><span class="m">100.00</span>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="m">10</span><span class="err">时</span><span class="m">33</span><span class="err">分</span><span class="m">10</span><span class="err">秒</span><span class="w">     </span><span class="err">all</span><span class="w">      </span><span class="m">0.99</span><span class="w">      </span><span class="m">0.00</span><span class="w">      </span><span class="m">0.99</span><span class="w">      </span><span class="m">0.00</span><span class="w">      </span><span class="m">0.00</span><span class="w">     </span><span class="m">98.02</span>
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="m">10</span><span class="err">时</span><span class="m">33</span><span class="err">分</span><span class="m">11</span><span class="err">秒</span><span class="w">     </span><span class="err">all</span><span class="w">      </span><span class="m">0.00</span><span class="w">      </span><span class="m">0.00</span><span class="w">      </span><span class="m">0.00</span><span class="w">      </span><span class="m">0.00</span><span class="w">      </span><span class="m">0.00</span><span class="w">    </span><span class="m">100.00</span>
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="err">平均时间:</span><span class="w">        </span><span class="err">all</span><span class="w">      </span><span class="m">0.33</span><span class="w">      </span><span class="m">0.00</span><span class="w">      </span><span class="m">0.33</span><span class="w">      </span><span class="m">0.00</span><span class="w">      </span><span class="m">0.00</span><span class="w">     </span><span class="m">99.33</span>
+</span></code></pre></div>
 <p>命令中 1 3 表示每一秒钟取 1 次值，一共取 3 次。</p>
 <p><strong>输出项说明：</strong></p>
-<pre><code class="language-haml">CPU：all 表示统计信息为所有 CPU 的平均值。
-
-%user：显示在用户级别(application)运行使用 CPU 总时间的百分比
-
-%nice：显示在用户级别，用于nice操作，所占用 CPU 总时间的百分比
-
-%system：在核心级别(kernel)运行所使用 CPU 总时间的百分比
-
-%iowait：显示用于等待I/O操作占用 CPU 总时间的百分比
-
-%steal：管理程序(hypervisor)为另一个虚拟进程提供服务而等待虚拟 CPU 的百分比
-
-%idle：显示 CPU 空闲时间占用 CPU 总时间的百分比
-
-    1. 若 %iowait 的值过高，表示硬盘存在I/O瓶颈
-
-    2. 若 %idle 的值高但系统响应慢时，有可能是 CPU 等待分配内存，此时应加大内存容量
-
-    3. 若 %idle 的值持续低于1，则系统的 CPU 处理能力相对较低，表明系统中最需要解决的资源是 CPU
-</code></pre>
+<div class="language-haml highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>CPU：all 表示统计信息为所有 CPU 的平均值。
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="nt">%user</span>：显示在用户级别(application)运行使用 CPU 总时间的百分比
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="nt">%nice</span>：显示在用户级别，用于nice操作，所占用 CPU 总时间的百分比
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="nt">%system</span>：在核心级别(kernel)运行所使用 CPU 总时间的百分比
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="nt">%iowait</span>：显示用于等待I/O操作占用 CPU 总时间的百分比
+</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a>
+</span><span id="__span-5-11"><a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a><span class="nt">%steal</span>：管理程序(hypervisor)为另一个虚拟进程提供服务而等待虚拟 CPU 的百分比
+</span><span id="__span-5-12"><a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a>
+</span><span id="__span-5-13"><a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a><span class="nt">%idle</span>：显示 CPU 空闲时间占用 CPU 总时间的百分比
+</span><span id="__span-5-14"><a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a>
+</span><span id="__span-5-15"><a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a><span class="w">    </span>1. 若 %iowait 的值过高，表示硬盘存在I/O瓶颈
+</span><span id="__span-5-16"><a id="__codelineno-5-16" name="__codelineno-5-16" href="#__codelineno-5-16"></a>
+</span><span id="__span-5-17"><a id="__codelineno-5-17" name="__codelineno-5-17" href="#__codelineno-5-17"></a><span class="w">    </span>2. 若 %idle 的值高但系统响应慢时，有可能是 CPU 等待分配内存，此时应加大内存容量
+</span><span id="__span-5-18"><a id="__codelineno-5-18" name="__codelineno-5-18" href="#__codelineno-5-18"></a>
+</span><span id="__span-5-19"><a id="__codelineno-5-19" name="__codelineno-5-19" href="#__codelineno-5-19"></a><span class="w">    </span>3. 若 %idle 的值持续低于1，则系统的 CPU 处理能力相对较低，表明系统中最需要解决的资源是 CPU
+</span></code></pre></div>
 <h3 id="_4">索引节点，文件和其他内核表的状态<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
-<pre><code class="language-bnf">sar -v [ &lt;时间间隔&gt; [ &lt;次数&gt; ] ]
-</code></pre>
+<div class="language-bnf highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>sar -v [ &lt;时间间隔&gt; [ &lt;次数&gt; ] ]
+</span></code></pre></div>
 <p><strong>示例：</strong></p>
-<pre><code class="language-tap">sar -v 1 3
-
-Linux 2.6.32-696.13.2.el6.x86_64 (upfor163) 2018年04月25日 _x86_64_ (2 CPU)
-
-10时50分29秒 dentunusd   file-nr  inode-nr    pty-nr
-10时50分30秒    920045       864     13910         2
-10时50分31秒    920045       864     13910         2
-10时50分32秒    920045       896     13910         2
-平均时间:       920045       875     13910         2
-</code></pre>
+<div class="language-tap highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>sar -v 1 3
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>Linux 2.6.32-696.13.2.el6.x86_64 (upfor163) 2018年04月25日 _x86_64_ (2 CPU)
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>10时50分29秒 dentunusd   file-nr  inode-nr    pty-nr
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>10时50分30秒    920045       864     13910         2
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>10时50分31秒    920045       864     13910         2
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>10时50分32秒    920045       896     13910         2
+</span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a>平均时间:       920045       875     13910         2
+</span></code></pre></div>
 <p><strong>输出项说明：</strong></p>
-<pre><code class="language-applescript">dentunusd：目录高速缓存中未被使用的条目数量
-
-file-nr：文件句柄（file handle）的使用数量
-
-inode-nr：索引节点句柄（inode handle）的使用数量
-
-pty-nr：使用的 pty 数量
-</code></pre>
+<div class="language-applescript highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="nv">dentunusd</span><span class="err">：目录高速缓存中未被使用的条目数量</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="nv">file</span><span class="o">-</span><span class="nv">nr</span><span class="err">：文件句柄（</span><span class="nv">file</span> <span class="nv">handle</span><span class="err">）的使用数量</span>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="nv">inode</span><span class="o">-</span><span class="nv">nr</span><span class="err">：索引节点句柄（</span><span class="nv">inode</span> <span class="nv">handle</span><span class="err">）的使用数量</span>
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="nv">pty</span><span class="o">-</span><span class="nv">nr</span><span class="err">：使用的</span> <span class="nv">pty</span> <span class="err">数量</span>
+</span></code></pre></div>
 <h3 id="_5">内存利用率<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
-<pre><code class="language-bnf">sar -r [ &lt;时间间隔&gt; [ &lt;次数&gt; ] ]
-</code></pre>
+<div class="language-bnf highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>sar -r [ &lt;时间间隔&gt; [ &lt;次数&gt; ] ]
+</span></code></pre></div>
 <p><strong>示例：</strong></p>
-<pre><code class="language-tap">sar -r 1 3
-
-Linux 2.6.32-696.13.2.el6.x86_64 (upfor163) 2018年04月25日 _x86_64_ (2 CPU)
-
-10时53分00秒 kbmemfree kbmemused  %memused kbbuffers  kbcached  kbcommit   %commit
-10时53分01秒   2027760   2028732     50.01    145492   1243820   1163900     28.69
-10时53分02秒   2027620   2028872     50.02    145492   1243820   1163896     28.69
-10时53分03秒   2028100   2028392     50.00    145492   1243820   1163900     28.69
-平均时间:      2027827   2028665     50.01    145492   1243820   1163899     28.69
-</code></pre>
+<div class="language-tap highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>sar -r 1 3
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>Linux 2.6.32-696.13.2.el6.x86_64 (upfor163) 2018年04月25日 _x86_64_ (2 CPU)
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>10时53分00秒 kbmemfree kbmemused  %memused kbbuffers  kbcached  kbcommit   %commit
+</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>10时53分01秒   2027760   2028732     50.01    145492   1243820   1163900     28.69
+</span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a>10时53分02秒   2027620   2028872     50.02    145492   1243820   1163896     28.69
+</span><span id="__span-10-8"><a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a>10时53分03秒   2028100   2028392     50.00    145492   1243820   1163900     28.69
+</span><span id="__span-10-9"><a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a>平均时间:      2027827   2028665     50.01    145492   1243820   1163899     28.69
+</span></code></pre></div>
 <p><strong>输出项说明：</strong></p>
-<pre><code class="language-mipsasm">kbmemfree：这个值和 free 命令中的 free 值基本一致，所以它不包括 buffer 和 cache 的空间
-
-kbmemused：这个值和 free 命令中的 used 值基本一致,所以它包括 buffer 和 cache 的空间
-
-%memused：这个值是 kbmemused 和内存总量(不包括 swap)的一个百分比
-
-kbbuffers 和 kbcached：这两个值就是 free 命令中的 buffer 和 cache
-
-kbcommit：保证当前系统所需要的内存，即为了确保不溢出而需要的内存(RAM + swap)
-
-%commit：这个值是 kbcommit 与内存总量(包括 swap)的一个百分比
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>kbmemfree：这个值和 free 命令中的 free 值基本一致，所以它不包括 buffer 和 cache 的空间
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>kbmemused：这个值和 free 命令中的 used 值基本一致,所以它包括 buffer 和 cache 的空间
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>
+</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>%memused：这个值是 kbmemused 和内存总量(不包括 swap)的一个百分比
+</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>
+</span><span id="__span-11-7"><a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a>kbbuffers 和 kbcached：这两个值就是 free 命令中的 buffer 和 cache
+</span><span id="__span-11-8"><a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a>
+</span><span id="__span-11-9"><a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a>kbcommit：保证当前系统所需要的内存，即为了确保不溢出而需要的内存(RAM + swap)
+</span><span id="__span-11-10"><a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a>
+</span><span id="__span-11-11"><a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a>%commit：这个值是 kbcommit 与内存总量(包括 swap)的一个百分比
+</span></code></pre></div>
 <h3 id="_6">内存分页状况<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
-<pre><code class="language-bnf">sar -B [ &lt;时间间隔&gt; [ &lt;次数&gt; ] ]
-</code></pre>
+<div class="language-bnf highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>sar -B [ &lt;时间间隔&gt; [ &lt;次数&gt; ] ]
+</span></code></pre></div>
 <p><strong>示例：</strong></p>
-<pre><code class="language-awk">sar -B 1 3
-
-Linux 2.6.32-696.13.2.el6.x86_64 (upfor163) 2018年04月25日 _x86_64_ (2 CPU)
-
-10时55分41秒  pgpgin/s pgpgout/s   fault/s  majflt/s  pgfree/s pgscank/s pgscand/s pgsteal/s    %vmeff
-10时55分42秒      0.00      0.00   5723.76      0.00   3356.44      0.00      0.00      0.00      0.00
-10时55分43秒      0.00      0.00   1185.00      0.00    312.00      0.00      0.00      0.00      0.00
-10时55分44秒      0.00      0.00     27.00      0.00     56.00      0.00      0.00      0.00      0.00
-平均时间:         0.00      0.00   2323.26      0.00   1248.50      0.00      0.00      0.00      0.00
-</code></pre>
+<div class="language-awk highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="nx">sar</span> <span class="o">-</span><span class="nx">B</span> <span class="mi">1</span> <span class="mi">3</span>
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="nx">Linux</span> <span class="mf">2.6</span><span class="p">.</span><span class="mi">32</span><span class="o">-</span><span class="mf">696.13</span><span class="p">.</span><span class="mi">2</span><span class="p">.</span><span class="nx">el6</span><span class="p">.</span><span class="nx">x86_64</span> <span class="p">(</span><span class="nx">upfor163</span><span class="p">)</span> <span class="mi">2018</span><span class="err">年</span><span class="mi">04</span><span class="err">月</span><span class="mi">25</span><span class="err">日</span> <span class="nx">_x86_64_</span> <span class="p">(</span><span class="mi">2</span> <span class="nx">CPU</span><span class="p">)</span>
+</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>
+</span><span id="__span-13-5"><a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a><span class="mi">10</span><span class="err">时</span><span class="mi">55</span><span class="err">分</span><span class="mi">41</span><span class="err">秒</span>  <span class="nx">pgpgin</span><span class="o">/</span><span class="nx">s</span> <span class="nx">pgpgout</span><span class="o">/</span><span class="nx">s</span>   <span class="nx">fault</span><span class="o">/</span><span class="nx">s</span>  <span class="nx">majflt</span><span class="o">/</span><span class="nx">s</span>  <span class="nx">pgfree</span><span class="o">/</span><span class="nx">s</span> <span class="nx">pgscank</span><span class="o">/</span><span class="nx">s</span> <span class="nx">pgscand</span><span class="o">/</span><span class="nx">s</span> <span class="nx">pgsteal</span><span class="o">/</span><span class="nx">s</span>    <span class="o">%</span><span class="nx">vmeff</span>
+</span><span id="__span-13-6"><a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a><span class="mi">10</span><span class="err">时</span><span class="mi">55</span><span class="err">分</span><span class="mi">42</span><span class="err">秒</span>      <span class="mf">0.00</span>      <span class="mf">0.00</span>   <span class="mf">5723.76</span>      <span class="mf">0.00</span>   <span class="mf">3356.44</span>      <span class="mf">0.00</span>      <span class="mf">0.00</span>      <span class="mf">0.00</span>      <span class="mf">0.00</span>
+</span><span id="__span-13-7"><a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a><span class="mi">10</span><span class="err">时</span><span class="mi">55</span><span class="err">分</span><span class="mi">43</span><span class="err">秒</span>      <span class="mf">0.00</span>      <span class="mf">0.00</span>   <span class="mf">1185.00</span>      <span class="mf">0.00</span>    <span class="mf">312.00</span>      <span class="mf">0.00</span>      <span class="mf">0.00</span>      <span class="mf">0.00</span>      <span class="mf">0.00</span>
+</span><span id="__span-13-8"><a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a><span class="mi">10</span><span class="err">时</span><span class="mi">55</span><span class="err">分</span><span class="mi">44</span><span class="err">秒</span>      <span class="mf">0.00</span>      <span class="mf">0.00</span>     <span class="mf">27.00</span>      <span class="mf">0.00</span>     <span class="mf">56.00</span>      <span class="mf">0.00</span>      <span class="mf">0.00</span>      <span class="mf">0.00</span>      <span class="mf">0.00</span>
+</span><span id="__span-13-9"><a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a><span class="err">平均时间:</span>         <span class="mf">0.00</span>      <span class="mf">0.00</span>   <span class="mf">2323.26</span>      <span class="mf">0.00</span>   <span class="mf">1248.50</span>      <span class="mf">0.00</span>      <span class="mf">0.00</span>      <span class="mf">0.00</span>      <span class="mf">0.00</span>
+</span></code></pre></div>
 <p><strong>输出项说明：</strong></p>
-<pre><code class="language-avrasm">pgpgin/s：表示每秒从磁盘或SWAP置换到内存的字节数(KB)
-
-pgpgout/s：表示每秒从内存置换到磁盘或SWAP的字节数(KB)
-
-fault/s：每秒钟系统产生的缺页数，即主缺页与次缺页之和(major + minor)
-
-majflt/s：每秒钟产生的主缺页数
-
-pgfree/s：每秒被放入空闲队列中的页个数
-
-pgscank/s：每秒被 kswapd 扫描的页个数
-
-pgscand/s：每秒直接被扫描的页个数
-
-pgsteal/s：每秒钟从 cache 中被清除来满足内存需要的页个数
-
-%vmeff：每秒清除的页(pgsteal)占总扫描页(pgscank + pgscand)的百分比
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>pgpgin/s：表示每秒从磁盘或SWAP置换到内存的字节数(KB)
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>pgpgout/s：表示每秒从内存置换到磁盘或SWAP的字节数(KB)
+</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>
+</span><span id="__span-14-5"><a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a>fault/s：每秒钟系统产生的缺页数，即主缺页与次缺页之和(major + minor)
+</span><span id="__span-14-6"><a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a>
+</span><span id="__span-14-7"><a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a>majflt/s：每秒钟产生的主缺页数
+</span><span id="__span-14-8"><a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a>
+</span><span id="__span-14-9"><a id="__codelineno-14-9" name="__codelineno-14-9" href="#__codelineno-14-9"></a>pgfree/s：每秒被放入空闲队列中的页个数
+</span><span id="__span-14-10"><a id="__codelineno-14-10" name="__codelineno-14-10" href="#__codelineno-14-10"></a>
+</span><span id="__span-14-11"><a id="__codelineno-14-11" name="__codelineno-14-11" href="#__codelineno-14-11"></a>pgscank/s：每秒被 kswapd 扫描的页个数
+</span><span id="__span-14-12"><a id="__codelineno-14-12" name="__codelineno-14-12" href="#__codelineno-14-12"></a>
+</span><span id="__span-14-13"><a id="__codelineno-14-13" name="__codelineno-14-13" href="#__codelineno-14-13"></a>pgscand/s：每秒直接被扫描的页个数
+</span><span id="__span-14-14"><a id="__codelineno-14-14" name="__codelineno-14-14" href="#__codelineno-14-14"></a>
+</span><span id="__span-14-15"><a id="__codelineno-14-15" name="__codelineno-14-15" href="#__codelineno-14-15"></a>pgsteal/s：每秒钟从 cache 中被清除来满足内存需要的页个数
+</span><span id="__span-14-16"><a id="__codelineno-14-16" name="__codelineno-14-16" href="#__codelineno-14-16"></a>
+</span><span id="__span-14-17"><a id="__codelineno-14-17" name="__codelineno-14-17" href="#__codelineno-14-17"></a>%vmeff：每秒清除的页(pgsteal)占总扫描页(pgscank + pgscand)的百分比
+</span></code></pre></div>
 <h3 id="io">I/O 和传输速率信息状况<a class="headerlink" href="#io" title="Permanent link">&para;</a></h3>
-<pre><code class="language-bnf">sar -b [ &lt;时间间隔&gt; [ &lt;次数&gt; ] ]
-</code></pre>
+<div class="language-bnf highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>sar -b [ &lt;时间间隔&gt; [ &lt;次数&gt; ] ]
+</span></code></pre></div>
 <p><strong>示例：</strong></p>
-<pre><code class="language-mipsasm">sar -b 1 3
-
-Linux 2.6.32-696.13.2.el6.x86_64 (upfor163) 2018年04月25日 _x86_64_ (2 CPU)
-
-10时58分15秒       tps      rtps      wtps   bread/s   bwrtn/s
-10时58分16秒      7.00      0.00      7.00      0.00     64.00
-10时58分17秒      4.04      0.00      4.04      0.00     80.81
-10时58分18秒      0.00      0.00      0.00      0.00      0.00
-平均时间:         3.67      0.00      3.67      0.00     48.00
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>sar -b 1 3
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>
+</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>Linux 2.6.32-696.13.2.el6.x86_64 (upfor163) 2018年04月25日 _x86_64_ (2 CPU)
+</span><span id="__span-16-4"><a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a>
+</span><span id="__span-16-5"><a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a>10时58分15秒       tps      rtps      wtps   bread/s   bwrtn/s
+</span><span id="__span-16-6"><a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a>10时58分16秒      7.00      0.00      7.00      0.00     64.00
+</span><span id="__span-16-7"><a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a>10时58分17秒      4.04      0.00      4.04      0.00     80.81
+</span><span id="__span-16-8"><a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a>10时58分18秒      0.00      0.00      0.00      0.00      0.00
+</span><span id="__span-16-9"><a id="__codelineno-16-9" name="__codelineno-16-9" href="#__codelineno-16-9"></a>平均时间:         3.67      0.00      3.67      0.00     48.00
+</span></code></pre></div>
 <p><strong>输出项说明：</strong></p>
-<pre><code class="language-awk">tps：每秒钟物理设备的 I/O 传输总量
-
-rtps：每秒钟从物理设备读入的数据总量
-
-wtps：每秒钟向物理设备写入的数据总量
-
-bread/s：每秒钟从物理设备读入的数据量，单位为：块/s
-
-bwrtn/s：每秒钟向物理设备写入的数据量，单位为：块/s
-</code></pre>
+<div class="language-awk highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="nx">tps</span><span class="err">：每秒钟物理设备的</span> <span class="nx">I</span><span class="o">/</span><span class="nx">O</span> <span class="err">传输总量</span>
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>
+</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a><span class="nx">rtps</span><span class="err">：每秒钟从物理设备读入的数据总量</span>
+</span><span id="__span-17-4"><a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a>
+</span><span id="__span-17-5"><a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a><span class="nx">wtps</span><span class="err">：每秒钟向物理设备写入的数据总量</span>
+</span><span id="__span-17-6"><a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a>
+</span><span id="__span-17-7"><a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a><span class="nx">bread</span><span class="o">/</span><span class="nx">s</span><span class="err">：每秒钟从物理设备读入的数据量，单位为：块</span><span class="o">/</span><span class="nx">s</span>
+</span><span id="__span-17-8"><a id="__codelineno-17-8" name="__codelineno-17-8" href="#__codelineno-17-8"></a>
+</span><span id="__span-17-9"><a id="__codelineno-17-9" name="__codelineno-17-9" href="#__codelineno-17-9"></a><span class="nx">bwrtn</span><span class="o">/</span><span class="nx">s</span><span class="err">：每秒钟向物理设备写入的数据量，单位为：块</span><span class="o">/</span><span class="nx">s</span>
+</span></code></pre></div>
 <h3 id="_7">队列长度和平均负载<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
-<pre><code class="language-perl">sar -q [ &lt;时间间隔&gt; [ &lt;次数&gt; ] ]
-</code></pre>
+<div class="language-perl highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="n">sar</span><span class="w"> </span><span class="o">-</span><span class="sx">q [ </span><span class="sr">&lt;时间间隔&gt;</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="sr">&lt;次数&gt;</span><span class="w"> </span><span class="p">]</span><span class="w"> </span><span class="p">]</span>
+</span></code></pre></div>
 <p><strong>示例：</strong></p>
-<pre><code class="language-tap">sar -q 1 3
-
-Linux 2.6.32-696.13.2.el6.x86_64 (upfor163) 2018年04月25日 _x86_64_ (2 CPU)
-
-11时00分35秒   runq-sz  plist-sz   ldavg-1   ldavg-5  ldavg-15
-11时00分36秒         0       268      0.00      0.00      0.00
-11时00分37秒         0       268      0.00      0.00      0.00
-11时00分38秒         0       268      0.00      0.00      0.00
-平均时间:            0       268      0.00      0.00      0.00
-</code></pre>
+<div class="language-tap highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>sar -q 1 3
+</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>
+</span><span id="__span-19-3"><a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a>Linux 2.6.32-696.13.2.el6.x86_64 (upfor163) 2018年04月25日 _x86_64_ (2 CPU)
+</span><span id="__span-19-4"><a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a>
+</span><span id="__span-19-5"><a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a>11时00分35秒   runq-sz  plist-sz   ldavg-1   ldavg-5  ldavg-15
+</span><span id="__span-19-6"><a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a>11时00分36秒         0       268      0.00      0.00      0.00
+</span><span id="__span-19-7"><a id="__codelineno-19-7" name="__codelineno-19-7" href="#__codelineno-19-7"></a>11时00分37秒         0       268      0.00      0.00      0.00
+</span><span id="__span-19-8"><a id="__codelineno-19-8" name="__codelineno-19-8" href="#__codelineno-19-8"></a>11时00分38秒         0       268      0.00      0.00      0.00
+</span><span id="__span-19-9"><a id="__codelineno-19-9" name="__codelineno-19-9" href="#__codelineno-19-9"></a>平均时间:            0       268      0.00      0.00      0.00
+</span></code></pre></div>
 <p><strong>输出项说明：</strong></p>
-<pre><code class="language-apache">runq-sz：运行队列的长度（等待运行的进程数）
-
-plist-sz：进程列表中进程（processes）和线程（threads）的数量
-
-ldavg-1：最后1分钟的系统平均负载（System load average）
-
-ldavg-5：过去5分钟的系统平均负载
-
-ldavg-15：过去15分钟的系统平均负载
-</code></pre>
+<div class="language-apache highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="nb">runq</span>-sz：运行队列的长度（等待运行的进程数）
+</span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>
+</span><span id="__span-20-3"><a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a><span class="nb">plist</span>-sz：进程列表中进程（processes）和线程（threads）的数量
+</span><span id="__span-20-4"><a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a>
+</span><span id="__span-20-5"><a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a><span class="nb">ldavg</span>-1：最后1分钟的系统平均负载（System<span class="w"> </span>load<span class="w"> </span>average）
+</span><span id="__span-20-6"><a id="__codelineno-20-6" name="__codelineno-20-6" href="#__codelineno-20-6"></a>
+</span><span id="__span-20-7"><a id="__codelineno-20-7" name="__codelineno-20-7" href="#__codelineno-20-7"></a><span class="nb">ldavg</span>-5：过去5分钟的系统平均负载
+</span><span id="__span-20-8"><a id="__codelineno-20-8" name="__codelineno-20-8" href="#__codelineno-20-8"></a>
+</span><span id="__span-20-9"><a id="__codelineno-20-9" name="__codelineno-20-9" href="#__codelineno-20-9"></a><span class="nb">ldavg</span>-15：过去15分钟的系统平均负载
+</span></code></pre></div>
 <h3 id="_8">系统交换信息<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
-<pre><code class="language-bnf">sar -W [ &lt;时间间隔&gt; [ &lt;次数&gt; ] ]
-</code></pre>
+<div class="language-bnf highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>sar -W [ &lt;时间间隔&gt; [ &lt;次数&gt; ] ]
+</span></code></pre></div>
 <p><strong>示例：</strong></p>
-<pre><code class="language-awk">sar -W 1 3
-
-Linux 2.6.32-696.13.2.el6.x86_64 (upfor163) 2018年04月25日 _x86_64_ (2 CPU)
-
-11时01分45秒  pswpin/s pswpout/s
-11时01分46秒      0.00      0.00
-11时01分47秒      0.00      0.00
-11时01分48秒      0.00      0.00
-平均时间:         0.00      0.00
-</code></pre>
+<div class="language-awk highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="nx">sar</span> <span class="o">-</span><span class="nx">W</span> <span class="mi">1</span> <span class="mi">3</span>
+</span><span id="__span-22-2"><a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>
+</span><span id="__span-22-3"><a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a><span class="nx">Linux</span> <span class="mf">2.6</span><span class="p">.</span><span class="mi">32</span><span class="o">-</span><span class="mf">696.13</span><span class="p">.</span><span class="mi">2</span><span class="p">.</span><span class="nx">el6</span><span class="p">.</span><span class="nx">x86_64</span> <span class="p">(</span><span class="nx">upfor163</span><span class="p">)</span> <span class="mi">2018</span><span class="err">年</span><span class="mi">04</span><span class="err">月</span><span class="mi">25</span><span class="err">日</span> <span class="nx">_x86_64_</span> <span class="p">(</span><span class="mi">2</span> <span class="nx">CPU</span><span class="p">)</span>
+</span><span id="__span-22-4"><a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a>
+</span><span id="__span-22-5"><a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a><span class="mi">11</span><span class="err">时</span><span class="mi">01</span><span class="err">分</span><span class="mi">45</span><span class="err">秒</span>  <span class="nx">pswpin</span><span class="o">/</span><span class="nx">s</span> <span class="nx">pswpout</span><span class="o">/</span><span class="nx">s</span>
+</span><span id="__span-22-6"><a id="__codelineno-22-6" name="__codelineno-22-6" href="#__codelineno-22-6"></a><span class="mi">11</span><span class="err">时</span><span class="mi">01</span><span class="err">分</span><span class="mi">46</span><span class="err">秒</span>      <span class="mf">0.00</span>      <span class="mf">0.00</span>
+</span><span id="__span-22-7"><a id="__codelineno-22-7" name="__codelineno-22-7" href="#__codelineno-22-7"></a><span class="mi">11</span><span class="err">时</span><span class="mi">01</span><span class="err">分</span><span class="mi">47</span><span class="err">秒</span>      <span class="mf">0.00</span>      <span class="mf">0.00</span>
+</span><span id="__span-22-8"><a id="__codelineno-22-8" name="__codelineno-22-8" href="#__codelineno-22-8"></a><span class="mi">11</span><span class="err">时</span><span class="mi">01</span><span class="err">分</span><span class="mi">48</span><span class="err">秒</span>      <span class="mf">0.00</span>      <span class="mf">0.00</span>
+</span><span id="__span-22-9"><a id="__codelineno-22-9" name="__codelineno-22-9" href="#__codelineno-22-9"></a><span class="err">平均时间:</span>         <span class="mf">0.00</span>      <span class="mf">0.00</span>
+</span></code></pre></div>
 <p><strong>输出项说明：</strong></p>
-<pre><code class="language-avrasm">pswpin/s：每秒系统换入的交换页面（swap page）数量
-pswpout/s：每秒系统换出的交换页面（swap page）数量
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>pswpin/s：每秒系统换入的交换页面（swap page）数量
+</span><span id="__span-23-2"><a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a>pswpout/s：每秒系统换出的交换页面（swap page）数量
+</span></code></pre></div>
 <h3 id="_9">块设备状况<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h3>
-<pre><code class="language-bnf">sar -d [ &lt;时间间隔&gt; [ &lt;次数&gt; ] ]
-</code></pre>
+<div class="language-bnf highlight"><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>sar -d [ &lt;时间间隔&gt; [ &lt;次数&gt; ] ]
+</span></code></pre></div>
 <p><strong>示例：</strong></p>
-<pre><code class="language-awk">sar -d 1 3
-
-Linux 2.6.32-696.13.2.el6.x86_64 (upfor163) 2018年04月25日 _x86_64_ (2 CPU)
-
-11时02分46秒       DEV       tps  rd_sec/s  wr_sec/s  avgrq-sz  avgqu-sz     await     svctm     %util
-11时02分47秒  dev252-0      0.00      0.00      0.00      0.00      0.00      0.00      0.00      0.00
-
-11时02分47秒       DEV       tps  rd_sec/s  wr_sec/s  avgrq-sz  avgqu-sz     await     svctm     %util
-11时02分48秒  dev252-0      6.06      0.00     64.65     10.67      0.00      0.00      0.00      0.00
-
-11时02分48秒       DEV       tps  rd_sec/s  wr_sec/s  avgrq-sz  avgqu-sz     await     svctm     %util
-11时02分49秒  dev252-0      0.00      0.00      0.00      0.00      0.00      0.00      0.00      0.00
-
-平均时间:       DEV       tps  rd_sec/s  wr_sec/s  avgrq-sz  avgqu-sz     await     svctm     %util
-平均时间:  dev252-0      2.00      0.00     21.33     10.67      0.00      0.00      0.00      0.00
-</code></pre>
+<div class="language-awk highlight"><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="nx">sar</span> <span class="o">-</span><span class="nx">d</span> <span class="mi">1</span> <span class="mi">3</span>
+</span><span id="__span-25-2"><a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a>
+</span><span id="__span-25-3"><a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a><span class="nx">Linux</span> <span class="mf">2.6</span><span class="p">.</span><span class="mi">32</span><span class="o">-</span><span class="mf">696.13</span><span class="p">.</span><span class="mi">2</span><span class="p">.</span><span class="nx">el6</span><span class="p">.</span><span class="nx">x86_64</span> <span class="p">(</span><span class="nx">upfor163</span><span class="p">)</span> <span class="mi">2018</span><span class="err">年</span><span class="mi">04</span><span class="err">月</span><span class="mi">25</span><span class="err">日</span> <span class="nx">_x86_64_</span> <span class="p">(</span><span class="mi">2</span> <span class="nx">CPU</span><span class="p">)</span>
+</span><span id="__span-25-4"><a id="__codelineno-25-4" name="__codelineno-25-4" href="#__codelineno-25-4"></a>
+</span><span id="__span-25-5"><a id="__codelineno-25-5" name="__codelineno-25-5" href="#__codelineno-25-5"></a><span class="mi">11</span><span class="err">时</span><span class="mi">02</span><span class="err">分</span><span class="mi">46</span><span class="err">秒</span>       <span class="nx">DEV</span>       <span class="nx">tps</span>  <span class="nx">rd_sec</span><span class="o">/</span><span class="nx">s</span>  <span class="nx">wr_sec</span><span class="o">/</span><span class="nx">s</span>  <span class="nx">avgrq</span><span class="o">-</span><span class="nx">sz</span>  <span class="nx">avgqu</span><span class="o">-</span><span class="nx">sz</span>     <span class="nx">await</span>     <span class="nx">svctm</span>     <span class="o">%</span><span class="nx">util</span>
+</span><span id="__span-25-6"><a id="__codelineno-25-6" name="__codelineno-25-6" href="#__codelineno-25-6"></a><span class="mi">11</span><span class="err">时</span><span class="mi">02</span><span class="err">分</span><span class="mi">47</span><span class="err">秒</span>  <span class="nx">dev252</span><span class="o">-</span><span class="mi">0</span>      <span class="mf">0.00</span>      <span class="mf">0.00</span>      <span class="mf">0.00</span>      <span class="mf">0.00</span>      <span class="mf">0.00</span>      <span class="mf">0.00</span>      <span class="mf">0.00</span>      <span class="mf">0.00</span>
+</span><span id="__span-25-7"><a id="__codelineno-25-7" name="__codelineno-25-7" href="#__codelineno-25-7"></a>
+</span><span id="__span-25-8"><a id="__codelineno-25-8" name="__codelineno-25-8" href="#__codelineno-25-8"></a><span class="mi">11</span><span class="err">时</span><span class="mi">02</span><span class="err">分</span><span class="mi">47</span><span class="err">秒</span>       <span class="nx">DEV</span>       <span class="nx">tps</span>  <span class="nx">rd_sec</span><span class="o">/</span><span class="nx">s</span>  <span class="nx">wr_sec</span><span class="o">/</span><span class="nx">s</span>  <span class="nx">avgrq</span><span class="o">-</span><span class="nx">sz</span>  <span class="nx">avgqu</span><span class="o">-</span><span class="nx">sz</span>     <span class="nx">await</span>     <span class="nx">svctm</span>     <span class="o">%</span><span class="nx">util</span>
+</span><span id="__span-25-9"><a id="__codelineno-25-9" name="__codelineno-25-9" href="#__codelineno-25-9"></a><span class="mi">11</span><span class="err">时</span><span class="mi">02</span><span class="err">分</span><span class="mi">48</span><span class="err">秒</span>  <span class="nx">dev252</span><span class="o">-</span><span class="mi">0</span>      <span class="mf">6.06</span>      <span class="mf">0.00</span>     <span class="mf">64.65</span>     <span class="mf">10.67</span>      <span class="mf">0.00</span>      <span class="mf">0.00</span>      <span class="mf">0.00</span>      <span class="mf">0.00</span>
+</span><span id="__span-25-10"><a id="__codelineno-25-10" name="__codelineno-25-10" href="#__codelineno-25-10"></a>
+</span><span id="__span-25-11"><a id="__codelineno-25-11" name="__codelineno-25-11" href="#__codelineno-25-11"></a><span class="mi">11</span><span class="err">时</span><span class="mi">02</span><span class="err">分</span><span class="mi">48</span><span class="err">秒</span>       <span class="nx">DEV</span>       <span class="nx">tps</span>  <span class="nx">rd_sec</span><span class="o">/</span><span class="nx">s</span>  <span class="nx">wr_sec</span><span class="o">/</span><span class="nx">s</span>  <span class="nx">avgrq</span><span class="o">-</span><span class="nx">sz</span>  <span class="nx">avgqu</span><span class="o">-</span><span class="nx">sz</span>     <span class="nx">await</span>     <span class="nx">svctm</span>     <span class="o">%</span><span class="nx">util</span>
+</span><span id="__span-25-12"><a id="__codelineno-25-12" name="__codelineno-25-12" href="#__codelineno-25-12"></a><span class="mi">11</span><span class="err">时</span><span class="mi">02</span><span class="err">分</span><span class="mi">49</span><span class="err">秒</span>  <span class="nx">dev252</span><span class="o">-</span><span class="mi">0</span>      <span class="mf">0.00</span>      <span class="mf">0.00</span>      <span class="mf">0.00</span>      <span class="mf">0.00</span>      <span class="mf">0.00</span>      <span class="mf">0.00</span>      <span class="mf">0.00</span>      <span class="mf">0.00</span>
+</span><span id="__span-25-13"><a id="__codelineno-25-13" name="__codelineno-25-13" href="#__codelineno-25-13"></a>
+</span><span id="__span-25-14"><a id="__codelineno-25-14" name="__codelineno-25-14" href="#__codelineno-25-14"></a><span class="err">平均时间:</span>       <span class="nx">DEV</span>       <span class="nx">tps</span>  <span class="nx">rd_sec</span><span class="o">/</span><span class="nx">s</span>  <span class="nx">wr_sec</span><span class="o">/</span><span class="nx">s</span>  <span class="nx">avgrq</span><span class="o">-</span><span class="nx">sz</span>  <span class="nx">avgqu</span><span class="o">-</span><span class="nx">sz</span>     <span class="nx">await</span>     <span class="nx">svctm</span>     <span class="o">%</span><span class="nx">util</span>
+</span><span id="__span-25-15"><a id="__codelineno-25-15" name="__codelineno-25-15" href="#__codelineno-25-15"></a><span class="err">平均时间:</span>  <span class="nx">dev252</span><span class="o">-</span><span class="mi">0</span>      <span class="mf">2.00</span>      <span class="mf">0.00</span>     <span class="mf">21.33</span>     <span class="mf">10.67</span>      <span class="mf">0.00</span>      <span class="mf">0.00</span>      <span class="mf">0.00</span>      <span class="mf">0.00</span>
+</span></code></pre></div>
 <p><strong>输出项说明：</strong></p>
-<pre><code class="language-makefile">tps: 每秒从物理磁盘 I/O 的次数。多个逻辑请求会被合并为一个 I/O 磁盘请求，一次传输的大小是不确定的
-
-rd_sec/s: 每秒读扇区的次数
-
-wr_sec/s: 每秒写扇区的次数
-
-avgrq-sz: 平均每次设备 I/O 操作的数据大小(扇区)
-
-avgqu-sz: 磁盘请求队列的平均长度
-
-await: 从请求磁盘操作到系统完成处理，每次请求的平均消耗时间，包括请求队列等待时间，单位是毫秒(1秒=1000毫秒)
-
-svctm: 系统处理每次请求的平均时间,不包括在请求队列中消耗的时间.
-
-%util: I/O请求占CPU的百分比，比率越大，说明越饱和
-    1. avgqu-sz 的值较低时，设备的利用率较高
-    2. 当%util的值接近 1% 时，表示设备带宽已经占满
-</code></pre>
+<div class="language-makefile highlight"><pre><span></span><code><span id="__span-26-1"><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="nf">tps</span><span class="o">:</span><span class="w"> </span>每秒从物理磁盘 <span class="n">I</span>/<span class="n">O</span> 的次数。多个逻辑请求会被合并为一个 <span class="n">I</span>/<span class="n">O</span> 磁盘请求，一次传输的大小是不确定的
+</span><span id="__span-26-2"><a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a>
+</span><span id="__span-26-3"><a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a><span class="nf">rd_sec/s</span><span class="o">:</span><span class="w"> </span>每秒读扇区的次数
+</span><span id="__span-26-4"><a id="__codelineno-26-4" name="__codelineno-26-4" href="#__codelineno-26-4"></a>
+</span><span id="__span-26-5"><a id="__codelineno-26-5" name="__codelineno-26-5" href="#__codelineno-26-5"></a><span class="nf">wr_sec/s</span><span class="o">:</span><span class="w"> </span>每秒写扇区的次数
+</span><span id="__span-26-6"><a id="__codelineno-26-6" name="__codelineno-26-6" href="#__codelineno-26-6"></a>
+</span><span id="__span-26-7"><a id="__codelineno-26-7" name="__codelineno-26-7" href="#__codelineno-26-7"></a><span class="nf">avgrq-sz</span><span class="o">:</span><span class="w"> </span>平均每次设备 <span class="n">I</span>/<span class="n">O</span> 操作的数据大小(扇区)
+</span><span id="__span-26-8"><a id="__codelineno-26-8" name="__codelineno-26-8" href="#__codelineno-26-8"></a>
+</span><span id="__span-26-9"><a id="__codelineno-26-9" name="__codelineno-26-9" href="#__codelineno-26-9"></a><span class="nf">avgqu-sz</span><span class="o">:</span><span class="w"> </span>磁盘请求队列的平均长度
+</span><span id="__span-26-10"><a id="__codelineno-26-10" name="__codelineno-26-10" href="#__codelineno-26-10"></a>
+</span><span id="__span-26-11"><a id="__codelineno-26-11" name="__codelineno-26-11" href="#__codelineno-26-11"></a><span class="nf">await</span><span class="o">:</span><span class="w"> </span>从请求磁盘操作到系统完成处理，每次请求的平均消耗时间，包括请求队列等待时间，单位是毫秒(1秒=1000毫秒)
+</span><span id="__span-26-12"><a id="__codelineno-26-12" name="__codelineno-26-12" href="#__codelineno-26-12"></a>
+</span><span id="__span-26-13"><a id="__codelineno-26-13" name="__codelineno-26-13" href="#__codelineno-26-13"></a><span class="nf">svctm</span><span class="o">:</span><span class="w"> </span>系统处理每次请求的平均时间<span class="p">,</span>不包括在请求队列中消耗的时间.
+</span><span id="__span-26-14"><a id="__codelineno-26-14" name="__codelineno-26-14" href="#__codelineno-26-14"></a>
+</span><span id="__span-26-15"><a id="__codelineno-26-15" name="__codelineno-26-15" href="#__codelineno-26-15"></a><span class="nf">%util</span><span class="o">:</span><span class="w"> </span><span class="n">I</span>/<span class="n">O</span>请求占<span class="n">CPU</span>的百分比，比率越大，说明越饱和
+</span><span id="__span-26-16"><a id="__codelineno-26-16" name="__codelineno-26-16" href="#__codelineno-26-16"></a><span class="w">    </span><span class="m">1</span>.<span class="w"> </span>avgqu-sz<span class="w"> </span>的值较低时，设备的利用率较高
+</span><span id="__span-26-17"><a id="__codelineno-26-17" name="__codelineno-26-17" href="#__codelineno-26-17"></a><span class="w">    </span><span class="m">2</span>.<span class="w"> </span>当%util的值接近<span class="w"> </span><span class="m">1</span>%<span class="w"> </span>时，表示设备带宽已经占满
+</span></code></pre></div>
 <h3 id="_10">输出统计的数据信息<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h3>
-<pre><code class="language-inform7">sar -o path_file [选项] [ &lt;时间间隔&gt; [ &lt;次数&gt; ] ]
-</code></pre>
+<div class="language-inform7 highlight"><pre><span></span><code><span id="__span-27-1"><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a>sar -o path_file <span class="cm">[选项]</span> <span class="cm">[ &lt;时间间隔&gt; [ &lt;次数&gt; ] ]</span>
+</span></code></pre></div>
 <p><strong>示例：</strong></p>
-<pre><code class="language-apache">sar -o sarfile.log -u 1 3
-</code></pre>
+<div class="language-apache highlight"><pre><span></span><code><span id="__span-28-1"><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a><span class="nb">sar</span><span class="w"> </span>-o<span class="w"> </span>sarfile.log<span class="w"> </span>-u<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">3</span>
+</span></code></pre></div>
 <p>上述示例命令会将<code>sar -u 1 3</code>采集到的数据以二进制的格式存放到文件<code>sarfile.log</code>中。</p>
 <p>我们还可以通过命令<code>sadf -d sarfile.log</code>将二进制数据文件转换成数据库可读的格式。</p>
-<pre><code class="language-apache">sadf -d sarfile.log
-
-# hostname;interval;timestamp;CPU;%user;%nice;%system;%iowait;%steal;%idle
-upfor163;1;2018-04-25 03:15:02 UTC;-1;0.00;0.00;0.50;0.50;0.00;99.00
-upfor163;1;2018-04-25 03:15:03 UTC;-1;1.01;0.00;0.00;0.00;0.00;98.99
-upfor163;1;2018-04-25 03:15:04 UTC;-1;0.00;0.00;0.00;0.00;0.00;100.00
-</code></pre>
+<div class="language-apache highlight"><pre><span></span><code><span id="__span-29-1"><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a><span class="nb">sadf</span><span class="w"> </span>-d<span class="w"> </span>sarfile.log
+</span><span id="__span-29-2"><a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a>
+</span><span id="__span-29-3"><a id="__codelineno-29-3" name="__codelineno-29-3" href="#__codelineno-29-3"></a><span class="c"># hostname;interval;timestamp;CPU;%user;%nice;%system;%iowait;%steal;%idle</span>
+</span><span id="__span-29-4"><a id="__codelineno-29-4" name="__codelineno-29-4" href="#__codelineno-29-4"></a><span class="nb">upfor163</span>;1;2018-04-25<span class="w"> </span><span class="m">03</span>:15:02<span class="w"> </span>UTC;-1;0.00;0.00;0.50;0.50;0.00;99.00
+</span><span id="__span-29-5"><a id="__codelineno-29-5" name="__codelineno-29-5" href="#__codelineno-29-5"></a><span class="nb">upfor163</span>;1;2018-04-25<span class="w"> </span><span class="m">03</span>:15:03<span class="w"> </span>UTC;-1;1.01;0.00;0.00;0.00;0.00;98.99
+</span><span id="__span-29-6"><a id="__codelineno-29-6" name="__codelineno-29-6" href="#__codelineno-29-6"></a><span class="nb">upfor163</span>;1;2018-04-25<span class="w"> </span><span class="m">03</span>:15:04<span class="w"> </span>UTC;-1;0.00;0.00;0.00;0.00;0.00;100.00
+</span></code></pre></div>
 <p>也可以将这些数据存储在一个 csv 文档中，然后绘制成图表展示方式，如下所示：</p>
-<pre><code class="language-1c">sadf -d sarfile.log | sed 's/;/,/g' &gt; sarfile.csv
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-30-1"><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a>sadf -d sarfile.log | sed &#39;s/;/,/g&#39; &gt; sarfile.csv
+</span></code></pre></div>
 <p><img alt="sadf 导出数据绘制的图表" src="https://segmentfault.com/img/bV9sAa?w=720&amp;h=434" /></p>
 <h3 id="_11">从数据文件读取信息<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h3>
-<pre><code class="language-bnf">sar -f &lt;文件路径&gt;
-</code></pre>
+<div class="language-bnf highlight"><pre><span></span><code><span id="__span-31-1"><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a>sar -f &lt;文件路径&gt;
+</span></code></pre></div>
 <p><strong>示例：</strong></p>
-<pre><code class="language-llvm">sar -f sarfile.log
-
-Linux 2.6.32-696.13.2.el6.x86_64 (upfor163) 2018年04月25日 _x86_64_ (2 CPU)
-
-11时15分01秒     CPU     %user     %nice   %system   %iowait    %steal     %idle
-11时15分02秒     all      0.00      0.00      0.50      0.50      0.00     99.00
-11时15分03秒     all      1.01      0.00      0.00      0.00      0.00     98.99
-11时15分04秒     all      0.00      0.00      0.00      0.00      0.00    100.00
-平均时间:     all      0.33      0.00      0.17      0.17      0.00     99.33
-</code></pre>
+<div class="language-llvm highlight"><pre><span></span><code><span id="__span-32-1"><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a><span class="err">sar</span><span class="w"> </span><span class="err">-f</span><span class="w"> </span><span class="err">sarfile</span><span class="p">.</span><span class="err">log</span>
+</span><span id="__span-32-2"><a id="__codelineno-32-2" name="__codelineno-32-2" href="#__codelineno-32-2"></a>
+</span><span id="__span-32-3"><a id="__codelineno-32-3" name="__codelineno-32-3" href="#__codelineno-32-3"></a><span class="err">Linu</span><span class="k">x</span><span class="w"> </span><span class="m">2.6</span><span class="p">.</span><span class="m">32-696.13</span><span class="p">.</span><span class="m">2</span><span class="p">.</span><span class="err">el</span><span class="m">6</span><span class="p">.</span><span class="err">x</span><span class="m">86</span><span class="err">_</span><span class="m">64</span><span class="w"> </span><span class="p">(</span><span class="err">upfor</span><span class="m">163</span><span class="p">)</span><span class="w"> </span><span class="m">2018</span><span class="err">年</span><span class="m">04</span><span class="err">月</span><span class="m">25</span><span class="err">日</span><span class="w"> </span><span class="err">_x</span><span class="m">86</span><span class="err">_</span><span class="m">64</span><span class="err">_</span><span class="w"> </span><span class="p">(</span><span class="m">2</span><span class="w"> </span><span class="err">CPU</span><span class="p">)</span>
+</span><span id="__span-32-4"><a id="__codelineno-32-4" name="__codelineno-32-4" href="#__codelineno-32-4"></a>
+</span><span id="__span-32-5"><a id="__codelineno-32-5" name="__codelineno-32-5" href="#__codelineno-32-5"></a><span class="m">11</span><span class="err">时</span><span class="m">15</span><span class="err">分</span><span class="m">01</span><span class="err">秒</span><span class="w">     </span><span class="err">CPU</span><span class="w">     </span><span class="nv">%user</span><span class="w">     </span><span class="nv">%nice</span><span class="w">   </span><span class="nv">%system</span><span class="w">   </span><span class="nv">%iowait</span><span class="w">    </span><span class="nv">%steal</span><span class="w">     </span><span class="nv">%idle</span>
+</span><span id="__span-32-6"><a id="__codelineno-32-6" name="__codelineno-32-6" href="#__codelineno-32-6"></a><span class="m">11</span><span class="err">时</span><span class="m">15</span><span class="err">分</span><span class="m">02</span><span class="err">秒</span><span class="w">     </span><span class="err">all</span><span class="w">      </span><span class="m">0.00</span><span class="w">      </span><span class="m">0.00</span><span class="w">      </span><span class="m">0.50</span><span class="w">      </span><span class="m">0.50</span><span class="w">      </span><span class="m">0.00</span><span class="w">     </span><span class="m">99.00</span>
+</span><span id="__span-32-7"><a id="__codelineno-32-7" name="__codelineno-32-7" href="#__codelineno-32-7"></a><span class="m">11</span><span class="err">时</span><span class="m">15</span><span class="err">分</span><span class="m">03</span><span class="err">秒</span><span class="w">     </span><span class="err">all</span><span class="w">      </span><span class="m">1.01</span><span class="w">      </span><span class="m">0.00</span><span class="w">      </span><span class="m">0.00</span><span class="w">      </span><span class="m">0.00</span><span class="w">      </span><span class="m">0.00</span><span class="w">     </span><span class="m">98.99</span>
+</span><span id="__span-32-8"><a id="__codelineno-32-8" name="__codelineno-32-8" href="#__codelineno-32-8"></a><span class="m">11</span><span class="err">时</span><span class="m">15</span><span class="err">分</span><span class="m">04</span><span class="err">秒</span><span class="w">     </span><span class="err">all</span><span class="w">      </span><span class="m">0.00</span><span class="w">      </span><span class="m">0.00</span><span class="w">      </span><span class="m">0.00</span><span class="w">      </span><span class="m">0.00</span><span class="w">      </span><span class="m">0.00</span><span class="w">    </span><span class="m">100.00</span>
+</span><span id="__span-32-9"><a id="__codelineno-32-9" name="__codelineno-32-9" href="#__codelineno-32-9"></a><span class="err">平均时间:</span><span class="w">     </span><span class="err">all</span><span class="w">      </span><span class="m">0.33</span><span class="w">      </span><span class="m">0.00</span><span class="w">      </span><span class="m">0.17</span><span class="w">      </span><span class="m">0.17</span><span class="w">      </span><span class="m">0.00</span><span class="w">     </span><span class="m">99.33</span>
+</span></code></pre></div>
 <p>又将之前存储在二进制文件中的数据给读取并展示出来。</p>
 <h2 id="_12">性能问题排查技巧<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h2>
 <ul>
@@ -1525,6 +1531,11 @@ Linux 2.6.32-696.13.2.el6.x86_64 (upfor163) 2018年04月25日 _x86_64_ (2 CPU)
           
           
         </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+            Back to top
+          </button>
         
       </main>
       
@@ -1555,7 +1566,7 @@ Linux 2.6.32-696.13.2.el6.x86_64 (upfor163) 2018年04月25日 _x86_64_ (2 CPU)
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tracking", "navigation.expand", "navigation.sections", "navigation.indexes", "navigation.path", "toc.integrate"], "search": "../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tracking", "navigation.top", "navigation.sections", "navigation.indexes", "navigation.path", "toc.integrate", "content.code.copy"], "search": "../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
       <script src="../assets/javascripts/bundle.fac441b0.min.js"></script>

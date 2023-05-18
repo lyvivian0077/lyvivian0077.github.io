@@ -1,0 +1,1846 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../mysql-mgr/">
+      
+      
+        <link rel="next" href="../mysql-ha/">
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.9">
+    
+    
+      
+        <title>転載MGR - 总有刁民想要害朕</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.85bb2934.min.css">
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="总有刁民想要害朕" class="md-header__button md-logo" aria-label="总有刁民想要害朕" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            总有刁民想要害朕
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              転載MGR
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="总有刁民想要害朕" class="md-nav__button md-logo" aria-label="总有刁民想要害朕" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    总有刁民想要害朕
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        Welcome
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+      
+      
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+          ansbile
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          ansbile
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ansbile/" class="md-nav__link">
+        ansbileオプション
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ansbile_async/" class="md-nav__link">
+        ansbile_async
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../awk/" class="md-nav__link">
+        awk
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sed/" class="md-nav__link">
+        sed
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../MB-MiB%E7%9A%84%E5%8C%BA%E5%88%AB/" class="md-nav__link">
+        MB_MiB的区别
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+      
+      
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+          MegaRAID
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_6">
+          <span class="md-nav__icon md-icon"></span>
+          MegaRAID
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../megacli/" class="md-nav__link">
+        megacli
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../megaraid/" class="md-nav__link">
+        megaraid
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+      
+      
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+          PostgreSQL
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_7">
+          <span class="md-nav__icon md-icon"></span>
+          PostgreSQL
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../psql-vs-mysql/" class="md-nav__link">
+        MySQLとPostgreSQLコマンド比較表
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" checked>
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+          MySQL
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="true">
+        <label class="md-nav__title" for="__nav_8">
+          <span class="md-nav__icon md-icon"></span>
+          MySQL
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Explain%E8%AF%A6%E8%A7%A3%E4%B8%8E%E7%B4%A2%E5%BC%95%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/" class="md-nav__link">
+        Explain详解与索引最佳实践
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mysql/" class="md-nav__link">
+        Mysql参数优化
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mysql-table/" class="md-nav__link">
+        MySQL-table
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mysql%E3%82%92%E3%82%BD%E3%83%BC%E3%82%B9%E3%81%8B%E3%82%89%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB/" class="md-nav__link">
+        MySQLビルド
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../MySQL-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="md-nav__link">
+        学习笔记
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mysql-mgr/" class="md-nav__link">
+        MGR
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          転載MGR
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        転載MGR
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#mysql-group-replication" class="md-nav__link">
+    MySQL Group Replication 素振り
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuration" class="md-nav__link">
+    Configuration
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#docker-compose" class="md-nav__link">
+    docker-compose
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    ユーザーの作成とバイナリログのリセット
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    グループレプリケーションの開始
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    グループにインスタンスを追加
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    運用中のグループにインスタンスを追加
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ip" class="md-nav__link">
+    IPアドレスのホワイトリスト
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    ノードの故障
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#monitoring-group-replication" class="md-nav__link">
+    Monitoring Group Replication
+  </a>
+  
+    <nav class="md-nav" aria-label="Monitoring Group Replication">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    レプリケーションチャンネルには次の用途の2つが作成されています。
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    グループのメンバに関するパフォーマンステーブルのビューについて。
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#replication_group_members" class="md-nav__link">
+    replication_group_members で表示されるメンバーのステータス。
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deploying-in-multi-primary-or-single-primary-mode" class="md-nav__link">
+    Deploying in Multi-Primary or Single-Primary Mode
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#single-primary-mode" class="md-nav__link">
+    Single-Primary Mode
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tuning-recovery" class="md-nav__link">
+    Tuning Recovery
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#network-partitioning" class="md-nav__link">
+    Network Partitioning
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#group-replication-requirements" class="md-nav__link">
+    Group Replication Requirements
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    制限
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    さいごに
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mysql-ha/" class="md-nav__link">
+        mysql+keepalived搭建教程
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+          Python Tips
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_9">
+          <span class="md-nav__icon md-icon"></span>
+          Python Tips
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-styleguide/" class="md-nav__link">
+        Python风格规范
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-config/" class="md-nav__link">
+        Python程序配置文件管理
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-decorator/" class="md-nav__link">
+        装饰器
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-dunder/" class="md-nav__link">
+        5种下划线
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-function/" class="md-nav__link">
+        传入参数的几种方法
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python/" class="md-nav__link">
+        非常规的技巧
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-mysql/" class="md-nav__link">
+        操作mysql基础
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Python-Re-%E6%A8%A1%E5%9D%97%E8%B6%85%E5%85%A8%E8%A7%A3%E8%AF%BB/" class="md-nav__link">
+        Re 模块
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Python%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%8B%BC%E6%8E%A5%E6%80%BB%E7%BB%93/" class="md-nav__link">
+        字符串拼接总结
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E4%B8%80%E8%A1%8C-Python-%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0%E5%B9%B6%E8%A1%8C/" class="md-nav__link">
+        代码并行
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Regular-Expression/" class="md-nav__link">
+        正規表現
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../taged-VLAN%E3%81%A8untagedVLAN%E3%81%AE%E9%81%95%E3%81%84/" class="md-nav__link">
+        タグVLAN
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sar/" class="md-nav__link">
+        sar
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Bash%E7%BC%96%E7%A8%8B%E8%B6%85%E8%AF%A6%E7%BB%86%E8%AF%AD%E6%B3%95%E6%80%BB%E7%BB%93/" class="md-nav__link">
+        Bash编程超详细语法总结
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../iptables/" class="md-nav__link">
+        iptables
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../linux-lvm/" class="md-nav__link">
+        linux-lvm
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../centos7-set-kernel/" class="md-nav__link">
+        centos7-set-kernel
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../centos-network-device-naming/" class="md-nav__link">
+        centos-network-device-naming
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Linux-Performance/" class="md-nav__link">
+        Linux Performance
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Linux-shell-%E9%80%BB%E8%BE%91%E8%BF%90%E7%AE%97%E7%AC%A6-%E9%80%BB%E8%BE%91%E8%A1%A8%E8%BE%BE%E5%BC%8F%E8%AF%A6%E8%A7%A3/" class="md-nav__link">
+        Linux-shell-逻辑运算符-逻辑表达式详解
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../LVM%E9%80%BB%E8%BE%91%E5%8D%B7%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5%E5%8F%8ALVM%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/" class="md-nav__link">
+        LVM逻辑卷基本概念及LVM的工作原理
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../macOS%E8%BD%AF%E4%BB%B6%E7%BC%96%E8%AF%91%E6%97%B6%E6%89%BE%E4%B8%8D%E5%88%B0%E5%A4%B4%E6%96%87%E4%BB%B6%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95-%E6%9B%B4%E6%96%B010-15/" class="md-nav__link">
+        macOS软件编译时找不到头文件解决方法[更新10.15]
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ubnt/" class="md-nav__link">
+        ubnt
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vim/" class="md-nav__link">
+        VIM
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../about/" class="md-nav__link">
+        About
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="_1">とても良い記事のため、メモとして転載いたします。<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<ul>
+<li><a href="https://ngyuki.hatenablog.com/entry/2018/07/02/072619">ngyukiの日記</a></li>
+</ul>
+<h2 id="mysql-group-replication">MySQL Group Replication 素振り<a class="headerlink" href="#mysql-group-replication" title="Permanent link">&para;</a></h2>
+<p>公式のドキュメントを読みながら素振りしました。</p>
+<p><a href="https://dev.mysql.com/doc/refman/8.0/en/group-replication.html">MySQL :: MySQL 8.0 Reference Manual :: 18 Group Replication</a></p>
+<p>グループレプリケーションでは、グループのメンバシップ管理、ノードの障害検出、追加ノードの同期、などが自動で行われます。一方でアプリケーションからの接続先をルーティングするような機能はないため、アプリケーションがクラスタのどのノードに接続するかの制御には別のなにかが必要です（MySQL Router とか HAProxy とか）。</p>
+<h2 id="configuration">Configuration<a class="headerlink" href="#configuration" title="Permanent link">&para;</a></h2>
+<p>グループレプリケーションのための my.cnf の抜粋です。</p>
+<ul>
+<li>各設定項目は下記参照</li>
+<li>https://lyvivian0077.github.io/mysql-mgr/#mycnf</li>
+</ul>
+<details class="example">
+<summary>my.cnf</summary>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a># GTID レプリケーションに関する設定
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a># もちろん server_id はノードごとに固有の値が必要
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>server_id=1
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>gtid_mode=ON
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>enforce_gtid_consistency=ON
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>binlog_checksum=NONE
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a># 8.0.3 以前なら必要なオプション（それ以降ならデフォルト）
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>log_bin=binlog
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>log_slave_updates=ON
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>binlog_format=ROW
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>master_info_repository=TABLE
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>relay_log_info_repository=TABLE
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a># ここからグループレプリケーションに関する設定
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a># グループレプリケーションするなら XXHASH64 でなければならない
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a># 8.0.2 以降ならデフォルト
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>transaction_write_set_extraction=XXHASH64
+</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>
+</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a># グループレプリケーションのプラグインをロード
+</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>plugin_load=group_replication.so
+</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>
+</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a># 適当な方法で生成した UUID を指定する
+</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a># グループの名前になって GTID もこの UUIDから作られる
+</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>group_replication_group_name=&quot;470b4daf-6c34-415f-97ad-68cf76ef24e7&quot;
+</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>
+</span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a># ノードの起動時にグループレプリケーションを自動的に開始しない
+</span><span id="__span-0-29"><a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a>group_replication_start_on_boot=off
+</span><span id="__span-0-30"><a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a>
+</span><span id="__span-0-31"><a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a># グループレプリケーションのための自ノードのアドレスとポート番号
+</span><span id="__span-0-32"><a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a>group_replication_local_address= &quot;192.168.88.11:6606&quot;
+</span><span id="__span-0-33"><a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a>
+</span><span id="__span-0-34"><a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a># グループのメンバーの一覧
+</span><span id="__span-0-35"><a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a>group_replication_group_seeds= &quot;192.168.88.11:6606,192.168.88.12:6606,192.168.88.13:6606&quot;
+</span><span id="__span-0-36"><a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a>
+</span><span id="__span-0-37"><a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a># グループレプリケーションの開始時に新たなグループを作らない
+</span><span id="__span-0-38"><a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a>group_replication_bootstrap_group=off
+</span><span id="__span-0-39"><a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a>
+</span><span id="__span-0-40"><a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a># MySQL 8.0 のユーザーはデフォルトで caching_sha2_password 認証なので準備が面倒
+</span><span id="__span-0-41"><a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a># だけどこれを設定しておけば面倒がなくなる、ただし中間者攻撃に脆弱
+</span><span id="__span-0-42"><a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a>group_replication_recovery_get_public_key=ON
+</span></code></pre></div>
+</details>
+<ul>
+<li><code>plugin_load=group_replication.so</code> を指定しているのでサーバ起動時にグループレプリケーションのプラグインがロードされます。</li>
+<li>後から <code>INSTALL PLUGIN</code> する場合は <code>group_replication_*</code> パラメータは <code>loose-group_replication_*</code> のように <code>loose-</code> をつけておかないと存在しないパラメータのエラーで起動がコケます。</li>
+<li>MySQL 8.0 で作成されたユーザーはデフォルトで <code>caching_sha2_password</code> という認証方法を使うため、グループレプリケーションではいろいろ準備が必要なようなのですが、<code>group_replication_recovery_get_public_key=ON</code> を指定すればその準備が省略できます。ただし中間者攻撃に対して脆弱になります。</li>
+<li><code>default_authentication_plugin=mysql_native_password とかでデフォルトの認証方法を変えておくか、ユーザーを作成するときに</code>mysql_native_password` を明示しておいても良いのかもしれません、通信経路が安全であることが間違いないなら。</li>
+</ul>
+<h3 id="docker-compose">docker-compose<a class="headerlink" href="#docker-compose" title="Permanent link">&para;</a></h3>
+<details class="info">
+<summary>docker-compose</summary>
+<p>docker-compose.yml</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>version: &#39;3.4&#39;
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>services:
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>  sv01:
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>    image: mysql:8
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>    container_name: sv01
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>    hostname: sv01
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>    environment:
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>      MYSQL_ALLOW_EMPTY_PASSWORD: 1
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>      MYSQL_DATABASE: test
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>      MYSQL_PS1: &quot;sv01&gt; &quot;
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>    networks:
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>      mysql:
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>        ipv4_address: 192.168.88.11
+</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>    command:
+</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>      - --server_id=1
+</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>      - --gtid_mode=ON
+</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>      - --enforce_gtid_consistency=ON
+</span><span id="__span-1-19"><a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a>      - --binlog_checksum=NONE
+</span><span id="__span-1-20"><a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a>      - --relay_log=relay-bin
+</span><span id="__span-1-21"><a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a>      - --transaction_write_set_extraction=XXHASH64
+</span><span id="__span-1-22"><a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a>      - --plugin-load=group_replication.so
+</span><span id="__span-1-23"><a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a>      - --group_replication_group_name=470b4daf-6c34-415f-97ad-68cf76ef24e7
+</span><span id="__span-1-24"><a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a>      - --group_replication_start_on_boot=off
+</span><span id="__span-1-25"><a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a>      - --group_replication_local_address=192.168.88.11:6606
+</span><span id="__span-1-26"><a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a>      - --group_replication_group_seeds=192.168.88.11:6606,192.168.88.12:6606,192.168.88.13:6606
+</span><span id="__span-1-27"><a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a>      - --group_replication_bootstrap_group=off
+</span><span id="__span-1-28"><a id="__codelineno-1-28" name="__codelineno-1-28" href="#__codelineno-1-28"></a>      - --group_replication_recovery_get_public_key=ON
+</span><span id="__span-1-29"><a id="__codelineno-1-29" name="__codelineno-1-29" href="#__codelineno-1-29"></a>
+</span><span id="__span-1-30"><a id="__codelineno-1-30" name="__codelineno-1-30" href="#__codelineno-1-30"></a>  sv02:
+</span><span id="__span-1-31"><a id="__codelineno-1-31" name="__codelineno-1-31" href="#__codelineno-1-31"></a>    image: mysql:8
+</span><span id="__span-1-32"><a id="__codelineno-1-32" name="__codelineno-1-32" href="#__codelineno-1-32"></a>    container_name: sv02
+</span><span id="__span-1-33"><a id="__codelineno-1-33" name="__codelineno-1-33" href="#__codelineno-1-33"></a>    hostname: sv02
+</span><span id="__span-1-34"><a id="__codelineno-1-34" name="__codelineno-1-34" href="#__codelineno-1-34"></a>    environment:
+</span><span id="__span-1-35"><a id="__codelineno-1-35" name="__codelineno-1-35" href="#__codelineno-1-35"></a>      MYSQL_ALLOW_EMPTY_PASSWORD: 1
+</span><span id="__span-1-36"><a id="__codelineno-1-36" name="__codelineno-1-36" href="#__codelineno-1-36"></a>      MYSQL_DATABASE: test
+</span><span id="__span-1-37"><a id="__codelineno-1-37" name="__codelineno-1-37" href="#__codelineno-1-37"></a>      MYSQL_PS1: &quot;sv02&gt; &quot;
+</span><span id="__span-1-38"><a id="__codelineno-1-38" name="__codelineno-1-38" href="#__codelineno-1-38"></a>    networks:
+</span><span id="__span-1-39"><a id="__codelineno-1-39" name="__codelineno-1-39" href="#__codelineno-1-39"></a>      mysql:
+</span><span id="__span-1-40"><a id="__codelineno-1-40" name="__codelineno-1-40" href="#__codelineno-1-40"></a>        ipv4_address: 192.168.88.12
+</span><span id="__span-1-41"><a id="__codelineno-1-41" name="__codelineno-1-41" href="#__codelineno-1-41"></a>    command:
+</span><span id="__span-1-42"><a id="__codelineno-1-42" name="__codelineno-1-42" href="#__codelineno-1-42"></a>      - --server_id=2
+</span><span id="__span-1-43"><a id="__codelineno-1-43" name="__codelineno-1-43" href="#__codelineno-1-43"></a>      - --gtid_mode=ON
+</span><span id="__span-1-44"><a id="__codelineno-1-44" name="__codelineno-1-44" href="#__codelineno-1-44"></a>      - --enforce_gtid_consistency=ON
+</span><span id="__span-1-45"><a id="__codelineno-1-45" name="__codelineno-1-45" href="#__codelineno-1-45"></a>      - --binlog_checksum=NONE
+</span><span id="__span-1-46"><a id="__codelineno-1-46" name="__codelineno-1-46" href="#__codelineno-1-46"></a>      - --relay_log=relay-bin
+</span><span id="__span-1-47"><a id="__codelineno-1-47" name="__codelineno-1-47" href="#__codelineno-1-47"></a>      - --transaction_write_set_extraction=XXHASH64
+</span><span id="__span-1-48"><a id="__codelineno-1-48" name="__codelineno-1-48" href="#__codelineno-1-48"></a>      - --plugin-load=group_replication.so
+</span><span id="__span-1-49"><a id="__codelineno-1-49" name="__codelineno-1-49" href="#__codelineno-1-49"></a>      - --group_replication_group_name=470b4daf-6c34-415f-97ad-68cf76ef24e7
+</span><span id="__span-1-50"><a id="__codelineno-1-50" name="__codelineno-1-50" href="#__codelineno-1-50"></a>      - --group_replication_start_on_boot=off
+</span><span id="__span-1-51"><a id="__codelineno-1-51" name="__codelineno-1-51" href="#__codelineno-1-51"></a>      - --group_replication_local_address=192.168.88.12:6606
+</span><span id="__span-1-52"><a id="__codelineno-1-52" name="__codelineno-1-52" href="#__codelineno-1-52"></a>      - --group_replication_group_seeds=192.168.88.11:6606,192.168.88.12:6606,192.168.88.13:6606
+</span><span id="__span-1-53"><a id="__codelineno-1-53" name="__codelineno-1-53" href="#__codelineno-1-53"></a>      - --group_replication_bootstrap_group=off
+</span><span id="__span-1-54"><a id="__codelineno-1-54" name="__codelineno-1-54" href="#__codelineno-1-54"></a>      - --group_replication_recovery_get_public_key=ON
+</span><span id="__span-1-55"><a id="__codelineno-1-55" name="__codelineno-1-55" href="#__codelineno-1-55"></a>
+</span><span id="__span-1-56"><a id="__codelineno-1-56" name="__codelineno-1-56" href="#__codelineno-1-56"></a>  sv03:
+</span><span id="__span-1-57"><a id="__codelineno-1-57" name="__codelineno-1-57" href="#__codelineno-1-57"></a>    image: mysql:8
+</span><span id="__span-1-58"><a id="__codelineno-1-58" name="__codelineno-1-58" href="#__codelineno-1-58"></a>    container_name: sv03
+</span><span id="__span-1-59"><a id="__codelineno-1-59" name="__codelineno-1-59" href="#__codelineno-1-59"></a>    hostname: sv03
+</span><span id="__span-1-60"><a id="__codelineno-1-60" name="__codelineno-1-60" href="#__codelineno-1-60"></a>    environment:
+</span><span id="__span-1-61"><a id="__codelineno-1-61" name="__codelineno-1-61" href="#__codelineno-1-61"></a>      MYSQL_ALLOW_EMPTY_PASSWORD: 1
+</span><span id="__span-1-62"><a id="__codelineno-1-62" name="__codelineno-1-62" href="#__codelineno-1-62"></a>      MYSQL_DATABASE: test
+</span><span id="__span-1-63"><a id="__codelineno-1-63" name="__codelineno-1-63" href="#__codelineno-1-63"></a>      MYSQL_PS1: &quot;sv03&gt; &quot;
+</span><span id="__span-1-64"><a id="__codelineno-1-64" name="__codelineno-1-64" href="#__codelineno-1-64"></a>    networks:
+</span><span id="__span-1-65"><a id="__codelineno-1-65" name="__codelineno-1-65" href="#__codelineno-1-65"></a>      mysql:
+</span><span id="__span-1-66"><a id="__codelineno-1-66" name="__codelineno-1-66" href="#__codelineno-1-66"></a>        ipv4_address: 192.168.88.13
+</span><span id="__span-1-67"><a id="__codelineno-1-67" name="__codelineno-1-67" href="#__codelineno-1-67"></a>    command:
+</span><span id="__span-1-68"><a id="__codelineno-1-68" name="__codelineno-1-68" href="#__codelineno-1-68"></a>      - --server_id=3
+</span><span id="__span-1-69"><a id="__codelineno-1-69" name="__codelineno-1-69" href="#__codelineno-1-69"></a>      - --gtid_mode=ON
+</span><span id="__span-1-70"><a id="__codelineno-1-70" name="__codelineno-1-70" href="#__codelineno-1-70"></a>      - --enforce_gtid_consistency=ON
+</span><span id="__span-1-71"><a id="__codelineno-1-71" name="__codelineno-1-71" href="#__codelineno-1-71"></a>      - --binlog_checksum=NONE
+</span><span id="__span-1-72"><a id="__codelineno-1-72" name="__codelineno-1-72" href="#__codelineno-1-72"></a>      - --relay_log=relay-bin
+</span><span id="__span-1-73"><a id="__codelineno-1-73" name="__codelineno-1-73" href="#__codelineno-1-73"></a>      - --transaction_write_set_extraction=XXHASH64
+</span><span id="__span-1-74"><a id="__codelineno-1-74" name="__codelineno-1-74" href="#__codelineno-1-74"></a>      - --plugin-load=group_replication.so
+</span><span id="__span-1-75"><a id="__codelineno-1-75" name="__codelineno-1-75" href="#__codelineno-1-75"></a>      - --group_replication_group_name=470b4daf-6c34-415f-97ad-68cf76ef24e7
+</span><span id="__span-1-76"><a id="__codelineno-1-76" name="__codelineno-1-76" href="#__codelineno-1-76"></a>      - --group_replication_start_on_boot=off
+</span><span id="__span-1-77"><a id="__codelineno-1-77" name="__codelineno-1-77" href="#__codelineno-1-77"></a>      - --group_replication_local_address=192.168.88.13:6606
+</span><span id="__span-1-78"><a id="__codelineno-1-78" name="__codelineno-1-78" href="#__codelineno-1-78"></a>      - --group_replication_group_seeds=192.168.88.11:6606,192.168.88.12:6606,192.168.88.13:6606
+</span><span id="__span-1-79"><a id="__codelineno-1-79" name="__codelineno-1-79" href="#__codelineno-1-79"></a>      - --group_replication_bootstrap_group=off
+</span><span id="__span-1-80"><a id="__codelineno-1-80" name="__codelineno-1-80" href="#__codelineno-1-80"></a>      - --group_replication_recovery_get_public_key=ON
+</span><span id="__span-1-81"><a id="__codelineno-1-81" name="__codelineno-1-81" href="#__codelineno-1-81"></a>
+</span><span id="__span-1-82"><a id="__codelineno-1-82" name="__codelineno-1-82" href="#__codelineno-1-82"></a>  sv04:
+</span><span id="__span-1-83"><a id="__codelineno-1-83" name="__codelineno-1-83" href="#__codelineno-1-83"></a>    image: mysql:8
+</span><span id="__span-1-84"><a id="__codelineno-1-84" name="__codelineno-1-84" href="#__codelineno-1-84"></a>    container_name: sv04
+</span><span id="__span-1-85"><a id="__codelineno-1-85" name="__codelineno-1-85" href="#__codelineno-1-85"></a>    hostname: sv04
+</span><span id="__span-1-86"><a id="__codelineno-1-86" name="__codelineno-1-86" href="#__codelineno-1-86"></a>    environment:
+</span><span id="__span-1-87"><a id="__codelineno-1-87" name="__codelineno-1-87" href="#__codelineno-1-87"></a>      MYSQL_ALLOW_EMPTY_PASSWORD: 1
+</span><span id="__span-1-88"><a id="__codelineno-1-88" name="__codelineno-1-88" href="#__codelineno-1-88"></a>      MYSQL_DATABASE: test
+</span><span id="__span-1-89"><a id="__codelineno-1-89" name="__codelineno-1-89" href="#__codelineno-1-89"></a>      MYSQL_PS1: &quot;sv04&gt; &quot;
+</span><span id="__span-1-90"><a id="__codelineno-1-90" name="__codelineno-1-90" href="#__codelineno-1-90"></a>    networks:
+</span><span id="__span-1-91"><a id="__codelineno-1-91" name="__codelineno-1-91" href="#__codelineno-1-91"></a>      mysql:
+</span><span id="__span-1-92"><a id="__codelineno-1-92" name="__codelineno-1-92" href="#__codelineno-1-92"></a>        ipv4_address: 192.168.88.14
+</span><span id="__span-1-93"><a id="__codelineno-1-93" name="__codelineno-1-93" href="#__codelineno-1-93"></a>    command:
+</span><span id="__span-1-94"><a id="__codelineno-1-94" name="__codelineno-1-94" href="#__codelineno-1-94"></a>      - --server_id=4
+</span><span id="__span-1-95"><a id="__codelineno-1-95" name="__codelineno-1-95" href="#__codelineno-1-95"></a>      - --gtid_mode=ON
+</span><span id="__span-1-96"><a id="__codelineno-1-96" name="__codelineno-1-96" href="#__codelineno-1-96"></a>      - --enforce_gtid_consistency=ON
+</span><span id="__span-1-97"><a id="__codelineno-1-97" name="__codelineno-1-97" href="#__codelineno-1-97"></a>      - --binlog_checksum=NONE
+</span><span id="__span-1-98"><a id="__codelineno-1-98" name="__codelineno-1-98" href="#__codelineno-1-98"></a>      - --relay_log=relay-bin
+</span><span id="__span-1-99"><a id="__codelineno-1-99" name="__codelineno-1-99" href="#__codelineno-1-99"></a>      - --transaction_write_set_extraction=XXHASH64
+</span><span id="__span-1-100"><a id="__codelineno-1-100" name="__codelineno-1-100" href="#__codelineno-1-100"></a>      - --plugin-load=group_replication.so
+</span><span id="__span-1-101"><a id="__codelineno-1-101" name="__codelineno-1-101" href="#__codelineno-1-101"></a>      - --group_replication_group_name=470b4daf-6c34-415f-97ad-68cf76ef24e7
+</span><span id="__span-1-102"><a id="__codelineno-1-102" name="__codelineno-1-102" href="#__codelineno-1-102"></a>      - --group_replication_start_on_boot=off
+</span><span id="__span-1-103"><a id="__codelineno-1-103" name="__codelineno-1-103" href="#__codelineno-1-103"></a>      - --group_replication_local_address=192.168.88.14:6606
+</span><span id="__span-1-104"><a id="__codelineno-1-104" name="__codelineno-1-104" href="#__codelineno-1-104"></a>      - --group_replication_group_seeds=192.168.88.11:6606,192.168.88.12:6606,192.168.88.13:6606
+</span><span id="__span-1-105"><a id="__codelineno-1-105" name="__codelineno-1-105" href="#__codelineno-1-105"></a>      - --group_replication_bootstrap_group=off
+</span><span id="__span-1-106"><a id="__codelineno-1-106" name="__codelineno-1-106" href="#__codelineno-1-106"></a>      - --group_replication_recovery_get_public_key=ON
+</span><span id="__span-1-107"><a id="__codelineno-1-107" name="__codelineno-1-107" href="#__codelineno-1-107"></a>
+</span><span id="__span-1-108"><a id="__codelineno-1-108" name="__codelineno-1-108" href="#__codelineno-1-108"></a>networks:
+</span><span id="__span-1-109"><a id="__codelineno-1-109" name="__codelineno-1-109" href="#__codelineno-1-109"></a>  mysql:
+</span><span id="__span-1-110"><a id="__codelineno-1-110" name="__codelineno-1-110" href="#__codelineno-1-110"></a>    driver: bridge
+</span><span id="__span-1-111"><a id="__codelineno-1-111" name="__codelineno-1-111" href="#__codelineno-1-111"></a>    ipam:
+</span><span id="__span-1-112"><a id="__codelineno-1-112" name="__codelineno-1-112" href="#__codelineno-1-112"></a>      driver: default
+</span><span id="__span-1-113"><a id="__codelineno-1-113" name="__codelineno-1-113" href="#__codelineno-1-113"></a>      config:
+</span><span id="__span-1-114"><a id="__codelineno-1-114" name="__codelineno-1-114" href="#__codelineno-1-114"></a>        - subnet: 192.168.88.0/24
+</span></code></pre></div>
+<p>docker-compose で開始してコンテナに入ります。</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>docker-compose up -d sv01 sv02 sv03
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>docker-compose exec sv01 mysql
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>docker-compose exec sv02 mysql
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>docker-compose exec sv03 mysql
+</span></code></pre></div>
+</details>
+<h3 id="_2">ユーザーの作成とバイナリログのリセット<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<p>プラグインがロードされていることを確認します。</p>
+<p><div class="language-sql highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="cm">/* [sv01/sv02/sv03] */</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="k">show</span><span class="w"> </span><span class="n">plugins</span><span class="p">;</span>
+</span></code></pre></div>
+レプリケーションユーザーを作ります。</p>
+<p><div class="language-sql highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="cm">/* [sv01/sv02/sv03] */</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">USER</span><span class="w"> </span><span class="n">rpl_user</span><span class="o">@</span><span class="s1">&#39;%&#39;</span><span class="w"> </span><span class="n">IDENTIFIED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">&#39;password&#39;</span><span class="p">;</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="k">GRANT</span><span class="w"> </span><span class="n">REPLICATION</span><span class="w"> </span><span class="n">SLAVE</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="o">*</span><span class="p">.</span><span class="o">*</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="n">rpl_user</span><span class="o">@</span><span class="s1">&#39;%&#39;</span><span class="p">;</span>
+</span></code></pre></div>
+レプリケーションチャンネル <code>group_replication_recovery</code> に↑で作成したユーザーの資格情報を使うように設定します。</p>
+<p><div class="language-sql highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="cm">/* [sv01/sv02/sv03] */</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="n">CHANGE</span><span class="w"> </span><span class="n">MASTER</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="n">MASTER_USER</span><span class="o">=</span><span class="s1">&#39;rpl_user&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">MASTER_PASSWORD</span><span class="o">=</span><span class="s1">&#39;password&#39;</span><span class="w"> </span><span class="k">FOR</span><span class="w"> </span><span class="n">CHANNEL</span><span class="w"> </span><span class="s1">&#39;group_replication_recovery&#39;</span><span class="p">;</span>
+</span></code></pre></div>
+docker-compose up でデータベースが初期化された時点でバイナリログにいろいろ書き込まれているので、そのままだとレプリケーションを開始したときに競合するので、バイナリログをリセットしておきます。</p>
+<p><div class="language-sql highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="cm">/* [sv01/sv02/sv03] */</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="k">RESET</span><span class="w"> </span><span class="n">MASTER</span><span class="p">;</span>
+</span></code></pre></div>
+なお、レプリケーションユーザーの作成などの、すべてのノードで個別に実行するためレプリケーションされたくないクエリは <code>set sql_log_bin = 0|1</code> とかでバイナリログの <code>ON/OFF</code> を制御しつつクエリを実行するのが普通のようです。ただ、初回のセットアップでは「すべてのノードでいろいろ準備→RESET MASTER→レプリケーション開始」の方がわかりみがあるきがするので、いつもそうしてます。</p>
+<h3 id="_3">グループレプリケーションの開始<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<p>グループを作成してグループレプリケーションを開始します。この作業は最初の１台だけで行います。</p>
+<p><div class="language-sql highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="cm">/* [sv01] */</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="k">SET</span><span class="w"> </span><span class="k">GLOBAL</span><span class="w"> </span><span class="n">group_replication_bootstrap_group</span><span class="o">=</span><span class="k">ON</span><span class="p">;</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="k">START</span><span class="w"> </span><span class="n">GROUP_REPLICATION</span><span class="p">;</span>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="k">SET</span><span class="w"> </span><span class="k">GLOBAL</span><span class="w"> </span><span class="n">group_replication_bootstrap_group</span><span class="o">=</span><span class="k">OFF</span><span class="p">;</span>
+</span></code></pre></div>
+グループのメンバーを確認します。この時点では sv01 の１台しかありません。</p>
+<p><div class="language-sql highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="cm">/* [sv01] */</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">MEMBER_HOST</span><span class="p">,</span><span class="w"> </span><span class="n">MEMBER_PORT</span><span class="p">,</span><span class="w"> </span><span class="n">MEMBER_STATE</span><span class="p">,</span><span class="w"> </span><span class="n">MEMBER_ROLE</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">performance_schema</span><span class="p">.</span><span class="n">replication_group_members</span><span class="p">;</span>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="o">+</span><span class="c1">-------------+-------------+--------------+-------------+</span>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="o">|</span><span class="w"> </span><span class="n">MEMBER_HOST</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">MEMBER_PORT</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">MEMBER_STATE</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">MEMBER_ROLE</span><span class="w"> </span><span class="o">|</span>
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="o">+</span><span class="c1">-------------+-------------+--------------+-------------+</span>
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="o">|</span><span class="w"> </span><span class="n">sv01</span><span class="w">        </span><span class="o">|</span><span class="w">        </span><span class="mi">3306</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">ONLINE</span><span class="w">       </span><span class="o">|</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w">     </span><span class="o">|</span>
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="o">+</span><span class="c1">-------------+-------------+--------------+-------------+</span>
+</span></code></pre></div>
+残りのノードでも開始します。このとき <code>group_replication_bootstrap_group=ON</code> を指定しません。指定すると同じ名前の別のグループが作成されてしまいます。</p>
+<p><div class="language-sql highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="cm">/* [sv02/sv03] */</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="k">START</span><span class="w"> </span><span class="n">GROUP_REPLICATION</span><span class="p">;</span>
+</span></code></pre></div>
+グループのメンバーを確認します。うまくグループに参加できれいればどのノードで実行しても同じ結果が返ります。最初のノードである sv01 がプライマリになっています。</p>
+<p><div class="language-sql highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="cm">/* [sv01/sv02/sv03] */</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">MEMBER_HOST</span><span class="p">,</span><span class="w"> </span><span class="n">MEMBER_PORT</span><span class="p">,</span><span class="w"> </span><span class="n">MEMBER_STATE</span><span class="p">,</span><span class="w"> </span><span class="n">MEMBER_ROLE</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">performance_schema</span><span class="p">.</span><span class="n">replication_group_members</span><span class="p">;</span>
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="o">+</span><span class="c1">-------------+-------------+--------------+-------------+</span>
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="o">|</span><span class="w"> </span><span class="n">MEMBER_HOST</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">MEMBER_PORT</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">MEMBER_STATE</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">MEMBER_ROLE</span><span class="w"> </span><span class="o">|</span>
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="o">+</span><span class="c1">-------------+-------------+--------------+-------------+</span>
+</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="o">|</span><span class="w"> </span><span class="n">sv01</span><span class="w">        </span><span class="o">|</span><span class="w">        </span><span class="mi">3306</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">ONLINE</span><span class="w">       </span><span class="o">|</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w">     </span><span class="o">|</span>
+</span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a><span class="o">|</span><span class="w"> </span><span class="n">sv03</span><span class="w">        </span><span class="o">|</span><span class="w">        </span><span class="mi">3306</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">ONLINE</span><span class="w">       </span><span class="o">|</span><span class="w"> </span><span class="n">SECONDARY</span><span class="w">   </span><span class="o">|</span>
+</span><span id="__span-10-8"><a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a><span class="o">|</span><span class="w"> </span><span class="n">sv02</span><span class="w">        </span><span class="o">|</span><span class="w">        </span><span class="mi">3306</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">ONLINE</span><span class="w">       </span><span class="o">|</span><span class="w"> </span><span class="n">SECONDARY</span><span class="w">   </span><span class="o">|</span>
+</span><span id="__span-10-9"><a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a><span class="o">+</span><span class="c1">-------------+-------------+--------------+-------------+</span>
+</span></code></pre></div>
+sv01 で適当にデータを入れてみます。</p>
+<p><div class="language-sql highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="cm">/* [sv01] */</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="n">USE</span><span class="w"> </span><span class="n">test</span><span class="p">;</span>
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="p">(</span><span class="n">c1</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span><span class="w"> </span><span class="n">c2</span><span class="w"> </span><span class="nb">TEXT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">);</span>
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Luis&#39;</span><span class="p">);</span>
+</span></code></pre></div>
+他のノードにレプリケーションされています。</p>
+<p><div class="language-sql highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="cm">/* [sv02/sv03] */</span>
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="n">USE</span><span class="w"> </span><span class="n">test</span><span class="p">;</span>
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">t1</span><span class="p">;</span>
+</span></code></pre></div>
+プライマリ以外のノードは読み込み専用になってるので更新のトランザクションはエラーになります。</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="cm">/* [sv02/sv03] */</span>
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;xx&#39;</span><span class="p">);</span>
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="cm">/* ERROR 1290 (HY000): The MySQL server is running with the --super-read-only option so it cannot execute this statement */</span>
+</span></code></pre></div>
+<h3 id="_4">グループにインスタンスを追加<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<p>新しくノードを追加します。</p>
+<p><div class="language-text highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>docker-compose up -d sv04
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>docker-compose logs -f sv04
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>docker-compose exec sv04 mysql
+</span></code></pre></div>
+プラグインがロードされていることを確認します。</p>
+<p><div class="language-sql highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="cm">/* [sv04] */</span>
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="k">show</span><span class="w"> </span><span class="n">plugins</span><span class="p">;</span>
+</span></code></pre></div>
+レプリケーションユーザーを作って、バイナリログをリセットして、グループレプリケーションを開始します。</p>
+<p><div class="language-sql highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="cm">/* [sv04] */</span>
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>
+</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="cm">/* ユーザー作成 */</span>
+</span><span id="__span-16-4"><a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">USER</span><span class="w"> </span><span class="n">rpl_user</span><span class="o">@</span><span class="s1">&#39;%&#39;</span><span class="w"> </span><span class="n">IDENTIFIED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">&#39;password&#39;</span><span class="p">;</span>
+</span><span id="__span-16-5"><a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a><span class="k">GRANT</span><span class="w"> </span><span class="n">REPLICATION</span><span class="w"> </span><span class="n">SLAVE</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="o">*</span><span class="p">.</span><span class="o">*</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="n">rpl_user</span><span class="o">@</span><span class="s1">&#39;%&#39;</span><span class="p">;</span>
+</span><span id="__span-16-6"><a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a>
+</span><span id="__span-16-7"><a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a><span class="cm">/* レプリケーションチャンネルに資格情報を設定 */</span>
+</span><span id="__span-16-8"><a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a><span class="n">CHANGE</span><span class="w"> </span><span class="n">MASTER</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="n">MASTER_USER</span><span class="o">=</span><span class="s1">&#39;rpl_user&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">MASTER_PASSWORD</span><span class="o">=</span><span class="s1">&#39;password&#39;</span><span class="w"> </span><span class="k">FOR</span><span class="w"> </span><span class="n">CHANNEL</span><span class="w"> </span><span class="s1">&#39;group_replication_recovery&#39;</span><span class="p">;</span>
+</span><span id="__span-16-9"><a id="__codelineno-16-9" name="__codelineno-16-9" href="#__codelineno-16-9"></a>
+</span><span id="__span-16-10"><a id="__codelineno-16-10" name="__codelineno-16-10" href="#__codelineno-16-10"></a><span class="cm">/* バイナリログをリセット */</span>
+</span><span id="__span-16-11"><a id="__codelineno-16-11" name="__codelineno-16-11" href="#__codelineno-16-11"></a><span class="k">RESET</span><span class="w"> </span><span class="n">MASTER</span><span class="p">;</span>
+</span><span id="__span-16-12"><a id="__codelineno-16-12" name="__codelineno-16-12" href="#__codelineno-16-12"></a>
+</span><span id="__span-16-13"><a id="__codelineno-16-13" name="__codelineno-16-13" href="#__codelineno-16-13"></a><span class="cm">/* グループを開始 */</span>
+</span><span id="__span-16-14"><a id="__codelineno-16-14" name="__codelineno-16-14" href="#__codelineno-16-14"></a><span class="k">START</span><span class="w"> </span><span class="n">GROUP_REPLICATION</span><span class="p">;</span>
+</span></code></pre></div>
+新しいノードが追加されるとランダムに選ばれたグループのメンバー（ドナー）からデータの同期が行われ（リカバリプロセス）、同期が完了するとオンラインのメンバーとして使用できるようになります。</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="cm">/* [sv04] */</span>
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>
+</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a><span class="cm">/* メンバーの一覧表示 */</span>
+</span><span id="__span-17-4"><a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">MEMBER_HOST</span><span class="p">,</span><span class="w"> </span><span class="n">MEMBER_PORT</span><span class="p">,</span><span class="w"> </span><span class="n">MEMBER_STATE</span><span class="p">,</span><span class="w"> </span><span class="n">MEMBER_ROLE</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">performance_schema</span><span class="p">.</span><span class="n">replication_group_members</span><span class="p">;</span>
+</span><span id="__span-17-5"><a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a>
+</span><span id="__span-17-6"><a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a><span class="cm">/* データの確認 */</span>
+</span><span id="__span-17-7"><a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a><span class="n">USE</span><span class="w"> </span><span class="n">test</span><span class="p">;</span>
+</span><span id="__span-17-8"><a id="__codelineno-17-8" name="__codelineno-17-8" href="#__codelineno-17-8"></a><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">t1</span><span class="p">;</span>
+</span></code></pre></div>
+<h3 id="_5">運用中のグループにインスタンスを追加<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<p>リカバリプロセスは MySQL の通常のレプリケーションを利用して行われます。なので必要なバイナリログがグループのすべてのメンバーで既にパージされているとリカバリプロセスは失敗します。</p>
+<p>グループのすべてのメンバからバイナリログをパージします。</p>
+<p><div class="language-sql highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="cm">/* [sv01/sv02/sv03] */</span>
+</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="n">flush</span><span class="w"> </span><span class="n">logs</span><span class="p">;</span>
+</span><span id="__span-18-3"><a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a><span class="n">purge</span><span class="w"> </span><span class="nb">binary</span><span class="w"> </span><span class="n">logs</span><span class="w"> </span><span class="k">before</span><span class="w"> </span><span class="n">now</span><span class="p">();</span>
+</span><span id="__span-18-4"><a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a><span class="k">show</span><span class="w"> </span><span class="n">binlog</span><span class="w"> </span><span class="n">events</span><span class="p">;</span>
+</span></code></pre></div>
+新しいインスタンスを開始して、</p>
+<p><div class="language-sql highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="n">docker</span><span class="o">-</span><span class="n">compose</span><span class="w"> </span><span class="n">rm</span><span class="w"> </span><span class="o">-</span><span class="n">fsv</span><span class="w"> </span><span class="n">sv04</span>
+</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="n">docker</span><span class="o">-</span><span class="n">compose</span><span class="w"> </span><span class="n">up</span><span class="w"> </span><span class="o">-</span><span class="n">d</span><span class="w"> </span><span class="n">sv04</span>
+</span><span id="__span-19-3"><a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a><span class="n">docker</span><span class="o">-</span><span class="n">compose</span><span class="w"> </span><span class="n">logs</span><span class="w"> </span><span class="o">-</span><span class="n">f</span><span class="w"> </span><span class="n">sv04</span>
+</span><span id="__span-19-4"><a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a><span class="n">docker</span><span class="o">-</span><span class="n">compose</span><span class="w"> </span><span class="k">exec</span><span class="w"> </span><span class="n">sv04</span><span class="w"> </span><span class="n">mysql</span>
+</span><span id="__span-19-5"><a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a><span class="cm">/* [sv04] */</span>
+</span><span id="__span-19-6"><a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">USER</span><span class="w"> </span><span class="n">rpl_user</span><span class="o">@</span><span class="s1">&#39;%&#39;</span><span class="w"> </span><span class="n">IDENTIFIED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">&#39;password&#39;</span><span class="p">;</span>
+</span><span id="__span-19-7"><a id="__codelineno-19-7" name="__codelineno-19-7" href="#__codelineno-19-7"></a><span class="k">GRANT</span><span class="w"> </span><span class="n">REPLICATION</span><span class="w"> </span><span class="n">SLAVE</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="o">*</span><span class="p">.</span><span class="o">*</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="n">rpl_user</span><span class="o">@</span><span class="s1">&#39;%&#39;</span><span class="p">;</span>
+</span><span id="__span-19-8"><a id="__codelineno-19-8" name="__codelineno-19-8" href="#__codelineno-19-8"></a><span class="n">CHANGE</span><span class="w"> </span><span class="n">MASTER</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="n">MASTER_USER</span><span class="o">=</span><span class="s1">&#39;rpl_user&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">MASTER_PASSWORD</span><span class="o">=</span><span class="s1">&#39;password&#39;</span><span class="w"> </span><span class="k">FOR</span><span class="w"> </span><span class="n">CHANNEL</span><span class="w"> </span><span class="s1">&#39;group_replication_recovery&#39;</span><span class="p">;</span>
+</span><span id="__span-19-9"><a id="__codelineno-19-9" name="__codelineno-19-9" href="#__codelineno-19-9"></a><span class="k">RESET</span><span class="w"> </span><span class="n">MASTER</span><span class="p">;</span>
+</span><span id="__span-19-10"><a id="__codelineno-19-10" name="__codelineno-19-10" href="#__codelineno-19-10"></a><span class="k">START</span><span class="w"> </span><span class="n">GROUP_REPLICATION</span><span class="p">;</span>
+</span></code></pre></div>
+ログに次のようなものがたくさん出力されます。</p>
+<p><div class="language-text highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>[ERROR] [MY-010557] [Repl] Error reading packet from server for channel &#39;group_replication_recovery&#39;: Cannot replicate because the master purged required binary logs. Replicate the missing transactions from elsewhere, or provision a new slave from backup. Consider increasing the master&#39;s binary log expiration period. To find the missing transactions, see the master&#39;s error log or the manual for GTID_SUBTRACT. (server_errno=1236)
+</span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>[ERROR] [MY-013114] [Repl] Slave I/O for channel &#39;group_replication_recovery&#39;: Got fatal error 1236 from master when reading data from binary log: &#39;Cannot replicate because the master purged required binary logs. Replicate the missing transactions from elsewhere, or provision a new slave from backup. Consider increasing the master&#39;s binary log expiration period. To find the missing transactions, see the master&#39;s error log or the manual for GTID_SUBTRACT.&#39;, Error_code: MY-013114
+</span></code></pre></div>
+メンバーのリストを見てみると、追加はされていますが MEMBER_STATE が RECOVERING のままです。</p>
+<p><div class="language-sql highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="cm">/* [sv04] */</span>
+</span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">MEMBER_HOST</span><span class="p">,</span><span class="w"> </span><span class="n">MEMBER_PORT</span><span class="p">,</span><span class="w"> </span><span class="n">MEMBER_STATE</span><span class="p">,</span><span class="w"> </span><span class="n">MEMBER_ROLE</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">performance_schema</span><span class="p">.</span><span class="n">replication_group_members</span><span class="p">;</span>
+</span><span id="__span-21-3"><a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a><span class="o">+</span><span class="c1">-------------+-------------+--------------+-------------+</span>
+</span><span id="__span-21-4"><a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a><span class="o">|</span><span class="w"> </span><span class="n">MEMBER_HOST</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">MEMBER_PORT</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">MEMBER_STATE</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">MEMBER_ROLE</span><span class="w"> </span><span class="o">|</span>
+</span><span id="__span-21-5"><a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a><span class="o">+</span><span class="c1">-------------+-------------+--------------+-------------+</span>
+</span><span id="__span-21-6"><a id="__codelineno-21-6" name="__codelineno-21-6" href="#__codelineno-21-6"></a><span class="o">|</span><span class="w"> </span><span class="n">sv04</span><span class="w">        </span><span class="o">|</span><span class="w">        </span><span class="mi">3306</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">RECOVERING</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="n">SECONDARY</span><span class="w">   </span><span class="o">|</span>
+</span><span id="__span-21-7"><a id="__codelineno-21-7" name="__codelineno-21-7" href="#__codelineno-21-7"></a><span class="o">|</span><span class="w"> </span><span class="n">sv01</span><span class="w">        </span><span class="o">|</span><span class="w">        </span><span class="mi">3306</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">ONLINE</span><span class="w">       </span><span class="o">|</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w">     </span><span class="o">|</span>
+</span><span id="__span-21-8"><a id="__codelineno-21-8" name="__codelineno-21-8" href="#__codelineno-21-8"></a><span class="o">|</span><span class="w"> </span><span class="n">sv03</span><span class="w">        </span><span class="o">|</span><span class="w">        </span><span class="mi">3306</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">ONLINE</span><span class="w">       </span><span class="o">|</span><span class="w"> </span><span class="n">SECONDARY</span><span class="w">   </span><span class="o">|</span>
+</span><span id="__span-21-9"><a id="__codelineno-21-9" name="__codelineno-21-9" href="#__codelineno-21-9"></a><span class="o">|</span><span class="w"> </span><span class="n">sv02</span><span class="w">        </span><span class="o">|</span><span class="w">        </span><span class="mi">3306</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">ONLINE</span><span class="w">       </span><span class="o">|</span><span class="w"> </span><span class="n">SECONDARY</span><span class="w">   </span><span class="o">|</span>
+</span><span id="__span-21-10"><a id="__codelineno-21-10" name="__codelineno-21-10" href="#__codelineno-21-10"></a><span class="o">+</span><span class="c1">-------------+-------------+--------------+-------------+</span>
+</span></code></pre></div>
+しばらくと MEMBER_STATE は ERROR になります。</p>
+<p><div class="language-sql highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="cm">/* [sv04] */</span>
+</span><span id="__span-22-2"><a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">MEMBER_HOST</span><span class="p">,</span><span class="w"> </span><span class="n">MEMBER_PORT</span><span class="p">,</span><span class="w"> </span><span class="n">MEMBER_STATE</span><span class="p">,</span><span class="w"> </span><span class="n">MEMBER_ROLE</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">performance_schema</span><span class="p">.</span><span class="n">replication_group_members</span><span class="p">;</span>
+</span><span id="__span-22-3"><a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a><span class="o">+</span><span class="c1">-------------+-------------+--------------+-------------+</span>
+</span><span id="__span-22-4"><a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a><span class="o">|</span><span class="w"> </span><span class="n">MEMBER_HOST</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">MEMBER_PORT</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">MEMBER_STATE</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">MEMBER_ROLE</span><span class="w"> </span><span class="o">|</span>
+</span><span id="__span-22-5"><a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a><span class="o">+</span><span class="c1">-------------+-------------+--------------+-------------+</span>
+</span><span id="__span-22-6"><a id="__codelineno-22-6" name="__codelineno-22-6" href="#__codelineno-22-6"></a><span class="o">|</span><span class="w"> </span><span class="n">sv04</span><span class="w">        </span><span class="o">|</span><span class="w">        </span><span class="mi">3306</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">ERROR</span><span class="w">        </span><span class="o">|</span><span class="w">             </span><span class="o">|</span>
+</span><span id="__span-22-7"><a id="__codelineno-22-7" name="__codelineno-22-7" href="#__codelineno-22-7"></a><span class="o">+</span><span class="c1">-------------+-------------+--------------+-------------+</span>
+</span></code></pre></div>
+他のメンバーからは見えなくなります。</p>
+<p><div class="language-sql highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="cm">/* [sv01] */</span>
+</span><span id="__span-23-2"><a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">MEMBER_HOST</span><span class="p">,</span><span class="w"> </span><span class="n">MEMBER_PORT</span><span class="p">,</span><span class="w"> </span><span class="n">MEMBER_STATE</span><span class="p">,</span><span class="w"> </span><span class="n">MEMBER_ROLE</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">performance_schema</span><span class="p">.</span><span class="n">replication_group_members</span><span class="p">;</span>
+</span><span id="__span-23-3"><a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a><span class="o">+</span><span class="c1">-------------+-------------+--------------+-------------+</span>
+</span><span id="__span-23-4"><a id="__codelineno-23-4" name="__codelineno-23-4" href="#__codelineno-23-4"></a><span class="o">|</span><span class="w"> </span><span class="n">MEMBER_HOST</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">MEMBER_PORT</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">MEMBER_STATE</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">MEMBER_ROLE</span><span class="w"> </span><span class="o">|</span>
+</span><span id="__span-23-5"><a id="__codelineno-23-5" name="__codelineno-23-5" href="#__codelineno-23-5"></a><span class="o">+</span><span class="c1">-------------+-------------+--------------+-------------+</span>
+</span><span id="__span-23-6"><a id="__codelineno-23-6" name="__codelineno-23-6" href="#__codelineno-23-6"></a><span class="o">|</span><span class="w"> </span><span class="n">sv01</span><span class="w">        </span><span class="o">|</span><span class="w">        </span><span class="mi">3306</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">ONLINE</span><span class="w">       </span><span class="o">|</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w">     </span><span class="o">|</span>
+</span><span id="__span-23-7"><a id="__codelineno-23-7" name="__codelineno-23-7" href="#__codelineno-23-7"></a><span class="o">|</span><span class="w"> </span><span class="n">sv03</span><span class="w">        </span><span class="o">|</span><span class="w">        </span><span class="mi">3306</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">ONLINE</span><span class="w">       </span><span class="o">|</span><span class="w"> </span><span class="n">SECONDARY</span><span class="w">   </span><span class="o">|</span>
+</span><span id="__span-23-8"><a id="__codelineno-23-8" name="__codelineno-23-8" href="#__codelineno-23-8"></a><span class="o">|</span><span class="w"> </span><span class="n">sv02</span><span class="w">        </span><span class="o">|</span><span class="w">        </span><span class="mi">3306</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">ONLINE</span><span class="w">       </span><span class="o">|</span><span class="w"> </span><span class="n">SECONDARY</span><span class="w">   </span><span class="o">|</span>
+</span><span id="__span-23-9"><a id="__codelineno-23-9" name="__codelineno-23-9" href="#__codelineno-23-9"></a><span class="o">+</span><span class="c1">-------------+-------------+--------------+-------------+</span>
+</span></code></pre></div>
+グループレプリケーションを開始した直後の、すべてのバイナリログがまだ残っている状態でインスタンスを追加するようなときは別として、運用中のグループにノードを追加するときは追加前に mysqldump 的なことが必要です。</p>
+<p>公式のドキュメントだと MySQL Enterprise Backup を使用する例が記載されていましたが、mysqldump でも良いと思うし、データディレクトリの rsync（auto.cnf に注意）でも大丈夫だと思います。</p>
+<p>試しに mysqldump してみます。</p>
+<details class="info">
+<summary>mysqldump</summary>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a># 新しいインスタンスを開始
+</span><span id="__span-24-2"><a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a>docker-compose rm -fsv sv04
+</span><span id="__span-24-3"><a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a>docker-compose up -d sv04
+</span><span id="__span-24-4"><a id="__codelineno-24-4" name="__codelineno-24-4" href="#__codelineno-24-4"></a>docker-compose logs -f sv04
+</span><span id="__span-24-5"><a id="__codelineno-24-5" name="__codelineno-24-5" href="#__codelineno-24-5"></a>
+</span><span id="__span-24-6"><a id="__codelineno-24-6" name="__codelineno-24-6" href="#__codelineno-24-6"></a># レプリケーションユーザーの作成やバイナリログのリセット
+</span><span id="__span-24-7"><a id="__codelineno-24-7" name="__codelineno-24-7" href="#__codelineno-24-7"></a>docker-compose exec -T sv04 mysql &lt;&lt;&#39;SQL&#39;
+</span><span id="__span-24-8"><a id="__codelineno-24-8" name="__codelineno-24-8" href="#__codelineno-24-8"></a>  CREATE USER rpl_user@&#39;%&#39; IDENTIFIED BY &#39;password&#39;;
+</span><span id="__span-24-9"><a id="__codelineno-24-9" name="__codelineno-24-9" href="#__codelineno-24-9"></a>  GRANT REPLICATION SLAVE ON *.* TO rpl_user@&#39;%&#39;;
+</span><span id="__span-24-10"><a id="__codelineno-24-10" name="__codelineno-24-10" href="#__codelineno-24-10"></a>  CHANGE MASTER TO MASTER_USER=&#39;rpl_user&#39;, MASTER_PASSWORD=&#39;password&#39; FOR CHANNEL &#39;group_replication_recovery&#39;;
+</span><span id="__span-24-11"><a id="__codelineno-24-11" name="__codelineno-24-11" href="#__codelineno-24-11"></a>  RESET MASTER;
+</span><span id="__span-24-12"><a id="__codelineno-24-12" name="__codelineno-24-12" href="#__codelineno-24-12"></a>SQL
+</span><span id="__span-24-13"><a id="__codelineno-24-13" name="__codelineno-24-13" href="#__codelineno-24-13"></a>
+</span><span id="__span-24-14"><a id="__codelineno-24-14" name="__codelineno-24-14" href="#__codelineno-24-14"></a># 別のノードからダンプして新しいノードにインポート
+</span><span id="__span-24-15"><a id="__codelineno-24-15" name="__codelineno-24-15" href="#__codelineno-24-15"></a>docker-compose exec -T sv03 mysqldump \
+</span><span id="__span-24-16"><a id="__codelineno-24-16" name="__codelineno-24-16" href="#__codelineno-24-16"></a>    --all-databases --single-transaction --triggers --routines --events |
+</span><span id="__span-24-17"><a id="__codelineno-24-17" name="__codelineno-24-17" href="#__codelineno-24-17"></a>  docker-compose exec -T sv04 mysql
+</span><span id="__span-24-18"><a id="__codelineno-24-18" name="__codelineno-24-18" href="#__codelineno-24-18"></a>
+</span><span id="__span-24-19"><a id="__codelineno-24-19" name="__codelineno-24-19" href="#__codelineno-24-19"></a># コンテナに入る docker-compose exec sv04 mysql
+</span></code></pre></div>
+</details>
+<p><code>show master status</code> の <code>Executed_Gtid_Set</code> が他のノードと同じになっていれば大丈夫です。</p>
+<p><div class="language-sql highlight"><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="cm">/* [sv04] */</span>
+</span><span id="__span-25-2"><a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a><span class="k">show</span><span class="w"> </span><span class="n">master</span><span class="w"> </span><span class="n">status</span><span class="p">;</span>
+</span><span id="__span-25-3"><a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a><span class="o">+</span><span class="c1">---------------+----------+--------------+------------------+------------------------------------------+</span>
+</span><span id="__span-25-4"><a id="__codelineno-25-4" name="__codelineno-25-4" href="#__codelineno-25-4"></a><span class="o">|</span><span class="w"> </span><span class="n">File</span><span class="w">          </span><span class="o">|</span><span class="w"> </span><span class="k">Position</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">Binlog_Do_DB</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">Binlog_Ignore_DB</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">Executed_Gtid_Set</span><span class="w">                        </span><span class="o">|</span>
+</span><span id="__span-25-5"><a id="__codelineno-25-5" name="__codelineno-25-5" href="#__codelineno-25-5"></a><span class="o">+</span><span class="c1">---------------+----------+--------------+------------------+------------------------------------------+</span>
+</span><span id="__span-25-6"><a id="__codelineno-25-6" name="__codelineno-25-6" href="#__codelineno-25-6"></a><span class="o">|</span><span class="w"> </span><span class="n">binlog</span><span class="p">.</span><span class="mi">000001</span><span class="w"> </span><span class="o">|</span><span class="w">      </span><span class="mi">151</span><span class="w"> </span><span class="o">|</span><span class="w">              </span><span class="o">|</span><span class="w">                  </span><span class="o">|</span><span class="w"> </span><span class="mi">470</span><span class="n">b4daf</span><span class="o">-</span><span class="mi">6</span><span class="n">c34</span><span class="o">-</span><span class="mi">415</span><span class="n">f</span><span class="o">-</span><span class="mi">97</span><span class="n">ad</span><span class="o">-</span><span class="mi">68</span><span class="n">cf76ef24e7</span><span class="p">:</span><span class="mi">1</span><span class="o">-</span><span class="mi">6</span><span class="w"> </span><span class="o">|</span>
+</span><span id="__span-25-7"><a id="__codelineno-25-7" name="__codelineno-25-7" href="#__codelineno-25-7"></a><span class="o">+</span><span class="c1">---------------+----------+--------------+------------------+------------------------------------------+</span>
+</span></code></pre></div>
+グループレプリケーションを開始できます。</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-26-1"><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="cm">/* [sv04] */</span>
+</span><span id="__span-26-2"><a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a><span class="k">START</span><span class="w"> </span><span class="n">GROUP_REPLICATION</span><span class="p">;</span>
+</span><span id="__span-26-3"><a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">MEMBER_HOST</span><span class="p">,</span><span class="w"> </span><span class="n">MEMBER_PORT</span><span class="p">,</span><span class="w"> </span><span class="n">MEMBER_STATE</span><span class="p">,</span><span class="w"> </span><span class="n">MEMBER_ROLE</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">performance_schema</span><span class="p">.</span><span class="n">replication_group_members</span><span class="p">;</span>
+</span><span id="__span-26-4"><a id="__codelineno-26-4" name="__codelineno-26-4" href="#__codelineno-26-4"></a><span class="o">+</span><span class="c1">-------------+-------------+--------------+-------------+</span>
+</span><span id="__span-26-5"><a id="__codelineno-26-5" name="__codelineno-26-5" href="#__codelineno-26-5"></a><span class="o">|</span><span class="w"> </span><span class="n">MEMBER_HOST</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">MEMBER_PORT</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">MEMBER_STATE</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">MEMBER_ROLE</span><span class="w"> </span><span class="o">|</span>
+</span><span id="__span-26-6"><a id="__codelineno-26-6" name="__codelineno-26-6" href="#__codelineno-26-6"></a><span class="o">+</span><span class="c1">-------------+-------------+--------------+-------------+</span>
+</span><span id="__span-26-7"><a id="__codelineno-26-7" name="__codelineno-26-7" href="#__codelineno-26-7"></a><span class="o">|</span><span class="w"> </span><span class="n">sv04</span><span class="w">        </span><span class="o">|</span><span class="w">        </span><span class="mi">3306</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">ONLINE</span><span class="w">       </span><span class="o">|</span><span class="w"> </span><span class="n">SECONDARY</span><span class="w">   </span><span class="o">|</span>
+</span><span id="__span-26-8"><a id="__codelineno-26-8" name="__codelineno-26-8" href="#__codelineno-26-8"></a><span class="o">|</span><span class="w"> </span><span class="n">sv01</span><span class="w">        </span><span class="o">|</span><span class="w">        </span><span class="mi">3306</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">ONLINE</span><span class="w">       </span><span class="o">|</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w">     </span><span class="o">|</span>
+</span><span id="__span-26-9"><a id="__codelineno-26-9" name="__codelineno-26-9" href="#__codelineno-26-9"></a><span class="o">|</span><span class="w"> </span><span class="n">sv03</span><span class="w">        </span><span class="o">|</span><span class="w">        </span><span class="mi">3306</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">ONLINE</span><span class="w">       </span><span class="o">|</span><span class="w"> </span><span class="n">SECONDARY</span><span class="w">   </span><span class="o">|</span>
+</span><span id="__span-26-10"><a id="__codelineno-26-10" name="__codelineno-26-10" href="#__codelineno-26-10"></a><span class="o">|</span><span class="w"> </span><span class="n">sv02</span><span class="w">        </span><span class="o">|</span><span class="w">        </span><span class="mi">3306</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">ONLINE</span><span class="w">       </span><span class="o">|</span><span class="w"> </span><span class="n">SECONDARY</span><span class="w">   </span><span class="o">|</span>
+</span><span id="__span-26-11"><a id="__codelineno-26-11" name="__codelineno-26-11" href="#__codelineno-26-11"></a><span class="o">+</span><span class="c1">-------------+-------------+--------------+-------------+</span>
+</span></code></pre></div>
+<h3 id="ip">IPアドレスのホワイトリスト<a class="headerlink" href="#ip" title="Permanent link">&para;</a></h3>
+<p>MySQL の設定で group_replication_group_seeds にグループのインスタンスのアドレスを羅列していますが、別にグループのすべてのインスタンスが羅列されている必要はありません。</p>
+<p>この設定は、インスタンスでグループレプリケーションを開始したときに、どこからグループの情報を取得するかの設定です。なのでグループ内の生きているメンバーのいずれかが指定されていれば大丈夫です。なので、グループへのインスタンスの追加は group_replication_group_seeds をいじらなくてもできます。</p>
+<p>一方、グループに参加できるアドレスのホワイトリストの設定もあって（group_replication_ip_whitelist）、そこに含まれないアドレスのインスタンスはグループのインスタンスとの通信が拒否されます。ただし、デフォルトでサーバの I/F のサブネットが追加されるので、複数のサブネットにインスタンスが分散されるとかではない限りはデフォルトのままで良さそうです。</p>
+<h3 id="_6">ノードの故障<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
+<p>おもむろにプライマリノードを強制終了します。</p>
+<p><div class="language-text highlight"><pre><span></span><code><span id="__span-27-1"><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a>docker-compose kill -s KILL sv01
+</span></code></pre></div>
+他のノード（sv02 とか）で次のようにログが表示されます。</p>
+<p><div class="language-text highlight"><pre><span></span><code><span id="__span-28-1"><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a>[Warning] [MY-011493] [Repl] Plugin group_replication reported: &#39;Member with address sv01:3306 has become unreachable.&#39;
+</span><span id="__span-28-2"><a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a>[Warning] [MY-011499] [Repl] Plugin group_replication reported: &#39;Members removed from the group: sv01:3306&#39;
+</span></code></pre></div>
+メンバの一覧を観てみると、sv01 がなくなって sv04 がプライマリになってました。</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-29-1"><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a><span class="cm">/* [sv02] */</span>
+</span><span id="__span-29-2"><a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">performance_schema</span><span class="p">.</span><span class="n">replication_group_members</span><span class="p">;</span>
+</span><span id="__span-29-3"><a id="__codelineno-29-3" name="__codelineno-29-3" href="#__codelineno-29-3"></a><span class="cm">/*------------+-------------+--------------+-------------+</span>
+</span><span id="__span-29-4"><a id="__codelineno-29-4" name="__codelineno-29-4" href="#__codelineno-29-4"></a><span class="cm">| MEMBER_HOST | MEMBER_PORT | MEMBER_STATE | MEMBER_ROLE |</span>
+</span><span id="__span-29-5"><a id="__codelineno-29-5" name="__codelineno-29-5" href="#__codelineno-29-5"></a><span class="cm">+-------------+-------------+--------------+-------------+</span>
+</span><span id="__span-29-6"><a id="__codelineno-29-6" name="__codelineno-29-6" href="#__codelineno-29-6"></a><span class="cm">| sv04        |        3306 | ONLINE       | PRIMARY     |</span>
+</span><span id="__span-29-7"><a id="__codelineno-29-7" name="__codelineno-29-7" href="#__codelineno-29-7"></a><span class="cm">| sv03        |        3306 | ONLINE       | SECONDARY   |</span>
+</span><span id="__span-29-8"><a id="__codelineno-29-8" name="__codelineno-29-8" href="#__codelineno-29-8"></a><span class="cm">| sv02        |        3306 | ONLINE       | SECONDARY   |</span>
+</span><span id="__span-29-9"><a id="__codelineno-29-9" name="__codelineno-29-9" href="#__codelineno-29-9"></a><span class="cm">+-------------+-------------+--------------+------------*/</span>
+</span></code></pre></div>
+<h3 id="monitoring-group-replication">Monitoring Group Replication<a class="headerlink" href="#monitoring-group-replication" title="Permanent link">&para;</a></h3>
+<p>グループのメンバやレプリケーションの詳細は下記のようにパフォーマンススキーマから得られます。</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-30-1"><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a><span class="cm">/* グループのメンバに関する情報 */</span>
+</span><span id="__span-30-2"><a id="__codelineno-30-2" name="__codelineno-30-2" href="#__codelineno-30-2"></a><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">performance_schema</span><span class="p">.</span><span class="n">replication_group_member_stats</span><span class="w"> </span><span class="err">\</span><span class="k">G</span>
+</span><span id="__span-30-3"><a id="__codelineno-30-3" name="__codelineno-30-3" href="#__codelineno-30-3"></a><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">performance_schema</span><span class="p">.</span><span class="n">replication_group_members</span><span class="p">;</span>
+</span><span id="__span-30-4"><a id="__codelineno-30-4" name="__codelineno-30-4" href="#__codelineno-30-4"></a>
+</span><span id="__span-30-5"><a id="__codelineno-30-5" name="__codelineno-30-5" href="#__codelineno-30-5"></a><span class="cm">/* レプリケーションチャンネルに関する情報 */</span>
+</span><span id="__span-30-6"><a id="__codelineno-30-6" name="__codelineno-30-6" href="#__codelineno-30-6"></a><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">performance_schema</span><span class="p">.</span><span class="n">replication_connection_status</span><span class="w"> </span><span class="err">\</span><span class="k">G</span>
+</span><span id="__span-30-7"><a id="__codelineno-30-7" name="__codelineno-30-7" href="#__codelineno-30-7"></a><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">performance_schema</span><span class="p">.</span><span class="n">replication_applier_status</span><span class="p">;</span>
+</span></code></pre></div>
+<h5 id="2">レプリケーションチャンネルには次の用途の2つが作成されています。<a class="headerlink" href="#2" title="Permanent link">&para;</a></h5>
+<ul>
+<li>group_replication_recovery<ul>
+<li>分散リカバリフェーズ（リカバリプロセス）で使用される</li>
+<li>ノードを追加したときや故障ノードが復帰したときの同期用</li>
+</ul>
+</li>
+<li>group_replication_applier<ul>
+<li>グループで実行されたトランザクションを適用するために使用される</li>
+<li>要するに平時のトランザクションのレプリケーション</li>
+</ul>
+</li>
+</ul>
+<h5 id="_7">グループのメンバに関するパフォーマンステーブルのビューについて。<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h5>
+<ul>
+<li>replication_group_member_stats<ul>
+<li>メンバーごとの待機中のトランザクション数とか処理済トランザクション数とかの統計</li>
+<li>特定のメンバーが遅れているとかでキューに溜まってるのを監視したりするのに使える</li>
+</ul>
+</li>
+<li>replication_group_members<ul>
+<li>メンバーのステータス</li>
+</ul>
+</li>
+</ul>
+<h5 id="replication_group_members"><code>replication_group_members</code> で表示されるメンバーのステータス。<a class="headerlink" href="#replication_group_members" title="Permanent link">&para;</a></h5>
+<ul>
+<li>ONLINE<ul>
+<li>同期されている</li>
+</ul>
+</li>
+<li>RECOVERING<ul>
+<li>リカバリプロセス中</li>
+</ul>
+</li>
+<li>OFFLINE<ul>
+<li>メンバーはグループに属していない</li>
+<li>プラグインがロード済でグループレプリケーションか開始していないとき</li>
+</ul>
+</li>
+<li>ERROR<ul>
+<li>リカバリプロセスやトランザクションの適用中にエラー</li>
+</ul>
+</li>
+<li>UNREACHABLE<ul>
+<li>メンバーがネットワーク的に到達不能</li>
+</ul>
+</li>
+</ul>
+<p>サービス監視とかするなら <code>ONLINE</code> 以外はなにかしら異常とみなして良さそうです。</p>
+<h3 id="deploying-in-multi-primary-or-single-primary-mode">Deploying in Multi-Primary or Single-Primary Mode<a class="headerlink" href="#deploying-in-multi-primary-or-single-primary-mode" title="Permanent link">&para;</a></h3>
+<p>グループレプリケーションにはシングルプライマリモードとマルチプライマリモードがあります。デフォルトはシングルプライマリです。</p>
+<p>グループのメンバーの中でシングルとマルチは混在できません。切り替えるためにはグループレプリケーション自体を再構成する必要があります。</p>
+<p>マルチプライマリモードにすると、次のようなステートメントのチェックが行われるようになります。</p>
+<ul>
+<li>トランザクションが SERIALIZABLE 分離レベルで実行されるとコミットが失敗する</li>
+<li>CASCADE の外部キーを持つテーブルに対してトランザクションを実行するとコミットに失敗する</li>
+</ul>
+<p>これらのチェックは <code>group_replication_enforce_update_everywhere_checks</code> を <code>FALSE</code> にすると無効にできます。もちろん無効にするとノード間でデータ不整合が起こる可能性が生じると思います。</p>
+<h3 id="single-primary-mode">Single-Primary Mode<a class="headerlink" href="#single-primary-mode" title="Permanent link">&para;</a></h3>
+<p>デフォルトのシングルプライマリモードでは、グループのただ一つのメンバーだけがプライマリで、それ以外は super-read-only=ON が設定されて読み取り専用になります。</p>
+<p>プライマリがコケたときに新しいプライマリの選出は group_replication_member_weight で重みつけできます。ただしグループ内で MySQL のバージョンに差異があると下位メジャーバージョンのものから優先的に選択されます。</p>
+<p>プライマリがコケた後、クライアントアプリケーションを再ルーティングする前に、新しいプライマリがレプリケーションに関係するリレーログを適応しきるのを待ったほうが良いです。これは普通のレプリケーションでも同じで、リレーログが適応し切る前にクライアントを新しいプライマリにルーティングすると、クライアントからの更新とリレーログによる更新が競合する可能性があります。</p>
+<p>プライマリとなっているメンバーの検索は performance_schema.replication_group_members テーブルの MEMBER_ROLE を見ればわかります。</p>
+<h3 id="tuning-recovery">Tuning Recovery<a class="headerlink" href="#tuning-recovery" title="Permanent link">&para;</a></h3>
+<p>新規ノードの追加や故障ノードが復帰するとき、グループのメンバからランダムで１つが選ばれて、そのノードからデータを取得する。この処理はリカバリプロセスと呼ばれて、選ばれたノードはドナーと呼ばれる。</p>
+<p>ドナーへの接続が失敗したときは自動的に別のドナーが選択されて接続が再試行される。接続のリトライの限界に達するとリカバリプロセスはエラーで終了する。</p>
+<p>リカバリプロセスでは単なる接続エラーだけではなく、いろいろなエラーを検出して別のドナーで再試行が行われる。</p>
+<ul>
+<li>パージされたデータ<ul>
+<li>ドナーでリカバリに必要なデータが既にパージされている</li>
+</ul>
+</li>
+<li>重複データ<ul>
+<li>新しいノードが既に持っているデータと、ドナから同期されるデータとが競合したとき</li>
+<li>他のドナーには切り替えずにエラーにすることも考えられるけど、不均質なグループではあるメンバーは競合するトランザクションを持っていて、あるメンバーは競合するトランザクションを持っていない可能性があるため、このエラーが発生したときも他のドナーで再試行されます</li>
+</ul>
+</li>
+<li>その他のエラー<ul>
+<li>リカバリスレッドがコケたとき・・えーとまあなんかエラー？です</li>
+</ul>
+</li>
+</ul>
+<p>リカバリプロセスは普通のMySQLレプリケーションの実装に依存しているため、ここで説明した再試行とは別に、普通のMySQLレプリケーションとしての再試行も行われることがある。</p>
+<p>リカバリの再試行回数は group_replication_recovery_retry_count パラメータで設定できる。</p>
+<p>group_replication_recovery_reconnect_interval で再試行のインターバルを設定できる。再試行の都度、毎回インターバルが挟まれるわけではなく、すべてのドナーで一通り失敗したときだけインターバルが挟まれて次のドナー（一度失敗している）で再試行される。</p>
+<h3 id="network-partitioning">Network Partitioning<a class="headerlink" href="#network-partitioning" title="Permanent link">&para;</a></h3>
+<p>クオラムのためにグループの過半数が生きている必要がある。ただしサーバがグループから自発的に去ったときはグループのメンバに去ることが伝えられるので、その時点でグループが再構成されるのでクオラム数も再計算される。</p>
+<p>クオラム低下による停止からの復帰の方法。まず、生きてるノードでアドレスを確認して、</p>
+<p><div class="language-text highlight"><pre><span></span><code><span id="__span-31-1"><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a>/* 生きてるすべてのノードで確認 */
+</span><span id="__span-31-2"><a id="__codelineno-31-2" name="__codelineno-31-2" href="#__codelineno-31-2"></a>SELECT @@group_replication_local_address;
+</span></code></pre></div>
+グループのメンバシップを強制的に変更する。</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-32-1"><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a>SET GLOBAL group_replication_force_members=&quot;192.168.88.11:6606,192.168.88.12:6606&quot;;
+</span></code></pre></div>
+<h3 id="group-replication-requirements">Group Replication Requirements<a class="headerlink" href="#group-replication-requirements" title="Permanent link">&para;</a></h3>
+<p>グループレプリケーションに使用するサーバの要件。</p>
+<ul>
+<li>InnoDB ストレージエンジン<ul>
+<li>トランザクション前提です</li>
+</ul>
+</li>
+<li>主キー<ul>
+<li>トランザクションの競合の検出のために主キーが必要です</li>
+</ul>
+</li>
+<li>IPv4 ネットワーク<ul>
+<li>IPv6 は未対応です</li>
+</ul>
+</li>
+<li>ネットワークパフォーマンス<ul>
+<li>それなりに太い帯域とそれなりに低いレイテンシが前提です</li>
+</ul>
+</li>
+</ul>
+<h3 id="_8">制限<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
+<p>認証プロセス？（トランザクションのコミット時にグループのメンバで合意を得るプロセス）ではギャップロックが利用できない（InnoDB の外部ではギャップロックに関する情報を利用できないため）。なのでトランザクション分離レベルには READ COMMITTED を使うことをおすすめする（たぶん要するにトランザクションがグループに伝播されるときにトランザクションが発生したノード以外ではギャップロックが利かないということだと思います。それで困るのはマルチプライマリのときだけだと思うのでシングルプライマリなら関係ないように思います）。</p>
+<p><code>LOCK TABLES</code> や <code>GET_LOCK()</code> は使用できない（これもシングルプライマリなら関係ないように思います。プライマリでは利きますよね？ というか LOCK TABLES とか GET_LOCK() とかなんて普段使わないですね。。。）。</p>
+<p>マルチプライマリモードでは <code>SERIALIZABLE</code> 分離レベルはサポートしていない。</p>
+<p>マルチプライマリモードでは同じオブジェクトに対して異なるサーバで DDL と DML が同時に実行されると DDL の競合が検出されないリスクがある？</p>
+<p>マルチプライマリモードでは CASCADE を指定した外部キー制約をサポートしていない。カスケード操作が行われるときに検出できない競合が生じることがあるため。なのでマルチプライマリモードでは group_replication_enforce_update_everywhere_checks を有効にすることをおすすめする。シングルプライマリモードなら問題ない。</p>
+<p>グループ内での複製に5秒以上を要するような通信があるとグループ内の通信の失敗を引き起こす可能性がある。LOAD DATA INFILE などで使用するファイルを小さく分割するなどの対応が必要。</p>
+<p>マルチプライマリモードでは SELECT .. FOR UPDATE でデッドロックすることがある。これはグループのメンバー間でロックが共有されないため。 （SELECT .. FOR UPDATE は普通にデッドロックする可能性はあると思うのだけど・・どういうこと？）</p>
+<p>グローバルレプリケーションフィルタは使用できない。一部のメンバーでトランザクションをフィルタするとグループが一貫のある状態で同期できなくなるため。グループ外のサーバとのレプリケーションなどのグループレプリケーションに直接関係しないレプリケーションチャンネルになら使用できる。 （いわゆる replicate-do-db とかのことだと思われる）</p>
+<h3 id="_9">さいごに<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h3>
+<p>GTID レプリケーションと mysqlfailover に毛が生えたようなものかと思ってたんですけど</p>
+<ul>
+<li>https://dev.mysql.com/doc/refman/8.0/en/group-replication-summary.html</li>
+</ul>
+<p>とかを見るに単純にバイナリログを転送しているだけではなさそうです。ただシングルプライマリだと実質単純にバイナリログを転送しているだけになりそうな気もするので、グループレプリケーションの最大の旨味はマルチプライマリモードですかね？ 最もノードのヘルスチェックやフェイルオーバーの自動化の面だけでも十分メリットあると思うので今後使えそうなら使っていきたいかも。</p>
+<p>それと、グループ全体をシャットダウンすると group_replication_bootstrap_group が再び必要になります。これはちょっと面倒ですね。いわゆる本番環境なら止めることはないので良いですけど、検証環境とかで上げたり下げたりすることがあると運用が面倒そうです。</p>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+            Back to top
+          </button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright © 2022 - 2023 - lyvivian0077
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tracking", "navigation.top", "navigation.sections", "navigation.indexes", "navigation.path", "toc.integrate", "content.code.copy"], "search": "../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.fac441b0.min.js"></script>
+      
+    
+  </body>
+</html>

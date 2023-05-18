@@ -206,9 +206,7 @@
       
       
       
-        
-      
-      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
       
       
         
@@ -324,9 +322,7 @@
       
       
       
-        
-      
-      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
       
       
         
@@ -397,9 +393,7 @@
       
       
       
-        
-      
-      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
       
       
         
@@ -454,11 +448,11 @@
       
       
       
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+      
+      
         
-      
-      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_8" >
-      
-      
+          
         
           
         
@@ -566,6 +560,20 @@
     <li class="md-nav__item">
       <a href="../mysql-mgr/" class="md-nav__link">
         MGR
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mysql-mgr-copy/" class="md-nav__link">
+        転載MGR
       </a>
     </li>
   
@@ -1181,119 +1189,119 @@
 <h2 id="_2">位置参数<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <p>位置参数是最简单的传入参数的方式，在其它的语言中也常常被使用</p>
 <h5 id="_3">演示一：<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h5>
-<pre><code class="language-python">def func(a, b):
-    print(a+b)
-
-func(1, 2)  #3
-</code></pre>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">def</span> <span class="nf">func</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="o">+</span><span class="n">b</span><span class="p">)</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="n">func</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>  <span class="c1">#3</span>
+</span></code></pre></div>
 <h5 id="_4">演示二：<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h5>
-<pre><code class="language-python">def power(x, n):
-    s = 1
-    while(n &gt; 0):
-        n -= 1
-        s *= n
-    return s
-
-power(2, 3) #8
-</code></pre>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">def</span> <span class="nf">power</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>    <span class="n">s</span> <span class="o">=</span> <span class="mi">1</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>    <span class="k">while</span><span class="p">(</span><span class="n">n</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">):</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>        <span class="n">n</span> <span class="o">-=</span> <span class="mi">1</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>        <span class="n">s</span> <span class="o">*=</span> <span class="n">n</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>    <span class="k">return</span> <span class="n">s</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="n">power</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span> <span class="c1">#8</span>
+</span></code></pre></div>
 <h2 id="_5">默认参数<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
 <p>默认参数就是在调用函数的时候使用一些包含默认值的参数</p>
-<pre><code class="language-python">def power(x, n=2):
-    s = 1
-    while(n &gt; 0):
-        n -= 1
-        s *= n
-    reutrn s
-
-power(3)    #9
-power(2, 3) #8
-</code></pre>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">def</span> <span class="nf">power</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>    <span class="n">s</span> <span class="o">=</span> <span class="mi">1</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>    <span class="k">while</span><span class="p">(</span><span class="n">n</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">):</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>        <span class="n">n</span> <span class="o">-=</span> <span class="mi">1</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>        <span class="n">s</span> <span class="o">*=</span> <span class="n">n</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>    <span class="n">reutrn</span> <span class="n">s</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="n">power</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>    <span class="c1">#9</span>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="n">power</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span> <span class="c1">#8</span>
+</span></code></pre></div>
 <h3 id="_6">定义默认参数要牢记一点：默认参数必须指向不变对象！<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
-<pre><code class="language-python">#以下这个函数如果被多次调用会在默认添加多个END字符串
-def add_end(l = []):
-    l.append('END')
-    return l
-</code></pre>
-<pre><code class="language-python">#为了避免这个问题，应该把传入的默认参数设置为不可变的
-def add_end(l = None):
-    l = []
-    l.append('END')
-    return l
-</code></pre>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1">#以下这个函数如果被多次调用会在默认添加多个END字符串</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="k">def</span> <span class="nf">add_end</span><span class="p">(</span><span class="n">l</span> <span class="o">=</span> <span class="p">[]):</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>    <span class="n">l</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;END&#39;</span><span class="p">)</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>    <span class="k">return</span> <span class="n">l</span>
+</span></code></pre></div>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1">#为了避免这个问题，应该把传入的默认参数设置为不可变的</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="k">def</span> <span class="nf">add_end</span><span class="p">(</span><span class="n">l</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>    <span class="n">l</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>    <span class="n">l</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;END&#39;</span><span class="p">)</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>    <span class="k">return</span> <span class="n">l</span>
+</span></code></pre></div>
 <h3 id="_7">可变参数<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
 <p>可变参数就是允许在调用参数的时候传入多个（≥0个）参数（类似于列表、字典）</p>
-<pre><code class="language-python">#传入一个列表，严格地说这不是可变参数
-def calc(l):
-    sum = 0
-    for n in l:
-        sum += n
-    return sum
-
-&gt;&gt;&gt; calc([1,2,3])
-</code></pre>
-<pre><code class="language-python">#这才是可变参数，虽然在使用上和列表没有区别，但是参数nums接收到的是一个tuple（这些参数在传入时被自动组组装为一个元祖）
-def calc(*nums):
-    sum = 0
-    for n in nums:
-        sum += n
-    return sum
-
-&gt;&gt;&gt; calc(1,2,3)
-7
-
-&gt;&gt;&gt; my_ls = [1,2,3]
-&gt;&gt;&gt; calc(*my_ls)
-7
-</code></pre>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1">#传入一个列表，严格地说这不是可变参数</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="k">def</span> <span class="nf">calc</span><span class="p">(</span><span class="n">l</span><span class="p">):</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>    <span class="nb">sum</span> <span class="o">=</span> <span class="mi">0</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>    <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">l</span><span class="p">:</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>        <span class="nb">sum</span> <span class="o">+=</span> <span class="n">n</span>
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>    <span class="k">return</span> <span class="nb">sum</span>
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="o">&gt;&gt;&gt;</span> <span class="n">calc</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">])</span>
+</span></code></pre></div>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c1">#这才是可变参数，虽然在使用上和列表没有区别，但是参数nums接收到的是一个tuple（这些参数在传入时被自动组组装为一个元祖）</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="k">def</span> <span class="nf">calc</span><span class="p">(</span><span class="o">*</span><span class="n">nums</span><span class="p">):</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>    <span class="nb">sum</span> <span class="o">=</span> <span class="mi">0</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>    <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">nums</span><span class="p">:</span>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>        <span class="nb">sum</span> <span class="o">+=</span> <span class="n">n</span>
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>    <span class="k">return</span> <span class="nb">sum</span>
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="o">&gt;&gt;&gt;</span> <span class="n">calc</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="mi">7</span>
+</span><span id="__span-6-10"><a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a>
+</span><span id="__span-6-11"><a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a><span class="o">&gt;&gt;&gt;</span> <span class="n">my_ls</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span>
+</span><span id="__span-6-12"><a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a><span class="o">&gt;&gt;&gt;</span> <span class="n">calc</span><span class="p">(</span><span class="o">*</span><span class="n">my_ls</span><span class="p">)</span>
+</span><span id="__span-6-13"><a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a><span class="mi">7</span>
+</span></code></pre></div>
 <h2 id="_8">关键字参数<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
 <p>可变参数允许传入0个～多个参数，而关键字参数允许在调用时以字典形式传入0个或多个参数（注意区别，一个是字典一个是列表）；在传递参数时用等号（=）连接键和值</p>
-<pre><code class="language-python">#用两个星号表示关键字参数
-def person_info(name, age, **kw):
-    print(&quot;name&quot;, name, &quot;age&quot;, age, &quot;other&quot;, kw)
-
-&gt;&gt;&gt; person_info(&quot;Xiaoming&quot;, 12)
-name Xiaoming age 12 other{}
-&gt;&gt;&gt; person_info(&quot;Dahuang&quot;, 35, city = &quot;Beijing&quot;)
-name Dahuang age 35 other {'city':'Beijing'}
-</code></pre>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="c1">#用两个星号表示关键字参数</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="k">def</span> <span class="nf">person_info</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">age</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">):</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="s2">&quot;age&quot;</span><span class="p">,</span> <span class="n">age</span><span class="p">,</span> <span class="s2">&quot;other&quot;</span><span class="p">,</span> <span class="n">kw</span><span class="p">)</span>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="o">&gt;&gt;&gt;</span> <span class="n">person_info</span><span class="p">(</span><span class="s2">&quot;Xiaoming&quot;</span><span class="p">,</span> <span class="mi">12</span><span class="p">)</span>
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="n">name</span> <span class="n">Xiaoming</span> <span class="n">age</span> <span class="mi">12</span> <span class="n">other</span><span class="p">{}</span>
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="o">&gt;&gt;&gt;</span> <span class="n">person_info</span><span class="p">(</span><span class="s2">&quot;Dahuang&quot;</span><span class="p">,</span> <span class="mi">35</span><span class="p">,</span> <span class="n">city</span> <span class="o">=</span> <span class="s2">&quot;Beijing&quot;</span><span class="p">)</span>
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="n">name</span> <span class="n">Dahuang</span> <span class="n">age</span> <span class="mi">35</span> <span class="n">other</span> <span class="p">{</span><span class="s1">&#39;city&#39;</span><span class="p">:</span><span class="s1">&#39;Beijing&#39;</span><span class="p">}</span>
+</span></code></pre></div>
 <h2 id="_9">命名关键字参数<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h2>
 <p>命名关键字参数在关键字参数的基础上限制传入的的关键字的变量名</p>
 <p>和普通关键字参数不同，命名关键字参数需要一个用来区分的分隔符*，它后面的参数被认为是命名关键字参数</p>
-<pre><code class="language-python">#这里星号分割符后面的city、job是命名关键字参数
-person_info(name, age, *, city, job):
-    print(name, age, city, job)
-
-&gt;&gt;&gt; person_info(&quot;Alex&quot;, 17, city = &quot;Beijing&quot;, job = &quot;Engineer&quot;)
-Alex 17 Beijing Engineer    #看来这里不再被自动组装为字典
-</code></pre>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="c1">#这里星号分割符后面的city、job是命名关键字参数</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="n">person_info</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">age</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">city</span><span class="p">,</span> <span class="n">job</span><span class="p">):</span>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>    <span class="nb">print</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">age</span><span class="p">,</span> <span class="n">city</span><span class="p">,</span> <span class="n">job</span><span class="p">)</span>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="o">&gt;&gt;&gt;</span> <span class="n">person_info</span><span class="p">(</span><span class="s2">&quot;Alex&quot;</span><span class="p">,</span> <span class="mi">17</span><span class="p">,</span> <span class="n">city</span> <span class="o">=</span> <span class="s2">&quot;Beijing&quot;</span><span class="p">,</span> <span class="n">job</span> <span class="o">=</span> <span class="s2">&quot;Engineer&quot;</span><span class="p">)</span>
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="n">Alex</span> <span class="mi">17</span> <span class="n">Beijing</span> <span class="n">Engineer</span>    <span class="c1">#看来这里不再被自动组装为字典</span>
+</span></code></pre></div>
 <p>不过也有例外，如果参数中已经有一个可变参数的话，前面讲的星号分割符就不要写了（其实星号是写给Python解释器看的，如果一个星号也没有的话就无法区分命名关键字参数和位置参数了，而如果有一个星号即使来自变长参数就可以区分开来）</p>
-<pre><code class="language-python">#args是变长参数，而city和job是命名关键字参数
-person_info(name, age, *args, city, job):
-    print(name, age, args, city)
-
-&gt;&gt;&gt; person_info(&quot;Liqiang&quot;, 43, &quot;balabala&quot;, city = &quot;Wuhan&quot;, job = &quot;Coder&quot;)
-Liqiang 43 balabala Wuhan Coder
-</code></pre>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="c1">#args是变长参数，而city和job是命名关键字参数</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="n">person_info</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">age</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">city</span><span class="p">,</span> <span class="n">job</span><span class="p">):</span>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>    <span class="nb">print</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">age</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">city</span><span class="p">)</span>
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="o">&gt;&gt;&gt;</span> <span class="n">person_info</span><span class="p">(</span><span class="s2">&quot;Liqiang&quot;</span><span class="p">,</span> <span class="mi">43</span><span class="p">,</span> <span class="s2">&quot;balabala&quot;</span><span class="p">,</span> <span class="n">city</span> <span class="o">=</span> <span class="s2">&quot;Wuhan&quot;</span><span class="p">,</span> <span class="n">job</span> <span class="o">=</span> <span class="s2">&quot;Coder&quot;</span><span class="p">)</span>
+</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="n">Liqiang</span> <span class="mi">43</span> <span class="n">balabala</span> <span class="n">Wuhan</span> <span class="n">Coder</span>
+</span></code></pre></div>
 <h2 id="_10">参数组合<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h2>
 <p>总结一下，在Python中一种可以使用5中传递参数的方式（位置参数、默认参数、变长参数、关键字参数、命名关键字参数）</p>
 <p>注意，这些参数在书写时要遵循一定的顺序即：位置参数、默认参数、变长参数、关键字参数、命名关键字参数（和本文的行文顺序一致）</p>
 <p>这里简单举两个栗子</p>
-<pre><code class="language-python">def f1(a, b, c=0, *args, **kw):
-    print(&quot;a = &quot;, a, &quot;b = &quot;, b, &quot;args = &quot;, args, &quot;kw = &quot;,kw)
-def f2(a, b, c=0, *, d, **kw):
-    print(&quot;a = &quot;, a, &quot;b = &quot;, b, &quot;c = &quot;, c, &quot;d = &quot;, d, &quot;kw = &quot;, kw)
-
-&gt;&gt;&gt; f1(1, 2)
-a = 1 b = 2 c = 0 args =() kw = {}
-&gt;&gt;&gt; f1(1, 2, c=3)
-a = 1 b = 2 c = 3 args = () kw = {}
-&gt;&gt;&gt; f1(1, 2, 3, 'a', 'b')
-a = 1 b = 2 c = 3 args = ('a', 'b') kw = {}
-&gt;&gt;&gt; f1(1, 2, 3, 'a', 'b', x = 99)
-a = 1 b = 2 c = 3 args = ('a', 'b') kw = {'x':99}
-&gt;&gt;&gt; f2(1, 2, d = 99, ext = None)
-a = 1 b =2 c = 0 d = 99 kw = {'ext':None}
-</code></pre>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="k">def</span> <span class="nf">f1</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">):</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;a = &quot;</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="s2">&quot;b = &quot;</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="s2">&quot;args = &quot;</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="s2">&quot;kw = &quot;</span><span class="p">,</span><span class="n">kw</span><span class="p">)</span>
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="k">def</span> <span class="nf">f2</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">):</span>
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;a = &quot;</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="s2">&quot;b = &quot;</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="s2">&quot;c = &quot;</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="s2">&quot;d = &quot;</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="s2">&quot;kw = &quot;</span><span class="p">,</span> <span class="n">kw</span><span class="p">)</span>
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>
+</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="o">&gt;&gt;&gt;</span> <span class="n">f1</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+</span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a><span class="n">a</span> <span class="o">=</span> <span class="mi">1</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">2</span> <span class="n">c</span> <span class="o">=</span> <span class="mi">0</span> <span class="n">args</span> <span class="o">=</span><span class="p">()</span> <span class="n">kw</span> <span class="o">=</span> <span class="p">{}</span>
+</span><span id="__span-10-8"><a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a><span class="o">&gt;&gt;&gt;</span> <span class="n">f1</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+</span><span id="__span-10-9"><a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a><span class="n">a</span> <span class="o">=</span> <span class="mi">1</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">2</span> <span class="n">c</span> <span class="o">=</span> <span class="mi">3</span> <span class="n">args</span> <span class="o">=</span> <span class="p">()</span> <span class="n">kw</span> <span class="o">=</span> <span class="p">{}</span>
+</span><span id="__span-10-10"><a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a><span class="o">&gt;&gt;&gt;</span> <span class="n">f1</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">)</span>
+</span><span id="__span-10-11"><a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a><span class="n">a</span> <span class="o">=</span> <span class="mi">1</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">2</span> <span class="n">c</span> <span class="o">=</span> <span class="mi">3</span> <span class="n">args</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">)</span> <span class="n">kw</span> <span class="o">=</span> <span class="p">{}</span>
+</span><span id="__span-10-12"><a id="__codelineno-10-12" name="__codelineno-10-12" href="#__codelineno-10-12"></a><span class="o">&gt;&gt;&gt;</span> <span class="n">f1</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">99</span><span class="p">)</span>
+</span><span id="__span-10-13"><a id="__codelineno-10-13" name="__codelineno-10-13" href="#__codelineno-10-13"></a><span class="n">a</span> <span class="o">=</span> <span class="mi">1</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">2</span> <span class="n">c</span> <span class="o">=</span> <span class="mi">3</span> <span class="n">args</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">)</span> <span class="n">kw</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;x&#39;</span><span class="p">:</span><span class="mi">99</span><span class="p">}</span>
+</span><span id="__span-10-14"><a id="__codelineno-10-14" name="__codelineno-10-14" href="#__codelineno-10-14"></a><span class="o">&gt;&gt;&gt;</span> <span class="n">f2</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">d</span> <span class="o">=</span> <span class="mi">99</span><span class="p">,</span> <span class="n">ext</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span>
+</span><span id="__span-10-15"><a id="__codelineno-10-15" name="__codelineno-10-15" href="#__codelineno-10-15"></a><span class="n">a</span> <span class="o">=</span> <span class="mi">1</span> <span class="n">b</span> <span class="o">=</span><span class="mi">2</span> <span class="n">c</span> <span class="o">=</span> <span class="mi">0</span> <span class="n">d</span> <span class="o">=</span> <span class="mi">99</span> <span class="n">kw</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;ext&#39;</span><span class="p">:</span><span class="kc">None</span><span class="p">}</span>
+</span></code></pre></div>
 <h2 id="_11">写在后面<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h2>
 <p>关于Python参数传递，有以下几点提请注意：</p>
 <ol>
@@ -1337,6 +1345,11 @@ a = 1 b =2 c = 0 d = 99 kw = {'ext':None}
           
         </div>
         
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+            Back to top
+          </button>
+        
       </main>
       
         <footer class="md-footer">
@@ -1366,7 +1379,7 @@ a = 1 b =2 c = 0 d = 99 kw = {'ext':None}
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tracking", "navigation.expand", "navigation.sections", "navigation.indexes", "navigation.path", "toc.integrate"], "search": "../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tracking", "navigation.top", "navigation.sections", "navigation.indexes", "navigation.path", "toc.integrate", "content.code.copy"], "search": "../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
       <script src="../assets/javascripts/bundle.fac441b0.min.js"></script>

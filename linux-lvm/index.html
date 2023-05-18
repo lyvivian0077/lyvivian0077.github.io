@@ -206,9 +206,7 @@
       
       
       
-        
-      
-      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
       
       
         
@@ -324,9 +322,7 @@
       
       
       
-        
-      
-      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
       
       
         
@@ -397,9 +393,7 @@
       
       
       
-        
-      
-      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
       
       
         
@@ -454,11 +448,11 @@
       
       
       
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+      
+      
         
-      
-      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_8" >
-      
-      
+          
         
           
         
@@ -578,6 +572,20 @@
   
   
     <li class="md-nav__item">
+      <a href="../mysql-mgr-copy/" class="md-nav__link">
+        転載MGR
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../mysql-ha/" class="md-nav__link">
         mysql+keepalived搭建教程
       </a>
@@ -607,9 +615,7 @@
       
       
       
-        
-      
-      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_9" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
       
       
         
@@ -1185,304 +1191,304 @@
 <ol>
 <li>新建2个分区,sda5  5G,sd6 10G,完成之后如下</li>
 </ol>
-<pre><code>[root@yangcan /]# fdisk -l
-Disk /dev/sda: 42.9 GB, 42949672960 bytes
-255 heads, 63 sectors/track, 5221 cylinders
-Units = cylinders of 16065 * 512 = 8225280 bytes
-Sector size (logical/physical): 512 bytes / 512 bytes
-I/O size (minimum/optimal): 512 bytes / 512 bytes
-Disk identifier: 0x000ed173
-   Device Boot      Start         End      Blocks   Id  System
-/dev/sda1   *           1          39      307200   83  Linux
-Partition 1 does not end on cylinder boundary.
-/dev/sda2              39        2167    17091584   83  Linux
-/dev/sda3            2167        2611     3571712   82  Linux swap / Solaris
-/dev/sda4            2611        5221    20966162+   5  Extended
-/dev/sda5            2611        3264     5246528+  83  Linux
-/dev/sda6            3265        4570    10490413+  83  Linux
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>[root@yangcan /]# fdisk -l
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>Disk /dev/sda: 42.9 GB, 42949672960 bytes
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>255 heads, 63 sectors/track, 5221 cylinders
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>Units = cylinders of 16065 * 512 = 8225280 bytes
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>Sector size (logical/physical): 512 bytes / 512 bytes
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>I/O size (minimum/optimal): 512 bytes / 512 bytes
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>Disk identifier: 0x000ed173
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>   Device Boot      Start         End      Blocks   Id  System
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>/dev/sda1   *           1          39      307200   83  Linux
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>Partition 1 does not end on cylinder boundary.
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>/dev/sda2              39        2167    17091584   83  Linux
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>/dev/sda3            2167        2611     3571712   82  Linux swap / Solaris
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>/dev/sda4            2611        5221    20966162+   5  Extended
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>/dev/sda5            2611        3264     5246528+  83  Linux
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>/dev/sda6            3265        4570    10490413+  83  Linux
+</span></code></pre></div>
 <ol>
 <li>把sda6初始化物理卷</li>
 </ol>
-<pre><code>[root@yangcan /]# pvcreate /dev/sda6
-  Device vg6 not found (or ignored by filtering).
-  Writing physical volume data to disk &quot;/dev/sda6&quot;
-  Physical volume &quot;/dev/sda6&quot; successfully created
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>[root@yangcan /]# pvcreate /dev/sda6
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>  Device vg6 not found (or ignored by filtering).
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>  Writing physical volume data to disk &quot;/dev/sda6&quot;
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>  Physical volume &quot;/dev/sda6&quot; successfully created
+</span></code></pre></div>
 <ol>
 <li>创建卷组vg6,PE为16M</li>
 </ol>
-<pre><code>[root@yangcan /]# vgcreate -s 16M vg6 /dev/sda6
-  Volume group &quot;vg6&quot; successfully created
-
-[root@yangcan /]# vgdisplay
-  --- Volume group ---
-  VG Name               vg6
-  System ID
-  Format                lvm2
-  Metadata Areas        1
-  Metadata Sequence No  1
-  VG Access             read/write
-  VG Status             resizable
-  MAX LV                0
-  Cur LV                0
-  Open LV               0
-  Max PV                0
-  Cur PV                1
-  Act PV                1
-  VG Size               10.00 GiB
-  PE Size               16.00 MiB
-  Total PE              640
-  Alloc PE / Size       0 / 0
-  Free  PE / Size       640 / 10.00 GiB
-  VG UUID               35tmMm-Hyec-i4f1-xkd7-pMRS-RgRl-sqFa7l
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>[root@yangcan /]# vgcreate -s 16M vg6 /dev/sda6
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>  Volume group &quot;vg6&quot; successfully created
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>[root@yangcan /]# vgdisplay
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>  --- Volume group ---
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>  VG Name               vg6
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>  System ID
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>  Format                lvm2
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>  Metadata Areas        1
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>  Metadata Sequence No  1
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>  VG Access             read/write
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>  VG Status             resizable
+</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>  MAX LV                0
+</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>  Cur LV                0
+</span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>  Open LV               0
+</span><span id="__span-2-16"><a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a>  Max PV                0
+</span><span id="__span-2-17"><a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a>  Cur PV                1
+</span><span id="__span-2-18"><a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a>  Act PV                1
+</span><span id="__span-2-19"><a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a>  VG Size               10.00 GiB
+</span><span id="__span-2-20"><a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a>  PE Size               16.00 MiB
+</span><span id="__span-2-21"><a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a>  Total PE              640
+</span><span id="__span-2-22"><a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a>  Alloc PE / Size       0 / 0
+</span><span id="__span-2-23"><a id="__codelineno-2-23" name="__codelineno-2-23" href="#__codelineno-2-23"></a>  Free  PE / Size       640 / 10.00 GiB
+</span><span id="__span-2-24"><a id="__codelineno-2-24" name="__codelineno-2-24" href="#__codelineno-2-24"></a>  VG UUID               35tmMm-Hyec-i4f1-xkd7-pMRS-RgRl-sqFa7l
+</span></code></pre></div>
 <ol>
 <li>创建逻辑卷ftpdata,大小为6G</li>
 </ol>
-<pre><code>[root@yangcan /]# lvcreate -L 6G -n ftpdata vg6
-  Logical volume &quot;ftpdata&quot; created
-
-[root@yangcan /]# lvdisplay
-  --- Logical volume ---
-  LV Name                /dev/vg6/ftpdata
-  VG Name                vg6
-  LV UUID                LSOtbB-k3mz-DVbb-ATcE-IhBk-V9B7-uaSStM
-  LV Write Access        read/write
-  LV Status              available
-  # open                 0
-  LV Size                6.00 GiB
-  Current LE             384
-  Segments               1
-  Allocation             inherit
-  Read ahead sectors     auto
-  - currently set to     256
-  Block device           253:0
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>[root@yangcan /]# lvcreate -L 6G -n ftpdata vg6
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>  Logical volume &quot;ftpdata&quot; created
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>[root@yangcan /]# lvdisplay
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>  --- Logical volume ---
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>  LV Name                /dev/vg6/ftpdata
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>  VG Name                vg6
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>  LV UUID                LSOtbB-k3mz-DVbb-ATcE-IhBk-V9B7-uaSStM
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>  LV Write Access        read/write
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>  LV Status              available
+</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>  # open                 0
+</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>  LV Size                6.00 GiB
+</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>  Current LE             384
+</span><span id="__span-3-14"><a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a>  Segments               1
+</span><span id="__span-3-15"><a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a>  Allocation             inherit
+</span><span id="__span-3-16"><a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a>  Read ahead sectors     auto
+</span><span id="__span-3-17"><a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a>  - currently set to     256
+</span><span id="__span-3-18"><a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a>  Block device           253:0
+</span></code></pre></div>
 <ol>
 <li>格式化ext4,并挂载,并cp一些数据进去</li>
 </ol>
-<pre><code>[root@yangcan /]# mke2fs -T ext4 /dev/vg6/ftpdata
-[root@yangcan /]# mount /dev/vg6/ftpdata /ftpdata/
-[root@yangcan /]# cd /ftpdata/
-[root@yangcan ftpdata]# cp /etc/*.conf ./
-[root@yangcan ftpdata]# cp /usr/share/dict/linux.words ./
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>[root@yangcan /]# mke2fs -T ext4 /dev/vg6/ftpdata
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>[root@yangcan /]# mount /dev/vg6/ftpdata /ftpdata/
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>[root@yangcan /]# cd /ftpdata/
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>[root@yangcan ftpdata]# cp /etc/*.conf ./
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>[root@yangcan ftpdata]# cp /usr/share/dict/linux.words ./
+</span></code></pre></div>
 <h5 id="-_1">--------扩容--------<a class="headerlink" href="#-_1" title="Permanent link">&para;</a></h5>
 <ol>
 <li>新增一个磁盘到卷组vg6,就用到之前剩下的sda5了</li>
 </ol>
-<pre><code>[root@yangcan ftpdata]# vgextend vg6 /dev/sda5
-  Volume group &quot;vg6&quot; successfully extended
-
-[root@yangcan ftpdata]# vgdisplay
-  --- Volume group ---
-  VG Name               vg6
-  System ID
-  Format                lvm2
-  Metadata Areas        2
-  Metadata Sequence No  3
-  VG Access             read/write
-  VG Status             resizable
-  MAX LV                0
-  Cur LV                1
-  Open LV               1
-  Max PV                0
-  Cur PV                2
-  Act PV                2
-  VG Size               15.00 GiB
-  PE Size               16.00 MiB
-  Total PE              960
-  Alloc PE / Size       384 / 6.00 GiB
-  Free  PE / Size       576 / 9.00 GiB
-  VG UUID               35tmMm-Hyec-i4f1-xkd7-pMRS-RgRl-sqFa7l
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>[root@yangcan ftpdata]# vgextend vg6 /dev/sda5
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>  Volume group &quot;vg6&quot; successfully extended
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>[root@yangcan ftpdata]# vgdisplay
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>  --- Volume group ---
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>  VG Name               vg6
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>  System ID
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>  Format                lvm2
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>  Metadata Areas        2
+</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a>  Metadata Sequence No  3
+</span><span id="__span-5-11"><a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a>  VG Access             read/write
+</span><span id="__span-5-12"><a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a>  VG Status             resizable
+</span><span id="__span-5-13"><a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a>  MAX LV                0
+</span><span id="__span-5-14"><a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a>  Cur LV                1
+</span><span id="__span-5-15"><a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a>  Open LV               1
+</span><span id="__span-5-16"><a id="__codelineno-5-16" name="__codelineno-5-16" href="#__codelineno-5-16"></a>  Max PV                0
+</span><span id="__span-5-17"><a id="__codelineno-5-17" name="__codelineno-5-17" href="#__codelineno-5-17"></a>  Cur PV                2
+</span><span id="__span-5-18"><a id="__codelineno-5-18" name="__codelineno-5-18" href="#__codelineno-5-18"></a>  Act PV                2
+</span><span id="__span-5-19"><a id="__codelineno-5-19" name="__codelineno-5-19" href="#__codelineno-5-19"></a>  VG Size               15.00 GiB
+</span><span id="__span-5-20"><a id="__codelineno-5-20" name="__codelineno-5-20" href="#__codelineno-5-20"></a>  PE Size               16.00 MiB
+</span><span id="__span-5-21"><a id="__codelineno-5-21" name="__codelineno-5-21" href="#__codelineno-5-21"></a>  Total PE              960
+</span><span id="__span-5-22"><a id="__codelineno-5-22" name="__codelineno-5-22" href="#__codelineno-5-22"></a>  Alloc PE / Size       384 / 6.00 GiB
+</span><span id="__span-5-23"><a id="__codelineno-5-23" name="__codelineno-5-23" href="#__codelineno-5-23"></a>  Free  PE / Size       576 / 9.00 GiB
+</span><span id="__span-5-24"><a id="__codelineno-5-24" name="__codelineno-5-24" href="#__codelineno-5-24"></a>  VG UUID               35tmMm-Hyec-i4f1-xkd7-pMRS-RgRl-sqFa7l
+</span></code></pre></div>
 <ol>
 <li>扩容ftpdata,当我们文件不段增加的时候,扩容就很有必要了</li>
 </ol>
-<pre><code>[root@yangcan ftpdata]# lvextend -L +4G /dev/vg6/ftpdata
-
-或者使用,就是想让你明白-L 和 -L +的区别,-L 后面直接加容量,是指直接加到容量,而-L +容量,是指在原有容量上加多少容量!
-
-[root@yangcan ftpdata]# lvextend -L 10G /dev/vg6/ftpdata
-  Extending logical volume ftpdata to 10.00 GiB
-  Logical volume ftpdata successfully resized
-
-[root@yangcan ftpdata]# lvdisplay
-  --- Logical volume ---
-  LV Name                /dev/vg6/ftpdata
-  VG Name                vg6
-  LV UUID                LSOtbB-k3mz-DVbb-ATcE-IhBk-V9B7-uaSStM
-  LV Write Access        read/write
-  LV Status              available
-  # open                 1
-  LV Size                10.00 GiB
-  Current LE             640
-  Segments               1
-  Allocation             inherit
-  Read ahead sectors     auto
-  - currently set to     256
-  Block device           253:0
-
-[root@yangcan ftpdata]# df -h|grep ftpdata
-/dev/mapper/vg6-ftpdata
-                      6.0G  145M  5.5G   3% /ftpdata
-
-此时查看ftpdata文件系统容量的时候,还是之前的大小,所以需要resize2fs
-
-[root@yangcan ftpdata]# resize2fs /dev/vg6/ftpdata
-resize2fs 1.41.12 (17-May-2010)
-Filesystem at /dev/vg6/ftpdata is mounted on /ftpdata; on-line resizing required
-old desc_blocks = 1, new_desc_blocks = 1
-Performing an on-line resize of /dev/vg6/ftpdata to 2621440 (4k) blocks.
-The filesystem on /dev/vg6/ftpdata is now 2621440 blocks long.
-
-[root@yangcan ftpdata]# df -h|grep ftpdata
-/dev/mapper/vg6-ftpdata
-                      9.9G  147M  9.3G   2% /ftpdata
-
-[root@yangcan ftpdata]# lvdisplay
-  --- Logical volume ---
-  LV Name                /dev/vg6/ftpdata
-  VG Name                vg6
-  LV UUID                LSOtbB-k3mz-DVbb-ATcE-IhBk-V9B7-uaSStM
-  LV Write Access        read/write
-  LV Status              available
-  # open                 1
-  LV Size                10.00 GiB
-  Current LE             640
-  Segments               1
-  Allocation             inherit
-  Read ahead sectors     auto
-  - currently set to     256
-  Block device           253:0
-
-现在就文件系统和逻辑卷空间一致了
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>[root@yangcan ftpdata]# lvextend -L +4G /dev/vg6/ftpdata
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>或者使用,就是想让你明白-L 和 -L +的区别,-L 后面直接加容量,是指直接加到容量,而-L +容量,是指在原有容量上加多少容量!
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>[root@yangcan ftpdata]# lvextend -L 10G /dev/vg6/ftpdata
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>  Extending logical volume ftpdata to 10.00 GiB
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>  Logical volume ftpdata successfully resized
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>
+</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>[root@yangcan ftpdata]# lvdisplay
+</span><span id="__span-6-10"><a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a>  --- Logical volume ---
+</span><span id="__span-6-11"><a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a>  LV Name                /dev/vg6/ftpdata
+</span><span id="__span-6-12"><a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a>  VG Name                vg6
+</span><span id="__span-6-13"><a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a>  LV UUID                LSOtbB-k3mz-DVbb-ATcE-IhBk-V9B7-uaSStM
+</span><span id="__span-6-14"><a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a>  LV Write Access        read/write
+</span><span id="__span-6-15"><a id="__codelineno-6-15" name="__codelineno-6-15" href="#__codelineno-6-15"></a>  LV Status              available
+</span><span id="__span-6-16"><a id="__codelineno-6-16" name="__codelineno-6-16" href="#__codelineno-6-16"></a>  # open                 1
+</span><span id="__span-6-17"><a id="__codelineno-6-17" name="__codelineno-6-17" href="#__codelineno-6-17"></a>  LV Size                10.00 GiB
+</span><span id="__span-6-18"><a id="__codelineno-6-18" name="__codelineno-6-18" href="#__codelineno-6-18"></a>  Current LE             640
+</span><span id="__span-6-19"><a id="__codelineno-6-19" name="__codelineno-6-19" href="#__codelineno-6-19"></a>  Segments               1
+</span><span id="__span-6-20"><a id="__codelineno-6-20" name="__codelineno-6-20" href="#__codelineno-6-20"></a>  Allocation             inherit
+</span><span id="__span-6-21"><a id="__codelineno-6-21" name="__codelineno-6-21" href="#__codelineno-6-21"></a>  Read ahead sectors     auto
+</span><span id="__span-6-22"><a id="__codelineno-6-22" name="__codelineno-6-22" href="#__codelineno-6-22"></a>  - currently set to     256
+</span><span id="__span-6-23"><a id="__codelineno-6-23" name="__codelineno-6-23" href="#__codelineno-6-23"></a>  Block device           253:0
+</span><span id="__span-6-24"><a id="__codelineno-6-24" name="__codelineno-6-24" href="#__codelineno-6-24"></a>
+</span><span id="__span-6-25"><a id="__codelineno-6-25" name="__codelineno-6-25" href="#__codelineno-6-25"></a>[root@yangcan ftpdata]# df -h|grep ftpdata
+</span><span id="__span-6-26"><a id="__codelineno-6-26" name="__codelineno-6-26" href="#__codelineno-6-26"></a>/dev/mapper/vg6-ftpdata
+</span><span id="__span-6-27"><a id="__codelineno-6-27" name="__codelineno-6-27" href="#__codelineno-6-27"></a>                      6.0G  145M  5.5G   3% /ftpdata
+</span><span id="__span-6-28"><a id="__codelineno-6-28" name="__codelineno-6-28" href="#__codelineno-6-28"></a>
+</span><span id="__span-6-29"><a id="__codelineno-6-29" name="__codelineno-6-29" href="#__codelineno-6-29"></a>此时查看ftpdata文件系统容量的时候,还是之前的大小,所以需要resize2fs
+</span><span id="__span-6-30"><a id="__codelineno-6-30" name="__codelineno-6-30" href="#__codelineno-6-30"></a>
+</span><span id="__span-6-31"><a id="__codelineno-6-31" name="__codelineno-6-31" href="#__codelineno-6-31"></a>[root@yangcan ftpdata]# resize2fs /dev/vg6/ftpdata
+</span><span id="__span-6-32"><a id="__codelineno-6-32" name="__codelineno-6-32" href="#__codelineno-6-32"></a>resize2fs 1.41.12 (17-May-2010)
+</span><span id="__span-6-33"><a id="__codelineno-6-33" name="__codelineno-6-33" href="#__codelineno-6-33"></a>Filesystem at /dev/vg6/ftpdata is mounted on /ftpdata; on-line resizing required
+</span><span id="__span-6-34"><a id="__codelineno-6-34" name="__codelineno-6-34" href="#__codelineno-6-34"></a>old desc_blocks = 1, new_desc_blocks = 1
+</span><span id="__span-6-35"><a id="__codelineno-6-35" name="__codelineno-6-35" href="#__codelineno-6-35"></a>Performing an on-line resize of /dev/vg6/ftpdata to 2621440 (4k) blocks.
+</span><span id="__span-6-36"><a id="__codelineno-6-36" name="__codelineno-6-36" href="#__codelineno-6-36"></a>The filesystem on /dev/vg6/ftpdata is now 2621440 blocks long.
+</span><span id="__span-6-37"><a id="__codelineno-6-37" name="__codelineno-6-37" href="#__codelineno-6-37"></a>
+</span><span id="__span-6-38"><a id="__codelineno-6-38" name="__codelineno-6-38" href="#__codelineno-6-38"></a>[root@yangcan ftpdata]# df -h|grep ftpdata
+</span><span id="__span-6-39"><a id="__codelineno-6-39" name="__codelineno-6-39" href="#__codelineno-6-39"></a>/dev/mapper/vg6-ftpdata
+</span><span id="__span-6-40"><a id="__codelineno-6-40" name="__codelineno-6-40" href="#__codelineno-6-40"></a>                      9.9G  147M  9.3G   2% /ftpdata
+</span><span id="__span-6-41"><a id="__codelineno-6-41" name="__codelineno-6-41" href="#__codelineno-6-41"></a>
+</span><span id="__span-6-42"><a id="__codelineno-6-42" name="__codelineno-6-42" href="#__codelineno-6-42"></a>[root@yangcan ftpdata]# lvdisplay
+</span><span id="__span-6-43"><a id="__codelineno-6-43" name="__codelineno-6-43" href="#__codelineno-6-43"></a>  --- Logical volume ---
+</span><span id="__span-6-44"><a id="__codelineno-6-44" name="__codelineno-6-44" href="#__codelineno-6-44"></a>  LV Name                /dev/vg6/ftpdata
+</span><span id="__span-6-45"><a id="__codelineno-6-45" name="__codelineno-6-45" href="#__codelineno-6-45"></a>  VG Name                vg6
+</span><span id="__span-6-46"><a id="__codelineno-6-46" name="__codelineno-6-46" href="#__codelineno-6-46"></a>  LV UUID                LSOtbB-k3mz-DVbb-ATcE-IhBk-V9B7-uaSStM
+</span><span id="__span-6-47"><a id="__codelineno-6-47" name="__codelineno-6-47" href="#__codelineno-6-47"></a>  LV Write Access        read/write
+</span><span id="__span-6-48"><a id="__codelineno-6-48" name="__codelineno-6-48" href="#__codelineno-6-48"></a>  LV Status              available
+</span><span id="__span-6-49"><a id="__codelineno-6-49" name="__codelineno-6-49" href="#__codelineno-6-49"></a>  # open                 1
+</span><span id="__span-6-50"><a id="__codelineno-6-50" name="__codelineno-6-50" href="#__codelineno-6-50"></a>  LV Size                10.00 GiB
+</span><span id="__span-6-51"><a id="__codelineno-6-51" name="__codelineno-6-51" href="#__codelineno-6-51"></a>  Current LE             640
+</span><span id="__span-6-52"><a id="__codelineno-6-52" name="__codelineno-6-52" href="#__codelineno-6-52"></a>  Segments               1
+</span><span id="__span-6-53"><a id="__codelineno-6-53" name="__codelineno-6-53" href="#__codelineno-6-53"></a>  Allocation             inherit
+</span><span id="__span-6-54"><a id="__codelineno-6-54" name="__codelineno-6-54" href="#__codelineno-6-54"></a>  Read ahead sectors     auto
+</span><span id="__span-6-55"><a id="__codelineno-6-55" name="__codelineno-6-55" href="#__codelineno-6-55"></a>  - currently set to     256
+</span><span id="__span-6-56"><a id="__codelineno-6-56" name="__codelineno-6-56" href="#__codelineno-6-56"></a>  Block device           253:0
+</span><span id="__span-6-57"><a id="__codelineno-6-57" name="__codelineno-6-57" href="#__codelineno-6-57"></a>
+</span><span id="__span-6-58"><a id="__codelineno-6-58" name="__codelineno-6-58" href="#__codelineno-6-58"></a>现在就文件系统和逻辑卷空间一致了
+</span></code></pre></div>
 <h5 id="-_2">-----------缩容----------<a class="headerlink" href="#-_2" title="Permanent link">&para;</a></h5>
 <p>扩容实验做完了,接下来做缩容,缩容比扩容复杂,平时工作也不能轻易的指定缩容的大小.</p>
-<pre><code>[root@yangcan ftpdata]# cd ..
-[root@yangcan /]# umount /ftpdata/
-[root@yangcan /]# e2fsck -f /dev/vg6/ftpdata
-e2fsck 1.41.12 (17-May-2010)
-Pass 1: Checking inodes, blocks, and sizes
-Pass 2: Checking directory structure
-Pass 3: Checking directory connectivity
-Pass 4: Checking reference counts
-Pass 5: Checking group summary information
-/dev/vg6/ftpdata: 41/655360 files (0.0% non-contiguous), 78604/2621440 blocks
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>[root@yangcan ftpdata]# cd ..
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>[root@yangcan /]# umount /ftpdata/
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>[root@yangcan /]# e2fsck -f /dev/vg6/ftpdata
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>e2fsck 1.41.12 (17-May-2010)
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>Pass 1: Checking inodes, blocks, and sizes
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>Pass 2: Checking directory structure
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>Pass 3: Checking directory connectivity
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>Pass 4: Checking reference counts
+</span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a>Pass 5: Checking group summary information
+</span><span id="__span-7-10"><a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a>/dev/vg6/ftpdata: 41/655360 files (0.0% non-contiguous), 78604/2621440 blocks
+</span></code></pre></div>
 <blockquote>
 <p>注意:我们大概要缩到6G左右,那我们就不能直接resize2fs 到6G,这样肯定是错误的,因为PE是可以被LVM寻址的最小单元,本次实验PE大小为16M.我们去做缩容的时候,不可能是0.6个PE.所有尤其注意,网上很多资料就是直接指定大小,而没有做测试环节!!!会造成数据的丢失,所以指定大小时,先用lvreduce -t 测试一下.用bc算出6G的位置,到底那个值合适</p>
 </blockquote>
-<pre><code>[root@yangcan /]# bc
-bc 1.06.95
-Copyright 1991-1994, 1997, 1998, 2000, 2004, 2006 Free Software Foundation, Inc.
-This is free software with ABSOLUTELY NO WARRANTY.
-For details type `warranty'.
---6000刚好整除16
-6000%16
-0
---6001除16为1
-6001%16
-1
-5999%16
-15
---刚好6000M,取余为0,我们比较一下6001和6000的区别
-
-[root@yangcan /]# lvreduce -L 6001M /dev/vg6/ftpdata -t
-  Test mode: Metadata will NOT be updated and volumes will not be (de)activated.
-  Rounding up size to full physical extent 5.88 GiB
-  WARNING: Reducing active logical volume to 5.88 GiB
-  THIS MAY DESTROY YOUR DATA (filesystem etc.)
-Do you really want to reduce ftpdata? [y/n]: n
-  Logical volume ftpdata NOT reduced
-显示了警告信息!
-
-[root@yangcan /]# lvreduce -L 6000M /dev/vg6/ftpdata -t
-  Test mode: Metadata will NOT be updated and volumes will not be (de)activated.
-  WARNING: Reducing active logical volume to 5.86 GiB
-  THIS MAY DESTROY YOUR DATA (filesystem etc.)
-Do you really want to reduce ftpdata? [y/n]:
-
-提示为6000M是,没问题
-当-t 测试时,没问题了,那我们就resize2fs了
-
-[root@yangcan /]# resize2fs /dev/vg6/ftpdata 6000M
-resize2fs 1.41.12 (17-May-2010)
-Resizing the filesystem on /dev/vg6/ftpdata to 1536000 (4k) blocks.
-The filesystem on /dev/vg6/ftpdata is now 1536000 blocks long.
-挂载,查看文件系统的大小,为最新的6000M,数据也没有丢失!!
-
-[root@yangcan /]# mount -a
-[root@yangcan /]# df -h
-Filesystem            Size  Used Avail Use% Mounted on
-/dev/sda2              17G  2.1G   14G  14% /
-tmpfs                 504M  264K  504M   1% /dev/shm
-/dev/sda1             291M   31M  246M  11% /boot
-/dev/sr0              2.9G  2.9G     0 100% /media/cdrom
-/dev/mapper/vg6-ftpdata  5.8G  145M  5.4G   3% /ftpdata
-
-我们用lvdisplay查看一下逻辑卷的大小还是为10G
-
-[root@yangcan /]# lvdisplay
-  --- Logical volume ---
-  LV Name                /dev/vg6/ftpdata
-  VG Name                vg6
-  LV UUID                LSOtbB-k3mz-DVbb-ATcE-IhBk-V9B7-uaSStM
-  LV Write Access        read/write
-  LV Status              available
-  # open                 1
-  LV Size                10.00 GiB
-  Current LE             640
-  Segments               1
-  Allocation             inherit
-  Read ahead sectors     auto
-  - currently set to     256
-  Block device           253:0
-
-所以我们用lvreduce进行调整!
-
-[root@yangcan /]# lvreduce -L 6000M /dev/vg6/ftpdata
-  WARNING: Reducing active and open logical volume to 5.86 GiB
-  THIS MAY DESTROY YOUR DATA (filesystem etc.)
-Do you really want to reduce ftpdata? [y/n]: n
-  Logical volume ftpdata NOT reduced
-
---提示逻辑卷正在打开,所有我们需要停止逻辑卷,再去调整大小
-
-[root@yangcan /]# lvchange -an /dev/vg6/ftpdata
-[root@yangcan /]# lvscan
-  inactive          '/dev/vg6/ftpdata' [10.00 GiB] inherit
-
-[root@yangcan /]# lvreduce -L 6000M /dev/vg6/ftpdata
-  Reducing logical volume ftpdata to 5.86 GiB
-  Logical volume ftpdata successfully resized
-
-[root@yangcan /]# mount -a
-mount: special device /dev/vg6/ftpdata does not exist
-
---当我们去挂载的时候,提示没有这个设备.所以需要启用
-
-[root@yangcan /]# lvchange -ay /dev/vg6/ftpdata
-[root@yangcan /]# lvscan
-  ACTIVE            '/dev/vg6/ftpdata' [5.86 GiB] inherit
-
-重新挂载,里面的文件还在!
-
-[root@yangcan /]# mount -a
-[root@yangcan /]# cd /ftpdata/
-[root@yangcan ftpdata]# ll
-total 4996
--rw-r--r--. 1 root root     148 Jul 30 19:37 asound.conf
--rw-r--r--. 1 root root   21214 Jul 30 19:37 dnsmasq.conf
--rw-r--r--. 1 root root     559 Jul 30 19:37 dracut.conf
--rw-r--r--. 1 root root      20 Jul 30 19:37 fprintd.conf
--rw-r--r--. 1 root root       0 Jul 30 19:37 gai.conf
--rw-------. 1 root root     781 Jul 30 19:37 grub.conf
--rw-r--r--. 1 root root       9 Jul 30 19:37 host.conf
--rw-r--r--. 1 root root    5309 Jul 30 19:37 kdump.conf
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>[root@yangcan /]# bc
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>bc 1.06.95
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>Copyright 1991-1994, 1997, 1998, 2000, 2004, 2006 Free Software Foundation, Inc.
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>This is free software with ABSOLUTELY NO WARRANTY.
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>For details type `warranty&#39;.
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>--6000刚好整除16
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>6000%16
+</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>0
+</span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a>--6001除16为1
+</span><span id="__span-8-10"><a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a>6001%16
+</span><span id="__span-8-11"><a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a>1
+</span><span id="__span-8-12"><a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a>5999%16
+</span><span id="__span-8-13"><a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a>15
+</span><span id="__span-8-14"><a id="__codelineno-8-14" name="__codelineno-8-14" href="#__codelineno-8-14"></a>--刚好6000M,取余为0,我们比较一下6001和6000的区别
+</span><span id="__span-8-15"><a id="__codelineno-8-15" name="__codelineno-8-15" href="#__codelineno-8-15"></a>
+</span><span id="__span-8-16"><a id="__codelineno-8-16" name="__codelineno-8-16" href="#__codelineno-8-16"></a>[root@yangcan /]# lvreduce -L 6001M /dev/vg6/ftpdata -t
+</span><span id="__span-8-17"><a id="__codelineno-8-17" name="__codelineno-8-17" href="#__codelineno-8-17"></a>  Test mode: Metadata will NOT be updated and volumes will not be (de)activated.
+</span><span id="__span-8-18"><a id="__codelineno-8-18" name="__codelineno-8-18" href="#__codelineno-8-18"></a>  Rounding up size to full physical extent 5.88 GiB
+</span><span id="__span-8-19"><a id="__codelineno-8-19" name="__codelineno-8-19" href="#__codelineno-8-19"></a>  WARNING: Reducing active logical volume to 5.88 GiB
+</span><span id="__span-8-20"><a id="__codelineno-8-20" name="__codelineno-8-20" href="#__codelineno-8-20"></a>  THIS MAY DESTROY YOUR DATA (filesystem etc.)
+</span><span id="__span-8-21"><a id="__codelineno-8-21" name="__codelineno-8-21" href="#__codelineno-8-21"></a>Do you really want to reduce ftpdata? [y/n]: n
+</span><span id="__span-8-22"><a id="__codelineno-8-22" name="__codelineno-8-22" href="#__codelineno-8-22"></a>  Logical volume ftpdata NOT reduced
+</span><span id="__span-8-23"><a id="__codelineno-8-23" name="__codelineno-8-23" href="#__codelineno-8-23"></a>显示了警告信息!
+</span><span id="__span-8-24"><a id="__codelineno-8-24" name="__codelineno-8-24" href="#__codelineno-8-24"></a>
+</span><span id="__span-8-25"><a id="__codelineno-8-25" name="__codelineno-8-25" href="#__codelineno-8-25"></a>[root@yangcan /]# lvreduce -L 6000M /dev/vg6/ftpdata -t
+</span><span id="__span-8-26"><a id="__codelineno-8-26" name="__codelineno-8-26" href="#__codelineno-8-26"></a>  Test mode: Metadata will NOT be updated and volumes will not be (de)activated.
+</span><span id="__span-8-27"><a id="__codelineno-8-27" name="__codelineno-8-27" href="#__codelineno-8-27"></a>  WARNING: Reducing active logical volume to 5.86 GiB
+</span><span id="__span-8-28"><a id="__codelineno-8-28" name="__codelineno-8-28" href="#__codelineno-8-28"></a>  THIS MAY DESTROY YOUR DATA (filesystem etc.)
+</span><span id="__span-8-29"><a id="__codelineno-8-29" name="__codelineno-8-29" href="#__codelineno-8-29"></a>Do you really want to reduce ftpdata? [y/n]:
+</span><span id="__span-8-30"><a id="__codelineno-8-30" name="__codelineno-8-30" href="#__codelineno-8-30"></a>
+</span><span id="__span-8-31"><a id="__codelineno-8-31" name="__codelineno-8-31" href="#__codelineno-8-31"></a>提示为6000M是,没问题
+</span><span id="__span-8-32"><a id="__codelineno-8-32" name="__codelineno-8-32" href="#__codelineno-8-32"></a>当-t 测试时,没问题了,那我们就resize2fs了
+</span><span id="__span-8-33"><a id="__codelineno-8-33" name="__codelineno-8-33" href="#__codelineno-8-33"></a>
+</span><span id="__span-8-34"><a id="__codelineno-8-34" name="__codelineno-8-34" href="#__codelineno-8-34"></a>[root@yangcan /]# resize2fs /dev/vg6/ftpdata 6000M
+</span><span id="__span-8-35"><a id="__codelineno-8-35" name="__codelineno-8-35" href="#__codelineno-8-35"></a>resize2fs 1.41.12 (17-May-2010)
+</span><span id="__span-8-36"><a id="__codelineno-8-36" name="__codelineno-8-36" href="#__codelineno-8-36"></a>Resizing the filesystem on /dev/vg6/ftpdata to 1536000 (4k) blocks.
+</span><span id="__span-8-37"><a id="__codelineno-8-37" name="__codelineno-8-37" href="#__codelineno-8-37"></a>The filesystem on /dev/vg6/ftpdata is now 1536000 blocks long.
+</span><span id="__span-8-38"><a id="__codelineno-8-38" name="__codelineno-8-38" href="#__codelineno-8-38"></a>挂载,查看文件系统的大小,为最新的6000M,数据也没有丢失!!
+</span><span id="__span-8-39"><a id="__codelineno-8-39" name="__codelineno-8-39" href="#__codelineno-8-39"></a>
+</span><span id="__span-8-40"><a id="__codelineno-8-40" name="__codelineno-8-40" href="#__codelineno-8-40"></a>[root@yangcan /]# mount -a
+</span><span id="__span-8-41"><a id="__codelineno-8-41" name="__codelineno-8-41" href="#__codelineno-8-41"></a>[root@yangcan /]# df -h
+</span><span id="__span-8-42"><a id="__codelineno-8-42" name="__codelineno-8-42" href="#__codelineno-8-42"></a>Filesystem            Size  Used Avail Use% Mounted on
+</span><span id="__span-8-43"><a id="__codelineno-8-43" name="__codelineno-8-43" href="#__codelineno-8-43"></a>/dev/sda2              17G  2.1G   14G  14% /
+</span><span id="__span-8-44"><a id="__codelineno-8-44" name="__codelineno-8-44" href="#__codelineno-8-44"></a>tmpfs                 504M  264K  504M   1% /dev/shm
+</span><span id="__span-8-45"><a id="__codelineno-8-45" name="__codelineno-8-45" href="#__codelineno-8-45"></a>/dev/sda1             291M   31M  246M  11% /boot
+</span><span id="__span-8-46"><a id="__codelineno-8-46" name="__codelineno-8-46" href="#__codelineno-8-46"></a>/dev/sr0              2.9G  2.9G     0 100% /media/cdrom
+</span><span id="__span-8-47"><a id="__codelineno-8-47" name="__codelineno-8-47" href="#__codelineno-8-47"></a>/dev/mapper/vg6-ftpdata  5.8G  145M  5.4G   3% /ftpdata
+</span><span id="__span-8-48"><a id="__codelineno-8-48" name="__codelineno-8-48" href="#__codelineno-8-48"></a>
+</span><span id="__span-8-49"><a id="__codelineno-8-49" name="__codelineno-8-49" href="#__codelineno-8-49"></a>我们用lvdisplay查看一下逻辑卷的大小还是为10G
+</span><span id="__span-8-50"><a id="__codelineno-8-50" name="__codelineno-8-50" href="#__codelineno-8-50"></a>
+</span><span id="__span-8-51"><a id="__codelineno-8-51" name="__codelineno-8-51" href="#__codelineno-8-51"></a>[root@yangcan /]# lvdisplay
+</span><span id="__span-8-52"><a id="__codelineno-8-52" name="__codelineno-8-52" href="#__codelineno-8-52"></a>  --- Logical volume ---
+</span><span id="__span-8-53"><a id="__codelineno-8-53" name="__codelineno-8-53" href="#__codelineno-8-53"></a>  LV Name                /dev/vg6/ftpdata
+</span><span id="__span-8-54"><a id="__codelineno-8-54" name="__codelineno-8-54" href="#__codelineno-8-54"></a>  VG Name                vg6
+</span><span id="__span-8-55"><a id="__codelineno-8-55" name="__codelineno-8-55" href="#__codelineno-8-55"></a>  LV UUID                LSOtbB-k3mz-DVbb-ATcE-IhBk-V9B7-uaSStM
+</span><span id="__span-8-56"><a id="__codelineno-8-56" name="__codelineno-8-56" href="#__codelineno-8-56"></a>  LV Write Access        read/write
+</span><span id="__span-8-57"><a id="__codelineno-8-57" name="__codelineno-8-57" href="#__codelineno-8-57"></a>  LV Status              available
+</span><span id="__span-8-58"><a id="__codelineno-8-58" name="__codelineno-8-58" href="#__codelineno-8-58"></a>  # open                 1
+</span><span id="__span-8-59"><a id="__codelineno-8-59" name="__codelineno-8-59" href="#__codelineno-8-59"></a>  LV Size                10.00 GiB
+</span><span id="__span-8-60"><a id="__codelineno-8-60" name="__codelineno-8-60" href="#__codelineno-8-60"></a>  Current LE             640
+</span><span id="__span-8-61"><a id="__codelineno-8-61" name="__codelineno-8-61" href="#__codelineno-8-61"></a>  Segments               1
+</span><span id="__span-8-62"><a id="__codelineno-8-62" name="__codelineno-8-62" href="#__codelineno-8-62"></a>  Allocation             inherit
+</span><span id="__span-8-63"><a id="__codelineno-8-63" name="__codelineno-8-63" href="#__codelineno-8-63"></a>  Read ahead sectors     auto
+</span><span id="__span-8-64"><a id="__codelineno-8-64" name="__codelineno-8-64" href="#__codelineno-8-64"></a>  - currently set to     256
+</span><span id="__span-8-65"><a id="__codelineno-8-65" name="__codelineno-8-65" href="#__codelineno-8-65"></a>  Block device           253:0
+</span><span id="__span-8-66"><a id="__codelineno-8-66" name="__codelineno-8-66" href="#__codelineno-8-66"></a>
+</span><span id="__span-8-67"><a id="__codelineno-8-67" name="__codelineno-8-67" href="#__codelineno-8-67"></a>所以我们用lvreduce进行调整!
+</span><span id="__span-8-68"><a id="__codelineno-8-68" name="__codelineno-8-68" href="#__codelineno-8-68"></a>
+</span><span id="__span-8-69"><a id="__codelineno-8-69" name="__codelineno-8-69" href="#__codelineno-8-69"></a>[root@yangcan /]# lvreduce -L 6000M /dev/vg6/ftpdata
+</span><span id="__span-8-70"><a id="__codelineno-8-70" name="__codelineno-8-70" href="#__codelineno-8-70"></a>  WARNING: Reducing active and open logical volume to 5.86 GiB
+</span><span id="__span-8-71"><a id="__codelineno-8-71" name="__codelineno-8-71" href="#__codelineno-8-71"></a>  THIS MAY DESTROY YOUR DATA (filesystem etc.)
+</span><span id="__span-8-72"><a id="__codelineno-8-72" name="__codelineno-8-72" href="#__codelineno-8-72"></a>Do you really want to reduce ftpdata? [y/n]: n
+</span><span id="__span-8-73"><a id="__codelineno-8-73" name="__codelineno-8-73" href="#__codelineno-8-73"></a>  Logical volume ftpdata NOT reduced
+</span><span id="__span-8-74"><a id="__codelineno-8-74" name="__codelineno-8-74" href="#__codelineno-8-74"></a>
+</span><span id="__span-8-75"><a id="__codelineno-8-75" name="__codelineno-8-75" href="#__codelineno-8-75"></a>--提示逻辑卷正在打开,所有我们需要停止逻辑卷,再去调整大小
+</span><span id="__span-8-76"><a id="__codelineno-8-76" name="__codelineno-8-76" href="#__codelineno-8-76"></a>
+</span><span id="__span-8-77"><a id="__codelineno-8-77" name="__codelineno-8-77" href="#__codelineno-8-77"></a>[root@yangcan /]# lvchange -an /dev/vg6/ftpdata
+</span><span id="__span-8-78"><a id="__codelineno-8-78" name="__codelineno-8-78" href="#__codelineno-8-78"></a>[root@yangcan /]# lvscan
+</span><span id="__span-8-79"><a id="__codelineno-8-79" name="__codelineno-8-79" href="#__codelineno-8-79"></a>  inactive          &#39;/dev/vg6/ftpdata&#39; [10.00 GiB] inherit
+</span><span id="__span-8-80"><a id="__codelineno-8-80" name="__codelineno-8-80" href="#__codelineno-8-80"></a>
+</span><span id="__span-8-81"><a id="__codelineno-8-81" name="__codelineno-8-81" href="#__codelineno-8-81"></a>[root@yangcan /]# lvreduce -L 6000M /dev/vg6/ftpdata
+</span><span id="__span-8-82"><a id="__codelineno-8-82" name="__codelineno-8-82" href="#__codelineno-8-82"></a>  Reducing logical volume ftpdata to 5.86 GiB
+</span><span id="__span-8-83"><a id="__codelineno-8-83" name="__codelineno-8-83" href="#__codelineno-8-83"></a>  Logical volume ftpdata successfully resized
+</span><span id="__span-8-84"><a id="__codelineno-8-84" name="__codelineno-8-84" href="#__codelineno-8-84"></a>
+</span><span id="__span-8-85"><a id="__codelineno-8-85" name="__codelineno-8-85" href="#__codelineno-8-85"></a>[root@yangcan /]# mount -a
+</span><span id="__span-8-86"><a id="__codelineno-8-86" name="__codelineno-8-86" href="#__codelineno-8-86"></a>mount: special device /dev/vg6/ftpdata does not exist
+</span><span id="__span-8-87"><a id="__codelineno-8-87" name="__codelineno-8-87" href="#__codelineno-8-87"></a>
+</span><span id="__span-8-88"><a id="__codelineno-8-88" name="__codelineno-8-88" href="#__codelineno-8-88"></a>--当我们去挂载的时候,提示没有这个设备.所以需要启用
+</span><span id="__span-8-89"><a id="__codelineno-8-89" name="__codelineno-8-89" href="#__codelineno-8-89"></a>
+</span><span id="__span-8-90"><a id="__codelineno-8-90" name="__codelineno-8-90" href="#__codelineno-8-90"></a>[root@yangcan /]# lvchange -ay /dev/vg6/ftpdata
+</span><span id="__span-8-91"><a id="__codelineno-8-91" name="__codelineno-8-91" href="#__codelineno-8-91"></a>[root@yangcan /]# lvscan
+</span><span id="__span-8-92"><a id="__codelineno-8-92" name="__codelineno-8-92" href="#__codelineno-8-92"></a>  ACTIVE            &#39;/dev/vg6/ftpdata&#39; [5.86 GiB] inherit
+</span><span id="__span-8-93"><a id="__codelineno-8-93" name="__codelineno-8-93" href="#__codelineno-8-93"></a>
+</span><span id="__span-8-94"><a id="__codelineno-8-94" name="__codelineno-8-94" href="#__codelineno-8-94"></a>重新挂载,里面的文件还在!
+</span><span id="__span-8-95"><a id="__codelineno-8-95" name="__codelineno-8-95" href="#__codelineno-8-95"></a>
+</span><span id="__span-8-96"><a id="__codelineno-8-96" name="__codelineno-8-96" href="#__codelineno-8-96"></a>[root@yangcan /]# mount -a
+</span><span id="__span-8-97"><a id="__codelineno-8-97" name="__codelineno-8-97" href="#__codelineno-8-97"></a>[root@yangcan /]# cd /ftpdata/
+</span><span id="__span-8-98"><a id="__codelineno-8-98" name="__codelineno-8-98" href="#__codelineno-8-98"></a>[root@yangcan ftpdata]# ll
+</span><span id="__span-8-99"><a id="__codelineno-8-99" name="__codelineno-8-99" href="#__codelineno-8-99"></a>total 4996
+</span><span id="__span-8-100"><a id="__codelineno-8-100" name="__codelineno-8-100" href="#__codelineno-8-100"></a>-rw-r--r--. 1 root root     148 Jul 30 19:37 asound.conf
+</span><span id="__span-8-101"><a id="__codelineno-8-101" name="__codelineno-8-101" href="#__codelineno-8-101"></a>-rw-r--r--. 1 root root   21214 Jul 30 19:37 dnsmasq.conf
+</span><span id="__span-8-102"><a id="__codelineno-8-102" name="__codelineno-8-102" href="#__codelineno-8-102"></a>-rw-r--r--. 1 root root     559 Jul 30 19:37 dracut.conf
+</span><span id="__span-8-103"><a id="__codelineno-8-103" name="__codelineno-8-103" href="#__codelineno-8-103"></a>-rw-r--r--. 1 root root      20 Jul 30 19:37 fprintd.conf
+</span><span id="__span-8-104"><a id="__codelineno-8-104" name="__codelineno-8-104" href="#__codelineno-8-104"></a>-rw-r--r--. 1 root root       0 Jul 30 19:37 gai.conf
+</span><span id="__span-8-105"><a id="__codelineno-8-105" name="__codelineno-8-105" href="#__codelineno-8-105"></a>-rw-------. 1 root root     781 Jul 30 19:37 grub.conf
+</span><span id="__span-8-106"><a id="__codelineno-8-106" name="__codelineno-8-106" href="#__codelineno-8-106"></a>-rw-r--r--. 1 root root       9 Jul 30 19:37 host.conf
+</span><span id="__span-8-107"><a id="__codelineno-8-107" name="__codelineno-8-107" href="#__codelineno-8-107"></a>-rw-r--r--. 1 root root    5309 Jul 30 19:37 kdump.conf
+</span></code></pre></div>
 <p>ps: 你也可以不做-t测试,直接指定大小去缩容,看数据是否还在?</p>
 <h5 id="-_3">--------移除物理卷--------<a class="headerlink" href="#-_3" title="Permanent link">&para;</a></h5>
 <ul>
@@ -1515,6 +1521,11 @@ total 4996
           
         </div>
         
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+            Back to top
+          </button>
+        
       </main>
       
         <footer class="md-footer">
@@ -1544,7 +1555,7 @@ total 4996
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tracking", "navigation.expand", "navigation.sections", "navigation.indexes", "navigation.path", "toc.integrate"], "search": "../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tracking", "navigation.top", "navigation.sections", "navigation.indexes", "navigation.path", "toc.integrate", "content.code.copy"], "search": "../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
       <script src="../assets/javascripts/bundle.fac441b0.min.js"></script>

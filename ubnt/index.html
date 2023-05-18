@@ -206,9 +206,7 @@
       
       
       
-        
-      
-      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
       
       
         
@@ -324,9 +322,7 @@
       
       
       
-        
-      
-      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
       
       
         
@@ -397,9 +393,7 @@
       
       
       
-        
-      
-      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
       
       
         
@@ -454,11 +448,11 @@
       
       
       
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+      
+      
         
-      
-      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_8" >
-      
-      
+          
         
           
         
@@ -578,6 +572,20 @@
   
   
     <li class="md-nav__item">
+      <a href="../mysql-mgr-copy/" class="md-nav__link">
+        転載MGR
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../mysql-ha/" class="md-nav__link">
         mysql+keepalived搭建教程
       </a>
@@ -607,9 +615,7 @@
       
       
       
-        
-      
-      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_9" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
       
       
         
@@ -1211,21 +1217,21 @@
 <ul>
 <li><a href="https://help.ubnt.com/hc/en-us/articles/217367937-EdgeRouter-Port-Forwarding">EdgeRouter - Port Forwarding</a></li>
 </ul>
-<pre><code>    set firewall name WAN_IN rule 22 action accept
-    set firewall name WAN_IN rule 22 destination address 192.168.1.100
-    set firewall name WAN_IN rule 22 destination port 22
-    set firewall name WAN_IN rule 22 protocol tcp
-
-    set service nat rule 22 description &quot;port forward to Server (ssh)&quot;
-    set service nat rule 22 destination port 22
-    set service nat rule 22 inbound-interface pppoe0
-    set service nat rule 22 inside-address address 192.168.1.100
-    set service nat rule 22 inside-address port 22
-    set service nat rule 22 protocol tcp
-    set service nat rule 22 type destination
-    commit
-    save
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>    set firewall name WAN_IN rule 22 action accept
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    set firewall name WAN_IN rule 22 destination address 192.168.1.100
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    set firewall name WAN_IN rule 22 destination port 22
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    set firewall name WAN_IN rule 22 protocol tcp
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>    set service nat rule 22 description &quot;port forward to Server (ssh)&quot;
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>    set service nat rule 22 destination port 22
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>    set service nat rule 22 inbound-interface pppoe0
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>    set service nat rule 22 inside-address address 192.168.1.100
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>    set service nat rule 22 inside-address port 22
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>    set service nat rule 22 protocol tcp
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>    set service nat rule 22 type destination
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>    commit
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>    save
+</span></code></pre></div>
 <h2 id="add-dynamic-dns">Add dynamic DNS<a class="headerlink" href="#add-dynamic-dns" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
@@ -1273,308 +1279,308 @@
 <li>duckdns</li>
 <li><a href="https://yabe.jp/gadgets/edgerouter-x-05-ddns">EdgeRouter X - 5. ダイナミック DNS の設定 ( DDNS )</a></li>
 </ul>
-<pre><code>root@ubnt:/home/ubnt# configure
-[edit]
-root@ubnt# set service dns dynamic interface pppoe0  service custom-duckdns host-name return-0
-[edit]
-root@ubnt# set service dns dynamic interface pppoe0  service custom-duckdns login nosuer
-[edit]
-root@ubnt# set service dns dynamic interface pppoe0  service custom-duckdns password xxxtokenxxxx
-[edit]
-root@ubnt# set service dns dynamic interface pppoe0  service custom-duckdns protocol dyndns2
-[edit]
-root@ubnt# set service dns dynamic interface pppoe0  service custom-duckdns server www.duckdns.org
-[edit]
-root@ubnt# commit
-[edit]
-root@ubnt# save
-Saving configuration to '/config/config.boot'...
-Done
-[edit]
-root@ubnt#
-root@ubnt:/home/ubnt# show dns dynamic status
-# ddns
-interface    : pppoe0
-ip address   : &lt;PublicIP&gt;
-host-name    : &lt;hostname&gt; (xxx.ddns.net)
-last update  : Wed Apr 25 10:28:27 2018
-update-status: good
-# duckdns
-interface    : pppoe0
-ip address   : &lt;PublicIP&gt;
-host-name    : &lt;hostname&gt; (xxx)
-last update  : Wed Apr 25 10:28:27 2018
-update-status: good
-root@ubnt:/home/ubnt#
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>root@ubnt:/home/ubnt# configure
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>[edit]
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>root@ubnt# set service dns dynamic interface pppoe0  service custom-duckdns host-name return-0
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>[edit]
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>root@ubnt# set service dns dynamic interface pppoe0  service custom-duckdns login nosuer
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>[edit]
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>root@ubnt# set service dns dynamic interface pppoe0  service custom-duckdns password xxxtokenxxxx
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>[edit]
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>root@ubnt# set service dns dynamic interface pppoe0  service custom-duckdns protocol dyndns2
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>[edit]
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>root@ubnt# set service dns dynamic interface pppoe0  service custom-duckdns server www.duckdns.org
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>[edit]
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>root@ubnt# commit
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>[edit]
+</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>root@ubnt# save
+</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>Saving configuration to &#39;/config/config.boot&#39;...
+</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>Done
+</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>[edit]
+</span><span id="__span-1-19"><a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a>root@ubnt#
+</span><span id="__span-1-20"><a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a>root@ubnt:/home/ubnt# show dns dynamic status
+</span><span id="__span-1-21"><a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a># ddns
+</span><span id="__span-1-22"><a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a>interface    : pppoe0
+</span><span id="__span-1-23"><a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a>ip address   : &lt;PublicIP&gt;
+</span><span id="__span-1-24"><a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a>host-name    : &lt;hostname&gt; (xxx.ddns.net)
+</span><span id="__span-1-25"><a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a>last update  : Wed Apr 25 10:28:27 2018
+</span><span id="__span-1-26"><a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a>update-status: good
+</span><span id="__span-1-27"><a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a># duckdns
+</span><span id="__span-1-28"><a id="__codelineno-1-28" name="__codelineno-1-28" href="#__codelineno-1-28"></a>interface    : pppoe0
+</span><span id="__span-1-29"><a id="__codelineno-1-29" name="__codelineno-1-29" href="#__codelineno-1-29"></a>ip address   : &lt;PublicIP&gt;
+</span><span id="__span-1-30"><a id="__codelineno-1-30" name="__codelineno-1-30" href="#__codelineno-1-30"></a>host-name    : &lt;hostname&gt; (xxx)
+</span><span id="__span-1-31"><a id="__codelineno-1-31" name="__codelineno-1-31" href="#__codelineno-1-31"></a>last update  : Wed Apr 25 10:28:27 2018
+</span><span id="__span-1-32"><a id="__codelineno-1-32" name="__codelineno-1-32" href="#__codelineno-1-32"></a>update-status: good
+</span><span id="__span-1-33"><a id="__codelineno-1-33" name="__codelineno-1-33" href="#__codelineno-1-33"></a>root@ubnt:/home/ubnt#
+</span></code></pre></div>
 <h2 id="create-vpn-l2tp">create VPN L2TP<a class="headerlink" href="#create-vpn-l2tp" title="Permanent link">&para;</a></h2>
-<pre><code>SSH でルーターにアクセス
-## 設定モードに入る
-configure
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>SSH でルーターにアクセス
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>## 設定モードに入る
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>configure
+</span></code></pre></div>
 <h3 id="add-firewall-rules-for-the-l2tp-traffic-to-the-local-firewall-policy">Add firewall rules for the L2TP traffic to the local firewall policy.<a class="headerlink" href="#add-firewall-rules-for-the-l2tp-traffic-to-the-local-firewall-policy" title="Permanent link">&para;</a></h3>
-<pre><code>    set firewall name WAN_LOCAL rule 30 action accept
-    set firewall name WAN_LOCAL rule 30 description ike
-    set firewall name WAN_LOCAL rule 30 destination port 500
-    set firewall name WAN_LOCAL rule 30 log disable
-    set firewall name WAN_LOCAL rule 30 protocol udp
-
-    set firewall name WAN_LOCAL rule 40 action accept
-    set firewall name WAN_LOCAL rule 40 description esp
-    set firewall name WAN_LOCAL rule 40 log disable
-    set firewall name WAN_LOCAL rule 40 protocol esp
-
-    set firewall name WAN_LOCAL rule 50 action accept
-    set firewall name WAN_LOCAL rule 50 description nat-t
-    set firewall name WAN_LOCAL rule 50 destination port 4500
-    set firewall name WAN_LOCAL rule 50 log disable
-    set firewall name WAN_LOCAL rule 50 protocol udp
-
-    set firewall name WAN_LOCAL rule 60 action accept
-    set firewall name WAN_LOCAL rule 60 description l2tp
-    set firewall name WAN_LOCAL rule 60 destination port 1701
-    set firewall name WAN_LOCAL rule 60 ipsec match-ipsec
-    set firewall name WAN_LOCAL rule 60 log disable
-    set firewall name WAN_LOCAL rule 60 protocol udp
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>    set firewall name WAN_LOCAL rule 30 action accept
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>    set firewall name WAN_LOCAL rule 30 description ike
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>    set firewall name WAN_LOCAL rule 30 destination port 500
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>    set firewall name WAN_LOCAL rule 30 log disable
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>    set firewall name WAN_LOCAL rule 30 protocol udp
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>    set firewall name WAN_LOCAL rule 40 action accept
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>    set firewall name WAN_LOCAL rule 40 description esp
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>    set firewall name WAN_LOCAL rule 40 log disable
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>    set firewall name WAN_LOCAL rule 40 protocol esp
+</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>
+</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>    set firewall name WAN_LOCAL rule 50 action accept
+</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>    set firewall name WAN_LOCAL rule 50 description nat-t
+</span><span id="__span-3-14"><a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a>    set firewall name WAN_LOCAL rule 50 destination port 4500
+</span><span id="__span-3-15"><a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a>    set firewall name WAN_LOCAL rule 50 log disable
+</span><span id="__span-3-16"><a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a>    set firewall name WAN_LOCAL rule 50 protocol udp
+</span><span id="__span-3-17"><a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a>
+</span><span id="__span-3-18"><a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a>    set firewall name WAN_LOCAL rule 60 action accept
+</span><span id="__span-3-19"><a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a>    set firewall name WAN_LOCAL rule 60 description l2tp
+</span><span id="__span-3-20"><a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a>    set firewall name WAN_LOCAL rule 60 destination port 1701
+</span><span id="__span-3-21"><a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a>    set firewall name WAN_LOCAL rule 60 ipsec match-ipsec
+</span><span id="__span-3-22"><a id="__codelineno-3-22" name="__codelineno-3-22" href="#__codelineno-3-22"></a>    set firewall name WAN_LOCAL rule 60 log disable
+</span><span id="__span-3-23"><a id="__codelineno-3-23" name="__codelineno-3-23" href="#__codelineno-3-23"></a>    set firewall name WAN_LOCAL rule 60 protocol udp
+</span></code></pre></div>
 <h3 id="ipsec">基本的な IPsec の設定<a class="headerlink" href="#ipsec" title="Permanent link">&para;</a></h3>
-<pre><code>  set vpn ipsec ipsec-interfaces interface pppoe0
-  set vpn ipsec nat-networks allowed-network 0.0.0.0/0
-  set vpn ipsec nat-traversal enable
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>  set vpn ipsec ipsec-interfaces interface pppoe0
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>  set vpn ipsec nat-networks allowed-network 0.0.0.0/0
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>  set vpn ipsec nat-traversal enable
+</span></code></pre></div>
 <h3 id="wan-ip-pppoe0">WAN 側 IP アドレスが pppoe0 経由で割り当ての場合これを指定<a class="headerlink" href="#wan-ip-pppoe0" title="Permanent link">&para;</a></h3>
-<pre><code>  set vpn l2tp remote-access outside-address 0.0.0.0
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>  set vpn l2tp remote-access outside-address 0.0.0.0
+</span></code></pre></div>
 <h3 id="l2tp-ip">L2TP でアクセスしてきたクライアントに割り当てる IP アドレスの範囲を指定<a class="headerlink" href="#l2tp-ip" title="Permanent link">&para;</a></h3>
-<pre><code>  set vpn l2tp remote-access client-ip-pool start 192.168.1.121
-  set vpn l2tp remote-access client-ip-pool stop 192.168.1.140
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>  set vpn l2tp remote-access client-ip-pool start 192.168.1.121
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>  set vpn l2tp remote-access client-ip-pool stop 192.168.1.140
+</span></code></pre></div>
 <h3 id="l2tp">L2TP の「シークレット」を設定<a class="headerlink" href="#l2tp" title="Permanent link">&para;</a></h3>
 <ul>
 <li><code>PASSWORD</code> の部分を任意のパスワードに変更して入力</li>
 </ul>
-<pre><code>  set vpn l2tp remote-access ipsec-settings authentication mode pre-shared-secret
-  set vpn l2tp remote-access ipsec-settings authentication pre-shared-secret PASSWORD
-  set vpn l2tp remote-access ipsec-settings ike-lifetime 3600
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>  set vpn l2tp remote-access ipsec-settings authentication mode pre-shared-secret
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>  set vpn l2tp remote-access ipsec-settings authentication pre-shared-secret PASSWORD
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>  set vpn l2tp remote-access ipsec-settings ike-lifetime 3600
+</span></code></pre></div>
 <h3 id="l2tp_1">L2TP クライアントの認証方法をローカルに設定<a class="headerlink" href="#l2tp_1" title="Permanent link">&para;</a></h3>
-<pre><code>  set vpn l2tp remote-access authentication mode local
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>  set vpn l2tp remote-access authentication mode local
+</span></code></pre></div>
 <h3 id="l2tp_2">L2TP クライアントのユーザー名とパスワードを設定<a class="headerlink" href="#l2tp_2" title="Permanent link">&para;</a></h3>
 <ul>
 <li><code>USER</code> と <code>PASSWORD</code> の部分を変更して入力</li>
 </ul>
-<pre><code>  set vpn l2tp remote-access authentication local-users username USER password PASSWORD
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>  set vpn l2tp remote-access authentication local-users username USER password PASSWORD
+</span></code></pre></div>
 <h3 id="l2tp-mtu">L2TP の MTU を保守的に設定<a class="headerlink" href="#l2tp-mtu" title="Permanent link">&para;</a></h3>
-<pre><code>  set vpn l2tp remote-access mtu 1280
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>  set vpn l2tp remote-access mtu 1280
+</span></code></pre></div>
 <h3 id="l2tp-dns-google-dns">L2TP のクライアントが使う DNS をルーター自身と Google DNS に設定<a class="headerlink" href="#l2tp-dns-google-dns" title="Permanent link">&para;</a></h3>
-<pre><code>  set vpn l2tp remote-access dns-servers server-1 192.168.1.1
-  set vpn l2tp remote-access dns-servers server-2 8.8.8.8
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>  set vpn l2tp remote-access dns-servers server-1 192.168.1.1
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>  set vpn l2tp remote-access dns-servers server-2 8.8.8.8
+</span></code></pre></div>
 <h3 id="dns-l2tp-dns-frowarding">ルーターの DNS が L2TP から使えるよう DNS Frowarding をルーター自身に設定<a class="headerlink" href="#dns-l2tp-dns-frowarding" title="Permanent link">&para;</a></h3>
-<pre><code>   set service dns forwarding listen-on lo
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>   set service dns forwarding listen-on lo
+</span></code></pre></div>
 <h3 id="_1">設定保存<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
-<pre><code>  commit
-  save
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>  commit
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>  save
+</span></code></pre></div>
 <h3 id="my-mac">「どこでも My Mac」との競合対策<a class="headerlink" href="#my-mac" title="Permanent link">&para;</a></h3>
-<pre><code>UDP ポート 4500は、「どこでも My Mac」でも使用しているため、
-Mac側で「どこでも My Mac」が有効になっていると、L2TP/IPSecと競合してアクセス不能に陥ります。
-　・　回避方法
-　　その1） ローカルネットワーク内にあるすべてのMacで「どこでも My Mac」を無効にする
-　　その2） EdgerouterのUPnP2を無効にする　※セキュリティ的にはUPnPを無効にするのが吉
-　　その3） UPnPが必要な場合、UPnP2でUDP ポート 4500での転送を止める
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>UDP ポート 4500は、「どこでも My Mac」でも使用しているため、
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>Mac側で「どこでも My Mac」が有効になっていると、L2TP/IPSecと競合してアクセス不能に陥ります。
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>　・　回避方法
+</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>　　その1） ローカルネットワーク内にあるすべてのMacで「どこでも My Mac」を無効にする
+</span><span id="__span-14-5"><a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a>　　その2） EdgerouterのUPnP2を無効にする　※セキュリティ的にはUPnPを無効にするのが吉
+</span><span id="__span-14-6"><a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a>　　その3） UPnPが必要な場合、UPnP2でUDP ポート 4500での転送を止める
+</span></code></pre></div>
 <h3 id="3">その3）をコマンドで設定する場合<a class="headerlink" href="#3" title="Permanent link">&para;</a></h3>
 <h3 id="_2">対策 設定モードのコマンドを使用して設定<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
-<pre><code>  configure
-  set service upnp2 acl rule 10 action deny
-  set service upnp2 acl rule 10 description &quot;Block Port 4500&quot;
-  set service upnp2 acl rule 10 external-port 4500
-  set service upnp2 acl rule 10 local-port 4500
-  set service upnp2 acl rule 10 subnet 192.168.1.0/24
-  set service upnp2 listen-on pppoe0
-  set service upnp2 wan pppoe0
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>  configure
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>  set service upnp2 acl rule 10 action deny
+</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>  set service upnp2 acl rule 10 description &quot;Block Port 4500&quot;
+</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>  set service upnp2 acl rule 10 external-port 4500
+</span><span id="__span-15-5"><a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a>  set service upnp2 acl rule 10 local-port 4500
+</span><span id="__span-15-6"><a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a>  set service upnp2 acl rule 10 subnet 192.168.1.0/24
+</span><span id="__span-15-7"><a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a>  set service upnp2 listen-on pppoe0
+</span><span id="__span-15-8"><a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a>  set service upnp2 wan pppoe0
+</span></code></pre></div>
 <h3 id="_3">設定を反映して保存、設定モード終了<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
-<pre><code>  commit
-  save
-  exit
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>  commit
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>  save
+</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>  exit
+</span></code></pre></div>
 <h2 id="_4">ファームウェアのアップデート<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
-<pre><code>  root@ubnt:/home/ubnt# df -h
-  Filesystem                Size      Used Available Use% Mounted on
-  ubi0_0                  214.9M    155.8M     54.4M  74% /root.dev
-  aufs                    214.9M    155.8M     54.4M  74% /
-  devtmpfs                124.3M         0    124.3M   0% /dev
-  tmpfs                   124.4M    220.0K    124.2M   0% /run
-  tmpfs                   124.4M    220.0K    124.2M   0% /run
-  tmpfs                   124.4M     18.7M    105.8M  15% /var/log
-  tmpfs                   124.4M     12.0K    124.4M   0% /tmp
-  none                    124.4M    756.0K    123.7M   1% /opt/vyatta/config
-  root@ubnt:/home/ubnt# 
-
-  root@ubnt:/home/ubnt# show system image
-  The system currently has the following image(s) installed:
-
-  v1.10.5.5098943.180622.1555    (running image) (default boot)
-  v1.9.0.4901118.160804.1131
-
-  root@ubnt:/home/ubnt# show system image storage
-  Image name                        Read-Only   Read-Write        Total
-  ------------------------------ ------------ ------------ ------------
-  v1.10.5.5098943.180622.1555           77760          940        78700
-  v1.9.0.4901118.160804.1131            76760        14152        90912
-  root@ubnt:/home/ubnt# delete system image
-  Possible completions:
-    &lt;Enter&gt;       Execute the current command
-
-
-  root@ubnt:/home/ubnt# delete system image
-  The system currently has the following image(s) installed:
-
-  v1.10.5.5098943.180622.1555    (running image) (default boot)
-  v1.9.0.4901118.160804.1131
-
-  You are about to delete image [v1.9.0.4901118.160804.1131]
-  Are you sure you want to delete ? (Yes/No) [Yes]: Yes
-  Removing old image... Done
-  root@ubnt:/home/ubnt#
-  root@ubnt:/home/ubnt# df -h
-  Filesystem                Size      Used Available Use% Mounted on
-  ubi0_0                  214.9M     74.1M    136.1M  35% /root.dev
-  aufs                    214.9M     74.1M    136.1M  35% /
-  devtmpfs                124.3M         0    124.3M   0% /dev
-  tmpfs                   124.4M    220.0K    124.2M   0% /run
-  tmpfs                   124.4M    220.0K    124.2M   0% /run
-  tmpfs                   124.4M     18.7M    105.7M  15% /var/log
-  tmpfs                   124.4M     12.0K    124.4M   0% /tmp
-  none                    124.4M    756.0K    123.7M   1% /opt/vyatta/config
-  root@ubnt:/home/ubnt# 
-
-  root@ubnt:/home/ubnt# ls
-  ER-e50.v1.10.7.5127989.tar
-  root@ubnt:/home/ubnt# add system image ^C
-  root@ubnt:/home/ubnt# show version
-  Version:      v1.10.5
-  Build ID:     5098943
-  Build on:     06/22/18 15:55
-  Copyright:    2012-2018 Ubiquiti Networks, Inc.
-  HW model:     EdgeRouter X 5-Port
-  HW S/N:       F09FC2087E8A
-  Uptime:       12:45:43 up 85 days, 13:33,  1 user,  load average: 1.26, 1.24, 1.19
-  root@ubnt:/home/ubnt# add system image  ER-e50.v1.10.7.5127989.tar
-  Checking upgrade image...Done
-  Preparing to upgrade...Done
-  Clearing directory /var/cache/apt (356.0K)...Done
-  Copying upgrade image...Not enough disk space for root file system
-  Do you want to delete old version first? (Yes/No) [Yes]: Yes
-  Removing old image...Done
-  Still not enough disk space for root file system
-  Canceling upgrade
-  /home/ubnt
-  root@ubnt:/home/ubnt#
-  root@ubnt:/home/ubnt# df -h
-  Filesystem                Size      Used Available Use% Mounted on
-  ubi0_0                  214.9M    149.9M     60.3M  71% /root.dev
-  aufs                    214.9M    149.9M     60.3M  71% /
-  devtmpfs                124.3M         0    124.3M   0% /dev
-  tmpfs                   124.4M    220.0K    124.2M   0% /run
-  tmpfs                   124.4M    220.0K    124.2M   0% /run
-  tmpfs                   124.4M     18.7M    105.7M  15% /var/log
-  tmpfs                   124.4M     12.0K    124.4M   0% /tmp
-  none                    124.4M    756.0K    123.7M   1% /opt/vyatta/config
-  root@ubnt:/home/ubnt# ls -lath ER-e50.v1.10.7.5127989.tar
-  -rw-r--r--    1 ubnt     users      78.3M Nov  1 12:44 ER-e50.v1.10.7.5127989.tar
-  root@ubnt:/home/ubnt#
-
-
-  root@ubnt:/home/ubnt# add system image https://dl.ubnt.com/firmwares/edgemax/v1.10.x/ER-e50.v1.10.7.5127989.tar
-  Trying to get upgrade file from https://dl.ubnt.com/firmwares/edgemax/v1.10.x/ER-e50.v1.10.7.5127989.tar
-    % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                   Dload  Upload   Total   Spent    Left  Speed
-  100 78.3M  100 78.3M    0     0  3586k      0  0:00:22  0:00:22 --:--:-- 4926k
-  Download succeeded
-  Checking upgrade image...Done
-  Preparing to upgrade...Done
-  Clearing directory /var/cache/apt (356.0K)...Done
-  Copying upgrade image...Done
-  Removing old image...Done
-  Checking upgrade image...Done
-  Copying config data...Done
-  Finishing upgrade...Done
-  Upgrade completed
-  root@ubnt:/home/ubnt#
-
-
-  root@ubnt:/home/ubnt# show system image
-  The system currently has the following image(s) installed:
-
-  v1.10.7.5127989.181001.1227    (default boot)
-  v1.10.5.5098943.180622.1555    (running image)
-
-  A reboot is needed to boot default image
-  root@ubnt:/home/ubnt# show system image storage
-  Image name                        Read-Only   Read-Write        Total
-  ------------------------------ ------------ ------------ ------------
-  v1.10.7.5127989.181001.1227           78500           88        78588
-  v1.10.5.5098943.180622.1555           77760          588        78348
-  root@ubnt:/home/ubnt#
-
-  root@ubnt:/home/ubnt# show system image
-  The system currently has the following image(s) installed:
-
-  v1.10.7.5127989.181001.1227    (default boot)
-  v1.10.5.5098943.180622.1555    (running image)
-
-  A reboot is needed to boot default image
-  root@ubnt:/home/ubnt# set system image default-boot
-  The system currently has the following image(s) installed:
-
-  v1.10.7.5127989.181001.1227    (default boot)
-  v1.10.5.5098943.180622.1555    (running image)
-
-  A reboot is needed to boot default image
-  Are you sure you want to switch images? (Yes/No) [Yes]:
-  Moving images...
-  Done
-  Switched from
-    Version:      v1.10.7.5127989.181001.1227
-  to
-    Version:      v1.10.5.5098943.180622.1555
-  root@ubnt:/home/ubnt#
-  root@ubnt:/home/ubnt# show system image
-  The system currently has the following image(s) installed:
-
-  v1.10.5.5098943.180622.1555    (running image) (default boot)
-  v1.10.7.5127989.181001.1227
-
-  root@ubnt:/home/ubnt# set system image default-boot
-  The system currently has the following image(s) installed:
-
-  v1.10.5.5098943.180622.1555    (running image) (default boot)
-  v1.10.7.5127989.181001.1227
-
-  Are you sure you want to switch images? (Yes/No) [Yes]:
-  Moving images...
-  Done
-  Switched from
-    Version:      v1.10.5.5098943.180622.1555
-  to
-    Version:      v1.10.7.5127989.181001.1227
-  root@ubnt:/home/ubnt# show system image
-  The system currently has the following image(s) installed:
-
-  v1.10.7.5127989.181001.1227    (default boot)
-  v1.10.5.5098943.180622.1555    (running image)
-
-  A reboot is needed to boot default image
-  root@ubnt:/home/ubnt#
-  root@ubnt:/home/ubnt# reboot
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>  root@ubnt:/home/ubnt# df -h
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>  Filesystem                Size      Used Available Use% Mounted on
+</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>  ubi0_0                  214.9M    155.8M     54.4M  74% /root.dev
+</span><span id="__span-17-4"><a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a>  aufs                    214.9M    155.8M     54.4M  74% /
+</span><span id="__span-17-5"><a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a>  devtmpfs                124.3M         0    124.3M   0% /dev
+</span><span id="__span-17-6"><a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a>  tmpfs                   124.4M    220.0K    124.2M   0% /run
+</span><span id="__span-17-7"><a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a>  tmpfs                   124.4M    220.0K    124.2M   0% /run
+</span><span id="__span-17-8"><a id="__codelineno-17-8" name="__codelineno-17-8" href="#__codelineno-17-8"></a>  tmpfs                   124.4M     18.7M    105.8M  15% /var/log
+</span><span id="__span-17-9"><a id="__codelineno-17-9" name="__codelineno-17-9" href="#__codelineno-17-9"></a>  tmpfs                   124.4M     12.0K    124.4M   0% /tmp
+</span><span id="__span-17-10"><a id="__codelineno-17-10" name="__codelineno-17-10" href="#__codelineno-17-10"></a>  none                    124.4M    756.0K    123.7M   1% /opt/vyatta/config
+</span><span id="__span-17-11"><a id="__codelineno-17-11" name="__codelineno-17-11" href="#__codelineno-17-11"></a>  root@ubnt:/home/ubnt# 
+</span><span id="__span-17-12"><a id="__codelineno-17-12" name="__codelineno-17-12" href="#__codelineno-17-12"></a>
+</span><span id="__span-17-13"><a id="__codelineno-17-13" name="__codelineno-17-13" href="#__codelineno-17-13"></a>  root@ubnt:/home/ubnt# show system image
+</span><span id="__span-17-14"><a id="__codelineno-17-14" name="__codelineno-17-14" href="#__codelineno-17-14"></a>  The system currently has the following image(s) installed:
+</span><span id="__span-17-15"><a id="__codelineno-17-15" name="__codelineno-17-15" href="#__codelineno-17-15"></a>
+</span><span id="__span-17-16"><a id="__codelineno-17-16" name="__codelineno-17-16" href="#__codelineno-17-16"></a>  v1.10.5.5098943.180622.1555    (running image) (default boot)
+</span><span id="__span-17-17"><a id="__codelineno-17-17" name="__codelineno-17-17" href="#__codelineno-17-17"></a>  v1.9.0.4901118.160804.1131
+</span><span id="__span-17-18"><a id="__codelineno-17-18" name="__codelineno-17-18" href="#__codelineno-17-18"></a>
+</span><span id="__span-17-19"><a id="__codelineno-17-19" name="__codelineno-17-19" href="#__codelineno-17-19"></a>  root@ubnt:/home/ubnt# show system image storage
+</span><span id="__span-17-20"><a id="__codelineno-17-20" name="__codelineno-17-20" href="#__codelineno-17-20"></a>  Image name                        Read-Only   Read-Write        Total
+</span><span id="__span-17-21"><a id="__codelineno-17-21" name="__codelineno-17-21" href="#__codelineno-17-21"></a>  ------------------------------ ------------ ------------ ------------
+</span><span id="__span-17-22"><a id="__codelineno-17-22" name="__codelineno-17-22" href="#__codelineno-17-22"></a>  v1.10.5.5098943.180622.1555           77760          940        78700
+</span><span id="__span-17-23"><a id="__codelineno-17-23" name="__codelineno-17-23" href="#__codelineno-17-23"></a>  v1.9.0.4901118.160804.1131            76760        14152        90912
+</span><span id="__span-17-24"><a id="__codelineno-17-24" name="__codelineno-17-24" href="#__codelineno-17-24"></a>  root@ubnt:/home/ubnt# delete system image
+</span><span id="__span-17-25"><a id="__codelineno-17-25" name="__codelineno-17-25" href="#__codelineno-17-25"></a>  Possible completions:
+</span><span id="__span-17-26"><a id="__codelineno-17-26" name="__codelineno-17-26" href="#__codelineno-17-26"></a>    &lt;Enter&gt;       Execute the current command
+</span><span id="__span-17-27"><a id="__codelineno-17-27" name="__codelineno-17-27" href="#__codelineno-17-27"></a>
+</span><span id="__span-17-28"><a id="__codelineno-17-28" name="__codelineno-17-28" href="#__codelineno-17-28"></a>
+</span><span id="__span-17-29"><a id="__codelineno-17-29" name="__codelineno-17-29" href="#__codelineno-17-29"></a>  root@ubnt:/home/ubnt# delete system image
+</span><span id="__span-17-30"><a id="__codelineno-17-30" name="__codelineno-17-30" href="#__codelineno-17-30"></a>  The system currently has the following image(s) installed:
+</span><span id="__span-17-31"><a id="__codelineno-17-31" name="__codelineno-17-31" href="#__codelineno-17-31"></a>
+</span><span id="__span-17-32"><a id="__codelineno-17-32" name="__codelineno-17-32" href="#__codelineno-17-32"></a>  v1.10.5.5098943.180622.1555    (running image) (default boot)
+</span><span id="__span-17-33"><a id="__codelineno-17-33" name="__codelineno-17-33" href="#__codelineno-17-33"></a>  v1.9.0.4901118.160804.1131
+</span><span id="__span-17-34"><a id="__codelineno-17-34" name="__codelineno-17-34" href="#__codelineno-17-34"></a>
+</span><span id="__span-17-35"><a id="__codelineno-17-35" name="__codelineno-17-35" href="#__codelineno-17-35"></a>  You are about to delete image [v1.9.0.4901118.160804.1131]
+</span><span id="__span-17-36"><a id="__codelineno-17-36" name="__codelineno-17-36" href="#__codelineno-17-36"></a>  Are you sure you want to delete ? (Yes/No) [Yes]: Yes
+</span><span id="__span-17-37"><a id="__codelineno-17-37" name="__codelineno-17-37" href="#__codelineno-17-37"></a>  Removing old image... Done
+</span><span id="__span-17-38"><a id="__codelineno-17-38" name="__codelineno-17-38" href="#__codelineno-17-38"></a>  root@ubnt:/home/ubnt#
+</span><span id="__span-17-39"><a id="__codelineno-17-39" name="__codelineno-17-39" href="#__codelineno-17-39"></a>  root@ubnt:/home/ubnt# df -h
+</span><span id="__span-17-40"><a id="__codelineno-17-40" name="__codelineno-17-40" href="#__codelineno-17-40"></a>  Filesystem                Size      Used Available Use% Mounted on
+</span><span id="__span-17-41"><a id="__codelineno-17-41" name="__codelineno-17-41" href="#__codelineno-17-41"></a>  ubi0_0                  214.9M     74.1M    136.1M  35% /root.dev
+</span><span id="__span-17-42"><a id="__codelineno-17-42" name="__codelineno-17-42" href="#__codelineno-17-42"></a>  aufs                    214.9M     74.1M    136.1M  35% /
+</span><span id="__span-17-43"><a id="__codelineno-17-43" name="__codelineno-17-43" href="#__codelineno-17-43"></a>  devtmpfs                124.3M         0    124.3M   0% /dev
+</span><span id="__span-17-44"><a id="__codelineno-17-44" name="__codelineno-17-44" href="#__codelineno-17-44"></a>  tmpfs                   124.4M    220.0K    124.2M   0% /run
+</span><span id="__span-17-45"><a id="__codelineno-17-45" name="__codelineno-17-45" href="#__codelineno-17-45"></a>  tmpfs                   124.4M    220.0K    124.2M   0% /run
+</span><span id="__span-17-46"><a id="__codelineno-17-46" name="__codelineno-17-46" href="#__codelineno-17-46"></a>  tmpfs                   124.4M     18.7M    105.7M  15% /var/log
+</span><span id="__span-17-47"><a id="__codelineno-17-47" name="__codelineno-17-47" href="#__codelineno-17-47"></a>  tmpfs                   124.4M     12.0K    124.4M   0% /tmp
+</span><span id="__span-17-48"><a id="__codelineno-17-48" name="__codelineno-17-48" href="#__codelineno-17-48"></a>  none                    124.4M    756.0K    123.7M   1% /opt/vyatta/config
+</span><span id="__span-17-49"><a id="__codelineno-17-49" name="__codelineno-17-49" href="#__codelineno-17-49"></a>  root@ubnt:/home/ubnt# 
+</span><span id="__span-17-50"><a id="__codelineno-17-50" name="__codelineno-17-50" href="#__codelineno-17-50"></a>
+</span><span id="__span-17-51"><a id="__codelineno-17-51" name="__codelineno-17-51" href="#__codelineno-17-51"></a>  root@ubnt:/home/ubnt# ls
+</span><span id="__span-17-52"><a id="__codelineno-17-52" name="__codelineno-17-52" href="#__codelineno-17-52"></a>  ER-e50.v1.10.7.5127989.tar
+</span><span id="__span-17-53"><a id="__codelineno-17-53" name="__codelineno-17-53" href="#__codelineno-17-53"></a>  root@ubnt:/home/ubnt# add system image ^C
+</span><span id="__span-17-54"><a id="__codelineno-17-54" name="__codelineno-17-54" href="#__codelineno-17-54"></a>  root@ubnt:/home/ubnt# show version
+</span><span id="__span-17-55"><a id="__codelineno-17-55" name="__codelineno-17-55" href="#__codelineno-17-55"></a>  Version:      v1.10.5
+</span><span id="__span-17-56"><a id="__codelineno-17-56" name="__codelineno-17-56" href="#__codelineno-17-56"></a>  Build ID:     5098943
+</span><span id="__span-17-57"><a id="__codelineno-17-57" name="__codelineno-17-57" href="#__codelineno-17-57"></a>  Build on:     06/22/18 15:55
+</span><span id="__span-17-58"><a id="__codelineno-17-58" name="__codelineno-17-58" href="#__codelineno-17-58"></a>  Copyright:    2012-2018 Ubiquiti Networks, Inc.
+</span><span id="__span-17-59"><a id="__codelineno-17-59" name="__codelineno-17-59" href="#__codelineno-17-59"></a>  HW model:     EdgeRouter X 5-Port
+</span><span id="__span-17-60"><a id="__codelineno-17-60" name="__codelineno-17-60" href="#__codelineno-17-60"></a>  HW S/N:       F09FC2087E8A
+</span><span id="__span-17-61"><a id="__codelineno-17-61" name="__codelineno-17-61" href="#__codelineno-17-61"></a>  Uptime:       12:45:43 up 85 days, 13:33,  1 user,  load average: 1.26, 1.24, 1.19
+</span><span id="__span-17-62"><a id="__codelineno-17-62" name="__codelineno-17-62" href="#__codelineno-17-62"></a>  root@ubnt:/home/ubnt# add system image  ER-e50.v1.10.7.5127989.tar
+</span><span id="__span-17-63"><a id="__codelineno-17-63" name="__codelineno-17-63" href="#__codelineno-17-63"></a>  Checking upgrade image...Done
+</span><span id="__span-17-64"><a id="__codelineno-17-64" name="__codelineno-17-64" href="#__codelineno-17-64"></a>  Preparing to upgrade...Done
+</span><span id="__span-17-65"><a id="__codelineno-17-65" name="__codelineno-17-65" href="#__codelineno-17-65"></a>  Clearing directory /var/cache/apt (356.0K)...Done
+</span><span id="__span-17-66"><a id="__codelineno-17-66" name="__codelineno-17-66" href="#__codelineno-17-66"></a>  Copying upgrade image...Not enough disk space for root file system
+</span><span id="__span-17-67"><a id="__codelineno-17-67" name="__codelineno-17-67" href="#__codelineno-17-67"></a>  Do you want to delete old version first? (Yes/No) [Yes]: Yes
+</span><span id="__span-17-68"><a id="__codelineno-17-68" name="__codelineno-17-68" href="#__codelineno-17-68"></a>  Removing old image...Done
+</span><span id="__span-17-69"><a id="__codelineno-17-69" name="__codelineno-17-69" href="#__codelineno-17-69"></a>  Still not enough disk space for root file system
+</span><span id="__span-17-70"><a id="__codelineno-17-70" name="__codelineno-17-70" href="#__codelineno-17-70"></a>  Canceling upgrade
+</span><span id="__span-17-71"><a id="__codelineno-17-71" name="__codelineno-17-71" href="#__codelineno-17-71"></a>  /home/ubnt
+</span><span id="__span-17-72"><a id="__codelineno-17-72" name="__codelineno-17-72" href="#__codelineno-17-72"></a>  root@ubnt:/home/ubnt#
+</span><span id="__span-17-73"><a id="__codelineno-17-73" name="__codelineno-17-73" href="#__codelineno-17-73"></a>  root@ubnt:/home/ubnt# df -h
+</span><span id="__span-17-74"><a id="__codelineno-17-74" name="__codelineno-17-74" href="#__codelineno-17-74"></a>  Filesystem                Size      Used Available Use% Mounted on
+</span><span id="__span-17-75"><a id="__codelineno-17-75" name="__codelineno-17-75" href="#__codelineno-17-75"></a>  ubi0_0                  214.9M    149.9M     60.3M  71% /root.dev
+</span><span id="__span-17-76"><a id="__codelineno-17-76" name="__codelineno-17-76" href="#__codelineno-17-76"></a>  aufs                    214.9M    149.9M     60.3M  71% /
+</span><span id="__span-17-77"><a id="__codelineno-17-77" name="__codelineno-17-77" href="#__codelineno-17-77"></a>  devtmpfs                124.3M         0    124.3M   0% /dev
+</span><span id="__span-17-78"><a id="__codelineno-17-78" name="__codelineno-17-78" href="#__codelineno-17-78"></a>  tmpfs                   124.4M    220.0K    124.2M   0% /run
+</span><span id="__span-17-79"><a id="__codelineno-17-79" name="__codelineno-17-79" href="#__codelineno-17-79"></a>  tmpfs                   124.4M    220.0K    124.2M   0% /run
+</span><span id="__span-17-80"><a id="__codelineno-17-80" name="__codelineno-17-80" href="#__codelineno-17-80"></a>  tmpfs                   124.4M     18.7M    105.7M  15% /var/log
+</span><span id="__span-17-81"><a id="__codelineno-17-81" name="__codelineno-17-81" href="#__codelineno-17-81"></a>  tmpfs                   124.4M     12.0K    124.4M   0% /tmp
+</span><span id="__span-17-82"><a id="__codelineno-17-82" name="__codelineno-17-82" href="#__codelineno-17-82"></a>  none                    124.4M    756.0K    123.7M   1% /opt/vyatta/config
+</span><span id="__span-17-83"><a id="__codelineno-17-83" name="__codelineno-17-83" href="#__codelineno-17-83"></a>  root@ubnt:/home/ubnt# ls -lath ER-e50.v1.10.7.5127989.tar
+</span><span id="__span-17-84"><a id="__codelineno-17-84" name="__codelineno-17-84" href="#__codelineno-17-84"></a>  -rw-r--r--    1 ubnt     users      78.3M Nov  1 12:44 ER-e50.v1.10.7.5127989.tar
+</span><span id="__span-17-85"><a id="__codelineno-17-85" name="__codelineno-17-85" href="#__codelineno-17-85"></a>  root@ubnt:/home/ubnt#
+</span><span id="__span-17-86"><a id="__codelineno-17-86" name="__codelineno-17-86" href="#__codelineno-17-86"></a>
+</span><span id="__span-17-87"><a id="__codelineno-17-87" name="__codelineno-17-87" href="#__codelineno-17-87"></a>
+</span><span id="__span-17-88"><a id="__codelineno-17-88" name="__codelineno-17-88" href="#__codelineno-17-88"></a>  root@ubnt:/home/ubnt# add system image https://dl.ubnt.com/firmwares/edgemax/v1.10.x/ER-e50.v1.10.7.5127989.tar
+</span><span id="__span-17-89"><a id="__codelineno-17-89" name="__codelineno-17-89" href="#__codelineno-17-89"></a>  Trying to get upgrade file from https://dl.ubnt.com/firmwares/edgemax/v1.10.x/ER-e50.v1.10.7.5127989.tar
+</span><span id="__span-17-90"><a id="__codelineno-17-90" name="__codelineno-17-90" href="#__codelineno-17-90"></a>    % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+</span><span id="__span-17-91"><a id="__codelineno-17-91" name="__codelineno-17-91" href="#__codelineno-17-91"></a>                                   Dload  Upload   Total   Spent    Left  Speed
+</span><span id="__span-17-92"><a id="__codelineno-17-92" name="__codelineno-17-92" href="#__codelineno-17-92"></a>  100 78.3M  100 78.3M    0     0  3586k      0  0:00:22  0:00:22 --:--:-- 4926k
+</span><span id="__span-17-93"><a id="__codelineno-17-93" name="__codelineno-17-93" href="#__codelineno-17-93"></a>  Download succeeded
+</span><span id="__span-17-94"><a id="__codelineno-17-94" name="__codelineno-17-94" href="#__codelineno-17-94"></a>  Checking upgrade image...Done
+</span><span id="__span-17-95"><a id="__codelineno-17-95" name="__codelineno-17-95" href="#__codelineno-17-95"></a>  Preparing to upgrade...Done
+</span><span id="__span-17-96"><a id="__codelineno-17-96" name="__codelineno-17-96" href="#__codelineno-17-96"></a>  Clearing directory /var/cache/apt (356.0K)...Done
+</span><span id="__span-17-97"><a id="__codelineno-17-97" name="__codelineno-17-97" href="#__codelineno-17-97"></a>  Copying upgrade image...Done
+</span><span id="__span-17-98"><a id="__codelineno-17-98" name="__codelineno-17-98" href="#__codelineno-17-98"></a>  Removing old image...Done
+</span><span id="__span-17-99"><a id="__codelineno-17-99" name="__codelineno-17-99" href="#__codelineno-17-99"></a>  Checking upgrade image...Done
+</span><span id="__span-17-100"><a id="__codelineno-17-100" name="__codelineno-17-100" href="#__codelineno-17-100"></a>  Copying config data...Done
+</span><span id="__span-17-101"><a id="__codelineno-17-101" name="__codelineno-17-101" href="#__codelineno-17-101"></a>  Finishing upgrade...Done
+</span><span id="__span-17-102"><a id="__codelineno-17-102" name="__codelineno-17-102" href="#__codelineno-17-102"></a>  Upgrade completed
+</span><span id="__span-17-103"><a id="__codelineno-17-103" name="__codelineno-17-103" href="#__codelineno-17-103"></a>  root@ubnt:/home/ubnt#
+</span><span id="__span-17-104"><a id="__codelineno-17-104" name="__codelineno-17-104" href="#__codelineno-17-104"></a>
+</span><span id="__span-17-105"><a id="__codelineno-17-105" name="__codelineno-17-105" href="#__codelineno-17-105"></a>
+</span><span id="__span-17-106"><a id="__codelineno-17-106" name="__codelineno-17-106" href="#__codelineno-17-106"></a>  root@ubnt:/home/ubnt# show system image
+</span><span id="__span-17-107"><a id="__codelineno-17-107" name="__codelineno-17-107" href="#__codelineno-17-107"></a>  The system currently has the following image(s) installed:
+</span><span id="__span-17-108"><a id="__codelineno-17-108" name="__codelineno-17-108" href="#__codelineno-17-108"></a>
+</span><span id="__span-17-109"><a id="__codelineno-17-109" name="__codelineno-17-109" href="#__codelineno-17-109"></a>  v1.10.7.5127989.181001.1227    (default boot)
+</span><span id="__span-17-110"><a id="__codelineno-17-110" name="__codelineno-17-110" href="#__codelineno-17-110"></a>  v1.10.5.5098943.180622.1555    (running image)
+</span><span id="__span-17-111"><a id="__codelineno-17-111" name="__codelineno-17-111" href="#__codelineno-17-111"></a>
+</span><span id="__span-17-112"><a id="__codelineno-17-112" name="__codelineno-17-112" href="#__codelineno-17-112"></a>  A reboot is needed to boot default image
+</span><span id="__span-17-113"><a id="__codelineno-17-113" name="__codelineno-17-113" href="#__codelineno-17-113"></a>  root@ubnt:/home/ubnt# show system image storage
+</span><span id="__span-17-114"><a id="__codelineno-17-114" name="__codelineno-17-114" href="#__codelineno-17-114"></a>  Image name                        Read-Only   Read-Write        Total
+</span><span id="__span-17-115"><a id="__codelineno-17-115" name="__codelineno-17-115" href="#__codelineno-17-115"></a>  ------------------------------ ------------ ------------ ------------
+</span><span id="__span-17-116"><a id="__codelineno-17-116" name="__codelineno-17-116" href="#__codelineno-17-116"></a>  v1.10.7.5127989.181001.1227           78500           88        78588
+</span><span id="__span-17-117"><a id="__codelineno-17-117" name="__codelineno-17-117" href="#__codelineno-17-117"></a>  v1.10.5.5098943.180622.1555           77760          588        78348
+</span><span id="__span-17-118"><a id="__codelineno-17-118" name="__codelineno-17-118" href="#__codelineno-17-118"></a>  root@ubnt:/home/ubnt#
+</span><span id="__span-17-119"><a id="__codelineno-17-119" name="__codelineno-17-119" href="#__codelineno-17-119"></a>
+</span><span id="__span-17-120"><a id="__codelineno-17-120" name="__codelineno-17-120" href="#__codelineno-17-120"></a>  root@ubnt:/home/ubnt# show system image
+</span><span id="__span-17-121"><a id="__codelineno-17-121" name="__codelineno-17-121" href="#__codelineno-17-121"></a>  The system currently has the following image(s) installed:
+</span><span id="__span-17-122"><a id="__codelineno-17-122" name="__codelineno-17-122" href="#__codelineno-17-122"></a>
+</span><span id="__span-17-123"><a id="__codelineno-17-123" name="__codelineno-17-123" href="#__codelineno-17-123"></a>  v1.10.7.5127989.181001.1227    (default boot)
+</span><span id="__span-17-124"><a id="__codelineno-17-124" name="__codelineno-17-124" href="#__codelineno-17-124"></a>  v1.10.5.5098943.180622.1555    (running image)
+</span><span id="__span-17-125"><a id="__codelineno-17-125" name="__codelineno-17-125" href="#__codelineno-17-125"></a>
+</span><span id="__span-17-126"><a id="__codelineno-17-126" name="__codelineno-17-126" href="#__codelineno-17-126"></a>  A reboot is needed to boot default image
+</span><span id="__span-17-127"><a id="__codelineno-17-127" name="__codelineno-17-127" href="#__codelineno-17-127"></a>  root@ubnt:/home/ubnt# set system image default-boot
+</span><span id="__span-17-128"><a id="__codelineno-17-128" name="__codelineno-17-128" href="#__codelineno-17-128"></a>  The system currently has the following image(s) installed:
+</span><span id="__span-17-129"><a id="__codelineno-17-129" name="__codelineno-17-129" href="#__codelineno-17-129"></a>
+</span><span id="__span-17-130"><a id="__codelineno-17-130" name="__codelineno-17-130" href="#__codelineno-17-130"></a>  v1.10.7.5127989.181001.1227    (default boot)
+</span><span id="__span-17-131"><a id="__codelineno-17-131" name="__codelineno-17-131" href="#__codelineno-17-131"></a>  v1.10.5.5098943.180622.1555    (running image)
+</span><span id="__span-17-132"><a id="__codelineno-17-132" name="__codelineno-17-132" href="#__codelineno-17-132"></a>
+</span><span id="__span-17-133"><a id="__codelineno-17-133" name="__codelineno-17-133" href="#__codelineno-17-133"></a>  A reboot is needed to boot default image
+</span><span id="__span-17-134"><a id="__codelineno-17-134" name="__codelineno-17-134" href="#__codelineno-17-134"></a>  Are you sure you want to switch images? (Yes/No) [Yes]:
+</span><span id="__span-17-135"><a id="__codelineno-17-135" name="__codelineno-17-135" href="#__codelineno-17-135"></a>  Moving images...
+</span><span id="__span-17-136"><a id="__codelineno-17-136" name="__codelineno-17-136" href="#__codelineno-17-136"></a>  Done
+</span><span id="__span-17-137"><a id="__codelineno-17-137" name="__codelineno-17-137" href="#__codelineno-17-137"></a>  Switched from
+</span><span id="__span-17-138"><a id="__codelineno-17-138" name="__codelineno-17-138" href="#__codelineno-17-138"></a>    Version:      v1.10.7.5127989.181001.1227
+</span><span id="__span-17-139"><a id="__codelineno-17-139" name="__codelineno-17-139" href="#__codelineno-17-139"></a>  to
+</span><span id="__span-17-140"><a id="__codelineno-17-140" name="__codelineno-17-140" href="#__codelineno-17-140"></a>    Version:      v1.10.5.5098943.180622.1555
+</span><span id="__span-17-141"><a id="__codelineno-17-141" name="__codelineno-17-141" href="#__codelineno-17-141"></a>  root@ubnt:/home/ubnt#
+</span><span id="__span-17-142"><a id="__codelineno-17-142" name="__codelineno-17-142" href="#__codelineno-17-142"></a>  root@ubnt:/home/ubnt# show system image
+</span><span id="__span-17-143"><a id="__codelineno-17-143" name="__codelineno-17-143" href="#__codelineno-17-143"></a>  The system currently has the following image(s) installed:
+</span><span id="__span-17-144"><a id="__codelineno-17-144" name="__codelineno-17-144" href="#__codelineno-17-144"></a>
+</span><span id="__span-17-145"><a id="__codelineno-17-145" name="__codelineno-17-145" href="#__codelineno-17-145"></a>  v1.10.5.5098943.180622.1555    (running image) (default boot)
+</span><span id="__span-17-146"><a id="__codelineno-17-146" name="__codelineno-17-146" href="#__codelineno-17-146"></a>  v1.10.7.5127989.181001.1227
+</span><span id="__span-17-147"><a id="__codelineno-17-147" name="__codelineno-17-147" href="#__codelineno-17-147"></a>
+</span><span id="__span-17-148"><a id="__codelineno-17-148" name="__codelineno-17-148" href="#__codelineno-17-148"></a>  root@ubnt:/home/ubnt# set system image default-boot
+</span><span id="__span-17-149"><a id="__codelineno-17-149" name="__codelineno-17-149" href="#__codelineno-17-149"></a>  The system currently has the following image(s) installed:
+</span><span id="__span-17-150"><a id="__codelineno-17-150" name="__codelineno-17-150" href="#__codelineno-17-150"></a>
+</span><span id="__span-17-151"><a id="__codelineno-17-151" name="__codelineno-17-151" href="#__codelineno-17-151"></a>  v1.10.5.5098943.180622.1555    (running image) (default boot)
+</span><span id="__span-17-152"><a id="__codelineno-17-152" name="__codelineno-17-152" href="#__codelineno-17-152"></a>  v1.10.7.5127989.181001.1227
+</span><span id="__span-17-153"><a id="__codelineno-17-153" name="__codelineno-17-153" href="#__codelineno-17-153"></a>
+</span><span id="__span-17-154"><a id="__codelineno-17-154" name="__codelineno-17-154" href="#__codelineno-17-154"></a>  Are you sure you want to switch images? (Yes/No) [Yes]:
+</span><span id="__span-17-155"><a id="__codelineno-17-155" name="__codelineno-17-155" href="#__codelineno-17-155"></a>  Moving images...
+</span><span id="__span-17-156"><a id="__codelineno-17-156" name="__codelineno-17-156" href="#__codelineno-17-156"></a>  Done
+</span><span id="__span-17-157"><a id="__codelineno-17-157" name="__codelineno-17-157" href="#__codelineno-17-157"></a>  Switched from
+</span><span id="__span-17-158"><a id="__codelineno-17-158" name="__codelineno-17-158" href="#__codelineno-17-158"></a>    Version:      v1.10.5.5098943.180622.1555
+</span><span id="__span-17-159"><a id="__codelineno-17-159" name="__codelineno-17-159" href="#__codelineno-17-159"></a>  to
+</span><span id="__span-17-160"><a id="__codelineno-17-160" name="__codelineno-17-160" href="#__codelineno-17-160"></a>    Version:      v1.10.7.5127989.181001.1227
+</span><span id="__span-17-161"><a id="__codelineno-17-161" name="__codelineno-17-161" href="#__codelineno-17-161"></a>  root@ubnt:/home/ubnt# show system image
+</span><span id="__span-17-162"><a id="__codelineno-17-162" name="__codelineno-17-162" href="#__codelineno-17-162"></a>  The system currently has the following image(s) installed:
+</span><span id="__span-17-163"><a id="__codelineno-17-163" name="__codelineno-17-163" href="#__codelineno-17-163"></a>
+</span><span id="__span-17-164"><a id="__codelineno-17-164" name="__codelineno-17-164" href="#__codelineno-17-164"></a>  v1.10.7.5127989.181001.1227    (default boot)
+</span><span id="__span-17-165"><a id="__codelineno-17-165" name="__codelineno-17-165" href="#__codelineno-17-165"></a>  v1.10.5.5098943.180622.1555    (running image)
+</span><span id="__span-17-166"><a id="__codelineno-17-166" name="__codelineno-17-166" href="#__codelineno-17-166"></a>
+</span><span id="__span-17-167"><a id="__codelineno-17-167" name="__codelineno-17-167" href="#__codelineno-17-167"></a>  A reboot is needed to boot default image
+</span><span id="__span-17-168"><a id="__codelineno-17-168" name="__codelineno-17-168" href="#__codelineno-17-168"></a>  root@ubnt:/home/ubnt#
+</span><span id="__span-17-169"><a id="__codelineno-17-169" name="__codelineno-17-169" href="#__codelineno-17-169"></a>  root@ubnt:/home/ubnt# reboot
+</span></code></pre></div>
 
 
 
@@ -1586,6 +1592,11 @@ Mac側で「どこでも My Mac」が有効になっていると、L2TP/IPSecと
           
           
         </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+            Back to top
+          </button>
         
       </main>
       
@@ -1616,7 +1627,7 @@ Mac側で「どこでも My Mac」が有効になっていると、L2TP/IPSecと
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tracking", "navigation.expand", "navigation.sections", "navigation.indexes", "navigation.path", "toc.integrate"], "search": "../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tracking", "navigation.top", "navigation.sections", "navigation.indexes", "navigation.path", "toc.integrate", "content.code.copy"], "search": "../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
       <script src="../assets/javascripts/bundle.fac441b0.min.js"></script>

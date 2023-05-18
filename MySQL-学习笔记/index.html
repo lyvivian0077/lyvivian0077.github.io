@@ -206,9 +206,7 @@
       
       
       
-        
-      
-      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
       
       
         
@@ -324,9 +322,7 @@
       
       
       
-        
-      
-      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
       
       
         
@@ -397,9 +393,7 @@
       
       
       
-        
-      
-      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
       
       
         
@@ -459,6 +453,8 @@
       <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" checked>
       
       
+        
+          
         
           
         
@@ -803,6 +799,20 @@
   
   
     <li class="md-nav__item">
+      <a href="../mysql-mgr-copy/" class="md-nav__link">
+        転載MGR
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../mysql-ha/" class="md-nav__link">
         mysql+keepalived搭建教程
       </a>
@@ -832,9 +842,7 @@
       
       
       
-        
-      
-      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_9" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
       
       
         
@@ -1265,951 +1273,953 @@
 <li><a href="https://mp.weixin.qq.com/s/YX1XqKVfPS9DpMi_gTFNiA">原文</a></li>
 </ul>
 <h3 id="_1">连接与断开服务器<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
-<pre><code>mysql -h 地址 -P 端口 -u 用户名 -p 密码
-
-SHOW PROCESSLIST -- 显示哪些线程正在运行
-SHOW VARIABLES -- 显示系统变量信息
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>mysql -h 地址 -P 端口 -u 用户名 -p 密码
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>SHOW PROCESSLIST -- 显示哪些线程正在运行
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>SHOW VARIABLES -- 显示系统变量信息
+</span></code></pre></div>
 <h3 id="_2">数据库操作<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
-<pre><code>-- 查看当前数据库
-    SELECT DATABASE();
--- 显示当前时间、用户名、数据库版本
-    SELECT now(), user(), version();
--- 创建库
-    CREATE DATABASE[ IF NOT EXISTS] 数据库名 数据库选项
-    数据库选项：
-        CHARACTER SET charset_name
-        COLLATE collation_name
--- 查看已有库
-    SHOW DATABASES[ LIKE  PATTERN ]
--- 查看当前库信息
-    SHOW CREATE DATABASE 数据库名
--- 修改库的选项信息
-    ALTER DATABASE 库名 选项信息
--- 删除库
-    DROP DATABASE[ IF EXISTS] 数据库名
-        同时删除该数据库相关的目录及其目录内容
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>-- 查看当前数据库
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>    SELECT DATABASE();
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>-- 显示当前时间、用户名、数据库版本
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>    SELECT now(), user(), version();
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>-- 创建库
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>    CREATE DATABASE[ IF NOT EXISTS] 数据库名 数据库选项
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>    数据库选项：
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>        CHARACTER SET charset_name
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>        COLLATE collation_name
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>-- 查看已有库
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>    SHOW DATABASES[ LIKE  PATTERN ]
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>-- 查看当前库信息
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>    SHOW CREATE DATABASE 数据库名
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>-- 修改库的选项信息
+</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>    ALTER DATABASE 库名 选项信息
+</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>-- 删除库
+</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>    DROP DATABASE[ IF EXISTS] 数据库名
+</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>        同时删除该数据库相关的目录及其目录内容
+</span></code></pre></div>
 <h3 id="_3">表的操作<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
-<pre><code>-- 创建表
-    CREATE [TEMPORARY] TABLE[ IF NOT EXISTS] [库名.]表名 ( 表的结构定义 )[ 表选项]
-        每个字段必须有数据类型
-        最后一个字段后不能有逗号
-        TEMPORARY 临时表，会话结束时表自动消失
-        对于字段的定义：
-            字段名 数据类型 [NOT NULL | NULL] [DEFAULT default_value] [AUTO_INCREMENT] [UNIQUE [KEY] | [PRIMARY] KEY] [COMMENT  string ]
--- 表选项
-    -- 字符集
-        CHARSET = charset_name
-        如果表没有设定，则使用数据库字符集
-    -- 存储引擎
-        ENGINE = engine_name
-        表在管理数据时采用的不同的数据结构，结构不同会导致处理方式、提供的特性操作等不同
-        常见的引擎：InnoDB MyISAM Memory/Heap BDB Merge Example CSV MaxDB Archive
-        不同的引擎在保存表的结构和数据时采用不同的方式
-        MyISAM表文件含义：.frm表定义，.MYD表数据，.MYI表索引
-        InnoDB表文件含义：.frm表定义，表空间数据和日志文件
-        SHOW ENGINES -- 显示存储引擎的状态信息
-        SHOW ENGINE 引擎名 {LOGS|STATUS} -- 显示存储引擎的日志或状态信息
-    -- 自增起始数
-        AUTO_INCREMENT = 行数
-    -- 数据文件目录
-        DATA DIRECTORY =  目录 
-    -- 索引文件目录
-        INDEX DIRECTORY =  目录 
-    -- 表注释
-        COMMENT =  string 
-    -- 分区选项
-        PARTITION BY ... (详细见手册)
--- 查看所有表
-    SHOW TABLES[ LIKE  pattern ]
-    SHOW TABLES FROM 表名
--- 查看表机构
-    SHOW CREATE TABLE 表名 （信息更详细）
-    DESC 表名 / DESCRIBE 表名 / EXPLAIN 表名 / SHOW COLUMNS FROM 表名 [LIKE  PATTERN ]
-    SHOW TABLE STATUS [FROM db_name] [LIKE  pattern ]
--- 修改表
-    -- 修改表本身的选项
-        ALTER TABLE 表名 表的选项
-        eg: ALTER TABLE 表名 ENGINE=MYISAM;
-    -- 对表进行重命名
-        RENAME TABLE 原表名 TO 新表名
-        RENAME TABLE 原表名 TO 库名.表名 （可将表移动到另一个数据库）
-        -- RENAME可以交换两个表名
-    -- 修改表的字段机构（13.1.2. ALTER TABLE语法）
-        ALTER TABLE 表名 操作名
-        -- 操作名
-            ADD[ COLUMN] 字段定义       -- 增加字段
-                AFTER 字段名          -- 表示增加在该字段名后面
-                FIRST               -- 表示增加在第一个
-            ADD PRIMARY KEY(字段名)   -- 创建主键
-            ADD UNIQUE [索引名] (字段名)-- 创建唯一索引
-            ADD INDEX [索引名] (字段名) -- 创建普通索引
-            DROP[ COLUMN] 字段名      -- 删除字段
-            MODIFY[ COLUMN] 字段名 字段属性     -- 支持对字段属性进行修改，不能修改字段名(所有原有属性也需写上)
-            CHANGE[ COLUMN] 原字段名 新字段名 字段属性      -- 支持对字段名修改
-            DROP PRIMARY KEY    -- 删除主键(删除主键前需删除其AUTO_INCREMENT属性)
-            DROP INDEX 索引名 -- 删除索引
-            DROP FOREIGN KEY 外键    -- 删除外键
--- 删除表
-    DROP TABLE[ IF EXISTS] 表名 ...
--- 清空表数据
-    TRUNCATE [TABLE] 表名
--- 复制表结构
-    CREATE TABLE 表名 LIKE 要复制的表名
--- 复制表结构和数据
-    CREATE TABLE 表名 [AS] SELECT * FROM 要复制的表名
--- 检查表是否有错误
-    CHECK TABLE tbl_name [, tbl_name] ... [option] ...
--- 优化表
-    OPTIMIZE [LOCAL | NO_WRITE_TO_BINLOG] TABLE tbl_name [, tbl_name] ...
--- 修复表
-    REPAIR [LOCAL | NO_WRITE_TO_BINLOG] TABLE tbl_name [, tbl_name] ... [QUICK] [EXTENDED] [USE_FRM]
--- 分析表
-    ANALYZE [LOCAL | NO_WRITE_TO_BINLOG] TABLE tbl_name [, tbl_name] ...
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>-- 创建表
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>    CREATE [TEMPORARY] TABLE[ IF NOT EXISTS] [库名.]表名 ( 表的结构定义 )[ 表选项]
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>        每个字段必须有数据类型
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>        最后一个字段后不能有逗号
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>        TEMPORARY 临时表，会话结束时表自动消失
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>        对于字段的定义：
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>            字段名 数据类型 [NOT NULL | NULL] [DEFAULT default_value] [AUTO_INCREMENT] [UNIQUE [KEY] | [PRIMARY] KEY] [COMMENT  string ]
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>-- 表选项
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>    -- 字符集
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>        CHARSET = charset_name
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>        如果表没有设定，则使用数据库字符集
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>    -- 存储引擎
+</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>        ENGINE = engine_name
+</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>        表在管理数据时采用的不同的数据结构，结构不同会导致处理方式、提供的特性操作等不同
+</span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>        常见的引擎：InnoDB MyISAM Memory/Heap BDB Merge Example CSV MaxDB Archive
+</span><span id="__span-2-16"><a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a>        不同的引擎在保存表的结构和数据时采用不同的方式
+</span><span id="__span-2-17"><a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a>        MyISAM表文件含义：.frm表定义，.MYD表数据，.MYI表索引
+</span><span id="__span-2-18"><a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a>        InnoDB表文件含义：.frm表定义，表空间数据和日志文件
+</span><span id="__span-2-19"><a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a>        SHOW ENGINES -- 显示存储引擎的状态信息
+</span><span id="__span-2-20"><a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a>        SHOW ENGINE 引擎名 {LOGS|STATUS} -- 显示存储引擎的日志或状态信息
+</span><span id="__span-2-21"><a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a>    -- 自增起始数
+</span><span id="__span-2-22"><a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a>        AUTO_INCREMENT = 行数
+</span><span id="__span-2-23"><a id="__codelineno-2-23" name="__codelineno-2-23" href="#__codelineno-2-23"></a>    -- 数据文件目录
+</span><span id="__span-2-24"><a id="__codelineno-2-24" name="__codelineno-2-24" href="#__codelineno-2-24"></a>        DATA DIRECTORY =  目录 
+</span><span id="__span-2-25"><a id="__codelineno-2-25" name="__codelineno-2-25" href="#__codelineno-2-25"></a>    -- 索引文件目录
+</span><span id="__span-2-26"><a id="__codelineno-2-26" name="__codelineno-2-26" href="#__codelineno-2-26"></a>        INDEX DIRECTORY =  目录 
+</span><span id="__span-2-27"><a id="__codelineno-2-27" name="__codelineno-2-27" href="#__codelineno-2-27"></a>    -- 表注释
+</span><span id="__span-2-28"><a id="__codelineno-2-28" name="__codelineno-2-28" href="#__codelineno-2-28"></a>        COMMENT =  string 
+</span><span id="__span-2-29"><a id="__codelineno-2-29" name="__codelineno-2-29" href="#__codelineno-2-29"></a>    -- 分区选项
+</span><span id="__span-2-30"><a id="__codelineno-2-30" name="__codelineno-2-30" href="#__codelineno-2-30"></a>        PARTITION BY ... (详细见手册)
+</span><span id="__span-2-31"><a id="__codelineno-2-31" name="__codelineno-2-31" href="#__codelineno-2-31"></a>-- 查看所有表
+</span><span id="__span-2-32"><a id="__codelineno-2-32" name="__codelineno-2-32" href="#__codelineno-2-32"></a>    SHOW TABLES[ LIKE  pattern ]
+</span><span id="__span-2-33"><a id="__codelineno-2-33" name="__codelineno-2-33" href="#__codelineno-2-33"></a>    SHOW TABLES FROM 表名
+</span><span id="__span-2-34"><a id="__codelineno-2-34" name="__codelineno-2-34" href="#__codelineno-2-34"></a>-- 查看表机构
+</span><span id="__span-2-35"><a id="__codelineno-2-35" name="__codelineno-2-35" href="#__codelineno-2-35"></a>    SHOW CREATE TABLE 表名 （信息更详细）
+</span><span id="__span-2-36"><a id="__codelineno-2-36" name="__codelineno-2-36" href="#__codelineno-2-36"></a>    DESC 表名 / DESCRIBE 表名 / EXPLAIN 表名 / SHOW COLUMNS FROM 表名 [LIKE  PATTERN ]
+</span><span id="__span-2-37"><a id="__codelineno-2-37" name="__codelineno-2-37" href="#__codelineno-2-37"></a>    SHOW TABLE STATUS [FROM db_name] [LIKE  pattern ]
+</span><span id="__span-2-38"><a id="__codelineno-2-38" name="__codelineno-2-38" href="#__codelineno-2-38"></a>-- 修改表
+</span><span id="__span-2-39"><a id="__codelineno-2-39" name="__codelineno-2-39" href="#__codelineno-2-39"></a>    -- 修改表本身的选项
+</span><span id="__span-2-40"><a id="__codelineno-2-40" name="__codelineno-2-40" href="#__codelineno-2-40"></a>        ALTER TABLE 表名 表的选项
+</span><span id="__span-2-41"><a id="__codelineno-2-41" name="__codelineno-2-41" href="#__codelineno-2-41"></a>        eg: ALTER TABLE 表名 ENGINE=MYISAM;
+</span><span id="__span-2-42"><a id="__codelineno-2-42" name="__codelineno-2-42" href="#__codelineno-2-42"></a>    -- 对表进行重命名
+</span><span id="__span-2-43"><a id="__codelineno-2-43" name="__codelineno-2-43" href="#__codelineno-2-43"></a>        RENAME TABLE 原表名 TO 新表名
+</span><span id="__span-2-44"><a id="__codelineno-2-44" name="__codelineno-2-44" href="#__codelineno-2-44"></a>        RENAME TABLE 原表名 TO 库名.表名 （可将表移动到另一个数据库）
+</span><span id="__span-2-45"><a id="__codelineno-2-45" name="__codelineno-2-45" href="#__codelineno-2-45"></a>        -- RENAME可以交换两个表名
+</span><span id="__span-2-46"><a id="__codelineno-2-46" name="__codelineno-2-46" href="#__codelineno-2-46"></a>    -- 修改表的字段机构（13.1.2. ALTER TABLE语法）
+</span><span id="__span-2-47"><a id="__codelineno-2-47" name="__codelineno-2-47" href="#__codelineno-2-47"></a>        ALTER TABLE 表名 操作名
+</span><span id="__span-2-48"><a id="__codelineno-2-48" name="__codelineno-2-48" href="#__codelineno-2-48"></a>        -- 操作名
+</span><span id="__span-2-49"><a id="__codelineno-2-49" name="__codelineno-2-49" href="#__codelineno-2-49"></a>            ADD[ COLUMN] 字段定义       -- 增加字段
+</span><span id="__span-2-50"><a id="__codelineno-2-50" name="__codelineno-2-50" href="#__codelineno-2-50"></a>                AFTER 字段名          -- 表示增加在该字段名后面
+</span><span id="__span-2-51"><a id="__codelineno-2-51" name="__codelineno-2-51" href="#__codelineno-2-51"></a>                FIRST               -- 表示增加在第一个
+</span><span id="__span-2-52"><a id="__codelineno-2-52" name="__codelineno-2-52" href="#__codelineno-2-52"></a>            ADD PRIMARY KEY(字段名)   -- 创建主键
+</span><span id="__span-2-53"><a id="__codelineno-2-53" name="__codelineno-2-53" href="#__codelineno-2-53"></a>            ADD UNIQUE [索引名] (字段名)-- 创建唯一索引
+</span><span id="__span-2-54"><a id="__codelineno-2-54" name="__codelineno-2-54" href="#__codelineno-2-54"></a>            ADD INDEX [索引名] (字段名) -- 创建普通索引
+</span><span id="__span-2-55"><a id="__codelineno-2-55" name="__codelineno-2-55" href="#__codelineno-2-55"></a>            DROP[ COLUMN] 字段名      -- 删除字段
+</span><span id="__span-2-56"><a id="__codelineno-2-56" name="__codelineno-2-56" href="#__codelineno-2-56"></a>            MODIFY[ COLUMN] 字段名 字段属性     -- 支持对字段属性进行修改，不能修改字段名(所有原有属性也需写上)
+</span><span id="__span-2-57"><a id="__codelineno-2-57" name="__codelineno-2-57" href="#__codelineno-2-57"></a>            CHANGE[ COLUMN] 原字段名 新字段名 字段属性      -- 支持对字段名修改
+</span><span id="__span-2-58"><a id="__codelineno-2-58" name="__codelineno-2-58" href="#__codelineno-2-58"></a>            DROP PRIMARY KEY    -- 删除主键(删除主键前需删除其AUTO_INCREMENT属性)
+</span><span id="__span-2-59"><a id="__codelineno-2-59" name="__codelineno-2-59" href="#__codelineno-2-59"></a>            DROP INDEX 索引名 -- 删除索引
+</span><span id="__span-2-60"><a id="__codelineno-2-60" name="__codelineno-2-60" href="#__codelineno-2-60"></a>            DROP FOREIGN KEY 外键    -- 删除外键
+</span><span id="__span-2-61"><a id="__codelineno-2-61" name="__codelineno-2-61" href="#__codelineno-2-61"></a>-- 删除表
+</span><span id="__span-2-62"><a id="__codelineno-2-62" name="__codelineno-2-62" href="#__codelineno-2-62"></a>    DROP TABLE[ IF EXISTS] 表名 ...
+</span><span id="__span-2-63"><a id="__codelineno-2-63" name="__codelineno-2-63" href="#__codelineno-2-63"></a>-- 清空表数据
+</span><span id="__span-2-64"><a id="__codelineno-2-64" name="__codelineno-2-64" href="#__codelineno-2-64"></a>    TRUNCATE [TABLE] 表名
+</span><span id="__span-2-65"><a id="__codelineno-2-65" name="__codelineno-2-65" href="#__codelineno-2-65"></a>-- 复制表结构
+</span><span id="__span-2-66"><a id="__codelineno-2-66" name="__codelineno-2-66" href="#__codelineno-2-66"></a>    CREATE TABLE 表名 LIKE 要复制的表名
+</span><span id="__span-2-67"><a id="__codelineno-2-67" name="__codelineno-2-67" href="#__codelineno-2-67"></a>-- 复制表结构和数据
+</span><span id="__span-2-68"><a id="__codelineno-2-68" name="__codelineno-2-68" href="#__codelineno-2-68"></a>    CREATE TABLE 表名 [AS] SELECT * FROM 要复制的表名
+</span><span id="__span-2-69"><a id="__codelineno-2-69" name="__codelineno-2-69" href="#__codelineno-2-69"></a>-- 检查表是否有错误
+</span><span id="__span-2-70"><a id="__codelineno-2-70" name="__codelineno-2-70" href="#__codelineno-2-70"></a>    CHECK TABLE tbl_name [, tbl_name] ... [option] ...
+</span><span id="__span-2-71"><a id="__codelineno-2-71" name="__codelineno-2-71" href="#__codelineno-2-71"></a>-- 优化表
+</span><span id="__span-2-72"><a id="__codelineno-2-72" name="__codelineno-2-72" href="#__codelineno-2-72"></a>    OPTIMIZE [LOCAL | NO_WRITE_TO_BINLOG] TABLE tbl_name [, tbl_name] ...
+</span><span id="__span-2-73"><a id="__codelineno-2-73" name="__codelineno-2-73" href="#__codelineno-2-73"></a>-- 修复表
+</span><span id="__span-2-74"><a id="__codelineno-2-74" name="__codelineno-2-74" href="#__codelineno-2-74"></a>    REPAIR [LOCAL | NO_WRITE_TO_BINLOG] TABLE tbl_name [, tbl_name] ... [QUICK] [EXTENDED] [USE_FRM]
+</span><span id="__span-2-75"><a id="__codelineno-2-75" name="__codelineno-2-75" href="#__codelineno-2-75"></a>-- 分析表
+</span><span id="__span-2-76"><a id="__codelineno-2-76" name="__codelineno-2-76" href="#__codelineno-2-76"></a>    ANALYZE [LOCAL | NO_WRITE_TO_BINLOG] TABLE tbl_name [, tbl_name] ...
+</span></code></pre></div>
 <h3 id="_4">数据操作<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
-<pre><code>-- 增
-    INSERT [INTO] 表名 [(字段列表)] VALUES (值列表)[, (值列表), ...]
-        -- 如果要插入的值列表包含所有字段并且顺序一致，则可以省略字段列表。
-        -- 可同时插入多条数据记录！
-        REPLACE 与 INSERT 完全一样，可互换。
-    INSERT [INTO] 表名 SET 字段名=值[, 字段名=值, ...]
--- 查
-    SELECT 字段列表 FROM 表名[ 其他子句]
-        -- 可来自多个表的多个字段
-        -- 其他子句可以不使用
-        -- 字段列表可以用*代替，表示所有字段
--- 删
-    DELETE FROM 表名[ 删除条件子句]
-        没有条件子句，则会删除全部
--- 改
-    UPDATE 表名 SET 字段名=新值[, 字段名=新值] [更新条件]
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>-- 增
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>    INSERT [INTO] 表名 [(字段列表)] VALUES (值列表)[, (值列表), ...]
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>        -- 如果要插入的值列表包含所有字段并且顺序一致，则可以省略字段列表。
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>        -- 可同时插入多条数据记录！
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>        REPLACE 与 INSERT 完全一样，可互换。
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>    INSERT [INTO] 表名 SET 字段名=值[, 字段名=值, ...]
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>-- 查
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>    SELECT 字段列表 FROM 表名[ 其他子句]
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>        -- 可来自多个表的多个字段
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>        -- 其他子句可以不使用
+</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>        -- 字段列表可以用*代替，表示所有字段
+</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>-- 删
+</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>    DELETE FROM 表名[ 删除条件子句]
+</span><span id="__span-3-14"><a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a>        没有条件子句，则会删除全部
+</span><span id="__span-3-15"><a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a>-- 改
+</span><span id="__span-3-16"><a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a>    UPDATE 表名 SET 字段名=新值[, 字段名=新值] [更新条件]
+</span></code></pre></div>
 <h3 id="_5">字符集编码<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
-<pre><code>-- MySQL、数据库、表、字段均可设置编码
--- 数据编码与客户端编码不需一致
-SHOW VARIABLES LIKE  character_set_%    -- 查看所有字符集编码项
-    character_set_client        客户端向服务器发送数据时使用的编码
-    character_set_results       服务器端将结果返回给客户端所使用的编码
-    character_set_connection    连接层编码
-SET 变量名 = 变量值
-    SET character_set_client = gbk;
-    SET character_set_results = gbk;
-    SET character_set_connection = gbk;
-SET NAMES GBK;  -- 相当于完成以上三个设置
--- 校对集
-    校对集用以排序
-    SHOW CHARACTER SET [LIKE  pattern ]/SHOW CHARSET [LIKE  pattern ]   查看所有字符集
-    SHOW COLLATION [LIKE  pattern ]     查看所有校对集
-    CHARSET 字符集编码     设置字符集编码
-    COLLATE 校对集编码     设置校对集编码
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>-- MySQL、数据库、表、字段均可设置编码
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>-- 数据编码与客户端编码不需一致
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>SHOW VARIABLES LIKE  character_set_%    -- 查看所有字符集编码项
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>    character_set_client        客户端向服务器发送数据时使用的编码
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>    character_set_results       服务器端将结果返回给客户端所使用的编码
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>    character_set_connection    连接层编码
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>SET 变量名 = 变量值
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>    SET character_set_client = gbk;
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>    SET character_set_results = gbk;
+</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>    SET character_set_connection = gbk;
+</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>SET NAMES GBK;  -- 相当于完成以上三个设置
+</span><span id="__span-4-12"><a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a>-- 校对集
+</span><span id="__span-4-13"><a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a>    校对集用以排序
+</span><span id="__span-4-14"><a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a>    SHOW CHARACTER SET [LIKE  pattern ]/SHOW CHARSET [LIKE  pattern ]   查看所有字符集
+</span><span id="__span-4-15"><a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a>    SHOW COLLATION [LIKE  pattern ]     查看所有校对集
+</span><span id="__span-4-16"><a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a>    CHARSET 字符集编码     设置字符集编码
+</span><span id="__span-4-17"><a id="__codelineno-4-17" name="__codelineno-4-17" href="#__codelineno-4-17"></a>    COLLATE 校对集编码     设置校对集编码
+</span></code></pre></div>
 <h3 id="_6">数据类型（列类型）<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
 <ul>
 <li>数值类型</li>
 </ul>
-<pre><code>-- a. 整型 ----------
-    类型         字节     范围（有符号位）
-    tinyint     1字节    -128 ~ 127      无符号位：0 ~ 255
-    smallint    2字节    -32768 ~ 32767
-    mediumint   3字节    -8388608 ~ 8388607
-    int         4字节
-    bigint      8字节
-    int(M)  M表示总位数
-    - 默认存在符号位，unsigned 属性修改
-    - 显示宽度，如果某个数不够定义字段时设置的位数，则前面以0补填，zerofill 属性修改
-        例：int(5)   插入一个数 123 ，补填后为 00123 
-    - 在满足要求的情况下，越小越好。
-    - 1表示bool值真，0表示bool值假。MySQL没有布尔类型，通过整型0和1表示。常用tinyint(1)表示布尔型。
-
--- b. 浮点型 ----------
-    类型             字节     范围
-    float(单精度)     4字节
-    double(双精度)    8字节
-    浮点型既支持符号位 unsigned 属性，也支持显示宽度 zerofill 属性。
-        不同于整型，前后均会补填0.
-    定义浮点型时，需指定总位数和小数位数。
-        float(M, D)     double(M, D)
-        M表示总位数，D表示小数位数。
-        M和D的大小会决定浮点数的范围。不同于整型的固定范围。
-        M既表示总位数（不包括小数点和正负号），也表示显示宽度（所有显示符号均包括）。
-        支持科学计数法表示。
-        浮点数表示近似值。
-
--- c. 定点数 ----------
-    decimal -- 可变长度
-    decimal(M, D)   M也表示总位数，D表示小数位数。
-    保存一个精确的数值，不会发生数据的改变，不同于浮点数的四舍五入。
-    将浮点数转换为字符串来保存，每9位数字保存为4个字节。
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>-- a. 整型 ----------
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>    类型         字节     范围（有符号位）
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>    tinyint     1字节    -128 ~ 127      无符号位：0 ~ 255
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>    smallint    2字节    -32768 ~ 32767
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>    mediumint   3字节    -8388608 ~ 8388607
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>    int         4字节
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>    bigint      8字节
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>    int(M)  M表示总位数
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>    - 默认存在符号位，unsigned 属性修改
+</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a>    - 显示宽度，如果某个数不够定义字段时设置的位数，则前面以0补填，zerofill 属性修改
+</span><span id="__span-5-11"><a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a>        例：int(5)   插入一个数 123 ，补填后为 00123 
+</span><span id="__span-5-12"><a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a>    - 在满足要求的情况下，越小越好。
+</span><span id="__span-5-13"><a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a>    - 1表示bool值真，0表示bool值假。MySQL没有布尔类型，通过整型0和1表示。常用tinyint(1)表示布尔型。
+</span><span id="__span-5-14"><a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a>
+</span><span id="__span-5-15"><a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a>-- b. 浮点型 ----------
+</span><span id="__span-5-16"><a id="__codelineno-5-16" name="__codelineno-5-16" href="#__codelineno-5-16"></a>    类型             字节     范围
+</span><span id="__span-5-17"><a id="__codelineno-5-17" name="__codelineno-5-17" href="#__codelineno-5-17"></a>    float(单精度)     4字节
+</span><span id="__span-5-18"><a id="__codelineno-5-18" name="__codelineno-5-18" href="#__codelineno-5-18"></a>    double(双精度)    8字节
+</span><span id="__span-5-19"><a id="__codelineno-5-19" name="__codelineno-5-19" href="#__codelineno-5-19"></a>    浮点型既支持符号位 unsigned 属性，也支持显示宽度 zerofill 属性。
+</span><span id="__span-5-20"><a id="__codelineno-5-20" name="__codelineno-5-20" href="#__codelineno-5-20"></a>        不同于整型，前后均会补填0.
+</span><span id="__span-5-21"><a id="__codelineno-5-21" name="__codelineno-5-21" href="#__codelineno-5-21"></a>    定义浮点型时，需指定总位数和小数位数。
+</span><span id="__span-5-22"><a id="__codelineno-5-22" name="__codelineno-5-22" href="#__codelineno-5-22"></a>        float(M, D)     double(M, D)
+</span><span id="__span-5-23"><a id="__codelineno-5-23" name="__codelineno-5-23" href="#__codelineno-5-23"></a>        M表示总位数，D表示小数位数。
+</span><span id="__span-5-24"><a id="__codelineno-5-24" name="__codelineno-5-24" href="#__codelineno-5-24"></a>        M和D的大小会决定浮点数的范围。不同于整型的固定范围。
+</span><span id="__span-5-25"><a id="__codelineno-5-25" name="__codelineno-5-25" href="#__codelineno-5-25"></a>        M既表示总位数（不包括小数点和正负号），也表示显示宽度（所有显示符号均包括）。
+</span><span id="__span-5-26"><a id="__codelineno-5-26" name="__codelineno-5-26" href="#__codelineno-5-26"></a>        支持科学计数法表示。
+</span><span id="__span-5-27"><a id="__codelineno-5-27" name="__codelineno-5-27" href="#__codelineno-5-27"></a>        浮点数表示近似值。
+</span><span id="__span-5-28"><a id="__codelineno-5-28" name="__codelineno-5-28" href="#__codelineno-5-28"></a>
+</span><span id="__span-5-29"><a id="__codelineno-5-29" name="__codelineno-5-29" href="#__codelineno-5-29"></a>-- c. 定点数 ----------
+</span><span id="__span-5-30"><a id="__codelineno-5-30" name="__codelineno-5-30" href="#__codelineno-5-30"></a>    decimal -- 可变长度
+</span><span id="__span-5-31"><a id="__codelineno-5-31" name="__codelineno-5-31" href="#__codelineno-5-31"></a>    decimal(M, D)   M也表示总位数，D表示小数位数。
+</span><span id="__span-5-32"><a id="__codelineno-5-32" name="__codelineno-5-32" href="#__codelineno-5-32"></a>    保存一个精确的数值，不会发生数据的改变，不同于浮点数的四舍五入。
+</span><span id="__span-5-33"><a id="__codelineno-5-33" name="__codelineno-5-33" href="#__codelineno-5-33"></a>    将浮点数转换为字符串来保存，每9位数字保存为4个字节。
+</span></code></pre></div>
 <ul>
 <li>字符串类型</li>
 </ul>
-<pre><code>-- a. char, varchar ----------
-    char    定长字符串，速度快，但浪费空间
-    varchar 变长字符串，速度慢，但节省空间
-    M表示能存储的最大长度，此长度是字符数，非字节数。
-    不同的编码，所占用的空间不同。
-    char,最多255个字符，与编码无关。
-    varchar,最多65535字符，与编码有关。
-    一条有效记录最大不能超过65535个字节。
-        utf8 最大为21844个字符，gbk 最大为32766个字符，latin1 最大为65532个字符
-    varchar 是变长的，需要利用存储空间保存 varchar 的长度，如果数据小于255个字节，则采用一个字节来保存长度，反之需要两个字节来保存。
-    varchar 的最大有效长度由最大行大小和使用的字符集确定。
-    最大有效长度是65532字节，因为在varchar存字符串时，第一个字节是空的，不存在任何数据，然后还需两个字节来存放字符串的长度，所以有效长度是64432-1-2=65532字节。
-    例：若一个表定义为 CREATE TABLE tb(c1 int, c2 char(30), c3 varchar(N)) charset=utf8; 问N的最大值是多少？ 答：(65535-1-2-4-30*3)/3
-
--- b. blob, text ----------
-    blob 二进制字符串（字节字符串）
-        tinyblob, blob, mediumblob, longblob
-    text 非二进制字符串（字符字符串）
-        tinytext, text, mediumtext, longtext
-    text 在定义时，不需要定义长度，也不会计算总长度。
-    text 类型在定义时，不可给default值
-
--- c. binary, varbinary ----------
-    类似于char和varchar，用于保存二进制字符串，也就是保存字节字符串而非字符字符串。
-    char, varchar, text 对应 binary, varbinary, blob.
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>-- a. char, varchar ----------
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>    char    定长字符串，速度快，但浪费空间
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>    varchar 变长字符串，速度慢，但节省空间
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>    M表示能存储的最大长度，此长度是字符数，非字节数。
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>    不同的编码，所占用的空间不同。
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>    char,最多255个字符，与编码无关。
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>    varchar,最多65535字符，与编码有关。
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>    一条有效记录最大不能超过65535个字节。
+</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>        utf8 最大为21844个字符，gbk 最大为32766个字符，latin1 最大为65532个字符
+</span><span id="__span-6-10"><a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a>    varchar 是变长的，需要利用存储空间保存 varchar 的长度，如果数据小于255个字节，则采用一个字节来保存长度，反之需要两个字节来保存。
+</span><span id="__span-6-11"><a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a>    varchar 的最大有效长度由最大行大小和使用的字符集确定。
+</span><span id="__span-6-12"><a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a>    最大有效长度是65532字节，因为在varchar存字符串时，第一个字节是空的，不存在任何数据，然后还需两个字节来存放字符串的长度，所以有效长度是64432-1-2=65532字节。
+</span><span id="__span-6-13"><a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a>    例：若一个表定义为 CREATE TABLE tb(c1 int, c2 char(30), c3 varchar(N)) charset=utf8; 问N的最大值是多少？ 答：(65535-1-2-4-30*3)/3
+</span><span id="__span-6-14"><a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a>
+</span><span id="__span-6-15"><a id="__codelineno-6-15" name="__codelineno-6-15" href="#__codelineno-6-15"></a>-- b. blob, text ----------
+</span><span id="__span-6-16"><a id="__codelineno-6-16" name="__codelineno-6-16" href="#__codelineno-6-16"></a>    blob 二进制字符串（字节字符串）
+</span><span id="__span-6-17"><a id="__codelineno-6-17" name="__codelineno-6-17" href="#__codelineno-6-17"></a>        tinyblob, blob, mediumblob, longblob
+</span><span id="__span-6-18"><a id="__codelineno-6-18" name="__codelineno-6-18" href="#__codelineno-6-18"></a>    text 非二进制字符串（字符字符串）
+</span><span id="__span-6-19"><a id="__codelineno-6-19" name="__codelineno-6-19" href="#__codelineno-6-19"></a>        tinytext, text, mediumtext, longtext
+</span><span id="__span-6-20"><a id="__codelineno-6-20" name="__codelineno-6-20" href="#__codelineno-6-20"></a>    text 在定义时，不需要定义长度，也不会计算总长度。
+</span><span id="__span-6-21"><a id="__codelineno-6-21" name="__codelineno-6-21" href="#__codelineno-6-21"></a>    text 类型在定义时，不可给default值
+</span><span id="__span-6-22"><a id="__codelineno-6-22" name="__codelineno-6-22" href="#__codelineno-6-22"></a>
+</span><span id="__span-6-23"><a id="__codelineno-6-23" name="__codelineno-6-23" href="#__codelineno-6-23"></a>-- c. binary, varbinary ----------
+</span><span id="__span-6-24"><a id="__codelineno-6-24" name="__codelineno-6-24" href="#__codelineno-6-24"></a>    类似于char和varchar，用于保存二进制字符串，也就是保存字节字符串而非字符字符串。
+</span><span id="__span-6-25"><a id="__codelineno-6-25" name="__codelineno-6-25" href="#__codelineno-6-25"></a>    char, varchar, text 对应 binary, varbinary, blob.
+</span></code></pre></div>
 <ul>
-<li>日期时间类型</li>
+<li>
+<p>日期时间类型
+<div class="language-text highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>    一般用整型保存时间戳，因为PHP可以很方便的将时间戳进行格式化。
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>    datetime    8字节    日期及时间     1000-01-01 00:00:00 到 9999-12-31 23:59:59
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>    date        3字节    日期         1000-01-01 到 9999-12-31
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>    timestamp   4字节    时间戳        19700101000000 到 2038-01-19 03:14:07
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>    time        3字节    时间         -838:59:59 到 838:59:59
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>    year        1字节    年份         1901 - 2155
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>datetime    YYYY-MM-DD hh:mm:ss
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>timestamp   YY-MM-DD hh:mm:ss
+</span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a>            YYYYMMDDhhmmss
+</span><span id="__span-7-10"><a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a>            YYMMDDhhmmss
+</span><span id="__span-7-11"><a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a>            YYYYMMDDhhmmss
+</span><span id="__span-7-12"><a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a>            YYMMDDhhmmss
+</span><span id="__span-7-13"><a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a>date        YYYY-MM-DD
+</span><span id="__span-7-14"><a id="__codelineno-7-14" name="__codelineno-7-14" href="#__codelineno-7-14"></a>            YY-MM-DD
+</span><span id="__span-7-15"><a id="__codelineno-7-15" name="__codelineno-7-15" href="#__codelineno-7-15"></a>            YYYYMMDD
+</span><span id="__span-7-16"><a id="__codelineno-7-16" name="__codelineno-7-16" href="#__codelineno-7-16"></a>            YYMMDD
+</span><span id="__span-7-17"><a id="__codelineno-7-17" name="__codelineno-7-17" href="#__codelineno-7-17"></a>            YYYYMMDD
+</span><span id="__span-7-18"><a id="__codelineno-7-18" name="__codelineno-7-18" href="#__codelineno-7-18"></a>            YYMMDD
+</span><span id="__span-7-19"><a id="__codelineno-7-19" name="__codelineno-7-19" href="#__codelineno-7-19"></a>time        hh:mm:ss
+</span><span id="__span-7-20"><a id="__codelineno-7-20" name="__codelineno-7-20" href="#__codelineno-7-20"></a>            hhmmss
+</span><span id="__span-7-21"><a id="__codelineno-7-21" name="__codelineno-7-21" href="#__codelineno-7-21"></a>            hhmmss
+</span><span id="__span-7-22"><a id="__codelineno-7-22" name="__codelineno-7-22" href="#__codelineno-7-22"></a>year        YYYY
+</span><span id="__span-7-23"><a id="__codelineno-7-23" name="__codelineno-7-23" href="#__codelineno-7-23"></a>            YY
+</span><span id="__span-7-24"><a id="__codelineno-7-24" name="__codelineno-7-24" href="#__codelineno-7-24"></a>            YYYY
+</span><span id="__span-7-25"><a id="__codelineno-7-25" name="__codelineno-7-25" href="#__codelineno-7-25"></a>            YY
+</span></code></pre></div></p>
+</li>
+<li>
+<p>枚举和集合</p>
+</li>
 </ul>
-<pre><code>    一般用整型保存时间戳，因为PHP可以很方便的将时间戳进行格式化。
-    datetime    8字节    日期及时间     1000-01-01 00:00:00 到 9999-12-31 23:59:59
-    date        3字节    日期         1000-01-01 到 9999-12-31
-    timestamp   4字节    时间戳        19700101000000 到 2038-01-19 03:14:07
-    time        3字节    时间         -838:59:59 到 838:59:59
-    year        1字节    年份         1901 - 2155
-datetime    YYYY-MM-DD hh:mm:ss
-timestamp   YY-MM-DD hh:mm:ss
-            YYYYMMDDhhmmss
-            YYMMDDhhmmss
-            YYYYMMDDhhmmss
-            YYMMDDhhmmss
-date        YYYY-MM-DD
-            YY-MM-DD
-            YYYYMMDD
-            YYMMDD
-            YYYYMMDD
-            YYMMDD
-time        hh:mm:ss
-            hhmmss
-            hhmmss
-year        YYYY
-            YY
-            YYYY
-            YY
-</code></pre>
-<ul>
-<li>枚举和集合</li>
-</ul>
-<pre><code>-- 枚举(enum) ----------
-enum(val1, val2, val3...)
-    在已知的值中进行单选。最大数量为65535.
-    枚举值在保存时，以2个字节的整型(smallint)保存。每个枚举值，按保存的位置顺序，从1开始逐一递增。
-    表现为字符串类型，存储却是整型。
-    NULL值的索引是NULL。
-    空字符串错误值的索引值是0。
-
-
--- 集合（set） ----------
-set(val1, val2, val3...)
-    create table tab ( gender set( 男 ,  女 ,  无 ) );
-    insert into tab values ( 男, 女 );
-    最多可以有64个不同的成员。以bigint存储，共8个字节。采取位运算的形式。
-    当创建表时，SET成员值的尾部空格将自动被删除。
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>-- 枚举(enum) ----------
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>enum(val1, val2, val3...)
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>    在已知的值中进行单选。最大数量为65535.
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>    枚举值在保存时，以2个字节的整型(smallint)保存。每个枚举值，按保存的位置顺序，从1开始逐一递增。
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>    表现为字符串类型，存储却是整型。
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>    NULL值的索引是NULL。
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>    空字符串错误值的索引值是0。
+</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>
+</span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a>
+</span><span id="__span-8-10"><a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a>-- 集合（set） ----------
+</span><span id="__span-8-11"><a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a>set(val1, val2, val3...)
+</span><span id="__span-8-12"><a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a>    create table tab ( gender set( 男 ,  女 ,  无 ) );
+</span><span id="__span-8-13"><a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a>    insert into tab values ( 男, 女 );
+</span><span id="__span-8-14"><a id="__codelineno-8-14" name="__codelineno-8-14" href="#__codelineno-8-14"></a>    最多可以有64个不同的成员。以bigint存储，共8个字节。采取位运算的形式。
+</span><span id="__span-8-15"><a id="__codelineno-8-15" name="__codelineno-8-15" href="#__codelineno-8-15"></a>    当创建表时，SET成员值的尾部空格将自动被删除。
+</span></code></pre></div>
 <h3 id="_7">选择类型<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
-<pre><code>-- PHP角度
-1. 功能满足
-2. 存储空间尽量小，处理效率更高
-3. 考虑兼容问题
-
--- IP存储 ----------
-1. 只需存储，可用字符串
-2. 如果需计算，查找等，可存储为4个字节的无符号int，即unsigned
-    1) PHP函数转换
-        ip2long可转换为整型，但会出现携带符号问题。需格式化为无符号的整型。
-        利用sprintf函数格式化字符串
-        sprintf(&quot;%u&quot;, ip2long( 192.168.3.134 ));
-        然后用long2ip将整型转回IP字符串
-    2) MySQL函数转换(无符号整型，UNSIGNED)
-        INET_ATON( 127.0.0.1 ) 将IP转为整型
-        INET_NTOA(2130706433) 将整型转为IP
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>-- PHP角度
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>1. 功能满足
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>2. 存储空间尽量小，处理效率更高
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>3. 考虑兼容问题
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>
+</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>-- IP存储 ----------
+</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a>1. 只需存储，可用字符串
+</span><span id="__span-9-8"><a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a>2. 如果需计算，查找等，可存储为4个字节的无符号int，即unsigned
+</span><span id="__span-9-9"><a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a>    1) PHP函数转换
+</span><span id="__span-9-10"><a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a>        ip2long可转换为整型，但会出现携带符号问题。需格式化为无符号的整型。
+</span><span id="__span-9-11"><a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a>        利用sprintf函数格式化字符串
+</span><span id="__span-9-12"><a id="__codelineno-9-12" name="__codelineno-9-12" href="#__codelineno-9-12"></a>        sprintf(&quot;%u&quot;, ip2long( 192.168.3.134 ));
+</span><span id="__span-9-13"><a id="__codelineno-9-13" name="__codelineno-9-13" href="#__codelineno-9-13"></a>        然后用long2ip将整型转回IP字符串
+</span><span id="__span-9-14"><a id="__codelineno-9-14" name="__codelineno-9-14" href="#__codelineno-9-14"></a>    2) MySQL函数转换(无符号整型，UNSIGNED)
+</span><span id="__span-9-15"><a id="__codelineno-9-15" name="__codelineno-9-15" href="#__codelineno-9-15"></a>        INET_ATON( 127.0.0.1 ) 将IP转为整型
+</span><span id="__span-9-16"><a id="__codelineno-9-16" name="__codelineno-9-16" href="#__codelineno-9-16"></a>        INET_NTOA(2130706433) 将整型转为IP
+</span></code></pre></div>
 <h3 id="_8">列属性（列约束）<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
-<pre><code>1. PRIMARY 主键
-    - 能唯一标识记录的字段，可以作为主键。
-    - 一个表只能有一个主键。
-    - 主键具有唯一性。
-    - 声明字段时，用 primary key 标识。
-        也可以在字段列表之后声明
-            例：create table tab ( id int, stu varchar(10), primary key (id));
-    - 主键字段的值不能为null。
-    - 主键可以由多个字段共同组成。此时需要在字段列表后声明的方法。
-        例：create table tab ( id int, stu varchar(10), age int, primary key (stu, age));
-2. UNIQUE 唯一索引（唯一约束）
-    使得某字段的值也不能重复。
-3. NULL 约束
-    null不是数据类型，是列的一个属性。
-    表示当前列是否可以为null，表示什么都没有。
-    null, 允许为空。默认。
-    not null, 不允许为空。
-    insert into tab values (null,  val );
-        -- 此时表示将第一个字段的值设为null, 取决于该字段是否允许为null
-4. DEFAULT 默认值属性
-    当前字段的默认值。
-    insert into tab values (default,  val );    -- 此时表示强制使用默认值。
-    create table tab ( add_time timestamp default current_timestamp );
-        -- 表示将当前时间的时间戳设为默认值。
-        current_date, current_time
-5. AUTO_INCREMENT 自动增长约束
-    自动增长必须为索引（主键或unique）
-    只能存在一个字段为自动增长。
-    默认为1开始自动增长。可以通过表属性 auto_increment = x进行设置，或 alter table tbl auto_increment = x;
-6. COMMENT 注释
-    例：create table tab ( id int ) comment  注释内容 ;
-7. FOREIGN KEY 外键约束
-    用于限制主表与从表数据完整性。
-    alter table t1 add constraint `t1_t2_fk` foreign key (t1_id) references t2(id);
-        -- 将表t1的t1_id外键关联到表t2的id字段。
-        -- 每个外键都有一个名字，可以通过 constraint 指定
-    存在外键的表，称之为从表（子表），外键指向的表，称之为主表（父表）。
-    作用：保持数据一致性，完整性，主要目的是控制存储在外键表（从表）中的数据。
-    MySQL中，可以对InnoDB引擎使用外键约束：
-    语法：
-    foreign key (外键字段） references 主表名 (关联字段) [主表记录删除时的动作] [主表记录更新时的动作]
-    此时需要检测一个从表的外键需要约束为主表的已存在的值。外键在没有关联的情况下，可以设置为null.前提是该外键列，没有not null。
-    可以不指定主表记录更改或更新时的动作，那么此时主表的操作被拒绝。
-    如果指定了 on update 或 on delete：在删除或更新时，有如下几个操作可以选择：
-    1. cascade，级联操作。主表数据被更新（主键值更新），从表也被更新（外键值更新）。主表记录被删除，从表相关记录也被删除。
-    2. set null，设置为null。主表数据被更新（主键值更新），从表的外键被设置为null。主表记录被删除，从表相关记录外键被设置成null。但注意，要求该外键列，没有not null属性约束。
-    3. restrict，拒绝父表删除和更新。
-    注意，外键只被InnoDB存储引擎所支持。其他引擎是不支持的。
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>1. PRIMARY 主键
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>    - 能唯一标识记录的字段，可以作为主键。
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>    - 一个表只能有一个主键。
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>    - 主键具有唯一性。
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>    - 声明字段时，用 primary key 标识。
+</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>        也可以在字段列表之后声明
+</span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a>            例：create table tab ( id int, stu varchar(10), primary key (id));
+</span><span id="__span-10-8"><a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a>    - 主键字段的值不能为null。
+</span><span id="__span-10-9"><a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a>    - 主键可以由多个字段共同组成。此时需要在字段列表后声明的方法。
+</span><span id="__span-10-10"><a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a>        例：create table tab ( id int, stu varchar(10), age int, primary key (stu, age));
+</span><span id="__span-10-11"><a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a>2. UNIQUE 唯一索引（唯一约束）
+</span><span id="__span-10-12"><a id="__codelineno-10-12" name="__codelineno-10-12" href="#__codelineno-10-12"></a>    使得某字段的值也不能重复。
+</span><span id="__span-10-13"><a id="__codelineno-10-13" name="__codelineno-10-13" href="#__codelineno-10-13"></a>3. NULL 约束
+</span><span id="__span-10-14"><a id="__codelineno-10-14" name="__codelineno-10-14" href="#__codelineno-10-14"></a>    null不是数据类型，是列的一个属性。
+</span><span id="__span-10-15"><a id="__codelineno-10-15" name="__codelineno-10-15" href="#__codelineno-10-15"></a>    表示当前列是否可以为null，表示什么都没有。
+</span><span id="__span-10-16"><a id="__codelineno-10-16" name="__codelineno-10-16" href="#__codelineno-10-16"></a>    null, 允许为空。默认。
+</span><span id="__span-10-17"><a id="__codelineno-10-17" name="__codelineno-10-17" href="#__codelineno-10-17"></a>    not null, 不允许为空。
+</span><span id="__span-10-18"><a id="__codelineno-10-18" name="__codelineno-10-18" href="#__codelineno-10-18"></a>    insert into tab values (null,  val );
+</span><span id="__span-10-19"><a id="__codelineno-10-19" name="__codelineno-10-19" href="#__codelineno-10-19"></a>        -- 此时表示将第一个字段的值设为null, 取决于该字段是否允许为null
+</span><span id="__span-10-20"><a id="__codelineno-10-20" name="__codelineno-10-20" href="#__codelineno-10-20"></a>4. DEFAULT 默认值属性
+</span><span id="__span-10-21"><a id="__codelineno-10-21" name="__codelineno-10-21" href="#__codelineno-10-21"></a>    当前字段的默认值。
+</span><span id="__span-10-22"><a id="__codelineno-10-22" name="__codelineno-10-22" href="#__codelineno-10-22"></a>    insert into tab values (default,  val );    -- 此时表示强制使用默认值。
+</span><span id="__span-10-23"><a id="__codelineno-10-23" name="__codelineno-10-23" href="#__codelineno-10-23"></a>    create table tab ( add_time timestamp default current_timestamp );
+</span><span id="__span-10-24"><a id="__codelineno-10-24" name="__codelineno-10-24" href="#__codelineno-10-24"></a>        -- 表示将当前时间的时间戳设为默认值。
+</span><span id="__span-10-25"><a id="__codelineno-10-25" name="__codelineno-10-25" href="#__codelineno-10-25"></a>        current_date, current_time
+</span><span id="__span-10-26"><a id="__codelineno-10-26" name="__codelineno-10-26" href="#__codelineno-10-26"></a>5. AUTO_INCREMENT 自动增长约束
+</span><span id="__span-10-27"><a id="__codelineno-10-27" name="__codelineno-10-27" href="#__codelineno-10-27"></a>    自动增长必须为索引（主键或unique）
+</span><span id="__span-10-28"><a id="__codelineno-10-28" name="__codelineno-10-28" href="#__codelineno-10-28"></a>    只能存在一个字段为自动增长。
+</span><span id="__span-10-29"><a id="__codelineno-10-29" name="__codelineno-10-29" href="#__codelineno-10-29"></a>    默认为1开始自动增长。可以通过表属性 auto_increment = x进行设置，或 alter table tbl auto_increment = x;
+</span><span id="__span-10-30"><a id="__codelineno-10-30" name="__codelineno-10-30" href="#__codelineno-10-30"></a>6. COMMENT 注释
+</span><span id="__span-10-31"><a id="__codelineno-10-31" name="__codelineno-10-31" href="#__codelineno-10-31"></a>    例：create table tab ( id int ) comment  注释内容 ;
+</span><span id="__span-10-32"><a id="__codelineno-10-32" name="__codelineno-10-32" href="#__codelineno-10-32"></a>7. FOREIGN KEY 外键约束
+</span><span id="__span-10-33"><a id="__codelineno-10-33" name="__codelineno-10-33" href="#__codelineno-10-33"></a>    用于限制主表与从表数据完整性。
+</span><span id="__span-10-34"><a id="__codelineno-10-34" name="__codelineno-10-34" href="#__codelineno-10-34"></a>    alter table t1 add constraint `t1_t2_fk` foreign key (t1_id) references t2(id);
+</span><span id="__span-10-35"><a id="__codelineno-10-35" name="__codelineno-10-35" href="#__codelineno-10-35"></a>        -- 将表t1的t1_id外键关联到表t2的id字段。
+</span><span id="__span-10-36"><a id="__codelineno-10-36" name="__codelineno-10-36" href="#__codelineno-10-36"></a>        -- 每个外键都有一个名字，可以通过 constraint 指定
+</span><span id="__span-10-37"><a id="__codelineno-10-37" name="__codelineno-10-37" href="#__codelineno-10-37"></a>    存在外键的表，称之为从表（子表），外键指向的表，称之为主表（父表）。
+</span><span id="__span-10-38"><a id="__codelineno-10-38" name="__codelineno-10-38" href="#__codelineno-10-38"></a>    作用：保持数据一致性，完整性，主要目的是控制存储在外键表（从表）中的数据。
+</span><span id="__span-10-39"><a id="__codelineno-10-39" name="__codelineno-10-39" href="#__codelineno-10-39"></a>    MySQL中，可以对InnoDB引擎使用外键约束：
+</span><span id="__span-10-40"><a id="__codelineno-10-40" name="__codelineno-10-40" href="#__codelineno-10-40"></a>    语法：
+</span><span id="__span-10-41"><a id="__codelineno-10-41" name="__codelineno-10-41" href="#__codelineno-10-41"></a>    foreign key (外键字段） references 主表名 (关联字段) [主表记录删除时的动作] [主表记录更新时的动作]
+</span><span id="__span-10-42"><a id="__codelineno-10-42" name="__codelineno-10-42" href="#__codelineno-10-42"></a>    此时需要检测一个从表的外键需要约束为主表的已存在的值。外键在没有关联的情况下，可以设置为null.前提是该外键列，没有not null。
+</span><span id="__span-10-43"><a id="__codelineno-10-43" name="__codelineno-10-43" href="#__codelineno-10-43"></a>    可以不指定主表记录更改或更新时的动作，那么此时主表的操作被拒绝。
+</span><span id="__span-10-44"><a id="__codelineno-10-44" name="__codelineno-10-44" href="#__codelineno-10-44"></a>    如果指定了 on update 或 on delete：在删除或更新时，有如下几个操作可以选择：
+</span><span id="__span-10-45"><a id="__codelineno-10-45" name="__codelineno-10-45" href="#__codelineno-10-45"></a>    1. cascade，级联操作。主表数据被更新（主键值更新），从表也被更新（外键值更新）。主表记录被删除，从表相关记录也被删除。
+</span><span id="__span-10-46"><a id="__codelineno-10-46" name="__codelineno-10-46" href="#__codelineno-10-46"></a>    2. set null，设置为null。主表数据被更新（主键值更新），从表的外键被设置为null。主表记录被删除，从表相关记录外键被设置成null。但注意，要求该外键列，没有not null属性约束。
+</span><span id="__span-10-47"><a id="__codelineno-10-47" name="__codelineno-10-47" href="#__codelineno-10-47"></a>    3. restrict，拒绝父表删除和更新。
+</span><span id="__span-10-48"><a id="__codelineno-10-48" name="__codelineno-10-48" href="#__codelineno-10-48"></a>    注意，外键只被InnoDB存储引擎所支持。其他引擎是不支持的。
+</span></code></pre></div>
 <h3 id="_9">建表规范<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h3>
-<pre><code>   -- Normal Format, NF
-        - 每个表保存一个实体信息
-        - 每个具有一个ID字段作为主键
-        - ID主键 + 原子表
-    -- 1NF, 第一范式
-        字段不能再分，就满足第一范式。
-    -- 2NF, 第二范式
-        满足第一范式的前提下，不能出现部分依赖。
-        消除符合主键就可以避免部分依赖。增加单列关键字。
-    -- 3NF, 第三范式
-        满足第二范式的前提下，不能出现传递依赖。
-        某个字段依赖于主键，而有其他字段依赖于该字段。这就是传递依赖。
-        将一个实体信息的数据放在一个表内实现。
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>   -- Normal Format, NF
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>        - 每个表保存一个实体信息
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>        - 每个具有一个ID字段作为主键
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>        - ID主键 + 原子表
+</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>    -- 1NF, 第一范式
+</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>        字段不能再分，就满足第一范式。
+</span><span id="__span-11-7"><a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a>    -- 2NF, 第二范式
+</span><span id="__span-11-8"><a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a>        满足第一范式的前提下，不能出现部分依赖。
+</span><span id="__span-11-9"><a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a>        消除符合主键就可以避免部分依赖。增加单列关键字。
+</span><span id="__span-11-10"><a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a>    -- 3NF, 第三范式
+</span><span id="__span-11-11"><a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a>        满足第二范式的前提下，不能出现传递依赖。
+</span><span id="__span-11-12"><a id="__codelineno-11-12" name="__codelineno-11-12" href="#__codelineno-11-12"></a>        某个字段依赖于主键，而有其他字段依赖于该字段。这就是传递依赖。
+</span><span id="__span-11-13"><a id="__codelineno-11-13" name="__codelineno-11-13" href="#__codelineno-11-13"></a>        将一个实体信息的数据放在一个表内实现。
+</span></code></pre></div>
 <h3 id="select">SELECT<a class="headerlink" href="#select" title="Permanent link">&para;</a></h3>
-<pre><code>SELECT [ALL|DISTINCT] select_expr FROM -&gt; WHERE -&gt; GROUP BY [合计函数] -&gt; HAVING -&gt; ORDER BY -&gt; LIMIT
-a. select_expr
-    -- 可以用 * 表示所有字段。
-        select * from tb;
-    -- 可以使用表达式（计算公式、函数调用、字段也是个表达式）
-        select stu, 29+25, now() from tb;
-    -- 可以为每个列使用别名。适用于简化列标识，避免多个列标识符重复。
-        - 使用 as 关键字，也可省略 as.
-        select stu+10 as add10 from tb;
-b. FROM 子句
-    用于标识查询来源。
-    -- 可以为表起别名。使用as关键字。
-        SELECT * FROM tb1 AS tt, tb2 AS bb;
-    -- from子句后，可以同时出现多个表。
-        -- 多个表会横向叠加到一起，而数据会形成一个笛卡尔积。
-        SELECT * FROM tb1, tb2;
-    -- 向优化符提示如何选择索引
-        USE INDEX、IGNORE INDEX、FORCE INDEX
-        SELECT * FROM table1 USE INDEX (key1,key2) WHERE key1=1 AND key2=2 AND key3=3;
-        SELECT * FROM table1 IGNORE INDEX (key3) WHERE key1=1 AND key2=2 AND key3=3;
-c. WHERE 子句
-    -- 从from获得的数据源中进行筛选。
-    -- 整型1表示真，0表示假。
-    -- 表达式由运算符和运算数组成。
-        -- 运算数：变量（字段）、值、函数返回值
-        -- 运算符：
-            =, &lt;=&gt;, &lt;&gt;, !=, &lt;=, &lt;, &gt;=, &gt;, !, &amp;&amp;, ||,
-            in (not) null, (not) like, (not) in, (not) between and, is (not), and, or, not, xor
-            is/is not 加上ture/false/unknown，检验某个值的真假
-            &lt;=&gt;与&lt;&gt;功能相同，&lt;=&gt;可用于null比较
-d. GROUP BY 子句, 分组子句
-    GROUP BY 字段/别名 [排序方式]
-    分组后会进行排序。升序：ASC，降序：DESC
-    以下[合计函数]需配合 GROUP BY 使用：
-    count 返回不同的非NULL值数目  count(*)、count(字段)
-    sum 求和
-    max 求最大值
-    min 求最小值
-    avg 求平均值
-    group_concat 返回带有来自一个组的连接的非NULL值的字符串结果。组内字符串连接。
-e. HAVING 子句，条件子句
-    与 where 功能、用法相同，执行时机不同。
-    where 在开始时执行检测数据，对原数据进行过滤。
-    having 对筛选出的结果再次进行过滤。
-    having 字段必须是查询出来的，where 字段必须是数据表存在的。
-    where 不可以使用字段的别名，having 可以。因为执行WHERE代码时，可能尚未确定列值。
-    where 不可以使用合计函数。一般需用合计函数才会用 having
-    SQL标准要求HAVING必须引用GROUP BY子句中的列或用于合计函数中的列。
-f. ORDER BY 子句，排序子句
-    order by 排序字段/别名 排序方式 [,排序字段/别名 排序方式]...
-    升序：ASC，降序：DESC
-    支持多个字段的排序。
-g. LIMIT 子句，限制结果数量子句
-    仅对处理好的结果进行数量限制。将处理好的结果的看作是一个集合，按照记录出现的顺序，索引从0开始。
-    limit 起始位置, 获取条数
-    省略第一个参数，表示从索引0开始。limit 获取条数
-h. DISTINCT, ALL 选项
-    distinct 去除重复记录
-    默认为 all, 全部记录
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>SELECT [ALL|DISTINCT] select_expr FROM -&gt; WHERE -&gt; GROUP BY [合计函数] -&gt; HAVING -&gt; ORDER BY -&gt; LIMIT
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>a. select_expr
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>    -- 可以用 * 表示所有字段。
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>        select * from tb;
+</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>    -- 可以使用表达式（计算公式、函数调用、字段也是个表达式）
+</span><span id="__span-12-6"><a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a>        select stu, 29+25, now() from tb;
+</span><span id="__span-12-7"><a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a>    -- 可以为每个列使用别名。适用于简化列标识，避免多个列标识符重复。
+</span><span id="__span-12-8"><a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a>        - 使用 as 关键字，也可省略 as.
+</span><span id="__span-12-9"><a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a>        select stu+10 as add10 from tb;
+</span><span id="__span-12-10"><a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a>b. FROM 子句
+</span><span id="__span-12-11"><a id="__codelineno-12-11" name="__codelineno-12-11" href="#__codelineno-12-11"></a>    用于标识查询来源。
+</span><span id="__span-12-12"><a id="__codelineno-12-12" name="__codelineno-12-12" href="#__codelineno-12-12"></a>    -- 可以为表起别名。使用as关键字。
+</span><span id="__span-12-13"><a id="__codelineno-12-13" name="__codelineno-12-13" href="#__codelineno-12-13"></a>        SELECT * FROM tb1 AS tt, tb2 AS bb;
+</span><span id="__span-12-14"><a id="__codelineno-12-14" name="__codelineno-12-14" href="#__codelineno-12-14"></a>    -- from子句后，可以同时出现多个表。
+</span><span id="__span-12-15"><a id="__codelineno-12-15" name="__codelineno-12-15" href="#__codelineno-12-15"></a>        -- 多个表会横向叠加到一起，而数据会形成一个笛卡尔积。
+</span><span id="__span-12-16"><a id="__codelineno-12-16" name="__codelineno-12-16" href="#__codelineno-12-16"></a>        SELECT * FROM tb1, tb2;
+</span><span id="__span-12-17"><a id="__codelineno-12-17" name="__codelineno-12-17" href="#__codelineno-12-17"></a>    -- 向优化符提示如何选择索引
+</span><span id="__span-12-18"><a id="__codelineno-12-18" name="__codelineno-12-18" href="#__codelineno-12-18"></a>        USE INDEX、IGNORE INDEX、FORCE INDEX
+</span><span id="__span-12-19"><a id="__codelineno-12-19" name="__codelineno-12-19" href="#__codelineno-12-19"></a>        SELECT * FROM table1 USE INDEX (key1,key2) WHERE key1=1 AND key2=2 AND key3=3;
+</span><span id="__span-12-20"><a id="__codelineno-12-20" name="__codelineno-12-20" href="#__codelineno-12-20"></a>        SELECT * FROM table1 IGNORE INDEX (key3) WHERE key1=1 AND key2=2 AND key3=3;
+</span><span id="__span-12-21"><a id="__codelineno-12-21" name="__codelineno-12-21" href="#__codelineno-12-21"></a>c. WHERE 子句
+</span><span id="__span-12-22"><a id="__codelineno-12-22" name="__codelineno-12-22" href="#__codelineno-12-22"></a>    -- 从from获得的数据源中进行筛选。
+</span><span id="__span-12-23"><a id="__codelineno-12-23" name="__codelineno-12-23" href="#__codelineno-12-23"></a>    -- 整型1表示真，0表示假。
+</span><span id="__span-12-24"><a id="__codelineno-12-24" name="__codelineno-12-24" href="#__codelineno-12-24"></a>    -- 表达式由运算符和运算数组成。
+</span><span id="__span-12-25"><a id="__codelineno-12-25" name="__codelineno-12-25" href="#__codelineno-12-25"></a>        -- 运算数：变量（字段）、值、函数返回值
+</span><span id="__span-12-26"><a id="__codelineno-12-26" name="__codelineno-12-26" href="#__codelineno-12-26"></a>        -- 运算符：
+</span><span id="__span-12-27"><a id="__codelineno-12-27" name="__codelineno-12-27" href="#__codelineno-12-27"></a>            =, &lt;=&gt;, &lt;&gt;, !=, &lt;=, &lt;, &gt;=, &gt;, !, &amp;&amp;, ||,
+</span><span id="__span-12-28"><a id="__codelineno-12-28" name="__codelineno-12-28" href="#__codelineno-12-28"></a>            in (not) null, (not) like, (not) in, (not) between and, is (not), and, or, not, xor
+</span><span id="__span-12-29"><a id="__codelineno-12-29" name="__codelineno-12-29" href="#__codelineno-12-29"></a>            is/is not 加上ture/false/unknown，检验某个值的真假
+</span><span id="__span-12-30"><a id="__codelineno-12-30" name="__codelineno-12-30" href="#__codelineno-12-30"></a>            &lt;=&gt;与&lt;&gt;功能相同，&lt;=&gt;可用于null比较
+</span><span id="__span-12-31"><a id="__codelineno-12-31" name="__codelineno-12-31" href="#__codelineno-12-31"></a>d. GROUP BY 子句, 分组子句
+</span><span id="__span-12-32"><a id="__codelineno-12-32" name="__codelineno-12-32" href="#__codelineno-12-32"></a>    GROUP BY 字段/别名 [排序方式]
+</span><span id="__span-12-33"><a id="__codelineno-12-33" name="__codelineno-12-33" href="#__codelineno-12-33"></a>    分组后会进行排序。升序：ASC，降序：DESC
+</span><span id="__span-12-34"><a id="__codelineno-12-34" name="__codelineno-12-34" href="#__codelineno-12-34"></a>    以下[合计函数]需配合 GROUP BY 使用：
+</span><span id="__span-12-35"><a id="__codelineno-12-35" name="__codelineno-12-35" href="#__codelineno-12-35"></a>    count 返回不同的非NULL值数目  count(*)、count(字段)
+</span><span id="__span-12-36"><a id="__codelineno-12-36" name="__codelineno-12-36" href="#__codelineno-12-36"></a>    sum 求和
+</span><span id="__span-12-37"><a id="__codelineno-12-37" name="__codelineno-12-37" href="#__codelineno-12-37"></a>    max 求最大值
+</span><span id="__span-12-38"><a id="__codelineno-12-38" name="__codelineno-12-38" href="#__codelineno-12-38"></a>    min 求最小值
+</span><span id="__span-12-39"><a id="__codelineno-12-39" name="__codelineno-12-39" href="#__codelineno-12-39"></a>    avg 求平均值
+</span><span id="__span-12-40"><a id="__codelineno-12-40" name="__codelineno-12-40" href="#__codelineno-12-40"></a>    group_concat 返回带有来自一个组的连接的非NULL值的字符串结果。组内字符串连接。
+</span><span id="__span-12-41"><a id="__codelineno-12-41" name="__codelineno-12-41" href="#__codelineno-12-41"></a>e. HAVING 子句，条件子句
+</span><span id="__span-12-42"><a id="__codelineno-12-42" name="__codelineno-12-42" href="#__codelineno-12-42"></a>    与 where 功能、用法相同，执行时机不同。
+</span><span id="__span-12-43"><a id="__codelineno-12-43" name="__codelineno-12-43" href="#__codelineno-12-43"></a>    where 在开始时执行检测数据，对原数据进行过滤。
+</span><span id="__span-12-44"><a id="__codelineno-12-44" name="__codelineno-12-44" href="#__codelineno-12-44"></a>    having 对筛选出的结果再次进行过滤。
+</span><span id="__span-12-45"><a id="__codelineno-12-45" name="__codelineno-12-45" href="#__codelineno-12-45"></a>    having 字段必须是查询出来的，where 字段必须是数据表存在的。
+</span><span id="__span-12-46"><a id="__codelineno-12-46" name="__codelineno-12-46" href="#__codelineno-12-46"></a>    where 不可以使用字段的别名，having 可以。因为执行WHERE代码时，可能尚未确定列值。
+</span><span id="__span-12-47"><a id="__codelineno-12-47" name="__codelineno-12-47" href="#__codelineno-12-47"></a>    where 不可以使用合计函数。一般需用合计函数才会用 having
+</span><span id="__span-12-48"><a id="__codelineno-12-48" name="__codelineno-12-48" href="#__codelineno-12-48"></a>    SQL标准要求HAVING必须引用GROUP BY子句中的列或用于合计函数中的列。
+</span><span id="__span-12-49"><a id="__codelineno-12-49" name="__codelineno-12-49" href="#__codelineno-12-49"></a>f. ORDER BY 子句，排序子句
+</span><span id="__span-12-50"><a id="__codelineno-12-50" name="__codelineno-12-50" href="#__codelineno-12-50"></a>    order by 排序字段/别名 排序方式 [,排序字段/别名 排序方式]...
+</span><span id="__span-12-51"><a id="__codelineno-12-51" name="__codelineno-12-51" href="#__codelineno-12-51"></a>    升序：ASC，降序：DESC
+</span><span id="__span-12-52"><a id="__codelineno-12-52" name="__codelineno-12-52" href="#__codelineno-12-52"></a>    支持多个字段的排序。
+</span><span id="__span-12-53"><a id="__codelineno-12-53" name="__codelineno-12-53" href="#__codelineno-12-53"></a>g. LIMIT 子句，限制结果数量子句
+</span><span id="__span-12-54"><a id="__codelineno-12-54" name="__codelineno-12-54" href="#__codelineno-12-54"></a>    仅对处理好的结果进行数量限制。将处理好的结果的看作是一个集合，按照记录出现的顺序，索引从0开始。
+</span><span id="__span-12-55"><a id="__codelineno-12-55" name="__codelineno-12-55" href="#__codelineno-12-55"></a>    limit 起始位置, 获取条数
+</span><span id="__span-12-56"><a id="__codelineno-12-56" name="__codelineno-12-56" href="#__codelineno-12-56"></a>    省略第一个参数，表示从索引0开始。limit 获取条数
+</span><span id="__span-12-57"><a id="__codelineno-12-57" name="__codelineno-12-57" href="#__codelineno-12-57"></a>h. DISTINCT, ALL 选项
+</span><span id="__span-12-58"><a id="__codelineno-12-58" name="__codelineno-12-58" href="#__codelineno-12-58"></a>    distinct 去除重复记录
+</span><span id="__span-12-59"><a id="__codelineno-12-59" name="__codelineno-12-59" href="#__codelineno-12-59"></a>    默认为 all, 全部记录
+</span></code></pre></div>
 <h3 id="union">UNION<a class="headerlink" href="#union" title="Permanent link">&para;</a></h3>
-<pre><code>   将多个select查询的结果组合成一个结果集合。
-    SELECT ... UNION [ALL|DISTINCT] SELECT ...
-    默认 DISTINCT 方式，即所有返回的行都是唯一的
-    建议，对每个SELECT查询加上小括号包裹。
-    ORDER BY 排序时，需加上 LIMIT 进行结合。
-    需要各select查询的字段数量一样。
-    每个select查询的字段列表(数量、类型)应一致，因为结果中的字段名以第一条select语句为准。
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>   将多个select查询的结果组合成一个结果集合。
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>    SELECT ... UNION [ALL|DISTINCT] SELECT ...
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>    默认 DISTINCT 方式，即所有返回的行都是唯一的
+</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>    建议，对每个SELECT查询加上小括号包裹。
+</span><span id="__span-13-5"><a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a>    ORDER BY 排序时，需加上 LIMIT 进行结合。
+</span><span id="__span-13-6"><a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a>    需要各select查询的字段数量一样。
+</span><span id="__span-13-7"><a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a>    每个select查询的字段列表(数量、类型)应一致，因为结果中的字段名以第一条select语句为准。
+</span></code></pre></div>
 <h3 id="_10">子查询<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h3>
-<pre><code>   - 子查询需用括号包裹。
--- from型
-    from后要求是一个表，必须给子查询结果取个别名。
-    - 简化每个查询内的条件。
-    - from型需将结果生成一个临时表格，可用以原表的锁定的释放。
-    - 子查询返回一个表，表型子查询。
-    select * from (select * from tb where id&gt;0) as subfrom where id&gt;1;
--- where型
-    - 子查询返回一个值，标量子查询。
-    - 不需要给子查询取别名。
-    - where子查询内的表，不能直接用以更新。
-    select * from tb where money = (select max(money) from tb);
-    -- 列子查询
-        如果子查询结果返回的是一列。
-        使用 in 或 not in 完成查询
-        exists 和 not exists 条件
-            如果子查询返回数据，则返回1或0。常用于判断条件。
-            select column1 from t1 where exists (select * from t2);
-    -- 行子查询
-        查询条件是一个行。
-        select * from t1 where (id, gender) in (select id, gender from t2);
-        行构造符：(col1, col2, ...) 或 ROW(col1, col2, ...)
-        行构造符通常用于与对能返回两个或两个以上列的子查询进行比较。
-    -- 特殊运算符
-    != all()    相当于 not in
-    = some()    相当于 in。any 是 some 的别名
-    != some()   不等同于 not in，不等于其中某一个。
-    all, some 可以配合其他运算符一起使用。
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>   - 子查询需用括号包裹。
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>-- from型
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>    from后要求是一个表，必须给子查询结果取个别名。
+</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>    - 简化每个查询内的条件。
+</span><span id="__span-14-5"><a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a>    - from型需将结果生成一个临时表格，可用以原表的锁定的释放。
+</span><span id="__span-14-6"><a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a>    - 子查询返回一个表，表型子查询。
+</span><span id="__span-14-7"><a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a>    select * from (select * from tb where id&gt;0) as subfrom where id&gt;1;
+</span><span id="__span-14-8"><a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a>-- where型
+</span><span id="__span-14-9"><a id="__codelineno-14-9" name="__codelineno-14-9" href="#__codelineno-14-9"></a>    - 子查询返回一个值，标量子查询。
+</span><span id="__span-14-10"><a id="__codelineno-14-10" name="__codelineno-14-10" href="#__codelineno-14-10"></a>    - 不需要给子查询取别名。
+</span><span id="__span-14-11"><a id="__codelineno-14-11" name="__codelineno-14-11" href="#__codelineno-14-11"></a>    - where子查询内的表，不能直接用以更新。
+</span><span id="__span-14-12"><a id="__codelineno-14-12" name="__codelineno-14-12" href="#__codelineno-14-12"></a>    select * from tb where money = (select max(money) from tb);
+</span><span id="__span-14-13"><a id="__codelineno-14-13" name="__codelineno-14-13" href="#__codelineno-14-13"></a>    -- 列子查询
+</span><span id="__span-14-14"><a id="__codelineno-14-14" name="__codelineno-14-14" href="#__codelineno-14-14"></a>        如果子查询结果返回的是一列。
+</span><span id="__span-14-15"><a id="__codelineno-14-15" name="__codelineno-14-15" href="#__codelineno-14-15"></a>        使用 in 或 not in 完成查询
+</span><span id="__span-14-16"><a id="__codelineno-14-16" name="__codelineno-14-16" href="#__codelineno-14-16"></a>        exists 和 not exists 条件
+</span><span id="__span-14-17"><a id="__codelineno-14-17" name="__codelineno-14-17" href="#__codelineno-14-17"></a>            如果子查询返回数据，则返回1或0。常用于判断条件。
+</span><span id="__span-14-18"><a id="__codelineno-14-18" name="__codelineno-14-18" href="#__codelineno-14-18"></a>            select column1 from t1 where exists (select * from t2);
+</span><span id="__span-14-19"><a id="__codelineno-14-19" name="__codelineno-14-19" href="#__codelineno-14-19"></a>    -- 行子查询
+</span><span id="__span-14-20"><a id="__codelineno-14-20" name="__codelineno-14-20" href="#__codelineno-14-20"></a>        查询条件是一个行。
+</span><span id="__span-14-21"><a id="__codelineno-14-21" name="__codelineno-14-21" href="#__codelineno-14-21"></a>        select * from t1 where (id, gender) in (select id, gender from t2);
+</span><span id="__span-14-22"><a id="__codelineno-14-22" name="__codelineno-14-22" href="#__codelineno-14-22"></a>        行构造符：(col1, col2, ...) 或 ROW(col1, col2, ...)
+</span><span id="__span-14-23"><a id="__codelineno-14-23" name="__codelineno-14-23" href="#__codelineno-14-23"></a>        行构造符通常用于与对能返回两个或两个以上列的子查询进行比较。
+</span><span id="__span-14-24"><a id="__codelineno-14-24" name="__codelineno-14-24" href="#__codelineno-14-24"></a>    -- 特殊运算符
+</span><span id="__span-14-25"><a id="__codelineno-14-25" name="__codelineno-14-25" href="#__codelineno-14-25"></a>    != all()    相当于 not in
+</span><span id="__span-14-26"><a id="__codelineno-14-26" name="__codelineno-14-26" href="#__codelineno-14-26"></a>    = some()    相当于 in。any 是 some 的别名
+</span><span id="__span-14-27"><a id="__codelineno-14-27" name="__codelineno-14-27" href="#__codelineno-14-27"></a>    != some()   不等同于 not in，不等于其中某一个。
+</span><span id="__span-14-28"><a id="__codelineno-14-28" name="__codelineno-14-28" href="#__codelineno-14-28"></a>    all, some 可以配合其他运算符一起使用。
+</span></code></pre></div>
 <h3 id="join">连接查询(join)<a class="headerlink" href="#join" title="Permanent link">&para;</a></h3>
-<pre><code>   将多个表的字段进行连接，可以指定连接条件。
--- 内连接(inner join)
-    - 默认就是内连接，可省略inner。
-    - 只有数据存在时才能发送连接。即连接结果不能出现空行。
-    on 表示连接条件。其条件表达式与where类似。也可以省略条件（表示条件永远为真）
-    也可用where表示连接条件。
-    还有 using, 但需字段名相同。 using(字段名)
-    -- 交叉连接 cross join
-        即，没有条件的内连接。
-        select * from tb1 cross join tb2;
--- 外连接(outer join)
-    - 如果数据不存在，也会出现在连接结果中。
-    -- 左外连接 left join
-        如果数据不存在，左表记录会出现，而右表为null填充
-    -- 右外连接 right join
-        如果数据不存在，右表记录会出现，而左表为null填充
--- 自然连接(natural join)
-    自动判断连接条件完成连接。
-    相当于省略了using，会自动查找相同字段名。
-    natural join
-    natural left join
-    natural right join
-
-select info.id, info.name, info.stu_num, extra_info.hobby, extra_info.sex from info, extra_info where info.stu_num = extra_info.stu_id;
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>   将多个表的字段进行连接，可以指定连接条件。
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>-- 内连接(inner join)
+</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>    - 默认就是内连接，可省略inner。
+</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>    - 只有数据存在时才能发送连接。即连接结果不能出现空行。
+</span><span id="__span-15-5"><a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a>    on 表示连接条件。其条件表达式与where类似。也可以省略条件（表示条件永远为真）
+</span><span id="__span-15-6"><a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a>    也可用where表示连接条件。
+</span><span id="__span-15-7"><a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a>    还有 using, 但需字段名相同。 using(字段名)
+</span><span id="__span-15-8"><a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a>    -- 交叉连接 cross join
+</span><span id="__span-15-9"><a id="__codelineno-15-9" name="__codelineno-15-9" href="#__codelineno-15-9"></a>        即，没有条件的内连接。
+</span><span id="__span-15-10"><a id="__codelineno-15-10" name="__codelineno-15-10" href="#__codelineno-15-10"></a>        select * from tb1 cross join tb2;
+</span><span id="__span-15-11"><a id="__codelineno-15-11" name="__codelineno-15-11" href="#__codelineno-15-11"></a>-- 外连接(outer join)
+</span><span id="__span-15-12"><a id="__codelineno-15-12" name="__codelineno-15-12" href="#__codelineno-15-12"></a>    - 如果数据不存在，也会出现在连接结果中。
+</span><span id="__span-15-13"><a id="__codelineno-15-13" name="__codelineno-15-13" href="#__codelineno-15-13"></a>    -- 左外连接 left join
+</span><span id="__span-15-14"><a id="__codelineno-15-14" name="__codelineno-15-14" href="#__codelineno-15-14"></a>        如果数据不存在，左表记录会出现，而右表为null填充
+</span><span id="__span-15-15"><a id="__codelineno-15-15" name="__codelineno-15-15" href="#__codelineno-15-15"></a>    -- 右外连接 right join
+</span><span id="__span-15-16"><a id="__codelineno-15-16" name="__codelineno-15-16" href="#__codelineno-15-16"></a>        如果数据不存在，右表记录会出现，而左表为null填充
+</span><span id="__span-15-17"><a id="__codelineno-15-17" name="__codelineno-15-17" href="#__codelineno-15-17"></a>-- 自然连接(natural join)
+</span><span id="__span-15-18"><a id="__codelineno-15-18" name="__codelineno-15-18" href="#__codelineno-15-18"></a>    自动判断连接条件完成连接。
+</span><span id="__span-15-19"><a id="__codelineno-15-19" name="__codelineno-15-19" href="#__codelineno-15-19"></a>    相当于省略了using，会自动查找相同字段名。
+</span><span id="__span-15-20"><a id="__codelineno-15-20" name="__codelineno-15-20" href="#__codelineno-15-20"></a>    natural join
+</span><span id="__span-15-21"><a id="__codelineno-15-21" name="__codelineno-15-21" href="#__codelineno-15-21"></a>    natural left join
+</span><span id="__span-15-22"><a id="__codelineno-15-22" name="__codelineno-15-22" href="#__codelineno-15-22"></a>    natural right join
+</span><span id="__span-15-23"><a id="__codelineno-15-23" name="__codelineno-15-23" href="#__codelineno-15-23"></a>
+</span><span id="__span-15-24"><a id="__codelineno-15-24" name="__codelineno-15-24" href="#__codelineno-15-24"></a>select info.id, info.name, info.stu_num, extra_info.hobby, extra_info.sex from info, extra_info where info.stu_num = extra_info.stu_id;
+</span></code></pre></div>
 <h3 id="_11">导出<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h3>
-<pre><code>select * into outfile 文件地址 [控制格式] from 表名;   -- 导出表数据
-
-load data [local] infile 文件地址 [replace|ignore] into table 表名 [控制格式]; -- 导入数据
-    生成的数据默认的分隔符是制表符
-    local未指定，则数据文件必须在服务器上
-    replace 和 ignore 关键词控制对现有的唯一键记录的重复的处理
--- 控制格式
-fields  控制字段格式
-默认：fields terminated by       enclosed by    escaped by   
-    terminated by  string   -- 终止
-    enclosed by  char       -- 包裹
-    escaped by  char        -- 转义
-    -- 示例：
-        SELECT a,b,a+b INTO OUTFILE  /tmp/result.text 
-        FIELDS TERMINATED BY  ,  OPTIONALLY ENCLOSED BY  &quot; 
-        LINES TERMINATED BY  
-
-        FROM test_table;
-lines   控制行格式
-默认：lines terminated by  
-
-    terminated by  string   -- 终止
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>select * into outfile 文件地址 [控制格式] from 表名;   -- 导出表数据
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>
+</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>load data [local] infile 文件地址 [replace|ignore] into table 表名 [控制格式]; -- 导入数据
+</span><span id="__span-16-4"><a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a>    生成的数据默认的分隔符是制表符
+</span><span id="__span-16-5"><a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a>    local未指定，则数据文件必须在服务器上
+</span><span id="__span-16-6"><a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a>    replace 和 ignore 关键词控制对现有的唯一键记录的重复的处理
+</span><span id="__span-16-7"><a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a>-- 控制格式
+</span><span id="__span-16-8"><a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a>fields  控制字段格式
+</span><span id="__span-16-9"><a id="__codelineno-16-9" name="__codelineno-16-9" href="#__codelineno-16-9"></a>默认：fields terminated by       enclosed by    escaped by   
+</span><span id="__span-16-10"><a id="__codelineno-16-10" name="__codelineno-16-10" href="#__codelineno-16-10"></a>    terminated by  string   -- 终止
+</span><span id="__span-16-11"><a id="__codelineno-16-11" name="__codelineno-16-11" href="#__codelineno-16-11"></a>    enclosed by  char       -- 包裹
+</span><span id="__span-16-12"><a id="__codelineno-16-12" name="__codelineno-16-12" href="#__codelineno-16-12"></a>    escaped by  char        -- 转义
+</span><span id="__span-16-13"><a id="__codelineno-16-13" name="__codelineno-16-13" href="#__codelineno-16-13"></a>    -- 示例：
+</span><span id="__span-16-14"><a id="__codelineno-16-14" name="__codelineno-16-14" href="#__codelineno-16-14"></a>        SELECT a,b,a+b INTO OUTFILE  /tmp/result.text 
+</span><span id="__span-16-15"><a id="__codelineno-16-15" name="__codelineno-16-15" href="#__codelineno-16-15"></a>        FIELDS TERMINATED BY  ,  OPTIONALLY ENCLOSED BY  &quot; 
+</span><span id="__span-16-16"><a id="__codelineno-16-16" name="__codelineno-16-16" href="#__codelineno-16-16"></a>        LINES TERMINATED BY  
+</span><span id="__span-16-17"><a id="__codelineno-16-17" name="__codelineno-16-17" href="#__codelineno-16-17"></a>
+</span><span id="__span-16-18"><a id="__codelineno-16-18" name="__codelineno-16-18" href="#__codelineno-16-18"></a>        FROM test_table;
+</span><span id="__span-16-19"><a id="__codelineno-16-19" name="__codelineno-16-19" href="#__codelineno-16-19"></a>lines   控制行格式
+</span><span id="__span-16-20"><a id="__codelineno-16-20" name="__codelineno-16-20" href="#__codelineno-16-20"></a>默认：lines terminated by  
+</span><span id="__span-16-21"><a id="__codelineno-16-21" name="__codelineno-16-21" href="#__codelineno-16-21"></a>
+</span><span id="__span-16-22"><a id="__codelineno-16-22" name="__codelineno-16-22" href="#__codelineno-16-22"></a>    terminated by  string   -- 终止
+</span></code></pre></div>
 <h3 id="insert">INSERT<a class="headerlink" href="#insert" title="Permanent link">&para;</a></h3>
-<pre><code>select语句获得的数据可以用insert插入。
-可以省略对列的指定，要求 values () 括号内，提供给了按照列顺序出现的所有字段的值。
-    或者使用set语法。
-    INSERT INTO tbl_name SET field=value,...；
-可以一次性使用多个值，采用(), (), ();的形式。
-    INSERT INTO tbl_name VALUES (), (), ();
-可以在列值指定时，使用表达式。
-    INSERT INTO tbl_name VALUES (field_value, 10+10, now());
-可以使用一个特殊值 DEFAULT，表示该列使用默认值。
-    INSERT INTO tbl_name VALUES (field_value, DEFAULT);
-可以通过一个查询的结果，作为需要插入的值。
-    INSERT INTO tbl_name SELECT ...;
-可以指定在插入的值出现主键（或唯一索引）冲突时，更新其他非主键列的信息。
-    INSERT INTO tbl_name VALUES/SET/SELECT ON DUPLICATE KEY UPDATE 字段=值, …;
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>select语句获得的数据可以用insert插入。
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>可以省略对列的指定，要求 values () 括号内，提供给了按照列顺序出现的所有字段的值。
+</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>    或者使用set语法。
+</span><span id="__span-17-4"><a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a>    INSERT INTO tbl_name SET field=value,...；
+</span><span id="__span-17-5"><a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a>可以一次性使用多个值，采用(), (), ();的形式。
+</span><span id="__span-17-6"><a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a>    INSERT INTO tbl_name VALUES (), (), ();
+</span><span id="__span-17-7"><a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a>可以在列值指定时，使用表达式。
+</span><span id="__span-17-8"><a id="__codelineno-17-8" name="__codelineno-17-8" href="#__codelineno-17-8"></a>    INSERT INTO tbl_name VALUES (field_value, 10+10, now());
+</span><span id="__span-17-9"><a id="__codelineno-17-9" name="__codelineno-17-9" href="#__codelineno-17-9"></a>可以使用一个特殊值 DEFAULT，表示该列使用默认值。
+</span><span id="__span-17-10"><a id="__codelineno-17-10" name="__codelineno-17-10" href="#__codelineno-17-10"></a>    INSERT INTO tbl_name VALUES (field_value, DEFAULT);
+</span><span id="__span-17-11"><a id="__codelineno-17-11" name="__codelineno-17-11" href="#__codelineno-17-11"></a>可以通过一个查询的结果，作为需要插入的值。
+</span><span id="__span-17-12"><a id="__codelineno-17-12" name="__codelineno-17-12" href="#__codelineno-17-12"></a>    INSERT INTO tbl_name SELECT ...;
+</span><span id="__span-17-13"><a id="__codelineno-17-13" name="__codelineno-17-13" href="#__codelineno-17-13"></a>可以指定在插入的值出现主键（或唯一索引）冲突时，更新其他非主键列的信息。
+</span><span id="__span-17-14"><a id="__codelineno-17-14" name="__codelineno-17-14" href="#__codelineno-17-14"></a>    INSERT INTO tbl_name VALUES/SET/SELECT ON DUPLICATE KEY UPDATE 字段=值, …;
+</span></code></pre></div>
 <h3 id="delete">DELETE<a class="headerlink" href="#delete" title="Permanent link">&para;</a></h3>
-<pre><code>DELETE FROM tbl_name [WHERE where_definition] [ORDER BY ...] [LIMIT row_count]
-按照条件删除。where
-指定删除的最多记录数。limit
-可以通过排序条件删除。order by + limit
-支持多表删除，使用类似连接语法。
-delete from 需要删除数据多表1，表2 using 表连接操作 条件。
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>DELETE FROM tbl_name [WHERE where_definition] [ORDER BY ...] [LIMIT row_count]
+</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>按照条件删除。where
+</span><span id="__span-18-3"><a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>指定删除的最多记录数。limit
+</span><span id="__span-18-4"><a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a>可以通过排序条件删除。order by + limit
+</span><span id="__span-18-5"><a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a>支持多表删除，使用类似连接语法。
+</span><span id="__span-18-6"><a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a>delete from 需要删除数据多表1，表2 using 表连接操作 条件。
+</span></code></pre></div>
 <h3 id="truncate">TRUNCATE<a class="headerlink" href="#truncate" title="Permanent link">&para;</a></h3>
-<pre><code>TRUNCATE [TABLE] tbl_name
-清空数据
-删除重建表
-区别：
-1，truncate 是删除表再创建，delete 是逐条删除
-2，truncate 重置auto_increment的值。而delete不会
-3，truncate 不知道删除了几条，而delete知道。
-4，当被用于带分区的表时，truncate 会保留分区
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>TRUNCATE [TABLE] tbl_name
+</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>清空数据
+</span><span id="__span-19-3"><a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a>删除重建表
+</span><span id="__span-19-4"><a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a>区别：
+</span><span id="__span-19-5"><a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a>1，truncate 是删除表再创建，delete 是逐条删除
+</span><span id="__span-19-6"><a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a>2，truncate 重置auto_increment的值。而delete不会
+</span><span id="__span-19-7"><a id="__codelineno-19-7" name="__codelineno-19-7" href="#__codelineno-19-7"></a>3，truncate 不知道删除了几条，而delete知道。
+</span><span id="__span-19-8"><a id="__codelineno-19-8" name="__codelineno-19-8" href="#__codelineno-19-8"></a>4，当被用于带分区的表时，truncate 会保留分区
+</span></code></pre></div>
 <h3 id="_12">备份与还原<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h3>
-<pre><code>备份，将数据的结构与表内数据保存起来。
-利用 mysqldump 指令完成。
--- 导出
-mysqldump [options] db_name [tables]
-mysqldump [options] ---database DB1 [DB2 DB3...]
-mysqldump [options] --all--database
-1. 导出一张表
-    mysqldump -u用户名 -p密码 库名 表名 &gt; 文件名(D:/a.sql)
-2. 导出多张表
-    mysqldump -u用户名 -p密码 库名 表1 表2 表3 &gt; 文件名(D:/a.sql)
-3. 导出所有表
-    mysqldump -u用户名 -p密码 库名 &gt; 文件名(D:/a.sql)
-4. 导出一个库
-    mysqldump -u用户名 -p密码 --lock-all-tables --database 库名 &gt; 文件名(D:/a.sql)
-可以-w携带WHERE条件
--- 导入
-1. 在登录mysql的情况下：
-    source  备份文件
-2. 在不登录的情况下
-    mysql -u用户名 -p密码 库名 &lt; 备份文件
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>备份，将数据的结构与表内数据保存起来。
+</span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>利用 mysqldump 指令完成。
+</span><span id="__span-20-3"><a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a>-- 导出
+</span><span id="__span-20-4"><a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a>mysqldump [options] db_name [tables]
+</span><span id="__span-20-5"><a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a>mysqldump [options] ---database DB1 [DB2 DB3...]
+</span><span id="__span-20-6"><a id="__codelineno-20-6" name="__codelineno-20-6" href="#__codelineno-20-6"></a>mysqldump [options] --all--database
+</span><span id="__span-20-7"><a id="__codelineno-20-7" name="__codelineno-20-7" href="#__codelineno-20-7"></a>1. 导出一张表
+</span><span id="__span-20-8"><a id="__codelineno-20-8" name="__codelineno-20-8" href="#__codelineno-20-8"></a>    mysqldump -u用户名 -p密码 库名 表名 &gt; 文件名(D:/a.sql)
+</span><span id="__span-20-9"><a id="__codelineno-20-9" name="__codelineno-20-9" href="#__codelineno-20-9"></a>2. 导出多张表
+</span><span id="__span-20-10"><a id="__codelineno-20-10" name="__codelineno-20-10" href="#__codelineno-20-10"></a>    mysqldump -u用户名 -p密码 库名 表1 表2 表3 &gt; 文件名(D:/a.sql)
+</span><span id="__span-20-11"><a id="__codelineno-20-11" name="__codelineno-20-11" href="#__codelineno-20-11"></a>3. 导出所有表
+</span><span id="__span-20-12"><a id="__codelineno-20-12" name="__codelineno-20-12" href="#__codelineno-20-12"></a>    mysqldump -u用户名 -p密码 库名 &gt; 文件名(D:/a.sql)
+</span><span id="__span-20-13"><a id="__codelineno-20-13" name="__codelineno-20-13" href="#__codelineno-20-13"></a>4. 导出一个库
+</span><span id="__span-20-14"><a id="__codelineno-20-14" name="__codelineno-20-14" href="#__codelineno-20-14"></a>    mysqldump -u用户名 -p密码 --lock-all-tables --database 库名 &gt; 文件名(D:/a.sql)
+</span><span id="__span-20-15"><a id="__codelineno-20-15" name="__codelineno-20-15" href="#__codelineno-20-15"></a>可以-w携带WHERE条件
+</span><span id="__span-20-16"><a id="__codelineno-20-16" name="__codelineno-20-16" href="#__codelineno-20-16"></a>-- 导入
+</span><span id="__span-20-17"><a id="__codelineno-20-17" name="__codelineno-20-17" href="#__codelineno-20-17"></a>1. 在登录mysql的情况下：
+</span><span id="__span-20-18"><a id="__codelineno-20-18" name="__codelineno-20-18" href="#__codelineno-20-18"></a>    source  备份文件
+</span><span id="__span-20-19"><a id="__codelineno-20-19" name="__codelineno-20-19" href="#__codelineno-20-19"></a>2. 在不登录的情况下
+</span><span id="__span-20-20"><a id="__codelineno-20-20" name="__codelineno-20-20" href="#__codelineno-20-20"></a>    mysql -u用户名 -p密码 库名 &lt; 备份文件
+</span></code></pre></div>
 <h3 id="_13">视图<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h3>
-<pre><code>什么是视图：
-    视图是一个虚拟表，其内容由查询定义。同真实的表一样，视图包含一系列带有名称的列和行数据。但是，视图并不在数据库中以存储的数据值集形式存在。行和列数据来自由定义视图的查询所引用的表，并且在引用视图时动态生成。
-    视图具有表结构文件，但不存在数据文件。
-    对其中所引用的基础表来说，视图的作用类似于筛选。定义视图的筛选可以来自当前或其它数据库的一个或多个表，或者其它视图。通过视图进行查询没有任何限制，通过它们进行数据修改时的限制也很少。
-    视图是存储在数据库中的查询的sql语句，它主要出于两种原因：安全原因，视图可以隐藏一些数据，如：社会保险基金表，可以用视图只显示姓名，地址，而不显示社会保险号和工资数等，另一原因是可使复杂的查询易于理解和使用。
--- 创建视图
-CREATE [OR REPLACE] [ALGORITHM = {UNDEFINED | MERGE | TEMPTABLE}] VIEW view_name [(column_list)] AS select_statement
-    - 视图名必须唯一，同时不能与表重名。
-    - 视图可以使用select语句查询到的列名，也可以自己指定相应的列名。
-    - 可以指定视图执行的算法，通过ALGORITHM指定。
-    - column_list如果存在，则数目必须等于SELECT语句检索的列数
--- 查看结构
-    SHOW CREATE VIEW view_name
--- 删除视图
-    - 删除视图后，数据依然存在。
-    - 可同时删除多个视图。
-    DROP VIEW [IF EXISTS] view_name ...
--- 修改视图结构
-    - 一般不修改视图，因为不是所有的更新视图都会映射到表上。
-    ALTER VIEW view_name [(column_list)] AS select_statement
--- 视图作用
-    1. 简化业务逻辑
-    2. 对客户端隐藏真实的表结构
--- 视图算法(ALGORITHM)
-    MERGE       合并
-        将视图的查询语句，与外部查询需要先合并再执行！
-    TEMPTABLE   临时表
-        将视图执行完毕后，形成临时表，再做外层查询！
-    UNDEFINED   未定义(默认)，指的是MySQL自主去选择相应的算法。
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>什么是视图：
+</span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>    视图是一个虚拟表，其内容由查询定义。同真实的表一样，视图包含一系列带有名称的列和行数据。但是，视图并不在数据库中以存储的数据值集形式存在。行和列数据来自由定义视图的查询所引用的表，并且在引用视图时动态生成。
+</span><span id="__span-21-3"><a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a>    视图具有表结构文件，但不存在数据文件。
+</span><span id="__span-21-4"><a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a>    对其中所引用的基础表来说，视图的作用类似于筛选。定义视图的筛选可以来自当前或其它数据库的一个或多个表，或者其它视图。通过视图进行查询没有任何限制，通过它们进行数据修改时的限制也很少。
+</span><span id="__span-21-5"><a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a>    视图是存储在数据库中的查询的sql语句，它主要出于两种原因：安全原因，视图可以隐藏一些数据，如：社会保险基金表，可以用视图只显示姓名，地址，而不显示社会保险号和工资数等，另一原因是可使复杂的查询易于理解和使用。
+</span><span id="__span-21-6"><a id="__codelineno-21-6" name="__codelineno-21-6" href="#__codelineno-21-6"></a>-- 创建视图
+</span><span id="__span-21-7"><a id="__codelineno-21-7" name="__codelineno-21-7" href="#__codelineno-21-7"></a>CREATE [OR REPLACE] [ALGORITHM = {UNDEFINED | MERGE | TEMPTABLE}] VIEW view_name [(column_list)] AS select_statement
+</span><span id="__span-21-8"><a id="__codelineno-21-8" name="__codelineno-21-8" href="#__codelineno-21-8"></a>    - 视图名必须唯一，同时不能与表重名。
+</span><span id="__span-21-9"><a id="__codelineno-21-9" name="__codelineno-21-9" href="#__codelineno-21-9"></a>    - 视图可以使用select语句查询到的列名，也可以自己指定相应的列名。
+</span><span id="__span-21-10"><a id="__codelineno-21-10" name="__codelineno-21-10" href="#__codelineno-21-10"></a>    - 可以指定视图执行的算法，通过ALGORITHM指定。
+</span><span id="__span-21-11"><a id="__codelineno-21-11" name="__codelineno-21-11" href="#__codelineno-21-11"></a>    - column_list如果存在，则数目必须等于SELECT语句检索的列数
+</span><span id="__span-21-12"><a id="__codelineno-21-12" name="__codelineno-21-12" href="#__codelineno-21-12"></a>-- 查看结构
+</span><span id="__span-21-13"><a id="__codelineno-21-13" name="__codelineno-21-13" href="#__codelineno-21-13"></a>    SHOW CREATE VIEW view_name
+</span><span id="__span-21-14"><a id="__codelineno-21-14" name="__codelineno-21-14" href="#__codelineno-21-14"></a>-- 删除视图
+</span><span id="__span-21-15"><a id="__codelineno-21-15" name="__codelineno-21-15" href="#__codelineno-21-15"></a>    - 删除视图后，数据依然存在。
+</span><span id="__span-21-16"><a id="__codelineno-21-16" name="__codelineno-21-16" href="#__codelineno-21-16"></a>    - 可同时删除多个视图。
+</span><span id="__span-21-17"><a id="__codelineno-21-17" name="__codelineno-21-17" href="#__codelineno-21-17"></a>    DROP VIEW [IF EXISTS] view_name ...
+</span><span id="__span-21-18"><a id="__codelineno-21-18" name="__codelineno-21-18" href="#__codelineno-21-18"></a>-- 修改视图结构
+</span><span id="__span-21-19"><a id="__codelineno-21-19" name="__codelineno-21-19" href="#__codelineno-21-19"></a>    - 一般不修改视图，因为不是所有的更新视图都会映射到表上。
+</span><span id="__span-21-20"><a id="__codelineno-21-20" name="__codelineno-21-20" href="#__codelineno-21-20"></a>    ALTER VIEW view_name [(column_list)] AS select_statement
+</span><span id="__span-21-21"><a id="__codelineno-21-21" name="__codelineno-21-21" href="#__codelineno-21-21"></a>-- 视图作用
+</span><span id="__span-21-22"><a id="__codelineno-21-22" name="__codelineno-21-22" href="#__codelineno-21-22"></a>    1. 简化业务逻辑
+</span><span id="__span-21-23"><a id="__codelineno-21-23" name="__codelineno-21-23" href="#__codelineno-21-23"></a>    2. 对客户端隐藏真实的表结构
+</span><span id="__span-21-24"><a id="__codelineno-21-24" name="__codelineno-21-24" href="#__codelineno-21-24"></a>-- 视图算法(ALGORITHM)
+</span><span id="__span-21-25"><a id="__codelineno-21-25" name="__codelineno-21-25" href="#__codelineno-21-25"></a>    MERGE       合并
+</span><span id="__span-21-26"><a id="__codelineno-21-26" name="__codelineno-21-26" href="#__codelineno-21-26"></a>        将视图的查询语句，与外部查询需要先合并再执行！
+</span><span id="__span-21-27"><a id="__codelineno-21-27" name="__codelineno-21-27" href="#__codelineno-21-27"></a>    TEMPTABLE   临时表
+</span><span id="__span-21-28"><a id="__codelineno-21-28" name="__codelineno-21-28" href="#__codelineno-21-28"></a>        将视图执行完毕后，形成临时表，再做外层查询！
+</span><span id="__span-21-29"><a id="__codelineno-21-29" name="__codelineno-21-29" href="#__codelineno-21-29"></a>    UNDEFINED   未定义(默认)，指的是MySQL自主去选择相应的算法。
+</span></code></pre></div>
 <h3 id="transaction">事务(transaction)<a class="headerlink" href="#transaction" title="Permanent link">&para;</a></h3>
-<pre><code>事务是指逻辑上的一组操作，组成这组操作的各个单元，要不全成功要不全失败。
-    - 支持连续SQL的集体成功或集体撤销。
-    - 事务是数据库在数据晚自习方面的一个功能。
-    - 需要利用 InnoDB 或 BDB 存储引擎，对自动提交的特性支持完成。
-    - InnoDB被称为事务安全型引擎。
--- 事务开启
-    START TRANSACTION; 或者 BEGIN;
-    开启事务后，所有被执行的SQL语句均被认作当前事务内的SQL语句。
--- 事务提交
-    COMMIT;
--- 事务回滚
-    ROLLBACK;
-    如果部分操作发生问题，映射到事务开启前。
--- 事务的特性
-    1. 原子性（Atomicity）
-        事务是一个不可分割的工作单位，事务中的操作要么都发生，要么都不发生。
-    2. 一致性（Consistency）
-        事务前后数据的完整性必须保持一致。
-        - 事务开始和结束时，外部数据一致
-        - 在整个事务过程中，操作是连续的
-    3. 隔离性（Isolation）
-        多个用户并发访问数据库时，一个用户的事务不能被其它用户的事物所干扰，多个并发事务之间的数据要相互隔离。
-    4. 持久性（Durability）
-        一个事务一旦被提交，它对数据库中的数据改变就是永久性的。
--- 事务的实现
-    1. 要求是事务支持的表类型
-    2. 执行一组相关的操作前开启事务
-    3. 整组操作完成后，都成功，则提交；如果存在失败，选择回滚，则会回到事务开始的备份点。
--- 事务的原理
-    利用InnoDB的自动提交(autocommit)特性完成。
-    普通的MySQL执行语句后，当前的数据提交操作均可被其他客户端可见。
-    而事务是暂时关闭“自动提交”机制，需要commit提交持久化数据操作。
--- 注意
-    1. 数据定义语言（DDL）语句不能被回滚，比如创建或取消数据库的语句，和创建、取消或更改表或存储的子程序的语句。
-    2. 事务不能被嵌套
--- 保存点
-    SAVEPOINT 保存点名称 -- 设置一个事务保存点
-    ROLLBACK TO SAVEPOINT 保存点名称 -- 回滚到保存点
-    RELEASE SAVEPOINT 保存点名称 -- 删除保存点
--- InnoDB自动提交特性设置
-    SET autocommit = 0|1;   0表示关闭自动提交，1表示开启自动提交。
-    - 如果关闭了，那普通操作的结果对其他客户端也不可见，需要commit提交后才能持久化数据操作。
-    - 也可以关闭自动提交来开启事务。但与START TRANSACTION不同的是，
-        SET autocommit是永久改变服务器的设置，直到下次再次修改该设置。(针对当前连接)
-        而START TRANSACTION记录开启前的状态，而一旦事务提交或回滚后就需要再次开启事务。(针对当前事务)
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>事务是指逻辑上的一组操作，组成这组操作的各个单元，要不全成功要不全失败。
+</span><span id="__span-22-2"><a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>    - 支持连续SQL的集体成功或集体撤销。
+</span><span id="__span-22-3"><a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a>    - 事务是数据库在数据晚自习方面的一个功能。
+</span><span id="__span-22-4"><a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a>    - 需要利用 InnoDB 或 BDB 存储引擎，对自动提交的特性支持完成。
+</span><span id="__span-22-5"><a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a>    - InnoDB被称为事务安全型引擎。
+</span><span id="__span-22-6"><a id="__codelineno-22-6" name="__codelineno-22-6" href="#__codelineno-22-6"></a>-- 事务开启
+</span><span id="__span-22-7"><a id="__codelineno-22-7" name="__codelineno-22-7" href="#__codelineno-22-7"></a>    START TRANSACTION; 或者 BEGIN;
+</span><span id="__span-22-8"><a id="__codelineno-22-8" name="__codelineno-22-8" href="#__codelineno-22-8"></a>    开启事务后，所有被执行的SQL语句均被认作当前事务内的SQL语句。
+</span><span id="__span-22-9"><a id="__codelineno-22-9" name="__codelineno-22-9" href="#__codelineno-22-9"></a>-- 事务提交
+</span><span id="__span-22-10"><a id="__codelineno-22-10" name="__codelineno-22-10" href="#__codelineno-22-10"></a>    COMMIT;
+</span><span id="__span-22-11"><a id="__codelineno-22-11" name="__codelineno-22-11" href="#__codelineno-22-11"></a>-- 事务回滚
+</span><span id="__span-22-12"><a id="__codelineno-22-12" name="__codelineno-22-12" href="#__codelineno-22-12"></a>    ROLLBACK;
+</span><span id="__span-22-13"><a id="__codelineno-22-13" name="__codelineno-22-13" href="#__codelineno-22-13"></a>    如果部分操作发生问题，映射到事务开启前。
+</span><span id="__span-22-14"><a id="__codelineno-22-14" name="__codelineno-22-14" href="#__codelineno-22-14"></a>-- 事务的特性
+</span><span id="__span-22-15"><a id="__codelineno-22-15" name="__codelineno-22-15" href="#__codelineno-22-15"></a>    1. 原子性（Atomicity）
+</span><span id="__span-22-16"><a id="__codelineno-22-16" name="__codelineno-22-16" href="#__codelineno-22-16"></a>        事务是一个不可分割的工作单位，事务中的操作要么都发生，要么都不发生。
+</span><span id="__span-22-17"><a id="__codelineno-22-17" name="__codelineno-22-17" href="#__codelineno-22-17"></a>    2. 一致性（Consistency）
+</span><span id="__span-22-18"><a id="__codelineno-22-18" name="__codelineno-22-18" href="#__codelineno-22-18"></a>        事务前后数据的完整性必须保持一致。
+</span><span id="__span-22-19"><a id="__codelineno-22-19" name="__codelineno-22-19" href="#__codelineno-22-19"></a>        - 事务开始和结束时，外部数据一致
+</span><span id="__span-22-20"><a id="__codelineno-22-20" name="__codelineno-22-20" href="#__codelineno-22-20"></a>        - 在整个事务过程中，操作是连续的
+</span><span id="__span-22-21"><a id="__codelineno-22-21" name="__codelineno-22-21" href="#__codelineno-22-21"></a>    3. 隔离性（Isolation）
+</span><span id="__span-22-22"><a id="__codelineno-22-22" name="__codelineno-22-22" href="#__codelineno-22-22"></a>        多个用户并发访问数据库时，一个用户的事务不能被其它用户的事物所干扰，多个并发事务之间的数据要相互隔离。
+</span><span id="__span-22-23"><a id="__codelineno-22-23" name="__codelineno-22-23" href="#__codelineno-22-23"></a>    4. 持久性（Durability）
+</span><span id="__span-22-24"><a id="__codelineno-22-24" name="__codelineno-22-24" href="#__codelineno-22-24"></a>        一个事务一旦被提交，它对数据库中的数据改变就是永久性的。
+</span><span id="__span-22-25"><a id="__codelineno-22-25" name="__codelineno-22-25" href="#__codelineno-22-25"></a>-- 事务的实现
+</span><span id="__span-22-26"><a id="__codelineno-22-26" name="__codelineno-22-26" href="#__codelineno-22-26"></a>    1. 要求是事务支持的表类型
+</span><span id="__span-22-27"><a id="__codelineno-22-27" name="__codelineno-22-27" href="#__codelineno-22-27"></a>    2. 执行一组相关的操作前开启事务
+</span><span id="__span-22-28"><a id="__codelineno-22-28" name="__codelineno-22-28" href="#__codelineno-22-28"></a>    3. 整组操作完成后，都成功，则提交；如果存在失败，选择回滚，则会回到事务开始的备份点。
+</span><span id="__span-22-29"><a id="__codelineno-22-29" name="__codelineno-22-29" href="#__codelineno-22-29"></a>-- 事务的原理
+</span><span id="__span-22-30"><a id="__codelineno-22-30" name="__codelineno-22-30" href="#__codelineno-22-30"></a>    利用InnoDB的自动提交(autocommit)特性完成。
+</span><span id="__span-22-31"><a id="__codelineno-22-31" name="__codelineno-22-31" href="#__codelineno-22-31"></a>    普通的MySQL执行语句后，当前的数据提交操作均可被其他客户端可见。
+</span><span id="__span-22-32"><a id="__codelineno-22-32" name="__codelineno-22-32" href="#__codelineno-22-32"></a>    而事务是暂时关闭“自动提交”机制，需要commit提交持久化数据操作。
+</span><span id="__span-22-33"><a id="__codelineno-22-33" name="__codelineno-22-33" href="#__codelineno-22-33"></a>-- 注意
+</span><span id="__span-22-34"><a id="__codelineno-22-34" name="__codelineno-22-34" href="#__codelineno-22-34"></a>    1. 数据定义语言（DDL）语句不能被回滚，比如创建或取消数据库的语句，和创建、取消或更改表或存储的子程序的语句。
+</span><span id="__span-22-35"><a id="__codelineno-22-35" name="__codelineno-22-35" href="#__codelineno-22-35"></a>    2. 事务不能被嵌套
+</span><span id="__span-22-36"><a id="__codelineno-22-36" name="__codelineno-22-36" href="#__codelineno-22-36"></a>-- 保存点
+</span><span id="__span-22-37"><a id="__codelineno-22-37" name="__codelineno-22-37" href="#__codelineno-22-37"></a>    SAVEPOINT 保存点名称 -- 设置一个事务保存点
+</span><span id="__span-22-38"><a id="__codelineno-22-38" name="__codelineno-22-38" href="#__codelineno-22-38"></a>    ROLLBACK TO SAVEPOINT 保存点名称 -- 回滚到保存点
+</span><span id="__span-22-39"><a id="__codelineno-22-39" name="__codelineno-22-39" href="#__codelineno-22-39"></a>    RELEASE SAVEPOINT 保存点名称 -- 删除保存点
+</span><span id="__span-22-40"><a id="__codelineno-22-40" name="__codelineno-22-40" href="#__codelineno-22-40"></a>-- InnoDB自动提交特性设置
+</span><span id="__span-22-41"><a id="__codelineno-22-41" name="__codelineno-22-41" href="#__codelineno-22-41"></a>    SET autocommit = 0|1;   0表示关闭自动提交，1表示开启自动提交。
+</span><span id="__span-22-42"><a id="__codelineno-22-42" name="__codelineno-22-42" href="#__codelineno-22-42"></a>    - 如果关闭了，那普通操作的结果对其他客户端也不可见，需要commit提交后才能持久化数据操作。
+</span><span id="__span-22-43"><a id="__codelineno-22-43" name="__codelineno-22-43" href="#__codelineno-22-43"></a>    - 也可以关闭自动提交来开启事务。但与START TRANSACTION不同的是，
+</span><span id="__span-22-44"><a id="__codelineno-22-44" name="__codelineno-22-44" href="#__codelineno-22-44"></a>        SET autocommit是永久改变服务器的设置，直到下次再次修改该设置。(针对当前连接)
+</span><span id="__span-22-45"><a id="__codelineno-22-45" name="__codelineno-22-45" href="#__codelineno-22-45"></a>        而START TRANSACTION记录开启前的状态，而一旦事务提交或回滚后就需要再次开启事务。(针对当前事务)
+</span></code></pre></div>
 <h3 id="_14">锁表<a class="headerlink" href="#_14" title="Permanent link">&para;</a></h3>
-<pre><code>表锁定只用于防止其它客户端进行不正当地读取和写入
-MyISAM 支持表锁，InnoDB 支持行锁
--- 锁定
-    LOCK TABLES tbl_name [AS alias]
--- 解锁
-    UNLOCK TABLES
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>表锁定只用于防止其它客户端进行不正当地读取和写入
+</span><span id="__span-23-2"><a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a>MyISAM 支持表锁，InnoDB 支持行锁
+</span><span id="__span-23-3"><a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a>-- 锁定
+</span><span id="__span-23-4"><a id="__codelineno-23-4" name="__codelineno-23-4" href="#__codelineno-23-4"></a>    LOCK TABLES tbl_name [AS alias]
+</span><span id="__span-23-5"><a id="__codelineno-23-5" name="__codelineno-23-5" href="#__codelineno-23-5"></a>-- 解锁
+</span><span id="__span-23-6"><a id="__codelineno-23-6" name="__codelineno-23-6" href="#__codelineno-23-6"></a>    UNLOCK TABLES
+</span></code></pre></div>
 <h3 id="_15">触发器<a class="headerlink" href="#_15" title="Permanent link">&para;</a></h3>
-<pre><code>   触发程序是与表有关的命名数据库对象，当该表出现特定事件时，将激活该对象
-    监听：记录的增加、修改、删除。
--- 创建触发器
-CREATE TRIGGER trigger_name trigger_time trigger_event ON tbl_name FOR EACH ROW trigger_stmt
-    参数：
-    trigger_time是触发程序的动作时间。它可以是 before 或 after，以指明触发程序是在激活它的语句之前或之后触发。
-    trigger_event指明了激活触发程序的语句的类型
-        INSERT：将新行插入表时激活触发程序
-        UPDATE：更改某一行时激活触发程序
-        DELETE：从表中删除某一行时激活触发程序
-    tbl_name：监听的表，必须是永久性的表，不能将触发程序与TEMPORARY表或视图关联起来。
-    trigger_stmt：当触发程序激活时执行的语句。执行多个语句，可使用BEGIN...END复合语句结构
--- 删除
-DROP TRIGGER [schema_name.]trigger_name
-可以使用old和new代替旧的和新的数据
-    更新操作，更新前是old，更新后是new.
-    删除操作，只有old.
-    增加操作，只有new.
--- 注意
-    1. 对于具有相同触发程序动作时间和事件的给定表，不能有两个触发程序。
-</code></pre>
-<pre><code>-- 字符连接函数
-concat(str1,str2,...])
-concat_ws(separator,str1,str2,...)
-
--- 分支语句
-if 条件 then
-    执行语句
-elseif 条件 then
-    执行语句
-else
-    执行语句
-end if;
-
--- 修改最外层语句结束符
-delimiter 自定义结束符号
-    SQL语句
-自定义结束符号
-delimiter ;     -- 修改回原来的分号
-
--- 语句块包裹
-begin
-    语句块
-end
-
--- 特殊的执行
-1. 只要添加记录，就会触发程序。
-2. Insert into on duplicate key update 语法会触发：
-    如果没有重复记录，会触发 before insert, after insert;
-    如果有重复记录并更新，会触发 before insert, before update, after update;
-    如果有重复记录但是没有发生更新，则触发 before insert, before update
-3. Replace 语法 如果有记录，则执行 before insert, before delete, after delete, after insert
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>   触发程序是与表有关的命名数据库对象，当该表出现特定事件时，将激活该对象
+</span><span id="__span-24-2"><a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a>    监听：记录的增加、修改、删除。
+</span><span id="__span-24-3"><a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a>-- 创建触发器
+</span><span id="__span-24-4"><a id="__codelineno-24-4" name="__codelineno-24-4" href="#__codelineno-24-4"></a>CREATE TRIGGER trigger_name trigger_time trigger_event ON tbl_name FOR EACH ROW trigger_stmt
+</span><span id="__span-24-5"><a id="__codelineno-24-5" name="__codelineno-24-5" href="#__codelineno-24-5"></a>    参数：
+</span><span id="__span-24-6"><a id="__codelineno-24-6" name="__codelineno-24-6" href="#__codelineno-24-6"></a>    trigger_time是触发程序的动作时间。它可以是 before 或 after，以指明触发程序是在激活它的语句之前或之后触发。
+</span><span id="__span-24-7"><a id="__codelineno-24-7" name="__codelineno-24-7" href="#__codelineno-24-7"></a>    trigger_event指明了激活触发程序的语句的类型
+</span><span id="__span-24-8"><a id="__codelineno-24-8" name="__codelineno-24-8" href="#__codelineno-24-8"></a>        INSERT：将新行插入表时激活触发程序
+</span><span id="__span-24-9"><a id="__codelineno-24-9" name="__codelineno-24-9" href="#__codelineno-24-9"></a>        UPDATE：更改某一行时激活触发程序
+</span><span id="__span-24-10"><a id="__codelineno-24-10" name="__codelineno-24-10" href="#__codelineno-24-10"></a>        DELETE：从表中删除某一行时激活触发程序
+</span><span id="__span-24-11"><a id="__codelineno-24-11" name="__codelineno-24-11" href="#__codelineno-24-11"></a>    tbl_name：监听的表，必须是永久性的表，不能将触发程序与TEMPORARY表或视图关联起来。
+</span><span id="__span-24-12"><a id="__codelineno-24-12" name="__codelineno-24-12" href="#__codelineno-24-12"></a>    trigger_stmt：当触发程序激活时执行的语句。执行多个语句，可使用BEGIN...END复合语句结构
+</span><span id="__span-24-13"><a id="__codelineno-24-13" name="__codelineno-24-13" href="#__codelineno-24-13"></a>-- 删除
+</span><span id="__span-24-14"><a id="__codelineno-24-14" name="__codelineno-24-14" href="#__codelineno-24-14"></a>DROP TRIGGER [schema_name.]trigger_name
+</span><span id="__span-24-15"><a id="__codelineno-24-15" name="__codelineno-24-15" href="#__codelineno-24-15"></a>可以使用old和new代替旧的和新的数据
+</span><span id="__span-24-16"><a id="__codelineno-24-16" name="__codelineno-24-16" href="#__codelineno-24-16"></a>    更新操作，更新前是old，更新后是new.
+</span><span id="__span-24-17"><a id="__codelineno-24-17" name="__codelineno-24-17" href="#__codelineno-24-17"></a>    删除操作，只有old.
+</span><span id="__span-24-18"><a id="__codelineno-24-18" name="__codelineno-24-18" href="#__codelineno-24-18"></a>    增加操作，只有new.
+</span><span id="__span-24-19"><a id="__codelineno-24-19" name="__codelineno-24-19" href="#__codelineno-24-19"></a>-- 注意
+</span><span id="__span-24-20"><a id="__codelineno-24-20" name="__codelineno-24-20" href="#__codelineno-24-20"></a>    1. 对于具有相同触发程序动作时间和事件的给定表，不能有两个触发程序。
+</span></code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>-- 字符连接函数
+</span><span id="__span-25-2"><a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a>concat(str1,str2,...])
+</span><span id="__span-25-3"><a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a>concat_ws(separator,str1,str2,...)
+</span><span id="__span-25-4"><a id="__codelineno-25-4" name="__codelineno-25-4" href="#__codelineno-25-4"></a>
+</span><span id="__span-25-5"><a id="__codelineno-25-5" name="__codelineno-25-5" href="#__codelineno-25-5"></a>-- 分支语句
+</span><span id="__span-25-6"><a id="__codelineno-25-6" name="__codelineno-25-6" href="#__codelineno-25-6"></a>if 条件 then
+</span><span id="__span-25-7"><a id="__codelineno-25-7" name="__codelineno-25-7" href="#__codelineno-25-7"></a>    执行语句
+</span><span id="__span-25-8"><a id="__codelineno-25-8" name="__codelineno-25-8" href="#__codelineno-25-8"></a>elseif 条件 then
+</span><span id="__span-25-9"><a id="__codelineno-25-9" name="__codelineno-25-9" href="#__codelineno-25-9"></a>    执行语句
+</span><span id="__span-25-10"><a id="__codelineno-25-10" name="__codelineno-25-10" href="#__codelineno-25-10"></a>else
+</span><span id="__span-25-11"><a id="__codelineno-25-11" name="__codelineno-25-11" href="#__codelineno-25-11"></a>    执行语句
+</span><span id="__span-25-12"><a id="__codelineno-25-12" name="__codelineno-25-12" href="#__codelineno-25-12"></a>end if;
+</span><span id="__span-25-13"><a id="__codelineno-25-13" name="__codelineno-25-13" href="#__codelineno-25-13"></a>
+</span><span id="__span-25-14"><a id="__codelineno-25-14" name="__codelineno-25-14" href="#__codelineno-25-14"></a>-- 修改最外层语句结束符
+</span><span id="__span-25-15"><a id="__codelineno-25-15" name="__codelineno-25-15" href="#__codelineno-25-15"></a>delimiter 自定义结束符号
+</span><span id="__span-25-16"><a id="__codelineno-25-16" name="__codelineno-25-16" href="#__codelineno-25-16"></a>    SQL语句
+</span><span id="__span-25-17"><a id="__codelineno-25-17" name="__codelineno-25-17" href="#__codelineno-25-17"></a>自定义结束符号
+</span><span id="__span-25-18"><a id="__codelineno-25-18" name="__codelineno-25-18" href="#__codelineno-25-18"></a>delimiter ;     -- 修改回原来的分号
+</span><span id="__span-25-19"><a id="__codelineno-25-19" name="__codelineno-25-19" href="#__codelineno-25-19"></a>
+</span><span id="__span-25-20"><a id="__codelineno-25-20" name="__codelineno-25-20" href="#__codelineno-25-20"></a>-- 语句块包裹
+</span><span id="__span-25-21"><a id="__codelineno-25-21" name="__codelineno-25-21" href="#__codelineno-25-21"></a>begin
+</span><span id="__span-25-22"><a id="__codelineno-25-22" name="__codelineno-25-22" href="#__codelineno-25-22"></a>    语句块
+</span><span id="__span-25-23"><a id="__codelineno-25-23" name="__codelineno-25-23" href="#__codelineno-25-23"></a>end
+</span><span id="__span-25-24"><a id="__codelineno-25-24" name="__codelineno-25-24" href="#__codelineno-25-24"></a>
+</span><span id="__span-25-25"><a id="__codelineno-25-25" name="__codelineno-25-25" href="#__codelineno-25-25"></a>-- 特殊的执行
+</span><span id="__span-25-26"><a id="__codelineno-25-26" name="__codelineno-25-26" href="#__codelineno-25-26"></a>1. 只要添加记录，就会触发程序。
+</span><span id="__span-25-27"><a id="__codelineno-25-27" name="__codelineno-25-27" href="#__codelineno-25-27"></a>2. Insert into on duplicate key update 语法会触发：
+</span><span id="__span-25-28"><a id="__codelineno-25-28" name="__codelineno-25-28" href="#__codelineno-25-28"></a>    如果没有重复记录，会触发 before insert, after insert;
+</span><span id="__span-25-29"><a id="__codelineno-25-29" name="__codelineno-25-29" href="#__codelineno-25-29"></a>    如果有重复记录并更新，会触发 before insert, before update, after update;
+</span><span id="__span-25-30"><a id="__codelineno-25-30" name="__codelineno-25-30" href="#__codelineno-25-30"></a>    如果有重复记录但是没有发生更新，则触发 before insert, before update
+</span><span id="__span-25-31"><a id="__codelineno-25-31" name="__codelineno-25-31" href="#__codelineno-25-31"></a>3. Replace 语法 如果有记录，则执行 before insert, before delete, after delete, after insert
+</span></code></pre></div>
 <h3 id="sql">SQL编程<a class="headerlink" href="#sql" title="Permanent link">&para;</a></h3>
-<pre><code>--// 局部变量 ----------
--- 变量声明
-    declare var_name[,...] type [default value]
-    这个语句被用来声明局部变量。要给变量提供一个默认值，请包含一个default子句。值可以被指定为一个表达式，不需要为一个常数。如果没有default子句，初始值为null。
--- 赋值
-    使用 set 和 select into 语句为变量赋值。
-    - 注意：在函数内是可以使用全局变量（用户自定义的变量）
-
-
---// 全局变量 ----------
--- 定义、赋值
-set 语句可以定义并为变量赋值。
-set @var = value;
-也可以使用select into语句为变量初始化并赋值。这样要求select语句只能返回一行，但是可以是多个字段，就意味着同时为多个变量进行赋值，变量的数量需要与查询的列数一致。
-还可以把赋值语句看作一个表达式，通过select执行完成。此时为了避免=被当作关系运算符看待，使用:=代替。（set语句可以使用= 和 :=）。
-select @var:=20;
-select @v1:=id, @v2=name from t1 limit 1;
-select * from tbl_name where @var:=30;
-select into 可以将表中查询获得的数据赋给变量。
-    -| select max(height) into @max_height from tb;
--- 自定义变量名
-为了避免select语句中，用户自定义的变量与系统标识符（通常是字段名）冲突，用户自定义变量在变量名前使用@作为开始符号。
-@var=10;
-    - 变量被定义后，在整个会话周期都有效（登录到退出）
-
-
-
---// 控制结构 ----------
--- if语句
-if search_condition then
-    statement_list   
-[elseif search_condition then
-    statement_list]
-...
-[else
-    statement_list]
-end if;
--- case语句
-CASE value WHEN [compare-value] THEN result
-[WHEN [compare-value] THEN result ...]
-[ELSE result]
-END
--- while循环
-[begin_label:] while search_condition do
-    statement_list
-end while [end_label];
-- 如果需要在循环内提前终止 while循环，则需要使用标签；标签需要成对出现。
-    -- 退出循环
-        退出整个循环 leave
-        退出当前循环 iterate
-        通过退出的标签决定退出哪个循环
-
-
-
---// 内置函数 ----------
--- 数值函数
-abs(x)          -- 绝对值 abs(-10.9) = 10
-format(x, d)    -- 格式化千分位数值 format(1234567.456, 2) = 1,234,567.46
-ceil(x)         -- 向上取整 ceil(10.1) = 11
-floor(x)        -- 向下取整 floor (10.1) = 10
-round(x)        -- 四舍五入去整
-mod(m, n)       -- m%n m mod n 求余 10%3=1
-pi()            -- 获得圆周率
-pow(m, n)       -- m^n
-sqrt(x)         -- 算术平方根
-rand()          -- 随机数
-truncate(x, d)  -- 截取d位小数
--- 时间日期函数
-now(), current_timestamp();     -- 当前日期时间
-current_date();                 -- 当前日期
-current_time();                 -- 当前时间
-date( yyyy-mm-dd hh:ii:ss );    -- 获取日期部分
-time( yyyy-mm-dd hh:ii:ss );    -- 获取时间部分
-date_format( yyyy-mm-dd hh:ii:ss ,  %d %y %a %d %m %b %j ); -- 格式化时间
-unix_timestamp();               -- 获得unix时间戳
-from_unixtime();                -- 从时间戳获得时间
--- 字符串函数
-length(string)          -- string长度，字节
-char_length(string)     -- string的字符个数
-substring(str, position [,length])      -- 从str的position开始,取length个字符
-replace(str ,search_str ,replace_str)   -- 在str中用replace_str替换search_str
-instr(string ,substring)    -- 返回substring首次在string中出现的位置
-concat(string [,...])   -- 连接字串
-charset(str)            -- 返回字串字符集
-lcase(string)           -- 转换成小写
-left(string, length)    -- 从string2中的左边起取length个字符
-load_file(file_name)    -- 从文件读取内容
-locate(substring, string [,start_position]) -- 同instr,但可指定开始位置
-lpad(string, length, pad)   -- 重复用pad加在string开头,直到字串长度为length
-ltrim(string)           -- 去除前端空格
-repeat(string, count)   -- 重复count次
-rpad(string, length, pad)   --在str后用pad补充,直到长度为length
-rtrim(string)           -- 去除后端空格
-strcmp(string1 ,string2)    -- 逐字符比较两字串大小
--- 流程函数
-case when [condition] then result [when [condition] then result ...] [else result] end   多分支
-if(expr1,expr2,expr3)  双分支。
--- 聚合函数
-count()
-sum();
-max();
-min();
-avg();
-group_concat()
--- 其他常用函数
-md5();
-default();
-
---// 存储函数，自定义函数 ----------
--- 新建
-    CREATE FUNCTION function_name (参数列表) RETURNS 返回值类型
-        函数体
-    - 函数名，应该合法的标识符，并且不应该与已有的关键字冲突。
-    - 一个函数应该属于某个数据库，可以使用db_name.funciton_name的形式执行当前函数所属数据库，否则为当前数据库。
-    - 参数部分，由&quot;参数名&quot;和&quot;参数类型&quot;组成。多个参数用逗号隔开。
-    - 函数体由多条可用的mysql语句，流程控制，变量声明等语句构成。
-    - 多条语句应该使用 begin...end 语句块包含。
-    - 一定要有 return 返回值语句。
--- 删除
-    DROP FUNCTION [IF EXISTS] function_name;
--- 查看
-    SHOW FUNCTION STATUS LIKE  partten 
-    SHOW CREATE FUNCTION function_name;
--- 修改
-    ALTER FUNCTION function_name 函数选项
-
---// 存储过程，自定义功能 ----------
--- 定义
-存储存储过程 是一段代码（过程），存储在数据库中的sql组成。
-一个存储过程通常用于完成一段业务逻辑，例如报名，交班费，订单入库等。
-而一个函数通常专注与某个功能，视为其他程序服务的，需要在其他语句中调用函数才可以，而存储过程不能被其他调用，是自己执行 通过call执行。
--- 创建
-CREATE PROCEDURE sp_name (参数列表)
-    过程体
-参数列表：不同于函数的参数列表，需要指明参数类型
-IN，表示输入型
-OUT，表示输出型
-INOUT，表示混合型
-注意，没有返回值。
-
-
-/* 存储过程 */ ------------------
-存储过程是一段可执行性代码的集合。相比函数，更偏向于业务逻辑。
-调用：CALL 过程名
--- 注意
-- 没有返回值。
-- 只能单独调用，不可夹杂在其他语句中
--- 参数
-IN|OUT|INOUT 参数名 数据类型
-IN      输入：在调用过程中，将数据输入到过程体内部的参数
-OUT     输出：在调用过程中，将过程体处理完的结果返回到客户端
-INOUT   输入输出：既可输入，也可输出
--- 语法
-CREATE PROCEDURE 过程名 (参数列表)
-BEGIN
-    过程体
-END
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-26-1"><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a>--// 局部变量 ----------
+</span><span id="__span-26-2"><a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a>-- 变量声明
+</span><span id="__span-26-3"><a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a>    declare var_name[,...] type [default value]
+</span><span id="__span-26-4"><a id="__codelineno-26-4" name="__codelineno-26-4" href="#__codelineno-26-4"></a>    这个语句被用来声明局部变量。要给变量提供一个默认值，请包含一个default子句。值可以被指定为一个表达式，不需要为一个常数。如果没有default子句，初始值为null。
+</span><span id="__span-26-5"><a id="__codelineno-26-5" name="__codelineno-26-5" href="#__codelineno-26-5"></a>-- 赋值
+</span><span id="__span-26-6"><a id="__codelineno-26-6" name="__codelineno-26-6" href="#__codelineno-26-6"></a>    使用 set 和 select into 语句为变量赋值。
+</span><span id="__span-26-7"><a id="__codelineno-26-7" name="__codelineno-26-7" href="#__codelineno-26-7"></a>    - 注意：在函数内是可以使用全局变量（用户自定义的变量）
+</span><span id="__span-26-8"><a id="__codelineno-26-8" name="__codelineno-26-8" href="#__codelineno-26-8"></a>
+</span><span id="__span-26-9"><a id="__codelineno-26-9" name="__codelineno-26-9" href="#__codelineno-26-9"></a>
+</span><span id="__span-26-10"><a id="__codelineno-26-10" name="__codelineno-26-10" href="#__codelineno-26-10"></a>--// 全局变量 ----------
+</span><span id="__span-26-11"><a id="__codelineno-26-11" name="__codelineno-26-11" href="#__codelineno-26-11"></a>-- 定义、赋值
+</span><span id="__span-26-12"><a id="__codelineno-26-12" name="__codelineno-26-12" href="#__codelineno-26-12"></a>set 语句可以定义并为变量赋值。
+</span><span id="__span-26-13"><a id="__codelineno-26-13" name="__codelineno-26-13" href="#__codelineno-26-13"></a>set @var = value;
+</span><span id="__span-26-14"><a id="__codelineno-26-14" name="__codelineno-26-14" href="#__codelineno-26-14"></a>也可以使用select into语句为变量初始化并赋值。这样要求select语句只能返回一行，但是可以是多个字段，就意味着同时为多个变量进行赋值，变量的数量需要与查询的列数一致。
+</span><span id="__span-26-15"><a id="__codelineno-26-15" name="__codelineno-26-15" href="#__codelineno-26-15"></a>还可以把赋值语句看作一个表达式，通过select执行完成。此时为了避免=被当作关系运算符看待，使用:=代替。（set语句可以使用= 和 :=）。
+</span><span id="__span-26-16"><a id="__codelineno-26-16" name="__codelineno-26-16" href="#__codelineno-26-16"></a>select @var:=20;
+</span><span id="__span-26-17"><a id="__codelineno-26-17" name="__codelineno-26-17" href="#__codelineno-26-17"></a>select @v1:=id, @v2=name from t1 limit 1;
+</span><span id="__span-26-18"><a id="__codelineno-26-18" name="__codelineno-26-18" href="#__codelineno-26-18"></a>select * from tbl_name where @var:=30;
+</span><span id="__span-26-19"><a id="__codelineno-26-19" name="__codelineno-26-19" href="#__codelineno-26-19"></a>select into 可以将表中查询获得的数据赋给变量。
+</span><span id="__span-26-20"><a id="__codelineno-26-20" name="__codelineno-26-20" href="#__codelineno-26-20"></a>    -| select max(height) into @max_height from tb;
+</span><span id="__span-26-21"><a id="__codelineno-26-21" name="__codelineno-26-21" href="#__codelineno-26-21"></a>-- 自定义变量名
+</span><span id="__span-26-22"><a id="__codelineno-26-22" name="__codelineno-26-22" href="#__codelineno-26-22"></a>为了避免select语句中，用户自定义的变量与系统标识符（通常是字段名）冲突，用户自定义变量在变量名前使用@作为开始符号。
+</span><span id="__span-26-23"><a id="__codelineno-26-23" name="__codelineno-26-23" href="#__codelineno-26-23"></a>@var=10;
+</span><span id="__span-26-24"><a id="__codelineno-26-24" name="__codelineno-26-24" href="#__codelineno-26-24"></a>    - 变量被定义后，在整个会话周期都有效（登录到退出）
+</span><span id="__span-26-25"><a id="__codelineno-26-25" name="__codelineno-26-25" href="#__codelineno-26-25"></a>
+</span><span id="__span-26-26"><a id="__codelineno-26-26" name="__codelineno-26-26" href="#__codelineno-26-26"></a>
+</span><span id="__span-26-27"><a id="__codelineno-26-27" name="__codelineno-26-27" href="#__codelineno-26-27"></a>
+</span><span id="__span-26-28"><a id="__codelineno-26-28" name="__codelineno-26-28" href="#__codelineno-26-28"></a>--// 控制结构 ----------
+</span><span id="__span-26-29"><a id="__codelineno-26-29" name="__codelineno-26-29" href="#__codelineno-26-29"></a>-- if语句
+</span><span id="__span-26-30"><a id="__codelineno-26-30" name="__codelineno-26-30" href="#__codelineno-26-30"></a>if search_condition then
+</span><span id="__span-26-31"><a id="__codelineno-26-31" name="__codelineno-26-31" href="#__codelineno-26-31"></a>    statement_list   
+</span><span id="__span-26-32"><a id="__codelineno-26-32" name="__codelineno-26-32" href="#__codelineno-26-32"></a>[elseif search_condition then
+</span><span id="__span-26-33"><a id="__codelineno-26-33" name="__codelineno-26-33" href="#__codelineno-26-33"></a>    statement_list]
+</span><span id="__span-26-34"><a id="__codelineno-26-34" name="__codelineno-26-34" href="#__codelineno-26-34"></a>...
+</span><span id="__span-26-35"><a id="__codelineno-26-35" name="__codelineno-26-35" href="#__codelineno-26-35"></a>[else
+</span><span id="__span-26-36"><a id="__codelineno-26-36" name="__codelineno-26-36" href="#__codelineno-26-36"></a>    statement_list]
+</span><span id="__span-26-37"><a id="__codelineno-26-37" name="__codelineno-26-37" href="#__codelineno-26-37"></a>end if;
+</span><span id="__span-26-38"><a id="__codelineno-26-38" name="__codelineno-26-38" href="#__codelineno-26-38"></a>-- case语句
+</span><span id="__span-26-39"><a id="__codelineno-26-39" name="__codelineno-26-39" href="#__codelineno-26-39"></a>CASE value WHEN [compare-value] THEN result
+</span><span id="__span-26-40"><a id="__codelineno-26-40" name="__codelineno-26-40" href="#__codelineno-26-40"></a>[WHEN [compare-value] THEN result ...]
+</span><span id="__span-26-41"><a id="__codelineno-26-41" name="__codelineno-26-41" href="#__codelineno-26-41"></a>[ELSE result]
+</span><span id="__span-26-42"><a id="__codelineno-26-42" name="__codelineno-26-42" href="#__codelineno-26-42"></a>END
+</span><span id="__span-26-43"><a id="__codelineno-26-43" name="__codelineno-26-43" href="#__codelineno-26-43"></a>-- while循环
+</span><span id="__span-26-44"><a id="__codelineno-26-44" name="__codelineno-26-44" href="#__codelineno-26-44"></a>[begin_label:] while search_condition do
+</span><span id="__span-26-45"><a id="__codelineno-26-45" name="__codelineno-26-45" href="#__codelineno-26-45"></a>    statement_list
+</span><span id="__span-26-46"><a id="__codelineno-26-46" name="__codelineno-26-46" href="#__codelineno-26-46"></a>end while [end_label];
+</span><span id="__span-26-47"><a id="__codelineno-26-47" name="__codelineno-26-47" href="#__codelineno-26-47"></a>- 如果需要在循环内提前终止 while循环，则需要使用标签；标签需要成对出现。
+</span><span id="__span-26-48"><a id="__codelineno-26-48" name="__codelineno-26-48" href="#__codelineno-26-48"></a>    -- 退出循环
+</span><span id="__span-26-49"><a id="__codelineno-26-49" name="__codelineno-26-49" href="#__codelineno-26-49"></a>        退出整个循环 leave
+</span><span id="__span-26-50"><a id="__codelineno-26-50" name="__codelineno-26-50" href="#__codelineno-26-50"></a>        退出当前循环 iterate
+</span><span id="__span-26-51"><a id="__codelineno-26-51" name="__codelineno-26-51" href="#__codelineno-26-51"></a>        通过退出的标签决定退出哪个循环
+</span><span id="__span-26-52"><a id="__codelineno-26-52" name="__codelineno-26-52" href="#__codelineno-26-52"></a>
+</span><span id="__span-26-53"><a id="__codelineno-26-53" name="__codelineno-26-53" href="#__codelineno-26-53"></a>
+</span><span id="__span-26-54"><a id="__codelineno-26-54" name="__codelineno-26-54" href="#__codelineno-26-54"></a>
+</span><span id="__span-26-55"><a id="__codelineno-26-55" name="__codelineno-26-55" href="#__codelineno-26-55"></a>--// 内置函数 ----------
+</span><span id="__span-26-56"><a id="__codelineno-26-56" name="__codelineno-26-56" href="#__codelineno-26-56"></a>-- 数值函数
+</span><span id="__span-26-57"><a id="__codelineno-26-57" name="__codelineno-26-57" href="#__codelineno-26-57"></a>abs(x)          -- 绝对值 abs(-10.9) = 10
+</span><span id="__span-26-58"><a id="__codelineno-26-58" name="__codelineno-26-58" href="#__codelineno-26-58"></a>format(x, d)    -- 格式化千分位数值 format(1234567.456, 2) = 1,234,567.46
+</span><span id="__span-26-59"><a id="__codelineno-26-59" name="__codelineno-26-59" href="#__codelineno-26-59"></a>ceil(x)         -- 向上取整 ceil(10.1) = 11
+</span><span id="__span-26-60"><a id="__codelineno-26-60" name="__codelineno-26-60" href="#__codelineno-26-60"></a>floor(x)        -- 向下取整 floor (10.1) = 10
+</span><span id="__span-26-61"><a id="__codelineno-26-61" name="__codelineno-26-61" href="#__codelineno-26-61"></a>round(x)        -- 四舍五入去整
+</span><span id="__span-26-62"><a id="__codelineno-26-62" name="__codelineno-26-62" href="#__codelineno-26-62"></a>mod(m, n)       -- m%n m mod n 求余 10%3=1
+</span><span id="__span-26-63"><a id="__codelineno-26-63" name="__codelineno-26-63" href="#__codelineno-26-63"></a>pi()            -- 获得圆周率
+</span><span id="__span-26-64"><a id="__codelineno-26-64" name="__codelineno-26-64" href="#__codelineno-26-64"></a>pow(m, n)       -- m^n
+</span><span id="__span-26-65"><a id="__codelineno-26-65" name="__codelineno-26-65" href="#__codelineno-26-65"></a>sqrt(x)         -- 算术平方根
+</span><span id="__span-26-66"><a id="__codelineno-26-66" name="__codelineno-26-66" href="#__codelineno-26-66"></a>rand()          -- 随机数
+</span><span id="__span-26-67"><a id="__codelineno-26-67" name="__codelineno-26-67" href="#__codelineno-26-67"></a>truncate(x, d)  -- 截取d位小数
+</span><span id="__span-26-68"><a id="__codelineno-26-68" name="__codelineno-26-68" href="#__codelineno-26-68"></a>-- 时间日期函数
+</span><span id="__span-26-69"><a id="__codelineno-26-69" name="__codelineno-26-69" href="#__codelineno-26-69"></a>now(), current_timestamp();     -- 当前日期时间
+</span><span id="__span-26-70"><a id="__codelineno-26-70" name="__codelineno-26-70" href="#__codelineno-26-70"></a>current_date();                 -- 当前日期
+</span><span id="__span-26-71"><a id="__codelineno-26-71" name="__codelineno-26-71" href="#__codelineno-26-71"></a>current_time();                 -- 当前时间
+</span><span id="__span-26-72"><a id="__codelineno-26-72" name="__codelineno-26-72" href="#__codelineno-26-72"></a>date( yyyy-mm-dd hh:ii:ss );    -- 获取日期部分
+</span><span id="__span-26-73"><a id="__codelineno-26-73" name="__codelineno-26-73" href="#__codelineno-26-73"></a>time( yyyy-mm-dd hh:ii:ss );    -- 获取时间部分
+</span><span id="__span-26-74"><a id="__codelineno-26-74" name="__codelineno-26-74" href="#__codelineno-26-74"></a>date_format( yyyy-mm-dd hh:ii:ss ,  %d %y %a %d %m %b %j ); -- 格式化时间
+</span><span id="__span-26-75"><a id="__codelineno-26-75" name="__codelineno-26-75" href="#__codelineno-26-75"></a>unix_timestamp();               -- 获得unix时间戳
+</span><span id="__span-26-76"><a id="__codelineno-26-76" name="__codelineno-26-76" href="#__codelineno-26-76"></a>from_unixtime();                -- 从时间戳获得时间
+</span><span id="__span-26-77"><a id="__codelineno-26-77" name="__codelineno-26-77" href="#__codelineno-26-77"></a>-- 字符串函数
+</span><span id="__span-26-78"><a id="__codelineno-26-78" name="__codelineno-26-78" href="#__codelineno-26-78"></a>length(string)          -- string长度，字节
+</span><span id="__span-26-79"><a id="__codelineno-26-79" name="__codelineno-26-79" href="#__codelineno-26-79"></a>char_length(string)     -- string的字符个数
+</span><span id="__span-26-80"><a id="__codelineno-26-80" name="__codelineno-26-80" href="#__codelineno-26-80"></a>substring(str, position [,length])      -- 从str的position开始,取length个字符
+</span><span id="__span-26-81"><a id="__codelineno-26-81" name="__codelineno-26-81" href="#__codelineno-26-81"></a>replace(str ,search_str ,replace_str)   -- 在str中用replace_str替换search_str
+</span><span id="__span-26-82"><a id="__codelineno-26-82" name="__codelineno-26-82" href="#__codelineno-26-82"></a>instr(string ,substring)    -- 返回substring首次在string中出现的位置
+</span><span id="__span-26-83"><a id="__codelineno-26-83" name="__codelineno-26-83" href="#__codelineno-26-83"></a>concat(string [,...])   -- 连接字串
+</span><span id="__span-26-84"><a id="__codelineno-26-84" name="__codelineno-26-84" href="#__codelineno-26-84"></a>charset(str)            -- 返回字串字符集
+</span><span id="__span-26-85"><a id="__codelineno-26-85" name="__codelineno-26-85" href="#__codelineno-26-85"></a>lcase(string)           -- 转换成小写
+</span><span id="__span-26-86"><a id="__codelineno-26-86" name="__codelineno-26-86" href="#__codelineno-26-86"></a>left(string, length)    -- 从string2中的左边起取length个字符
+</span><span id="__span-26-87"><a id="__codelineno-26-87" name="__codelineno-26-87" href="#__codelineno-26-87"></a>load_file(file_name)    -- 从文件读取内容
+</span><span id="__span-26-88"><a id="__codelineno-26-88" name="__codelineno-26-88" href="#__codelineno-26-88"></a>locate(substring, string [,start_position]) -- 同instr,但可指定开始位置
+</span><span id="__span-26-89"><a id="__codelineno-26-89" name="__codelineno-26-89" href="#__codelineno-26-89"></a>lpad(string, length, pad)   -- 重复用pad加在string开头,直到字串长度为length
+</span><span id="__span-26-90"><a id="__codelineno-26-90" name="__codelineno-26-90" href="#__codelineno-26-90"></a>ltrim(string)           -- 去除前端空格
+</span><span id="__span-26-91"><a id="__codelineno-26-91" name="__codelineno-26-91" href="#__codelineno-26-91"></a>repeat(string, count)   -- 重复count次
+</span><span id="__span-26-92"><a id="__codelineno-26-92" name="__codelineno-26-92" href="#__codelineno-26-92"></a>rpad(string, length, pad)   --在str后用pad补充,直到长度为length
+</span><span id="__span-26-93"><a id="__codelineno-26-93" name="__codelineno-26-93" href="#__codelineno-26-93"></a>rtrim(string)           -- 去除后端空格
+</span><span id="__span-26-94"><a id="__codelineno-26-94" name="__codelineno-26-94" href="#__codelineno-26-94"></a>strcmp(string1 ,string2)    -- 逐字符比较两字串大小
+</span><span id="__span-26-95"><a id="__codelineno-26-95" name="__codelineno-26-95" href="#__codelineno-26-95"></a>-- 流程函数
+</span><span id="__span-26-96"><a id="__codelineno-26-96" name="__codelineno-26-96" href="#__codelineno-26-96"></a>case when [condition] then result [when [condition] then result ...] [else result] end   多分支
+</span><span id="__span-26-97"><a id="__codelineno-26-97" name="__codelineno-26-97" href="#__codelineno-26-97"></a>if(expr1,expr2,expr3)  双分支。
+</span><span id="__span-26-98"><a id="__codelineno-26-98" name="__codelineno-26-98" href="#__codelineno-26-98"></a>-- 聚合函数
+</span><span id="__span-26-99"><a id="__codelineno-26-99" name="__codelineno-26-99" href="#__codelineno-26-99"></a>count()
+</span><span id="__span-26-100"><a id="__codelineno-26-100" name="__codelineno-26-100" href="#__codelineno-26-100"></a>sum();
+</span><span id="__span-26-101"><a id="__codelineno-26-101" name="__codelineno-26-101" href="#__codelineno-26-101"></a>max();
+</span><span id="__span-26-102"><a id="__codelineno-26-102" name="__codelineno-26-102" href="#__codelineno-26-102"></a>min();
+</span><span id="__span-26-103"><a id="__codelineno-26-103" name="__codelineno-26-103" href="#__codelineno-26-103"></a>avg();
+</span><span id="__span-26-104"><a id="__codelineno-26-104" name="__codelineno-26-104" href="#__codelineno-26-104"></a>group_concat()
+</span><span id="__span-26-105"><a id="__codelineno-26-105" name="__codelineno-26-105" href="#__codelineno-26-105"></a>-- 其他常用函数
+</span><span id="__span-26-106"><a id="__codelineno-26-106" name="__codelineno-26-106" href="#__codelineno-26-106"></a>md5();
+</span><span id="__span-26-107"><a id="__codelineno-26-107" name="__codelineno-26-107" href="#__codelineno-26-107"></a>default();
+</span><span id="__span-26-108"><a id="__codelineno-26-108" name="__codelineno-26-108" href="#__codelineno-26-108"></a>
+</span><span id="__span-26-109"><a id="__codelineno-26-109" name="__codelineno-26-109" href="#__codelineno-26-109"></a>--// 存储函数，自定义函数 ----------
+</span><span id="__span-26-110"><a id="__codelineno-26-110" name="__codelineno-26-110" href="#__codelineno-26-110"></a>-- 新建
+</span><span id="__span-26-111"><a id="__codelineno-26-111" name="__codelineno-26-111" href="#__codelineno-26-111"></a>    CREATE FUNCTION function_name (参数列表) RETURNS 返回值类型
+</span><span id="__span-26-112"><a id="__codelineno-26-112" name="__codelineno-26-112" href="#__codelineno-26-112"></a>        函数体
+</span><span id="__span-26-113"><a id="__codelineno-26-113" name="__codelineno-26-113" href="#__codelineno-26-113"></a>    - 函数名，应该合法的标识符，并且不应该与已有的关键字冲突。
+</span><span id="__span-26-114"><a id="__codelineno-26-114" name="__codelineno-26-114" href="#__codelineno-26-114"></a>    - 一个函数应该属于某个数据库，可以使用db_name.funciton_name的形式执行当前函数所属数据库，否则为当前数据库。
+</span><span id="__span-26-115"><a id="__codelineno-26-115" name="__codelineno-26-115" href="#__codelineno-26-115"></a>    - 参数部分，由&quot;参数名&quot;和&quot;参数类型&quot;组成。多个参数用逗号隔开。
+</span><span id="__span-26-116"><a id="__codelineno-26-116" name="__codelineno-26-116" href="#__codelineno-26-116"></a>    - 函数体由多条可用的mysql语句，流程控制，变量声明等语句构成。
+</span><span id="__span-26-117"><a id="__codelineno-26-117" name="__codelineno-26-117" href="#__codelineno-26-117"></a>    - 多条语句应该使用 begin...end 语句块包含。
+</span><span id="__span-26-118"><a id="__codelineno-26-118" name="__codelineno-26-118" href="#__codelineno-26-118"></a>    - 一定要有 return 返回值语句。
+</span><span id="__span-26-119"><a id="__codelineno-26-119" name="__codelineno-26-119" href="#__codelineno-26-119"></a>-- 删除
+</span><span id="__span-26-120"><a id="__codelineno-26-120" name="__codelineno-26-120" href="#__codelineno-26-120"></a>    DROP FUNCTION [IF EXISTS] function_name;
+</span><span id="__span-26-121"><a id="__codelineno-26-121" name="__codelineno-26-121" href="#__codelineno-26-121"></a>-- 查看
+</span><span id="__span-26-122"><a id="__codelineno-26-122" name="__codelineno-26-122" href="#__codelineno-26-122"></a>    SHOW FUNCTION STATUS LIKE  partten 
+</span><span id="__span-26-123"><a id="__codelineno-26-123" name="__codelineno-26-123" href="#__codelineno-26-123"></a>    SHOW CREATE FUNCTION function_name;
+</span><span id="__span-26-124"><a id="__codelineno-26-124" name="__codelineno-26-124" href="#__codelineno-26-124"></a>-- 修改
+</span><span id="__span-26-125"><a id="__codelineno-26-125" name="__codelineno-26-125" href="#__codelineno-26-125"></a>    ALTER FUNCTION function_name 函数选项
+</span><span id="__span-26-126"><a id="__codelineno-26-126" name="__codelineno-26-126" href="#__codelineno-26-126"></a>
+</span><span id="__span-26-127"><a id="__codelineno-26-127" name="__codelineno-26-127" href="#__codelineno-26-127"></a>--// 存储过程，自定义功能 ----------
+</span><span id="__span-26-128"><a id="__codelineno-26-128" name="__codelineno-26-128" href="#__codelineno-26-128"></a>-- 定义
+</span><span id="__span-26-129"><a id="__codelineno-26-129" name="__codelineno-26-129" href="#__codelineno-26-129"></a>存储存储过程 是一段代码（过程），存储在数据库中的sql组成。
+</span><span id="__span-26-130"><a id="__codelineno-26-130" name="__codelineno-26-130" href="#__codelineno-26-130"></a>一个存储过程通常用于完成一段业务逻辑，例如报名，交班费，订单入库等。
+</span><span id="__span-26-131"><a id="__codelineno-26-131" name="__codelineno-26-131" href="#__codelineno-26-131"></a>而一个函数通常专注与某个功能，视为其他程序服务的，需要在其他语句中调用函数才可以，而存储过程不能被其他调用，是自己执行 通过call执行。
+</span><span id="__span-26-132"><a id="__codelineno-26-132" name="__codelineno-26-132" href="#__codelineno-26-132"></a>-- 创建
+</span><span id="__span-26-133"><a id="__codelineno-26-133" name="__codelineno-26-133" href="#__codelineno-26-133"></a>CREATE PROCEDURE sp_name (参数列表)
+</span><span id="__span-26-134"><a id="__codelineno-26-134" name="__codelineno-26-134" href="#__codelineno-26-134"></a>    过程体
+</span><span id="__span-26-135"><a id="__codelineno-26-135" name="__codelineno-26-135" href="#__codelineno-26-135"></a>参数列表：不同于函数的参数列表，需要指明参数类型
+</span><span id="__span-26-136"><a id="__codelineno-26-136" name="__codelineno-26-136" href="#__codelineno-26-136"></a>IN，表示输入型
+</span><span id="__span-26-137"><a id="__codelineno-26-137" name="__codelineno-26-137" href="#__codelineno-26-137"></a>OUT，表示输出型
+</span><span id="__span-26-138"><a id="__codelineno-26-138" name="__codelineno-26-138" href="#__codelineno-26-138"></a>INOUT，表示混合型
+</span><span id="__span-26-139"><a id="__codelineno-26-139" name="__codelineno-26-139" href="#__codelineno-26-139"></a>注意，没有返回值。
+</span><span id="__span-26-140"><a id="__codelineno-26-140" name="__codelineno-26-140" href="#__codelineno-26-140"></a>
+</span><span id="__span-26-141"><a id="__codelineno-26-141" name="__codelineno-26-141" href="#__codelineno-26-141"></a>
+</span><span id="__span-26-142"><a id="__codelineno-26-142" name="__codelineno-26-142" href="#__codelineno-26-142"></a>/* 存储过程 */ ------------------
+</span><span id="__span-26-143"><a id="__codelineno-26-143" name="__codelineno-26-143" href="#__codelineno-26-143"></a>存储过程是一段可执行性代码的集合。相比函数，更偏向于业务逻辑。
+</span><span id="__span-26-144"><a id="__codelineno-26-144" name="__codelineno-26-144" href="#__codelineno-26-144"></a>调用：CALL 过程名
+</span><span id="__span-26-145"><a id="__codelineno-26-145" name="__codelineno-26-145" href="#__codelineno-26-145"></a>-- 注意
+</span><span id="__span-26-146"><a id="__codelineno-26-146" name="__codelineno-26-146" href="#__codelineno-26-146"></a>- 没有返回值。
+</span><span id="__span-26-147"><a id="__codelineno-26-147" name="__codelineno-26-147" href="#__codelineno-26-147"></a>- 只能单独调用，不可夹杂在其他语句中
+</span><span id="__span-26-148"><a id="__codelineno-26-148" name="__codelineno-26-148" href="#__codelineno-26-148"></a>-- 参数
+</span><span id="__span-26-149"><a id="__codelineno-26-149" name="__codelineno-26-149" href="#__codelineno-26-149"></a>IN|OUT|INOUT 参数名 数据类型
+</span><span id="__span-26-150"><a id="__codelineno-26-150" name="__codelineno-26-150" href="#__codelineno-26-150"></a>IN      输入：在调用过程中，将数据输入到过程体内部的参数
+</span><span id="__span-26-151"><a id="__codelineno-26-151" name="__codelineno-26-151" href="#__codelineno-26-151"></a>OUT     输出：在调用过程中，将过程体处理完的结果返回到客户端
+</span><span id="__span-26-152"><a id="__codelineno-26-152" name="__codelineno-26-152" href="#__codelineno-26-152"></a>INOUT   输入输出：既可输入，也可输出
+</span><span id="__span-26-153"><a id="__codelineno-26-153" name="__codelineno-26-153" href="#__codelineno-26-153"></a>-- 语法
+</span><span id="__span-26-154"><a id="__codelineno-26-154" name="__codelineno-26-154" href="#__codelineno-26-154"></a>CREATE PROCEDURE 过程名 (参数列表)
+</span><span id="__span-26-155"><a id="__codelineno-26-155" name="__codelineno-26-155" href="#__codelineno-26-155"></a>BEGIN
+</span><span id="__span-26-156"><a id="__codelineno-26-156" name="__codelineno-26-156" href="#__codelineno-26-156"></a>    过程体
+</span><span id="__span-26-157"><a id="__codelineno-26-157" name="__codelineno-26-157" href="#__codelineno-26-157"></a>END
+</span></code></pre></div>
 <h3 id="_16">用户和权限管理<a class="headerlink" href="#_16" title="Permanent link">&para;</a></h3>
-<pre><code>-- root密码重置
-1. 停止MySQL服务
-2.  [Linux] /usr/local/mysql/bin/safe_mysqld --skip-grant-tables &amp;
-    [Windows] mysqld --skip-grant-tables
-3. use mysql;
-4. UPDATE `user` SET PASSWORD=PASSWORD(&quot;密码&quot;) WHERE `user` = &quot;root&quot;;
-5. FLUSH PRIVILEGES;
-用户信息表：mysql.user
--- 刷新权限
-FLUSH PRIVILEGES;
--- 增加用户
-CREATE USER 用户名 IDENTIFIED BY [PASSWORD] 密码(字符串)
-    - 必须拥有mysql数据库的全局CREATE USER权限，或拥有INSERT权限。
-    - 只能创建用户，不能赋予权限。
-    - 用户名，注意引号：如  user_name @ 192.168.1.1 
-    - 密码也需引号，纯数字密码也要加引号
-    - 要在纯文本中指定密码，需忽略PASSWORD关键词。要把密码指定为由PASSWORD()函数返回的混编值，需包含关键字PASSWORD
--- 重命名用户
-RENAME USER old_user TO new_user
--- 设置密码
-SET PASSWORD = PASSWORD( 密码 )  -- 为当前用户设置密码
-SET PASSWORD FOR 用户名 = PASSWORD( 密码 ) -- 为指定用户设置密码
--- 删除用户
-DROP USER 用户名
--- 分配权限/添加用户
-GRANT 权限列表 ON 表名 TO 用户名 [IDENTIFIED BY [PASSWORD]  password ]
-    - all privileges 表示所有权限
-    - *.* 表示所有库的所有表
-    - 库名.表名 表示某库下面的某表
-    GRANT ALL PRIVILEGES ON `pms`.* TO  pms @ %  IDENTIFIED BY  pms0817 ;
--- 查看权限
-SHOW GRANTS FOR 用户名
-    -- 查看当前用户权限
-    SHOW GRANTS; 或 SHOW GRANTS FOR CURRENT_USER; 或 SHOW GRANTS FOR CURRENT_USER();
--- 撤消权限
-REVOKE 权限列表 ON 表名 FROM 用户名
-REVOKE ALL PRIVILEGES, GRANT OPTION FROM 用户名   -- 撤销所有权限
--- 权限层级
--- 要使用GRANT或REVOKE，您必须拥有GRANT OPTION权限，并且您必须用于您正在授予或撤销的权限。
-全局层级：全局权限适用于一个给定服务器中的所有数据库，mysql.user
-    GRANT ALL ON *.*和 REVOKE ALL ON *.*只授予和撤销全局权限。
-数据库层级：数据库权限适用于一个给定数据库中的所有目标，mysql.db, mysql.host
-    GRANT ALL ON db_name.*和REVOKE ALL ON db_name.*只授予和撤销数据库权限。
-表层级：表权限适用于一个给定表中的所有列，mysql.talbes_priv
-    GRANT ALL ON db_name.tbl_name和REVOKE ALL ON db_name.tbl_name只授予和撤销表权限。
-列层级：列权限适用于一个给定表中的单一列，mysql.columns_priv
-    当使用REVOKE时，您必须指定与被授权列相同的列。
--- 权限列表
-ALL [PRIVILEGES]    -- 设置除GRANT OPTION之外的所有简单权限
-ALTER   -- 允许使用ALTER TABLE
-ALTER ROUTINE   -- 更改或取消已存储的子程序
-CREATE  -- 允许使用CREATE TABLE
-CREATE ROUTINE  -- 创建已存储的子程序
-CREATE TEMPORARY TABLES     -- 允许使用CREATE TEMPORARY TABLE
-CREATE USER     -- 允许使用CREATE USER, DROP USER, RENAME USER和REVOKE ALL PRIVILEGES。
-CREATE VIEW     -- 允许使用CREATE VIEW
-DELETE  -- 允许使用DELETE
-DROP    -- 允许使用DROP TABLE
-EXECUTE     -- 允许用户运行已存储的子程序
-FILE    -- 允许使用SELECT...INTO OUTFILE和LOAD DATA INFILE
-INDEX   -- 允许使用CREATE INDEX和DROP INDEX
-INSERT  -- 允许使用INSERT
-LOCK TABLES     -- 允许对您拥有SELECT权限的表使用LOCK TABLES
-PROCESS     -- 允许使用SHOW FULL PROCESSLIST
-REFERENCES  -- 未被实施
-RELOAD  -- 允许使用FLUSH
-REPLICATION CLIENT  -- 允许用户询问从属服务器或主服务器的地址
-REPLICATION SLAVE   -- 用于复制型从属服务器（从主服务器中读取二进制日志事件）
-SELECT  -- 允许使用SELECT
-SHOW DATABASES  -- 显示所有数据库
-SHOW VIEW   -- 允许使用SHOW CREATE VIEW
-SHUTDOWN    -- 允许使用mysqladmin shutdown
-SUPER   -- 允许使用CHANGE MASTER, KILL, PURGE MASTER LOGS和SET GLOBAL语句，mysqladmin debug命令；允许您连接（一次），即使已达到max_connections。
-UPDATE  -- 允许使用UPDATE
-USAGE   -- “无权限”的同义词
-GRANT OPTION    -- 允许授予权限
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-27-1"><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a>-- root密码重置
+</span><span id="__span-27-2"><a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a>1. 停止MySQL服务
+</span><span id="__span-27-3"><a id="__codelineno-27-3" name="__codelineno-27-3" href="#__codelineno-27-3"></a>2.  [Linux] /usr/local/mysql/bin/safe_mysqld --skip-grant-tables &amp;
+</span><span id="__span-27-4"><a id="__codelineno-27-4" name="__codelineno-27-4" href="#__codelineno-27-4"></a>    [Windows] mysqld --skip-grant-tables
+</span><span id="__span-27-5"><a id="__codelineno-27-5" name="__codelineno-27-5" href="#__codelineno-27-5"></a>3. use mysql;
+</span><span id="__span-27-6"><a id="__codelineno-27-6" name="__codelineno-27-6" href="#__codelineno-27-6"></a>4. UPDATE `user` SET PASSWORD=PASSWORD(&quot;密码&quot;) WHERE `user` = &quot;root&quot;;
+</span><span id="__span-27-7"><a id="__codelineno-27-7" name="__codelineno-27-7" href="#__codelineno-27-7"></a>5. FLUSH PRIVILEGES;
+</span><span id="__span-27-8"><a id="__codelineno-27-8" name="__codelineno-27-8" href="#__codelineno-27-8"></a>用户信息表：mysql.user
+</span><span id="__span-27-9"><a id="__codelineno-27-9" name="__codelineno-27-9" href="#__codelineno-27-9"></a>-- 刷新权限
+</span><span id="__span-27-10"><a id="__codelineno-27-10" name="__codelineno-27-10" href="#__codelineno-27-10"></a>FLUSH PRIVILEGES;
+</span><span id="__span-27-11"><a id="__codelineno-27-11" name="__codelineno-27-11" href="#__codelineno-27-11"></a>-- 增加用户
+</span><span id="__span-27-12"><a id="__codelineno-27-12" name="__codelineno-27-12" href="#__codelineno-27-12"></a>CREATE USER 用户名 IDENTIFIED BY [PASSWORD] 密码(字符串)
+</span><span id="__span-27-13"><a id="__codelineno-27-13" name="__codelineno-27-13" href="#__codelineno-27-13"></a>    - 必须拥有mysql数据库的全局CREATE USER权限，或拥有INSERT权限。
+</span><span id="__span-27-14"><a id="__codelineno-27-14" name="__codelineno-27-14" href="#__codelineno-27-14"></a>    - 只能创建用户，不能赋予权限。
+</span><span id="__span-27-15"><a id="__codelineno-27-15" name="__codelineno-27-15" href="#__codelineno-27-15"></a>    - 用户名，注意引号：如  user_name @ 192.168.1.1 
+</span><span id="__span-27-16"><a id="__codelineno-27-16" name="__codelineno-27-16" href="#__codelineno-27-16"></a>    - 密码也需引号，纯数字密码也要加引号
+</span><span id="__span-27-17"><a id="__codelineno-27-17" name="__codelineno-27-17" href="#__codelineno-27-17"></a>    - 要在纯文本中指定密码，需忽略PASSWORD关键词。要把密码指定为由PASSWORD()函数返回的混编值，需包含关键字PASSWORD
+</span><span id="__span-27-18"><a id="__codelineno-27-18" name="__codelineno-27-18" href="#__codelineno-27-18"></a>-- 重命名用户
+</span><span id="__span-27-19"><a id="__codelineno-27-19" name="__codelineno-27-19" href="#__codelineno-27-19"></a>RENAME USER old_user TO new_user
+</span><span id="__span-27-20"><a id="__codelineno-27-20" name="__codelineno-27-20" href="#__codelineno-27-20"></a>-- 设置密码
+</span><span id="__span-27-21"><a id="__codelineno-27-21" name="__codelineno-27-21" href="#__codelineno-27-21"></a>SET PASSWORD = PASSWORD( 密码 )  -- 为当前用户设置密码
+</span><span id="__span-27-22"><a id="__codelineno-27-22" name="__codelineno-27-22" href="#__codelineno-27-22"></a>SET PASSWORD FOR 用户名 = PASSWORD( 密码 ) -- 为指定用户设置密码
+</span><span id="__span-27-23"><a id="__codelineno-27-23" name="__codelineno-27-23" href="#__codelineno-27-23"></a>-- 删除用户
+</span><span id="__span-27-24"><a id="__codelineno-27-24" name="__codelineno-27-24" href="#__codelineno-27-24"></a>DROP USER 用户名
+</span><span id="__span-27-25"><a id="__codelineno-27-25" name="__codelineno-27-25" href="#__codelineno-27-25"></a>-- 分配权限/添加用户
+</span><span id="__span-27-26"><a id="__codelineno-27-26" name="__codelineno-27-26" href="#__codelineno-27-26"></a>GRANT 权限列表 ON 表名 TO 用户名 [IDENTIFIED BY [PASSWORD]  password ]
+</span><span id="__span-27-27"><a id="__codelineno-27-27" name="__codelineno-27-27" href="#__codelineno-27-27"></a>    - all privileges 表示所有权限
+</span><span id="__span-27-28"><a id="__codelineno-27-28" name="__codelineno-27-28" href="#__codelineno-27-28"></a>    - *.* 表示所有库的所有表
+</span><span id="__span-27-29"><a id="__codelineno-27-29" name="__codelineno-27-29" href="#__codelineno-27-29"></a>    - 库名.表名 表示某库下面的某表
+</span><span id="__span-27-30"><a id="__codelineno-27-30" name="__codelineno-27-30" href="#__codelineno-27-30"></a>    GRANT ALL PRIVILEGES ON `pms`.* TO  pms @ %  IDENTIFIED BY  pms0817 ;
+</span><span id="__span-27-31"><a id="__codelineno-27-31" name="__codelineno-27-31" href="#__codelineno-27-31"></a>-- 查看权限
+</span><span id="__span-27-32"><a id="__codelineno-27-32" name="__codelineno-27-32" href="#__codelineno-27-32"></a>SHOW GRANTS FOR 用户名
+</span><span id="__span-27-33"><a id="__codelineno-27-33" name="__codelineno-27-33" href="#__codelineno-27-33"></a>    -- 查看当前用户权限
+</span><span id="__span-27-34"><a id="__codelineno-27-34" name="__codelineno-27-34" href="#__codelineno-27-34"></a>    SHOW GRANTS; 或 SHOW GRANTS FOR CURRENT_USER; 或 SHOW GRANTS FOR CURRENT_USER();
+</span><span id="__span-27-35"><a id="__codelineno-27-35" name="__codelineno-27-35" href="#__codelineno-27-35"></a>-- 撤消权限
+</span><span id="__span-27-36"><a id="__codelineno-27-36" name="__codelineno-27-36" href="#__codelineno-27-36"></a>REVOKE 权限列表 ON 表名 FROM 用户名
+</span><span id="__span-27-37"><a id="__codelineno-27-37" name="__codelineno-27-37" href="#__codelineno-27-37"></a>REVOKE ALL PRIVILEGES, GRANT OPTION FROM 用户名   -- 撤销所有权限
+</span><span id="__span-27-38"><a id="__codelineno-27-38" name="__codelineno-27-38" href="#__codelineno-27-38"></a>-- 权限层级
+</span><span id="__span-27-39"><a id="__codelineno-27-39" name="__codelineno-27-39" href="#__codelineno-27-39"></a>-- 要使用GRANT或REVOKE，您必须拥有GRANT OPTION权限，并且您必须用于您正在授予或撤销的权限。
+</span><span id="__span-27-40"><a id="__codelineno-27-40" name="__codelineno-27-40" href="#__codelineno-27-40"></a>全局层级：全局权限适用于一个给定服务器中的所有数据库，mysql.user
+</span><span id="__span-27-41"><a id="__codelineno-27-41" name="__codelineno-27-41" href="#__codelineno-27-41"></a>    GRANT ALL ON *.*和 REVOKE ALL ON *.*只授予和撤销全局权限。
+</span><span id="__span-27-42"><a id="__codelineno-27-42" name="__codelineno-27-42" href="#__codelineno-27-42"></a>数据库层级：数据库权限适用于一个给定数据库中的所有目标，mysql.db, mysql.host
+</span><span id="__span-27-43"><a id="__codelineno-27-43" name="__codelineno-27-43" href="#__codelineno-27-43"></a>    GRANT ALL ON db_name.*和REVOKE ALL ON db_name.*只授予和撤销数据库权限。
+</span><span id="__span-27-44"><a id="__codelineno-27-44" name="__codelineno-27-44" href="#__codelineno-27-44"></a>表层级：表权限适用于一个给定表中的所有列，mysql.talbes_priv
+</span><span id="__span-27-45"><a id="__codelineno-27-45" name="__codelineno-27-45" href="#__codelineno-27-45"></a>    GRANT ALL ON db_name.tbl_name和REVOKE ALL ON db_name.tbl_name只授予和撤销表权限。
+</span><span id="__span-27-46"><a id="__codelineno-27-46" name="__codelineno-27-46" href="#__codelineno-27-46"></a>列层级：列权限适用于一个给定表中的单一列，mysql.columns_priv
+</span><span id="__span-27-47"><a id="__codelineno-27-47" name="__codelineno-27-47" href="#__codelineno-27-47"></a>    当使用REVOKE时，您必须指定与被授权列相同的列。
+</span><span id="__span-27-48"><a id="__codelineno-27-48" name="__codelineno-27-48" href="#__codelineno-27-48"></a>-- 权限列表
+</span><span id="__span-27-49"><a id="__codelineno-27-49" name="__codelineno-27-49" href="#__codelineno-27-49"></a>ALL [PRIVILEGES]    -- 设置除GRANT OPTION之外的所有简单权限
+</span><span id="__span-27-50"><a id="__codelineno-27-50" name="__codelineno-27-50" href="#__codelineno-27-50"></a>ALTER   -- 允许使用ALTER TABLE
+</span><span id="__span-27-51"><a id="__codelineno-27-51" name="__codelineno-27-51" href="#__codelineno-27-51"></a>ALTER ROUTINE   -- 更改或取消已存储的子程序
+</span><span id="__span-27-52"><a id="__codelineno-27-52" name="__codelineno-27-52" href="#__codelineno-27-52"></a>CREATE  -- 允许使用CREATE TABLE
+</span><span id="__span-27-53"><a id="__codelineno-27-53" name="__codelineno-27-53" href="#__codelineno-27-53"></a>CREATE ROUTINE  -- 创建已存储的子程序
+</span><span id="__span-27-54"><a id="__codelineno-27-54" name="__codelineno-27-54" href="#__codelineno-27-54"></a>CREATE TEMPORARY TABLES     -- 允许使用CREATE TEMPORARY TABLE
+</span><span id="__span-27-55"><a id="__codelineno-27-55" name="__codelineno-27-55" href="#__codelineno-27-55"></a>CREATE USER     -- 允许使用CREATE USER, DROP USER, RENAME USER和REVOKE ALL PRIVILEGES。
+</span><span id="__span-27-56"><a id="__codelineno-27-56" name="__codelineno-27-56" href="#__codelineno-27-56"></a>CREATE VIEW     -- 允许使用CREATE VIEW
+</span><span id="__span-27-57"><a id="__codelineno-27-57" name="__codelineno-27-57" href="#__codelineno-27-57"></a>DELETE  -- 允许使用DELETE
+</span><span id="__span-27-58"><a id="__codelineno-27-58" name="__codelineno-27-58" href="#__codelineno-27-58"></a>DROP    -- 允许使用DROP TABLE
+</span><span id="__span-27-59"><a id="__codelineno-27-59" name="__codelineno-27-59" href="#__codelineno-27-59"></a>EXECUTE     -- 允许用户运行已存储的子程序
+</span><span id="__span-27-60"><a id="__codelineno-27-60" name="__codelineno-27-60" href="#__codelineno-27-60"></a>FILE    -- 允许使用SELECT...INTO OUTFILE和LOAD DATA INFILE
+</span><span id="__span-27-61"><a id="__codelineno-27-61" name="__codelineno-27-61" href="#__codelineno-27-61"></a>INDEX   -- 允许使用CREATE INDEX和DROP INDEX
+</span><span id="__span-27-62"><a id="__codelineno-27-62" name="__codelineno-27-62" href="#__codelineno-27-62"></a>INSERT  -- 允许使用INSERT
+</span><span id="__span-27-63"><a id="__codelineno-27-63" name="__codelineno-27-63" href="#__codelineno-27-63"></a>LOCK TABLES     -- 允许对您拥有SELECT权限的表使用LOCK TABLES
+</span><span id="__span-27-64"><a id="__codelineno-27-64" name="__codelineno-27-64" href="#__codelineno-27-64"></a>PROCESS     -- 允许使用SHOW FULL PROCESSLIST
+</span><span id="__span-27-65"><a id="__codelineno-27-65" name="__codelineno-27-65" href="#__codelineno-27-65"></a>REFERENCES  -- 未被实施
+</span><span id="__span-27-66"><a id="__codelineno-27-66" name="__codelineno-27-66" href="#__codelineno-27-66"></a>RELOAD  -- 允许使用FLUSH
+</span><span id="__span-27-67"><a id="__codelineno-27-67" name="__codelineno-27-67" href="#__codelineno-27-67"></a>REPLICATION CLIENT  -- 允许用户询问从属服务器或主服务器的地址
+</span><span id="__span-27-68"><a id="__codelineno-27-68" name="__codelineno-27-68" href="#__codelineno-27-68"></a>REPLICATION SLAVE   -- 用于复制型从属服务器（从主服务器中读取二进制日志事件）
+</span><span id="__span-27-69"><a id="__codelineno-27-69" name="__codelineno-27-69" href="#__codelineno-27-69"></a>SELECT  -- 允许使用SELECT
+</span><span id="__span-27-70"><a id="__codelineno-27-70" name="__codelineno-27-70" href="#__codelineno-27-70"></a>SHOW DATABASES  -- 显示所有数据库
+</span><span id="__span-27-71"><a id="__codelineno-27-71" name="__codelineno-27-71" href="#__codelineno-27-71"></a>SHOW VIEW   -- 允许使用SHOW CREATE VIEW
+</span><span id="__span-27-72"><a id="__codelineno-27-72" name="__codelineno-27-72" href="#__codelineno-27-72"></a>SHUTDOWN    -- 允许使用mysqladmin shutdown
+</span><span id="__span-27-73"><a id="__codelineno-27-73" name="__codelineno-27-73" href="#__codelineno-27-73"></a>SUPER   -- 允许使用CHANGE MASTER, KILL, PURGE MASTER LOGS和SET GLOBAL语句，mysqladmin debug命令；允许您连接（一次），即使已达到max_connections。
+</span><span id="__span-27-74"><a id="__codelineno-27-74" name="__codelineno-27-74" href="#__codelineno-27-74"></a>UPDATE  -- 允许使用UPDATE
+</span><span id="__span-27-75"><a id="__codelineno-27-75" name="__codelineno-27-75" href="#__codelineno-27-75"></a>USAGE   -- “无权限”的同义词
+</span><span id="__span-27-76"><a id="__codelineno-27-76" name="__codelineno-27-76" href="#__codelineno-27-76"></a>GRANT OPTION    -- 允许授予权限
+</span></code></pre></div>
 <h3 id="_17">表维护<a class="headerlink" href="#_17" title="Permanent link">&para;</a></h3>
-<pre><code>-- 分析和存储表的关键字分布
-ANALYZE [LOCAL | NO_WRITE_TO_BINLOG] TABLE 表名 ...
--- 检查一个或多个表是否有错误
-CHECK TABLE tbl_name [, tbl_name] ... [option] ...
-option = {QUICK | FAST | MEDIUM | EXTENDED | CHANGED}
--- 整理数据文件的碎片
-OPTIMIZE [LOCAL | NO_WRITE_TO_BINLOG] TABLE tbl_name [, tbl_name] ...
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-28-1"><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a>-- 分析和存储表的关键字分布
+</span><span id="__span-28-2"><a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a>ANALYZE [LOCAL | NO_WRITE_TO_BINLOG] TABLE 表名 ...
+</span><span id="__span-28-3"><a id="__codelineno-28-3" name="__codelineno-28-3" href="#__codelineno-28-3"></a>-- 检查一个或多个表是否有错误
+</span><span id="__span-28-4"><a id="__codelineno-28-4" name="__codelineno-28-4" href="#__codelineno-28-4"></a>CHECK TABLE tbl_name [, tbl_name] ... [option] ...
+</span><span id="__span-28-5"><a id="__codelineno-28-5" name="__codelineno-28-5" href="#__codelineno-28-5"></a>option = {QUICK | FAST | MEDIUM | EXTENDED | CHANGED}
+</span><span id="__span-28-6"><a id="__codelineno-28-6" name="__codelineno-28-6" href="#__codelineno-28-6"></a>-- 整理数据文件的碎片
+</span><span id="__span-28-7"><a id="__codelineno-28-7" name="__codelineno-28-7" href="#__codelineno-28-7"></a>OPTIMIZE [LOCAL | NO_WRITE_TO_BINLOG] TABLE tbl_name [, tbl_name] ...
+</span></code></pre></div>
 <h3 id="_18">杂项<a class="headerlink" href="#_18" title="Permanent link">&para;</a></h3>
-<pre><code>1. 可用反引号（`）为标识符（库名、表名、字段名、索引、别名）包裹，以避免与关键字重名！中文也可以作为标识符！
-2. 每个库目录存在一个保存当前数据库的选项文件db.opt。
-3. 注释：
-    单行注释 # 注释内容
-    多行注释 /* 注释内容 */
-    单行注释 -- 注释内容     (标准SQL注释风格，要求双破折号后加一空格符（空格、TAB、换行等）)
-4. 模式通配符：
-    _   任意单个字符
-    %   任意多个字符，甚至包括零字符
-    单引号需要进行转义  
-5. CMD命令行内的语句结束符可以为 &quot;;&quot;, &quot;G&quot;, &quot;g&quot;，仅影响显示结果。其他地方还是用分号结束。delimiter 可修改当前对话的语句结束符。
-6. SQL对大小写不敏感
-7. 清除已有语句：c
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-29-1"><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a>1. 可用反引号（`）为标识符（库名、表名、字段名、索引、别名）包裹，以避免与关键字重名！中文也可以作为标识符！
+</span><span id="__span-29-2"><a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a>2. 每个库目录存在一个保存当前数据库的选项文件db.opt。
+</span><span id="__span-29-3"><a id="__codelineno-29-3" name="__codelineno-29-3" href="#__codelineno-29-3"></a>3. 注释：
+</span><span id="__span-29-4"><a id="__codelineno-29-4" name="__codelineno-29-4" href="#__codelineno-29-4"></a>    单行注释 # 注释内容
+</span><span id="__span-29-5"><a id="__codelineno-29-5" name="__codelineno-29-5" href="#__codelineno-29-5"></a>    多行注释 /* 注释内容 */
+</span><span id="__span-29-6"><a id="__codelineno-29-6" name="__codelineno-29-6" href="#__codelineno-29-6"></a>    单行注释 -- 注释内容     (标准SQL注释风格，要求双破折号后加一空格符（空格、TAB、换行等）)
+</span><span id="__span-29-7"><a id="__codelineno-29-7" name="__codelineno-29-7" href="#__codelineno-29-7"></a>4. 模式通配符：
+</span><span id="__span-29-8"><a id="__codelineno-29-8" name="__codelineno-29-8" href="#__codelineno-29-8"></a>    _   任意单个字符
+</span><span id="__span-29-9"><a id="__codelineno-29-9" name="__codelineno-29-9" href="#__codelineno-29-9"></a>    %   任意多个字符，甚至包括零字符
+</span><span id="__span-29-10"><a id="__codelineno-29-10" name="__codelineno-29-10" href="#__codelineno-29-10"></a>    单引号需要进行转义  
+</span><span id="__span-29-11"><a id="__codelineno-29-11" name="__codelineno-29-11" href="#__codelineno-29-11"></a>5. CMD命令行内的语句结束符可以为 &quot;;&quot;, &quot;G&quot;, &quot;g&quot;，仅影响显示结果。其他地方还是用分号结束。delimiter 可修改当前对话的语句结束符。
+</span><span id="__span-29-12"><a id="__codelineno-29-12" name="__codelineno-29-12" href="#__codelineno-29-12"></a>6. SQL对大小写不敏感
+</span><span id="__span-29-13"><a id="__codelineno-29-13" name="__codelineno-29-13" href="#__codelineno-29-13"></a>7. 清除已有语句：c
+</span></code></pre></div>
 
 
 
@@ -2221,6 +2231,11 @@ OPTIMIZE [LOCAL | NO_WRITE_TO_BINLOG] TABLE tbl_name [, tbl_name] ...
           
           
         </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+            Back to top
+          </button>
         
       </main>
       
@@ -2251,7 +2266,7 @@ OPTIMIZE [LOCAL | NO_WRITE_TO_BINLOG] TABLE tbl_name [, tbl_name] ...
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tracking", "navigation.expand", "navigation.sections", "navigation.indexes", "navigation.path", "toc.integrate"], "search": "../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tracking", "navigation.top", "navigation.sections", "navigation.indexes", "navigation.path", "toc.integrate", "content.code.copy"], "search": "../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
       <script src="../assets/javascripts/bundle.fac441b0.min.js"></script>

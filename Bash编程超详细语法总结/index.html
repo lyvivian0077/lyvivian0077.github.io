@@ -206,9 +206,7 @@
       
       
       
-        
-      
-      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
       
       
         
@@ -324,9 +322,7 @@
       
       
       
-        
-      
-      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
       
       
         
@@ -397,9 +393,7 @@
       
       
       
-        
-      
-      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
       
       
         
@@ -454,11 +448,11 @@
       
       
       
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+      
+      
         
-      
-      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_8" >
-      
-      
+          
         
           
         
@@ -578,6 +572,20 @@
   
   
     <li class="md-nav__item">
+      <a href="../mysql-mgr-copy/" class="md-nav__link">
+        転載MGR
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../mysql-ha/" class="md-nav__link">
         mysql+keepalived搭建教程
       </a>
@@ -607,9 +615,7 @@
       
       
       
-        
-      
-      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_9" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
       
       
         
@@ -1231,567 +1237,559 @@
 <h2 id="bash">bash编程之变量<a class="headerlink" href="#bash" title="Permanent link">&para;</a></h2>
 <h3 id="bash_1">bash变量类别<a class="headerlink" href="#bash_1" title="Permanent link">&para;</a></h3>
 <p><strong>本地变量</strong> : 只对当前shell进程有效的变量，对其它shell进程无效，包当前shell进程的子进程</p>
-<pre><code>VAR_NAME=VALUE
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>VAR_NAME=VALUE
+</span></code></pre></div>
 <p><strong>变量赋值</strong> : 向变量的存储空间保存数据</p>
 <p><strong>变量引用</strong> : ${VAR_NAME} </p>
-<pre><code>&quot;&quot;:弱引用，里面的变量会被替换
-'':强引用，里面的所有字符都是字面量，直接输出
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>&quot;&quot;:弱引用，里面的变量会被替换
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>&#39;&#39;:强引用，里面的所有字符都是字面量，直接输出
+</span></code></pre></div>
 <p><strong>环境变量</strong> : 对当前shell进程及其子shell有效，对其它的shell进程无效</p>
-<pre><code>定义：export VAR_NAME=VALUE
-导出：export VAR_NAME
-撤消变量：unset VAR_NAME
-只读变量：readonly VAR_NAME
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>定义：export VAR_NAME=VALUE
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>导出：export VAR_NAME
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>撤消变量：unset VAR_NAME
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>只读变量：readonly VAR_NAME
+</span></code></pre></div>
 <p><strong>局部变量</strong> : 对shell脚本中某代码片断有效，通常用于函数本地</p>
-<pre><code>local VAR_NAME=VALUE
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>local VAR_NAME=VALUE
+</span></code></pre></div>
 <p><strong>位置变量</strong> : 用来接受变量指定位置的参数</p>
-<pre><code>$1,$2...,${10}
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>$1,$2...,${10}
+</span></code></pre></div>
 <p><strong>特殊变量</strong> : shell对一些参数做特殊处理,这些参数只能被引用而不能被赋值</p>
-<pre><code>$#  传递到脚本的参数个数
-$*  显示所有向脚本传递的参数                  #与位置变量不同，此选项参数可超过9个
-$$  获取当前shell的进程号
-$!  执行上一个指令的进程号
-$?  获取执行的上一个指令的返回值              #0为执行成功，非零为执行失败
-$-  显示shell使用的当前选项，与set命令功能相同
-$@  与$*相同，但是使用时加引号，并在引号中返回每个参数
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>$#  传递到脚本的参数个数
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>$*  显示所有向脚本传递的参数                  #与位置变量不同，此选项参数可超过9个
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>$$  获取当前shell的进程号
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>$!  执行上一个指令的进程号
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>$?  获取执行的上一个指令的返回值              #0为执行成功，非零为执行失败
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>$-  显示shell使用的当前选项，与set命令功能相同
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>$@  与$*相同，但是使用时加引号，并在引号中返回每个参数
+</span></code></pre></div>
 <p><strong>查看变量</strong> :</p>
-<pre><code>set：查看当前shell进程中的所有变量
-export, printenv, env：查看当前shell进程中的所有环境变量
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>set：查看当前shell进程中的所有变量
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>export, printenv, env：查看当前shell进程中的所有环境变量
+</span></code></pre></div>
 <p><strong>变量命名</strong> :
   1. 不能使用程序中的关键字（保留字）
   2. 只能使用数字、字母和下划线，且不能以数字开头
   3. 要见名知义</p>
 <p><strong>变量类型</strong> :</p>
-<pre><code>数值型：精确数值(整数)，近似数值（浮点型）
-字符型：char,string
-布尔型：true, false
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>数值型：精确数值(整数)，近似数值（浮点型）
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>字符型：char,string
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>布尔型：true, false
+</span></code></pre></div>
 <p><strong>类型转换</strong> :</p>
-<pre><code>显式转换
-隐式转换
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>显式转换
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>隐式转换
+</span></code></pre></div>
 <h3 id="bash_2">bash的配置文件：<a class="headerlink" href="#bash_2" title="Permanent link">&para;</a></h3>
 <h4 id="_1">功能：设定本地变量，定义命令别名<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h4>
 <ul>
 <li>profile类：为交互式登录的用户提供配置</li>
 </ul>
-<pre><code>全局：/etc/profile、/etc/profile.d/*.sh
-用户：~/.bash_profile
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>全局：/etc/profile、/etc/profile.d/*.sh
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>用户：~/.bash_profile
+</span></code></pre></div>
 <ul>
 <li>bashrc类：为非交互式的用户提供配置</li>
 </ul>
-<pre><code>全局：/etc/bashrc
-用户：~/.bashrc
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>全局：/etc/bashrc
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>用户：~/.bashrc
+</span></code></pre></div>
 <h4 id="bash_3">bash编程之编写格式及执行方式<a class="headerlink" href="#bash_3" title="Permanent link">&para;</a></h4>
 <ul>
 <li>编写格式：shell脚本第一行必须顶格写，用shebang定义指定的解释器来解释该脚本。</li>
 </ul>
-<pre><code>#!/bin/bash       #!即为shebang
-# 其它的以#开头的行均为注释，会被解释器忽略，可用来注释脚本用途及版本，方便使用管理。
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>#!/bin/bash       #!即为shebang
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a># 其它的以#开头的行均为注释，会被解释器忽略，可用来注释脚本用途及版本，方便使用管理。
+</span></code></pre></div>
 <ul>
 <li>执行方式：bash编程属于面向过程编程，执行方式如下：</li>
 </ul>
-<pre><code>顺序执行：按命令先后顺寻依次执行
-选择执行：测试条件，可能会多个测试条件，某条件满足时，则执行对应的分支
-循环执行：将同一段代码反复执行多次，因此，循环必须有退出条件；否则，则陷入死循环
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>顺序执行：按命令先后顺寻依次执行
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>选择执行：测试条件，可能会多个测试条件，某条件满足时，则执行对应的分支
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>循环执行：将同一段代码反复执行多次，因此，循环必须有退出条件；否则，则陷入死循环
+</span></code></pre></div>
 <ul>
 <li>bash执行选项：</li>
 </ul>
-<pre><code>bash -n SHELLNAME  #语法测试，测试是否存在语法错误
-bash -x SHELLNAME  #模拟单步执行，显示每一步执行过程
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>bash -n SHELLNAME  #语法测试，测试是否存在语法错误
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>bash -x SHELLNAME  #模拟单步执行，显示每一步执行过程
+</span></code></pre></div>
 <h4 id="bash_4">bash之算数运算与逻辑运算<a class="headerlink" href="#bash_4" title="Permanent link">&para;</a></h4>
 <ul>
 <li>
 <p>算数运算</p>
 </li>
 <li>
-<p>定义整型变量：</p>
+<p>定义整型变量：
+<div class="language-text highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>let VAR_NAME=INTEGER_VALUE            #例如：let a=3
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>declare -i VAR_NAME=INTEGER_VALUE     #declare -i a=3
+</span></code></pre></div></p>
 </li>
-</ul>
-<pre><code>let VAR_NAME=INTEGER_VALUE            #例如：let a=3
-declare -i VAR_NAME=INTEGER_VALUE     #declare -i a=3
-</code></pre>
-<ul>
-<li>实现算术运算的方式：</li>
-</ul>
-<pre><code>let VAR_NAME=ARITHMATIC_EXPRESSION
-VAR_NAME=$[ARITHMATIC_EXRESSION]
-VAR_NAME=$((EXPRESSION))
-VAR_NAME=$(expr $num1 + $num2)
-</code></pre>
-<ul>
-<li>算术运算符：</li>
-</ul>
-<pre><code>+：加法
--：减法
-*：乘法
-/：整除
-%：取余数
-**：乘幂
-</code></pre>
-<blockquote>
-<p>注意：即使没有定义为整型变量，字符型的数字依然可以参与算术运算，bash会执行变量类型的隐式类型转换。
-  - 逻辑运算</p>
+<li>实现算术运算的方式：
+<div class="language-text highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>let VAR_NAME=ARITHMATIC_EXPRESSION
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>VAR_NAME=$[ARITHMATIC_EXRESSION]
+</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>VAR_NAME=$((EXPRESSION))
+</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>VAR_NAME=$(expr $num1 + $num2)
+</span></code></pre></div></li>
+<li>算术运算符：
+<div class="language-text highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>+：加法
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>-：减法
+</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>*：乘法
+</span><span id="__span-16-4"><a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a>/：整除
+</span><span id="__span-16-5"><a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a>%：取余数
+</span><span id="__span-16-6"><a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a>**：乘幂
+</span></code></pre></div><blockquote>
+<p>注意：即使没有定义为整型变量，字符型的数字依然可以参与算术运算，bash会执行变量类型的隐式类型转换。</p>
 </blockquote>
-<pre><code>布尔运算：真，假
-与运算：真 &amp;&amp; 真 = 真
-        真 &amp;&amp; 假 = 假
-        假 &amp;&amp; 真 = 假
-        假 &amp;&amp; 假 = 假
-或运算：真 || 真 = 真
-  真 || 假 = 真
-  假 || 真 = 真
-  假 || 假 = 假
-非运算：！真=假
-        ！假=真
-</code></pre>
+</li>
+<li>逻辑运算</li>
+</ul>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>布尔运算：真，假
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>与运算：真 &amp;&amp; 真 = 真
+</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>        真 &amp;&amp; 假 = 假
+</span><span id="__span-17-4"><a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a>        假 &amp;&amp; 真 = 假
+</span><span id="__span-17-5"><a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a>        假 &amp;&amp; 假 = 假
+</span><span id="__span-17-6"><a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a>或运算：真 || 真 = 真
+</span><span id="__span-17-7"><a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a>  真 || 假 = 真
+</span><span id="__span-17-8"><a id="__codelineno-17-8" name="__codelineno-17-8" href="#__codelineno-17-8"></a>  假 || 真 = 真
+</span><span id="__span-17-9"><a id="__codelineno-17-9" name="__codelineno-17-9" href="#__codelineno-17-9"></a>  假 || 假 = 假
+</span><span id="__span-17-10"><a id="__codelineno-17-10" name="__codelineno-17-10" href="#__codelineno-17-10"></a>非运算：！真=假
+</span><span id="__span-17-11"><a id="__codelineno-17-11" name="__codelineno-17-11" href="#__codelineno-17-11"></a>        ！假=真
+</span></code></pre></div>
 <h3 id="bash_5">bash编程之条件测试语句<a class="headerlink" href="#bash_5" title="Permanent link">&para;</a></h3>
 <h4 id="bash_6">bash条件测试<a class="headerlink" href="#bash_6" title="Permanent link">&para;</a></h4>
 <p><strong>整型测试</strong>：整数比较</p>
-<pre><code>例如 [ $num1 -gt $num2 ]
-
--gt: 大于则为真
--lt: 小于则为真
--ge: 大于等于则为真
--le: 小于等于则为真
--eq: 等于则为真
--ne: 不等于则为真
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>例如 [ $num1 -gt $num2 ]
+</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>
+</span><span id="__span-18-3"><a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>-gt: 大于则为真
+</span><span id="__span-18-4"><a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a>-lt: 小于则为真
+</span><span id="__span-18-5"><a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a>-ge: 大于等于则为真
+</span><span id="__span-18-6"><a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a>-le: 小于等于则为真
+</span><span id="__span-18-7"><a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a>-eq: 等于则为真
+</span><span id="__span-18-8"><a id="__codelineno-18-8" name="__codelineno-18-8" href="#__codelineno-18-8"></a>-ne: 不等于则为真
+</span></code></pre></div>
 <p><strong>字符测试</strong>：字符串比较</p>
-<pre><code>双目：
-例如[[ &quot;$str1&quot; &gt; &quot;$str2&quot; ]]
-
-&gt;: 大于则为真
-&lt;: 小于则为真
-&gt;=：大于等于则为真
-&lt;=：小于等于则为真
-==：等于则为真
-!=：不等于则为真
-
-
-单目：
--n String: 是否不空，不空则为真，空则为假
--z String: 是否为空，空则为真，不空则假
-
-文件测试：判断文件的存在性及属性等
-
--a FILE：存在则为真；否则则为假；
--e FILE: 存在则为真；否则则为假；
--f FILE: 存在并且为普通文件，则为真；否则为假；
--d FILE: 存在并且为目录文件，则为真；否则为假；
--L/-h FILE: 存在并且为符号链接文件，则为真；否则为假；
--b: 存在并且为块设备，则为真；否则为假；
--c: 存在并且为字符设备，则为真；否则为假
--S: 存在并且为套接字文件，则为真；否则为假
--p: 存在并且为命名管道，则为真；否则为假
--s FILE: 存在并且为非空文件则为值，否则为假；
--r FILE：文件可读为真，否则为假
--w FILE：文件可写为真，否则为假
--x FILE：文件可执行为真，否则为假
-file1 -nt file2: file1的mtime新于file2则为真，否则为假；
-file1 -ot file2：file1的mtime旧于file2则为真，否则为假；
-
-组合条件测试：在多个条件间实现逻辑运算
-
-与：[ condition1 -a condition2 ]
-  condition1 &amp;&amp; condition2
-或：[ condition1 -o condition2 ]
-  condition1 || condition2
-非：[ -not condition ]
-  ! condition
-与：COMMAND1 &amp;&amp; COMMAND2
-COMMAND1如果为假，则COMMAND2不执行
-或：COMMAND1 || COMMAND2
-COMMAND1如果为真，则COMMAND2不执行
-非：! COMMAND
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>双目：
+</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>例如[[ &quot;$str1&quot; &gt; &quot;$str2&quot; ]]
+</span><span id="__span-19-3"><a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a>
+</span><span id="__span-19-4"><a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a>&gt;: 大于则为真
+</span><span id="__span-19-5"><a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a>&lt;: 小于则为真
+</span><span id="__span-19-6"><a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a>&gt;=：大于等于则为真
+</span><span id="__span-19-7"><a id="__codelineno-19-7" name="__codelineno-19-7" href="#__codelineno-19-7"></a>&lt;=：小于等于则为真
+</span><span id="__span-19-8"><a id="__codelineno-19-8" name="__codelineno-19-8" href="#__codelineno-19-8"></a>==：等于则为真
+</span><span id="__span-19-9"><a id="__codelineno-19-9" name="__codelineno-19-9" href="#__codelineno-19-9"></a>!=：不等于则为真
+</span><span id="__span-19-10"><a id="__codelineno-19-10" name="__codelineno-19-10" href="#__codelineno-19-10"></a>
+</span><span id="__span-19-11"><a id="__codelineno-19-11" name="__codelineno-19-11" href="#__codelineno-19-11"></a>
+</span><span id="__span-19-12"><a id="__codelineno-19-12" name="__codelineno-19-12" href="#__codelineno-19-12"></a>单目：
+</span><span id="__span-19-13"><a id="__codelineno-19-13" name="__codelineno-19-13" href="#__codelineno-19-13"></a>-n String: 是否不空，不空则为真，空则为假
+</span><span id="__span-19-14"><a id="__codelineno-19-14" name="__codelineno-19-14" href="#__codelineno-19-14"></a>-z String: 是否为空，空则为真，不空则假
+</span><span id="__span-19-15"><a id="__codelineno-19-15" name="__codelineno-19-15" href="#__codelineno-19-15"></a>
+</span><span id="__span-19-16"><a id="__codelineno-19-16" name="__codelineno-19-16" href="#__codelineno-19-16"></a>文件测试：判断文件的存在性及属性等
+</span><span id="__span-19-17"><a id="__codelineno-19-17" name="__codelineno-19-17" href="#__codelineno-19-17"></a>
+</span><span id="__span-19-18"><a id="__codelineno-19-18" name="__codelineno-19-18" href="#__codelineno-19-18"></a>-a FILE：存在则为真；否则则为假；
+</span><span id="__span-19-19"><a id="__codelineno-19-19" name="__codelineno-19-19" href="#__codelineno-19-19"></a>-e FILE: 存在则为真；否则则为假；
+</span><span id="__span-19-20"><a id="__codelineno-19-20" name="__codelineno-19-20" href="#__codelineno-19-20"></a>-f FILE: 存在并且为普通文件，则为真；否则为假；
+</span><span id="__span-19-21"><a id="__codelineno-19-21" name="__codelineno-19-21" href="#__codelineno-19-21"></a>-d FILE: 存在并且为目录文件，则为真；否则为假；
+</span><span id="__span-19-22"><a id="__codelineno-19-22" name="__codelineno-19-22" href="#__codelineno-19-22"></a>-L/-h FILE: 存在并且为符号链接文件，则为真；否则为假；
+</span><span id="__span-19-23"><a id="__codelineno-19-23" name="__codelineno-19-23" href="#__codelineno-19-23"></a>-b: 存在并且为块设备，则为真；否则为假；
+</span><span id="__span-19-24"><a id="__codelineno-19-24" name="__codelineno-19-24" href="#__codelineno-19-24"></a>-c: 存在并且为字符设备，则为真；否则为假
+</span><span id="__span-19-25"><a id="__codelineno-19-25" name="__codelineno-19-25" href="#__codelineno-19-25"></a>-S: 存在并且为套接字文件，则为真；否则为假
+</span><span id="__span-19-26"><a id="__codelineno-19-26" name="__codelineno-19-26" href="#__codelineno-19-26"></a>-p: 存在并且为命名管道，则为真；否则为假
+</span><span id="__span-19-27"><a id="__codelineno-19-27" name="__codelineno-19-27" href="#__codelineno-19-27"></a>-s FILE: 存在并且为非空文件则为值，否则为假；
+</span><span id="__span-19-28"><a id="__codelineno-19-28" name="__codelineno-19-28" href="#__codelineno-19-28"></a>-r FILE：文件可读为真，否则为假
+</span><span id="__span-19-29"><a id="__codelineno-19-29" name="__codelineno-19-29" href="#__codelineno-19-29"></a>-w FILE：文件可写为真，否则为假
+</span><span id="__span-19-30"><a id="__codelineno-19-30" name="__codelineno-19-30" href="#__codelineno-19-30"></a>-x FILE：文件可执行为真，否则为假
+</span><span id="__span-19-31"><a id="__codelineno-19-31" name="__codelineno-19-31" href="#__codelineno-19-31"></a>file1 -nt file2: file1的mtime新于file2则为真，否则为假；
+</span><span id="__span-19-32"><a id="__codelineno-19-32" name="__codelineno-19-32" href="#__codelineno-19-32"></a>file1 -ot file2：file1的mtime旧于file2则为真，否则为假；
+</span><span id="__span-19-33"><a id="__codelineno-19-33" name="__codelineno-19-33" href="#__codelineno-19-33"></a>
+</span><span id="__span-19-34"><a id="__codelineno-19-34" name="__codelineno-19-34" href="#__codelineno-19-34"></a>组合条件测试：在多个条件间实现逻辑运算
+</span><span id="__span-19-35"><a id="__codelineno-19-35" name="__codelineno-19-35" href="#__codelineno-19-35"></a>
+</span><span id="__span-19-36"><a id="__codelineno-19-36" name="__codelineno-19-36" href="#__codelineno-19-36"></a>与：[ condition1 -a condition2 ]
+</span><span id="__span-19-37"><a id="__codelineno-19-37" name="__codelineno-19-37" href="#__codelineno-19-37"></a>  condition1 &amp;&amp; condition2
+</span><span id="__span-19-38"><a id="__codelineno-19-38" name="__codelineno-19-38" href="#__codelineno-19-38"></a>或：[ condition1 -o condition2 ]
+</span><span id="__span-19-39"><a id="__codelineno-19-39" name="__codelineno-19-39" href="#__codelineno-19-39"></a>  condition1 || condition2
+</span><span id="__span-19-40"><a id="__codelineno-19-40" name="__codelineno-19-40" href="#__codelineno-19-40"></a>非：[ -not condition ]
+</span><span id="__span-19-41"><a id="__codelineno-19-41" name="__codelineno-19-41" href="#__codelineno-19-41"></a>  ! condition
+</span><span id="__span-19-42"><a id="__codelineno-19-42" name="__codelineno-19-42" href="#__codelineno-19-42"></a>与：COMMAND1 &amp;&amp; COMMAND2
+</span><span id="__span-19-43"><a id="__codelineno-19-43" name="__codelineno-19-43" href="#__codelineno-19-43"></a>COMMAND1如果为假，则COMMAND2不执行
+</span><span id="__span-19-44"><a id="__codelineno-19-44" name="__codelineno-19-44" href="#__codelineno-19-44"></a>或：COMMAND1 || COMMAND2
+</span><span id="__span-19-45"><a id="__codelineno-19-45" name="__codelineno-19-45" href="#__codelineno-19-45"></a>COMMAND1如果为真，则COMMAND2不执行
+</span><span id="__span-19-46"><a id="__codelineno-19-46" name="__codelineno-19-46" href="#__codelineno-19-46"></a>非：! COMMAND
+</span></code></pre></div>
 <p><strong>条件测试之if语句</strong></p>
-<pre><code>1、if语句之单分支
-语句结构：
-if 测试条件;then
-   选择分支
-fi
-表示条件测试状态返回值为值，则执行选择分支
-例：写一个脚本，接受一个参数，这个参数是用户名；如果此用户不存在，则创建该用户；
-
-#！/bin/bash
-if ! id $1 &amp;&gt; /dev/null;then
-  useradd $1
-fi
-
-2、if语句之双分支
-语句结构：
-if 测试条件;then
-   选择分支1
-else
-   选择分支2
-fi
-
-两个分支仅执行其中之一
-例：通过命令行给定一个文件路径，而后判断：如果此文件中存在空白行，则显示其空白行的总数；否则，则显示无空白行；
-#！/bin/bash
-if grep &quot;^[[:space]]*$&quot; $1 &amp;&gt; /dev/null; then
-  echo &quot;$1 has $(grep &quot;^[[:space]]*$&quot; $1 | wc -l) blank lines.&quot;
-else
-  echo &quot;No blank lines&quot;
-fi
-
-注意：如果把命令执行成功与否当作条件，则if语句后必须只跟命令本身，而不能引用。
-
-3、if语句之多分支
-语句结构：
-if 条件1;then
-     分支1
-elif 条件2;then
-     分支2
-elif 条件3;then
-     分支3
-      ...
-else
-     分支n
-fi
-
-例：传递一个用户名给脚本：如果此用户的id号为0，则显示说这是管理员；如果此用户的id号大于等于500，则显示说这是普通用户；否则，则说这是系统用户。
-#!/bin/bash
-if [ $# -lt 1 ]; then
-  echo &quot;Usage: `basename $0` username&quot;
-  exit 1
-fi
-if ! id -u $1 &amp;&gt; /dev/null; then
-  echo &quot;Usage: `basename $0` username&quot;
-  echo &quot;No this user $1.&quot;
-  exit 2
-fi
-
-if [ $(id -u $1) -eq 0 ]; then
-  echo &quot;Admin&quot;
-elif [ $(id -u $1) -ge 500 ]; then
-  echo &quot;Common user.&quot;
-else
-  echo &quot;System user.&quot;
-fi
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>1、if语句之单分支
+</span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>语句结构：
+</span><span id="__span-20-3"><a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a>if 测试条件;then
+</span><span id="__span-20-4"><a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a>   选择分支
+</span><span id="__span-20-5"><a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a>fi
+</span><span id="__span-20-6"><a id="__codelineno-20-6" name="__codelineno-20-6" href="#__codelineno-20-6"></a>表示条件测试状态返回值为值，则执行选择分支
+</span><span id="__span-20-7"><a id="__codelineno-20-7" name="__codelineno-20-7" href="#__codelineno-20-7"></a>例：写一个脚本，接受一个参数，这个参数是用户名；如果此用户不存在，则创建该用户；
+</span><span id="__span-20-8"><a id="__codelineno-20-8" name="__codelineno-20-8" href="#__codelineno-20-8"></a>
+</span><span id="__span-20-9"><a id="__codelineno-20-9" name="__codelineno-20-9" href="#__codelineno-20-9"></a>#！/bin/bash
+</span><span id="__span-20-10"><a id="__codelineno-20-10" name="__codelineno-20-10" href="#__codelineno-20-10"></a>if ! id $1 &amp;&gt; /dev/null;then
+</span><span id="__span-20-11"><a id="__codelineno-20-11" name="__codelineno-20-11" href="#__codelineno-20-11"></a>  useradd $1
+</span><span id="__span-20-12"><a id="__codelineno-20-12" name="__codelineno-20-12" href="#__codelineno-20-12"></a>fi
+</span><span id="__span-20-13"><a id="__codelineno-20-13" name="__codelineno-20-13" href="#__codelineno-20-13"></a>
+</span><span id="__span-20-14"><a id="__codelineno-20-14" name="__codelineno-20-14" href="#__codelineno-20-14"></a>2、if语句之双分支
+</span><span id="__span-20-15"><a id="__codelineno-20-15" name="__codelineno-20-15" href="#__codelineno-20-15"></a>语句结构：
+</span><span id="__span-20-16"><a id="__codelineno-20-16" name="__codelineno-20-16" href="#__codelineno-20-16"></a>if 测试条件;then
+</span><span id="__span-20-17"><a id="__codelineno-20-17" name="__codelineno-20-17" href="#__codelineno-20-17"></a>   选择分支1
+</span><span id="__span-20-18"><a id="__codelineno-20-18" name="__codelineno-20-18" href="#__codelineno-20-18"></a>else
+</span><span id="__span-20-19"><a id="__codelineno-20-19" name="__codelineno-20-19" href="#__codelineno-20-19"></a>   选择分支2
+</span><span id="__span-20-20"><a id="__codelineno-20-20" name="__codelineno-20-20" href="#__codelineno-20-20"></a>fi
+</span><span id="__span-20-21"><a id="__codelineno-20-21" name="__codelineno-20-21" href="#__codelineno-20-21"></a>
+</span><span id="__span-20-22"><a id="__codelineno-20-22" name="__codelineno-20-22" href="#__codelineno-20-22"></a>两个分支仅执行其中之一
+</span><span id="__span-20-23"><a id="__codelineno-20-23" name="__codelineno-20-23" href="#__codelineno-20-23"></a>例：通过命令行给定一个文件路径，而后判断：如果此文件中存在空白行，则显示其空白行的总数；否则，则显示无空白行；
+</span><span id="__span-20-24"><a id="__codelineno-20-24" name="__codelineno-20-24" href="#__codelineno-20-24"></a>#！/bin/bash
+</span><span id="__span-20-25"><a id="__codelineno-20-25" name="__codelineno-20-25" href="#__codelineno-20-25"></a>if grep &quot;^[[:space]]*$&quot; $1 &amp;&gt; /dev/null; then
+</span><span id="__span-20-26"><a id="__codelineno-20-26" name="__codelineno-20-26" href="#__codelineno-20-26"></a>  echo &quot;$1 has $(grep &quot;^[[:space]]*$&quot; $1 | wc -l) blank lines.&quot;
+</span><span id="__span-20-27"><a id="__codelineno-20-27" name="__codelineno-20-27" href="#__codelineno-20-27"></a>else
+</span><span id="__span-20-28"><a id="__codelineno-20-28" name="__codelineno-20-28" href="#__codelineno-20-28"></a>  echo &quot;No blank lines&quot;
+</span><span id="__span-20-29"><a id="__codelineno-20-29" name="__codelineno-20-29" href="#__codelineno-20-29"></a>fi
+</span><span id="__span-20-30"><a id="__codelineno-20-30" name="__codelineno-20-30" href="#__codelineno-20-30"></a>
+</span><span id="__span-20-31"><a id="__codelineno-20-31" name="__codelineno-20-31" href="#__codelineno-20-31"></a>注意：如果把命令执行成功与否当作条件，则if语句后必须只跟命令本身，而不能引用。
+</span><span id="__span-20-32"><a id="__codelineno-20-32" name="__codelineno-20-32" href="#__codelineno-20-32"></a>
+</span><span id="__span-20-33"><a id="__codelineno-20-33" name="__codelineno-20-33" href="#__codelineno-20-33"></a>3、if语句之多分支
+</span><span id="__span-20-34"><a id="__codelineno-20-34" name="__codelineno-20-34" href="#__codelineno-20-34"></a>语句结构：
+</span><span id="__span-20-35"><a id="__codelineno-20-35" name="__codelineno-20-35" href="#__codelineno-20-35"></a>if 条件1;then
+</span><span id="__span-20-36"><a id="__codelineno-20-36" name="__codelineno-20-36" href="#__codelineno-20-36"></a>     分支1
+</span><span id="__span-20-37"><a id="__codelineno-20-37" name="__codelineno-20-37" href="#__codelineno-20-37"></a>elif 条件2;then
+</span><span id="__span-20-38"><a id="__codelineno-20-38" name="__codelineno-20-38" href="#__codelineno-20-38"></a>     分支2
+</span><span id="__span-20-39"><a id="__codelineno-20-39" name="__codelineno-20-39" href="#__codelineno-20-39"></a>elif 条件3;then
+</span><span id="__span-20-40"><a id="__codelineno-20-40" name="__codelineno-20-40" href="#__codelineno-20-40"></a>     分支3
+</span><span id="__span-20-41"><a id="__codelineno-20-41" name="__codelineno-20-41" href="#__codelineno-20-41"></a>      ...
+</span><span id="__span-20-42"><a id="__codelineno-20-42" name="__codelineno-20-42" href="#__codelineno-20-42"></a>else
+</span><span id="__span-20-43"><a id="__codelineno-20-43" name="__codelineno-20-43" href="#__codelineno-20-43"></a>     分支n
+</span><span id="__span-20-44"><a id="__codelineno-20-44" name="__codelineno-20-44" href="#__codelineno-20-44"></a>fi
+</span><span id="__span-20-45"><a id="__codelineno-20-45" name="__codelineno-20-45" href="#__codelineno-20-45"></a>
+</span><span id="__span-20-46"><a id="__codelineno-20-46" name="__codelineno-20-46" href="#__codelineno-20-46"></a>例：传递一个用户名给脚本：如果此用户的id号为0，则显示说这是管理员；如果此用户的id号大于等于500，则显示说这是普通用户；否则，则说这是系统用户。
+</span><span id="__span-20-47"><a id="__codelineno-20-47" name="__codelineno-20-47" href="#__codelineno-20-47"></a>#!/bin/bash
+</span><span id="__span-20-48"><a id="__codelineno-20-48" name="__codelineno-20-48" href="#__codelineno-20-48"></a>if [ $# -lt 1 ]; then
+</span><span id="__span-20-49"><a id="__codelineno-20-49" name="__codelineno-20-49" href="#__codelineno-20-49"></a>  echo &quot;Usage: `basename $0` username&quot;
+</span><span id="__span-20-50"><a id="__codelineno-20-50" name="__codelineno-20-50" href="#__codelineno-20-50"></a>  exit 1
+</span><span id="__span-20-51"><a id="__codelineno-20-51" name="__codelineno-20-51" href="#__codelineno-20-51"></a>fi
+</span><span id="__span-20-52"><a id="__codelineno-20-52" name="__codelineno-20-52" href="#__codelineno-20-52"></a>if ! id -u $1 &amp;&gt; /dev/null; then
+</span><span id="__span-20-53"><a id="__codelineno-20-53" name="__codelineno-20-53" href="#__codelineno-20-53"></a>  echo &quot;Usage: `basename $0` username&quot;
+</span><span id="__span-20-54"><a id="__codelineno-20-54" name="__codelineno-20-54" href="#__codelineno-20-54"></a>  echo &quot;No this user $1.&quot;
+</span><span id="__span-20-55"><a id="__codelineno-20-55" name="__codelineno-20-55" href="#__codelineno-20-55"></a>  exit 2
+</span><span id="__span-20-56"><a id="__codelineno-20-56" name="__codelineno-20-56" href="#__codelineno-20-56"></a>fi
+</span><span id="__span-20-57"><a id="__codelineno-20-57" name="__codelineno-20-57" href="#__codelineno-20-57"></a>
+</span><span id="__span-20-58"><a id="__codelineno-20-58" name="__codelineno-20-58" href="#__codelineno-20-58"></a>if [ $(id -u $1) -eq 0 ]; then
+</span><span id="__span-20-59"><a id="__codelineno-20-59" name="__codelineno-20-59" href="#__codelineno-20-59"></a>  echo &quot;Admin&quot;
+</span><span id="__span-20-60"><a id="__codelineno-20-60" name="__codelineno-20-60" href="#__codelineno-20-60"></a>elif [ $(id -u $1) -ge 500 ]; then
+</span><span id="__span-20-61"><a id="__codelineno-20-61" name="__codelineno-20-61" href="#__codelineno-20-61"></a>  echo &quot;Common user.&quot;
+</span><span id="__span-20-62"><a id="__codelineno-20-62" name="__codelineno-20-62" href="#__codelineno-20-62"></a>else
+</span><span id="__span-20-63"><a id="__codelineno-20-63" name="__codelineno-20-63" href="#__codelineno-20-63"></a>  echo &quot;System user.&quot;
+</span><span id="__span-20-64"><a id="__codelineno-20-64" name="__codelineno-20-64" href="#__codelineno-20-64"></a>fi
+</span></code></pre></div>
 <p><strong>bash交互式编程</strong></p>
-<pre><code>read [option] “prompt”-p:直接指定一个变量接受参数
--t timaout：指定等待接受参数的时间
--n:表示不换行
-
-例：输入用户名，可返回其shell
-
-#!/bin/bash
-read -p &quot;Plz input a username: &quot; userName
-if id $userName &amp;&gt; /dev/null; then
-    echo &quot;The shell of $userName is `grep &quot;^$userName\&gt;&quot; /etc/passwd | cut -d: -f7`.&quot;
-else
-    echo &quot;No such user. stupid.&quot;
-fi    
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>read [option] “prompt”-p:直接指定一个变量接受参数
+</span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>-t timaout：指定等待接受参数的时间
+</span><span id="__span-21-3"><a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a>-n:表示不换行
+</span><span id="__span-21-4"><a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a>
+</span><span id="__span-21-5"><a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a>例：输入用户名，可返回其shell
+</span><span id="__span-21-6"><a id="__codelineno-21-6" name="__codelineno-21-6" href="#__codelineno-21-6"></a>
+</span><span id="__span-21-7"><a id="__codelineno-21-7" name="__codelineno-21-7" href="#__codelineno-21-7"></a>#!/bin/bash
+</span><span id="__span-21-8"><a id="__codelineno-21-8" name="__codelineno-21-8" href="#__codelineno-21-8"></a>read -p &quot;Plz input a username: &quot; userName
+</span><span id="__span-21-9"><a id="__codelineno-21-9" name="__codelineno-21-9" href="#__codelineno-21-9"></a>if id $userName &amp;&gt; /dev/null; then
+</span><span id="__span-21-10"><a id="__codelineno-21-10" name="__codelineno-21-10" href="#__codelineno-21-10"></a>    echo &quot;The shell of $userName is `grep &quot;^$userName\&gt;&quot; /etc/passwd | cut -d: -f7`.&quot;
+</span><span id="__span-21-11"><a id="__codelineno-21-11" name="__codelineno-21-11" href="#__codelineno-21-11"></a>else
+</span><span id="__span-21-12"><a id="__codelineno-21-12" name="__codelineno-21-12" href="#__codelineno-21-12"></a>    echo &quot;No such user. stupid.&quot;
+</span><span id="__span-21-13"><a id="__codelineno-21-13" name="__codelineno-21-13" href="#__codelineno-21-13"></a>fi    
+</span></code></pre></div>
 <p><strong>条件测试之case语句</strong></p>
-<pre><code>
-case语句：有多个测试条件时，case语句会使得语法结构更明晰
-语句结构：
-
-case 变量引用 in
-PATTERN1)
-  分支1
-;;
-PATTERN2)
-  分支2
-;;
-...
-*)
-  分支n
-;;
-esac
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>case语句：有多个测试条件时，case语句会使得语法结构更明晰
+</span><span id="__span-22-2"><a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>语句结构：
+</span><span id="__span-22-3"><a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a>
+</span><span id="__span-22-4"><a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a>case 变量引用 in
+</span><span id="__span-22-5"><a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a>PATTERN1)
+</span><span id="__span-22-6"><a id="__codelineno-22-6" name="__codelineno-22-6" href="#__codelineno-22-6"></a>  分支1
+</span><span id="__span-22-7"><a id="__codelineno-22-7" name="__codelineno-22-7" href="#__codelineno-22-7"></a>;;
+</span><span id="__span-22-8"><a id="__codelineno-22-8" name="__codelineno-22-8" href="#__codelineno-22-8"></a>PATTERN2)
+</span><span id="__span-22-9"><a id="__codelineno-22-9" name="__codelineno-22-9" href="#__codelineno-22-9"></a>  分支2
+</span><span id="__span-22-10"><a id="__codelineno-22-10" name="__codelineno-22-10" href="#__codelineno-22-10"></a>;;
+</span><span id="__span-22-11"><a id="__codelineno-22-11" name="__codelineno-22-11" href="#__codelineno-22-11"></a>...
+</span><span id="__span-22-12"><a id="__codelineno-22-12" name="__codelineno-22-12" href="#__codelineno-22-12"></a>*)
+</span><span id="__span-22-13"><a id="__codelineno-22-13" name="__codelineno-22-13" href="#__codelineno-22-13"></a>  分支n
+</span><span id="__span-22-14"><a id="__codelineno-22-14" name="__codelineno-22-14" href="#__codelineno-22-14"></a>;;
+</span><span id="__span-22-15"><a id="__codelineno-22-15" name="__codelineno-22-15" href="#__codelineno-22-15"></a>esac
+</span></code></pre></div>
 <p><strong>PATTERN：类同于文件名通配机制，但支持使用|表示或者</strong></p>
-<pre><code> a|b:  a或者b*：匹配任意长度的任意字符
-?: 匹配任意单个字符
-[]: 指定范围内的任意单个字符
-
-例：写一个脚本，完成如下任务，其使用形式如下所示：
-script.sh {start|stop|restart|status}
-
-其中：如果参数为空，则显示帮助信息，并退出脚本；
-如果参数为start，则创建空文件/var/lock/subsys/script，并显示“starting script successfully.”
-如果参数为stop，则删除文件/var/lock/subsys/script，并显示“Stop script successfully.”
-如果参数为restart，则删除文件/var/locksubsys/script并重新创建，而后显示“Restarting script successfully.”
-如果参数为status，那么：如果文件/var/lock/subsys/script存在，则显示“Script is running…”，否则，则显示“Script is stopped.”
-
-#!/bin/bash
-file='/var/lock/subsys/script'
-case $1 in
-start)
-  if [ -f $file ];then
-  echo &quot;Script is running...&quot;
-    exit 3
-  else
-  touch $file
-  [ $? -eq 0 ] &amp;&amp; echo &quot;Starting script successfully.&quot;
-  fi
-  ;;
-stop)
-  if [ -f $file ];then
-  rm -rf $file
-  [ $? -eq 0 ] &amp;&amp; echo &quot;Stop script successfully.&quot;
-  else
-  echo &quot;Script is stopped...&quot;
-  exit 4
-  fi
-  ;;
-restart)
-  if [ -f $file ];then
-  rm -rf $file
-  [ $? -eq 0 ] &amp;&amp; echo &quot;Stop script successfully&quot;
-  else 
-  echo &quot;Script is stopped...&quot;
-  exit 5
-  fi
-  touch $file
-  [ $? -eq 0 ] &amp;&amp; echo &quot;Starting script successfully&quot;
-  ;;
-status)
-  if [ -f $file ];then
-  echo &quot;Script is running...&quot;
-  else
-  echo &quot;Script is stopped.&quot;
-  fi
-  ;;
-*)
-  echo &quot;`basename $0` {start|stop|restart|status}&quot;
-  exit 2
-  ;;
- esac
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a> a|b:  a或者b*：匹配任意长度的任意字符
+</span><span id="__span-23-2"><a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a>?: 匹配任意单个字符
+</span><span id="__span-23-3"><a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a>[]: 指定范围内的任意单个字符
+</span><span id="__span-23-4"><a id="__codelineno-23-4" name="__codelineno-23-4" href="#__codelineno-23-4"></a>
+</span><span id="__span-23-5"><a id="__codelineno-23-5" name="__codelineno-23-5" href="#__codelineno-23-5"></a>例：写一个脚本，完成如下任务，其使用形式如下所示：
+</span><span id="__span-23-6"><a id="__codelineno-23-6" name="__codelineno-23-6" href="#__codelineno-23-6"></a>script.sh {start|stop|restart|status}
+</span><span id="__span-23-7"><a id="__codelineno-23-7" name="__codelineno-23-7" href="#__codelineno-23-7"></a>
+</span><span id="__span-23-8"><a id="__codelineno-23-8" name="__codelineno-23-8" href="#__codelineno-23-8"></a>其中：如果参数为空，则显示帮助信息，并退出脚本；
+</span><span id="__span-23-9"><a id="__codelineno-23-9" name="__codelineno-23-9" href="#__codelineno-23-9"></a>如果参数为start，则创建空文件/var/lock/subsys/script，并显示“starting script successfully.”
+</span><span id="__span-23-10"><a id="__codelineno-23-10" name="__codelineno-23-10" href="#__codelineno-23-10"></a>如果参数为stop，则删除文件/var/lock/subsys/script，并显示“Stop script successfully.”
+</span><span id="__span-23-11"><a id="__codelineno-23-11" name="__codelineno-23-11" href="#__codelineno-23-11"></a>如果参数为restart，则删除文件/var/locksubsys/script并重新创建，而后显示“Restarting script successfully.”
+</span><span id="__span-23-12"><a id="__codelineno-23-12" name="__codelineno-23-12" href="#__codelineno-23-12"></a>如果参数为status，那么：如果文件/var/lock/subsys/script存在，则显示“Script is running…”，否则，则显示“Script is stopped.”
+</span><span id="__span-23-13"><a id="__codelineno-23-13" name="__codelineno-23-13" href="#__codelineno-23-13"></a>
+</span><span id="__span-23-14"><a id="__codelineno-23-14" name="__codelineno-23-14" href="#__codelineno-23-14"></a>#!/bin/bash
+</span><span id="__span-23-15"><a id="__codelineno-23-15" name="__codelineno-23-15" href="#__codelineno-23-15"></a>file=&#39;/var/lock/subsys/script&#39;
+</span><span id="__span-23-16"><a id="__codelineno-23-16" name="__codelineno-23-16" href="#__codelineno-23-16"></a>case $1 in
+</span><span id="__span-23-17"><a id="__codelineno-23-17" name="__codelineno-23-17" href="#__codelineno-23-17"></a>start)
+</span><span id="__span-23-18"><a id="__codelineno-23-18" name="__codelineno-23-18" href="#__codelineno-23-18"></a>  if [ -f $file ];then
+</span><span id="__span-23-19"><a id="__codelineno-23-19" name="__codelineno-23-19" href="#__codelineno-23-19"></a>  echo &quot;Script is running...&quot;
+</span><span id="__span-23-20"><a id="__codelineno-23-20" name="__codelineno-23-20" href="#__codelineno-23-20"></a>    exit 3
+</span><span id="__span-23-21"><a id="__codelineno-23-21" name="__codelineno-23-21" href="#__codelineno-23-21"></a>  else
+</span><span id="__span-23-22"><a id="__codelineno-23-22" name="__codelineno-23-22" href="#__codelineno-23-22"></a>  touch $file
+</span><span id="__span-23-23"><a id="__codelineno-23-23" name="__codelineno-23-23" href="#__codelineno-23-23"></a>  [ $? -eq 0 ] &amp;&amp; echo &quot;Starting script successfully.&quot;
+</span><span id="__span-23-24"><a id="__codelineno-23-24" name="__codelineno-23-24" href="#__codelineno-23-24"></a>  fi
+</span><span id="__span-23-25"><a id="__codelineno-23-25" name="__codelineno-23-25" href="#__codelineno-23-25"></a>  ;;
+</span><span id="__span-23-26"><a id="__codelineno-23-26" name="__codelineno-23-26" href="#__codelineno-23-26"></a>stop)
+</span><span id="__span-23-27"><a id="__codelineno-23-27" name="__codelineno-23-27" href="#__codelineno-23-27"></a>  if [ -f $file ];then
+</span><span id="__span-23-28"><a id="__codelineno-23-28" name="__codelineno-23-28" href="#__codelineno-23-28"></a>  rm -rf $file
+</span><span id="__span-23-29"><a id="__codelineno-23-29" name="__codelineno-23-29" href="#__codelineno-23-29"></a>  [ $? -eq 0 ] &amp;&amp; echo &quot;Stop script successfully.&quot;
+</span><span id="__span-23-30"><a id="__codelineno-23-30" name="__codelineno-23-30" href="#__codelineno-23-30"></a>  else
+</span><span id="__span-23-31"><a id="__codelineno-23-31" name="__codelineno-23-31" href="#__codelineno-23-31"></a>  echo &quot;Script is stopped...&quot;
+</span><span id="__span-23-32"><a id="__codelineno-23-32" name="__codelineno-23-32" href="#__codelineno-23-32"></a>  exit 4
+</span><span id="__span-23-33"><a id="__codelineno-23-33" name="__codelineno-23-33" href="#__codelineno-23-33"></a>  fi
+</span><span id="__span-23-34"><a id="__codelineno-23-34" name="__codelineno-23-34" href="#__codelineno-23-34"></a>  ;;
+</span><span id="__span-23-35"><a id="__codelineno-23-35" name="__codelineno-23-35" href="#__codelineno-23-35"></a>restart)
+</span><span id="__span-23-36"><a id="__codelineno-23-36" name="__codelineno-23-36" href="#__codelineno-23-36"></a>  if [ -f $file ];then
+</span><span id="__span-23-37"><a id="__codelineno-23-37" name="__codelineno-23-37" href="#__codelineno-23-37"></a>  rm -rf $file
+</span><span id="__span-23-38"><a id="__codelineno-23-38" name="__codelineno-23-38" href="#__codelineno-23-38"></a>  [ $? -eq 0 ] &amp;&amp; echo &quot;Stop script successfully&quot;
+</span><span id="__span-23-39"><a id="__codelineno-23-39" name="__codelineno-23-39" href="#__codelineno-23-39"></a>  else 
+</span><span id="__span-23-40"><a id="__codelineno-23-40" name="__codelineno-23-40" href="#__codelineno-23-40"></a>  echo &quot;Script is stopped...&quot;
+</span><span id="__span-23-41"><a id="__codelineno-23-41" name="__codelineno-23-41" href="#__codelineno-23-41"></a>  exit 5
+</span><span id="__span-23-42"><a id="__codelineno-23-42" name="__codelineno-23-42" href="#__codelineno-23-42"></a>  fi
+</span><span id="__span-23-43"><a id="__codelineno-23-43" name="__codelineno-23-43" href="#__codelineno-23-43"></a>  touch $file
+</span><span id="__span-23-44"><a id="__codelineno-23-44" name="__codelineno-23-44" href="#__codelineno-23-44"></a>  [ $? -eq 0 ] &amp;&amp; echo &quot;Starting script successfully&quot;
+</span><span id="__span-23-45"><a id="__codelineno-23-45" name="__codelineno-23-45" href="#__codelineno-23-45"></a>  ;;
+</span><span id="__span-23-46"><a id="__codelineno-23-46" name="__codelineno-23-46" href="#__codelineno-23-46"></a>status)
+</span><span id="__span-23-47"><a id="__codelineno-23-47" name="__codelineno-23-47" href="#__codelineno-23-47"></a>  if [ -f $file ];then
+</span><span id="__span-23-48"><a id="__codelineno-23-48" name="__codelineno-23-48" href="#__codelineno-23-48"></a>  echo &quot;Script is running...&quot;
+</span><span id="__span-23-49"><a id="__codelineno-23-49" name="__codelineno-23-49" href="#__codelineno-23-49"></a>  else
+</span><span id="__span-23-50"><a id="__codelineno-23-50" name="__codelineno-23-50" href="#__codelineno-23-50"></a>  echo &quot;Script is stopped.&quot;
+</span><span id="__span-23-51"><a id="__codelineno-23-51" name="__codelineno-23-51" href="#__codelineno-23-51"></a>  fi
+</span><span id="__span-23-52"><a id="__codelineno-23-52" name="__codelineno-23-52" href="#__codelineno-23-52"></a>  ;;
+</span><span id="__span-23-53"><a id="__codelineno-23-53" name="__codelineno-23-53" href="#__codelineno-23-53"></a>*)
+</span><span id="__span-23-54"><a id="__codelineno-23-54" name="__codelineno-23-54" href="#__codelineno-23-54"></a>  echo &quot;`basename $0` {start|stop|restart|status}&quot;
+</span><span id="__span-23-55"><a id="__codelineno-23-55" name="__codelineno-23-55" href="#__codelineno-23-55"></a>  exit 2
+</span><span id="__span-23-56"><a id="__codelineno-23-56" name="__codelineno-23-56" href="#__codelineno-23-56"></a>  ;;
+</span><span id="__span-23-57"><a id="__codelineno-23-57" name="__codelineno-23-57" href="#__codelineno-23-57"></a> esac
+</span></code></pre></div>
 <h4 id="bash_7">bash编程之循环语句<a class="headerlink" href="#bash_7" title="Permanent link">&para;</a></h4>
 <p><strong>循环之for循环</strong></p>
-<pre><code>1、for语句格式一
-语句结构：
-for 变量名 in 列表; do
-    循环体
-done
-列表：可包含一个或多个元素
-循环体：依赖于调用变量来实现其变化
-循环可嵌套
-退出条件：遍历元素列表结束
-例：求100以内所有正整数之和
-
-#!/bin/bash
-declare -i sum=0
-for i in {1..100}; do
-    let sum+=$i
-done
-echo $sum
-
-2、for语句格式二
-for ((初始条件;测试条件;修改表达式)); do
-      循环体
-done
-先用初始条件和测试条件做判断，如果符合测试条件则执行循环体，再修改表达式，否则直接跳出循环。
-
-例：求100以内所有正整数之和（for二实现）
-#!/bin/bash
-declare -i sum=0
-for ((counter=1;$counter &lt;= 100; counter++)); do
-  let sum+=$counter
-done
-echo $sum
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>1、for语句格式一
+</span><span id="__span-24-2"><a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a>语句结构：
+</span><span id="__span-24-3"><a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a>for 变量名 in 列表; do
+</span><span id="__span-24-4"><a id="__codelineno-24-4" name="__codelineno-24-4" href="#__codelineno-24-4"></a>    循环体
+</span><span id="__span-24-5"><a id="__codelineno-24-5" name="__codelineno-24-5" href="#__codelineno-24-5"></a>done
+</span><span id="__span-24-6"><a id="__codelineno-24-6" name="__codelineno-24-6" href="#__codelineno-24-6"></a>列表：可包含一个或多个元素
+</span><span id="__span-24-7"><a id="__codelineno-24-7" name="__codelineno-24-7" href="#__codelineno-24-7"></a>循环体：依赖于调用变量来实现其变化
+</span><span id="__span-24-8"><a id="__codelineno-24-8" name="__codelineno-24-8" href="#__codelineno-24-8"></a>循环可嵌套
+</span><span id="__span-24-9"><a id="__codelineno-24-9" name="__codelineno-24-9" href="#__codelineno-24-9"></a>退出条件：遍历元素列表结束
+</span><span id="__span-24-10"><a id="__codelineno-24-10" name="__codelineno-24-10" href="#__codelineno-24-10"></a>例：求100以内所有正整数之和
+</span><span id="__span-24-11"><a id="__codelineno-24-11" name="__codelineno-24-11" href="#__codelineno-24-11"></a>
+</span><span id="__span-24-12"><a id="__codelineno-24-12" name="__codelineno-24-12" href="#__codelineno-24-12"></a>#!/bin/bash
+</span><span id="__span-24-13"><a id="__codelineno-24-13" name="__codelineno-24-13" href="#__codelineno-24-13"></a>declare -i sum=0
+</span><span id="__span-24-14"><a id="__codelineno-24-14" name="__codelineno-24-14" href="#__codelineno-24-14"></a>for i in {1..100}; do
+</span><span id="__span-24-15"><a id="__codelineno-24-15" name="__codelineno-24-15" href="#__codelineno-24-15"></a>    let sum+=$i
+</span><span id="__span-24-16"><a id="__codelineno-24-16" name="__codelineno-24-16" href="#__codelineno-24-16"></a>done
+</span><span id="__span-24-17"><a id="__codelineno-24-17" name="__codelineno-24-17" href="#__codelineno-24-17"></a>echo $sum
+</span><span id="__span-24-18"><a id="__codelineno-24-18" name="__codelineno-24-18" href="#__codelineno-24-18"></a>
+</span><span id="__span-24-19"><a id="__codelineno-24-19" name="__codelineno-24-19" href="#__codelineno-24-19"></a>2、for语句格式二
+</span><span id="__span-24-20"><a id="__codelineno-24-20" name="__codelineno-24-20" href="#__codelineno-24-20"></a>for ((初始条件;测试条件;修改表达式)); do
+</span><span id="__span-24-21"><a id="__codelineno-24-21" name="__codelineno-24-21" href="#__codelineno-24-21"></a>      循环体
+</span><span id="__span-24-22"><a id="__codelineno-24-22" name="__codelineno-24-22" href="#__codelineno-24-22"></a>done
+</span><span id="__span-24-23"><a id="__codelineno-24-23" name="__codelineno-24-23" href="#__codelineno-24-23"></a>先用初始条件和测试条件做判断，如果符合测试条件则执行循环体，再修改表达式，否则直接跳出循环。
+</span><span id="__span-24-24"><a id="__codelineno-24-24" name="__codelineno-24-24" href="#__codelineno-24-24"></a>
+</span><span id="__span-24-25"><a id="__codelineno-24-25" name="__codelineno-24-25" href="#__codelineno-24-25"></a>例：求100以内所有正整数之和（for二实现）
+</span><span id="__span-24-26"><a id="__codelineno-24-26" name="__codelineno-24-26" href="#__codelineno-24-26"></a>#!/bin/bash
+</span><span id="__span-24-27"><a id="__codelineno-24-27" name="__codelineno-24-27" href="#__codelineno-24-27"></a>declare -i sum=0
+</span><span id="__span-24-28"><a id="__codelineno-24-28" name="__codelineno-24-28" href="#__codelineno-24-28"></a>for ((counter=1;$counter &lt;= 100; counter++)); do
+</span><span id="__span-24-29"><a id="__codelineno-24-29" name="__codelineno-24-29" href="#__codelineno-24-29"></a>  let sum+=$counter
+</span><span id="__span-24-30"><a id="__codelineno-24-30" name="__codelineno-24-30" href="#__codelineno-24-30"></a>done
+</span><span id="__span-24-31"><a id="__codelineno-24-31" name="__codelineno-24-31" href="#__codelineno-24-31"></a>echo $sum
+</span></code></pre></div>
 <p><strong>循环之while语句</strong></p>
 <p>while适用于循环次数未知，或不便用for直接生成较大的列表时</p>
-<pre><code>语句结构：
-while 测试条件; do
-  循环体
-done
-测试条件为真，进入循环；测试条件为假，退出循环
-例1：求100以内所有偶数之和，要求使用取模方法
-#!/bin/bash
-declare -i counter=1
-declare -i sum=0
-while [ $counter -le 100 ]; do
-  if [ $[$counter%2] -eq 0 ]; then
-     let sum+=$counter
-  fi
-  let counter++
- done
-echo $sum
-
-例2：提示用户输入一个用户名，如果用户存在，就显示用户的ID号和shell；否则显示用户不存在；显示完成之后不退出，再次重复前面的操作，直到用户输入q或quit为止
-#!/bin/bash
-read -p &quot;Plz enter a username: &quot; userName
-while [ &quot;$userName&quot; != 'q' -a &quot;$userName&quot; != 'quit' ]; do
-  if id $userName &amp;&gt; /dev/null; then
-     grep &quot;^$userName\&gt;&quot; /etc/passwd | cut -d: -f3,7
-  else
-    echo &quot;No such user.&quot;
-  fi
-read -p &quot;Plz enter a username again: &quot; userName
-done
-
-while特殊用法：遍历文本文件
-语句结构：
-while read 变量名; do
-  循环体
-done &lt; /path/to/somefile
-变量名，每循环一次，记忆了文件中一行文本
-
-例：显示ID号为偶数，且ID号同GID的用户的用户名、ID和SHELL
-while read line; do
-  userID=`echo $line | cut -d: -f3`
-  groupID=`echo $line | cut -d: -f4`
-  if [ $[$userID%2] -eq 0 -a $userID -eq $groupID ]; then
-     echo $line | cut -d: -f1,3,7
-  fi
-done &lt; /etc/passwd
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>语句结构：
+</span><span id="__span-25-2"><a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a>while 测试条件; do
+</span><span id="__span-25-3"><a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a>  循环体
+</span><span id="__span-25-4"><a id="__codelineno-25-4" name="__codelineno-25-4" href="#__codelineno-25-4"></a>done
+</span><span id="__span-25-5"><a id="__codelineno-25-5" name="__codelineno-25-5" href="#__codelineno-25-5"></a>测试条件为真，进入循环；测试条件为假，退出循环
+</span><span id="__span-25-6"><a id="__codelineno-25-6" name="__codelineno-25-6" href="#__codelineno-25-6"></a>例1：求100以内所有偶数之和，要求使用取模方法
+</span><span id="__span-25-7"><a id="__codelineno-25-7" name="__codelineno-25-7" href="#__codelineno-25-7"></a>#!/bin/bash
+</span><span id="__span-25-8"><a id="__codelineno-25-8" name="__codelineno-25-8" href="#__codelineno-25-8"></a>declare -i counter=1
+</span><span id="__span-25-9"><a id="__codelineno-25-9" name="__codelineno-25-9" href="#__codelineno-25-9"></a>declare -i sum=0
+</span><span id="__span-25-10"><a id="__codelineno-25-10" name="__codelineno-25-10" href="#__codelineno-25-10"></a>while [ $counter -le 100 ]; do
+</span><span id="__span-25-11"><a id="__codelineno-25-11" name="__codelineno-25-11" href="#__codelineno-25-11"></a>  if [ $[$counter%2] -eq 0 ]; then
+</span><span id="__span-25-12"><a id="__codelineno-25-12" name="__codelineno-25-12" href="#__codelineno-25-12"></a>     let sum+=$counter
+</span><span id="__span-25-13"><a id="__codelineno-25-13" name="__codelineno-25-13" href="#__codelineno-25-13"></a>  fi
+</span><span id="__span-25-14"><a id="__codelineno-25-14" name="__codelineno-25-14" href="#__codelineno-25-14"></a>  let counter++
+</span><span id="__span-25-15"><a id="__codelineno-25-15" name="__codelineno-25-15" href="#__codelineno-25-15"></a> done
+</span><span id="__span-25-16"><a id="__codelineno-25-16" name="__codelineno-25-16" href="#__codelineno-25-16"></a>echo $sum
+</span><span id="__span-25-17"><a id="__codelineno-25-17" name="__codelineno-25-17" href="#__codelineno-25-17"></a>
+</span><span id="__span-25-18"><a id="__codelineno-25-18" name="__codelineno-25-18" href="#__codelineno-25-18"></a>例2：提示用户输入一个用户名，如果用户存在，就显示用户的ID号和shell；否则显示用户不存在；显示完成之后不退出，再次重复前面的操作，直到用户输入q或quit为止
+</span><span id="__span-25-19"><a id="__codelineno-25-19" name="__codelineno-25-19" href="#__codelineno-25-19"></a>#!/bin/bash
+</span><span id="__span-25-20"><a id="__codelineno-25-20" name="__codelineno-25-20" href="#__codelineno-25-20"></a>read -p &quot;Plz enter a username: &quot; userName
+</span><span id="__span-25-21"><a id="__codelineno-25-21" name="__codelineno-25-21" href="#__codelineno-25-21"></a>while [ &quot;$userName&quot; != &#39;q&#39; -a &quot;$userName&quot; != &#39;quit&#39; ]; do
+</span><span id="__span-25-22"><a id="__codelineno-25-22" name="__codelineno-25-22" href="#__codelineno-25-22"></a>  if id $userName &amp;&gt; /dev/null; then
+</span><span id="__span-25-23"><a id="__codelineno-25-23" name="__codelineno-25-23" href="#__codelineno-25-23"></a>     grep &quot;^$userName\&gt;&quot; /etc/passwd | cut -d: -f3,7
+</span><span id="__span-25-24"><a id="__codelineno-25-24" name="__codelineno-25-24" href="#__codelineno-25-24"></a>  else
+</span><span id="__span-25-25"><a id="__codelineno-25-25" name="__codelineno-25-25" href="#__codelineno-25-25"></a>    echo &quot;No such user.&quot;
+</span><span id="__span-25-26"><a id="__codelineno-25-26" name="__codelineno-25-26" href="#__codelineno-25-26"></a>  fi
+</span><span id="__span-25-27"><a id="__codelineno-25-27" name="__codelineno-25-27" href="#__codelineno-25-27"></a>read -p &quot;Plz enter a username again: &quot; userName
+</span><span id="__span-25-28"><a id="__codelineno-25-28" name="__codelineno-25-28" href="#__codelineno-25-28"></a>done
+</span><span id="__span-25-29"><a id="__codelineno-25-29" name="__codelineno-25-29" href="#__codelineno-25-29"></a>
+</span><span id="__span-25-30"><a id="__codelineno-25-30" name="__codelineno-25-30" href="#__codelineno-25-30"></a>while特殊用法：遍历文本文件
+</span><span id="__span-25-31"><a id="__codelineno-25-31" name="__codelineno-25-31" href="#__codelineno-25-31"></a>语句结构：
+</span><span id="__span-25-32"><a id="__codelineno-25-32" name="__codelineno-25-32" href="#__codelineno-25-32"></a>while read 变量名; do
+</span><span id="__span-25-33"><a id="__codelineno-25-33" name="__codelineno-25-33" href="#__codelineno-25-33"></a>  循环体
+</span><span id="__span-25-34"><a id="__codelineno-25-34" name="__codelineno-25-34" href="#__codelineno-25-34"></a>done &lt; /path/to/somefile
+</span><span id="__span-25-35"><a id="__codelineno-25-35" name="__codelineno-25-35" href="#__codelineno-25-35"></a>变量名，每循环一次，记忆了文件中一行文本
+</span><span id="__span-25-36"><a id="__codelineno-25-36" name="__codelineno-25-36" href="#__codelineno-25-36"></a>
+</span><span id="__span-25-37"><a id="__codelineno-25-37" name="__codelineno-25-37" href="#__codelineno-25-37"></a>例：显示ID号为偶数，且ID号同GID的用户的用户名、ID和SHELL
+</span><span id="__span-25-38"><a id="__codelineno-25-38" name="__codelineno-25-38" href="#__codelineno-25-38"></a>while read line; do
+</span><span id="__span-25-39"><a id="__codelineno-25-39" name="__codelineno-25-39" href="#__codelineno-25-39"></a>  userID=`echo $line | cut -d: -f3`
+</span><span id="__span-25-40"><a id="__codelineno-25-40" name="__codelineno-25-40" href="#__codelineno-25-40"></a>  groupID=`echo $line | cut -d: -f4`
+</span><span id="__span-25-41"><a id="__codelineno-25-41" name="__codelineno-25-41" href="#__codelineno-25-41"></a>  if [ $[$userID%2] -eq 0 -a $userID -eq $groupID ]; then
+</span><span id="__span-25-42"><a id="__codelineno-25-42" name="__codelineno-25-42" href="#__codelineno-25-42"></a>     echo $line | cut -d: -f1,3,7
+</span><span id="__span-25-43"><a id="__codelineno-25-43" name="__codelineno-25-43" href="#__codelineno-25-43"></a>  fi
+</span><span id="__span-25-44"><a id="__codelineno-25-44" name="__codelineno-25-44" href="#__codelineno-25-44"></a>done &lt; /etc/passwd
+</span></code></pre></div>
 <p><strong>循环之until语句</strong></p>
-<pre><code>语句结构：
-until 测试条件; do
-      循环体
-done
-测试条件为假，进入循环；测试条件为真，退出循环
-
-例：求100以内所有偶数之和，要求使用取模方法（until实现）
-
-#!/bin/bash
-declare -i counter=1
-declare -i sum=0
-until [ $counter -gt 100 ]; do
-  if [ $[$counter%2] -eq 0 ]; then
-     let sum+=$counter
-  fi
-  let counter++
-done
-echo $sum
-例：提示用户输入一个用户名，如果用户存在，就显示用户的ID号和shell；否则显示用户不存在；显示完成之后不退出，再次重复前面的操作，直到用户输入q或quit为止（until实现）
-
-
-#!/bin/bash
-read -p &quot;Plz enter a username: &quot; userName
-until [ &quot;$userName&quot; = 'q' -a &quot;$userName&quot; = 'quit' ]; do
-  if id $userName &amp;&gt; /dev/null; then
-   grep &quot;^$userName\&gt;&quot; /etc/passwd | cut -d: -f3,7
-else
-echo &quot;No such user.&quot;
-fi
-read -p &quot;Plz enter a username again: &quot; userName
-done
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-26-1"><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a>语句结构：
+</span><span id="__span-26-2"><a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a>until 测试条件; do
+</span><span id="__span-26-3"><a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a>      循环体
+</span><span id="__span-26-4"><a id="__codelineno-26-4" name="__codelineno-26-4" href="#__codelineno-26-4"></a>done
+</span><span id="__span-26-5"><a id="__codelineno-26-5" name="__codelineno-26-5" href="#__codelineno-26-5"></a>测试条件为假，进入循环；测试条件为真，退出循环
+</span><span id="__span-26-6"><a id="__codelineno-26-6" name="__codelineno-26-6" href="#__codelineno-26-6"></a>
+</span><span id="__span-26-7"><a id="__codelineno-26-7" name="__codelineno-26-7" href="#__codelineno-26-7"></a>例：求100以内所有偶数之和，要求使用取模方法（until实现）
+</span><span id="__span-26-8"><a id="__codelineno-26-8" name="__codelineno-26-8" href="#__codelineno-26-8"></a>
+</span><span id="__span-26-9"><a id="__codelineno-26-9" name="__codelineno-26-9" href="#__codelineno-26-9"></a>#!/bin/bash
+</span><span id="__span-26-10"><a id="__codelineno-26-10" name="__codelineno-26-10" href="#__codelineno-26-10"></a>declare -i counter=1
+</span><span id="__span-26-11"><a id="__codelineno-26-11" name="__codelineno-26-11" href="#__codelineno-26-11"></a>declare -i sum=0
+</span><span id="__span-26-12"><a id="__codelineno-26-12" name="__codelineno-26-12" href="#__codelineno-26-12"></a>until [ $counter -gt 100 ]; do
+</span><span id="__span-26-13"><a id="__codelineno-26-13" name="__codelineno-26-13" href="#__codelineno-26-13"></a>  if [ $[$counter%2] -eq 0 ]; then
+</span><span id="__span-26-14"><a id="__codelineno-26-14" name="__codelineno-26-14" href="#__codelineno-26-14"></a>     let sum+=$counter
+</span><span id="__span-26-15"><a id="__codelineno-26-15" name="__codelineno-26-15" href="#__codelineno-26-15"></a>  fi
+</span><span id="__span-26-16"><a id="__codelineno-26-16" name="__codelineno-26-16" href="#__codelineno-26-16"></a>  let counter++
+</span><span id="__span-26-17"><a id="__codelineno-26-17" name="__codelineno-26-17" href="#__codelineno-26-17"></a>done
+</span><span id="__span-26-18"><a id="__codelineno-26-18" name="__codelineno-26-18" href="#__codelineno-26-18"></a>echo $sum
+</span><span id="__span-26-19"><a id="__codelineno-26-19" name="__codelineno-26-19" href="#__codelineno-26-19"></a>例：提示用户输入一个用户名，如果用户存在，就显示用户的ID号和shell；否则显示用户不存在；显示完成之后不退出，再次重复前面的操作，直到用户输入q或quit为止（until实现）
+</span><span id="__span-26-20"><a id="__codelineno-26-20" name="__codelineno-26-20" href="#__codelineno-26-20"></a>
+</span><span id="__span-26-21"><a id="__codelineno-26-21" name="__codelineno-26-21" href="#__codelineno-26-21"></a>
+</span><span id="__span-26-22"><a id="__codelineno-26-22" name="__codelineno-26-22" href="#__codelineno-26-22"></a>#!/bin/bash
+</span><span id="__span-26-23"><a id="__codelineno-26-23" name="__codelineno-26-23" href="#__codelineno-26-23"></a>read -p &quot;Plz enter a username: &quot; userName
+</span><span id="__span-26-24"><a id="__codelineno-26-24" name="__codelineno-26-24" href="#__codelineno-26-24"></a>until [ &quot;$userName&quot; = &#39;q&#39; -a &quot;$userName&quot; = &#39;quit&#39; ]; do
+</span><span id="__span-26-25"><a id="__codelineno-26-25" name="__codelineno-26-25" href="#__codelineno-26-25"></a>  if id $userName &amp;&gt; /dev/null; then
+</span><span id="__span-26-26"><a id="__codelineno-26-26" name="__codelineno-26-26" href="#__codelineno-26-26"></a>   grep &quot;^$userName\&gt;&quot; /etc/passwd | cut -d: -f3,7
+</span><span id="__span-26-27"><a id="__codelineno-26-27" name="__codelineno-26-27" href="#__codelineno-26-27"></a>else
+</span><span id="__span-26-28"><a id="__codelineno-26-28" name="__codelineno-26-28" href="#__codelineno-26-28"></a>echo &quot;No such user.&quot;
+</span><span id="__span-26-29"><a id="__codelineno-26-29" name="__codelineno-26-29" href="#__codelineno-26-29"></a>fi
+</span><span id="__span-26-30"><a id="__codelineno-26-30" name="__codelineno-26-30" href="#__codelineno-26-30"></a>read -p &quot;Plz enter a username again: &quot; userName
+</span><span id="__span-26-31"><a id="__codelineno-26-31" name="__codelineno-26-31" href="#__codelineno-26-31"></a>done
+</span></code></pre></div>
 <p><strong>循环之循环控制和shift</strong></p>
-<pre><code>
-循环控制命令：
-break：提前退出循环
-break [N]: 退出N层循环；N省略时表示退出break语句所在的循环
-continue: 提前结束本轮循环，而直接进入下轮循环
-continue [N]：提前第N层的循环的本轮循环，而直接进入下轮循环
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-27-1"><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a>循环控制命令：
+</span><span id="__span-27-2"><a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a>break：提前退出循环
+</span><span id="__span-27-3"><a id="__codelineno-27-3" name="__codelineno-27-3" href="#__codelineno-27-3"></a>break [N]: 退出N层循环；N省略时表示退出break语句所在的循环
+</span><span id="__span-27-4"><a id="__codelineno-27-4" name="__codelineno-27-4" href="#__codelineno-27-4"></a>continue: 提前结束本轮循环，而直接进入下轮循环
+</span><span id="__span-27-5"><a id="__codelineno-27-5" name="__codelineno-27-5" href="#__codelineno-27-5"></a>continue [N]：提前第N层的循环的本轮循环，而直接进入下轮循环
+</span></code></pre></div>
 <p><strong>死循环：</strong></p>
-<pre><code>
-#while体while true; do
-      循环体
-done
-#until体
-until false; do
-      循环体
-done
-
-例1：写一个脚本，判断给定的用户是否登录了当前系统
-(1) 如果登录了，则脚本终止；
-(2) 每5秒种，查看一次用户是否登录；
-#!/bin/bash
-while true; do
-    who | grep &quot;gentoo&quot; &amp;&gt; /dev/null
-    if [ $? -eq 0 ];then
-break
-    fi
-    sleep 5
-done
-echo &quot;gentoo is logged.&quot;
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-28-1"><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a>#while体while true; do
+</span><span id="__span-28-2"><a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a>      循环体
+</span><span id="__span-28-3"><a id="__codelineno-28-3" name="__codelineno-28-3" href="#__codelineno-28-3"></a>done
+</span><span id="__span-28-4"><a id="__codelineno-28-4" name="__codelineno-28-4" href="#__codelineno-28-4"></a>#until体
+</span><span id="__span-28-5"><a id="__codelineno-28-5" name="__codelineno-28-5" href="#__codelineno-28-5"></a>until false; do
+</span><span id="__span-28-6"><a id="__codelineno-28-6" name="__codelineno-28-6" href="#__codelineno-28-6"></a>      循环体
+</span><span id="__span-28-7"><a id="__codelineno-28-7" name="__codelineno-28-7" href="#__codelineno-28-7"></a>done
+</span><span id="__span-28-8"><a id="__codelineno-28-8" name="__codelineno-28-8" href="#__codelineno-28-8"></a>
+</span><span id="__span-28-9"><a id="__codelineno-28-9" name="__codelineno-28-9" href="#__codelineno-28-9"></a>例1：写一个脚本，判断给定的用户是否登录了当前系统
+</span><span id="__span-28-10"><a id="__codelineno-28-10" name="__codelineno-28-10" href="#__codelineno-28-10"></a>(1) 如果登录了，则脚本终止；
+</span><span id="__span-28-11"><a id="__codelineno-28-11" name="__codelineno-28-11" href="#__codelineno-28-11"></a>(2) 每5秒种，查看一次用户是否登录；
+</span><span id="__span-28-12"><a id="__codelineno-28-12" name="__codelineno-28-12" href="#__codelineno-28-12"></a>#!/bin/bash
+</span><span id="__span-28-13"><a id="__codelineno-28-13" name="__codelineno-28-13" href="#__codelineno-28-13"></a>while true; do
+</span><span id="__span-28-14"><a id="__codelineno-28-14" name="__codelineno-28-14" href="#__codelineno-28-14"></a>    who | grep &quot;gentoo&quot; &amp;&gt; /dev/null
+</span><span id="__span-28-15"><a id="__codelineno-28-15" name="__codelineno-28-15" href="#__codelineno-28-15"></a>    if [ $? -eq 0 ];then
+</span><span id="__span-28-16"><a id="__codelineno-28-16" name="__codelineno-28-16" href="#__codelineno-28-16"></a>break
+</span><span id="__span-28-17"><a id="__codelineno-28-17" name="__codelineno-28-17" href="#__codelineno-28-17"></a>    fi
+</span><span id="__span-28-18"><a id="__codelineno-28-18" name="__codelineno-28-18" href="#__codelineno-28-18"></a>    sleep 5
+</span><span id="__span-28-19"><a id="__codelineno-28-19" name="__codelineno-28-19" href="#__codelineno-28-19"></a>done
+</span><span id="__span-28-20"><a id="__codelineno-28-20" name="__codelineno-28-20" href="#__codelineno-28-20"></a>echo &quot;gentoo is logged.&quot;
+</span></code></pre></div>
 <p><strong>shift：</strong></p>
-<pre><code>如果没有数字，只有shift 就是跳过一个参数获取下一个参数，如果加上数字，比如shift 2 ，跳过两个参数获取下一个参数。
-例：写一个脚本，使用形式如下所示    
-showifinfo.sh [-i INTERFACE|-a] [-v]
-要求：
-1、-i或-a不可同时使用，-i用于指定特定网卡接口，-a用于指定所有接口；
-显示接口的ip地址
-2、使用-v，则表示显示详细信息，显示接口的ip地址、子网掩码、广播地址；
-3、默认表示仅使用-a选项;
-
-#!/bin/bash
-allinterface=0
-ifflag=0
-verbose=0
-interface=0
-if [ $# -eq 0 ];then
-  ifconfig | grep &quot;inet addr:&quot; | awk '{print $2}'
-fi
-while [ $# -ge 1 ];do
-  case $1 in 
--a)
- allinterface=1
- shift 1
-  ;;
--i)
-  ifflag=1
-  interface=$2
-  shift 2
-  ;;
--v)
-  verbose=1
-  shift 1
-  ;;
-  *)
-echo &quot;error option&quot;
-exit 2
-  ;;
-  esac
-done
-if [ $allinterface -eq 1 ];then
-  if [ $ifflag -eq 1 ];then
-   echo &quot;command not found&quot;
-    exit 5
-  fi
-  if [ $verbose -eq 1 ];then
-    ifconfig | grep &quot;inet addr:&quot;
-  else
-    ifconfig | grep &quot;inet addr:&quot; | awk '{print $2}'
-  fi
-fi
-if [ $ifflag -eq 1 ];then
-  if [ $allinterface -eq 1 ];then
-        echo &quot;command not found&quot;
-        exit 5
-  fi
- if [ $verbose -eq 1 ];then
-    ifconfig $interface | grep &quot;inet addr:&quot;
-  else
-    ifconfig $interface | grep &quot;inet addr:&quot; | awk '{print $2}'
-  fi
-fi
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-29-1"><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a>如果没有数字，只有shift 就是跳过一个参数获取下一个参数，如果加上数字，比如shift 2 ，跳过两个参数获取下一个参数。
+</span><span id="__span-29-2"><a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a>例：写一个脚本，使用形式如下所示    
+</span><span id="__span-29-3"><a id="__codelineno-29-3" name="__codelineno-29-3" href="#__codelineno-29-3"></a>showifinfo.sh [-i INTERFACE|-a] [-v]
+</span><span id="__span-29-4"><a id="__codelineno-29-4" name="__codelineno-29-4" href="#__codelineno-29-4"></a>要求：
+</span><span id="__span-29-5"><a id="__codelineno-29-5" name="__codelineno-29-5" href="#__codelineno-29-5"></a>1、-i或-a不可同时使用，-i用于指定特定网卡接口，-a用于指定所有接口；
+</span><span id="__span-29-6"><a id="__codelineno-29-6" name="__codelineno-29-6" href="#__codelineno-29-6"></a>显示接口的ip地址
+</span><span id="__span-29-7"><a id="__codelineno-29-7" name="__codelineno-29-7" href="#__codelineno-29-7"></a>2、使用-v，则表示显示详细信息，显示接口的ip地址、子网掩码、广播地址；
+</span><span id="__span-29-8"><a id="__codelineno-29-8" name="__codelineno-29-8" href="#__codelineno-29-8"></a>3、默认表示仅使用-a选项;
+</span><span id="__span-29-9"><a id="__codelineno-29-9" name="__codelineno-29-9" href="#__codelineno-29-9"></a>
+</span><span id="__span-29-10"><a id="__codelineno-29-10" name="__codelineno-29-10" href="#__codelineno-29-10"></a>#!/bin/bash
+</span><span id="__span-29-11"><a id="__codelineno-29-11" name="__codelineno-29-11" href="#__codelineno-29-11"></a>allinterface=0
+</span><span id="__span-29-12"><a id="__codelineno-29-12" name="__codelineno-29-12" href="#__codelineno-29-12"></a>ifflag=0
+</span><span id="__span-29-13"><a id="__codelineno-29-13" name="__codelineno-29-13" href="#__codelineno-29-13"></a>verbose=0
+</span><span id="__span-29-14"><a id="__codelineno-29-14" name="__codelineno-29-14" href="#__codelineno-29-14"></a>interface=0
+</span><span id="__span-29-15"><a id="__codelineno-29-15" name="__codelineno-29-15" href="#__codelineno-29-15"></a>if [ $# -eq 0 ];then
+</span><span id="__span-29-16"><a id="__codelineno-29-16" name="__codelineno-29-16" href="#__codelineno-29-16"></a>  ifconfig | grep &quot;inet addr:&quot; | awk &#39;{print $2}&#39;
+</span><span id="__span-29-17"><a id="__codelineno-29-17" name="__codelineno-29-17" href="#__codelineno-29-17"></a>fi
+</span><span id="__span-29-18"><a id="__codelineno-29-18" name="__codelineno-29-18" href="#__codelineno-29-18"></a>while [ $# -ge 1 ];do
+</span><span id="__span-29-19"><a id="__codelineno-29-19" name="__codelineno-29-19" href="#__codelineno-29-19"></a>  case $1 in 
+</span><span id="__span-29-20"><a id="__codelineno-29-20" name="__codelineno-29-20" href="#__codelineno-29-20"></a>-a)
+</span><span id="__span-29-21"><a id="__codelineno-29-21" name="__codelineno-29-21" href="#__codelineno-29-21"></a> allinterface=1
+</span><span id="__span-29-22"><a id="__codelineno-29-22" name="__codelineno-29-22" href="#__codelineno-29-22"></a> shift 1
+</span><span id="__span-29-23"><a id="__codelineno-29-23" name="__codelineno-29-23" href="#__codelineno-29-23"></a>  ;;
+</span><span id="__span-29-24"><a id="__codelineno-29-24" name="__codelineno-29-24" href="#__codelineno-29-24"></a>-i)
+</span><span id="__span-29-25"><a id="__codelineno-29-25" name="__codelineno-29-25" href="#__codelineno-29-25"></a>  ifflag=1
+</span><span id="__span-29-26"><a id="__codelineno-29-26" name="__codelineno-29-26" href="#__codelineno-29-26"></a>  interface=$2
+</span><span id="__span-29-27"><a id="__codelineno-29-27" name="__codelineno-29-27" href="#__codelineno-29-27"></a>  shift 2
+</span><span id="__span-29-28"><a id="__codelineno-29-28" name="__codelineno-29-28" href="#__codelineno-29-28"></a>  ;;
+</span><span id="__span-29-29"><a id="__codelineno-29-29" name="__codelineno-29-29" href="#__codelineno-29-29"></a>-v)
+</span><span id="__span-29-30"><a id="__codelineno-29-30" name="__codelineno-29-30" href="#__codelineno-29-30"></a>  verbose=1
+</span><span id="__span-29-31"><a id="__codelineno-29-31" name="__codelineno-29-31" href="#__codelineno-29-31"></a>  shift 1
+</span><span id="__span-29-32"><a id="__codelineno-29-32" name="__codelineno-29-32" href="#__codelineno-29-32"></a>  ;;
+</span><span id="__span-29-33"><a id="__codelineno-29-33" name="__codelineno-29-33" href="#__codelineno-29-33"></a>  *)
+</span><span id="__span-29-34"><a id="__codelineno-29-34" name="__codelineno-29-34" href="#__codelineno-29-34"></a>echo &quot;error option&quot;
+</span><span id="__span-29-35"><a id="__codelineno-29-35" name="__codelineno-29-35" href="#__codelineno-29-35"></a>exit 2
+</span><span id="__span-29-36"><a id="__codelineno-29-36" name="__codelineno-29-36" href="#__codelineno-29-36"></a>  ;;
+</span><span id="__span-29-37"><a id="__codelineno-29-37" name="__codelineno-29-37" href="#__codelineno-29-37"></a>  esac
+</span><span id="__span-29-38"><a id="__codelineno-29-38" name="__codelineno-29-38" href="#__codelineno-29-38"></a>done
+</span><span id="__span-29-39"><a id="__codelineno-29-39" name="__codelineno-29-39" href="#__codelineno-29-39"></a>if [ $allinterface -eq 1 ];then
+</span><span id="__span-29-40"><a id="__codelineno-29-40" name="__codelineno-29-40" href="#__codelineno-29-40"></a>  if [ $ifflag -eq 1 ];then
+</span><span id="__span-29-41"><a id="__codelineno-29-41" name="__codelineno-29-41" href="#__codelineno-29-41"></a>   echo &quot;command not found&quot;
+</span><span id="__span-29-42"><a id="__codelineno-29-42" name="__codelineno-29-42" href="#__codelineno-29-42"></a>    exit 5
+</span><span id="__span-29-43"><a id="__codelineno-29-43" name="__codelineno-29-43" href="#__codelineno-29-43"></a>  fi
+</span><span id="__span-29-44"><a id="__codelineno-29-44" name="__codelineno-29-44" href="#__codelineno-29-44"></a>  if [ $verbose -eq 1 ];then
+</span><span id="__span-29-45"><a id="__codelineno-29-45" name="__codelineno-29-45" href="#__codelineno-29-45"></a>    ifconfig | grep &quot;inet addr:&quot;
+</span><span id="__span-29-46"><a id="__codelineno-29-46" name="__codelineno-29-46" href="#__codelineno-29-46"></a>  else
+</span><span id="__span-29-47"><a id="__codelineno-29-47" name="__codelineno-29-47" href="#__codelineno-29-47"></a>    ifconfig | grep &quot;inet addr:&quot; | awk &#39;{print $2}&#39;
+</span><span id="__span-29-48"><a id="__codelineno-29-48" name="__codelineno-29-48" href="#__codelineno-29-48"></a>  fi
+</span><span id="__span-29-49"><a id="__codelineno-29-49" name="__codelineno-29-49" href="#__codelineno-29-49"></a>fi
+</span><span id="__span-29-50"><a id="__codelineno-29-50" name="__codelineno-29-50" href="#__codelineno-29-50"></a>if [ $ifflag -eq 1 ];then
+</span><span id="__span-29-51"><a id="__codelineno-29-51" name="__codelineno-29-51" href="#__codelineno-29-51"></a>  if [ $allinterface -eq 1 ];then
+</span><span id="__span-29-52"><a id="__codelineno-29-52" name="__codelineno-29-52" href="#__codelineno-29-52"></a>        echo &quot;command not found&quot;
+</span><span id="__span-29-53"><a id="__codelineno-29-53" name="__codelineno-29-53" href="#__codelineno-29-53"></a>        exit 5
+</span><span id="__span-29-54"><a id="__codelineno-29-54" name="__codelineno-29-54" href="#__codelineno-29-54"></a>  fi
+</span><span id="__span-29-55"><a id="__codelineno-29-55" name="__codelineno-29-55" href="#__codelineno-29-55"></a> if [ $verbose -eq 1 ];then
+</span><span id="__span-29-56"><a id="__codelineno-29-56" name="__codelineno-29-56" href="#__codelineno-29-56"></a>    ifconfig $interface | grep &quot;inet addr:&quot;
+</span><span id="__span-29-57"><a id="__codelineno-29-57" name="__codelineno-29-57" href="#__codelineno-29-57"></a>  else
+</span><span id="__span-29-58"><a id="__codelineno-29-58" name="__codelineno-29-58" href="#__codelineno-29-58"></a>    ifconfig $interface | grep &quot;inet addr:&quot; | awk &#39;{print $2}&#39;
+</span><span id="__span-29-59"><a id="__codelineno-29-59" name="__codelineno-29-59" href="#__codelineno-29-59"></a>  fi
+</span><span id="__span-29-60"><a id="__codelineno-29-60" name="__codelineno-29-60" href="#__codelineno-29-60"></a>fi
+</span></code></pre></div>
 <h3 id="bash_8">bash编程之函数<a class="headerlink" href="#bash_8" title="Permanent link">&para;</a></h3>
 <h4 id="_2">语法结构：<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h4>
-<pre><code>
-function F_NAME {    
-   函数体
-  }
-
-  F_NAME() {
-    函数体
-  }
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-30-1"><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a>function F_NAME {    
+</span><span id="__span-30-2"><a id="__codelineno-30-2" name="__codelineno-30-2" href="#__codelineno-30-2"></a>   函数体
+</span><span id="__span-30-3"><a id="__codelineno-30-3" name="__codelineno-30-3" href="#__codelineno-30-3"></a>  }
+</span><span id="__span-30-4"><a id="__codelineno-30-4" name="__codelineno-30-4" href="#__codelineno-30-4"></a>
+</span><span id="__span-30-5"><a id="__codelineno-30-5" name="__codelineno-30-5" href="#__codelineno-30-5"></a>  F_NAME() {
+</span><span id="__span-30-6"><a id="__codelineno-30-6" name="__codelineno-30-6" href="#__codelineno-30-6"></a>    函数体
+</span><span id="__span-30-7"><a id="__codelineno-30-7" name="__codelineno-30-7" href="#__codelineno-30-7"></a>  }
+</span></code></pre></div>
 <p>可调用：使用函数名，函数名出现的地方，会被自动替换为函数
 函数的返回值：
 函数的执行结果返回值：代码的输出
@@ -1805,54 +1803,54 @@ function F_NAME {
 </blockquote>
 <p><strong>函数可以接受参数：</strong>
 在函数体中调用函数参数的方式同脚本中调用脚本参数的方式：</p>
-<pre><code>位置参数
-$1, $2, …
-$#, $*, $@
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-31-1"><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a>位置参数
+</span><span id="__span-31-2"><a id="__codelineno-31-2" name="__codelineno-31-2" href="#__codelineno-31-2"></a>$1, $2, …
+</span><span id="__span-31-3"><a id="__codelineno-31-3" name="__codelineno-31-3" href="#__codelineno-31-3"></a>$#, $*, $@
+</span></code></pre></div>
 <p>例：写一个脚本，完成如下功能(使用函数)：</p>
 <p>1、提示用户输入一个可执行命令；</p>
 <p>2、获取这个命令所依赖的所有库文件(使用ldd命令)；</p>
 <p>3、复制命令至/mnt/sysroot/对应的目录中</p>
 <p>解释：假设，如果复制的是cat命令，其可执行程序的路径是/bin/cat，那么就要将/bin/cat复到/mnt/sysroot/bin/目录中，如果复制的是useradd命令，而useradd的可执行文件路径为/usr/sbin/useradd，那么就要将其复制到/mnt/sysroot/usr/sbin/目录中；</p>
 <p>4、复制各库文件至/mnt/sysroot/对应的目录中；</p>
-<pre><code>#!/bin/bash
-target=/mnt/sysroot/
-[ -d $target ] || mkdir $target
-preCommand() {
-    if which $1 &amp;&gt; /dev/null; then
-  commandPath=`which --skip-alias $1`
-  return 0
-    else
-  echo &quot;No such command.&quot;
-  return 1
-    fi
-}
-
-commandCopy() {
-    commandDir=`dirname $1`
-    [ -d ${target}${commandDir} ] || mkdir -p ${target}${commandDir}
-    [ -f ${target}${commandPath} ] || cp $1 ${target}${commandDir}
-}
-
-libCopy() {
-    for lib in `ldd $1 | egrep -o &quot;/[^[:space:]]+&quot;`; do
-libDir=`dirname $lib`
-[ -d ${target}${libDir} ] || mkdir -p ${target}${libDir}
-[ -f ${target}${lib} ] || cp $lib ${target}${libDir}
-    done
-} 
-read -p &quot;Plz enter a command: &quot; command
-
-until [ &quot;$command&quot; == 'quit' ]; do
-
-  if preCommand $command &amp;&gt; /dev/null; then
-    commandCopy $commandPath
-    libCopy $commandPath
-  fi
-
-  read -p &quot;Plz enter a command: &quot; command
-done
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-32-1"><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a>#!/bin/bash
+</span><span id="__span-32-2"><a id="__codelineno-32-2" name="__codelineno-32-2" href="#__codelineno-32-2"></a>target=/mnt/sysroot/
+</span><span id="__span-32-3"><a id="__codelineno-32-3" name="__codelineno-32-3" href="#__codelineno-32-3"></a>[ -d $target ] || mkdir $target
+</span><span id="__span-32-4"><a id="__codelineno-32-4" name="__codelineno-32-4" href="#__codelineno-32-4"></a>preCommand() {
+</span><span id="__span-32-5"><a id="__codelineno-32-5" name="__codelineno-32-5" href="#__codelineno-32-5"></a>    if which $1 &amp;&gt; /dev/null; then
+</span><span id="__span-32-6"><a id="__codelineno-32-6" name="__codelineno-32-6" href="#__codelineno-32-6"></a>  commandPath=`which --skip-alias $1`
+</span><span id="__span-32-7"><a id="__codelineno-32-7" name="__codelineno-32-7" href="#__codelineno-32-7"></a>  return 0
+</span><span id="__span-32-8"><a id="__codelineno-32-8" name="__codelineno-32-8" href="#__codelineno-32-8"></a>    else
+</span><span id="__span-32-9"><a id="__codelineno-32-9" name="__codelineno-32-9" href="#__codelineno-32-9"></a>  echo &quot;No such command.&quot;
+</span><span id="__span-32-10"><a id="__codelineno-32-10" name="__codelineno-32-10" href="#__codelineno-32-10"></a>  return 1
+</span><span id="__span-32-11"><a id="__codelineno-32-11" name="__codelineno-32-11" href="#__codelineno-32-11"></a>    fi
+</span><span id="__span-32-12"><a id="__codelineno-32-12" name="__codelineno-32-12" href="#__codelineno-32-12"></a>}
+</span><span id="__span-32-13"><a id="__codelineno-32-13" name="__codelineno-32-13" href="#__codelineno-32-13"></a>
+</span><span id="__span-32-14"><a id="__codelineno-32-14" name="__codelineno-32-14" href="#__codelineno-32-14"></a>commandCopy() {
+</span><span id="__span-32-15"><a id="__codelineno-32-15" name="__codelineno-32-15" href="#__codelineno-32-15"></a>    commandDir=`dirname $1`
+</span><span id="__span-32-16"><a id="__codelineno-32-16" name="__codelineno-32-16" href="#__codelineno-32-16"></a>    [ -d ${target}${commandDir} ] || mkdir -p ${target}${commandDir}
+</span><span id="__span-32-17"><a id="__codelineno-32-17" name="__codelineno-32-17" href="#__codelineno-32-17"></a>    [ -f ${target}${commandPath} ] || cp $1 ${target}${commandDir}
+</span><span id="__span-32-18"><a id="__codelineno-32-18" name="__codelineno-32-18" href="#__codelineno-32-18"></a>}
+</span><span id="__span-32-19"><a id="__codelineno-32-19" name="__codelineno-32-19" href="#__codelineno-32-19"></a>
+</span><span id="__span-32-20"><a id="__codelineno-32-20" name="__codelineno-32-20" href="#__codelineno-32-20"></a>libCopy() {
+</span><span id="__span-32-21"><a id="__codelineno-32-21" name="__codelineno-32-21" href="#__codelineno-32-21"></a>    for lib in `ldd $1 | egrep -o &quot;/[^[:space:]]+&quot;`; do
+</span><span id="__span-32-22"><a id="__codelineno-32-22" name="__codelineno-32-22" href="#__codelineno-32-22"></a>libDir=`dirname $lib`
+</span><span id="__span-32-23"><a id="__codelineno-32-23" name="__codelineno-32-23" href="#__codelineno-32-23"></a>[ -d ${target}${libDir} ] || mkdir -p ${target}${libDir}
+</span><span id="__span-32-24"><a id="__codelineno-32-24" name="__codelineno-32-24" href="#__codelineno-32-24"></a>[ -f ${target}${lib} ] || cp $lib ${target}${libDir}
+</span><span id="__span-32-25"><a id="__codelineno-32-25" name="__codelineno-32-25" href="#__codelineno-32-25"></a>    done
+</span><span id="__span-32-26"><a id="__codelineno-32-26" name="__codelineno-32-26" href="#__codelineno-32-26"></a>} 
+</span><span id="__span-32-27"><a id="__codelineno-32-27" name="__codelineno-32-27" href="#__codelineno-32-27"></a>read -p &quot;Plz enter a command: &quot; command
+</span><span id="__span-32-28"><a id="__codelineno-32-28" name="__codelineno-32-28" href="#__codelineno-32-28"></a>
+</span><span id="__span-32-29"><a id="__codelineno-32-29" name="__codelineno-32-29" href="#__codelineno-32-29"></a>until [ &quot;$command&quot; == &#39;quit&#39; ]; do
+</span><span id="__span-32-30"><a id="__codelineno-32-30" name="__codelineno-32-30" href="#__codelineno-32-30"></a>
+</span><span id="__span-32-31"><a id="__codelineno-32-31" name="__codelineno-32-31" href="#__codelineno-32-31"></a>  if preCommand $command &amp;&gt; /dev/null; then
+</span><span id="__span-32-32"><a id="__codelineno-32-32" name="__codelineno-32-32" href="#__codelineno-32-32"></a>    commandCopy $commandPath
+</span><span id="__span-32-33"><a id="__codelineno-32-33" name="__codelineno-32-33" href="#__codelineno-32-33"></a>    libCopy $commandPath
+</span><span id="__span-32-34"><a id="__codelineno-32-34" name="__codelineno-32-34" href="#__codelineno-32-34"></a>  fi
+</span><span id="__span-32-35"><a id="__codelineno-32-35" name="__codelineno-32-35" href="#__codelineno-32-35"></a>
+</span><span id="__span-32-36"><a id="__codelineno-32-36" name="__codelineno-32-36" href="#__codelineno-32-36"></a>  read -p &quot;Plz enter a command: &quot; command
+</span><span id="__span-32-37"><a id="__codelineno-32-37" name="__codelineno-32-37" href="#__codelineno-32-37"></a>done
+</span></code></pre></div>
 <h4 id="bash_9">bash编程之信号捕捉<a class="headerlink" href="#bash_9" title="Permanent link">&para;</a></h4>
 <p>trap命令用于在shell程序中捕捉到信号，之后可以有三种反应方式：</p>
 <ul>
@@ -1862,175 +1860,172 @@ done
 </ul>
 <p>trap对上面三种方式提供了三种基本形式：</p>
 <p>第一种形式的trap命令在shell接收到signal list清单中数值相同的信号时，将执行双引号中的命令串。</p>
-<pre><code>trap 'commands' signal-list
-trap &quot;commands&quot; signal-list
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-33-1"><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a>trap &#39;commands&#39; signal-list
+</span><span id="__span-33-2"><a id="__codelineno-33-2" name="__codelineno-33-2" href="#__codelineno-33-2"></a>trap &quot;commands&quot; signal-list
+</span></code></pre></div>
 <p>第二种形式的trap命令恢复信号的默认操作：</p>
-<pre><code>trap signal-list
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-34-1"><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a>trap signal-list
+</span></code></pre></div>
 <p>第三种形式的trap命令允许忽视信号：</p>
-<pre><code>trap &quot; &quot; signal-list
-trap 'COMMAND' SIGINT（表示关闭进程）
-</code></pre>
-<p>例：写一个脚本，能够ping探测指定网络内的所有主机是否在线,当没有执行完时可接收ctrl+c命令退出。</p>
-<pre><code>
-#!/bin/bash
-quitScript() {
-   echo &quot;Quit...&quot;
-}    
-trap 'quitScript; exit 5' SIGINT
-
-cnetPing() {
-  for i in {1..254}; do
-    if ping -c 1 -W 1 $1.$i &amp;&gt; /dev/null; then
-      echo &quot;$1.$i is up.&quot;
-     else
-      echo &quot;$1.$i is down.&quot;
-    fi
-    done
-}
-
-bnetPing() {
-  for j in {0..255}; do
-    cnetPing $1.$j 
-  done
-}
-anetPing() {
-for m in {0..255}; do
-bnetPing $1.$m
-done
-}
-
-netType=`echo $1 | cut -d&quot;.&quot; -f1`
-
-if [ $netType -ge 1 -a $netType -le 126 ]; then
-anetPing $netType
-elif [ $netType -ge 128 -a $netType -le 191 ]; then
-bnetPing $(echo $1 | cut -d'.' -f1,2)
-elif [ $netType -ge 192 -a $netType -le 223 ]; then
-cnetPing $(echo $1 | cut -d'.' -f1-3)
-else
-echo &quot;Wrong&quot;
-exit 2
-fi
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-35-1"><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a>trap &quot; &quot; signal-list
+</span><span id="__span-35-2"><a id="__codelineno-35-2" name="__codelineno-35-2" href="#__codelineno-35-2"></a>trap &#39;COMMAND&#39; SIGINT（表示关闭进程）
+</span></code></pre></div>
+<p>例：写一个脚本，能够ping探测指定网络内的所有主机是否在线,当没有执行完时可接收ctrl+c命令退出。
+<div class="language-text highlight"><pre><span></span><code><span id="__span-36-1"><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a>#!/bin/bash
+</span><span id="__span-36-2"><a id="__codelineno-36-2" name="__codelineno-36-2" href="#__codelineno-36-2"></a>quitScript() {
+</span><span id="__span-36-3"><a id="__codelineno-36-3" name="__codelineno-36-3" href="#__codelineno-36-3"></a>   echo &quot;Quit...&quot;
+</span><span id="__span-36-4"><a id="__codelineno-36-4" name="__codelineno-36-4" href="#__codelineno-36-4"></a>}    
+</span><span id="__span-36-5"><a id="__codelineno-36-5" name="__codelineno-36-5" href="#__codelineno-36-5"></a>trap &#39;quitScript; exit 5&#39; SIGINT
+</span><span id="__span-36-6"><a id="__codelineno-36-6" name="__codelineno-36-6" href="#__codelineno-36-6"></a>
+</span><span id="__span-36-7"><a id="__codelineno-36-7" name="__codelineno-36-7" href="#__codelineno-36-7"></a>cnetPing() {
+</span><span id="__span-36-8"><a id="__codelineno-36-8" name="__codelineno-36-8" href="#__codelineno-36-8"></a>  for i in {1..254}; do
+</span><span id="__span-36-9"><a id="__codelineno-36-9" name="__codelineno-36-9" href="#__codelineno-36-9"></a>    if ping -c 1 -W 1 $1.$i &amp;&gt; /dev/null; then
+</span><span id="__span-36-10"><a id="__codelineno-36-10" name="__codelineno-36-10" href="#__codelineno-36-10"></a>      echo &quot;$1.$i is up.&quot;
+</span><span id="__span-36-11"><a id="__codelineno-36-11" name="__codelineno-36-11" href="#__codelineno-36-11"></a>     else
+</span><span id="__span-36-12"><a id="__codelineno-36-12" name="__codelineno-36-12" href="#__codelineno-36-12"></a>      echo &quot;$1.$i is down.&quot;
+</span><span id="__span-36-13"><a id="__codelineno-36-13" name="__codelineno-36-13" href="#__codelineno-36-13"></a>    fi
+</span><span id="__span-36-14"><a id="__codelineno-36-14" name="__codelineno-36-14" href="#__codelineno-36-14"></a>    done
+</span><span id="__span-36-15"><a id="__codelineno-36-15" name="__codelineno-36-15" href="#__codelineno-36-15"></a>}
+</span><span id="__span-36-16"><a id="__codelineno-36-16" name="__codelineno-36-16" href="#__codelineno-36-16"></a>
+</span><span id="__span-36-17"><a id="__codelineno-36-17" name="__codelineno-36-17" href="#__codelineno-36-17"></a>bnetPing() {
+</span><span id="__span-36-18"><a id="__codelineno-36-18" name="__codelineno-36-18" href="#__codelineno-36-18"></a>  for j in {0..255}; do
+</span><span id="__span-36-19"><a id="__codelineno-36-19" name="__codelineno-36-19" href="#__codelineno-36-19"></a>    cnetPing $1.$j 
+</span><span id="__span-36-20"><a id="__codelineno-36-20" name="__codelineno-36-20" href="#__codelineno-36-20"></a>  done
+</span><span id="__span-36-21"><a id="__codelineno-36-21" name="__codelineno-36-21" href="#__codelineno-36-21"></a>}
+</span><span id="__span-36-22"><a id="__codelineno-36-22" name="__codelineno-36-22" href="#__codelineno-36-22"></a>anetPing() {
+</span><span id="__span-36-23"><a id="__codelineno-36-23" name="__codelineno-36-23" href="#__codelineno-36-23"></a>for m in {0..255}; do
+</span><span id="__span-36-24"><a id="__codelineno-36-24" name="__codelineno-36-24" href="#__codelineno-36-24"></a>bnetPing $1.$m
+</span><span id="__span-36-25"><a id="__codelineno-36-25" name="__codelineno-36-25" href="#__codelineno-36-25"></a>done
+</span><span id="__span-36-26"><a id="__codelineno-36-26" name="__codelineno-36-26" href="#__codelineno-36-26"></a>}
+</span><span id="__span-36-27"><a id="__codelineno-36-27" name="__codelineno-36-27" href="#__codelineno-36-27"></a>
+</span><span id="__span-36-28"><a id="__codelineno-36-28" name="__codelineno-36-28" href="#__codelineno-36-28"></a>netType=`echo $1 | cut -d&quot;.&quot; -f1`
+</span><span id="__span-36-29"><a id="__codelineno-36-29" name="__codelineno-36-29" href="#__codelineno-36-29"></a>
+</span><span id="__span-36-30"><a id="__codelineno-36-30" name="__codelineno-36-30" href="#__codelineno-36-30"></a>if [ $netType -ge 1 -a $netType -le 126 ]; then
+</span><span id="__span-36-31"><a id="__codelineno-36-31" name="__codelineno-36-31" href="#__codelineno-36-31"></a>anetPing $netType
+</span><span id="__span-36-32"><a id="__codelineno-36-32" name="__codelineno-36-32" href="#__codelineno-36-32"></a>elif [ $netType -ge 128 -a $netType -le 191 ]; then
+</span><span id="__span-36-33"><a id="__codelineno-36-33" name="__codelineno-36-33" href="#__codelineno-36-33"></a>bnetPing $(echo $1 | cut -d&#39;.&#39; -f1,2)
+</span><span id="__span-36-34"><a id="__codelineno-36-34" name="__codelineno-36-34" href="#__codelineno-36-34"></a>elif [ $netType -ge 192 -a $netType -le 223 ]; then
+</span><span id="__span-36-35"><a id="__codelineno-36-35" name="__codelineno-36-35" href="#__codelineno-36-35"></a>cnetPing $(echo $1 | cut -d&#39;.&#39; -f1-3)
+</span><span id="__span-36-36"><a id="__codelineno-36-36" name="__codelineno-36-36" href="#__codelineno-36-36"></a>else
+</span><span id="__span-36-37"><a id="__codelineno-36-37" name="__codelineno-36-37" href="#__codelineno-36-37"></a>echo &quot;Wrong&quot;
+</span><span id="__span-36-38"><a id="__codelineno-36-38" name="__codelineno-36-38" href="#__codelineno-36-38"></a>exit 2
+</span><span id="__span-36-39"><a id="__codelineno-36-39" name="__codelineno-36-39" href="#__codelineno-36-39"></a>fi
+</span></code></pre></div></p>
 <h3 id="bash_10">bash编程之数组<a class="headerlink" href="#bash_10" title="Permanent link">&para;</a></h3>
 <p><strong>数组</strong>：连续的多个独立内存空间，每个内存空间相当于一个变量
 <strong>数组元素</strong>：数组名+索引（从0开始编号）
 <strong>索引的表示方式</strong>：a[0], a[1]
-<strong>声明数组</strong>：</p>
-<pre><code>declare -a ARRAR_NAME
-</code></pre>
-<p><strong>关联数组</strong>：</p>
-<pre><code>declare -A ARRAY_NAME
-</code></pre>
+<strong>声明数组</strong>：
+<div class="language-text highlight"><pre><span></span><code><span id="__span-37-1"><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a>declare -a ARRAR_NAME
+</span></code></pre></div>
+<strong>关联数组</strong>：
+<div class="language-text highlight"><pre><span></span><code><span id="__span-38-1"><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a>declare -A ARRAY_NAME
+</span></code></pre></div></p>
 <p>支持稀疏格式：仅一维数组  </p>
 <p>数组元素的赋值：</p>
-<p>(1) 一次只赋值一个元素</p>
-<pre><code>a[0]=$RANDOM
-</code></pre>
-<p>(2) 一次赋值全部元素</p>
-<pre><code>a=(red blue yellow green)
-</code></pre>
-<p>(3) 指定索引进行赋值</p>
-<pre><code>a=([0]=green [3]=red [2]=blue [6]=yellow)
-</code></pre>
-<p>(4) 用户输入</p>
-<pre><code>read -a ARRAY
-</code></pre>
+<p>(1) 一次只赋值一个元素
+<div class="language-text highlight"><pre><span></span><code><span id="__span-39-1"><a id="__codelineno-39-1" name="__codelineno-39-1" href="#__codelineno-39-1"></a>a[0]=$RANDOM
+</span></code></pre></div></p>
+<p>(2) 一次赋值全部元素
+<div class="language-text highlight"><pre><span></span><code><span id="__span-40-1"><a id="__codelineno-40-1" name="__codelineno-40-1" href="#__codelineno-40-1"></a>a=(red blue yellow green)
+</span></code></pre></div></p>
+<p>(3) 指定索引进行赋值
+<div class="language-text highlight"><pre><span></span><code><span id="__span-41-1"><a id="__codelineno-41-1" name="__codelineno-41-1" href="#__codelineno-41-1"></a>a=([0]=green [3]=red [2]=blue [6]=yellow)
+</span></code></pre></div></p>
+<p>(4) 用户输入
+<div class="language-text highlight"><pre><span></span><code><span id="__span-42-1"><a id="__codelineno-42-1" name="__codelineno-42-1" href="#__codelineno-42-1"></a>read -a ARRAY
+</span></code></pre></div></p>
 <p><strong>数组的访问</strong>：
-<strong>用索引访问</strong>：</p>
-<pre><code>ARRAY[index]
-</code></pre>
-<p><strong>数组的长度</strong>：</p>
-<pre><code>${#ARRAY[*]}
-${#ARRAY[@]}
-</code></pre>
-<p>例：写一个脚本，生成10个随机数，保存至数组中；而后显示数组下标为偶数的元素</p>
-<pre><code>#！/bin/bash
-for i in {0..9}; do
-    rand[$i]=$RANDOM
-    [ $[$i%2] -eq 0 ] &amp;&amp; echo &quot;$i:${rand[$i]}&quot;
-done
-</code></pre>
+<strong>用索引访问</strong>：
+<div class="language-text highlight"><pre><span></span><code><span id="__span-43-1"><a id="__codelineno-43-1" name="__codelineno-43-1" href="#__codelineno-43-1"></a>ARRAY[index]
+</span></code></pre></div>
+<strong>数组的长度</strong>：</p>
+<p><div class="language-text highlight"><pre><span></span><code><span id="__span-44-1"><a id="__codelineno-44-1" name="__codelineno-44-1" href="#__codelineno-44-1"></a>${#ARRAY[*]}
+</span><span id="__span-44-2"><a id="__codelineno-44-2" name="__codelineno-44-2" href="#__codelineno-44-2"></a>${#ARRAY[@]}
+</span></code></pre></div>
+例：写一个脚本，生成10个随机数，保存至数组中；而后显示数组下标为偶数的元素</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-45-1"><a id="__codelineno-45-1" name="__codelineno-45-1" href="#__codelineno-45-1"></a>#！/bin/bash
+</span><span id="__span-45-2"><a id="__codelineno-45-2" name="__codelineno-45-2" href="#__codelineno-45-2"></a>for i in {0..9}; do
+</span><span id="__span-45-3"><a id="__codelineno-45-3" name="__codelineno-45-3" href="#__codelineno-45-3"></a>    rand[$i]=$RANDOM
+</span><span id="__span-45-4"><a id="__codelineno-45-4" name="__codelineno-45-4" href="#__codelineno-45-4"></a>    [ $[$i%2] -eq 0 ] &amp;&amp; echo &quot;$i:${rand[$i]}&quot;
+</span><span id="__span-45-5"><a id="__codelineno-45-5" name="__codelineno-45-5" href="#__codelineno-45-5"></a>done
+</span></code></pre></div>
 <p><strong>从数组中挑选某元素</strong>:</p>
-<pre><code>${ARRAY[@]:offset:number}
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-46-1"><a id="__codelineno-46-1" name="__codelineno-46-1" href="#__codelineno-46-1"></a>${ARRAY[@]:offset:number}
+</span></code></pre></div>
 <p><strong>切片</strong>：</p>
-<pre><code>offset: 偏移的元素个数
-number: 取出的元素的个数
-${ARRAY[@]:offset}：取出偏移量后的所有元素
-${ARRAY[@]}: 取出所有元素
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-47-1"><a id="__codelineno-47-1" name="__codelineno-47-1" href="#__codelineno-47-1"></a>offset: 偏移的元素个数
+</span><span id="__span-47-2"><a id="__codelineno-47-2" name="__codelineno-47-2" href="#__codelineno-47-2"></a>number: 取出的元素的个数
+</span><span id="__span-47-3"><a id="__codelineno-47-3" name="__codelineno-47-3" href="#__codelineno-47-3"></a>${ARRAY[@]:offset}：取出偏移量后的所有元素
+</span><span id="__span-47-4"><a id="__codelineno-47-4" name="__codelineno-47-4" href="#__codelineno-47-4"></a>${ARRAY[@]}: 取出所有元素
+</span></code></pre></div>
 <p><strong>数组复制</strong>：要使用${ARRAY[@]}</p>
-<pre><code>$@: 每个参数是一个独立的串
-$*: 所有参数是一个串
-</code></pre>
-<p><strong>向数组中追加元素</strong>：非稀疏格式</p>
-<pre><code>week, 
-week[${#week[@]}]
-</code></pre>
+<p><div class="language-text highlight"><pre><span></span><code><span id="__span-48-1"><a id="__codelineno-48-1" name="__codelineno-48-1" href="#__codelineno-48-1"></a>$@: 每个参数是一个独立的串
+</span><span id="__span-48-2"><a id="__codelineno-48-2" name="__codelineno-48-2" href="#__codelineno-48-2"></a>$*: 所有参数是一个串
+</span></code></pre></div>
+<strong>向数组中追加元素</strong>：非稀疏格式</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-49-1"><a id="__codelineno-49-1" name="__codelineno-49-1" href="#__codelineno-49-1"></a>week, 
+</span><span id="__span-49-2"><a id="__codelineno-49-2" name="__codelineno-49-2" href="#__codelineno-49-2"></a>week[${#week[@]}]
+</span></code></pre></div>
 <p><strong>从数组中删除元素</strong>：</p>
-<pre><code>unset ARRAY[index]
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-50-1"><a id="__codelineno-50-1" name="__codelineno-50-1" href="#__codelineno-50-1"></a>unset ARRAY[index]
+</span></code></pre></div>
 <p>例：复制一个数组中下标为偶数的元素至一个新数组中</p>
-<pre><code>#!/bin/bash
-declare -a mylogs
-logs=(/var/log/*.log)
-echo ${logs[@]}
-for i in `seq 0 ${#logs[@]}`; do
-  if [ $[$i%2] -eq 0 ];then
-    index=${#mylogs[@]}
-     mylogs[$index]=${logs[$i]}
-  fi
-done
-echo ${mylogs[@]}
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-51-1"><a id="__codelineno-51-1" name="__codelineno-51-1" href="#__codelineno-51-1"></a>#!/bin/bash
+</span><span id="__span-51-2"><a id="__codelineno-51-2" name="__codelineno-51-2" href="#__codelineno-51-2"></a>declare -a mylogs
+</span><span id="__span-51-3"><a id="__codelineno-51-3" name="__codelineno-51-3" href="#__codelineno-51-3"></a>logs=(/var/log/*.log)
+</span><span id="__span-51-4"><a id="__codelineno-51-4" name="__codelineno-51-4" href="#__codelineno-51-4"></a>echo ${logs[@]}
+</span><span id="__span-51-5"><a id="__codelineno-51-5" name="__codelineno-51-5" href="#__codelineno-51-5"></a>for i in `seq 0 ${#logs[@]}`; do
+</span><span id="__span-51-6"><a id="__codelineno-51-6" name="__codelineno-51-6" href="#__codelineno-51-6"></a>  if [ $[$i%2] -eq 0 ];then
+</span><span id="__span-51-7"><a id="__codelineno-51-7" name="__codelineno-51-7" href="#__codelineno-51-7"></a>    index=${#mylogs[@]}
+</span><span id="__span-51-8"><a id="__codelineno-51-8" name="__codelineno-51-8" href="#__codelineno-51-8"></a>     mylogs[$index]=${logs[$i]}
+</span><span id="__span-51-9"><a id="__codelineno-51-9" name="__codelineno-51-9" href="#__codelineno-51-9"></a>  fi
+</span><span id="__span-51-10"><a id="__codelineno-51-10" name="__codelineno-51-10" href="#__codelineno-51-10"></a>done
+</span><span id="__span-51-11"><a id="__codelineno-51-11" name="__codelineno-51-11" href="#__codelineno-51-11"></a>echo ${mylogs[@]}
+</span></code></pre></div>
 <p>例2：生成10个随机数，升序排序</p>
-<pre><code>
-#!/bin/bash
-for((i=0;i&lt;10;i++))
-do
-  rnd[$i]=$RANDOM
-done
-echo -e &quot;total=${#rnd[@]}\n${rnd[@]}\nBegin to sort&quot;
-for((i=9;i&gt;=1;i--))
-do
-        for((j=0;j&lt;i;j++))
-  do
-  if [ ${rnd[$j]} -gt ${rnd[$[$j+1]]} ] ;then
-    swapValue=${rnd[$j]}
-    rnd[$j]=${rnd[$[$j+1]]}
-    rnd[$[$j+1]]=$swapValue
-  fi
-  done
-done
-echo ${rnd[@]}
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-52-1"><a id="__codelineno-52-1" name="__codelineno-52-1" href="#__codelineno-52-1"></a>#!/bin/bash
+</span><span id="__span-52-2"><a id="__codelineno-52-2" name="__codelineno-52-2" href="#__codelineno-52-2"></a>for((i=0;i&lt;10;i++))
+</span><span id="__span-52-3"><a id="__codelineno-52-3" name="__codelineno-52-3" href="#__codelineno-52-3"></a>do
+</span><span id="__span-52-4"><a id="__codelineno-52-4" name="__codelineno-52-4" href="#__codelineno-52-4"></a>  rnd[$i]=$RANDOM
+</span><span id="__span-52-5"><a id="__codelineno-52-5" name="__codelineno-52-5" href="#__codelineno-52-5"></a>done
+</span><span id="__span-52-6"><a id="__codelineno-52-6" name="__codelineno-52-6" href="#__codelineno-52-6"></a>echo -e &quot;total=${#rnd[@]}\n${rnd[@]}\nBegin to sort&quot;
+</span><span id="__span-52-7"><a id="__codelineno-52-7" name="__codelineno-52-7" href="#__codelineno-52-7"></a>for((i=9;i&gt;=1;i--))
+</span><span id="__span-52-8"><a id="__codelineno-52-8" name="__codelineno-52-8" href="#__codelineno-52-8"></a>do
+</span><span id="__span-52-9"><a id="__codelineno-52-9" name="__codelineno-52-9" href="#__codelineno-52-9"></a>        for((j=0;j&lt;i;j++))
+</span><span id="__span-52-10"><a id="__codelineno-52-10" name="__codelineno-52-10" href="#__codelineno-52-10"></a>  do
+</span><span id="__span-52-11"><a id="__codelineno-52-11" name="__codelineno-52-11" href="#__codelineno-52-11"></a>  if [ ${rnd[$j]} -gt ${rnd[$[$j+1]]} ] ;then
+</span><span id="__span-52-12"><a id="__codelineno-52-12" name="__codelineno-52-12" href="#__codelineno-52-12"></a>    swapValue=${rnd[$j]}
+</span><span id="__span-52-13"><a id="__codelineno-52-13" name="__codelineno-52-13" href="#__codelineno-52-13"></a>    rnd[$j]=${rnd[$[$j+1]]}
+</span><span id="__span-52-14"><a id="__codelineno-52-14" name="__codelineno-52-14" href="#__codelineno-52-14"></a>    rnd[$[$j+1]]=$swapValue
+</span><span id="__span-52-15"><a id="__codelineno-52-15" name="__codelineno-52-15" href="#__codelineno-52-15"></a>  fi
+</span><span id="__span-52-16"><a id="__codelineno-52-16" name="__codelineno-52-16" href="#__codelineno-52-16"></a>  done
+</span><span id="__span-52-17"><a id="__codelineno-52-17" name="__codelineno-52-17" href="#__codelineno-52-17"></a>done
+</span><span id="__span-52-18"><a id="__codelineno-52-18" name="__codelineno-52-18" href="#__codelineno-52-18"></a>echo ${rnd[@]}
+</span></code></pre></div>
 <p>例3：打印九九乘法表</p>
-<pre><code>#!/bin/bashfor((i=1;i&lt;=9;i++))
-do 
-strLine=&quot;&quot;
-  for((j=1;i&lt;=9;j++))
-  do
-    strLine=$strLine&quot;$i*$j=&quot;$[$i*$j]&quot;\t&quot;
-    [ $i -eq $j ] &amp;&amp; echo -e $strLine &amp;&amp; break
-  done
-done
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-53-1"><a id="__codelineno-53-1" name="__codelineno-53-1" href="#__codelineno-53-1"></a>#!/bin/bashfor((i=1;i&lt;=9;i++))
+</span><span id="__span-53-2"><a id="__codelineno-53-2" name="__codelineno-53-2" href="#__codelineno-53-2"></a>do 
+</span><span id="__span-53-3"><a id="__codelineno-53-3" name="__codelineno-53-3" href="#__codelineno-53-3"></a>strLine=&quot;&quot;
+</span><span id="__span-53-4"><a id="__codelineno-53-4" name="__codelineno-53-4" href="#__codelineno-53-4"></a>  for((j=1;i&lt;=9;j++))
+</span><span id="__span-53-5"><a id="__codelineno-53-5" name="__codelineno-53-5" href="#__codelineno-53-5"></a>  do
+</span><span id="__span-53-6"><a id="__codelineno-53-6" name="__codelineno-53-6" href="#__codelineno-53-6"></a>    strLine=$strLine&quot;$i*$j=&quot;$[$i*$j]&quot;\t&quot;
+</span><span id="__span-53-7"><a id="__codelineno-53-7" name="__codelineno-53-7" href="#__codelineno-53-7"></a>    [ $i -eq $j ] &amp;&amp; echo -e $strLine &amp;&amp; break
+</span><span id="__span-53-8"><a id="__codelineno-53-8" name="__codelineno-53-8" href="#__codelineno-53-8"></a>  done
+</span><span id="__span-53-9"><a id="__codelineno-53-9" name="__codelineno-53-9" href="#__codelineno-53-9"></a>done
+</span></code></pre></div>
 <h3 id="bash_11">bash编程之字符串操作<a class="headerlink" href="#bash_11" title="Permanent link">&para;</a></h3>
 <p><strong>字符串切片</strong>：</p>
-<pre><code>${string:offset:length}
-[root@scholar scripts]# string='hello word'
-[root@scholar scripts]# echo ${string:2:4}
-llo
-
-取尾部的指定个数的字符：
-${string: -length}
-[root@scholar scripts]# echo ${string: -2}
-rd
-
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-54-1"><a id="__codelineno-54-1" name="__codelineno-54-1" href="#__codelineno-54-1"></a>${string:offset:length}
+</span><span id="__span-54-2"><a id="__codelineno-54-2" name="__codelineno-54-2" href="#__codelineno-54-2"></a>[root@scholar scripts]# string=&#39;hello word&#39;
+</span><span id="__span-54-3"><a id="__codelineno-54-3" name="__codelineno-54-3" href="#__codelineno-54-3"></a>[root@scholar scripts]# echo ${string:2:4}
+</span><span id="__span-54-4"><a id="__codelineno-54-4" name="__codelineno-54-4" href="#__codelineno-54-4"></a>llo
+</span><span id="__span-54-5"><a id="__codelineno-54-5" name="__codelineno-54-5" href="#__codelineno-54-5"></a>
+</span><span id="__span-54-6"><a id="__codelineno-54-6" name="__codelineno-54-6" href="#__codelineno-54-6"></a>取尾部的指定个数的字符：
+</span><span id="__span-54-7"><a id="__codelineno-54-7" name="__codelineno-54-7" href="#__codelineno-54-7"></a>${string: -length}
+</span><span id="__span-54-8"><a id="__codelineno-54-8" name="__codelineno-54-8" href="#__codelineno-54-8"></a>[root@scholar scripts]# echo ${string: -2}
+</span><span id="__span-54-9"><a id="__codelineno-54-9" name="__codelineno-54-9" href="#__codelineno-54-9"></a>rd
+</span></code></pre></div>
 <p><strong>取子串</strong>：基于模式</p>
 <ul>
 <li><code>${variable#*word}</code>：在variable中存储字串上，自左而右，查找第一次出现word，删除字符开始至此word处的所有内容；</li>
@@ -2041,78 +2036,78 @@ ${file##*/}: 返回messages</code></li>
 <li><code>${variable%word*}</code>: 在variable中存储字串上，自右而左，查找第一次出现word，删除此word处至字串尾部的所有内容；</li>
 <li><code>${variable%%world*}</code>:在variable中存储字串上，自右而左，查找最后一次出现word，删除此word处至字串尾部的所有内容；</li>
 </ul>
-<pre><code>file='/var/log/messages'
-${file%*/}: 返回的结果是/var/log
-${file%%*/}: 返回结果为空
-
-例：url=&quot;http://www.redhat.com:80&quot;
-取端口：${url##*:}
-取协议：${url%%:*}
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-55-1"><a id="__codelineno-55-1" name="__codelineno-55-1" href="#__codelineno-55-1"></a>file=&#39;/var/log/messages&#39;
+</span><span id="__span-55-2"><a id="__codelineno-55-2" name="__codelineno-55-2" href="#__codelineno-55-2"></a>${file%*/}: 返回的结果是/var/log
+</span><span id="__span-55-3"><a id="__codelineno-55-3" name="__codelineno-55-3" href="#__codelineno-55-3"></a>${file%%*/}: 返回结果为空
+</span><span id="__span-55-4"><a id="__codelineno-55-4" name="__codelineno-55-4" href="#__codelineno-55-4"></a>
+</span><span id="__span-55-5"><a id="__codelineno-55-5" name="__codelineno-55-5" href="#__codelineno-55-5"></a>例：url=&quot;http://www.redhat.com:80&quot;
+</span><span id="__span-55-6"><a id="__codelineno-55-6" name="__codelineno-55-6" href="#__codelineno-55-6"></a>取端口：${url##*:}
+</span><span id="__span-55-7"><a id="__codelineno-55-7" name="__codelineno-55-7" href="#__codelineno-55-7"></a>取协议：${url%%:*}
+</span></code></pre></div>
 <p><strong>查找替换</strong>：</p>
 <ul>
 <li><code>${variable/pattern/substi}</code>: 替换第一次出现</li>
 </ul>
-<pre><code>#userinfo=`tail -1 /etc/passwd
-#echo $userinfo
-scholar:x:500:500:scholar:/home/scholar:/bin/bash
-#echo ${userinfo/scholar/redhat}
-redhat:x:500:500:scholar:/home/scholar:/bin/bash
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-56-1"><a id="__codelineno-56-1" name="__codelineno-56-1" href="#__codelineno-56-1"></a>#userinfo=`tail -1 /etc/passwd
+</span><span id="__span-56-2"><a id="__codelineno-56-2" name="__codelineno-56-2" href="#__codelineno-56-2"></a>#echo $userinfo
+</span><span id="__span-56-3"><a id="__codelineno-56-3" name="__codelineno-56-3" href="#__codelineno-56-3"></a>scholar:x:500:500:scholar:/home/scholar:/bin/bash
+</span><span id="__span-56-4"><a id="__codelineno-56-4" name="__codelineno-56-4" href="#__codelineno-56-4"></a>#echo ${userinfo/scholar/redhat}
+</span><span id="__span-56-5"><a id="__codelineno-56-5" name="__codelineno-56-5" href="#__codelineno-56-5"></a>redhat:x:500:500:scholar:/home/scholar:/bin/bash
+</span></code></pre></div>
 <ul>
 <li><code>${variable//pattern/substi}</code>：替换所有的出现</li>
 </ul>
-<pre><code>#echo ${userinfo//scholar/redhat}
-redhat:x:500:500:redhat:/home/redhat:/bin/bash
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-57-1"><a id="__codelineno-57-1" name="__codelineno-57-1" href="#__codelineno-57-1"></a>#echo ${userinfo//scholar/redhat}
+</span><span id="__span-57-2"><a id="__codelineno-57-2" name="__codelineno-57-2" href="#__codelineno-57-2"></a>redhat:x:500:500:redhat:/home/redhat:/bin/bash
+</span></code></pre></div>
 <ul>
 <li><code>${variable/#pattern/substi}</code>：替换行首被pattern匹配到的内容</li>
 </ul>
-<pre><code>#echo ${userinfo/#scholar/redhat}
-redhat:x:500:500:scholar:/home/scholar:/bin/bash
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-58-1"><a id="__codelineno-58-1" name="__codelineno-58-1" href="#__codelineno-58-1"></a>#echo ${userinfo/#scholar/redhat}
+</span><span id="__span-58-2"><a id="__codelineno-58-2" name="__codelineno-58-2" href="#__codelineno-58-2"></a>redhat:x:500:500:scholar:/home/scholar:/bin/bash
+</span></code></pre></div>
 <ul>
 <li><code>${variable/%pattern/substi}</code>：替换行尾被pattern匹配到的内容</li>
 </ul>
-<pre><code>#echo ${userinfo/%bash/redhat}
-scholar:x:500:500:scholar:/home/scholar:/bin/redhat
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-59-1"><a id="__codelineno-59-1" name="__codelineno-59-1" href="#__codelineno-59-1"></a>#echo ${userinfo/%bash/redhat}
+</span><span id="__span-59-2"><a id="__codelineno-59-2" name="__codelineno-59-2" href="#__codelineno-59-2"></a>scholar:x:500:500:scholar:/home/scholar:/bin/redhat
+</span></code></pre></div>
 <h4 id="patternglobbing">pattern可以使用globbing中的元字符：<code>* ？</code><a class="headerlink" href="#patternglobbing" title="Permanent link">&para;</a></h4>
 <p><strong>查找删除</strong>：</p>
 <ul>
 <li><code>${variable/pattern}</code>：删除第一次出现</li>
 </ul>
-<pre><code>#echo ${userinfo/scholar}
-:x:500:500:scholar:/home/scholar:/bin/bash
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-60-1"><a id="__codelineno-60-1" name="__codelineno-60-1" href="#__codelineno-60-1"></a>#echo ${userinfo/scholar}
+</span><span id="__span-60-2"><a id="__codelineno-60-2" name="__codelineno-60-2" href="#__codelineno-60-2"></a>:x:500:500:scholar:/home/scholar:/bin/bash
+</span></code></pre></div>
 <ul>
 <li><code>${variable//pattern}</code>：删除所有的出现</li>
 </ul>
-<pre><code>#echo ${userinfo//scholar}
-:x:500:500::/home/:/bin/bash
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-61-1"><a id="__codelineno-61-1" name="__codelineno-61-1" href="#__codelineno-61-1"></a>#echo ${userinfo//scholar}
+</span><span id="__span-61-2"><a id="__codelineno-61-2" name="__codelineno-61-2" href="#__codelineno-61-2"></a>:x:500:500::/home/:/bin/bash
+</span></code></pre></div>
 <ul>
 <li><code>${variable/#pattern}</code>：删除行首被pattern匹配到的内容</li>
 </ul>
-<pre><code>#echo ${userinfo/#scholar}
-:x:500:500:scholar:/home/scholar:/bin/bash
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-62-1"><a id="__codelineno-62-1" name="__codelineno-62-1" href="#__codelineno-62-1"></a>#echo ${userinfo/#scholar}
+</span><span id="__span-62-2"><a id="__codelineno-62-2" name="__codelineno-62-2" href="#__codelineno-62-2"></a>:x:500:500:scholar:/home/scholar:/bin/bash
+</span></code></pre></div>
 <ul>
 <li><code>${variable/%pattern}</code>：删除行尾被pattern匹配到的内容</li>
 </ul>
-<pre><code>#echo ${userinfo/%bash}
-scholar:x:500:500:scholar:/home/scholar:/bin/
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-63-1"><a id="__codelineno-63-1" name="__codelineno-63-1" href="#__codelineno-63-1"></a>#echo ${userinfo/%bash}
+</span><span id="__span-63-2"><a id="__codelineno-63-2" name="__codelineno-63-2" href="#__codelineno-63-2"></a>scholar:x:500:500:scholar:/home/scholar:/bin/
+</span></code></pre></div>
 <p><strong>大小写转换</strong>：</p>
 <p>小–&gt;大：<code>${variable^^}</code></p>
-<pre><code>#echo ${userinfo^^}
-SCHOLAR:X:500:500:SCHOLAR:/HOME/SCHOLAR:/BIN/BASH
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-64-1"><a id="__codelineno-64-1" name="__codelineno-64-1" href="#__codelineno-64-1"></a>#echo ${userinfo^^}
+</span><span id="__span-64-2"><a id="__codelineno-64-2" name="__codelineno-64-2" href="#__codelineno-64-2"></a>SCHOLAR:X:500:500:SCHOLAR:/HOME/SCHOLAR:/BIN/BASH
+</span></code></pre></div>
 <p>大–&gt;小：<code>${variable,,}</code></p>
-<pre><code>#name=&quot;SCHOLAR&quot;
-#echo ${name,,}
-scholar
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-65-1"><a id="__codelineno-65-1" name="__codelineno-65-1" href="#__codelineno-65-1"></a>#name=&quot;SCHOLAR&quot;
+</span><span id="__span-65-2"><a id="__codelineno-65-2" name="__codelineno-65-2" href="#__codelineno-65-2"></a>#echo ${name,,}
+</span><span id="__span-65-3"><a id="__codelineno-65-3" name="__codelineno-65-3" href="#__codelineno-65-3"></a>scholar
+</span></code></pre></div>
 <h4 id="_3">变量赋值操作：<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h4>
 <ul>
 <li><code>${variable:-string}</code>:variable为空或未设定，那么返回string，否则，返回variable变量的值；</li>
@@ -2125,37 +2120,37 @@ scholar
 <li>(1) 在配置文件中定义变量；</li>
 <li>(2) 在脚本中source配置文件；</li>
 </ul>
-<pre><code>#!/bin/bash
-[ -f /etc/sysconfig/network ] &amp;&amp; source /etc/network/network
-[-z &quot;$HOSTAME&quot; -o &quot;$HOSTNAME&quot; = '(none)' ] || HOSTNAME ='localhost'
-/bin/hostname $HOSTNAME
-/bin/hostname
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-66-1"><a id="__codelineno-66-1" name="__codelineno-66-1" href="#__codelineno-66-1"></a>#!/bin/bash
+</span><span id="__span-66-2"><a id="__codelineno-66-2" name="__codelineno-66-2" href="#__codelineno-66-2"></a>[ -f /etc/sysconfig/network ] &amp;&amp; source /etc/network/network
+</span><span id="__span-66-3"><a id="__codelineno-66-3" name="__codelineno-66-3" href="#__codelineno-66-3"></a>[-z &quot;$HOSTAME&quot; -o &quot;$HOSTNAME&quot; = &#39;(none)&#39; ] || HOSTNAME =&#39;localhost&#39;
+</span><span id="__span-66-4"><a id="__codelineno-66-4" name="__codelineno-66-4" href="#__codelineno-66-4"></a>/bin/hostname $HOSTNAME
+</span><span id="__span-66-5"><a id="__codelineno-66-5" name="__codelineno-66-5" href="#__codelineno-66-5"></a>/bin/hostname
+</span></code></pre></div>
 <h4 id="mktemp">mktemp命令：<a class="headerlink" href="#mktemp" title="Permanent link">&para;</a></h4>
 <p>mktemp [OPTIONS] filename.XXX</p>
-<pre><code>-d: 创建临时目录
---tmpdir=/path/to/somewhere ：指定临时文件所在的目录
-
-mktemp /tmp/tmp.XXX                    #XXX生成相同数量随机字符
-mktemp --tmpdir=/var/tmp tmp.XXX       #指定目录创建临时文件
-mktemp --tmpdir=/var/tmp -d tmp.XXX    #指定目录创建临时目录
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-67-1"><a id="__codelineno-67-1" name="__codelineno-67-1" href="#__codelineno-67-1"></a>-d: 创建临时目录
+</span><span id="__span-67-2"><a id="__codelineno-67-2" name="__codelineno-67-2" href="#__codelineno-67-2"></a>--tmpdir=/path/to/somewhere ：指定临时文件所在的目录
+</span><span id="__span-67-3"><a id="__codelineno-67-3" name="__codelineno-67-3" href="#__codelineno-67-3"></a>
+</span><span id="__span-67-4"><a id="__codelineno-67-4" name="__codelineno-67-4" href="#__codelineno-67-4"></a>mktemp /tmp/tmp.XXX                    #XXX生成相同数量随机字符
+</span><span id="__span-67-5"><a id="__codelineno-67-5" name="__codelineno-67-5" href="#__codelineno-67-5"></a>mktemp --tmpdir=/var/tmp tmp.XXX       #指定目录创建临时文件
+</span><span id="__span-67-6"><a id="__codelineno-67-6" name="__codelineno-67-6" href="#__codelineno-67-6"></a>mktemp --tmpdir=/var/tmp -d tmp.XXX    #指定目录创建临时目录
+</span></code></pre></div>
 <h4 id="install">install命令:<a class="headerlink" href="#install" title="Permanent link">&para;</a></h4>
 <p>install [OPTIONS] SOURCE DEST
 install [OPTIONS] SOURCE… DIR
 install [OPTIONS] -d DIR …</p>
-<pre><code>增强型的复制命令：
--o OWNER
--g GROUP
--m MODE
--d : 创建目录
-
-install /etc/fstab /tmp                 #复制文件到指定目录
-install --mode=644 /etc/fstab /tmp/     #复制时指定权限
-install --owner=scholar /etc/fstab /tmp #复制时指定属主
-install --group=scholar /etc/fstab /tmp #复制时指定属组
-install -d /tmp/install                 #创建目录
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-68-1"><a id="__codelineno-68-1" name="__codelineno-68-1" href="#__codelineno-68-1"></a>增强型的复制命令：
+</span><span id="__span-68-2"><a id="__codelineno-68-2" name="__codelineno-68-2" href="#__codelineno-68-2"></a>-o OWNER
+</span><span id="__span-68-3"><a id="__codelineno-68-3" name="__codelineno-68-3" href="#__codelineno-68-3"></a>-g GROUP
+</span><span id="__span-68-4"><a id="__codelineno-68-4" name="__codelineno-68-4" href="#__codelineno-68-4"></a>-m MODE
+</span><span id="__span-68-5"><a id="__codelineno-68-5" name="__codelineno-68-5" href="#__codelineno-68-5"></a>-d : 创建目录
+</span><span id="__span-68-6"><a id="__codelineno-68-6" name="__codelineno-68-6" href="#__codelineno-68-6"></a>
+</span><span id="__span-68-7"><a id="__codelineno-68-7" name="__codelineno-68-7" href="#__codelineno-68-7"></a>install /etc/fstab /tmp                 #复制文件到指定目录
+</span><span id="__span-68-8"><a id="__codelineno-68-8" name="__codelineno-68-8" href="#__codelineno-68-8"></a>install --mode=644 /etc/fstab /tmp/     #复制时指定权限
+</span><span id="__span-68-9"><a id="__codelineno-68-9" name="__codelineno-68-9" href="#__codelineno-68-9"></a>install --owner=scholar /etc/fstab /tmp #复制时指定属主
+</span><span id="__span-68-10"><a id="__codelineno-68-10" name="__codelineno-68-10" href="#__codelineno-68-10"></a>install --group=scholar /etc/fstab /tmp #复制时指定属组
+</span><span id="__span-68-11"><a id="__codelineno-68-11" name="__codelineno-68-11" href="#__codelineno-68-11"></a>install -d /tmp/install                 #创建目录
+</span></code></pre></div>
 
 
 
@@ -2167,6 +2162,11 @@ install -d /tmp/install                 #创建目录
           
           
         </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+            Back to top
+          </button>
         
       </main>
       
@@ -2197,7 +2197,7 @@ install -d /tmp/install                 #创建目录
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tracking", "navigation.expand", "navigation.sections", "navigation.indexes", "navigation.path", "toc.integrate"], "search": "../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tracking", "navigation.top", "navigation.sections", "navigation.indexes", "navigation.path", "toc.integrate", "content.code.copy"], "search": "../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
       <script src="../assets/javascripts/bundle.fac441b0.min.js"></script>

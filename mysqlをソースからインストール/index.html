@@ -206,9 +206,7 @@
       
       
       
-        
-      
-      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
       
       
         
@@ -324,9 +322,7 @@
       
       
       
-        
-      
-      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
       
       
         
@@ -397,9 +393,7 @@
       
       
       
-        
-      
-      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
       
       
         
@@ -459,6 +453,8 @@
       <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" checked>
       
       
+        
+          
         
           
         
@@ -662,6 +658,20 @@
   
   
     <li class="md-nav__item">
+      <a href="../mysql-mgr-copy/" class="md-nav__link">
+        転載MGR
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../mysql-ha/" class="md-nav__link">
         mysql+keepalived搭建教程
       </a>
@@ -691,9 +701,7 @@
       
       
       
-        
-      
-      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_9" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
       
       
         
@@ -1121,142 +1129,141 @@
 
 <h3 id="linux">Linux系のビルドオプション<a class="headerlink" href="#linux" title="Permanent link">&para;</a></h3>
 <h4 id="mysql56">MySQL5.6<a class="headerlink" href="#mysql56" title="Permanent link">&para;</a></h4>
-<pre><code>$ cat build-mysql5.6.sh
-export CC=&quot;cc&quot;
-export CXX=&quot;c++&quot;
-export CFLAGS=&quot;-O2 -fPIC -fno-omit-frame-pointer&quot;
-export CXXFLAGS=&quot;${CFLAGS} -Wno-narrowing -felide-constructors -fno-rtti -fexceptions&quot;
-
-#export CXXFLAGS=&quot;${CFLAGS} -Wno-c++11-narrowing -felide-constructors -fno-rtti -fno-exceptions&quot;
-
-cmake \
--DCMAKE_INSTALL_PREFIX=&quot;/home/USER/myetc/mysql/5.6&quot; \
--DINSTALL_DOCDIR=&quot;share/doc/mysql&quot; \
--DINSTALL_DOCREADMEDIR=&quot;share/doc/mysql&quot; \
--DINSTALL_INCLUDEDIR=&quot;include/mysql&quot; \
--DINSTALL_INFODIR=&quot;info&quot; \
--DINSTALL_LIBDIR=&quot;lib/mysql&quot; \
--DINSTALL_MANDIR=&quot;man&quot; \
--DINSTALL_MYSQLSHAREDIR=&quot;share/mysql&quot; \
--DINSTALL_MYSQLTESTDIR=&quot;share/mysql/tests&quot; \
--DINSTALL_PLUGINDIR=&quot;lib/mysql/plugin&quot; \
--DINSTALL_SBINDIR=&quot;libexec&quot; \
--DINSTALL_SCRIPTDIR=&quot;bin&quot; \
--DINSTALL_SHAREDIR=&quot;share&quot; \
--DINSTALL_SQLBENCHDIR=&quot;share/mysql&quot; \
--DINSTALL_SUPPORTFILESDIR=&quot;share/mysql&quot; \
--DWITH_UNIT_TESTS=0 \
--DWITH_SSL=system \
--DWITH_READLINE=1 \
--DWITH_LIBWRAP=0 \
--DWITHOUT_SERVER=1 \
--DWITH_EMBEDDED_SERVER=&quot;ON&quot;
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>$ cat build-mysql5.6.sh
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>export CC=&quot;cc&quot;
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>export CXX=&quot;c++&quot;
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>export CFLAGS=&quot;-O2 -fPIC -fno-omit-frame-pointer&quot;
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>export CXXFLAGS=&quot;${CFLAGS} -Wno-narrowing -felide-constructors -fno-rtti -fexceptions&quot;
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>#export CXXFLAGS=&quot;${CFLAGS} -Wno-c++11-narrowing -felide-constructors -fno-rtti -fno-exceptions&quot;
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>cmake \
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>-DCMAKE_INSTALL_PREFIX=&quot;/home/USER/myetc/mysql/5.6&quot; \
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>-DINSTALL_DOCDIR=&quot;share/doc/mysql&quot; \
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>-DINSTALL_DOCREADMEDIR=&quot;share/doc/mysql&quot; \
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>-DINSTALL_INCLUDEDIR=&quot;include/mysql&quot; \
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>-DINSTALL_INFODIR=&quot;info&quot; \
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>-DINSTALL_LIBDIR=&quot;lib/mysql&quot; \
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>-DINSTALL_MANDIR=&quot;man&quot; \
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>-DINSTALL_MYSQLSHAREDIR=&quot;share/mysql&quot; \
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>-DINSTALL_MYSQLTESTDIR=&quot;share/mysql/tests&quot; \
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>-DINSTALL_PLUGINDIR=&quot;lib/mysql/plugin&quot; \
+</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>-DINSTALL_SBINDIR=&quot;libexec&quot; \
+</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>-DINSTALL_SCRIPTDIR=&quot;bin&quot; \
+</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>-DINSTALL_SHAREDIR=&quot;share&quot; \
+</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>-DINSTALL_SQLBENCHDIR=&quot;share/mysql&quot; \
+</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>-DINSTALL_SUPPORTFILESDIR=&quot;share/mysql&quot; \
+</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>-DWITH_UNIT_TESTS=0 \
+</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>-DWITH_SSL=system \
+</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>-DWITH_READLINE=1 \
+</span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a>-DWITH_LIBWRAP=0 \
+</span><span id="__span-0-29"><a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a>-DWITHOUT_SERVER=1 \
+</span><span id="__span-0-30"><a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a>-DWITH_EMBEDDED_SERVER=&quot;ON&quot;
+</span></code></pre></div>
 <p><code>make</code>
 <code>make install</code></p>
 <h4 id="mysql55">MySQL5.5<a class="headerlink" href="#mysql55" title="Permanent link">&para;</a></h4>
-<pre><code>
-$ cat build-mysql5.5.sh
-export CC=&quot;cc&quot;
-export CXX=&quot;c++&quot;
-export CFLAGS=&quot;-O2 -fPIC -fno-omit-frame-pointer&quot;
-export CXXFLAGS=&quot;${CFLAGS} -Wno-narrowing -felide-constructors -fno-rtti -fexceptions -fpermissive &quot;
-
-#export CXXFLAGS=&quot;${CFLAGS} -Wno-c++11-narrowing -felide-constructors -fno-rtti -fno-exceptions&quot;
-
-cmake \
--DCMAKE_INSTALL_PREFIX=&quot;/home/USER/myetc/mysql/5.5&quot; \
--DINSTALL_DOCDIR=&quot;share/doc/mysql&quot; \
--DINSTALL_DOCREADMEDIR=&quot;share/doc/mysql&quot; \
--DINSTALL_INCLUDEDIR=&quot;include/mysql&quot; \
--DINSTALL_INFODIR=&quot;info&quot; \
--DINSTALL_LIBDIR=&quot;lib/mysql&quot; \
--DINSTALL_MANDIR=&quot;man&quot; \
--DINSTALL_MYSQLSHAREDIR=&quot;share/mysql&quot; \
--DINSTALL_MYSQLTESTDIR=&quot;share/mysql/tests&quot; \
--DINSTALL_PLUGINDIR=&quot;lib/mysql/plugin&quot; \
--DINSTALL_SBINDIR=&quot;libexec&quot; \
--DINSTALL_SCRIPTDIR=&quot;bin&quot; \
--DINSTALL_SHAREDIR=&quot;share&quot; \
--DINSTALL_SQLBENCHDIR=&quot;share/mysql&quot; \
--DINSTALL_SUPPORTFILESDIR=&quot;share/mysql&quot; \
--DWITH_UNIT_TESTS=0 \
--DWITH_SSL=system \
--DWITH_READLINE=1 \
--DWITH_LIBWRAP=0 \
--DWITHOUT_SERVER=0 \
--DWITH_EMBEDDED_SERVER=&quot;ON&quot;
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>$ cat build-mysql5.5.sh
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>export CC=&quot;cc&quot;
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>export CXX=&quot;c++&quot;
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>export CFLAGS=&quot;-O2 -fPIC -fno-omit-frame-pointer&quot;
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>export CXXFLAGS=&quot;${CFLAGS} -Wno-narrowing -felide-constructors -fno-rtti -fexceptions -fpermissive &quot;
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>#export CXXFLAGS=&quot;${CFLAGS} -Wno-c++11-narrowing -felide-constructors -fno-rtti -fno-exceptions&quot;
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>cmake \
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>-DCMAKE_INSTALL_PREFIX=&quot;/home/USER/myetc/mysql/5.5&quot; \
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>-DINSTALL_DOCDIR=&quot;share/doc/mysql&quot; \
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>-DINSTALL_DOCREADMEDIR=&quot;share/doc/mysql&quot; \
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>-DINSTALL_INCLUDEDIR=&quot;include/mysql&quot; \
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>-DINSTALL_INFODIR=&quot;info&quot; \
+</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>-DINSTALL_LIBDIR=&quot;lib/mysql&quot; \
+</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>-DINSTALL_MANDIR=&quot;man&quot; \
+</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>-DINSTALL_MYSQLSHAREDIR=&quot;share/mysql&quot; \
+</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>-DINSTALL_MYSQLTESTDIR=&quot;share/mysql/tests&quot; \
+</span><span id="__span-1-19"><a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a>-DINSTALL_PLUGINDIR=&quot;lib/mysql/plugin&quot; \
+</span><span id="__span-1-20"><a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a>-DINSTALL_SBINDIR=&quot;libexec&quot; \
+</span><span id="__span-1-21"><a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a>-DINSTALL_SCRIPTDIR=&quot;bin&quot; \
+</span><span id="__span-1-22"><a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a>-DINSTALL_SHAREDIR=&quot;share&quot; \
+</span><span id="__span-1-23"><a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a>-DINSTALL_SQLBENCHDIR=&quot;share/mysql&quot; \
+</span><span id="__span-1-24"><a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a>-DINSTALL_SUPPORTFILESDIR=&quot;share/mysql&quot; \
+</span><span id="__span-1-25"><a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a>-DWITH_UNIT_TESTS=0 \
+</span><span id="__span-1-26"><a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a>-DWITH_SSL=system \
+</span><span id="__span-1-27"><a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a>-DWITH_READLINE=1 \
+</span><span id="__span-1-28"><a id="__codelineno-1-28" name="__codelineno-1-28" href="#__codelineno-1-28"></a>-DWITH_LIBWRAP=0 \
+</span><span id="__span-1-29"><a id="__codelineno-1-29" name="__codelineno-1-29" href="#__codelineno-1-29"></a>-DWITHOUT_SERVER=0 \
+</span><span id="__span-1-30"><a id="__codelineno-1-30" name="__codelineno-1-30" href="#__codelineno-1-30"></a>-DWITH_EMBEDDED_SERVER=&quot;ON&quot;
+</span></code></pre></div>
 <p><code>make</code>
 <code>make install</code></p>
 <h3 id="freebsd">FreeBSD系のビルドオプション<a class="headerlink" href="#freebsd" title="Permanent link">&para;</a></h3>
 <h4 id="mysql56_1">MySQL5.6<a class="headerlink" href="#mysql56_1" title="Permanent link">&para;</a></h4>
-<pre><code>export CC=&quot;cc&quot;
-export CXX=&quot;c++&quot;
-export CFLAGS=&quot;-O2 -fPIC -fno-omit-frame-pointer&quot;
-#export CXXFLAGS=&quot;${CFLAGS} -Wno-c++11-narrowing -felide-constructors -fno-rtti -fno-exceptions&quot;
-export CXXFLAGS=&quot;${CFLAGS} -Wno-narrowing -felide-constructors -fno-rtti -fexceptions&quot;
-
-
-cmake \
--DCMAKE_INSTALL_PREFIX=&quot;/home/USER/myetc/mysql/5.6&quot; \
--DINSTALL_DOCDIR=&quot;share/doc/mysql&quot; \
--DINSTALL_DOCREADMEDIR=&quot;share/doc/mysql&quot; \
--DINSTALL_INCLUDEDIR=&quot;include/mysql&quot; \
--DINSTALL_INFODIR=&quot;info&quot; \
--DINSTALL_LIBDIR=&quot;lib/mysql&quot; \
--DINSTALL_MANDIR=&quot;man&quot; \
--DINSTALL_MYSQLSHAREDIR=&quot;share/mysql&quot; \
--DINSTALL_MYSQLTESTDIR=&quot;share/mysql/tests&quot; \
--DINSTALL_PLUGINDIR=&quot;lib/mysql/plugin&quot; \
--DINSTALL_SBINDIR=&quot;libexec&quot; \
--DINSTALL_SCRIPTDIR=&quot;bin&quot; \
--DINSTALL_SHAREDIR=&quot;share&quot; \
--DINSTALL_SQLBENCHDIR=&quot;share/mysql&quot; \
--DINSTALL_SUPPORTFILESDIR=&quot;share/mysql&quot; \
--DWITH_UNIT_TESTS=0 \
--DWITH_SSL=system \
--DWITH_READLINE=1 \
--DWITH_LIBWRAP=0 \
--DWITHOUT_SERVER=1 \
--DWITH_EMBEDDED_SERVER=&quot;ON&quot;
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>export CC=&quot;cc&quot;
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>export CXX=&quot;c++&quot;
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>export CFLAGS=&quot;-O2 -fPIC -fno-omit-frame-pointer&quot;
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>#export CXXFLAGS=&quot;${CFLAGS} -Wno-c++11-narrowing -felide-constructors -fno-rtti -fno-exceptions&quot;
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>export CXXFLAGS=&quot;${CFLAGS} -Wno-narrowing -felide-constructors -fno-rtti -fexceptions&quot;
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>cmake \
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>-DCMAKE_INSTALL_PREFIX=&quot;/home/USER/myetc/mysql/5.6&quot; \
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>-DINSTALL_DOCDIR=&quot;share/doc/mysql&quot; \
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>-DINSTALL_DOCREADMEDIR=&quot;share/doc/mysql&quot; \
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>-DINSTALL_INCLUDEDIR=&quot;include/mysql&quot; \
+</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>-DINSTALL_INFODIR=&quot;info&quot; \
+</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>-DINSTALL_LIBDIR=&quot;lib/mysql&quot; \
+</span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>-DINSTALL_MANDIR=&quot;man&quot; \
+</span><span id="__span-2-16"><a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a>-DINSTALL_MYSQLSHAREDIR=&quot;share/mysql&quot; \
+</span><span id="__span-2-17"><a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a>-DINSTALL_MYSQLTESTDIR=&quot;share/mysql/tests&quot; \
+</span><span id="__span-2-18"><a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a>-DINSTALL_PLUGINDIR=&quot;lib/mysql/plugin&quot; \
+</span><span id="__span-2-19"><a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a>-DINSTALL_SBINDIR=&quot;libexec&quot; \
+</span><span id="__span-2-20"><a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a>-DINSTALL_SCRIPTDIR=&quot;bin&quot; \
+</span><span id="__span-2-21"><a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a>-DINSTALL_SHAREDIR=&quot;share&quot; \
+</span><span id="__span-2-22"><a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a>-DINSTALL_SQLBENCHDIR=&quot;share/mysql&quot; \
+</span><span id="__span-2-23"><a id="__codelineno-2-23" name="__codelineno-2-23" href="#__codelineno-2-23"></a>-DINSTALL_SUPPORTFILESDIR=&quot;share/mysql&quot; \
+</span><span id="__span-2-24"><a id="__codelineno-2-24" name="__codelineno-2-24" href="#__codelineno-2-24"></a>-DWITH_UNIT_TESTS=0 \
+</span><span id="__span-2-25"><a id="__codelineno-2-25" name="__codelineno-2-25" href="#__codelineno-2-25"></a>-DWITH_SSL=system \
+</span><span id="__span-2-26"><a id="__codelineno-2-26" name="__codelineno-2-26" href="#__codelineno-2-26"></a>-DWITH_READLINE=1 \
+</span><span id="__span-2-27"><a id="__codelineno-2-27" name="__codelineno-2-27" href="#__codelineno-2-27"></a>-DWITH_LIBWRAP=0 \
+</span><span id="__span-2-28"><a id="__codelineno-2-28" name="__codelineno-2-28" href="#__codelineno-2-28"></a>-DWITHOUT_SERVER=1 \
+</span><span id="__span-2-29"><a id="__codelineno-2-29" name="__codelineno-2-29" href="#__codelineno-2-29"></a>-DWITH_EMBEDDED_SERVER=&quot;ON&quot;
+</span></code></pre></div>
 <p><code>make</code>
 <code>make install</code></p>
 <h4 id="mysql55_1">MySQL5.5<a class="headerlink" href="#mysql55_1" title="Permanent link">&para;</a></h4>
-<pre><code>$ cat mysql-5.5.61/build-mysql5.5.sh
-export CC=&quot;cc&quot;
-export CXX=&quot;c++&quot;
-export CFLAGS=&quot;-O2 -fPIC -fno-omit-frame-pointer&quot;
-export CXXFLAGS=&quot;${CFLAGS} -Wno-c++11-narrowing -felide-constructors -fno-rtti -fno-exceptions -fpermissive&quot;
-#export CXXFLAGS=&quot;${CFLAGS} -Wno-c++11-narrowing -felide-constructors -fno-rtti -fno-exceptions&quot;
-#export CXXFLAGS=&quot;${CFLAGS} -Wno-narrowing -felide-constructors -fno-rtti -fexceptions -fpermissive&quot;
-
-
-cmake \
--DCMAKE_INSTALL_PREFIX=&quot;/home/USER/myetc/mysql/5.5&quot; \
--DINSTALL_DOCDIR=&quot;share/doc/mysql&quot; \
--DINSTALL_DOCREADMEDIR=&quot;share/doc/mysql&quot; \
--DINSTALL_INCLUDEDIR=&quot;include/mysql&quot; \
--DINSTALL_INFODIR=&quot;info&quot; \
--DINSTALL_LIBDIR=&quot;lib/mysql&quot; \
--DINSTALL_MANDIR=&quot;man&quot; \
--DINSTALL_MYSQLSHAREDIR=&quot;share/mysql&quot; \
--DINSTALL_MYSQLTESTDIR=&quot;share/mysql/tests&quot; \
--DINSTALL_PLUGINDIR=&quot;lib/mysql/plugin&quot; \
--DINSTALL_SBINDIR=&quot;libexec&quot; \
--DINSTALL_SCRIPTDIR=&quot;bin&quot; \
--DINSTALL_SHAREDIR=&quot;share&quot; \
--DINSTALL_SQLBENCHDIR=&quot;share/mysql&quot; \
--DINSTALL_SUPPORTFILESDIR=&quot;share/mysql&quot; \
--DWITH_UNIT_TESTS=0 \
--DWITH_SSL=system \
--DWITH_READLINE=1 \
--DWITH_LIBWRAP=0 \
--DWITHOUT_SERVER=0 \
--DWITHOUT_PARTITION_STORAGE_ENGINE=1 \
--DWITH_EMBEDDED_SERVER=&quot;ON&quot;
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>$ cat mysql-5.5.61/build-mysql5.5.sh
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>export CC=&quot;cc&quot;
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>export CXX=&quot;c++&quot;
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>export CFLAGS=&quot;-O2 -fPIC -fno-omit-frame-pointer&quot;
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>export CXXFLAGS=&quot;${CFLAGS} -Wno-c++11-narrowing -felide-constructors -fno-rtti -fno-exceptions -fpermissive&quot;
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>#export CXXFLAGS=&quot;${CFLAGS} -Wno-c++11-narrowing -felide-constructors -fno-rtti -fno-exceptions&quot;
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>#export CXXFLAGS=&quot;${CFLAGS} -Wno-narrowing -felide-constructors -fno-rtti -fexceptions -fpermissive&quot;
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>cmake \
+</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>-DCMAKE_INSTALL_PREFIX=&quot;/home/USER/myetc/mysql/5.5&quot; \
+</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>-DINSTALL_DOCDIR=&quot;share/doc/mysql&quot; \
+</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>-DINSTALL_DOCREADMEDIR=&quot;share/doc/mysql&quot; \
+</span><span id="__span-3-14"><a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a>-DINSTALL_INCLUDEDIR=&quot;include/mysql&quot; \
+</span><span id="__span-3-15"><a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a>-DINSTALL_INFODIR=&quot;info&quot; \
+</span><span id="__span-3-16"><a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a>-DINSTALL_LIBDIR=&quot;lib/mysql&quot; \
+</span><span id="__span-3-17"><a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a>-DINSTALL_MANDIR=&quot;man&quot; \
+</span><span id="__span-3-18"><a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a>-DINSTALL_MYSQLSHAREDIR=&quot;share/mysql&quot; \
+</span><span id="__span-3-19"><a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a>-DINSTALL_MYSQLTESTDIR=&quot;share/mysql/tests&quot; \
+</span><span id="__span-3-20"><a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a>-DINSTALL_PLUGINDIR=&quot;lib/mysql/plugin&quot; \
+</span><span id="__span-3-21"><a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a>-DINSTALL_SBINDIR=&quot;libexec&quot; \
+</span><span id="__span-3-22"><a id="__codelineno-3-22" name="__codelineno-3-22" href="#__codelineno-3-22"></a>-DINSTALL_SCRIPTDIR=&quot;bin&quot; \
+</span><span id="__span-3-23"><a id="__codelineno-3-23" name="__codelineno-3-23" href="#__codelineno-3-23"></a>-DINSTALL_SHAREDIR=&quot;share&quot; \
+</span><span id="__span-3-24"><a id="__codelineno-3-24" name="__codelineno-3-24" href="#__codelineno-3-24"></a>-DINSTALL_SQLBENCHDIR=&quot;share/mysql&quot; \
+</span><span id="__span-3-25"><a id="__codelineno-3-25" name="__codelineno-3-25" href="#__codelineno-3-25"></a>-DINSTALL_SUPPORTFILESDIR=&quot;share/mysql&quot; \
+</span><span id="__span-3-26"><a id="__codelineno-3-26" name="__codelineno-3-26" href="#__codelineno-3-26"></a>-DWITH_UNIT_TESTS=0 \
+</span><span id="__span-3-27"><a id="__codelineno-3-27" name="__codelineno-3-27" href="#__codelineno-3-27"></a>-DWITH_SSL=system \
+</span><span id="__span-3-28"><a id="__codelineno-3-28" name="__codelineno-3-28" href="#__codelineno-3-28"></a>-DWITH_READLINE=1 \
+</span><span id="__span-3-29"><a id="__codelineno-3-29" name="__codelineno-3-29" href="#__codelineno-3-29"></a>-DWITH_LIBWRAP=0 \
+</span><span id="__span-3-30"><a id="__codelineno-3-30" name="__codelineno-3-30" href="#__codelineno-3-30"></a>-DWITHOUT_SERVER=0 \
+</span><span id="__span-3-31"><a id="__codelineno-3-31" name="__codelineno-3-31" href="#__codelineno-3-31"></a>-DWITHOUT_PARTITION_STORAGE_ENGINE=1 \
+</span><span id="__span-3-32"><a id="__codelineno-3-32" name="__codelineno-3-32" href="#__codelineno-3-32"></a>-DWITH_EMBEDDED_SERVER=&quot;ON&quot;
+</span></code></pre></div>
 <p><code>make</code>
 <code>make install</code></p>
 
@@ -1270,6 +1277,11 @@ cmake \
           
           
         </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+            Back to top
+          </button>
         
       </main>
       
@@ -1300,7 +1312,7 @@ cmake \
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tracking", "navigation.expand", "navigation.sections", "navigation.indexes", "navigation.path", "toc.integrate"], "search": "../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tracking", "navigation.top", "navigation.sections", "navigation.indexes", "navigation.path", "toc.integrate", "content.code.copy"], "search": "../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
       <script src="../assets/javascripts/bundle.fac441b0.min.js"></script>

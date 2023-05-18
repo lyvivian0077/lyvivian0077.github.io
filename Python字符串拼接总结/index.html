@@ -206,9 +206,7 @@
       
       
       
-        
-      
-      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
       
       
         
@@ -324,9 +322,7 @@
       
       
       
-        
-      
-      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
       
       
         
@@ -397,9 +393,7 @@
       
       
       
-        
-      
-      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
       
       
         
@@ -454,11 +448,11 @@
       
       
       
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+      
+      
         
-      
-      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_8" >
-      
-      
+          
         
           
         
@@ -566,6 +560,20 @@
     <li class="md-nav__item">
       <a href="../mysql-mgr/" class="md-nav__link">
         MGR
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mysql-mgr-copy/" class="md-nav__link">
+        転載MGR
       </a>
     </li>
   
@@ -1112,40 +1120,40 @@
 </ul>
 <h2 id="1">方法1：加号连接<a class="headerlink" href="#1" title="Permanent link">&para;</a></h2>
 <p>很多语言都支持使用加号连接字符串，Python也不例外，只需要简单的将2个或多个字符串相加就可以完成拼接。</p>
-<pre><code class="language-python">a = 'Python'
-b = '私房菜'
-r = a + b  # 输出'Python私房菜'
-</code></pre>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">a</span> <span class="o">=</span> <span class="s1">&#39;Python&#39;</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="n">b</span> <span class="o">=</span> <span class="s1">&#39;私房菜&#39;</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">r</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span>  <span class="c1"># 输出&#39;Python私房菜&#39;</span>
+</span></code></pre></div>
 <h2 id="2">方法2：使用<code>%</code>操作符<a class="headerlink" href="#2" title="Permanent link">&para;</a></h2>
 <p>在Python 2.6以前，<code>%</code>操作符是唯一一种格式化字符串的方法，它也可以用于连接字符串。</p>
-<pre><code class="language-python">a = 'Python'
-b = '私房菜'
-r = '%s%s' % (a, b)  # 输出'Python私房菜'
-</code></pre>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">a</span> <span class="o">=</span> <span class="s1">&#39;Python&#39;</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="n">b</span> <span class="o">=</span> <span class="s1">&#39;私房菜&#39;</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="n">r</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">%s%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>  <span class="c1"># 输出&#39;Python私房菜&#39;</span>
+</span></code></pre></div>
 <h2 id="3format">方法3：使用<code>format</code>方法<a class="headerlink" href="#3format" title="Permanent link">&para;</a></h2>
 <p>format方法是Python 2.6中出现的一种代替<code>%</code>操作符的字符串格式化方法，同样可以用来连接字符串。</p>
-<pre><code class="language-python">a = 'Python'
-b = '私房菜'
-r = '{}{}'.format(a, b)
-</code></pre>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">a</span> <span class="o">=</span> <span class="s1">&#39;Python&#39;</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="n">b</span> <span class="o">=</span> <span class="s1">&#39;私房菜&#39;</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="n">r</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{}{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+</span></code></pre></div>
 <h2 id="4f-string">方法4：使用<code>f-string</code><a class="headerlink" href="#4f-string" title="Permanent link">&para;</a></h2>
 <p>Python 3.6中引入了Formatted String Literals（字面量格式化字符串），简称f-string，<code>f-string</code>是<code>%</code>操作符和<code>format</code>方法的进化版，使用<code>f-string</code>连接字符串的方法和使用<code>%</code>操作符、<code>format</code>方法类似。</p>
-<pre><code class="language-python">a = 'Python'
-b = '私房菜'
-r = f'{a}{b}'
-</code></pre>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">a</span> <span class="o">=</span> <span class="s1">&#39;Python&#39;</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="n">b</span> <span class="o">=</span> <span class="s1">&#39;私房菜&#39;</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="n">r</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">a</span><span class="si">}{</span><span class="n">b</span><span class="si">}</span><span class="s1">&#39;</span>
+</span></code></pre></div>
 <h2 id="5strjoin">方法5：使用<code>str.join()</code>方法<a class="headerlink" href="#5strjoin" title="Permanent link">&para;</a></h2>
 <p>字符串有一个内置方法<code>join</code>，其参数是一个序列类型，例如数组或者元组等。</p>
-<pre><code class="language-python">a = 'Python' 
-b = '私房菜'
-r = ''.join([a, b])
-</code></pre>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">a</span> <span class="o">=</span> <span class="s1">&#39;Python&#39;</span> 
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="n">b</span> <span class="o">=</span> <span class="s1">&#39;私房菜&#39;</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="n">r</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">])</span>
+</span></code></pre></div>
 <h2 id="_1">总结<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <p>连接少量字符串时
 使用加号连接符在性能和可读性上都是明智的，如果对可读性有更高的要求，并且使用的Python 3.6以上版本，<code>f-string</code>也是一个非常好的选择，例如下面这种情况，<code>f-string</code>的可读性显然比加号连接好得多。</p>
-<pre><code class="language-python">a = f'姓名：{name} 年龄：{age} 性别：{gender}'
-b = '姓名：' + name + '年龄：' + age + '性别：' + gender
-</code></pre>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="n">a</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;姓名：</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s1"> 年龄：</span><span class="si">{</span><span class="n">age</span><span class="si">}</span><span class="s1"> 性别：</span><span class="si">{</span><span class="n">gender</span><span class="si">}</span><span class="s1">&#39;</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="n">b</span> <span class="o">=</span> <span class="s1">&#39;姓名：&#39;</span> <span class="o">+</span> <span class="n">name</span> <span class="o">+</span> <span class="s1">&#39;年龄：&#39;</span> <span class="o">+</span> <span class="n">age</span> <span class="o">+</span> <span class="s1">&#39;性别：&#39;</span> <span class="o">+</span> <span class="n">gender</span>
+</span></code></pre></div>
 <p><strong>连接大量字符串时</strong> <code>join</code>和<code>f-string</code>都是性能最好的选择，选择时依然取决于你使用的Python版本以及对可读性的要求，<code>f-string</code>在连接大量字符串时可读性并不一定好。<strong>切记不要使用加号连接，尤其是在for循环中。</strong></p>
 
 
@@ -1158,6 +1166,11 @@ b = '姓名：' + name + '年龄：' + age + '性别：' + gender
           
           
         </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+            Back to top
+          </button>
         
       </main>
       
@@ -1188,7 +1201,7 @@ b = '姓名：' + name + '年龄：' + age + '性别：' + gender
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tracking", "navigation.expand", "navigation.sections", "navigation.indexes", "navigation.path", "toc.integrate"], "search": "../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tracking", "navigation.top", "navigation.sections", "navigation.indexes", "navigation.path", "toc.integrate", "content.code.copy"], "search": "../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
       <script src="../assets/javascripts/bundle.fac441b0.min.js"></script>

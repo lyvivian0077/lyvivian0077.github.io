@@ -206,9 +206,7 @@
       
       
       
-        
-      
-      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
       
       
         
@@ -324,9 +322,7 @@
       
       
       
-        
-      
-      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
       
       
         
@@ -397,9 +393,7 @@
       
       
       
-        
-      
-      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
       
       
         
@@ -454,11 +448,11 @@
       
       
       
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+      
+      
         
-      
-      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_8" >
-      
-      
+          
         
           
         
@@ -566,6 +560,20 @@
     <li class="md-nav__item">
       <a href="../mysql-mgr/" class="md-nav__link">
         MGR
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mysql-mgr-copy/" class="md-nav__link">
+        転載MGR
       </a>
     </li>
   
@@ -1211,10 +1219,10 @@
 <p>你有一个list：bag = [1, 2, 3, 4, 5]</p>
 <p>现在你想让所有元素翻倍，让它看起来是这个样子：[2, 4, 6, 8, 10]</p>
 <p>大多初学者，根据之前语言的经验会大概这样来做</p>
-<pre><code>bag = [1, 2, 3, 4, 5]
-for i in range(len(bag)):
-bag[i] = bag[i] * 2
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>bag = [1, 2, 3, 4, 5]
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>for i in range(len(bag)):
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>bag[i] = bag[i] * 2
+</span></code></pre></div>
 <p>但是有更好的方法：</p>
 <p><code>bag = [elem * 2 for elem in bag]</code></p>
 <p>很简洁对不对？这叫做Python的列表推导式。</p>
@@ -1222,142 +1230,142 @@ bag[i] = bag[i] * 2
 <h3 id="_2">遍历列表<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
 <p>继续，还是上面的列表。</p>
 <p>如果可能尽量避免这样做：</p>
-<pre><code>bag = [1, 2, 3, 4, 5]
-for i in range(len(bag)):
-print(bag[i])
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>bag = [1, 2, 3, 4, 5]
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>for i in range(len(bag)):
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>print(bag[i])
+</span></code></pre></div>
 <p>取而代之的应该是这样：</p>
-<pre><code>bag = [1, 2, 3, 4, 5]
-for i in bag:
-print(i)
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>bag = [1, 2, 3, 4, 5]
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>for i in bag:
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>print(i)
+</span></code></pre></div>
 <p>如果x是一个列表，你可以对它的元素进行迭代。多数情况下你不需要各元素的索引，但如果你非要这样做，那就用enumerate函数。它像下边的样子：</p>
-<pre><code>bag = [1, 2, 3, 4, 5]
-for index, element in enumerate(bag):
-print(index, element)
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>bag = [1, 2, 3, 4, 5]
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>for index, element in enumerate(bag):
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>print(index, element)
+</span></code></pre></div>
 <p>非常直观明了。</p>
 <h3 id="_3">元素互换<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
 <p>如果你是从java或者C语言转到Python来，可能会习惯于这样：</p>
-<pre><code>a = 5
-b = 10
-
-# 交换 a 和 b
-
-tmp = a
-a = b
-b = tmp
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>a = 5
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>b = 10
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a># 交换 a 和 b
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>tmp = a
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>a = b
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>b = tmp
+</span></code></pre></div>
 <p>但Python提供了一个更自然更好的方法！</p>
-<pre><code>a = 5
-b = 10
-
-# 交换a 和 b
-
-a, b = b, a
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>a = 5
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>b = 10
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a># 交换a 和 b
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>a, b = b, a
+</span></code></pre></div>
 <p>够漂亮吧？</p>
 <h3 id="_4">初始化列表<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
 <p>假如你要一个是10个整数0的列表，你可能首先想到：</p>
-<pre><code>bag =  
-for _ in range(10):
-bag.append(0)
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>bag =  
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>for _ in range(10):
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>bag.append(0)
+</span></code></pre></div>
 <p>换个方式吧：</p>
 <p><code>bag = [0] * 10</code></p>
 <p>看，多优雅。
 注意：如果你列表包含了列表，这样做会产生浅拷贝。</p>
 <p>举个例子：</p>
-<pre><code>bag_of_bags = [[0]] * 5 # [[0], [0], [0], [0], [0]]
-bag_of_bags[0][0] = 1 # [[1], [1], [1], [1], [1]]
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>bag_of_bags = [[0]] * 5 # [[0], [0], [0], [0], [0]]
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>bag_of_bags[0][0] = 1 # [[1], [1], [1], [1], [1]]
+</span></code></pre></div>
 <p>Oops！所有的列表都改变了，而我们只是想要改变第一个列表。</p>
 <p>改一改啦：</p>
-<pre><code>bag_of_bags = [[0] for _ in range(5)]
-# [[0], [0], [0], [0], [0]]
-bag_of_bags[0][0] = 1
-# [[1], [0], [0], [0], [0]]
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>bag_of_bags = [[0] for _ in range(5)]
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a># [[0], [0], [0], [0], [0]]
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>bag_of_bags[0][0] = 1
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a># [[1], [0], [0], [0], [0]]
+</span></code></pre></div>
 <p>同时记住：</p>
 <p>“过早优化是万恶之源”</p>
 <p>问问自己，初始化一个列表是必须的吗？</p>
 <h3 id="_5">构造字符串<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
 <p>你会经常需要打印字符串。要是有很多变量，避免下面这样：</p>
-<pre><code>name = &quot;Raymond&quot;
-age = 22
-born_in = &quot;Oakland, CA&quot;
-string = &quot;Hello my name is &quot; + name + &quot;and I'm &quot; + str(age) + &quot; years old. I was born in &quot; + born_in + &quot;.&quot;
-print(string)
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>name = &quot;Raymond&quot;
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>age = 22
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>born_in = &quot;Oakland, CA&quot;
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>string = &quot;Hello my name is &quot; + name + &quot;and I&#39;m &quot; + str(age) + &quot; years old. I was born in &quot; + born_in + &quot;.&quot;
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>print(string)
+</span></code></pre></div>
 <p>额，这看起来多乱呀？你可以用个漂亮简洁的方法来代替，.format。</p>
 <p>这样做：</p>
-<pre><code>name = &quot;Raymond&quot;
-age = 22
-born_in = &quot;Oakland, CA&quot;
-string = &quot;Hello my name is {0} and I'm {1} years old. I was born in {2}.&quot;.format(name, age, born_in)
-print(string)
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>name = &quot;Raymond&quot;
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>age = 22
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>born_in = &quot;Oakland, CA&quot;
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>string = &quot;Hello my name is {0} and I&#39;m {1} years old. I was born in {2}.&quot;.format(name, age, born_in)
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>print(string)
+</span></code></pre></div>
 <p>好多了！</p>
 <h3 id="_6">返回<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
 <p>Python允许你在一个函数中返回多个元素，这让生活更简单。但是在解包元组的时候出出线这样的常见错误：</p>
-<pre><code>def binary:
-return 0, 1
-result = binary
-zero = result[0]
-one = result[1]
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>def binary:
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>return 0, 1
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>result = binary
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>zero = result[0]
+</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>one = result[1]
+</span></code></pre></div>
 <p>这是没必要的，你完全可以换成这样：</p>
-<pre><code>def binary:
-return 0, 1
-zero, one = binary
-要是你需要所有的元素被返回，用个下划线_：
-zero, _ = binary
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>def binary:
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>return 0, 1
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>zero, one = binary
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>要是你需要所有的元素被返回，用个下划线_：
+</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>zero, _ = binary
+</span></code></pre></div>
 <p>就是这么高效率！</p>
 <h3 id="_7">访问<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
 <p>你也会经常给dicts中写入key，pair（键，值）。</p>
 <p>如果你试图访问一个不存在的于dict的key，可能会为了避免KeyError错误，你会倾向于这样做：</p>
-<pre><code>countr = {}
-bag = [2, 3, 1, 2, 5, 6, 7, 9, 2, 7]
-for i in bag:
-    if i in countr:
-        countr[i] += 1
-    else:
-        countr[i] = 1
-for i in range(10):
-    if i in countr:
-        print(&quot;Count of {}: {}&quot;.format(i, countr[i]))
-    else:
-        print(&quot;Count of {}: {}&quot;.format(i, 0))
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>countr = {}
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>bag = [2, 3, 1, 2, 5, 6, 7, 9, 2, 7]
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>for i in bag:
+</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>    if i in countr:
+</span><span id="__span-13-5"><a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a>        countr[i] += 1
+</span><span id="__span-13-6"><a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a>    else:
+</span><span id="__span-13-7"><a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a>        countr[i] = 1
+</span><span id="__span-13-8"><a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a>for i in range(10):
+</span><span id="__span-13-9"><a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a>    if i in countr:
+</span><span id="__span-13-10"><a id="__codelineno-13-10" name="__codelineno-13-10" href="#__codelineno-13-10"></a>        print(&quot;Count of {}: {}&quot;.format(i, countr[i]))
+</span><span id="__span-13-11"><a id="__codelineno-13-11" name="__codelineno-13-11" href="#__codelineno-13-11"></a>    else:
+</span><span id="__span-13-12"><a id="__codelineno-13-12" name="__codelineno-13-12" href="#__codelineno-13-12"></a>        print(&quot;Count of {}: {}&quot;.format(i, 0))
+</span></code></pre></div>
 <p>但是，用get是个更好的办法。</p>
-<pre><code>countr = {}
-bag = [2, 3, 1, 2, 5, 6, 7, 9, 2, 7]
-for i in bag:
-    countr[i] = countr.get(i, 0) + 1
-    for i in range(10):
-        print(&quot;Count of {}: {}&quot;.format(i, countr.get(i, 0)))
-
-当然你也可以用setdefault来代替。
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>countr = {}
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>bag = [2, 3, 1, 2, 5, 6, 7, 9, 2, 7]
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>for i in bag:
+</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>    countr[i] = countr.get(i, 0) + 1
+</span><span id="__span-14-5"><a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a>    for i in range(10):
+</span><span id="__span-14-6"><a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a>        print(&quot;Count of {}: {}&quot;.format(i, countr.get(i, 0)))
+</span><span id="__span-14-7"><a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a>
+</span><span id="__span-14-8"><a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a>当然你也可以用setdefault来代替。
+</span></code></pre></div>
 <p>这还用一个更简单却多费点开销的办法：</p>
-<pre><code>bag = [2, 3, 1, 2, 5, 6, 7, 9, 2, 7]
-countr = dict([(num, bag.count(num)) for num in bag])
-for i in range(10):
-    print(&quot;Count of {}: {}&quot;.format(i, countr.get(i, 0)))
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>bag = [2, 3, 1, 2, 5, 6, 7, 9, 2, 7]
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>countr = dict([(num, bag.count(num)) for num in bag])
+</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>for i in range(10):
+</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>    print(&quot;Count of {}: {}&quot;.format(i, countr.get(i, 0)))
+</span></code></pre></div>
 <p>你也可以用dict推导式。</p>
 <p><code>countr = {num: bag.count(num) for num in bag}</code></p>
 <p>这两种方法开销大是因为它们在每次count被调用时都会对列表遍历。</p>
 <h3 id="_8">使用库<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
 <p>现有的库只需导入你就可以做你真正想做的了。</p>
 <p>还是说前面的例子，我们建一个函数来数一个数字在列表中出现的次数。那么，已经有一个库就可以做这样的事情。</p>
-<pre><code>from collections import Counter
-bag = [2, 3, 1, 2, 5, 6, 7, 9, 2, 7]
-countr = Counter(bag)
-for i in range(10):
-print(&quot;Count of {}: {}&quot;.format(i, countr[i]))
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>from collections import Counter
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>bag = [2, 3, 1, 2, 5, 6, 7, 9, 2, 7]
+</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>countr = Counter(bag)
+</span><span id="__span-16-4"><a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a>for i in range(10):
+</span><span id="__span-16-5"><a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a>print(&quot;Count of {}: {}&quot;.format(i, countr[i]))
+</span></code></pre></div>
 <p>一些用库的理由：</p>
 <p>代码是正确而且经过测试的。</p>
 <p>它们的算法可能会是最优的，这样就跑的更快。</p>
@@ -1365,36 +1373,36 @@ print(&quot;Count of {}: {}&quot;.format(i, countr[i]))
 <p>最后，它都已经在那儿了，你不用再造轮子了。</p>
 <h3 id="_9">在列表中切片/步进<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h3>
 <p>你可以指定start的点和stop点，就像这样list[start:stop:step]。我们取出列表中的前5个元素：</p>
-<pre><code>bag = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-for elem in bag[:5]:
-print(elem)
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>bag = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>for elem in bag[:5]:
+</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>print(elem)
+</span></code></pre></div>
 <p>这就是切片，我们指定stop点是5，再停止前就会从列表中取出5个元素。</p>
 <p>要是最后5个元素怎么做？</p>
-<pre><code>bag = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-
-for elem in bag[-5:]:
-print(elem)
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>bag = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>
+</span><span id="__span-18-3"><a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>for elem in bag[-5:]:
+</span><span id="__span-18-4"><a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a>print(elem)
+</span></code></pre></div>
 <p>没看明白吗？-5意味着从列表的结尾取出5个元素。</p>
 <p>如果你想对列表中元素间隔操作，你可能会这样做：</p>
-<pre><code>bag = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-
-for index, elem in enumerate(bag):
-if index % 2 == 0:
-print(elem)
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>bag = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>
+</span><span id="__span-19-3"><a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a>for index, elem in enumerate(bag):
+</span><span id="__span-19-4"><a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a>if index % 2 == 0:
+</span><span id="__span-19-5"><a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a>print(elem)
+</span></code></pre></div>
 <p>但是你应该这样来做：</p>
-<pre><code>bag = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-
-for elem in bag[::2]:
-print(elem)
-
-# 或者用 ranges
-
-bag = list(range(0,10,2))
-print(bag)
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>bag = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+</span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>
+</span><span id="__span-20-3"><a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a>for elem in bag[::2]:
+</span><span id="__span-20-4"><a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a>print(elem)
+</span><span id="__span-20-5"><a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a>
+</span><span id="__span-20-6"><a id="__codelineno-20-6" name="__codelineno-20-6" href="#__codelineno-20-6"></a># 或者用 ranges
+</span><span id="__span-20-7"><a id="__codelineno-20-7" name="__codelineno-20-7" href="#__codelineno-20-7"></a>
+</span><span id="__span-20-8"><a id="__codelineno-20-8" name="__codelineno-20-8" href="#__codelineno-20-8"></a>bag = list(range(0,10,2))
+</span><span id="__span-20-9"><a id="__codelineno-20-9" name="__codelineno-20-9" href="#__codelineno-20-9"></a>print(bag)
+</span></code></pre></div>
 <p>这就是列表中的步进。list[::2]意思是遍历列表同时两步取出一个元素。</p>
 <p>你可以用list[::-1]很酷的翻转列表。</p>
 <h3 id="tab">tab键还是空格键<a class="headerlink" href="#tab" title="Permanent link">&para;</a></h3>
@@ -1407,68 +1415,68 @@ print(bag)
 </ul>
 <h4 id="1">1行で書くリスト処理<a class="headerlink" href="#1" title="Permanent link">&para;</a></h4>
 <p>さっそくリスト内包記述（list comprehension）を扱いたいと思います。今回は以下の配列データを扱うこととします。</p>
-<pre><code>data = [1, 2, 3, 4, 5] この配列について、各要素の値を2倍にする処理を通常のfor文で記述すると、以下のようになります。
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>data = [1, 2, 3, 4, 5] この配列について、各要素の値を2倍にする処理を通常のfor文で記述すると、以下のようになります。
+</span></code></pre></div>
 <h4 id="data2">data配列の中身を2倍にする<a class="headerlink" href="#data2" title="Permanent link">&para;</a></h4>
-<pre><code>newData = []
-for d in data:
-  newData.append(d * 2)
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>newData = []
+</span><span id="__span-22-2"><a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>for d in data:
+</span><span id="__span-22-3"><a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a>  newData.append(d * 2)
+</span></code></pre></div>
 <p>この3行の実装を、リスト内包表記で記述すると1行で記述することができます。素敵！</p>
 <h4 id="data2_1">data配列の中身を2倍にする<a class="headerlink" href="#data2_1" title="Permanent link">&para;</a></h4>
-<pre><code>newData = [d * 2 for d in data] 
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>newData = [d * 2 for d in data] 
+</span></code></pre></div>
 <p>この書き方はシンプルだし直感的に理解できるので、なかなか便利です。</p>
 <h3 id="1if">1行で書くリスト処理（if文付き）<a class="headerlink" href="#1if" title="Permanent link">&para;</a></h3>
 <p>さらに、処理の中で条件式（if文）を記述することもできます。例えば偶数のみ処理したい場合に、通常の書き方では以下のように記述します。</p>
-<pre><code>newData = []
-for d in data:
-    if d % 2 == 0:
-        newData.append(d * 2)
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>newData = []
+</span><span id="__span-24-2"><a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a>for d in data:
+</span><span id="__span-24-3"><a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a>    if d % 2 == 0:
+</span><span id="__span-24-4"><a id="__codelineno-24-4" name="__codelineno-24-4" href="#__codelineno-24-4"></a>        newData.append(d * 2)
+</span></code></pre></div>
 <p>上記の場合には4行の実装ですが、リスト内包表記だと以下のように1行で記述することができます。</p>
-<pre><code>newData = [d * 2 for d in data if d % 2 == 0]
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>newData = [d * 2 for d in data if d % 2 == 0]
+</span></code></pre></div>
 <p>オライリーの本やWeb上のサンプルコードでも良く見る記述なので、この記述は読み書きできる必要がありそうです。</p>
 <h3 id="filter">ラムダ式＋filterで同じことを実現できる<a class="headerlink" href="#filter" title="Permanent link">&para;</a></h3>
 <p>ラムダ式でもリスト内包表記と同じように、1行で処理を記述することができます。</p>
-<pre><code>newData = []
-for d in data:
-    if d % 2 == 0:
-        newData.append(d)
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-26-1"><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a>newData = []
+</span><span id="__span-26-2"><a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a>for d in data:
+</span><span id="__span-26-3"><a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a>    if d % 2 == 0:
+</span><span id="__span-26-4"><a id="__codelineno-26-4" name="__codelineno-26-4" href="#__codelineno-26-4"></a>        newData.append(d)
+</span></code></pre></div>
 <p>これをラムダ式で書くと以下のようになります。</p>
-<pre><code>newData = filter(lambda x:x%2==0, data)
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-27-1"><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a>newData = filter(lambda x:x%2==0, data)
+</span></code></pre></div>
 <p>この記述もなかなか良さそうですね！ただラムダ式の場合には、filterした後に演算を行う（例：値を2倍にする）ことができないので、リスト内包表記の方がより柔軟に記述できます。</p>
 <h3 id="_10">リスト内包表記はパフォーマンスも良い<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h3>
 <p>通常のfor文を書くよりも、リスト内包表記の方がパフォーマンスが良いです。いくつか調べた情報によると、リスト内包表記でfor処理すれば、記述した文法をC言語レベルで処理するため速いとのこと。実際に試してみました。</p>
-<pre><code>import time
-
-# 利用するデータ
-data = [i for i in range(1, 1000000)]
-
-# 通常のfor文
-time1 = time.clock()
-newData = []
-for d in data:
-    if d % 2 == 0:
-        newData.append(d)
-time2 = time.clock()
-print time2 - time1 #0.234422秒
-
-# リスト内包表記    
-time1 = time.clock()
-newData = [d for d in data if d % 2 == 0]
-time2 = time.clock()
-print time2 - time1 #0.185301秒
-
-# filterとラムダ式
-time1 = time.clock()
-newData = filter(lambda x:x%2==0, data)
-time2 = time.clock()
-print time2 - time1 #0.184838
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-28-1"><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a>import time
+</span><span id="__span-28-2"><a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a>
+</span><span id="__span-28-3"><a id="__codelineno-28-3" name="__codelineno-28-3" href="#__codelineno-28-3"></a># 利用するデータ
+</span><span id="__span-28-4"><a id="__codelineno-28-4" name="__codelineno-28-4" href="#__codelineno-28-4"></a>data = [i for i in range(1, 1000000)]
+</span><span id="__span-28-5"><a id="__codelineno-28-5" name="__codelineno-28-5" href="#__codelineno-28-5"></a>
+</span><span id="__span-28-6"><a id="__codelineno-28-6" name="__codelineno-28-6" href="#__codelineno-28-6"></a># 通常のfor文
+</span><span id="__span-28-7"><a id="__codelineno-28-7" name="__codelineno-28-7" href="#__codelineno-28-7"></a>time1 = time.clock()
+</span><span id="__span-28-8"><a id="__codelineno-28-8" name="__codelineno-28-8" href="#__codelineno-28-8"></a>newData = []
+</span><span id="__span-28-9"><a id="__codelineno-28-9" name="__codelineno-28-9" href="#__codelineno-28-9"></a>for d in data:
+</span><span id="__span-28-10"><a id="__codelineno-28-10" name="__codelineno-28-10" href="#__codelineno-28-10"></a>    if d % 2 == 0:
+</span><span id="__span-28-11"><a id="__codelineno-28-11" name="__codelineno-28-11" href="#__codelineno-28-11"></a>        newData.append(d)
+</span><span id="__span-28-12"><a id="__codelineno-28-12" name="__codelineno-28-12" href="#__codelineno-28-12"></a>time2 = time.clock()
+</span><span id="__span-28-13"><a id="__codelineno-28-13" name="__codelineno-28-13" href="#__codelineno-28-13"></a>print time2 - time1 #0.234422秒
+</span><span id="__span-28-14"><a id="__codelineno-28-14" name="__codelineno-28-14" href="#__codelineno-28-14"></a>
+</span><span id="__span-28-15"><a id="__codelineno-28-15" name="__codelineno-28-15" href="#__codelineno-28-15"></a># リスト内包表記    
+</span><span id="__span-28-16"><a id="__codelineno-28-16" name="__codelineno-28-16" href="#__codelineno-28-16"></a>time1 = time.clock()
+</span><span id="__span-28-17"><a id="__codelineno-28-17" name="__codelineno-28-17" href="#__codelineno-28-17"></a>newData = [d for d in data if d % 2 == 0]
+</span><span id="__span-28-18"><a id="__codelineno-28-18" name="__codelineno-28-18" href="#__codelineno-28-18"></a>time2 = time.clock()
+</span><span id="__span-28-19"><a id="__codelineno-28-19" name="__codelineno-28-19" href="#__codelineno-28-19"></a>print time2 - time1 #0.185301秒
+</span><span id="__span-28-20"><a id="__codelineno-28-20" name="__codelineno-28-20" href="#__codelineno-28-20"></a>
+</span><span id="__span-28-21"><a id="__codelineno-28-21" name="__codelineno-28-21" href="#__codelineno-28-21"></a># filterとラムダ式
+</span><span id="__span-28-22"><a id="__codelineno-28-22" name="__codelineno-28-22" href="#__codelineno-28-22"></a>time1 = time.clock()
+</span><span id="__span-28-23"><a id="__codelineno-28-23" name="__codelineno-28-23" href="#__codelineno-28-23"></a>newData = filter(lambda x:x%2==0, data)
+</span><span id="__span-28-24"><a id="__codelineno-28-24" name="__codelineno-28-24" href="#__codelineno-28-24"></a>time2 = time.clock()
+</span><span id="__span-28-25"><a id="__codelineno-28-25" name="__codelineno-28-25" href="#__codelineno-28-25"></a>print time2 - time1 #0.184838
+</span></code></pre></div>
 <p>何度か試したところ、上記例の場合には、リスト内包表記は通常のfor文記述よりも22％高速でした（僕のMacBookAirの場合）。</p>
 
 
@@ -1481,6 +1489,11 @@ print time2 - time1 #0.184838
           
           
         </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+            Back to top
+          </button>
         
       </main>
       
@@ -1511,7 +1524,7 @@ print time2 - time1 #0.184838
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tracking", "navigation.expand", "navigation.sections", "navigation.indexes", "navigation.path", "toc.integrate"], "search": "../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tracking", "navigation.top", "navigation.sections", "navigation.indexes", "navigation.path", "toc.integrate", "content.code.copy"], "search": "../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
       <script src="../assets/javascripts/bundle.fac441b0.min.js"></script>

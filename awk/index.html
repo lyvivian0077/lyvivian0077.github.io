@@ -206,9 +206,7 @@
       
       
       
-        
-      
-      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
       
       
         
@@ -1142,9 +1140,7 @@
       
       
       
-        
-      
-      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
       
       
         
@@ -1215,9 +1211,7 @@
       
       
       
-        
-      
-      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
       
       
         
@@ -1272,11 +1266,11 @@
       
       
       
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+      
+      
         
-      
-      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_8" >
-      
-      
+          
         
           
         
@@ -1396,6 +1390,20 @@
   
   
     <li class="md-nav__item">
+      <a href="../mysql-mgr-copy/" class="md-nav__link">
+        転載MGR
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../mysql-ha/" class="md-nav__link">
         mysql+keepalived搭建教程
       </a>
@@ -1425,9 +1433,7 @@
       
       
       
-        
-      
-      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_9" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
       
       
         
@@ -1861,9 +1867,9 @@
 <li><a href="https://github.com/mylxsw/growing-up">程序猿成长计划</a></li>
 </ul>
 <p><code>模式</code>也可以理解为<code>条件</code></p>
-<pre><code>awk [option] 'pattern[action]' file...
-awk [option] '模式 {动作}' 文件
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>awk [option] &#39;pattern[action]&#39; file...
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>awk [option] &#39;模式 {动作}&#39; 文件
+</span></code></pre></div>
 <ul>
 <li>BEGIN模式是处理文本之前需要执行的操作</li>
 <li>END模式是处理完所有行之后执行的操作</li>
@@ -2004,28 +2010,27 @@ awk [option] '模式 {动作}' 文件
 </tr>
 </tbody>
 </table>
-<pre><code>$ awk -F &quot;:&quot; 'BEGIN{print &quot;===&quot;} NR==3,NR==5 {printf &quot;%s %s\n&quot;, NR,$1} END{print &quot;@@@&quot;}' xxx_list
-===
-3 1-1
-4 1-8
-5 1000th
-@@@
-$ 
-
-
-$ awk -v FS=&quot;.&quot; 'BEGIN{print &quot;###&quot;} {print NR,NF,$1,$2,$3 }' xxx_list | head
-###
-1 5 xxx:mysql db xxx
-2 5 ttt:maria db ttt
-
-
-
-$ awk -v FS=&quot;.&quot; 'BEGIN{print &quot;###&quot;} {print ARGV[1], NR,NF,$1,$2,$3 }' xxx_list | head
-###
-xxx_list 1 5 xxx:mysql db xxx
-xxx_list 2 5 ttt:maria db ttt
-
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>$ awk -F &quot;:&quot; &#39;BEGIN{print &quot;===&quot;} NR==3,NR==5 {printf &quot;%s %s\n&quot;, NR,$1} END{print &quot;@@@&quot;}&#39; xxx_list
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>===
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>3 1-1
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>4 1-8
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>5 1000th
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>@@@
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>$ 
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>$ awk -v FS=&quot;.&quot; &#39;BEGIN{print &quot;###&quot;} {print NR,NF,$1,$2,$3 }&#39; xxx_list | head
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>###
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>1 5 xxx:mysql db xxx
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>2 5 ttt:maria db ttt
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>
+</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>
+</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>
+</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>$ awk -v FS=&quot;.&quot; &#39;BEGIN{print &quot;###&quot;} {print ARGV[1], NR,NF,$1,$2,$3 }&#39; xxx_list | head
+</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>###
+</span><span id="__span-1-19"><a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a>xxx_list 1 5 xxx:mysql db xxx
+</span><span id="__span-1-20"><a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a>xxx_list 2 5 ttt:maria db ttt
+</span></code></pre></div>
 <h2 id="_3">自定义变量<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
 <ul>
 <li>方法一: <code>-v varName=value</code></li>
@@ -2033,21 +2038,20 @@ xxx_list 2 5 ttt:maria db ttt
 </ul>
 <h2 id="awk_2">awk与正则表达式<a class="headerlink" href="#awk_2" title="Permanent link">&para;</a></h2>
 <h4 id="_4">正则表达式<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h4>
-<pre><code>awk '/正则表达式/ {动作}' file
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>awk &#39;/正则表达式/ {动作}&#39; file
+</span></code></pre></div>
 <h4 id="_5">行访问模式<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h4>
-<pre><code>awk '/正则1/,/正则2/ {动作}' file
-</code></pre>
-<pre><code>$ awk -F &quot;:&quot; '/^5may/ {print $1,$NF}' osn_mysql40_acc_list
-5may mysql31.db.sakura.ne.jp
-
-www2323# cat /home/.logs/users/xxx/access_log.20230502 | awk '$1 ~ &quot;xxx.sa|xxx.org|xxx.xxx.ne.jp&quot; {print $3}' | uniq -n
-
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>awk &#39;/正则1/,/正则2/ {动作}&#39; file
+</span></code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>$ awk -F &quot;:&quot; &#39;/^5may/ {print $1,$NF}&#39; osn_mysql40_acc_list
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>5may mysql31.db.sakura.ne.jp
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>www2323# cat /home/.logs/users/xxx/access_log.20230502 | awk &#39;$1 ~ &quot;xxx.sa|xxx.org|xxx.xxx.ne.jp&quot; {print $3}&#39; | uniq -n
+</span></code></pre></div>
 <h2 id="awk_3">awk命令执行流程<a class="headerlink" href="#awk_3" title="Permanent link">&para;</a></h2>
 <p>解读需求: 从文件中寻找想要的信息,按照以下顺序执行</p>
-<pre><code>awk 'BEGIN {commands} pattern{commands} END{commands}' file...
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>awk &#39;BEGIN {commands} pattern{commands} END{commands}&#39; file...
+</span></code></pre></div>
 <ol>
 <li>优先执行<code>BEGIN{}</code>模式中的语句</li>
 <li>从文件中读取第一行,然后执行<code>pattern{commads}</code>,进行正则匹配<code>/^n/</code>寻找n开头的行,找到之后执行<code>{print}</code>进行打印</li>
@@ -3175,6 +3179,11 @@ close(&quot;/bin/sh&quot;)
           
         </div>
         
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+            Back to top
+          </button>
+        
       </main>
       
         <footer class="md-footer">
@@ -3204,7 +3213,7 @@ close(&quot;/bin/sh&quot;)
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tracking", "navigation.expand", "navigation.sections", "navigation.indexes", "navigation.path", "toc.integrate"], "search": "../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tracking", "navigation.top", "navigation.sections", "navigation.indexes", "navigation.path", "toc.integrate", "content.code.copy"], "search": "../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
       <script src="../assets/javascripts/bundle.fac441b0.min.js"></script>

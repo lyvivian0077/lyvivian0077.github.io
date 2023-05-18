@@ -206,9 +206,7 @@
       
       
       
-        
-      
-      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
       
       
         
@@ -324,9 +322,7 @@
       
       
       
-        
-      
-      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
       
       
         
@@ -397,9 +393,7 @@
       
       
       
-        
-      
-      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
       
       
         
@@ -454,11 +448,11 @@
       
       
       
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+      
+      
         
-      
-      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_8" >
-      
-      
+          
         
           
         
@@ -578,6 +572,20 @@
   
   
     <li class="md-nav__item">
+      <a href="../mysql-mgr-copy/" class="md-nav__link">
+        転載MGR
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../mysql-ha/" class="md-nav__link">
         mysql+keepalived搭建教程
       </a>
@@ -607,9 +615,7 @@
       
       
       
-        
-      
-      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_9" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
       
       
         
@@ -1050,12 +1056,12 @@
 <ul>
 <li>文字列をパターン化し、特殊な文字（メタキャラクタ、メタ文字）で表現したもの</li>
 </ul>
-<p>例えば、郵便番号を正規表現を使って表すと以下のように表現できる。</p>
-<pre><code>郵便番号の正規表現
-\d{3}-?\d{4}
-# 3桁の数字 + ハイフン有りor無し + 4桁の数字
-</code></pre>
-<p>この<code>「\d」「{}」「?」</code>のような文字のことを <strong>メタキャラクタ（メタ文字）</strong> という。</p>
+<p>例えば、郵便番号を正規表現を使って表すと以下のように表現できる。
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>郵便番号の正規表現
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>\d{3}-?\d{4}
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a># 3桁の数字 + ハイフン有りor無し + 4桁の数字
+</span></code></pre></div>
+この<code>「\d」「{}」「?」</code>のような文字のことを <strong>メタキャラクタ（メタ文字）</strong> という。</p>
 <h1 id="_1">正規表現の由来<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
 <ul>
 <li>1940年代にさまざまな神経生理学者たちが、神経回路を数学的に説明するために開発した。</li>
@@ -1344,15 +1350,15 @@
 <ul>
 <li>(abc)のように括弧内の文字列をひとまとめに扱うこと</li>
 </ul>
-<p>例1) hogehoge....と「hoge」を繰り返す文字列をマッチさせたい場合、以下で検索するとマッチする。</p>
-<pre><code>グループ化の例1
-(hoge)+  
-</code></pre>
-<p>例2) https://www.yahoo.co.jp/ と https://www.google.co.jp/ の両方にマッチさせたい場合、以下で検索するとマッチする</p>
-<pre><code>グループ化の例2
-https://www\.(google|yahoo)\.co\.jp/
-</code></pre>
-<p>で検索するとマッチする。</p>
+<p>例1) hogehoge....と「hoge」を繰り返す文字列をマッチさせたい場合、以下で検索するとマッチする。
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>グループ化の例1
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>(hoge)+  
+</span></code></pre></div>
+例2) https://www.yahoo.co.jp/ と https://www.google.co.jp/ の両方にマッチさせたい場合、以下で検索するとマッチする</p>
+<p><div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>グループ化の例2
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>https://www\.(google|yahoo)\.co\.jp/
+</span></code></pre></div>
+で検索するとマッチする。</p>
 <h2 id="_13">キャプチャ<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h2>
 <ul>
 <li>(abc)括弧内の文字列を記憶し、参照出来るようにすること</li>
@@ -1360,36 +1366,36 @@ https://www\.(google|yahoo)\.co\.jp/
 <li>$1 ,$2 ,$3...で記憶した文字列を変数として参照できる（置換にも使える）</li>
 </ul>
 <p>※使用出来るかどうかが言語によって異なるので注意</p>
-<p>例1) hoge_hoge のように、前後が同じものをマッチさせたい</p>
-<pre><code>キャプチャのの例1
-# 検索文字列
-(.+)_\1
-</code></pre>
-<p>で検索するとマッチする。このように前方でマッチしたものを参照することを 後方参照 という。</p>
+<p>例1) hoge_hoge のように、前後が同じものをマッチさせたい
+<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>キャプチャのの例1
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a># 検索文字列
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>(.+)_\1
+</span></code></pre></div>
+で検索するとマッチする。このように前方でマッチしたものを参照することを 後方参照 という。</p>
 <p>例2) <a>https://www.google.co.jp/</a> のaタグ内の値をhref属性に設定したい場合、</p>
-<pre><code>キャプチャの例2
-# 検索文字列
-&lt;a&gt;(.+?)&lt;/a&gt;
-
-# 置換文字列
-&lt;a href=&quot;$1&quot;&gt;$1&lt;/a&gt;
-</code></pre>
-<p>で置換できる。</p>
+<p><div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>キャプチャの例2
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a># 検索文字列
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>&lt;a&gt;(.+?)&lt;/a&gt;
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a># 置換文字列
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>&lt;a href=&quot;$1&quot;&gt;$1&lt;/a&gt;
+</span></code></pre></div>
+で置換できる。</p>
 <p>例3) hoge@fuga.comからのローカル部、ドメイン部、メールアドレス全体を取り出したい場合、</p>
-<pre><code>キャプチャの例3
-# 検索文字列
-((.+)@(.+))
-
-# 置換文字列
-メールアドレス=$1\nローカル部=$2\nドメイン部=$3
-</code></pre>
-<p>で置換すると、以下の結果になる。</p>
-<pre><code>例3の結果
-メールアドレス=hoge@fuga.com
-ローカル部=hoge
-ドメイン部=fuga.com
-</code></pre>
-<p>キャプチャする順番は「(」が現れた順になっている。</p>
+<p><div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>キャプチャの例3
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a># 検索文字列
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>((.+)@(.+))
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a># 置換文字列
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>メールアドレス=$1\nローカル部=$2\nドメイン部=$3
+</span></code></pre></div>
+で置換すると、以下の結果になる。</p>
+<p><div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>例3の結果
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>メールアドレス=hoge@fuga.com
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>ローカル部=hoge
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>ドメイン部=fuga.com
+</span></code></pre></div>
+キャプチャする順番は「(」が現れた順になっている。</p>
 <h2 id="_14">キャプチャしない括弧<a class="headerlink" href="#_14" title="Permanent link">&para;</a></h2>
 <ul>
 <li>
@@ -1398,11 +1404,11 @@ https://www\.(google|yahoo)\.co\.jp/
 <li>
 <p>グループ化のみが目的であることを明示したい場合このように書く</p>
 </li>
-<li>若干読みにくくなる（可読性が下がる）ので、どちらで書いた方がいいかは状況による</li>
+<li>若干読みにくくなる（可読性が下がる）ので、どちらで書いた方がいいかは状況による
+<div class="language-text highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>キャプチャしない括弧の例
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>https://www\.(?:google|yahoo)\.co\.jp/ 
+</span></code></pre></div></li>
 </ul>
-<pre><code>キャプチャしない括弧の例
-https://www\.(?:google|yahoo)\.co\.jp/ 
-</code></pre>
 <h2 id="_15">先読みと後読み<a class="headerlink" href="#_15" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
@@ -1435,16 +1441,16 @@ https://www\.(?:google|yahoo)\.co\.jp/
 </tr>
 </tbody>
 </table>
-<p>※JavaScript系では後読みは実装されていないので注意</p>
-<pre><code>例
-customer.fullname
-customer.firstName
-customer.lastName
-employee.firstName
-employee.lastName
-officer.firstName
-officer.lastName
-</code></pre>
+<p>※JavaScript系では後読みは実装されていないので注意
+<div class="language-text highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>例
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>customer.fullname
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>customer.firstName
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>customer.lastName
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>employee.firstName
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>employee.lastName
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>officer.firstName
+</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>officer.lastName
+</span></code></pre></div></p>
 <ul>
 <li>customer(?=.firstName)</li>
 <li>→後ろにfirstNameが続くcustomerにマッチ</li>
@@ -1459,31 +1465,31 @@ officer.lastName
 <ul>
 <li>先読み・後読みを応用すると、～を含む・含まない行は以下の正規表現のように表せる</li>
 </ul>
-<pre><code>abcを含む行・含まない行
-# abcを含む行
-^(?=.*abc).*
-
-# defを含まない行
-^(?!.*def).*
-</code></pre>
-<p>例)</p>
+<p><div class="language-text highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>abcを含む行・含まない行
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a># abcを含む行
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>^(?=.*abc).*
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a># defを含まない行
+</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>^(?!.*def).*
+</span></code></pre></div>
+例)</p>
 <p>スペースを含む行を削除したい</p>
-<pre><code>スペースを含む行の削除
-# 検索文字列
-^(?=.* ).*\n
-
-# 置換文字列は空文字
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>スペースを含む行の削除
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a># 検索文字列
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>^(?=.* ).*\n
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a># 置換文字列は空文字
+</span></code></pre></div>
 <h2 id="_17">修飾子<a class="headerlink" href="#_17" title="Permanent link">&para;</a></h2>
 <ul>
 <li>多くの処理系にはマッチングの処理方法を変更する指定オプションが用意されている</li>
 <li>末尾に付ける修飾子をフラグ（flag）と呼ぶ</li>
 </ul>
-<pre><code>JavaScript
-// 修飾子iは大文字と小文字を区別しない（ignoreCase）
-// 修飾子gは全てのマッチング箇所を検索する（global）
-var regex = /hoge/ig;
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>JavaScript
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>// 修飾子iは大文字と小文字を区別しない（ignoreCase）
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>// 修飾子gは全てのマッチング箇所を検索する（global）
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>var regex = /hoge/ig;
+</span></code></pre></div>
 <h1 id="_18">正規表現における注意点<a class="headerlink" href="#_18" title="Permanent link">&para;</a></h1>
 <h2 id="_19">最長マッチと最短マッチ<a class="headerlink" href="#_19" title="Permanent link">&para;</a></h2>
 <p>思ったよりも長い範囲にマッチしてしまう・・・という時に確認</p>
@@ -1528,22 +1534,22 @@ var regex = /hoge/ig;
 <p>参考：<a href="http://jmatsu.hatenablog.com/entry/2017/01/30/130952">3つの正規表現を知らないとハマるヨ</a></p>
 <h2 id="_21">エスケープの必要性<a class="headerlink" href="#_21" title="Permanent link">&para;</a></h2>
 <p>コード内で正規表現を使用する場合には、エスケープが２重に必要な場合があるので注意</p>
-<pre><code>java
-// 文字列リテラル
-String regex = &quot;hoge\\.com&quot;;
-
-// バックスラッシュの正規表現は\\\\と書く。これで「\」のみにマッチ
-String backslashRegex = &quot;\\\\&quot;;
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>java
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>// 文字列リテラル
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>String regex = &quot;hoge\\.com&quot;;
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>
+</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>// バックスラッシュの正規表現は\\\\と書く。これで「\」のみにマッチ
+</span><span id="__span-12-6"><a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a>String backslashRegex = &quot;\\\\&quot;;
+</span></code></pre></div>
 <h2 id="_22">正規表現リテラル<a class="headerlink" href="#_22" title="Permanent link">&para;</a></h2>
 <ul>
 <li>正規表現リテラルにはそのまま正規表現を書ける（正規表現のみのエスケープで良い）。</li>
-<li>JavaScriptやRubyなどは正規表現リテラルがサポートされているが、Javaはサポートされていない</li>
+<li>JavaScriptやRubyなどは正規表現リテラルがサポートされているが、Javaはサポートされていない
+<div class="language-text highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>JavaScript
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>// 正規表現リテラル
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>var regex = /hoge\.com/;
+</span></code></pre></div></li>
 </ul>
-<pre><code>JavaScript
-// 正規表現リテラル
-var regex = /hoge\.com/;
-</code></pre>
 <h2 id="_23">正規表現のチェックに役立つサイト<a class="headerlink" href="#_23" title="Permanent link">&para;</a></h2>
 <ul>
 <li><a href="https://regexper.com/">Regexper：正規表現を可視化して確認できる</a></li>
@@ -1600,6 +1606,11 @@ var regex = /hoge\.com/;
           
         </div>
         
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+            Back to top
+          </button>
+        
       </main>
       
         <footer class="md-footer">
@@ -1629,7 +1640,7 @@ var regex = /hoge\.com/;
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tracking", "navigation.expand", "navigation.sections", "navigation.indexes", "navigation.path", "toc.integrate"], "search": "../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tracking", "navigation.top", "navigation.sections", "navigation.indexes", "navigation.path", "toc.integrate", "content.code.copy"], "search": "../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
       <script src="../assets/javascripts/bundle.fac441b0.min.js"></script>
