@@ -1,0 +1,1937 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../mysql/">
+      
+      
+        <link rel="next" href="../mysql-table/">
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.9">
+    
+    
+      
+        <title>innodb status解读 - 总有刁民想要害朕</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.85bb2934.min.css">
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#show-engine-innodb-status" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="总有刁民想要害朕" class="md-header__button md-logo" aria-label="总有刁民想要害朕" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            总有刁民想要害朕
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              innodb status解读
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="总有刁民想要害朕" class="md-nav__button md-logo" aria-label="总有刁民想要害朕" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    总有刁民想要害朕
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        Welcome
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+      
+      
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+          ansbile
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          ansbile
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ansbile/" class="md-nav__link">
+        ansbileオプション
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ansbile_async/" class="md-nav__link">
+        ansbile_async
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../awk/" class="md-nav__link">
+        awk
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sed/" class="md-nav__link">
+        sed
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../MB-MiB%E7%9A%84%E5%8C%BA%E5%88%AB/" class="md-nav__link">
+        MB_MiB的区别
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+      
+      
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+          MegaRAID
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_6">
+          <span class="md-nav__icon md-icon"></span>
+          MegaRAID
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../megacli/" class="md-nav__link">
+        megacli
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../megaraid/" class="md-nav__link">
+        megaraid
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+      
+      
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+          PostgreSQL
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_7">
+          <span class="md-nav__icon md-icon"></span>
+          PostgreSQL
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../psql-vs-mysql/" class="md-nav__link">
+        MySQLとPostgreSQLコマンド比較表
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" checked>
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+          MySQL
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="true">
+        <label class="md-nav__title" for="__nav_8">
+          <span class="md-nav__icon md-icon"></span>
+          MySQL
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Explain%E8%AF%A6%E8%A7%A3%E4%B8%8E%E7%B4%A2%E5%BC%95%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/" class="md-nav__link">
+        Explain详解与索引最佳实践
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mysql/" class="md-nav__link">
+        Mysql参数优化
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          innodb status解读
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        innodb status解读
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#show-engine-innodb-status" class="md-nav__link">
+    show engine innodb status 解读
+  </a>
+  
+    <nav class="md-nav" aria-label="show engine innodb status 解读">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#background-thread" class="md-nav__link">
+    BACKGROUND THREAD
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#semaphores" class="md-nav__link">
+    SEMAPHORES
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#latest-detected-deadlock" class="md-nav__link">
+    LATEST DETECTED DEADLOCK
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#transactions" class="md-nav__link">
+    TRANSACTIONS
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#file-io" class="md-nav__link">
+    FILE I/O
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#insert-buffer-and-adaptive-hash-index" class="md-nav__link">
+    INSERT BUFFER AND ADAPTIVE HASH INDEX
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#log" class="md-nav__link">
+    LOG
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#buffer-pool-and-memory" class="md-nav__link">
+    BUFFER POOL AND MEMORY
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#individual-buffer-pool-info" class="md-nav__link">
+    INDIVIDUAL BUFFER POOL INFO
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#row-operations" class="md-nav__link">
+    ROW OPERATIONS
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#end-of-innodb-monitor-output" class="md-nav__link">
+    END OF INNODB MONITOR OUTPUT
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mysql-table/" class="md-nav__link">
+        MySQL-table
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mysql%E3%82%92%E3%82%BD%E3%83%BC%E3%82%B9%E3%81%8B%E3%82%89%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB/" class="md-nav__link">
+        MySQLビルド
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../MySQL-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="md-nav__link">
+        学习笔记
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_7" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_8_7" id="__nav_8_7_label" tabindex="0">
+          MGR
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_7_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_8_7">
+          <span class="md-nav__icon md-icon"></span>
+          MGR
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mysql-mgr/" class="md-nav__link">
+        MGR
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mysql-group-replication-how-to-elect-the-new-primary-node/" class="md-nav__link">
+        MGR 如何选举新的主节点
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mysql-mgr-copy/" class="md-nav__link">
+        転載MGR
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mysql-ha/" class="md-nav__link">
+        mysql+keepalived搭建教程
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mysql-clone/" class="md-nav__link">
+        mysqlクローン機能
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+          Python Tips
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_9">
+          <span class="md-nav__icon md-icon"></span>
+          Python Tips
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-styleguide/" class="md-nav__link">
+        Python风格规范
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-config/" class="md-nav__link">
+        Python程序配置文件管理
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-decorator/" class="md-nav__link">
+        装饰器
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-dunder/" class="md-nav__link">
+        5种下划线
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-function/" class="md-nav__link">
+        传入参数的几种方法
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python/" class="md-nav__link">
+        非常规的技巧
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-mysql/" class="md-nav__link">
+        操作mysql基础
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Python-Re-%E6%A8%A1%E5%9D%97%E8%B6%85%E5%85%A8%E8%A7%A3%E8%AF%BB/" class="md-nav__link">
+        Re 模块
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Python%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%8B%BC%E6%8E%A5%E6%80%BB%E7%BB%93/" class="md-nav__link">
+        字符串拼接总结
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E4%B8%80%E8%A1%8C-Python-%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0%E5%B9%B6%E8%A1%8C/" class="md-nav__link">
+        代码并行
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Regular-Expression/" class="md-nav__link">
+        正規表現
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../taged-VLAN%E3%81%A8untagedVLAN%E3%81%AE%E9%81%95%E3%81%84/" class="md-nav__link">
+        タグVLAN
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sar/" class="md-nav__link">
+        sar
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Bash%E7%BC%96%E7%A8%8B%E8%B6%85%E8%AF%A6%E7%BB%86%E8%AF%AD%E6%B3%95%E6%80%BB%E7%BB%93/" class="md-nav__link">
+        Bash编程超详细语法总结
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../iptables/" class="md-nav__link">
+        iptables
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../linux-lvm/" class="md-nav__link">
+        linux-lvm
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../centos7-set-kernel/" class="md-nav__link">
+        centos7-set-kernel
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../centos-network-device-naming/" class="md-nav__link">
+        centos-network-device-naming
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Linux-Performance/" class="md-nav__link">
+        Linux Performance
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Linux-shell-%E9%80%BB%E8%BE%91%E8%BF%90%E7%AE%97%E7%AC%A6-%E9%80%BB%E8%BE%91%E8%A1%A8%E8%BE%BE%E5%BC%8F%E8%AF%A6%E8%A7%A3/" class="md-nav__link">
+        Linux-shell-逻辑运算符-逻辑表达式详解
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../LVM%E9%80%BB%E8%BE%91%E5%8D%B7%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5%E5%8F%8ALVM%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/" class="md-nav__link">
+        LVM逻辑卷基本概念及LVM的工作原理
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../macOS%E8%BD%AF%E4%BB%B6%E7%BC%96%E8%AF%91%E6%97%B6%E6%89%BE%E4%B8%8D%E5%88%B0%E5%A4%B4%E6%96%87%E4%BB%B6%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95-%E6%9B%B4%E6%96%B010-15/" class="md-nav__link">
+        macOS软件编译时找不到头文件解决方法[更新10.15]
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ubnt/" class="md-nav__link">
+        ubnt
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vim/" class="md-nav__link">
+        VIM
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../about/" class="md-nav__link">
+        About
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  <h1>innodb status解读</h1>
+
+<h2 id="show-engine-innodb-status">show engine innodb status 解读<a class="headerlink" href="#show-engine-innodb-status" title="Permanent link">&para;</a></h2>
+<ul>
+<li>https://blog.51cto.com/u_15080030/2642739</li>
+</ul>
+<p>InnoDB是MySQL使用最多的存储引擎，通常InnoDB状态可以通过show engine innodb status\G查看。
+由于MySQL不同版本采用InnoDB引擎版本不同，5.6后对show engine innodb status信息进行了优化，本文环境为5.7。</p>
+<table>
+<thead>
+<tr>
+<th align="left">MySQL版本</th>
+<th align="center">InnoDB引擎版本</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">5.1.x</td>
+<td align="center">1.0.x版本(官方称为InnoDB Plugin)</td>
+</tr>
+<tr>
+<td align="left">5.5.x</td>
+<td align="center">5.5(1.1.x版本), InnoDB被Oracle收回后</td>
+</tr>
+<tr>
+<td align="left">5.6.x</td>
+<td align="center">5.6(1.2.x版本)</td>
+</tr>
+<tr>
+<td align="left">5.7.x</td>
+<td align="center">5.7</td>
+</tr>
+<tr>
+<td align="left">8.0.x</td>
+<td align="center">8.0</td>
+</tr>
+</tbody>
+</table>
+<p>show engine innodb status统计信息
+需要注意一点：show engine innodb status显示的不是当前状态，而是过去某个时间范围内InnoDB存储引擎的状态。</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>Per second averages calculated from the last 59 seconds
+</span></code></pre></div>
+<p>在显示前端可看到以上信息，代表查询的信息为过去59秒内每2秒的平均值。
+show engine innodb status主要包括以下几个部分：</p>
+<table>
+<thead>
+<tr>
+<th align="left">項目</th>
+<th align="center">備考欄</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">BACKGROUND THREAD</td>
+<td align="center">后台Master线程I</td>
+</tr>
+<tr>
+<td align="left">SEMAPHORES</td>
+<td align="center">信号量信息</td>
+</tr>
+<tr>
+<td align="left">LATEST DETECTED DEADLOCK</td>
+<td align="center">最近一次死锁信息,只有产生过死锁才会有</td>
+</tr>
+<tr>
+<td align="left">TRANSACTIONS</td>
+<td align="center">事务信息</td>
+</tr>
+<tr>
+<td align="left">FILE I/O</td>
+<td align="center">IO Thread信息</td>
+</tr>
+<tr>
+<td align="left">INSERT BUFFER AND ADAPTIVE HASH INDEX</td>
+<td align="center">INSERT BUFFER和自适应HASH索引</td>
+</tr>
+<tr>
+<td align="left">LOG</td>
+<td align="center">日志</td>
+</tr>
+<tr>
+<td align="left">BUFFER POOL AND MEMORY</td>
+<td align="center">BUFFER POOL和内存</td>
+</tr>
+<tr>
+<td align="left">INDIVIDUAL BUFFER POOL INFO</td>
+<td align="center">如果设置了多个BUFFER POOL实例,这里显示每个BUFFER POOL信息,可以通过innodb_buffer_pool_instances参数设置</td>
+</tr>
+<tr>
+<td align="left">ROW OPERATIONS</td>
+<td align="center">行操作统计信息</td>
+</tr>
+<tr>
+<td align="left">END OF INNODB MONITOR OUTPUT</td>
+<td align="center">输出结束语</td>
+</tr>
+</tbody>
+</table>
+<h3 id="background-thread">BACKGROUND THREAD<a class="headerlink" href="#background-thread" title="Permanent link">&para;</a></h3>
+<p>InnoDB存储引擎的核心操作大部分都集中在Mater Thread后台线程中。
+MySQL5.5版本之前：
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>-----------------
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>BACKGROUND THREAD
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>-----------------
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>srv_master_thread loops: 846676 1_second, 846675 sleeps, 84665 10_second, 17 background, 17 flush
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>srv_master_thread log flush and writes: 854189
+</span></code></pre></div></p>
+<p>MySQL 5.6之后对Master Thread进行了优化，去除了sleeps的信息，srv_active为之前的每秒的循环，srv_idle为每10秒的的循环，srv_shutdown为停止的循环，通常为0，只在MySQL关闭时才会增加。</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>-----------------
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>BACKGROUND THREAD
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>-----------------
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>srv_master_thread loops: 3911776 srv_active, 0 srv_shutdown, 309625 srv_idle
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>srv_master_thread log flush and writes: 4221384
+</span></code></pre></div>
+<p>上面可以看出主循环每10秒进行了309625次，每秒进行了3911776次，每10秒的操作符合1:10。
+负载低的情况下日志缓冲刷盘次数，4221384 ≈ 3911776+309625。
+根据循环次数可大概判断当前数据库负载情况。如果每秒循环次数少，每10秒次数多，证明当前负载很低；如果每秒循环次数多，每10秒次数少，远大于10:1，证明当前负载很高。</p>
+<h3 id="semaphores">SEMAPHORES<a class="headerlink" href="#semaphores" title="Permanent link">&para;</a></h3>
+<p>当前等待线程的列表及事件计数器，可以评估当前负载情况。</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>----------
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>SEMAPHORES
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>----------
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>OS WAIT ARRAY INFO: reservation count 58961200
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>OS WAIT ARRAY INFO: signal count 125268732
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>Mutex spin waits 770371493, rounds 6482840874, OS waits 20699077
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>RW-shared spins 0, rounds 115276716, OS waits 14655922
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>RW-excl spins 0, rounds 987115172, OS waits 12384598
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>RW-sx spins 40484350, rounds 419545112, OS waits 4476477
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>Spin rounds per wait: 115276716.00 RW-shared, 987115172.00 RW-excl, 10.36 RW-sx
+</span></code></pre></div>
+<table>
+<thead>
+<tr>
+<th align="left">項目</th>
+<th align="center">備考欄</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">OS WAIT ARRAY INFO</td>
+<td align="center">reservation count: 表示InnoDB产出了多少次OS WAIT</td>
+</tr>
+<tr>
+<td align="left">OS WAIT ARRAY INFO</td>
+<td align="center">signal count: 表示今日OS WAIT的线程被唤醒次数</td>
+</tr>
+<tr>
+<td align="left">Mutex(5.7后去除)</td>
+<td align="center">spins: 空转次数,通过innodb_sync_spin_loops控制,超过则转到OS Waits</td>
+</tr>
+<tr>
+<td align="left">Mutex(5.7后去除)</td>
+<td align="center">spin waits:  spin线程无法获取锁而进入Spin wait</td>
+</tr>
+<tr>
+<td align="left">Mutex(5.7后去除)</td>
+<td align="center">rounds: spin wait进行轮询查mutexes的次数</td>
+</tr>
+<tr>
+<td align="left">Mutex(5.7后去除)</td>
+<td align="center">OS waits: 线程放弃spin wait进入挂起状态</td>
+</tr>
+<tr>
+<td align="left">RW-shared</td>
+<td align="center">RW-shared 共享锁</td>
+</tr>
+<tr>
+<td align="left">RW-excl</td>
+<td align="center">RW-excl 排它锁</td>
+</tr>
+<tr>
+<td align="left">RW-sx</td>
+<td align="center">5.7后新增, RW-sx 共享排它锁</td>
+</tr>
+<tr>
+<td align="left">Spin rounds per wait</td>
+<td align="center">rounds / spins = 值</td>
+</tr>
+</tbody>
+</table>
+<p>要明白InnoDB如何处理互斥量(Mutexes)，以及什么是两步获得锁(two-step approach)。</p>
+<ol>
+<li>首先进程试图获得一个锁，如果此锁被它人占用。它就会执行所谓的spin wait，即所谓循环的查询“锁被释放了吗？”。</li>
+<li>如果在循环过程中，一直未得到锁释放的信息，则其转入OS WAIT，即所谓线程进入挂起(suspended)状态。</li>
+<li>直到锁被释放后，通过信号(singal)唤醒线程。<br />
+    Spin wait的消耗远小于OSwaits。Spin wait利用cpu的空闲时间，检查锁的状态，OS Wait会有所谓content switch，从CPU内核中换出当前执行线程以供其它线程使用。所以应尽量减少OS waits，可以通过innodb_sync_spin_loops参数来平衡spin wait和os wait。Mutex信息可通过show engine innodb mutex查看。</li>
+</ol>
+<h3 id="latest-detected-deadlock">LATEST DETECTED DEADLOCK<a class="headerlink" href="#latest-detected-deadlock" title="Permanent link">&para;</a></h3>
+<p>记录最近一次死锁信息，只有产生过死锁才会有记录。</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>------------------------
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>LATEST DETECTED DEADLOCK
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>------------------------
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>190425 18:00:13
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>*** (1) TRANSACTION:
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>TRANSACTION 231E7C5DF, ACTIVE 0 sec starting index read
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>mysql tables in use 1, locked 1
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>LOCK WAIT 4 lock struct(s), heap size 1248, 3 row lock(s)
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>MySQL thread id 1346996, OS thread handle 0x7fd968454700, query id 760545285 10.10.x.x app_user updating
+</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>DELETE 
+</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>    FROM db_0.table_0
+</span><span id="__span-4-12"><a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a>    WHERE ORDER_ID IN (  456787464 , 456787465 )
+</span><span id="__span-4-13"><a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a>*** (1) WAITING FOR THIS LOCK TO BE GRANTED:
+</span><span id="__span-4-14"><a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a>RECORD LOCKS space id 5 page no 6064 n bits 824 index `orderId_index` of table `db_0`.`table_0` trx id 231E7C5DF lock_mode X waiting
+</span><span id="__span-4-15"><a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a>Record lock, heap no 180 PHYSICAL RECORD: n_fields 2; compact format; info bits 32
+</span><span id="__span-4-16"><a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a> 0: len 8; hex 80000015eb6a1041; asc      j A;;
+</span><span id="__span-4-17"><a id="__codelineno-4-17" name="__codelineno-4-17" href="#__codelineno-4-17"></a> 1: len 8; hex 800000002018fce2; asc         ;
+</span><span id="__span-4-18"><a id="__codelineno-4-18" name="__codelineno-4-18" href="#__codelineno-4-18"></a>*** (2) TRANSACTION:
+</span><span id="__span-4-19"><a id="__codelineno-4-19" name="__codelineno-4-19" href="#__codelineno-4-19"></a>TRANSACTION 231E7C5DD, ACTIVE 0 sec starting index read, thread declared inside InnoDB 1
+</span><span id="__span-4-20"><a id="__codelineno-4-20" name="__codelineno-4-20" href="#__codelineno-4-20"></a>mysql tables in use 1, locked 1
+</span><span id="__span-4-21"><a id="__codelineno-4-21" name="__codelineno-4-21" href="#__codelineno-4-21"></a>5 lock struct(s), heap size 1248, 4 row lock(s)
+</span><span id="__span-4-22"><a id="__codelineno-4-22" name="__codelineno-4-22" href="#__codelineno-4-22"></a>MySQL thread id 1348165, OS thread handle 0x7fd96669f700, query id 760545283 10.10.x.x app_user updating
+</span><span id="__span-4-23"><a id="__codelineno-4-23" name="__codelineno-4-23" href="#__codelineno-4-23"></a>DELETE 
+</span><span id="__span-4-24"><a id="__codelineno-4-24" name="__codelineno-4-24" href="#__codelineno-4-24"></a>    FROM db_0.table_0
+</span><span id="__span-4-25"><a id="__codelineno-4-25" name="__codelineno-4-25" href="#__codelineno-4-25"></a>    WHERE ORDER_ID IN (  456787464 , 456787465 )
+</span><span id="__span-4-26"><a id="__codelineno-4-26" name="__codelineno-4-26" href="#__codelineno-4-26"></a>*** (2) HOLDS THE LOCK(S):
+</span><span id="__span-4-27"><a id="__codelineno-4-27" name="__codelineno-4-27" href="#__codelineno-4-27"></a>RECORD LOCKS space id 5 page no 6064 n bits 824 index `orderId_index` of table `db_0`.`table_0` trx id 231E7C5DD lock_mode X locks rec but not gap
+</span><span id="__span-4-28"><a id="__codelineno-4-28" name="__codelineno-4-28" href="#__codelineno-4-28"></a>Record lock, heap no 180 PHYSICAL RECORD: n_fields 2; compact format; info bits 32
+</span><span id="__span-4-29"><a id="__codelineno-4-29" name="__codelineno-4-29" href="#__codelineno-4-29"></a> 0: len 8; hex 80000015eb6a1041; asc      j A;;
+</span><span id="__span-4-30"><a id="__codelineno-4-30" name="__codelineno-4-30" href="#__codelineno-4-30"></a> 1: len 8; hex 800000002018fce2; asc         ;;
+</span><span id="__span-4-31"><a id="__codelineno-4-31" name="__codelineno-4-31" href="#__codelineno-4-31"></a>*** (2) WAITING FOR THIS LOCK TO BE GRANTED:
+</span><span id="__span-4-32"><a id="__codelineno-4-32" name="__codelineno-4-32" href="#__codelineno-4-32"></a>RECORD LOCKS space id 5 page no 6064 n bits 824 index `orderId_index` of table `db_0`.`table_0` trx id 231E7C5DD lock_mode X waiting
+</span><span id="__span-4-33"><a id="__codelineno-4-33" name="__codelineno-4-33" href="#__codelineno-4-33"></a>Record lock, heap no 180 PHYSICAL RECORD: n_fields 2; compact format; info bits 32
+</span><span id="__span-4-34"><a id="__codelineno-4-34" name="__codelineno-4-34" href="#__codelineno-4-34"></a> 0: len 8; hex 80000015eb6a1041; asc      j A;;
+</span><span id="__span-4-35"><a id="__codelineno-4-35" name="__codelineno-4-35" href="#__codelineno-4-35"></a> 1: len 8; hex 800000002018fce2; asc         ;;
+</span><span id="__span-4-36"><a id="__codelineno-4-36" name="__codelineno-4-36" href="#__codelineno-4-36"></a>
+</span><span id="__span-4-37"><a id="__codelineno-4-37" name="__codelineno-4-37" href="#__codelineno-4-37"></a>*** WE ROLL BACK TRANSACTION (1)
+</span></code></pre></div>
+<p>死锁是指两个或两个以上的进程在执行过程中，因争夺资源而造成的一种互相等待的现象。正常死锁会自动释放，innodb有一个内在的死锁检测工具，当死锁超过一定时间后，会回滚其中一个事务，innodb_lock_wait_timeout可配置死锁等待超时时间。
+死锁在两情况下最容易产生：</p>
+<ul>
+<li>高并发同时操作同一条数据</li>
+<li>存在主键和辅助索引，加锁顺序相反<br />
+  避免死锁方法即降低并发，操作数据时使加锁顺序相同。</li>
+</ul>
+<h3 id="transactions">TRANSACTIONS<a class="headerlink" href="#transactions" title="Permanent link">&para;</a></h3>
+<p>包含了InnoDB事务(transaction)的统计信息。</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>------------
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>TRANSACTIONS
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>------------
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>Trx id counter 2409176
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>Purge done for trx&#39;s n:o &lt; 2409171 undo n:o &lt; 0 state: running but idle
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>History list length 31
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>LIST OF TRANSACTIONS FOR EACH SESSION:
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>---TRANSACTION 421224214038352, not started
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>0 lock struct(s), heap size 1136, 0 row lock(s)
+</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a>---TRANSACTION 421224214044736, not started
+</span><span id="__span-5-11"><a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a>0 lock struct(s), heap size 1136, 0 row lock(s)
+</span><span id="__span-5-12"><a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a>---TRANSACTION 421224214039264, not started
+</span><span id="__span-5-13"><a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a>0 lock struct(s), heap size 1136, 0 row lock(s)
+</span><span id="__span-5-14"><a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a>---TRANSACTION 2409171, ACTIVE 1549 sec fetching rows, thread declared inside InnoDB 3871
+</span><span id="__span-5-15"><a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a>mysql tables in use 1, locked 0
+</span><span id="__span-5-16"><a id="__codelineno-5-16" name="__codelineno-5-16" href="#__codelineno-5-16"></a>0 lock struct(s), heap size 1136, 0 row lock(s)
+</span><span id="__span-5-17"><a id="__codelineno-5-17" name="__codelineno-5-17" href="#__codelineno-5-17"></a>MySQL thread id 653597, OS thread handle 140289889908480, query id 2528936 127.0.0.1 root Sending data
+</span><span id="__span-5-18"><a id="__codelineno-5-18" name="__codelineno-5-18" href="#__codelineno-5-18"></a>SELECT /*!40001 SQL_NO_CACHE */ * FROM `table`
+</span></code></pre></div>
+<table>
+<thead>
+<tr>
+<th align="left">項目</th>
+<th align="center">備考欄</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">Trx id counter</td>
+<td align="center">当前事务ID</td>
+</tr>
+<tr>
+<td align="left">Purge done for trx's</td>
+<td align="center">正在清理掉的 transaction IDignal count: 表示今日OS WAIT的线程被唤醒次数</td>
+</tr>
+<tr>
+<td align="left">History list length</td>
+<td align="center">记录了undo spaces内未清理掉的事务个数,Purge的原则是记录没有被其他事务继续使用</td>
+</tr>
+<tr>
+<td align="left">LIST OF TRANSACTION FOR EACH SESSION</td>
+<td align="center">每个session的事务状态</td>
+</tr>
+</tbody>
+</table>
+<p>当前活跃的事物状态为ACTIVE，事物的详细信息，包括线程ID、执行时间、用户、SQL等。正在使用1个表，涉及锁的表0个。</p>
+<h3 id="file-io">FILE I/O<a class="headerlink" href="#file-io" title="Permanent link">&para;</a></h3>
+<p>在InnoDB中大量使用了AIO（Async IO）来处理IO 请求，IO Thread主要是负责这些IO请求的回调处理，通过调用fsync()函数协调内存与磁盘之间的数据。</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>--------
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>FILE I/O
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>--------
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>I/O thread 0 state: waiting for completed aio requests (insert buffer thread)
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>I/O thread 1 state: waiting for completed aio requests (log thread)
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>I/O thread 2 state: waiting for completed aio requests (read thread)
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>I/O thread 3 state: waiting for completed aio requests (read thread)
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>I/O thread 4 state: waiting for completed aio requests (read thread)
+</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>I/O thread 5 state: waiting for completed aio requests (read thread)
+</span><span id="__span-6-10"><a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a>I/O thread 6 state: waiting for completed aio requests (read thread)
+</span><span id="__span-6-11"><a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a>I/O thread 7 state: waiting for completed aio requests (read thread)
+</span><span id="__span-6-12"><a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a>I/O thread 8 state: waiting for completed aio requests (read thread)
+</span><span id="__span-6-13"><a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a>I/O thread 9 state: waiting for completed aio requests (read thread)
+</span><span id="__span-6-14"><a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a>I/O thread 10 state: waiting for completed aio requests (write thread)
+</span><span id="__span-6-15"><a id="__codelineno-6-15" name="__codelineno-6-15" href="#__codelineno-6-15"></a>I/O thread 11 state: waiting for completed aio requests (write thread)
+</span><span id="__span-6-16"><a id="__codelineno-6-16" name="__codelineno-6-16" href="#__codelineno-6-16"></a>I/O thread 12 state: waiting for completed aio requests (write thread)
+</span><span id="__span-6-17"><a id="__codelineno-6-17" name="__codelineno-6-17" href="#__codelineno-6-17"></a>I/O thread 13 state: waiting for completed aio requests (write thread)
+</span><span id="__span-6-18"><a id="__codelineno-6-18" name="__codelineno-6-18" href="#__codelineno-6-18"></a>I/O thread 14 state: waiting for completed aio requests (write thread)
+</span><span id="__span-6-19"><a id="__codelineno-6-19" name="__codelineno-6-19" href="#__codelineno-6-19"></a>I/O thread 15 state: waiting for completed aio requests (write thread)
+</span><span id="__span-6-20"><a id="__codelineno-6-20" name="__codelineno-6-20" href="#__codelineno-6-20"></a>I/O thread 16 state: waiting for completed aio requests (write thread)
+</span><span id="__span-6-21"><a id="__codelineno-6-21" name="__codelineno-6-21" href="#__codelineno-6-21"></a>I/O thread 17 state: waiting for completed aio requests (write thread)
+</span><span id="__span-6-22"><a id="__codelineno-6-22" name="__codelineno-6-22" href="#__codelineno-6-22"></a>Pending normal aio reads: [0, 0, 0, 0, 0, 0, 0, 0] , aio writes: [0, 0, 0, 0, 0, 0, 0, 0] ,
+</span><span id="__span-6-23"><a id="__codelineno-6-23" name="__codelineno-6-23" href="#__codelineno-6-23"></a>ibuf aio reads:, log i/o&#39;s:, sync i/o&#39;s:
+</span><span id="__span-6-24"><a id="__codelineno-6-24" name="__codelineno-6-24" href="#__codelineno-6-24"></a>Pending flushes (fsync) log: 0; buffer pool: 0
+</span><span id="__span-6-25"><a id="__codelineno-6-25" name="__codelineno-6-25" href="#__codelineno-6-25"></a>15234061 OS file reads, 304461183 OS file writes, 73899457 OS fsyncs
+</span><span id="__span-6-26"><a id="__codelineno-6-26" name="__codelineno-6-26" href="#__codelineno-6-26"></a>0.00 reads/s, 0 avg bytes/read, 0.24 writes/s, 0.17 fsyncs/s
+</span></code></pre></div>
+<p>InnoDB 1.0版本之前有4个IO线程，1.1后做了优化，Purge Thread从Master Thread独立出来，<br />
+Purge Cleaner Thread从InnoDB 1.2版本引入，都是为了减轻Master Thread的工作，提高CPU利用率。</p>
+<table>
+<thead>
+<tr>
+<th align="left">項目</th>
+<th align="center">備考欄</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">insert buffer thread</td>
+<td align="center">合并插入缓存, insert buffer维护非唯一辅助索引</td>
+</tr>
+<tr>
+<td align="left">log thread</td>
+<td align="center">负责异步刷新事务日志</td>
+</tr>
+<tr>
+<td align="left">read thread</td>
+<td align="center">预读, innodb_read_io_threads 默认4</td>
+</tr>
+<tr>
+<td align="left">write thread</td>
+<td align="center">刷新脏页缓存, innodb_write_id_threads 默认4</td>
+</tr>
+<tr>
+<td align="left">purge thread</td>
+<td align="center">回收已经使用并分配的undo页,可设置多个</td>
+</tr>
+<tr>
+<td align="left">purge cleaner thread</td>
+<td align="center">刷新脏页</td>
+</tr>
+</tbody>
+</table>
+<p>显示各个I/O thread的pending operations,pending的log和buffer pool thread的fsync()调用；
+aio：代表的是异步IO(asynchronous I/O)；
+OS file：显示了reads writes fsync() 调用次数。</p>
+<h3 id="insert-buffer-and-adaptive-hash-index">INSERT BUFFER AND ADAPTIVE HASH INDEX<a class="headerlink" href="#insert-buffer-and-adaptive-hash-index" title="Permanent link">&para;</a></h3>
+<p>INSERT BUFFER即合并插入缓存，从innodb 1.0.x版本开始引入Change Buffer，
+是INSERT BUFFER升级版，即MySQL 5.1.x以上版本都支持，不仅包括INSERT BUFFER，还包括UPDATE BUFFER、DELETE BUFFER、PURGE BUFFER。</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>-------------------------------------
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>INSERT BUFFER AND ADAPTIVE HASH INDEX
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>-------------------------------------
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>Ibuf: size 1356, free list len 149402, seg size 149404, 2004231 merges
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>merged operations:
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a> insert 1373793, delete mark 316276978, delete 5341003
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>discarded operations:
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a> insert 0, delete mark 0, delete 0
+</span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a>Hash table size 298897, node heap has 1 buffer(s)
+</span><span id="__span-7-10"><a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a>Hash table size 298897, node heap has 1 buffer(s)
+</span><span id="__span-7-11"><a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a>Hash table size 298897, node heap has 0 buffer(s)
+</span><span id="__span-7-12"><a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a>Hash table size 298897, node heap has 1 buffer(s)
+</span><span id="__span-7-13"><a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a>Hash table size 298897, node heap has 1 buffer(s)
+</span><span id="__span-7-14"><a id="__codelineno-7-14" name="__codelineno-7-14" href="#__codelineno-7-14"></a>Hash table size 298897, node heap has 1 buffer(s)
+</span><span id="__span-7-15"><a id="__codelineno-7-15" name="__codelineno-7-15" href="#__codelineno-7-15"></a>Hash table size 298897, node heap has 2 buffer(s)
+</span><span id="__span-7-16"><a id="__codelineno-7-16" name="__codelineno-7-16" href="#__codelineno-7-16"></a>Hash table size 298897, node heap has 0 buffer(s)
+</span><span id="__span-7-17"><a id="__codelineno-7-17" name="__codelineno-7-17" href="#__codelineno-7-17"></a>Hash table size 298897, node heap has 1 buffer(s)
+</span><span id="__span-7-18"><a id="__codelineno-7-18" name="__codelineno-7-18" href="#__codelineno-7-18"></a>Hash table size 298897, node heap has 0 buffer(s)
+</span><span id="__span-7-19"><a id="__codelineno-7-19" name="__codelineno-7-19" href="#__codelineno-7-19"></a>Hash table size 298897, node heap has 0 buffer(s)
+</span><span id="__span-7-20"><a id="__codelineno-7-20" name="__codelineno-7-20" href="#__codelineno-7-20"></a>Hash table size 298897, node heap has 1 buffer(s)
+</span><span id="__span-7-21"><a id="__codelineno-7-21" name="__codelineno-7-21" href="#__codelineno-7-21"></a>Hash table size 298897, node heap has 1 buffer(s)
+</span><span id="__span-7-22"><a id="__codelineno-7-22" name="__codelineno-7-22" href="#__codelineno-7-22"></a>193.03 hash searches/s, 713.40 non-hash searches/s
+</span></code></pre></div>
+<table>
+<thead>
+<tr>
+<th align="left">項目</th>
+<th align="center">備考欄</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">Ibud: size</td>
+<td align="center">已经合并页的数量</td>
+</tr>
+<tr>
+<td align="left">free list len</td>
+<td align="center">空闲列表长度</td>
+</tr>
+<tr>
+<td align="left">seg size</td>
+<td align="center">Insert Buffer大小</td>
+</tr>
+<tr>
+<td align="left">merges</td>
+<td align="center">合并次数</td>
+</tr>
+<tr>
+<td align="left">merged operations</td>
+<td align="center">Change Buffer中每个操作次数; insert代表Insert Buffer; delete mark代表Delete Buffer; delete代表Purge Buffer</td>
+</tr>
+<tr>
+<td align="left">discarded operations</td>
+<td align="center">Change Buffer中无需合并的次数</td>
+</tr>
+<tr>
+<td align="left">hash searches/s</td>
+<td align="center">通过hash索引查询</td>
+</tr>
+<tr>
+<td align="left">non-hash searches/s</td>
+<td align="center">不能通过hash索引查询</td>
+</tr>
+</tbody>
+</table>
+<p>可以看到自适应哈希索引大小、使用情况、每秒使用自适应哈希索引搜索情况。自适应HASH索引，由INNODB存储引擎控制，只适合等值查询，不适合范围查询。可通过innodb_adaptive_hash_index来禁用或启动。</p>
+<h3 id="log">LOG<a class="headerlink" href="#log" title="Permanent link">&para;</a></h3>
+<p>事物日志的信息
+<div class="language-text highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>---
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>LOG
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>---
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>Log sequence number 33859450169594
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>Log flushed up to   33859450169564
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>Pages flushed up to 33859450169210
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>Last checkpoint at  33859450169201
+</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>0 pending log flushes, 0 pending chkp writes
+</span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a>15044267 log i/o&#39;s done, 0.10 log i/o&#39;s/second
+</span></code></pre></div>
+InnoDB事物采用Write-Ahead log策略，即事物在提交时，先写重做日志，在修改页。
+Write-Ahead Log：如果一个页在写入磁盘时，必须先将内存中小于该页LSN的日志先写入到磁盘中。
+重做日志有LSN、每个页有LSN、Checkpoint也有LSN。</p>
+<table>
+<thead>
+<tr>
+<th align="left">項目</th>
+<th align="center">備考欄</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">Log sequence number</td>
+<td align="center">最新产生的日志序列号</td>
+</tr>
+<tr>
+<td align="left">Log flushed up to</td>
+<td align="center">已刷到硬盘的重做日志的日志号</td>
+</tr>
+<tr>
+<td align="left">Pages flushed up to</td>
+<td align="center">已刷到硬盘的页的日志号</td>
+</tr>
+<tr>
+<td align="left">Last checkpoint at</td>
+<td align="center">最后一次检查点位置,数据和日志一致的状态</td>
+</tr>
+<tr>
+<td align="left">pending</td>
+<td align="center">当前挂起的日志读写操作</td>
+</tr>
+</tbody>
+</table>
+<p>LSN记录的是重做日志的总量，单位是字节。以下三种情况会将重做日志缓存刷到重做日志文件：</p>
+<ol>
+<li>Master Thread 每秒刷重做日志缓存到重做日志文件</li>
+<li>innodb_flush_log_at_trx_commit=1时，每次事务提交刷重做日志缓存到重做日志文件</li>
+<li>重做日志缓冲池剩余空间小于1/2时，刷重做日志缓存到重做日志文件</li>
+</ol>
+<h3 id="buffer-pool-and-memory">BUFFER POOL AND MEMORY<a class="headerlink" href="#buffer-pool-and-memory" title="Permanent link">&para;</a></h3>
+<p>innodb_buffer_pool包含数据页、索引页、undo页、insert buffer、数据字典、自适应哈希索引、锁信息等。数据库缓冲池是通过LRU列表管理的。</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>----------------------
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>BUFFER POOL AND MEMORY
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>----------------------
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>Total large memory allocated 19789774848
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>Dictionary memory allocated 3944999
+</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>Buffer pool size   1179504
+</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a>Free buffers       8192
+</span><span id="__span-9-8"><a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a>Database pages     1116347
+</span><span id="__span-9-9"><a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a>Old database pages 411925
+</span><span id="__span-9-10"><a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a>Modified db pages  3
+</span><span id="__span-9-11"><a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a>Pending reads      0
+</span><span id="__span-9-12"><a id="__codelineno-9-12" name="__codelineno-9-12" href="#__codelineno-9-12"></a>Pending writes: LRU 0, flush list 0, single page 0
+</span><span id="__span-9-13"><a id="__codelineno-9-13" name="__codelineno-9-13" href="#__codelineno-9-13"></a>Pages made young 74514305, not young 649973267
+</span><span id="__span-9-14"><a id="__codelineno-9-14" name="__codelineno-9-14" href="#__codelineno-9-14"></a>0.21 youngs/s, 0.17 non-youngs/s
+</span><span id="__span-9-15"><a id="__codelineno-9-15" name="__codelineno-9-15" href="#__codelineno-9-15"></a>Pages read 15233915, created 7356668, written 264739684
+</span><span id="__span-9-16"><a id="__codelineno-9-16" name="__codelineno-9-16" href="#__codelineno-9-16"></a>0.00 reads/s, 0.00 creates/s, 0.10 writes/s
+</span><span id="__span-9-17"><a id="__codelineno-9-17" name="__codelineno-9-17" href="#__codelineno-9-17"></a>Buffer pool hit rate 1000 / 1000, young-making rate 0 / 1000 not 0 / 1000
+</span><span id="__span-9-18"><a id="__codelineno-9-18" name="__codelineno-9-18" href="#__codelineno-9-18"></a>Pages read ahead 0.00/s, evicted without access 0.00/s, Random read ahead 0.00/s
+</span><span id="__span-9-19"><a id="__codelineno-9-19" name="__codelineno-9-19" href="#__codelineno-9-19"></a>LRU len: 1116347, unzip_LRU len: 0
+</span><span id="__span-9-20"><a id="__codelineno-9-20" name="__codelineno-9-20" href="#__codelineno-9-20"></a>I/O sum[48]:cur[0], unzip sum[0]:cur[0]
+</span></code></pre></div>
+<table>
+<thead>
+<tr>
+<th align="left">項目</th>
+<th align="center">備考欄</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">Total large memory allocated</td>
+<td align="center">为InnoDB分配的总内存数(byte)</td>
+</tr>
+<tr>
+<td align="left">Dictionary memory allocated</td>
+<td align="center">为InnoDB数据字典分配的内存数(byte)</td>
+</tr>
+<tr>
+<td align="left">Buffer pool size</td>
+<td align="center">innode_buffer_pool的页数量</td>
+</tr>
+<tr>
+<td align="left">Free buffers</td>
+<td align="center">lru列表中的空闲页数量</td>
+</tr>
+<tr>
+<td align="left">Database pages</td>
+<td align="center">lru列表中的非空闲页数量</td>
+</tr>
+<tr>
+<td align="left">Old database pages</td>
+<td align="center">old子列表的页数量</td>
+</tr>
+<tr>
+<td align="left">Modified db pages</td>
+<td align="center">脏页的数量</td>
+</tr>
+<tr>
+<td align="left">Pending reads</td>
+<td align="center">挂起读的数量</td>
+</tr>
+</tbody>
+</table>
+<p>可以看到当前<code>Buffer Pool Size</code>共有<code>1179504</code>页，即<code>1179504*16K</code>。<br />
+新读取到的页默认插入LRU列表的<code>5/8</code>的位置。<br />
+此值由<code>innodb_old_blocks_pct</code>控制，即前<code>5/8</code>称为<code>new list</code>，后面<code>3/</code>8的称为<code>old list</code>。<br />
+<code>Pages made young</code> 显示LRU列表中<code>old list</code>移到<code>new list</code>的次数，<code>not young</code>显示仍在<code>old list</code>的次数。<br />
+这两个值受<code>innodb_old_blocks_time</code>影响，此值为微秒。如果<code>old list</code>中超过30微秒不再读取，则记录<code>not young</code>，反之记录为<code>Pages made young</code>。</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>&gt;&gt;show global variables like &#39;%blocks%&#39;;
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>+------------------------+-------+
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>| Variable_name          | Value |
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>+------------------------+-------+
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>| innodb_old_blocks_pct  | 37    |
+</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>| innodb_old_blocks_time | 30    |
+</span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a>+------------------------+-------+
+</span></code></pre></div>
+<ul>
+<li>youngs/s,non-youngs/s，表示每秒这两类操作的次数。</li>
+<li>Pages read,created,written，表示innodb被读取，创建，写入了多少页及每秒的次数。</li>
+<li>Buffer pool hit rate，表示缓冲池命中率，如果低于95%需要具体排查。</li>
+<li>Pages read ahead，表示页面预读，随机预读的每秒页数。</li>
+<li>LRU中包含unzip_LRU，unzip_LRU是管理非16KB的压缩表。</li>
+</ul>
+<h3 id="individual-buffer-pool-info">INDIVIDUAL BUFFER POOL INFO<a class="headerlink" href="#individual-buffer-pool-info" title="Permanent link">&para;</a></h3>
+<p>可通过<code>innodb_buffer_pool_instances</code> 来配置多个缓冲池实例，默认为1。
+可减少数据库内部资源竞争，增加并发处理能力。如果分配多个缓冲池实例，每个缓冲池大小为 <code>innodb_buffer_pool_size / innodb_buffer_pool_instances</code>。</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>----------------------
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>INDIVIDUAL BUFFER POOL INFO
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>----------------------
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>---BUFFER POOL 0
+</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>Buffer pool size   147438
+</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>Free buffers       1024
+</span><span id="__span-11-7"><a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a>Database pages     139530
+</span><span id="__span-11-8"><a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a>Old database pages 51486
+</span><span id="__span-11-9"><a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a>Modified db pages  0
+</span><span id="__span-11-10"><a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a>Pending reads      0
+</span><span id="__span-11-11"><a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a>Pending writes: LRU 0, flush list 0, single page 0
+</span><span id="__span-11-12"><a id="__codelineno-11-12" name="__codelineno-11-12" href="#__codelineno-11-12"></a>Pages made young 8790743, not young 77467460
+</span><span id="__span-11-13"><a id="__codelineno-11-13" name="__codelineno-11-13" href="#__codelineno-11-13"></a>0.00 youngs/s, 0.00 non-youngs/s
+</span><span id="__span-11-14"><a id="__codelineno-11-14" name="__codelineno-11-14" href="#__codelineno-11-14"></a>Pages read 1856892, created 916430, written 30727167
+</span><span id="__span-11-15"><a id="__codelineno-11-15" name="__codelineno-11-15" href="#__codelineno-11-15"></a>0.00 reads/s, 0.00 creates/s, 0.00 writes/s
+</span><span id="__span-11-16"><a id="__codelineno-11-16" name="__codelineno-11-16" href="#__codelineno-11-16"></a>No buffer pool page gets since the last printout
+</span><span id="__span-11-17"><a id="__codelineno-11-17" name="__codelineno-11-17" href="#__codelineno-11-17"></a>Pages read ahead 0.00/s, evicted without access 0.00/s, Random read ahead 0.00/s
+</span><span id="__span-11-18"><a id="__codelineno-11-18" name="__codelineno-11-18" href="#__codelineno-11-18"></a>LRU len: 139530, unzip_LRU len: 0
+</span><span id="__span-11-19"><a id="__codelineno-11-19" name="__codelineno-11-19" href="#__codelineno-11-19"></a>I/O sum[6]:cur[0], unzip sum[0]:cur[0]
+</span><span id="__span-11-20"><a id="__codelineno-11-20" name="__codelineno-11-20" href="#__codelineno-11-20"></a>---BUFFER POOL 1
+</span><span id="__span-11-21"><a id="__codelineno-11-21" name="__codelineno-11-21" href="#__codelineno-11-21"></a>---BUFFER POOL 2
+</span><span id="__span-11-22"><a id="__codelineno-11-22" name="__codelineno-11-22" href="#__codelineno-11-22"></a>---BUFFER POOL 3
+</span></code></pre></div>
+<p>可以通过<code>information_schema.INNODB_BUFFER_POOL_STATS</code>视图查看每个buffer_pool实例的信息，<br />
+MySQL默认一个page大小为16K，可以得出<code>POOL_SIZE * innodb_buffer_pool_instances * 16K = innodb_buffer_pool_size</code>。</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>&gt;&gt;select POOL_ID,POOL_SIZE,FREE_BUFFERS,DATABASE_PAGES,OLD_DATABASE_PAGES,MODIFIED_DATABASE_PAGES,PAGES_MADE_YOUNG,PAGES_NOT_MADE_YOUNG from information_schema.INNODB_BUFFER_POOL_STATS;
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>+---------+-----------+--------------+----------------+--------------------+-------------------------+------------------+----------------------+
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>| POOL_ID | POOL_SIZE | FREE_BUFFERS | DATABASE_PAGES | OLD_DATABASE_PAGES | MODIFIED_DATABASE_PAGES | PAGES_MADE_YOUNG | PAGES_NOT_MADE_YOUNG |
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>+---------+-----------+--------------+----------------+--------------------+-------------------------+------------------+----------------------+
+</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>|       0 |     90112 |            0 |          90109 |              33279 |                       0 |            18064 |            132278807 |
+</span><span id="__span-12-6"><a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a>|       1 |     90112 |            0 |          90109 |              33282 |                       0 |            18342 |            132086061 |
+</span><span id="__span-12-7"><a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a>|       2 |     90112 |            0 |          90110 |              33282 |                       0 |            17631 |            132149779 |
+</span><span id="__span-12-8"><a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a>+---------+-----------+--------------+----------------+--------------------+-------------------------+------------------+----------------------+
+</span></code></pre></div>
+<p>详细说明同上。</p>
+<h3 id="row-operations">ROW OPERATIONS<a class="headerlink" href="#row-operations" title="Permanent link">&para;</a></h3>
+<p>显示了row 操作及其他一些统计信息。</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>--------------
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>ROW OPERATIONS
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>--------------
+</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>0 queries inside InnoDB, 0 queries in queue
+</span><span id="__span-13-5"><a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a>0 read views open inside InnoDB
+</span><span id="__span-13-6"><a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a>Process ID=444943, Main thread ID=139899621590784, state: sleeping
+</span><span id="__span-13-7"><a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a>Number of rows inserted 172887566, updated 227534242, deleted 56676133, read 709667077
+</span><span id="__span-13-8"><a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a>8.77 inserts/s, 8.04 updates/s, 0.00 deletes/s, 10.92 reads/s
+</span></code></pre></div>
+<ul>
+<li>queries，表示innodb内核中有多少个线程，队列中有多少个线程。</li>
+<li>read views open inside InnoDB，表示有多少个read view 被打开，一个read view 包含事物开始点数据库内容的MVCC快照。</li>
+<li>Process ID=444943，表示内核的主线程状态。</li>
+<li>Number of rows inserted、updated、deleted、read，表示多少行被插入，更新和删除，读取及每秒信息，可用于监控。</li>
+</ul>
+<p>可通过以下命令查看：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>(root@localhost) [(none)] &gt;show global status like &#39;Innodb_rows_%&#39;;
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>+----------------------+-----------+
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>| Variable_name        | Value     |
+</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>+----------------------+-----------+
+</span><span id="__span-14-5"><a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a>| Innodb_rows_deleted  | 56676133  |
+</span><span id="__span-14-6"><a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a>| Innodb_rows_inserted | 172887566 |
+</span><span id="__span-14-7"><a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a>| Innodb_rows_read     | 709667077 |
+</span><span id="__span-14-8"><a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a>| Innodb_rows_updated  | 227534242 |
+</span><span id="__span-14-9"><a id="__codelineno-14-9" name="__codelineno-14-9" href="#__codelineno-14-9"></a>+----------------------+-----------+
+</span><span id="__span-14-10"><a id="__codelineno-14-10" name="__codelineno-14-10" href="#__codelineno-14-10"></a>(root@localhost) [(none)] &gt;show global status like &#39;Uptime&#39;;
+</span><span id="__span-14-11"><a id="__codelineno-14-11" name="__codelineno-14-11" href="#__codelineno-14-11"></a>+---------------+---------+
+</span><span id="__span-14-12"><a id="__codelineno-14-12" name="__codelineno-14-12" href="#__codelineno-14-12"></a>| Variable_name | Value   |
+</span><span id="__span-14-13"><a id="__codelineno-14-13" name="__codelineno-14-13" href="#__codelineno-14-13"></a>+---------------+---------+
+</span><span id="__span-14-14"><a id="__codelineno-14-14" name="__codelineno-14-14" href="#__codelineno-14-14"></a>| Uptime        | 1757270 |
+</span><span id="__span-14-15"><a id="__codelineno-14-15" name="__codelineno-14-15" href="#__codelineno-14-15"></a>+---------------+---------+
+</span></code></pre></div>
+<h3 id="end-of-innodb-monitor-output">END OF INNODB MONITOR OUTPUT<a class="headerlink" href="#end-of-innodb-monitor-output" title="Permanent link">&para;</a></h3>
+<p>InnoDB信息结束语。</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>----------------------------
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>END OF INNODB MONITOR OUTPUT
+</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>============================
+</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>如果看不到这行输出，可能是有大量事务或者有一个大的死锁截断了输出信息。
+</span></code></pre></div>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+            Back to top
+          </button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright © 2022 - 2023 - lyvivian0077
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tracking", "navigation.top", "navigation.sections", "navigation.indexes", "navigation.path", "toc.integrate", "content.code.copy", "toc.follow"], "search": "../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.fac441b0.min.js"></script>
+      
+    
+  </body>
+</html>
