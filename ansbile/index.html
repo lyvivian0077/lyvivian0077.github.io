@@ -270,6 +270,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#become-user" class="md-nav__link">
+    become-user
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1516,6 +1523,42 @@
 </li>
 <li><code>--version</code><ul>
 <li>バージョンを表示して終了する</li>
+</ul>
+</li>
+</ul>
+<h2 id="become-user">become-user<a class="headerlink" href="#become-user" title="Permanent link">&para;</a></h2>
+<ul>
+<li>https://docs.ansible.com/ansible/2.9_ja/user_guide/become.html#id2</li>
+</ul>
+<details class="info">
+<summary>例</summary>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>$<span class="w"> </span>ansible<span class="w"> </span>-m<span class="w"> </span>ping<span class="w">  </span>mysql-server<span class="w"> </span>--ask-pass<span class="w"> </span>--become-user<span class="w"> </span>root<span class="w"> </span>--ask-become-pass
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>SSH<span class="w"> </span>password:
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>BECOME<span class="w"> </span>password<span class="o">[</span>defaults<span class="w"> </span>to<span class="w"> </span>SSH<span class="w"> </span>password<span class="o">]</span>:
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>mysql-server<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nv">SUCCESS</span><span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">{</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">    </span><span class="s2">&quot;ansible_facts&quot;</span>:<span class="w"> </span><span class="o">{</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">        </span><span class="s2">&quot;discovered_interpreter_python&quot;</span>:<span class="w"> </span><span class="s2">&quot;/usr/bin/python&quot;</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">    </span><span class="o">}</span>,
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">    </span><span class="s2">&quot;changed&quot;</span>:<span class="w"> </span>false,
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">    </span><span class="s2">&quot;ping&quot;</span>:<span class="w"> </span><span class="s2">&quot;pong&quot;</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="o">}</span>
+</span></code></pre></div>
+</details>
+<ul>
+<li><code>ansible.cfg</code><ul>
+<li><code>remote_user = admin ログインユーザをadminに設定</code></li>
+</ul>
+</li>
+<li><code>--ask-pass</code><ul>
+<li><code>ログインユーザのパスワード</code></li>
+</ul>
+</li>
+<li><code>--become-user root</code><ul>
+<li><code>become-user をrootに設定</code></li>
+</ul>
+</li>
+<li><code>--ask-become-pass</code><ul>
+<li><code>become-userのパスワード</code></li>
 </ul>
 </li>
 </ul>
