@@ -718,6 +718,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    七、検証例
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1944,6 +1951,152 @@
 </li>
 </ol>
 <p>至此，keepalived部署完成。</p>
+<h2 id="_3">七、検証例<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p>keepalived.conf</p>
+<ul>
+<li>
+<details class="note">
+<summary>Note</summary>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="o">[</span>root@node1<span class="w"> </span><span class="o">]</span><span class="c1"># cat /etc/keepalived/keepalived.conf</span>
+</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>!<span class="w"> </span>Configuration<span class="w"> </span>File<span class="w"> </span><span class="k">for</span><span class="w"> </span>keepalived
+</span><span id="__span-19-3"><a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a>
+</span><span id="__span-19-4"><a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a>global_defs<span class="w"> </span><span class="o">{</span>
+</span><span id="__span-19-5"><a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a><span class="w">   </span>router_id<span class="w"> </span>MGR_NODE1<span class="w">            </span><span class="c1">#是运行keepalived的一个表示，多个集群设置不同。</span>
+</span><span id="__span-19-6"><a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a><span class="w">   </span>notification_email<span class="w"> </span><span class="o">{</span><span class="w">           </span><span class="c1">#设置 keepalived 在发生事件（比如切换）的时候，需要发送到的email地址，可以设置多个，每行一个。</span>
+</span><span id="__span-19-7"><a id="__codelineno-19-7" name="__codelineno-19-7" href="#__codelineno-19-7"></a><span class="w">     </span>xxx@mail-server
+</span><span id="__span-19-8"><a id="__codelineno-19-8" name="__codelineno-19-8" href="#__codelineno-19-8"></a><span class="w">   </span><span class="o">}</span>
+</span><span id="__span-19-9"><a id="__codelineno-19-9" name="__codelineno-19-9" href="#__codelineno-19-9"></a><span class="w">   </span>notification_email_from<span class="w"> </span>node3<span class="w">  </span><span class="c1">#设置通知邮件发送来自于哪里，如果本地开启了sendmail的话，可以使用上面的默认值。</span>
+</span><span id="__span-19-10"><a id="__codelineno-19-10" name="__codelineno-19-10" href="#__codelineno-19-10"></a><span class="w">   </span><span class="c1"># smtp_server 192.168.200.1    #指定发送邮件的smtp服务器。</span>
+</span><span id="__span-19-11"><a id="__codelineno-19-11" name="__codelineno-19-11" href="#__codelineno-19-11"></a><span class="w">   </span>smtp_connect_timeout<span class="w"> </span><span class="m">30</span><span class="w">        </span><span class="c1">#设置smtp连接超时时间，单位为秒。</span>
+</span><span id="__span-19-12"><a id="__codelineno-19-12" name="__codelineno-19-12" href="#__codelineno-19-12"></a><span class="o">}</span>
+</span><span id="__span-19-13"><a id="__codelineno-19-13" name="__codelineno-19-13" href="#__codelineno-19-13"></a>
+</span><span id="__span-19-14"><a id="__codelineno-19-14" name="__codelineno-19-14" href="#__codelineno-19-14"></a><span class="c1">#指定mysql服务检测脚本</span>
+</span><span id="__span-19-15"><a id="__codelineno-19-15" name="__codelineno-19-15" href="#__codelineno-19-15"></a>vrrp_script<span class="w"> </span>chk_mysql<span class="w"> </span><span class="o">{</span>
+</span><span id="__span-19-16"><a id="__codelineno-19-16" name="__codelineno-19-16" href="#__codelineno-19-16"></a><span class="w">    </span>script<span class="w"> </span><span class="s2">&quot;/etc/keepalived/chk_mysql.sh&quot;</span><span class="w"> </span><span class="c1">#脚本路径</span>
+</span><span id="__span-19-17"><a id="__codelineno-19-17" name="__codelineno-19-17" href="#__codelineno-19-17"></a><span class="w">    </span>interval<span class="w"> </span><span class="m">2</span><span class="w">            </span><span class="c1">#脚本检测频率</span>
+</span><span id="__span-19-18"><a id="__codelineno-19-18" name="__codelineno-19-18" href="#__codelineno-19-18"></a><span class="w">    </span>weight<span class="w"> </span>-5<span class="w">             </span><span class="c1">#脚本执行返回值 =0 ，优先级不变。 !=0 时优先级 -5</span>
+</span><span id="__span-19-19"><a id="__codelineno-19-19" name="__codelineno-19-19" href="#__codelineno-19-19"></a><span class="w">    </span>fall<span class="w"> </span><span class="m">2</span><span class="w">                </span><span class="c1">#如果连续两次检测失败，认为节点服务不可用</span>
+</span><span id="__span-19-20"><a id="__codelineno-19-20" name="__codelineno-19-20" href="#__codelineno-19-20"></a><span class="w">    </span>rise<span class="w"> </span><span class="m">1</span><span class="w">                </span><span class="c1">#如果连续2次检查成功则认为节点正常</span>
+</span><span id="__span-19-21"><a id="__codelineno-19-21" name="__codelineno-19-21" href="#__codelineno-19-21"></a><span class="o">}</span>
+</span><span id="__span-19-22"><a id="__codelineno-19-22" name="__codelineno-19-22" href="#__codelineno-19-22"></a>
+</span><span id="__span-19-23"><a id="__codelineno-19-23" name="__codelineno-19-23" href="#__codelineno-19-23"></a><span class="c1">#监测mysql 是否是master</span>
+</span><span id="__span-19-24"><a id="__codelineno-19-24" name="__codelineno-19-24" href="#__codelineno-19-24"></a>vrrp_script<span class="w"> </span>chk_mysql_master<span class="w"> </span><span class="o">{</span>
+</span><span id="__span-19-25"><a id="__codelineno-19-25" name="__codelineno-19-25" href="#__codelineno-19-25"></a><span class="w">    </span>script<span class="w"> </span><span class="s2">&quot;/etc/keepalived/chk_mysql_master.sh&quot;</span>
+</span><span id="__span-19-26"><a id="__codelineno-19-26" name="__codelineno-19-26" href="#__codelineno-19-26"></a><span class="w">    </span>interval<span class="w"> </span><span class="m">2</span>
+</span><span id="__span-19-27"><a id="__codelineno-19-27" name="__codelineno-19-27" href="#__codelineno-19-27"></a><span class="w">    </span>weight<span class="w"> </span><span class="m">10</span><span class="w">             </span><span class="c1">#脚本执行返回值 =0 ，优先级加 10。 !=0 时优先级不变。</span>
+</span><span id="__span-19-28"><a id="__codelineno-19-28" name="__codelineno-19-28" href="#__codelineno-19-28"></a><span class="o">}</span>
+</span><span id="__span-19-29"><a id="__codelineno-19-29" name="__codelineno-19-29" href="#__codelineno-19-29"></a>
+</span><span id="__span-19-30"><a id="__codelineno-19-30" name="__codelineno-19-30" href="#__codelineno-19-30"></a><span class="c1"># 简易检测</span>
+</span><span id="__span-19-31"><a id="__codelineno-19-31" name="__codelineno-19-31" href="#__codelineno-19-31"></a>vrrp_script<span class="w"> </span>check_run<span class="w"> </span><span class="o">{</span>
+</span><span id="__span-19-32"><a id="__codelineno-19-32" name="__codelineno-19-32" href="#__codelineno-19-32"></a><span class="w">        </span>script<span class="w"> </span><span class="s2">&quot;/etc/keepalived/mysql_check.sh&quot;</span>
+</span><span id="__span-19-33"><a id="__codelineno-19-33" name="__codelineno-19-33" href="#__codelineno-19-33"></a><span class="w">        </span>interval<span class="w"> </span><span class="m">5</span><span class="w">                              </span><span class="c1">#5秒执行一次脚本</span>
+</span><span id="__span-19-34"><a id="__codelineno-19-34" name="__codelineno-19-34" href="#__codelineno-19-34"></a><span class="o">}</span>
+</span><span id="__span-19-35"><a id="__codelineno-19-35" name="__codelineno-19-35" href="#__codelineno-19-35"></a>
+</span><span id="__span-19-36"><a id="__codelineno-19-36" name="__codelineno-19-36" href="#__codelineno-19-36"></a>vrrp_instance<span class="w"> </span>VI_1<span class="w"> </span><span class="o">{</span>
+</span><span id="__span-19-37"><a id="__codelineno-19-37" name="__codelineno-19-37" href="#__codelineno-19-37"></a><span class="w">    </span>state<span class="w"> </span>BACKUP<span class="w">          </span><span class="c1">#指定实例初始状态，实际的MASTER和BACKUP是选举决定的。</span>
+</span><span id="__span-19-38"><a id="__codelineno-19-38" name="__codelineno-19-38" href="#__codelineno-19-38"></a><span class="w">    </span>interface<span class="w"> </span>eth0<span class="w">        </span><span class="c1">#指定实例绑定的网卡</span>
+</span><span id="__span-19-39"><a id="__codelineno-19-39" name="__codelineno-19-39" href="#__codelineno-19-39"></a><span class="w">    </span>virtual_router_id<span class="w"> </span><span class="m">88</span><span class="w">  </span><span class="c1">#设置VRID标记(0..255)</span>
+</span><span id="__span-19-40"><a id="__codelineno-19-40" name="__codelineno-19-40" href="#__codelineno-19-40"></a><span class="w">    </span>priority<span class="w"> </span><span class="m">90</span><span class="w">           </span><span class="c1">#设置优先级，优先级高的会被竞选为Master</span>
+</span><span id="__span-19-41"><a id="__codelineno-19-41" name="__codelineno-19-41" href="#__codelineno-19-41"></a><span class="w">    </span>advert_int<span class="w"> </span><span class="m">1</span><span class="w">          </span><span class="c1">#检查的时间间隔，默认1s</span>
+</span><span id="__span-19-42"><a id="__codelineno-19-42" name="__codelineno-19-42" href="#__codelineno-19-42"></a><span class="w">    </span>authentication<span class="w"> </span><span class="o">{</span><span class="w">      </span><span class="c1">#节点间的认证，所有的必须一致</span>
+</span><span id="__span-19-43"><a id="__codelineno-19-43" name="__codelineno-19-43" href="#__codelineno-19-43"></a><span class="w">        </span>auth_type<span class="w"> </span>PASS
+</span><span id="__span-19-44"><a id="__codelineno-19-44" name="__codelineno-19-44" href="#__codelineno-19-44"></a><span class="w">        </span>auth_pass<span class="w"> </span><span class="m">1111</span>
+</span><span id="__span-19-45"><a id="__codelineno-19-45" name="__codelineno-19-45" href="#__codelineno-19-45"></a><span class="w">    </span><span class="o">}</span>
+</span><span id="__span-19-46"><a id="__codelineno-19-46" name="__codelineno-19-46" href="#__codelineno-19-46"></a>
+</span><span id="__span-19-47"><a id="__codelineno-19-47" name="__codelineno-19-47" href="#__codelineno-19-47"></a><span class="w">    </span>virtual_ipaddress<span class="w"> </span><span class="o">{</span><span class="w">   </span><span class="c1">#设置VIP，可以设置多个，用于切换时的地址绑定。</span>
+</span><span id="__span-19-48"><a id="__codelineno-19-48" name="__codelineno-19-48" href="#__codelineno-19-48"></a><span class="w">        </span><span class="m">192</span>.168.1.1<span class="w">       </span><span class="c1"># VIP地址（该ip为虚拟出来的vip地址)</span>
+</span><span id="__span-19-49"><a id="__codelineno-19-49" name="__codelineno-19-49" href="#__codelineno-19-49"></a><span class="w">    </span><span class="o">}</span>
+</span><span id="__span-19-50"><a id="__codelineno-19-50" name="__codelineno-19-50" href="#__codelineno-19-50"></a>
+</span><span id="__span-19-51"><a id="__codelineno-19-51" name="__codelineno-19-51" href="#__codelineno-19-51"></a><span class="w">    </span>track_script<span class="w"> </span><span class="o">{</span><span class="w"> </span><span class="c1">#指定前面脚本的名字</span>
+</span><span id="__span-19-52"><a id="__codelineno-19-52" name="__codelineno-19-52" href="#__codelineno-19-52"></a><span class="w">        </span><span class="c1"># check_run</span>
+</span><span id="__span-19-53"><a id="__codelineno-19-53" name="__codelineno-19-53" href="#__codelineno-19-53"></a><span class="w">        </span>chk_mysql
+</span><span id="__span-19-54"><a id="__codelineno-19-54" name="__codelineno-19-54" href="#__codelineno-19-54"></a><span class="w">        </span>chk_mysql_master
+</span><span id="__span-19-55"><a id="__codelineno-19-55" name="__codelineno-19-55" href="#__codelineno-19-55"></a><span class="w">    </span><span class="o">}</span>
+</span><span id="__span-19-56"><a id="__codelineno-19-56" name="__codelineno-19-56" href="#__codelineno-19-56"></a><span class="o">}</span>
+</span><span id="__span-19-57"><a id="__codelineno-19-57" name="__codelineno-19-57" href="#__codelineno-19-57"></a><span class="o">[</span>root@node1<span class="w"> </span><span class="o">]</span><span class="c1">#</span>
+</span></code></pre></div></details>
+</li>
+</ul>
+</li>
+<li>
+<p>mysql_check.sh</p>
+<ul>
+<li>
+<details class="note">
+<summary>Note</summary>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="o">[</span>root@node1<span class="w"> </span><span class="o">]</span><span class="c1"># cat /etc/keepalived/mysql_check.sh</span>
+</span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a><span class="c1">#!/bin/bash</span>
+</span><span id="__span-20-3"><a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a>
+</span><span id="__span-20-4"><a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a><span class="c1"># /usr/local/mysql/bin/mysql -uroot -p&#39;root&#39; -e &quot;show status&quot; &amp;&gt;/dev/null</span>
+</span><span id="__span-20-5"><a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a>
+</span><span id="__span-20-6"><a id="__codelineno-20-6" name="__codelineno-20-6" href="#__codelineno-20-6"></a>mysql<span class="w"> </span>--defaults-file<span class="o">=</span>/root/.my.cnf<span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;show status&quot;</span><span class="w"> </span><span class="p">&amp;</span>&gt;/dev/null
+</span><span id="__span-20-7"><a id="__codelineno-20-7" name="__codelineno-20-7" href="#__codelineno-20-7"></a>
+</span><span id="__span-20-8"><a id="__codelineno-20-8" name="__codelineno-20-8" href="#__codelineno-20-8"></a><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="nv">$?</span><span class="w"> </span>-ne<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="p">;</span><span class="k">then</span>
+</span><span id="__span-20-9"><a id="__codelineno-20-9" name="__codelineno-20-9" href="#__codelineno-20-9"></a><span class="w">    </span>systemctl<span class="w"> </span>stop<span class="w"> </span>keepalived
+</span><span id="__span-20-10"><a id="__codelineno-20-10" name="__codelineno-20-10" href="#__codelineno-20-10"></a><span class="k">fi</span>
+</span><span id="__span-20-11"><a id="__codelineno-20-11" name="__codelineno-20-11" href="#__codelineno-20-11"></a>
+</span><span id="__span-20-12"><a id="__codelineno-20-12" name="__codelineno-20-12" href="#__codelineno-20-12"></a><span class="o">[</span>root@node1<span class="w"> </span><span class="o">]</span><span class="c1">#</span>
+</span></code></pre></div></details>
+</li>
+</ul>
+</li>
+<li>
+<p>chk_mysql.sh</p>
+<ul>
+<li>
+<details class="note">
+<summary>Note</summary>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="o">[</span>root@node1<span class="w"> </span><span class="o">]</span><span class="c1"># cat /etc/keepalived/chk_mysql.sh</span>
+</span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a><span class="c1">#!/bin/bash</span>
+</span><span id="__span-21-3"><a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a>
+</span><span id="__span-21-4"><a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a>mysql<span class="w"> </span>--defaults-file<span class="o">=</span>/root/.my.cnf<span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;show status&quot;</span><span class="w"> </span><span class="p">&amp;</span>&gt;/dev/null
+</span><span id="__span-21-5"><a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a>
+</span><span id="__span-21-6"><a id="__codelineno-21-6" name="__codelineno-21-6" href="#__codelineno-21-6"></a><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="nv">$?</span><span class="w"> </span>-ne<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="p">;</span><span class="k">then</span>
+</span><span id="__span-21-7"><a id="__codelineno-21-7" name="__codelineno-21-7" href="#__codelineno-21-7"></a><span class="w">    </span>systemctl<span class="w"> </span>stop<span class="w"> </span>keepalived
+</span><span id="__span-21-8"><a id="__codelineno-21-8" name="__codelineno-21-8" href="#__codelineno-21-8"></a><span class="k">fi</span>
+</span><span id="__span-21-9"><a id="__codelineno-21-9" name="__codelineno-21-9" href="#__codelineno-21-9"></a>
+</span><span id="__span-21-10"><a id="__codelineno-21-10" name="__codelineno-21-10" href="#__codelineno-21-10"></a>
+</span><span id="__span-21-11"><a id="__codelineno-21-11" name="__codelineno-21-11" href="#__codelineno-21-11"></a><span class="c1">#counter=`netstat -tulnp |grep -w :::3306 |wc -l`</span>
+</span><span id="__span-21-12"><a id="__codelineno-21-12" name="__codelineno-21-12" href="#__codelineno-21-12"></a>
+</span><span id="__span-21-13"><a id="__codelineno-21-13" name="__codelineno-21-13" href="#__codelineno-21-13"></a><span class="c1">#if [ $counter -eq 0 ]; then</span>
+</span><span id="__span-21-14"><a id="__codelineno-21-14" name="__codelineno-21-14" href="#__codelineno-21-14"></a><span class="c1">#       systemctl stop keepalived</span>
+</span><span id="__span-21-15"><a id="__codelineno-21-15" name="__codelineno-21-15" href="#__codelineno-21-15"></a><span class="c1">#fi</span>
+</span><span id="__span-21-16"><a id="__codelineno-21-16" name="__codelineno-21-16" href="#__codelineno-21-16"></a><span class="o">[</span>root@node1<span class="w"> </span><span class="o">]</span><span class="c1">#</span>
+</span></code></pre></div></details>
+</li>
+</ul>
+</li>
+<li>
+<p>chk_mysql_master.sh</p>
+<ul>
+<li>
+<details class="note">
+<summary>Note</summary>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="o">[</span>root@node1<span class="w"> </span><span class="o">]</span><span class="c1"># cat /etc/keepalived/chk_mysql_master.sh</span>
+</span><span id="__span-22-2"><a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a><span class="c1">#!/bin/bash</span>
+</span><span id="__span-22-3"><a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a><span class="nv">PATH</span><span class="o">=</span>/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin:~/bin
+</span><span id="__span-22-4"><a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a><span class="nb">export</span><span class="w"> </span>PATH
+</span><span id="__span-22-5"><a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a>
+</span><span id="__span-22-6"><a id="__codelineno-22-6" name="__codelineno-22-6" href="#__codelineno-22-6"></a><span class="c1">#priuuid=`/usr/local/mysql8.0/bin/mysql -uroot -S /mysql/data_mgr_8.0/mysql.sock -e &quot;SELECT * FROM performance_schema.replication_group_members WHERE MEMBER_ID = (SELECT VARIABLE_VALUE FROM performance_schema.global_status WHERE VARIABLE_NAME= &#39;group_replication_primary_member&#39;)&quot; |awk &#39;NR==2{print}&#39;|awk -F&quot; &quot; &#39;{print $2}&#39;`</span>
+</span><span id="__span-22-7"><a id="__codelineno-22-7" name="__codelineno-22-7" href="#__codelineno-22-7"></a><span class="c1">#uuid=`/usr/local/mysql8.0/bin/mysql -uroot -S /mysql/data_mgr_8.0/mysql.sock -e &quot;select @@global.server_uuid&quot; |awk &#39;NR==2{print}&#39;`</span>
+</span><span id="__span-22-8"><a id="__codelineno-22-8" name="__codelineno-22-8" href="#__codelineno-22-8"></a>
+</span><span id="__span-22-9"><a id="__codelineno-22-9" name="__codelineno-22-9" href="#__codelineno-22-9"></a><span class="nv">priuuid</span><span class="o">=</span><span class="sb">`</span>mysql<span class="w"> </span>--defaults-file<span class="o">=</span>/root/.my.cnf<span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;SELECT * FROM performance_schema.replication_group_members WHERE MEMBER_ID = (SELECT VARIABLE_VALUE FROM performance_schema.global_status WHERE VARIABLE_NAME= &#39;group_replication_primary_member&#39;)&quot;</span><span class="w"> </span><span class="p">|</span>awk<span class="w"> </span><span class="s1">&#39;NR==2{print}&#39;</span><span class="p">|</span>awk<span class="w"> </span>-F<span class="s2">&quot; &quot;</span><span class="w"> </span><span class="s1">&#39;{print $2}&#39;</span><span class="sb">`</span>
+</span><span id="__span-22-10"><a id="__codelineno-22-10" name="__codelineno-22-10" href="#__codelineno-22-10"></a>
+</span><span id="__span-22-11"><a id="__codelineno-22-11" name="__codelineno-22-11" href="#__codelineno-22-11"></a><span class="nv">uuid</span><span class="o">=</span><span class="sb">`</span>mysql<span class="w"> </span>--defaults-file<span class="o">=</span>/root/.my.cnf<span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;select @@global.server_uuid&quot;</span><span class="w"> </span><span class="p">|</span>awk<span class="w"> </span><span class="s1">&#39;NR==2{print}&#39;</span><span class="sb">`</span>
+</span><span id="__span-22-12"><a id="__codelineno-22-12" name="__codelineno-22-12" href="#__codelineno-22-12"></a>
+</span><span id="__span-22-13"><a id="__codelineno-22-13" name="__codelineno-22-13" href="#__codelineno-22-13"></a><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="nv">$priuuid</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nv">$uuid</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+</span><span id="__span-22-14"><a id="__codelineno-22-14" name="__codelineno-22-14" href="#__codelineno-22-14"></a><span class="w">        </span><span class="nb">exit</span><span class="w"> </span><span class="m">0</span>
+</span><span id="__span-22-15"><a id="__codelineno-22-15" name="__codelineno-22-15" href="#__codelineno-22-15"></a><span class="k">else</span>
+</span><span id="__span-22-16"><a id="__codelineno-22-16" name="__codelineno-22-16" href="#__codelineno-22-16"></a><span class="w">        </span><span class="nb">exit</span><span class="w"> </span><span class="m">1</span>
+</span><span id="__span-22-17"><a id="__codelineno-22-17" name="__codelineno-22-17" href="#__codelineno-22-17"></a><span class="k">fi</span>
+</span><span id="__span-22-18"><a id="__codelineno-22-18" name="__codelineno-22-18" href="#__codelineno-22-18"></a><span class="o">[</span>root@node1<span class="w"> </span><span class="o">]</span><span class="c1">#</span>
+</span></code></pre></div></details>
+</li>
+</ul>
+</li>
+</ul>
 
 
 
