@@ -1,0 +1,2325 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../mysql_backup/">
+      
+      
+        <link rel="next" href="../python-styleguide/">
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.9">
+    
+    
+      
+        <title>mydumper - 总有刁民想要害朕</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.85bb2934.min.css">
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#mydumper" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="总有刁民想要害朕" class="md-header__button md-logo" aria-label="总有刁民想要害朕" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            总有刁民想要害朕
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              mydumper
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="总有刁民想要害朕" class="md-nav__button md-logo" aria-label="总有刁民想要害朕" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    总有刁民想要害朕
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        Welcome
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+      
+      
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+          ansbile
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          ansbile
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ansbile/" class="md-nav__link">
+        ansbileオプション
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ansbile_async/" class="md-nav__link">
+        ansbile_async
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../awk/" class="md-nav__link">
+        awk
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sed/" class="md-nav__link">
+        sed
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../MB-MiB%E7%9A%84%E5%8C%BA%E5%88%AB/" class="md-nav__link">
+        MB_MiB的区别
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+      
+      
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+          MegaRAID
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_6">
+          <span class="md-nav__icon md-icon"></span>
+          MegaRAID
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../megacli/" class="md-nav__link">
+        megacli
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../megaraid/" class="md-nav__link">
+        megaraid
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+      
+      
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+          PostgreSQL
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_7">
+          <span class="md-nav__icon md-icon"></span>
+          PostgreSQL
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../psql-vs-mysql/" class="md-nav__link">
+        MySQLとPostgreSQLコマンド比較表
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+          MySQL
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_8">
+          <span class="md-nav__icon md-icon"></span>
+          MySQL
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Explain%E8%AF%A6%E8%A7%A3%E4%B8%8E%E7%B4%A2%E5%BC%95%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/" class="md-nav__link">
+        Explain详解与索引最佳实践
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mysql/" class="md-nav__link">
+        Mysql参数优化
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../show-engine-innodb-status/" class="md-nav__link">
+        innodb status解读
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mysql-table/" class="md-nav__link">
+        MySQL-table
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mysql%E3%82%92%E3%82%BD%E3%83%BC%E3%82%B9%E3%81%8B%E3%82%89%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB/" class="md-nav__link">
+        MySQLビルド
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../MySQL-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="md-nav__link">
+        学习笔记
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_7" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_8_7" id="__nav_8_7_label" tabindex="0">
+          MGR
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_7_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_8_7">
+          <span class="md-nav__icon md-icon"></span>
+          MGR
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mysql-mgr/" class="md-nav__link">
+        MGR
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mysql-group-replication-how-to-elect-the-new-primary-node/" class="md-nav__link">
+        MGR 如何选举新的主节点
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mysql-mgr-copy/" class="md-nav__link">
+        転載MGR
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mysql-ha/" class="md-nav__link">
+        mysql+keepalived搭建教程
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mysql-clone/" class="md-nav__link">
+        mysqlクローン機能
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" checked>
+      
+      
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+          MySQL DUMP
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="true">
+        <label class="md-nav__title" for="__nav_9">
+          <span class="md-nav__icon md-icon"></span>
+          MySQL DUMP
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mysql_backup/" class="md-nav__link">
+        Mysql バックアップツール
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          mydumper
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        mydumper
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#mydumper-myloader" class="md-nav__link">
+    mydumper &amp; myloader の使い方
+  </a>
+  
+    <nav class="md-nav" aria-label="mydumper &amp; myloader の使い方">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dbdump" class="md-nav__link">
+    単一のDBをDUMPする場合
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dbdump_1" class="md-nav__link">
+    複数のDBをDUMPする場合
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mydumper_1" class="md-nav__link">
+    mydumperオプション
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="0">
+          Python Tips
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_10">
+          <span class="md-nav__icon md-icon"></span>
+          Python Tips
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-styleguide/" class="md-nav__link">
+        Python风格规范
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-config/" class="md-nav__link">
+        Python程序配置文件管理
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-decorator/" class="md-nav__link">
+        装饰器
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-dunder/" class="md-nav__link">
+        5种下划线
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-function/" class="md-nav__link">
+        传入参数的几种方法
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python/" class="md-nav__link">
+        非常规的技巧
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-mysql/" class="md-nav__link">
+        操作mysql基础
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Python-Re-%E6%A8%A1%E5%9D%97%E8%B6%85%E5%85%A8%E8%A7%A3%E8%AF%BB/" class="md-nav__link">
+        Re 模块
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Python%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%8B%BC%E6%8E%A5%E6%80%BB%E7%BB%93/" class="md-nav__link">
+        字符串拼接总结
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E4%B8%80%E8%A1%8C-Python-%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0%E5%B9%B6%E8%A1%8C/" class="md-nav__link">
+        代码并行
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Regular-Expression/" class="md-nav__link">
+        正規表現
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../taged-VLAN%E3%81%A8untagedVLAN%E3%81%AE%E9%81%95%E3%81%84/" class="md-nav__link">
+        タグVLAN
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sar/" class="md-nav__link">
+        sar
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Bash%E7%BC%96%E7%A8%8B%E8%B6%85%E8%AF%A6%E7%BB%86%E8%AF%AD%E6%B3%95%E6%80%BB%E7%BB%93/" class="md-nav__link">
+        Bash编程超详细语法总结
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_15" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_15" id="__nav_15_label" tabindex="0">
+          iptables
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_15_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_15">
+          <span class="md-nav__icon md-icon"></span>
+          iptables
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../iptables/" class="md-nav__link">
+        iptables
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../iptables_1/" class="md-nav__link">
+        iptables概念(1)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../iptables_2/" class="md-nav__link">
+        iptables实际操作之规则查询(2)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../iptables_3/" class="md-nav__link">
+        iptables规则管理(3)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../iptables_4/" class="md-nav__link">
+        iptables匹配条件总结之一(4)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../iptables_5/" class="md-nav__link">
+        iptables匹配条件总结之二（常用扩展模块）(5)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../iptables_6/" class="md-nav__link">
+        iptables扩展匹配条件之’–tcp-flags’(6)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../iptables_7/" class="md-nav__link">
+        iptables扩展之udp扩展与icmp扩展(7)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../iptables_8/" class="md-nav__link">
+        iptables扩展模块之state扩展(8)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../iptables_9/" class="md-nav__link">
+        iptables的黑白名单机制(9)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../iptables_10/" class="md-nav__link">
+        iptables自定义链(10)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../iptables_11/" class="md-nav__link">
+        iptables之网络防火墙(11)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../iptables_12/" class="md-nav__link">
+        iptables动作总结之一(12)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../iptables_13/" class="md-nav__link">
+        iptables动作总结之二(13)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../iptables_14/" class="md-nav__link">
+        iptables小结之常用套路(14)
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../linux-lvm/" class="md-nav__link">
+        linux-lvm
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../centos7-set-kernel/" class="md-nav__link">
+        centos7-set-kernel
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../centos-network-device-naming/" class="md-nav__link">
+        centos-network-device-naming
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Linux-Performance/" class="md-nav__link">
+        Linux Performance
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Linux-shell-%E9%80%BB%E8%BE%91%E8%BF%90%E7%AE%97%E7%AC%A6-%E9%80%BB%E8%BE%91%E8%A1%A8%E8%BE%BE%E5%BC%8F%E8%AF%A6%E8%A7%A3/" class="md-nav__link">
+        Linux-shell-逻辑运算符-逻辑表达式详解
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../LVM%E9%80%BB%E8%BE%91%E5%8D%B7%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5%E5%8F%8ALVM%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/" class="md-nav__link">
+        LVM逻辑卷基本概念及LVM的工作原理
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../macOS%E8%BD%AF%E4%BB%B6%E7%BC%96%E8%AF%91%E6%97%B6%E6%89%BE%E4%B8%8D%E5%88%B0%E5%A4%B4%E6%96%87%E4%BB%B6%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95-%E6%9B%B4%E6%96%B010-15/" class="md-nav__link">
+        macOS软件编译时找不到头文件解决方法[更新10.15]
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ubnt/" class="md-nav__link">
+        ubnt
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vim/" class="md-nav__link">
+        VIM
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_25" >
+      
+      
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_25" id="__nav_25_label" tabindex="0">
+          Zabbix
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_25_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_25">
+          <span class="md-nav__icon md-icon"></span>
+          Zabbix
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../zabbix6/" class="md-nav__link">
+        zabbix6検証
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../about/" class="md-nav__link">
+        About
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="mydumper">mydumper<a class="headerlink" href="#mydumper" title="Permanent link">&para;</a></h1>
+<ul>
+<li>https://docs.microsoft.com/ja-jp/azure/mysql/concepts-migrate-mydumper-myloader</li>
+<li>https://gihyo.jp/dev/serial/01/mysql-road-construction-news/0168</li>
+<li>https://www.cxybb.com/article/qq_33656602/90671188#myloader__253</li>
+<li>https://github.com/mydumper/mydumper/tree/master/docs</li>
+</ul>
+<h3 id="mydumper-myloader">mydumper &amp; myloader の使い方<a class="headerlink" href="#mydumper-myloader" title="Permanent link">&para;</a></h3>
+<ul>
+<li>mydumper主に2つのコマンド：<ul>
+<li>mydumperはバックアップ(dump)用。</li>
+<li>myloaderは復旧(import)用。</li>
+</ul>
+</li>
+<li>mydumper Options<ul>
+<li>https://github.com/mydumper/mydumper#how-does-consistent-snapshot-work</li>
+<li>https://github.com/mydumper/mydumper/blob/master/docs/mydumper_usage.rst</li>
+</ul>
+</li>
+</ul>
+<h4 id="dbdump">単一のDBをDUMPする場合<a class="headerlink" href="#dbdump" title="Permanent link">&para;</a></h4>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a># 単一のDBをDUMPする場合
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>$ mydumper -u root -p root -h mysql_server  -B &lt;対象DB名&gt; -o &lt;outputdir&gt;
+</span></code></pre></div>
+<h4 id="dbdump_1">複数のDBをDUMPする場合<a class="headerlink" href="#dbdump_1" title="Permanent link">&para;</a></h4>
+<ul>
+<li>
+<p>注意：</p>
+<ul>
+<li>mysqldumpみたいなカンマ（,）で区切りして指定できないです。正規表現で複数のDBを指定する。</li>
+</ul>
+</li>
+<li>
+<p>全DBをdumpする場合
+    <div class="language-shell highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># zst圧縮率指定</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>/usr/bin/mydumper<span class="w"> </span>--events<span class="w"> </span>--routines<span class="w"> </span>--triggers<span class="w"> </span>--success-on-1146<span class="w"> </span>--statement-size<span class="o">=</span><span class="m">8000000</span><span class="w"> </span>--chunk-filesize<span class="o">=</span><span class="m">1024</span><span class="w"> </span>--kill-long-queries<span class="w"> </span>--complete-insert<span class="w"> </span>--use-savepo<span class="w"> </span>ints<span class="w"> </span>--threads<span class="o">=</span><span class="m">8</span><span class="w"> </span>--less-locking<span class="w"> </span>--trx-consistency-only<span class="w"> </span>--logfile<span class="w"> </span>/home/backup/mydumper.log<span class="w">  </span>-v<span class="w"> </span><span class="m">3</span><span class="w"> </span>--outputdir<span class="o">=</span>/home/backup/20230925/<span class="w"> </span>--defaults-file<span class="o">=</span>/home/backup/mydumper.cnf<span class="w"> </span>--exec-per-<span class="w"> </span>thread<span class="w"> </span><span class="s1">&#39;/usr/bin/zstd --ultra -22&#39;</span><span class="w"> </span>--exec-per-thread-extension<span class="o">=</span><span class="s2">&quot;.zst&quot;</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="c1"># zst圧縮率指定しない（デフォルト:3）</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>/usr/bin/mydumper<span class="w"> </span>--events<span class="w"> </span>--routines<span class="w"> </span>--triggers<span class="w"> </span>--success-on-1146<span class="w"> </span>--statement-size<span class="o">=</span><span class="m">8000000</span><span class="w"> </span>--chunk-filesize<span class="o">=</span><span class="m">1024</span><span class="w"> </span>--kill-long-queries<span class="w"> </span>--complete-insert<span class="w"> </span>--use-savepoints<span class="w"> </span>--threads<span class="o">=</span><span class="m">8</span><span class="w"> </span>--less-locking<span class="w"> </span>--trx-consistency-only<span class="w"> </span>--logfile<span class="w"> </span>/home/backup/mydumper.log<span class="w">  </span>--compress<span class="o">=</span>ZSTD<span class="w"> </span>-v<span class="w"> </span><span class="m">3</span><span class="w"> </span>--outputdir<span class="o">=</span>/home/backup/20230925/<span class="w"> </span>--defaults-file<span class="o">=</span>/home/backup/mydumper.cnf
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="c1"># 圧縮なし</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="c1"># mydumper -o /root/work/20220728_test</span>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="c1"># 圧縮あり</span>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="c1"># mydumper -o /root/work/20220728_test　-c</span>
+</span></code></pre></div></p>
+</li>
+<li>
+<p>python用ソース抜粋</p>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>def<span class="w"> </span>my_dumper<span class="o">(</span>regex,<span class="w"> </span>cores,<span class="w"> </span>log_file,<span class="w"> </span>desc_path<span class="o">)</span>:
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">    </span><span class="s2">&quot;&quot;&quot;</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="s2">    ログファイルは自動的に上書きされる</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="s2">    exclude_dbs を除外して残りを全部dumpする</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="s2">    regex: exclude dbs</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="s2">    cores: threads</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="s2">    DUMP_LOG_PATH + logfile: logfile</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="s2">    desc_path: dump file dir</span>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="s2">    return p.returncode, stdout_data, stderr_data</span>
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="s2">    (0, &#39;&#39;, &#39;&#39;)</span>
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="s2">    &quot;&quot;&quot;</span>
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="w">    </span><span class="nb">command</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">(</span><span class="s2">&quot;nice -n &quot;</span>
+</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="w">               </span>+<span class="w"> </span>str<span class="o">(</span>NICE_LV<span class="o">)</span><span class="w"> </span>+
+</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a><span class="w">               </span><span class="s2">&quot; /usr/bin/mydumper&quot;</span>
+</span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a><span class="w">               </span>+<span class="w"> </span>regex<span class="w"> </span>+
+</span><span id="__span-2-16"><a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a><span class="w">               </span><span class="s2">&quot; --events --routines --triggers --success-on-1146&quot;</span>
+</span><span id="__span-2-17"><a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a><span class="w">               </span><span class="s2">&quot; --statement-size=8000000 --chunk-filesize=1024&quot;</span>
+</span><span id="__span-2-18"><a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a><span class="w">               </span><span class="s2">&quot; --kill-long-queries --complete-insert --use-savepoints&quot;</span>
+</span><span id="__span-2-19"><a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a><span class="w">               </span><span class="s2">&quot; --socket=/tmp/mysql.sock --defaults-file=/root/.my.cnf &quot;</span>
+</span><span id="__span-2-20"><a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a><span class="w">               </span><span class="s2">&quot; --threads=&quot;</span>
+</span><span id="__span-2-21"><a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a><span class="w">               </span>+<span class="w"> </span>cores
+</span><span id="__span-2-22"><a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a><span class="w">               </span>+<span class="w"> </span><span class="s2">&quot; --less-locking --trx-consistency-only --logfile &quot;</span>
+</span><span id="__span-2-23"><a id="__codelineno-2-23" name="__codelineno-2-23" href="#__codelineno-2-23"></a><span class="w">               </span>+<span class="w"> </span>DUMP_LOG_PATH<span class="w"> </span>+<span class="w"> </span>logfile
+</span><span id="__span-2-24"><a id="__codelineno-2-24" name="__codelineno-2-24" href="#__codelineno-2-24"></a><span class="w">               </span>+<span class="w"> </span><span class="s2">&quot; --compress=ZSTD -v &quot;</span>
+</span><span id="__span-2-25"><a id="__codelineno-2-25" name="__codelineno-2-25" href="#__codelineno-2-25"></a><span class="w">               </span>+<span class="w"> </span>str<span class="o">(</span>LOG_LV<span class="o">)</span>
+</span><span id="__span-2-26"><a id="__codelineno-2-26" name="__codelineno-2-26" href="#__codelineno-2-26"></a><span class="w">               </span>+<span class="w"> </span><span class="s2">&quot; --outputdir=&quot;</span>
+</span><span id="__span-2-27"><a id="__codelineno-2-27" name="__codelineno-2-27" href="#__codelineno-2-27"></a><span class="w">               </span>+<span class="w"> </span>desc_path<span class="o">)</span>
+</span><span id="__span-2-28"><a id="__codelineno-2-28" name="__codelineno-2-28" href="#__codelineno-2-28"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span>shell.runCmd<span class="o">(</span><span class="nb">command</span><span class="o">)</span>
+</span></code></pre></div>
+</li>
+<li>
+<p>Once can use --regex functionality, for example not to dump mysql and test databases:
+    <div class="language-shell highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>mydumper<span class="w"> </span>--regex<span class="w"> </span><span class="s1">&#39;^(?!(mysql\.|test\.))&#39;</span>
+</span></code></pre></div></p>
+</li>
+<li>
+<p>To dump only mysql and test databases
+    <div class="language-shell highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>mydumper<span class="w"> </span>--regex<span class="w"> </span><span class="s1">&#39;^(mysql\.|test\.)&#39;</span>
+</span></code></pre></div></p>
+</li>
+<li>To not dump all databases starting with test:
+    <div class="language-shell highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>mydumper<span class="w"> </span>--regex<span class="w"> </span><span class="s1">&#39;^(?!(test))&#39;</span>
+</span></code></pre></div></li>
+<li>To dump specify tables in different databases (Note: The name of tables should end with $. related issue):
+    <div class="language-shell highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>mydumper<span class="w"> </span>--regex<span class="w"> </span><span class="s1">&#39;^(db1\.table1$|db2\.table2$)&#39;</span>
+</span></code></pre></div></li>
+<li>If you want to dump a couple of databases but discard some tables, you can do:
+    <div class="language-shell highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="c1"># Which will dump all the tables in db1 and db2 but it will exclude db1.table1 and db2.table2</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>mydumper<span class="w"> </span>--regex<span class="w"> </span><span class="s1">&#39;^(?=(?:(db1\.|db2\.)))(?!(?:(db1\.table1$|db2\.table2$)))&#39;</span>
+</span></code></pre></div></li>
+</ul>
+<h2 id="mydumper_1">mydumperオプション<a class="headerlink" href="#mydumper_1" title="Permanent link">&para;</a></h2>
+<ul>
+<li>https://www.codetd.com/ja/article/12340925</li>
+<li>
+<p>在备份数据时，默认只备份库、表的定义和数据文件，触发器，事件，函数和存储过程需要加上相应的选项才会备份</p>
+</li>
+<li>
+<details class="note">
+<summary>mydumper</summary>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>Usage:
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="w">  </span>mydumper<span class="w"> </span><span class="o">[</span>OPTION?<span class="o">]</span><span class="w"> </span>multi-threaded<span class="w"> </span>MySQL<span class="w"> </span>dumping
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>Help<span class="w"> </span>Options:
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="w">  </span>-?,<span class="w"> </span>--help<span class="w">                  </span>Show<span class="w"> </span><span class="nb">help</span><span class="w"> </span>options
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>Application<span class="w"> </span>Options:
+</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="w">  </span>-B,<span class="w"> </span>--database<span class="w">              </span>要备份的数据库，不指定则备份所有库
+</span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a><span class="w">  </span>-T,<span class="w"> </span>--tables-list<span class="w">           </span>需要备份的表，多表用逗号隔开
+</span><span id="__span-8-10"><a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a><span class="w">  </span>-O,<span class="w"> </span>--omit-from-file<span class="w">        </span>包含要跳过的<span class="w"> </span>database.table<span class="w"> </span>条目列表的文件，每行一个（在应用正则表达式选项之前跳过）
+</span><span id="__span-8-11"><a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a><span class="w">  </span>-o,<span class="w"> </span>--outputdir<span class="w">             </span>备份文件输出的目录
+</span><span id="__span-8-12"><a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a><span class="w">  </span>-s,<span class="w"> </span>--statement-size<span class="w">        </span>生成的<span class="w"> </span>insert<span class="w"> </span>语句的字节数，默认<span class="w"> </span><span class="m">1000000</span><span class="o">(</span>这个参数不能太小，不然会报<span class="w"> </span>Row<span class="w"> </span>bigger<span class="w"> </span>than<span class="w"> </span>statement_size<span class="w"> </span><span class="k">for</span><span class="w"> </span>tools.t_serverinfo<span class="o">)</span>
+</span><span id="__span-8-13"><a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a><span class="w">  </span>-r,<span class="w"> </span>--rows<span class="w">                  </span>将表按行分块时，指定的块行数，指定这个选项会关闭<span class="w"> </span>--chunk-filesize
+</span><span id="__span-8-14"><a id="__codelineno-8-14" name="__codelineno-8-14" href="#__codelineno-8-14"></a><span class="w">  </span>-F,<span class="w"> </span>--chunk-filesize<span class="w">        </span>将表按大小分块时，指定的块大小，单位是<span class="w"> </span>MB
+</span><span id="__span-8-15"><a id="__codelineno-8-15" name="__codelineno-8-15" href="#__codelineno-8-15"></a><span class="w">  </span>-c,<span class="w"> </span>--compress<span class="w">              </span>压缩输出文件
+</span><span id="__span-8-16"><a id="__codelineno-8-16" name="__codelineno-8-16" href="#__codelineno-8-16"></a><span class="w">  </span>-e,<span class="w"> </span>--build-empty-files<span class="w">     </span>如果表数据是空，还是产生一个空文件（默认无数据则只有表结构文件）
+</span><span id="__span-8-17"><a id="__codelineno-8-17" name="__codelineno-8-17" href="#__codelineno-8-17"></a><span class="w">  </span>-x,<span class="w"> </span>--regex<span class="w">                 </span>支持正则表达式匹配<span class="s1">&#39;db.table&#39;</span>,如mydumper<span class="w"> </span>–regex<span class="w"> </span><span class="s1">&#39;^(?!(mysql|test))&#39;</span>
+</span><span id="__span-8-18"><a id="__codelineno-8-18" name="__codelineno-8-18" href="#__codelineno-8-18"></a><span class="w">  </span>-i,<span class="w"> </span>--ignore-engines<span class="w">        </span>忽略的存储引擎，用逗号分割
+</span><span id="__span-8-19"><a id="__codelineno-8-19" name="__codelineno-8-19" href="#__codelineno-8-19"></a><span class="w">  </span>-N,<span class="w"> </span>--insert-ignore<span class="w">         </span>使用<span class="w"> </span>INSERT<span class="w"> </span>IGNORE<span class="w"> </span>转储行数据
+</span><span id="__span-8-20"><a id="__codelineno-8-20" name="__codelineno-8-20" href="#__codelineno-8-20"></a><span class="w">  </span>-m,<span class="w"> </span>--no-schemas<span class="w">            </span>不备份表结构
+</span><span id="__span-8-21"><a id="__codelineno-8-21" name="__codelineno-8-21" href="#__codelineno-8-21"></a><span class="w">  </span>-d,<span class="w"> </span>--no-data<span class="w">               </span>不备份表数据
+</span><span id="__span-8-22"><a id="__codelineno-8-22" name="__codelineno-8-22" href="#__codelineno-8-22"></a><span class="w">  </span>-G,<span class="w"> </span>--triggers<span class="w">              </span>备份触发器
+</span><span id="__span-8-23"><a id="__codelineno-8-23" name="__codelineno-8-23" href="#__codelineno-8-23"></a><span class="w">  </span>-E,<span class="w"> </span>--events<span class="w">                </span>备份事件
+</span><span id="__span-8-24"><a id="__codelineno-8-24" name="__codelineno-8-24" href="#__codelineno-8-24"></a><span class="w">  </span>-R,<span class="w"> </span>--routines<span class="w">              </span>备份存储过程和函数
+</span><span id="__span-8-25"><a id="__codelineno-8-25" name="__codelineno-8-25" href="#__codelineno-8-25"></a><span class="w">  </span>-W,<span class="w"> </span>--no-views<span class="w">              </span>不备份视图
+</span><span id="__span-8-26"><a id="__codelineno-8-26" name="__codelineno-8-26" href="#__codelineno-8-26"></a><span class="w">  </span>-k,<span class="w"> </span>--no-locks<span class="w">              </span>不使用临时共享只读锁，使用这个选项会造成数据不一致
+</span><span id="__span-8-27"><a id="__codelineno-8-27" name="__codelineno-8-27" href="#__codelineno-8-27"></a><span class="w">  </span>--no-backup-locks<span class="w">           </span>不使用<span class="w"> </span>Percona<span class="w"> </span>备份锁
+</span><span id="__span-8-28"><a id="__codelineno-8-28" name="__codelineno-8-28" href="#__codelineno-8-28"></a><span class="w">  </span>--less-locking<span class="w">              </span>减少对<span class="w"> </span>InnoDB<span class="w"> </span>表的锁定时间
+</span><span id="__span-8-29"><a id="__codelineno-8-29" name="__codelineno-8-29" href="#__codelineno-8-29"></a><span class="w">  </span>-l,<span class="w"> </span>--long-query-guard<span class="w">      </span>设定阻塞备份的长查询超时时间，单位是秒，默认是60秒（超时后默认mydumper将会退出）
+</span><span id="__span-8-30"><a id="__codelineno-8-30" name="__codelineno-8-30" href="#__codelineno-8-30"></a><span class="w">  </span>-K,<span class="w"> </span>--kill-long-queries<span class="w">     </span>杀掉长查询<span class="w"> </span><span class="o">(</span>而不是退出<span class="w"> </span>mydumper<span class="o">)</span>
+</span><span id="__span-8-31"><a id="__codelineno-8-31" name="__codelineno-8-31" href="#__codelineno-8-31"></a><span class="w">  </span>-D,<span class="w"> </span>--daemon<span class="w">                </span>启用守护进程模式，守护进程模式以某个间隔不间断对数据库进行备份
+</span><span id="__span-8-32"><a id="__codelineno-8-32" name="__codelineno-8-32" href="#__codelineno-8-32"></a><span class="w">  </span>-I,<span class="w"> </span>--snapshot-interval<span class="w">     </span>每个备份快照之间的间隔（以分钟为单位），需要<span class="w"> </span>--daemon<span class="w"> </span>选项，默认为<span class="w"> </span><span class="m">60</span>
+</span><span id="__span-8-33"><a id="__codelineno-8-33" name="__codelineno-8-33" href="#__codelineno-8-33"></a><span class="w">  </span>-L,<span class="w"> </span>--logfile<span class="w">               </span>使用的日志文件名<span class="o">(</span>mydumper所产生的日志<span class="o">)</span>,<span class="w"> </span>默认使用标准输出
+</span><span id="__span-8-34"><a id="__codelineno-8-34" name="__codelineno-8-34" href="#__codelineno-8-34"></a><span class="w">  </span>--tz-utc<span class="w">                    </span>设置时区，只有备份应用到不同时区时使用。默认使用<span class="w"> </span>--skip-tz-utc<span class="w"> </span>来关闭该选项
+</span><span id="__span-8-35"><a id="__codelineno-8-35" name="__codelineno-8-35" href="#__codelineno-8-35"></a><span class="w">  </span>--skip-tz-utc<span class="w">               </span>见上
+</span><span id="__span-8-36"><a id="__codelineno-8-36" name="__codelineno-8-36" href="#__codelineno-8-36"></a><span class="w">  </span>--use-savepoints<span class="w">            </span>使用<span class="w"> </span>savepoints<span class="w"> </span>来减少采集<span class="w"> </span>metadata<span class="w"> </span>所造成的锁时间，需要<span class="w"> </span>SUPER<span class="w"> </span>权限
+</span><span id="__span-8-37"><a id="__codelineno-8-37" name="__codelineno-8-37" href="#__codelineno-8-37"></a><span class="w">  </span>--success-on-1146<span class="w">           </span>Not<span class="w"> </span>increment<span class="w"> </span>error<span class="w"> </span>count<span class="w"> </span>and<span class="w"> </span>Warning<span class="w"> </span>instead<span class="w"> </span>of<span class="w"> </span>Critical<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">case</span><span class="w"> </span>of<span class="w"> </span>table<span class="w"> </span>doesn<span class="err">&#39;</span>t<span class="w"> </span>exist
+</span><span id="__span-8-38"><a id="__codelineno-8-38" name="__codelineno-8-38" href="#__codelineno-8-38"></a><span class="w">  </span>--lock-all-tables<span class="w">           </span>锁住实例上所有表，而不是给实例施加<span class="w"> </span>FTWRL
+</span><span id="__span-8-39"><a id="__codelineno-8-39" name="__codelineno-8-39" href="#__codelineno-8-39"></a><span class="w">  </span>-U,<span class="w"> </span>--updated-since<span class="w">         </span>使用<span class="w"> </span>update_time<span class="w"> </span>来备份最近<span class="w"> </span>U<span class="w"> </span>天内有过更新记录的表
+</span><span id="__span-8-40"><a id="__codelineno-8-40" name="__codelineno-8-40" href="#__codelineno-8-40"></a><span class="w">  </span>--trx-consistency-only<span class="w">      </span>Transactional<span class="w"> </span>consistency<span class="w"> </span>only
+</span><span id="__span-8-41"><a id="__codelineno-8-41" name="__codelineno-8-41" href="#__codelineno-8-41"></a><span class="w">  </span>--complete-insert<span class="w">           </span>包含列名的完整<span class="w"> </span>INSERT<span class="w"> </span>语句
+</span><span id="__span-8-42"><a id="__codelineno-8-42" name="__codelineno-8-42" href="#__codelineno-8-42"></a><span class="w">  </span>-z,<span class="w"> </span>--tidb-snapshot<span class="w">         </span>Snapshot<span class="w"> </span>to<span class="w"> </span>use<span class="w"> </span><span class="k">for</span><span class="w"> </span>TiDB
+</span><span id="__span-8-43"><a id="__codelineno-8-43" name="__codelineno-8-43" href="#__codelineno-8-43"></a><span class="w">  </span>-h,<span class="w"> </span>--host<span class="w">                  </span>连接的主机名
+</span><span id="__span-8-44"><a id="__codelineno-8-44" name="__codelineno-8-44" href="#__codelineno-8-44"></a><span class="w">  </span>-u,<span class="w"> </span>--user<span class="w">                  </span>备份所使用的用户
+</span><span id="__span-8-45"><a id="__codelineno-8-45" name="__codelineno-8-45" href="#__codelineno-8-45"></a><span class="w">  </span>-p,<span class="w"> </span>--password<span class="w">              </span>密码（不支持交互式输入密码）
+</span><span id="__span-8-46"><a id="__codelineno-8-46" name="__codelineno-8-46" href="#__codelineno-8-46"></a><span class="w">  </span>-a,<span class="w"> </span>--ask-password<span class="w">          </span>提示用户密码
+</span><span id="__span-8-47"><a id="__codelineno-8-47" name="__codelineno-8-47" href="#__codelineno-8-47"></a><span class="w">  </span>-P,<span class="w"> </span>--port<span class="w">                  </span>端口
+</span><span id="__span-8-48"><a id="__codelineno-8-48" name="__codelineno-8-48" href="#__codelineno-8-48"></a><span class="w">  </span>-S,<span class="w"> </span>--socket<span class="w">                </span>使用<span class="w"> </span>socket<span class="w"> </span>方式备份实例（使用不成功，暂时只成功的使用了基于<span class="w"> </span>host<span class="w"> </span>的方式备份）
+</span><span id="__span-8-49"><a id="__codelineno-8-49" name="__codelineno-8-49" href="#__codelineno-8-49"></a><span class="w">  </span>-t,<span class="w"> </span>--threads<span class="w">               </span>开启的备份线程数，默认是<span class="w"> </span><span class="m">4</span>
+</span><span id="__span-8-50"><a id="__codelineno-8-50" name="__codelineno-8-50" href="#__codelineno-8-50"></a><span class="w">  </span>-C,<span class="w"> </span>--compress-protocol<span class="w">     </span>压缩与<span class="w"> </span>mysql<span class="w"> </span>通信的数据
+</span><span id="__span-8-51"><a id="__codelineno-8-51" name="__codelineno-8-51" href="#__codelineno-8-51"></a><span class="w">  </span>-V,<span class="w"> </span>--version<span class="w">               </span>显示版本号
+</span><span id="__span-8-52"><a id="__codelineno-8-52" name="__codelineno-8-52" href="#__codelineno-8-52"></a><span class="w">  </span>-v,<span class="w"> </span>--verbose<span class="w">               </span>输出信息模式,<span class="w"> </span><span class="nv">0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>silent,<span class="w"> </span><span class="nv">1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>errors,<span class="w"> </span><span class="nv">2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>warnings,<span class="w"> </span><span class="nv">3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>info,<span class="w"> </span>默认为<span class="w"> </span><span class="m">2</span>
+</span><span id="__span-8-53"><a id="__codelineno-8-53" name="__codelineno-8-53" href="#__codelineno-8-53"></a><span class="w">  </span>--defaults-file<span class="w">             </span>使用一个指定的文件
+</span><span id="__span-8-54"><a id="__codelineno-8-54" name="__codelineno-8-54" href="#__codelineno-8-54"></a><span class="w">  </span>--ssl<span class="w">                       </span>使用<span class="w"> </span>SSL<span class="w"> </span>连接
+</span><span id="__span-8-55"><a id="__codelineno-8-55" name="__codelineno-8-55" href="#__codelineno-8-55"></a><span class="w">  </span>--key<span class="w">                       </span>The<span class="w"> </span>path<span class="w"> </span>name<span class="w"> </span>to<span class="w"> </span>the<span class="w"> </span>key<span class="w"> </span>file
+</span><span id="__span-8-56"><a id="__codelineno-8-56" name="__codelineno-8-56" href="#__codelineno-8-56"></a><span class="w">  </span>--cert<span class="w">                      </span>The<span class="w"> </span>path<span class="w"> </span>name<span class="w"> </span>to<span class="w"> </span>the<span class="w"> </span>certificate<span class="w"> </span>file
+</span><span id="__span-8-57"><a id="__codelineno-8-57" name="__codelineno-8-57" href="#__codelineno-8-57"></a><span class="w">  </span>--ca<span class="w">                        </span>The<span class="w"> </span>path<span class="w"> </span>name<span class="w"> </span>to<span class="w"> </span>the<span class="w"> </span>certificate<span class="w"> </span>authority<span class="w"> </span>file
+</span><span id="__span-8-58"><a id="__codelineno-8-58" name="__codelineno-8-58" href="#__codelineno-8-58"></a><span class="w">  </span>--capath<span class="w">                    </span>The<span class="w"> </span>path<span class="w"> </span>name<span class="w"> </span>to<span class="w"> </span>a<span class="w"> </span>directory<span class="w"> </span>that<span class="w"> </span>contains<span class="w"> </span>trusted<span class="w"> </span>SSL<span class="w"> </span>CA<span class="w"> </span>certificates<span class="w"> </span><span class="k">in</span><span class="w"> </span>PEM<span class="w"> </span>format
+</span><span id="__span-8-59"><a id="__codelineno-8-59" name="__codelineno-8-59" href="#__codelineno-8-59"></a><span class="w">  </span>--cipher<span class="w">                    </span>A<span class="w"> </span>list<span class="w"> </span>of<span class="w"> </span>permissible<span class="w"> </span>ciphers<span class="w"> </span>to<span class="w"> </span>use<span class="w"> </span><span class="k">for</span><span class="w"> </span>SSL<span class="w"> </span>encryption
+</span></code></pre></div>
+</details>
+</li>
+<li>
+<details class="note">
+<summary>myloader</summary>
+<table>
+<thead>
+<tr>
+<th>参数名</th>
+<th>缩写</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>--user</td>
+<td>-u</td>
+<td>使用的用户名</td>
+</tr>
+<tr>
+<td>--pasword</td>
+<td>-p</td>
+<td>连接所用的用户密码</td>
+</tr>
+<tr>
+<td>--host</td>
+<td>-h</td>
+<td>MySQL 服务端地址</td>
+</tr>
+<tr>
+<td>--port</td>
+<td>-P</td>
+<td>MySQL 端口号</td>
+</tr>
+<tr>
+<td>--threads</td>
+<td>-t</td>
+<td>开启的线程数，默认是4</td>
+</tr>
+<tr>
+<td>--directory</td>
+<td>-d</td>
+<td>指定待恢复的备份目录</td>
+</tr>
+<tr>
+<td>--queries-per-transaction</td>
+<td>-q</td>
+<td>每次事务执行的查询数量，默认是1000</td>
+</tr>
+<tr>
+<td>--overwrite-tables</td>
+<td>-o</td>
+<td>如果要恢复的表存在，则先drop掉该表</td>
+</tr>
+<tr>
+<td>--database</td>
+<td>-B</td>
+<td>需要还原到哪个数据库（目标数据库）</td>
+</tr>
+<tr>
+<td>--source-db</td>
+<td>-s</td>
+<td>选择被还原的数据库（源数据库）</td>
+</tr>
+<tr>
+<td>--enable-binlog</td>
+<td>-e</td>
+<td>在恢复时开启binlog</td>
+</tr>
+<tr>
+<td><div class="language-shell highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>Usage:
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="w">  </span>myloader<span class="w"> </span><span class="o">[</span>OPTION?<span class="o">]</span><span class="w"> </span>multi-threaded<span class="w"> </span>MySQL<span class="w"> </span>loader
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>Help<span class="w"> </span>Options:
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="w">  </span>-?,<span class="w"> </span>--help<span class="w">                        </span>Show<span class="w"> </span><span class="nb">help</span><span class="w"> </span>options
+</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>
+</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a>Application<span class="w"> </span>Options:
+</span><span id="__span-9-8"><a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a><span class="w">  </span>-d,<span class="w"> </span>--directory<span class="w">                   </span>要导入的备份文件要存放的文件夹
+</span><span id="__span-9-9"><a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a><span class="w">  </span>-q,<span class="w"> </span>--queries-per-transaction<span class="w">     </span>每个事务的query数量,<span class="w"> </span>默认1000
+</span><span id="__span-9-10"><a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a><span class="w">  </span>-o,<span class="w"> </span>--overwrite-tables<span class="w">            </span>如果表存在则先删除，使用该参数时，需要确保备份时候备份了表结构，不然还原会找不到表
+</span><span id="__span-9-11"><a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a><span class="w">  </span>-B,<span class="w"> </span>--database<span class="w">                    </span>指定需要还原的数据库
+</span><span id="__span-9-12"><a id="__codelineno-9-12" name="__codelineno-9-12" href="#__codelineno-9-12"></a><span class="w">  </span>-s,<span class="w"> </span>--source-db<span class="w">                   </span>还原的数据库（备份文件中）
+</span><span id="__span-9-13"><a id="__codelineno-9-13" name="__codelineno-9-13" href="#__codelineno-9-13"></a><span class="w">  </span>-e,<span class="w"> </span>--enable-binlog<span class="w">               </span>启用还原数据的二进制日志
+</span><span id="__span-9-14"><a id="__codelineno-9-14" name="__codelineno-9-14" href="#__codelineno-9-14"></a><span class="w">  </span>-h,<span class="w"> </span>--host<span class="w">                        </span>主机
+</span><span id="__span-9-15"><a id="__codelineno-9-15" name="__codelineno-9-15" href="#__codelineno-9-15"></a><span class="w">  </span>-u,<span class="w"> </span>--user<span class="w">                        </span>还原的用户
+</span><span id="__span-9-16"><a id="__codelineno-9-16" name="__codelineno-9-16" href="#__codelineno-9-16"></a><span class="w">  </span>-p,<span class="w"> </span>--password<span class="w">                    </span>密码
+</span><span id="__span-9-17"><a id="__codelineno-9-17" name="__codelineno-9-17" href="#__codelineno-9-17"></a><span class="w">  </span>-a,<span class="w"> </span>--ask-password<span class="w">                </span>Prompt<span class="w"> </span>For<span class="w"> </span>User<span class="w"> </span>password
+</span><span id="__span-9-18"><a id="__codelineno-9-18" name="__codelineno-9-18" href="#__codelineno-9-18"></a><span class="w">  </span>-P,<span class="w"> </span>--port<span class="w">                        </span>TCP/IP<span class="w"> </span>连接所用的端口号
+</span><span id="__span-9-19"><a id="__codelineno-9-19" name="__codelineno-9-19" href="#__codelineno-9-19"></a><span class="w">  </span>-S,<span class="w"> </span>--socket<span class="w">                      </span>UNIX<span class="w"> </span>socket<span class="w"> </span>方式连接的文件
+</span><span id="__span-9-20"><a id="__codelineno-9-20" name="__codelineno-9-20" href="#__codelineno-9-20"></a><span class="w">  </span>-t,<span class="w"> </span>--threads<span class="w">                     </span>还原所使用的线程数量
+</span><span id="__span-9-21"><a id="__codelineno-9-21" name="__codelineno-9-21" href="#__codelineno-9-21"></a><span class="w">  </span>-C,<span class="w"> </span>--compress-protocol<span class="w">           </span>在<span class="w"> </span>MySQL<span class="w"> </span>连接上使用压缩
+</span><span id="__span-9-22"><a id="__codelineno-9-22" name="__codelineno-9-22" href="#__codelineno-9-22"></a><span class="w">  </span>-V,<span class="w"> </span>--version<span class="w">                     </span>显示版本
+</span><span id="__span-9-23"><a id="__codelineno-9-23" name="__codelineno-9-23" href="#__codelineno-9-23"></a><span class="w">  </span>-v,<span class="w"> </span>--verbose<span class="w">                     </span>输出模式,<span class="w"> </span><span class="nv">0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>silent,<span class="w"> </span><span class="nv">1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>errors,<span class="w"> </span><span class="nv">2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>warnings,<span class="w"> </span><span class="nv">3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>info,<span class="w"> </span>默认为2
+</span><span id="__span-9-24"><a id="__codelineno-9-24" name="__codelineno-9-24" href="#__codelineno-9-24"></a>
+</span><span id="__span-9-25"><a id="__codelineno-9-25" name="__codelineno-9-25" href="#__codelineno-9-25"></a>
+</span><span id="__span-9-26"><a id="__codelineno-9-26" name="__codelineno-9-26" href="#__codelineno-9-26"></a><span class="c1"># 恢复备份文件中的全部 若表已存在则先删除</span>
+</span><span id="__span-9-27"><a id="__codelineno-9-27" name="__codelineno-9-27" href="#__codelineno-9-27"></a>myloader<span class="w"> </span>-u<span class="w"> </span>root<span class="w"> </span>-p<span class="w"> </span><span class="m">123456</span><span class="w"> </span>-o<span class="w"> </span>-d<span class="w"> </span>/backups/all3
+</span><span id="__span-9-28"><a id="__codelineno-9-28" name="__codelineno-9-28" href="#__codelineno-9-28"></a>
+</span><span id="__span-9-29"><a id="__codelineno-9-29" name="__codelineno-9-29" href="#__codelineno-9-29"></a><span class="c1"># 从全备中恢复指定库</span>
+</span><span id="__span-9-30"><a id="__codelineno-9-30" name="__codelineno-9-30" href="#__codelineno-9-30"></a>myloader<span class="w"> </span>-u<span class="w"> </span>root<span class="w"> </span>-p<span class="w"> </span><span class="m">123456</span><span class="w"> </span>-s<span class="w"> </span>db1<span class="w"> </span>-o<span class="w"> </span>-d<span class="w"> </span>/backups/all3
+</span><span id="__span-9-31"><a id="__codelineno-9-31" name="__codelineno-9-31" href="#__codelineno-9-31"></a>
+</span><span id="__span-9-32"><a id="__codelineno-9-32" name="__codelineno-9-32" href="#__codelineno-9-32"></a><span class="c1"># 将某个数据库备份还原到另一个数据库中（目标库不存在则会新建）</span>
+</span><span id="__span-9-33"><a id="__codelineno-9-33" name="__codelineno-9-33" href="#__codelineno-9-33"></a>myloader<span class="w"> </span>-u<span class="w"> </span>root<span class="w"> </span>-p<span class="w"> </span><span class="m">123456</span><span class="w"> </span>-B<span class="w"> </span>recover_db1<span class="w"> </span>-s<span class="w"> </span>db1<span class="w"> </span>-o<span class="w"> </span>-d<span class="w"> </span>/backups/all3
+</span><span id="__span-9-34"><a id="__codelineno-9-34" name="__codelineno-9-34" href="#__codelineno-9-34"></a>myloader<span class="w"> </span>-u<span class="w"> </span>root<span class="w"> </span>-p<span class="w"> </span><span class="m">123456</span><span class="w"> </span>-B<span class="w"> </span>recover_db1<span class="w"> </span>-o<span class="w"> </span>-d<span class="w"> </span>/backups/db1
+</span><span id="__span-9-35"><a id="__codelineno-9-35" name="__codelineno-9-35" href="#__codelineno-9-35"></a>
+</span><span id="__span-9-36"><a id="__codelineno-9-36" name="__codelineno-9-36" href="#__codelineno-9-36"></a><span class="c1"># 恢复时开启binlog（有备库的时候需要开启）</span>
+</span><span id="__span-9-37"><a id="__codelineno-9-37" name="__codelineno-9-37" href="#__codelineno-9-37"></a>myloader<span class="w"> </span>-u<span class="w"> </span>root<span class="w"> </span>-p<span class="w"> </span><span class="m">123456</span><span class="w"> </span>-e<span class="w"> </span>-o<span class="w"> </span>-d<span class="w"> </span>/backups/db1
+</span><span id="__span-9-38"><a id="__codelineno-9-38" name="__codelineno-9-38" href="#__codelineno-9-38"></a>
+</span><span id="__span-9-39"><a id="__codelineno-9-39" name="__codelineno-9-39" href="#__codelineno-9-39"></a><span class="c1"># 无法直接还原单表 只能找到单表的sql文件 进入命令行source 执行</span>
+</span><span id="__span-9-40"><a id="__codelineno-9-40" name="__codelineno-9-40" href="#__codelineno-9-40"></a><span class="nb">source</span><span class="w"> </span>db1.tb1-schema.sql<span class="w"> </span>还原表结构
+</span><span id="__span-9-41"><a id="__codelineno-9-41" name="__codelineno-9-41" href="#__codelineno-9-41"></a><span class="nb">source</span><span class="w"> </span>db1.tb1.sql<span class="w"> </span>还原表数据
+</span></code></pre></div></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</details>
+</li>
+<li>
+<details class="info">
+<summary>mydumper备份过程</summary>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>mydumper备份过程
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>1、连接目标数据库 / 対象DBに接続
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>2、通过show processlist来判断是否有长查询，根据参数long-query-guard和kill-long-queries决定退出或杀掉长查询 / show processlistにて長いクエリを確認し、引数long-query-guardとkill-long-queriesにてkillする。
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>3、主线程 / メインプロセス flush tables with read lock；start transaction with consistent snapshot
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>4、主线程读取当前时间点的二进制日志文件名和日志写入的位置并记录在metadata文件中，以供即时点恢复使用 / メインプロセスにて現在の時間のbinlogファイル名とbinlogの位置をmetadataファイルに記録する。
+</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>5、创建dump线程，缺省为4个　/　dumpスレットを作成、デフォルトは4
+</span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a>6、确定候选表，根据类别分别插入non_innodb_table、innodb_tables以及table_schemas链表　/　対象テーブルを確定し、種類別に対象リストに登録
+</span><span id="__span-10-8"><a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a>7、将候选表通过g_async_queue_push加入任务队列(队列最后元素是thread shutdown)，由dump线程从队列中读取表信息并执行数据导出　/　対象をg_async_queue_pushにて転送リストに追加、dumpスレッドが対象リストを読み出し、dumpする。
+</span><span id="__span-10-9"><a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a>8、备份完non_innodb_table后立即unlock tables解锁，以减少锁定时间　/　non_innodb_tableをバックアップ後、すぐにunlock tablesする。
+</span><span id="__span-10-10"><a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a>9、等待dump InnoDB tables完成　/　InnoDBのdump完了待ち。
+</span><span id="__span-10-11"><a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a>
+</span><span id="__span-10-12"><a id="__codelineno-10-12" name="__codelineno-10-12" href="#__codelineno-10-12"></a>
+</span><span id="__span-10-13"><a id="__codelineno-10-13" name="__codelineno-10-13" href="#__codelineno-10-13"></a>--events 备份事件
+</span><span id="__span-10-14"><a id="__codelineno-10-14" name="__codelineno-10-14" href="#__codelineno-10-14"></a>--routines 备份存储过程和函数
+</span><span id="__span-10-15"><a id="__codelineno-10-15" name="__codelineno-10-15" href="#__codelineno-10-15"></a>--triggers  备份触发器
+</span><span id="__span-10-16"><a id="__codelineno-10-16" name="__codelineno-10-16" href="#__codelineno-10-16"></a>--less-locking 减少对InnoDB表的锁施加时间
+</span><span id="__span-10-17"><a id="__codelineno-10-17" name="__codelineno-10-17" href="#__codelineno-10-17"></a>--ignore-sysdb  忽略sysdb库和mysql库
+</span><span id="__span-10-18"><a id="__codelineno-10-18" name="__codelineno-10-18" href="#__codelineno-10-18"></a>--chunk-filesize 将表按大小分块时，指定的块大小，单位是 MB
+</span><span id="__span-10-19"><a id="__codelineno-10-19" name="__codelineno-10-19" href="#__codelineno-10-19"></a>--complete-insert 使用完整的insert语句(包含列名称)。
+</span><span id="__span-10-20"><a id="__codelineno-10-20" name="__codelineno-10-20" href="#__codelineno-10-20"></a>--outputdir 导出的目录
+</span><span id="__span-10-21"><a id="__codelineno-10-21" name="__codelineno-10-21" href="#__codelineno-10-21"></a>--statement-size=8000000　
+</span><span id="__span-10-22"><a id="__codelineno-10-22" name="__codelineno-10-22" href="#__codelineno-10-22"></a>.. option:: --statement-size, -s
+</span><span id="__span-10-23"><a id="__codelineno-10-23" name="__codelineno-10-23" href="#__codelineno-10-23"></a>
+</span><span id="__span-10-24"><a id="__codelineno-10-24" name="__codelineno-10-24" href="#__codelineno-10-24"></a>The maximum size for an insert statement before breaking into a new
+</span><span id="__span-10-25"><a id="__codelineno-10-25" name="__codelineno-10-25" href="#__codelineno-10-25"></a>statement, default 1,000,000 bytes
+</span><span id="__span-10-26"><a id="__codelineno-10-26" name="__codelineno-10-26" href="#__codelineno-10-26"></a>
+</span><span id="__span-10-27"><a id="__codelineno-10-27" name="__codelineno-10-27" href="#__codelineno-10-27"></a>
+</span><span id="__span-10-28"><a id="__codelineno-10-28" name="__codelineno-10-28" href="#__codelineno-10-28"></a>
+</span><span id="__span-10-29"><a id="__codelineno-10-29" name="__codelineno-10-29" href="#__codelineno-10-29"></a>myloader
+</span><span id="__span-10-30"><a id="__codelineno-10-30" name="__codelineno-10-30" href="#__codelineno-10-30"></a>
+</span><span id="__span-10-31"><a id="__codelineno-10-31" name="__codelineno-10-31" href="#__codelineno-10-31"></a>--enable-binlog  启用还原数据的二进制日志
+</span><span id="__span-10-32"><a id="__codelineno-10-32" name="__codelineno-10-32" href="#__codelineno-10-32"></a>--overwrite-tables  如果要恢复的表存在，则先drop掉该表，使用该参数，需要备份时候要备份表结构
+</span><span id="__span-10-33"><a id="__codelineno-10-33" name="__codelineno-10-33" href="#__codelineno-10-33"></a>
+</span><span id="__span-10-34"><a id="__codelineno-10-34" name="__codelineno-10-34" href="#__codelineno-10-34"></a># install zstd
+</span><span id="__span-10-35"><a id="__codelineno-10-35" name="__codelineno-10-35" href="#__codelineno-10-35"></a>
+</span><span id="__span-10-36"><a id="__codelineno-10-36" name="__codelineno-10-36" href="#__codelineno-10-36"></a>wget https://github.com/mydumper/mydumper/releases/download/v0.11.5-2/mydumper-0.11.5-2-zstd.el7.x86_64.rpm
+</span><span id="__span-10-37"><a id="__codelineno-10-37" name="__codelineno-10-37" href="#__codelineno-10-37"></a>yum install glib2-devel mysql-devel openssl-devel pcre-devel zlib-devel libzstd-devel　ｚｓｔｄ
+</span><span id="__span-10-38"><a id="__codelineno-10-38" name="__codelineno-10-38" href="#__codelineno-10-38"></a>yum install mydumper-0.11.5-2-zstd.el7.x86_64.rpm
+</span><span id="__span-10-39"><a id="__codelineno-10-39" name="__codelineno-10-39" href="#__codelineno-10-39"></a>
+</span><span id="__span-10-40"><a id="__codelineno-10-40" name="__codelineno-10-40" href="#__codelineno-10-40"></a>[root@test mysqldump]# mydumper -V
+</span><span id="__span-10-41"><a id="__codelineno-10-41" name="__codelineno-10-41" href="#__codelineno-10-41"></a>mydumper 0.11.5, built against MySQL 5.7.34-37
+</span></code></pre></div>
+</details>
+</li>
+<li>
+<p>https://github.com/mydumper/mydumper/blob/master/docs/mydumper_usage.rst　　　＜ーー　公式マニュアル</p>
+</li>
+<li>https://www.cndba.cn/dave/article/4624</li>
+<li>https://www.modb.pro/db/34039　　　＜ーー　詳細なシナリオ</li>
+<li>https://www.nmirage.com/database/427.html</li>
+<li>マルチスレッドのため、mysqldumpとmysqlpumpより早いです。</li>
+<li>
+<p>問題点</p>
+<ul>
+<li>Waiting for global read lock　の問題</li>
+<li>dump時、global read lockがかかってるため、MySQLの全操作ができない（SELECT以外）<ul>
+<li><code>Waiting for global read lock</code></li>
+</ul>
+</li>
+<li>対応方法<ul>
+<li>--trx-consistency-only　をつける</li>
+<li>--trx-consistency-only トランザクションの整合性のみ、mysqldumpのsingle-transactionと同じ。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>MySQL対応表</p>
+<ul>
+<li>
+<p>対応状況</p>
+<table>
+<thead>
+<tr>
+<th align="left"></th>
+<th align="left">MySQL4.0</th>
+<th align="left">MySQL5.1</th>
+<th align="left">MySQL5.5</th>
+<th align="left">MySQL5.7</th>
+<th align="left">MySQL8.0</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">mydumper</td>
+<td align="left">X</td>
+<td align="left">O</td>
+<td align="left">O</td>
+<td align="left">O</td>
+<td align="left">O</td>
+</tr>
+<tr>
+<td align="left">xtrabackup</td>
+<td align="left">X</td>
+<td align="left">X</td>
+<td align="left">O</td>
+<td align="left">O</td>
+<td align="left">O</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>バックアップ速度</p>
+<table>
+<thead>
+<tr>
+<th align="left"></th>
+<th align="left">MySQL4.0</th>
+<th align="left">MySQL5.1</th>
+<th align="left">MySQL5.5</th>
+<th align="left">MySQL5.7</th>
+<th align="left">MySQL8.0</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">mydumper</td>
+<td align="left">X</td>
+<td align="left">早い</td>
+<td align="left">早い</td>
+<td align="left">早い</td>
+<td align="left">早い</td>
+</tr>
+<tr>
+<td align="left">xtrabackup</td>
+<td align="left">X</td>
+<td align="left">X</td>
+<td align="left">DB数とテーブル数に左右する</td>
+<td align="left">DB数とテーブル数に左右する</td>
+<td align="left">DB数とテーブル数に左右する</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>メリット・デメリット</p>
+<table>
+<thead>
+<tr>
+<th align="left"></th>
+<th align="left">メリット</th>
+<th align="left">デメリット</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">mydumper</td>
+<td align="left">dumpしたものはsqlファイルです、復旧時DB毎にimportできる。バックアップ速度も早い。</td>
+<td align="left">圧縮なしのバックアップは早いですが、圧縮付きの場合が遅い、さらにdump中、対象テーブルがlockされたまま、操作できない。圧縮なしでバックアップし、その後圧縮(tar)すると、1サーバが半日以上かかります。</td>
+</tr>
+<tr>
+<td align="left">xtrabackup</td>
+<td align="left">増量分だけバックアップするため、テーブル数少ない場合がとても早い。増量分のバックアップサイズの割と小さい。</td>
+<td align="left">復旧は全DBしか対応できないため、試験機にimport後、対象DBを抽出する方法しかない。手間かかる。対象サーバのDB/TBが多い場合、とても遅い上に、対象テーブルもlockされたまま操作できない。</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="_1">復旧手順書<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<ul>
+<li>https://www.cxybb.com/article/qq_33656602/90671188#myloader__253</li>
+</ul>
+<p>復旧方法主に2つあります。</p>
+<ol>
+<li>
+<p>DBサーバ上の復旧作業
+サービスDBサーバ上の直接復旧作業の場合は、サーバ上のバックアップデータから直接復旧する。
+この方法はオススメしない、サービスサーバ上実行した場合、それなりの危険性もあるため、理解してから作業してください。（基本は方法２で実施する）</p>
+<ul>
+<li>
+<details class="note">
+<summary>mydumper备份过程</summary>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>例：
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="o">[</span>root@mysqlxxx<span class="w"> </span>backup<span class="o">]</span><span class="c1"># ll /home/backup/</span>
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>total<span class="w"> </span>15G
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>drwxr-xr-x<span class="w">  </span><span class="m">2</span><span class="w"> </span>root<span class="w"> </span>root<span class="w">  </span><span class="m">152</span><span class="w"> </span>May<span class="w"> </span><span class="m">13</span><span class="w"> </span><span class="m">03</span>:31<span class="w"> </span>.
+</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>drwxr-xr-x.<span class="w"> </span><span class="m">8</span><span class="w"> </span>root<span class="w"> </span>root<span class="w">   </span><span class="m">82</span><span class="w"> </span>Feb<span class="w"> </span><span class="m">25</span><span class="w">  </span><span class="m">2021</span><span class="w"> </span>..
+</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>-rw-r--r--<span class="w">  </span><span class="m">1</span><span class="w"> </span>root<span class="w"> </span>root<span class="w">    </span><span class="m">0</span><span class="w"> </span>Nov<span class="w"> </span><span class="m">18</span><span class="w"> </span><span class="m">11</span>:34<span class="w"> </span>exclude-custom-list
+</span><span id="__span-11-7"><a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a>-rw-r--r--<span class="w">  </span><span class="m">1</span><span class="w"> </span>root<span class="w"> </span>root<span class="w">    </span><span class="m">0</span><span class="w"> </span>May<span class="w"> </span><span class="m">13</span><span class="w"> </span><span class="m">03</span>:18<span class="w"> </span>exclude-db-list
+</span><span id="__span-11-8"><a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a>-rw-r--r--<span class="w">  </span><span class="m">1</span><span class="w"> </span>root<span class="w"> </span>root<span class="w"> </span><span class="m">7</span>.1G<span class="w"> </span>May<span class="w"> </span><span class="m">12</span><span class="w"> </span><span class="m">05</span>:00<span class="w"> </span>mysqlxxx.db.sakura.ne.jp-dump_20220512.tar
+</span><span id="__span-11-9"><a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a>-rw-r--r--<span class="w">  </span><span class="m">1</span><span class="w"> </span>root<span class="w"> </span>root<span class="w"> </span><span class="m">7</span>.2G<span class="w"> </span>May<span class="w"> </span><span class="m">13</span><span class="w"> </span><span class="m">03</span>:31<span class="w"> </span>mysqlxxx.db.sakura.ne.jp-dump_20220513.tar
+</span><span id="__span-11-10"><a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a><span class="o">[</span>root@mysqlxxx<span class="w"> </span>backup<span class="o">]</span><span class="c1">#</span>
+</span><span id="__span-11-11"><a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a>
+</span><span id="__span-11-12"><a id="__codelineno-11-12" name="__codelineno-11-12" href="#__codelineno-11-12"></a><span class="m">1</span>.<span class="w"> </span>対象バックアップを解凍する。
+</span><span id="__span-11-13"><a id="__codelineno-11-13" name="__codelineno-11-13" href="#__codelineno-11-13"></a><span class="o">[</span>root@mysqlxxx<span class="w"> </span>backup<span class="o">]</span><span class="c1"># tar xf /home/backup/mysqlxxx.db.sakura.ne.jp-dump_20220512.tar  -C ./</span>
+</span><span id="__span-11-14"><a id="__codelineno-11-14" name="__codelineno-11-14" href="#__codelineno-11-14"></a>
+</span><span id="__span-11-15"><a id="__codelineno-11-15" name="__codelineno-11-15" href="#__codelineno-11-15"></a><span class="m">2</span>.<span class="w"> </span>対象DBのみを復旧したい場合。（単一DBの場合）
+</span><span id="__span-11-16"><a id="__codelineno-11-16" name="__codelineno-11-16" href="#__codelineno-11-16"></a><span class="c1"># 既存DBが存在した場合、上書きされます。</span>
+</span><span id="__span-11-17"><a id="__codelineno-11-17" name="__codelineno-11-17" href="#__codelineno-11-17"></a><span class="o">[</span>root@mysqlxxx<span class="w"> </span>backup<span class="o">]</span><span class="c1"># myloader --directory=20220512  --threads=8 --verbose=3  -B 復旧したい対象DB名 -s （--source-db）復旧に使うDB名 -o -e</span>
+</span><span id="__span-11-18"><a id="__codelineno-11-18" name="__codelineno-11-18" href="#__codelineno-11-18"></a>
+</span><span id="__span-11-19"><a id="__codelineno-11-19" name="__codelineno-11-19" href="#__codelineno-11-19"></a>例：
+</span><span id="__span-11-20"><a id="__codelineno-11-20" name="__codelineno-11-20" href="#__codelineno-11-20"></a><span class="o">[</span>root@mysql57<span class="w"> </span><span class="m">20220513</span><span class="o">]</span><span class="c1"># myloader --directory=20220512  --threads=8 --verbose=3  -B test_www -s test_www -o -e</span>
+</span><span id="__span-11-21"><a id="__codelineno-11-21" name="__codelineno-11-21" href="#__codelineno-11-21"></a>**<span class="w"> </span>Message:<span class="w"> </span><span class="m">15</span>:26:59.030:<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">00</span>:00:25<span class="w">    </span><span class="p">|</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">00</span>:00:00<span class="w">    </span><span class="p">|</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">00</span>:00:25<span class="w">    </span><span class="p">|</span><span class="w"> </span><span class="sb">`</span>test_www<span class="sb">`</span>.<span class="sb">`</span>history_xm<span class="sb">`</span>
+</span><span id="__span-11-22"><a id="__codelineno-11-22" name="__codelineno-11-22" href="#__codelineno-11-22"></a>**<span class="w"> </span>Message:<span class="w"> </span><span class="m">15</span>:26:59.030:<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">00</span>:00:38<span class="w">    </span><span class="p">|</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">00</span>:00:00<span class="w">    </span><span class="p">|</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">00</span>:00:38<span class="w">    </span><span class="p">|</span><span class="w"> </span><span class="sb">`</span>test_www<span class="sb">`</span>.<span class="sb">`</span>wp_posts<span class="sb">`</span>
+</span><span id="__span-11-23"><a id="__codelineno-11-23" name="__codelineno-11-23" href="#__codelineno-11-23"></a>**<span class="w"> </span>Message:<span class="w"> </span><span class="m">15</span>:26:59.030:<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">00</span>:08:20<span class="w">    </span><span class="p">|</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">00</span>:00:00<span class="w">    </span><span class="p">|</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">00</span>:08:20<span class="w">    </span><span class="p">|</span><span class="w"> </span><span class="sb">`</span>test_www<span class="sb">`</span>.<span class="sb">`</span><span class="nb">history</span><span class="sb">`</span>
+</span><span id="__span-11-24"><a id="__codelineno-11-24" name="__codelineno-11-24" href="#__codelineno-11-24"></a>**<span class="w"> </span>Message:<span class="w"> </span><span class="m">15</span>:26:59.030:<span class="w"> </span>Thread<span class="w"> </span><span class="m">8</span><span class="w"> </span>restoring<span class="w"> </span>post<span class="w"> </span>on<span class="w"> </span><span class="sb">`</span>test_www<span class="sb">`</span><span class="w"> </span>from<span class="w"> </span>aaa.sql.zst
+</span><span id="__span-11-25"><a id="__codelineno-11-25" name="__codelineno-11-25" href="#__codelineno-11-25"></a>**<span class="w"> </span>Message:<span class="w"> </span><span class="m">15</span>:26:59.034:<span class="w"> </span>Thread<span class="w"> </span><span class="m">8</span><span class="w"> </span>restoring<span class="w"> </span>post<span class="w"> </span>on<span class="w"> </span><span class="sb">`</span>test_www<span class="sb">`</span><span class="w"> </span>from<span class="w"> </span>bbb.sql.zst
+</span><span id="__span-11-26"><a id="__codelineno-11-26" name="__codelineno-11-26" href="#__codelineno-11-26"></a>**<span class="w"> </span>Message:<span class="w"> </span><span class="m">15</span>:26:59.035:<span class="w"> </span>Starting<span class="w"> </span>table<span class="w"> </span>checksum<span class="w"> </span>verification
+</span><span id="__span-11-27"><a id="__codelineno-11-27" name="__codelineno-11-27" href="#__codelineno-11-27"></a><span class="o">[</span>root@mysql57<span class="w"> </span><span class="m">20220513</span><span class="o">]</span><span class="c1">#</span>
+</span><span id="__span-11-28"><a id="__codelineno-11-28" name="__codelineno-11-28" href="#__codelineno-11-28"></a>
+</span><span id="__span-11-29"><a id="__codelineno-11-29" name="__codelineno-11-29" href="#__codelineno-11-29"></a>例：
+</span><span id="__span-11-30"><a id="__codelineno-11-30" name="__codelineno-11-30" href="#__codelineno-11-30"></a><span class="o">[</span>root@<span class="w"> </span>work<span class="o">]</span><span class="c1">#</span>
+</span><span id="__span-11-31"><a id="__codelineno-11-31" name="__codelineno-11-31" href="#__codelineno-11-31"></a><span class="o">[</span>root@<span class="w"> </span>work<span class="o">]</span><span class="c1"># tar xf mysql-dump_20220726.tar -C ./</span>
+</span><span id="__span-11-32"><a id="__codelineno-11-32" name="__codelineno-11-32" href="#__codelineno-11-32"></a><span class="o">[</span>root@<span class="w"> </span>work<span class="o">]</span><span class="c1"># myloader --directory=20220726 --verbose=3 -B installer -s installer -o -e</span>
+</span><span id="__span-11-33"><a id="__codelineno-11-33" name="__codelineno-11-33" href="#__codelineno-11-33"></a>
+</span><span id="__span-11-34"><a id="__codelineno-11-34" name="__codelineno-11-34" href="#__codelineno-11-34"></a><span class="o">[</span>root@<span class="w"> </span>work<span class="o">]</span><span class="c1"># myloader --directory=20220726 --verbose=3 -B installer -s installer -o -e</span>
+</span><span id="__span-11-35"><a id="__codelineno-11-35" name="__codelineno-11-35" href="#__codelineno-11-35"></a>**<span class="w"> </span>Message:<span class="w"> </span><span class="m">15</span>:58:04.336:<span class="w"> </span>Server<span class="w"> </span>version<span class="w"> </span>reported<span class="w"> </span>as:<span class="w"> </span><span class="m">5</span>.7.34-log
+</span><span id="__span-11-36"><a id="__codelineno-11-36" name="__codelineno-11-36" href="#__codelineno-11-36"></a>**<span class="w"> </span>Message:<span class="w"> </span><span class="m">15</span>:58:04.340:<span class="w"> </span>Thread<span class="w"> </span><span class="m">4</span><span class="w"> </span>restoring<span class="w"> </span>table<span class="w"> </span><span class="sb">`</span>installer<span class="sb">`</span>.<span class="sb">`</span>migrations<span class="sb">`</span><span class="w"> </span>from<span class="w"> </span>/root/work/20220726/installer.migrations-schema.sql.zst
+</span><span id="__span-11-37"><a id="__codelineno-11-37" name="__codelineno-11-37" href="#__codelineno-11-37"></a>**<span class="w"> </span>Message:<span class="w"> </span><span class="m">15</span>:58:04.340:<span class="w"> </span>Dropping<span class="w"> </span>table<span class="w"> </span>or<span class="w"> </span>view<span class="w"> </span><span class="o">(</span><span class="k">if</span><span class="w"> </span>exists<span class="o">)</span><span class="w"> </span><span class="sb">`</span>installer<span class="sb">`</span>.<span class="sb">`</span>migrations<span class="sb">`</span>
+</span><span id="__span-11-38"><a id="__codelineno-11-38" name="__codelineno-11-38" href="#__codelineno-11-38"></a>**<span class="w"> </span>Message:<span class="w"> </span><span class="m">15</span>:58:04.340:<span class="w"> </span>Thread<span class="w"> </span><span class="m">1</span><span class="w"> </span>restoring<span class="w"> </span>table<span class="w"> </span><span class="sb">`</span>installer<span class="sb">`</span>.<span class="sb">`</span>m_switches<span class="sb">`</span><span class="w"> </span>from<span class="w"> </span>/root/work/20220726/installer.m_switches-schema.sql.zst
+</span><span id="__span-11-39"><a id="__codelineno-11-39" name="__codelineno-11-39" href="#__codelineno-11-39"></a>**<span class="w"> </span>Message:<span class="w"> </span><span class="m">15</span>:58:04.340:<span class="w"> </span>Thread<span class="w"> </span><span class="m">3</span><span class="w"> </span>restoring<span class="w"> </span>table<span class="w"> </span><span class="sb">`</span>installer<span class="sb">`</span>.<span class="sb">`</span>t_networks<span class="sb">`</span><span class="w"> </span>from<span class="w"> </span>/root/work/20220726/installer.t_networks-schema.sql.zst
+</span><span id="__span-11-40"><a id="__codelineno-11-40" name="__codelineno-11-40" href="#__codelineno-11-40"></a>**<span class="w"> </span>Message:<span class="w"> </span><span class="m">15</span>:58:04.340:<span class="w"> </span>Dropping<span class="w"> </span>table<span class="w"> </span>or<span class="w"> </span>view<span class="w"> </span><span class="o">(</span><span class="k">if</span><span class="w"> </span>exists<span class="o">)</span><span class="w"> </span><span class="sb">`</span>installer<span class="sb">`</span>.<span class="sb">`</span>t_networks<span class="sb">`</span>
+</span><span id="__span-11-41"><a id="__codelineno-11-41" name="__codelineno-11-41" href="#__codelineno-11-41"></a>**<span class="w"> </span>Message:<span class="w"> </span><span class="m">15</span>:58:04.340:<span class="w"> </span>Dropping<span class="w"> </span>table<span class="w"> </span>or<span class="w"> </span>view<span class="w"> </span><span class="o">(</span><span class="k">if</span><span class="w"> </span>exists<span class="o">)</span><span class="w"> </span><span class="sb">`</span>installer<span class="sb">`</span>.<span class="sb">`</span>m_switches<span class="sb">`</span>
+</span><span id="__span-11-42"><a id="__codelineno-11-42" name="__codelineno-11-42" href="#__codelineno-11-42"></a>**<span class="w"> </span>Message:<span class="w"> </span><span class="m">15</span>:58:04.340:<span class="w"> </span>Thread<span class="w"> </span><span class="m">2</span><span class="w"> </span>restoring<span class="w"> </span>table<span class="w"> </span><span class="sb">`</span>installer<span class="sb">`</span>.<span class="sb">`</span>t_processing_segments<span class="sb">`</span><span class="w"> </span>from<span class="w"> </span>/root/work/20220726/installer.t_processing_segments-schema.sql.zst
+</span><span id="__span-11-43"><a id="__codelineno-11-43" name="__codelineno-11-43" href="#__codelineno-11-43"></a>**<span class="w"> </span>Message:<span class="w"> </span><span class="m">15</span>:58:04.341:<span class="w"> </span>Dropping<span class="w"> </span>table<span class="w"> </span>or<span class="w"> </span>view<span class="w"> </span><span class="o">(</span><span class="k">if</span><span class="w"> </span>exists<span class="o">)</span><span class="w"> </span><span class="sb">`</span>installer<span class="sb">`</span>.<span class="sb">`</span>t_processing_segments<span class="sb">`</span>
+</span><span id="__span-11-44"><a id="__codelineno-11-44" name="__codelineno-11-44" href="#__codelineno-11-44"></a>**<span class="w"> </span>Message:<span class="w"> </span><span class="m">15</span>:58:04.355:<span class="w"> </span>Creating<span class="w"> </span>table<span class="w"> </span><span class="sb">`</span>installer<span class="sb">`</span>.<span class="sb">`</span>migrations<span class="sb">`</span><span class="w"> </span>from<span class="w"> </span>content<span class="w"> </span><span class="k">in</span><span class="w"> </span>/root/work/20220726/installer.migrations-schema.sql.zst
+</span><span id="__span-11-45"><a id="__codelineno-11-45" name="__codelineno-11-45" href="#__codelineno-11-45"></a>**<span class="w"> </span>Message:<span class="w"> </span><span class="m">15</span>:58:04.357:<span class="w"> </span>Creating<span class="w"> </span>table<span class="w"> </span><span class="sb">`</span>installer<span class="sb">`</span>.<span class="sb">`</span>t_networks<span class="sb">`</span><span class="w"> </span>from<span class="w"> </span>content<span class="w"> </span><span class="k">in</span><span class="w"> </span>/root/work/20220726/installer.t_networks-schema.sql.zst
+</span><span id="__span-11-46"><a id="__codelineno-11-46" name="__codelineno-11-46" href="#__codelineno-11-46"></a>**<span class="w"> </span>Message:<span class="w"> </span><span class="m">15</span>:58:04.359:<span class="w"> </span>Creating<span class="w"> </span>table<span class="w"> </span><span class="sb">`</span>installer<span class="sb">`</span>.<span class="sb">`</span>m_switches<span class="sb">`</span><span class="w"> </span>from<span class="w"> </span>content<span class="w"> </span><span class="k">in</span><span class="w"> </span>/root/work/20220726/installer.m_switches-schema.sql.zst
+</span><span id="__span-11-47"><a id="__codelineno-11-47" name="__codelineno-11-47" href="#__codelineno-11-47"></a>**<span class="w"> </span>Message:<span class="w"> </span><span class="m">15</span>:58:04.360:<span class="w"> </span>Creating<span class="w"> </span>table<span class="w"> </span><span class="sb">`</span>installer<span class="sb">`</span>.<span class="sb">`</span>t_processing_segments<span class="sb">`</span><span class="w"> </span>from<span class="w"> </span>content<span class="w"> </span><span class="k">in</span><span class="w"> </span>/root/work/20220726/installer.t_processing_segments-schema.sql.zst
+</span><span id="__span-11-48"><a id="__codelineno-11-48" name="__codelineno-11-48" href="#__codelineno-11-48"></a>**<span class="w"> </span>Message:<span class="w"> </span><span class="m">15</span>:58:04.414:<span class="w"> </span>Thread<span class="w"> </span><span class="m">2</span><span class="w"> </span>restoring<span class="w"> </span><span class="sb">`</span>installer<span class="sb">`</span>.<span class="sb">`</span>t_networks<span class="sb">`</span><span class="w"> </span>part<span class="w"> </span><span class="m">0</span><span class="w"> </span>of<span class="w"> </span><span class="m">1</span><span class="w"> </span>from<span class="w"> </span>installer.t_networks.00000.sql.zst.<span class="w"> </span>Progress<span class="w"> </span><span class="m">1</span><span class="w"> </span>of<span class="w"> </span><span class="m">4</span>.
+</span><span id="__span-11-49"><a id="__codelineno-11-49" name="__codelineno-11-49" href="#__codelineno-11-49"></a>**<span class="w"> </span>Message:<span class="w"> </span><span class="m">15</span>:58:04.414:<span class="w"> </span>Thread<span class="w"> </span><span class="m">4</span><span class="w"> </span>restoring<span class="w"> </span><span class="sb">`</span>installer<span class="sb">`</span>.<span class="sb">`</span>t_processing_segments<span class="sb">`</span><span class="w"> </span>part<span class="w"> </span><span class="m">0</span><span class="w"> </span>of<span class="w"> </span><span class="m">1</span><span class="w"> </span>from<span class="w"> </span>installer.t_processing_segments.00000.sql.zst.<span class="w"> </span>Progress<span class="w"> </span><span class="m">2</span><span class="w"> </span>of<span class="w"> </span><span class="m">4</span>.
+</span><span id="__span-11-50"><a id="__codelineno-11-50" name="__codelineno-11-50" href="#__codelineno-11-50"></a>**<span class="w"> </span>Message:<span class="w"> </span><span class="m">15</span>:58:04.414:<span class="w"> </span>Thread<span class="w"> </span><span class="m">3</span><span class="w"> </span>restoring<span class="w"> </span><span class="sb">`</span>installer<span class="sb">`</span>.<span class="sb">`</span>m_switches<span class="sb">`</span><span class="w"> </span>part<span class="w"> </span><span class="m">0</span><span class="w"> </span>of<span class="w"> </span><span class="m">1</span><span class="w"> </span>from<span class="w"> </span>installer.m_switches.00000.sql.zst.<span class="w"> </span>Progress<span class="w"> </span><span class="m">3</span><span class="w"> </span>of<span class="w"> </span><span class="m">4</span>.
+</span><span id="__span-11-51"><a id="__codelineno-11-51" name="__codelineno-11-51" href="#__codelineno-11-51"></a>**<span class="w"> </span>Message:<span class="w"> </span><span class="m">15</span>:58:04.414:<span class="w"> </span>Thread<span class="w"> </span><span class="m">1</span><span class="w"> </span>restoring<span class="w"> </span><span class="sb">`</span>installer<span class="sb">`</span>.<span class="sb">`</span>migrations<span class="sb">`</span><span class="w"> </span>part<span class="w"> </span><span class="m">0</span><span class="w"> </span>of<span class="w"> </span><span class="m">1</span><span class="w"> </span>from<span class="w"> </span>installer.migrations.00000.sql.zst.<span class="w"> </span>Progress<span class="w"> </span><span class="m">4</span><span class="w"> </span>of<span class="w"> </span><span class="m">4</span>.
+</span><span id="__span-11-52"><a id="__codelineno-11-52" name="__codelineno-11-52" href="#__codelineno-11-52"></a>**<span class="w"> </span>Message:<span class="w"> </span><span class="m">15</span>:58:04.430:<span class="w"> </span>Import<span class="w"> </span>timings:
+</span><span id="__span-11-53"><a id="__codelineno-11-53" name="__codelineno-11-53" href="#__codelineno-11-53"></a>**<span class="w"> </span>Message:<span class="w"> </span><span class="m">15</span>:58:04.430:<span class="w"> </span>Data<span class="w">          </span><span class="p">|</span><span class="w"> </span>Index<span class="w">         </span><span class="p">|</span><span class="w"> </span>Total<span class="w">         </span><span class="p">|</span><span class="w"> </span>Table
+</span><span id="__span-11-54"><a id="__codelineno-11-54" name="__codelineno-11-54" href="#__codelineno-11-54"></a>**<span class="w"> </span>Message:<span class="w"> </span><span class="m">15</span>:58:04.430:<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">00</span>:00:00<span class="w">    </span><span class="p">|</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">00</span>:00:00<span class="w">    </span><span class="p">|</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">00</span>:00:00<span class="w">    </span><span class="p">|</span><span class="w"> </span><span class="sb">`</span>installer<span class="sb">`</span>.<span class="sb">`</span>migrations<span class="sb">`</span>
+</span><span id="__span-11-55"><a id="__codelineno-11-55" name="__codelineno-11-55" href="#__codelineno-11-55"></a>**<span class="w"> </span>Message:<span class="w"> </span><span class="m">15</span>:58:04.430:<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">00</span>:00:00<span class="w">    </span><span class="p">|</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">00</span>:00:00<span class="w">    </span><span class="p">|</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">00</span>:00:00<span class="w">    </span><span class="p">|</span><span class="w"> </span><span class="sb">`</span>installer<span class="sb">`</span>.<span class="sb">`</span>t_processing_segments<span class="sb">`</span>
+</span><span id="__span-11-56"><a id="__codelineno-11-56" name="__codelineno-11-56" href="#__codelineno-11-56"></a>**<span class="w"> </span>Message:<span class="w"> </span><span class="m">15</span>:58:04.430:<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">00</span>:00:00<span class="w">    </span><span class="p">|</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">00</span>:00:00<span class="w">    </span><span class="p">|</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">00</span>:00:00<span class="w">    </span><span class="p">|</span><span class="w"> </span><span class="sb">`</span>installer<span class="sb">`</span>.<span class="sb">`</span>m_switches<span class="sb">`</span>
+</span><span id="__span-11-57"><a id="__codelineno-11-57" name="__codelineno-11-57" href="#__codelineno-11-57"></a>**<span class="w"> </span>Message:<span class="w"> </span><span class="m">15</span>:58:04.430:<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">00</span>:00:00<span class="w">    </span><span class="p">|</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">00</span>:00:00<span class="w">    </span><span class="p">|</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">00</span>:00:00<span class="w">    </span><span class="p">|</span><span class="w"> </span><span class="sb">`</span>installer<span class="sb">`</span>.<span class="sb">`</span>t_networks<span class="sb">`</span>
+</span><span id="__span-11-58"><a id="__codelineno-11-58" name="__codelineno-11-58" href="#__codelineno-11-58"></a>**<span class="w"> </span>Message:<span class="w"> </span><span class="m">15</span>:58:04.431:<span class="w"> </span>Starting<span class="w"> </span>table<span class="w"> </span>checksum<span class="w"> </span>verification
+</span><span id="__span-11-59"><a id="__codelineno-11-59" name="__codelineno-11-59" href="#__codelineno-11-59"></a><span class="o">[</span>root@<span class="w"> </span>work<span class="o">]</span><span class="c1">#</span>
+</span></code></pre></div></details>
+</li>
+<li>
+<details class="note">
+<summary>myloader 还原常用语句</summary>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>还原整个实例
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>备份整个实例，包括触发器，事件，函数和存储过程
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>
+</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>还原整个实例
+</span><span id="__span-12-6"><a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a>myloader<span class="w"> </span>-u<span class="w"> </span>root<span class="w"> </span>-p<span class="w"> </span>root<span class="w"> </span>-S<span class="w"> </span>/tmp/mysql3307.sock<span class="w"> </span>-d<span class="w"> </span>/backup/mysql/bak/
+</span><span id="__span-12-7"><a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a>
+</span><span id="__span-12-8"><a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a>mysql_upgrade<span class="w"> </span>升级<span class="w"> </span>slave<span class="w"> </span>后还原备份
+</span><span id="__span-12-9"><a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a>master
+</span><span id="__span-12-10"><a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a>
+</span><span id="__span-12-11"><a id="__codelineno-12-11" name="__codelineno-12-11" href="#__codelineno-12-11"></a>mydumper<span class="w"> </span>-u<span class="w"> </span>root<span class="w"> </span>-p<span class="w"> </span>root<span class="w"> </span>-S<span class="w"> </span>/tmp/mysql3306.sock<span class="w"> </span>-G<span class="w"> </span>-R<span class="w"> </span>-E<span class="w"> </span>-o<span class="w"> </span>/backup/mysql/bak
+</span><span id="__span-12-12"><a id="__codelineno-12-12" name="__codelineno-12-12" href="#__codelineno-12-12"></a>slave
+</span><span id="__span-12-13"><a id="__codelineno-12-13" name="__codelineno-12-13" href="#__codelineno-12-13"></a>
+</span><span id="__span-12-14"><a id="__codelineno-12-14" name="__codelineno-12-14" href="#__codelineno-12-14"></a>先升级<span class="w"> </span>mysql,否则会报<span class="w"> </span>mysql.event,<span class="w"> </span>mysql.proc<span class="w"> </span>这些表不存在的错误
+</span><span id="__span-12-15"><a id="__codelineno-12-15" name="__codelineno-12-15" href="#__codelineno-12-15"></a>
+</span><span id="__span-12-16"><a id="__codelineno-12-16" name="__codelineno-12-16" href="#__codelineno-12-16"></a>mysql_upgrade<span class="w"> </span>-u<span class="w"> </span>root<span class="w"> </span>-p<span class="w"> </span>root<span class="w"> </span>-S<span class="w"> </span>/tmp/mysql3307.sock<span class="w"> </span>-P<span class="w"> </span><span class="m">3307</span>
+</span><span id="__span-12-17"><a id="__codelineno-12-17" name="__codelineno-12-17" href="#__codelineno-12-17"></a>还原<span class="w"> </span><span class="m">3306</span><span class="w"> </span>实例上备份的数据到<span class="w"> </span><span class="m">3307</span><span class="w"> </span>实例上,<span class="w"> </span><span class="m">3307</span><span class="w"> </span>实例是初始化的，没有数据写入的实例
+</span><span id="__span-12-18"><a id="__codelineno-12-18" name="__codelineno-12-18" href="#__codelineno-12-18"></a>
+</span><span id="__span-12-19"><a id="__codelineno-12-19" name="__codelineno-12-19" href="#__codelineno-12-19"></a>myloader<span class="w"> </span>-u<span class="w"> </span>root<span class="w"> </span>-p<span class="w"> </span>root<span class="w"> </span>-S<span class="w"> </span>/tmp/mysql3307.sock<span class="w"> </span>-d<span class="w"> </span>/backup/mysql/bak
+</span><span id="__span-12-20"><a id="__codelineno-12-20" name="__codelineno-12-20" href="#__codelineno-12-20"></a>注意事项
+</span><span id="__span-12-21"><a id="__codelineno-12-21" name="__codelineno-12-21" href="#__codelineno-12-21"></a>slave<span class="w"> </span>上的<span class="w"> </span>GTID<span class="w"> </span>信息需要根据<span class="w"> </span>metadata<span class="w"> </span>文件进行手动更新，myloader<span class="w"> </span>并没有自动更新<span class="w"> </span>GTID<span class="w"> </span>信息
+</span><span id="__span-12-22"><a id="__codelineno-12-22" name="__codelineno-12-22" href="#__codelineno-12-22"></a>
+</span><span id="__span-12-23"><a id="__codelineno-12-23" name="__codelineno-12-23" href="#__codelineno-12-23"></a>slave
+</span><span id="__span-12-24"><a id="__codelineno-12-24" name="__codelineno-12-24" href="#__codelineno-12-24"></a>reset<span class="w"> </span>master<span class="p">;</span>
+</span><span id="__span-12-25"><a id="__codelineno-12-25" name="__codelineno-12-25" href="#__codelineno-12-25"></a><span class="nb">set</span><span class="w"> </span>global<span class="w"> </span><span class="nv">gtid_purged</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;xxx&#39;</span><span class="p">;</span>
+</span><span id="__span-12-26"><a id="__codelineno-12-26" name="__codelineno-12-26" href="#__codelineno-12-26"></a>
+</span><span id="__span-12-27"><a id="__codelineno-12-27" name="__codelineno-12-27" href="#__codelineno-12-27"></a>还原单库
+</span><span id="__span-12-28"><a id="__codelineno-12-28" name="__codelineno-12-28" href="#__codelineno-12-28"></a>从备份的单个库文件中还原单库
+</span><span id="__span-12-29"><a id="__codelineno-12-29" name="__codelineno-12-29" href="#__codelineno-12-29"></a>
+</span><span id="__span-12-30"><a id="__codelineno-12-30" name="__codelineno-12-30" href="#__codelineno-12-30"></a>myloader<span class="w"> </span>-u<span class="w"> </span>root<span class="w"> </span>-p<span class="w"> </span>root<span class="w"> </span>-h<span class="w"> </span><span class="m">192</span>.168.2.249<span class="w"> </span>-P<span class="w"> </span><span class="m">3307</span><span class="w"> </span>-B<span class="w"> </span>zst<span class="w"> </span>-d<span class="w"> </span>/backup/mysql/bak/
+</span><span id="__span-12-31"><a id="__codelineno-12-31" name="__codelineno-12-31" href="#__codelineno-12-31"></a>从备份的真个实例文件中还原单库
+</span><span id="__span-12-32"><a id="__codelineno-12-32" name="__codelineno-12-32" href="#__codelineno-12-32"></a>
+</span><span id="__span-12-33"><a id="__codelineno-12-33" name="__codelineno-12-33" href="#__codelineno-12-33"></a>myloader<span class="w"> </span>-u<span class="w"> </span>root<span class="w"> </span>-p<span class="w"> </span>root<span class="w"> </span>-h<span class="w"> </span><span class="m">192</span>.168.2.249<span class="w"> </span>-P<span class="w"> </span><span class="m">3307</span><span class="w"> </span>-B<span class="w"> </span>zst<span class="w"> </span>-s<span class="w"> </span>zst<span class="w"> </span>-d<span class="w"> </span>/backup/mysql/bak/
+</span><span id="__span-12-34"><a id="__codelineno-12-34" name="__codelineno-12-34" href="#__codelineno-12-34"></a>还原多个库
+</span><span id="__span-12-35"><a id="__codelineno-12-35" name="__codelineno-12-35" href="#__codelineno-12-35"></a>
+</span><span id="__span-12-36"><a id="__codelineno-12-36" name="__codelineno-12-36" href="#__codelineno-12-36"></a>备份多个库
+</span><span id="__span-12-37"><a id="__codelineno-12-37" name="__codelineno-12-37" href="#__codelineno-12-37"></a>mydumper<span class="w"> </span>-u<span class="w"> </span>root<span class="w"> </span>-p<span class="w"> </span>root<span class="w"> </span>-h<span class="w"> </span><span class="m">192</span>.168.2.249<span class="w"> </span>-P<span class="w"> </span><span class="m">3306</span><span class="w"> </span>--regex<span class="w"> </span><span class="s1">&#39;zst|db3&#39;</span><span class="w"> </span>-o<span class="w"> </span>/backup/mysql/bak
+</span><span id="__span-12-38"><a id="__codelineno-12-38" name="__codelineno-12-38" href="#__codelineno-12-38"></a>
+</span><span id="__span-12-39"><a id="__codelineno-12-39" name="__codelineno-12-39" href="#__codelineno-12-39"></a>还原多个库
+</span><span id="__span-12-40"><a id="__codelineno-12-40" name="__codelineno-12-40" href="#__codelineno-12-40"></a>myloader<span class="w"> </span>-u<span class="w"> </span>root<span class="w"> </span>-p<span class="w"> </span>root<span class="w"> </span>-h<span class="w"> </span><span class="m">192</span>.168.2.249<span class="w"> </span>-P<span class="w"> </span><span class="m">3307</span><span class="w"> </span>-d<span class="w"> </span>/backup/mysql/bak/
+</span><span id="__span-12-41"><a id="__codelineno-12-41" name="__codelineno-12-41" href="#__codelineno-12-41"></a>导入单库多表
+</span><span id="__span-12-42"><a id="__codelineno-12-42" name="__codelineno-12-42" href="#__codelineno-12-42"></a>
+</span><span id="__span-12-43"><a id="__codelineno-12-43" name="__codelineno-12-43" href="#__codelineno-12-43"></a>备份单库多表
+</span><span id="__span-12-44"><a id="__codelineno-12-44" name="__codelineno-12-44" href="#__codelineno-12-44"></a>mydumper<span class="w"> </span>-u<span class="w"> </span>root<span class="w"> </span>-p<span class="w"> </span>root<span class="w"> </span>-h<span class="w"> </span><span class="m">192</span>.168.2.249<span class="w"> </span>-P<span class="w"> </span><span class="m">3306</span><span class="w"> </span>-B<span class="w"> </span>zst<span class="w"> </span>-T<span class="w"> </span>sbtest1,sbtest2<span class="w"> </span>-o<span class="w"> </span>/backup/mysql/bak
+</span><span id="__span-12-45"><a id="__codelineno-12-45" name="__codelineno-12-45" href="#__codelineno-12-45"></a>
+</span><span id="__span-12-46"><a id="__codelineno-12-46" name="__codelineno-12-46" href="#__codelineno-12-46"></a>还原单库多表
+</span><span id="__span-12-47"><a id="__codelineno-12-47" name="__codelineno-12-47" href="#__codelineno-12-47"></a>myloader<span class="w"> </span>-u<span class="w"> </span>root<span class="w"> </span>-p<span class="w"> </span>root<span class="w"> </span>-h<span class="w"> </span><span class="m">192</span>.168.2.249<span class="w"> </span>-P<span class="w"> </span><span class="m">3307</span><span class="w"> </span>-d<span class="w"> </span>/backup/mysql/bak/
+</span><span id="__span-12-48"><a id="__codelineno-12-48" name="__codelineno-12-48" href="#__codelineno-12-48"></a>
+</span><span id="__span-12-49"><a id="__codelineno-12-49" name="__codelineno-12-49" href="#__codelineno-12-49"></a>当备份是实例级别的备份时，可以将需要的表的文件放到另一个目录中，还原时指定该目录即可
+</span><span id="__span-12-50"><a id="__codelineno-12-50" name="__codelineno-12-50" href="#__codelineno-12-50"></a>
+</span><span id="__span-12-51"><a id="__codelineno-12-51" name="__codelineno-12-51" href="#__codelineno-12-51"></a>多库导入单库（合服）
+</span><span id="__span-12-52"><a id="__codelineno-12-52" name="__codelineno-12-52" href="#__codelineno-12-52"></a>
+</span><span id="__span-12-53"><a id="__codelineno-12-53" name="__codelineno-12-53" href="#__codelineno-12-53"></a>备份多个库
+</span><span id="__span-12-54"><a id="__codelineno-12-54" name="__codelineno-12-54" href="#__codelineno-12-54"></a>mydumper<span class="w"> </span>-u<span class="w"> </span>root<span class="w"> </span>-p<span class="w"> </span>root<span class="w"> </span>-h<span class="w"> </span><span class="m">192</span>.168.2.249<span class="w"> </span>-P<span class="w"> </span><span class="m">3306</span><span class="w"> </span>--regex<span class="w"> </span><span class="s1">&#39;zst|db3&#39;</span><span class="w"> </span>-o<span class="w"> </span>/backup/mysql/bak
+</span><span id="__span-12-55"><a id="__codelineno-12-55" name="__codelineno-12-55" href="#__codelineno-12-55"></a>
+</span><span id="__span-12-56"><a id="__codelineno-12-56" name="__codelineno-12-56" href="#__codelineno-12-56"></a>还原多个库到一个库
+</span><span id="__span-12-57"><a id="__codelineno-12-57" name="__codelineno-12-57" href="#__codelineno-12-57"></a>myloader<span class="w"> </span>-u<span class="w"> </span>root<span class="w"> </span>-p<span class="w"> </span>root<span class="w"> </span>-h<span class="w"> </span><span class="m">192</span>.168.2.249<span class="w"> </span>-P<span class="w"> </span><span class="m">3307</span><span class="w"> </span>-B<span class="w"> </span>zst<span class="w"> </span>-d<span class="w"> </span>/backup/mysql/bak/
+</span></code></pre></div>
+</details>
+</li>
+</ul>
+</li>
+<li>
+<p>お客さんからdumpファイル提供依頼の復旧作業</p>
+<ul>
+<li>直接サービスサーバ上のDB dump抽出はしない。</li>
+<li>対象バックアップを試験機に転送し、試験機上で作業する。
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="m">1</span>.<span class="w"> </span>対象のバックアップファイルを試験機に転送する。
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="o">[</span>root@mysql57<span class="w"> </span>backup<span class="o">]</span><span class="c1"># scp -r mysqlxxx:/home/backup/mysqlxxx-dump_2022xxxx.tar ./</span>
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>
+</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="m">2</span>.<span class="w"> </span>対象バックアップファイルを解凍する。
+</span><span id="__span-13-5"><a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a><span class="o">[</span>root@mysql57<span class="w"> </span>backup<span class="o">]</span><span class="c1"># tar xvf mysqlxxx-dump_2022xxxx.tar</span>
+</span><span id="__span-13-6"><a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a>
+</span><span id="__span-13-7"><a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a><span class="m">3</span>.<span class="w"> </span>対象DBだけを試験機にimport
+</span><span id="__span-13-8"><a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a><span class="o">[</span>root@mysql57<span class="w"> </span>backup<span class="o">]</span><span class="c1"># myloader --directory=2022xxxx  --threads=8 --verbose=3  -B 対象DB名 -s 対象DB名 -o -e</span>
+</span><span id="__span-13-9"><a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a>
+</span><span id="__span-13-10"><a id="__codelineno-13-10" name="__codelineno-13-10" href="#__codelineno-13-10"></a><span class="m">4</span>.<span class="w"> </span>対象DBをSQL形式のファイルとしてdumpする。
+</span><span id="__span-13-11"><a id="__codelineno-13-11" name="__codelineno-13-11" href="#__codelineno-13-11"></a><span class="o">[</span>root@mysql57<span class="w"> </span>backup<span class="o">]</span><span class="c1"># mysqldump --opt --databases  対象DB名 --hex-blob --quote-names --force --max_allowed_packet=128M --events --single-transaction --default-character-set=binary &gt; 対象DB名.sql</span>
+</span><span id="__span-13-12"><a id="__codelineno-13-12" name="__codelineno-13-12" href="#__codelineno-13-12"></a>
+</span><span id="__span-13-13"><a id="__codelineno-13-13" name="__codelineno-13-13" href="#__codelineno-13-13"></a><span class="m">5</span>.<span class="w"> </span>dumpしたSQLファイルをｗｗｗサービスサーバに転送する。
+</span><span id="__span-13-14"><a id="__codelineno-13-14" name="__codelineno-13-14" href="#__codelineno-13-14"></a><span class="o">[</span>root@mysql57<span class="w"> </span>~<span class="o">]</span><span class="c1"># scp 対象DB名.sql admin@server:/home/admin/</span>
+</span></code></pre></div></li>
+</ul>
+</li>
+</ol>
+<h2 id="db">全DBをバックアップから復旧する場合<a class="headerlink" href="#db" title="Permanent link">&para;</a></h2>
+<details class="info">
+<summary>全DBをバックアップから復旧する場合</summary>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="c1"># 対象バックアップを解凍</span>
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="o">[</span>root<span class="o">]</span><span class="c1"># tar xf mysqlxxx.sakura.ne.jp-dump_20220826.tar -C ./</span>
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>
+</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span class="c1"># mysqldを停止</span>
+</span><span id="__span-14-5"><a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a><span class="o">[</span>root<span class="o">]</span><span class="c1"># systemctl stop mysqld</span>
+</span><span id="__span-14-6"><a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a>
+</span><span id="__span-14-7"><a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a><span class="c1"># mysqlデータディレクトリをリネーム</span>
+</span><span id="__span-14-8"><a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a><span class="o">[</span>root<span class="o">]</span><span class="c1"># mv -v /home/mysql /home/mysql_2022xxxx</span>
+</span><span id="__span-14-9"><a id="__codelineno-14-9" name="__codelineno-14-9" href="#__codelineno-14-9"></a>
+</span><span id="__span-14-10"><a id="__codelineno-14-10" name="__codelineno-14-10" href="#__codelineno-14-10"></a><span class="c1"># mysqlを初期化する</span>
+</span><span id="__span-14-11"><a id="__codelineno-14-11" name="__codelineno-14-11" href="#__codelineno-14-11"></a><span class="o">[</span>root<span class="o">]</span><span class="c1"># mysqld --initialize-insecure --user=mysql</span>
+</span><span id="__span-14-12"><a id="__codelineno-14-12" name="__codelineno-14-12" href="#__codelineno-14-12"></a>
+</span><span id="__span-14-13"><a id="__codelineno-14-13" name="__codelineno-14-13" href="#__codelineno-14-13"></a><span class="c1"># 確認する。</span>
+</span><span id="__span-14-14"><a id="__codelineno-14-14" name="__codelineno-14-14" href="#__codelineno-14-14"></a><span class="o">[</span>root<span class="o">]</span><span class="c1"># ls -lah /home/mysql/</span>
+</span><span id="__span-14-15"><a id="__codelineno-14-15" name="__codelineno-14-15" href="#__codelineno-14-15"></a>
+</span><span id="__span-14-16"><a id="__codelineno-14-16" name="__codelineno-14-16" href="#__codelineno-14-16"></a><span class="c1"># mysqldを起動する。</span>
+</span><span id="__span-14-17"><a id="__codelineno-14-17" name="__codelineno-14-17" href="#__codelineno-14-17"></a><span class="o">[</span>root<span class="o">]</span><span class="c1"># systemctl start mysqld</span>
+</span><span id="__span-14-18"><a id="__codelineno-14-18" name="__codelineno-14-18" href="#__codelineno-14-18"></a>
+</span><span id="__span-14-19"><a id="__codelineno-14-19" name="__codelineno-14-19" href="#__codelineno-14-19"></a><span class="c1"># エラーログを確認</span>
+</span><span id="__span-14-20"><a id="__codelineno-14-20" name="__codelineno-14-20" href="#__codelineno-14-20"></a><span class="o">[</span>root<span class="o">]</span><span class="c1"># less /var/log/mysql/error.log</span>
+</span><span id="__span-14-21"><a id="__codelineno-14-21" name="__codelineno-14-21" href="#__codelineno-14-21"></a>
+</span><span id="__span-14-22"><a id="__codelineno-14-22" name="__codelineno-14-22" href="#__codelineno-14-22"></a><span class="c1"># バックアップデータから全データをリストアする。</span>
+</span><span id="__span-14-23"><a id="__codelineno-14-23" name="__codelineno-14-23" href="#__codelineno-14-23"></a><span class="o">[</span>root<span class="o">]</span><span class="c1"># myloader --verbose=3 --directory=/home/backup/2022xxxx  -o --user=root --password=&#39;&#39; &gt;&amp; restore.log</span>
+</span><span id="__span-14-24"><a id="__codelineno-14-24" name="__codelineno-14-24" href="#__codelineno-14-24"></a>
+</span><span id="__span-14-25"><a id="__codelineno-14-25" name="__codelineno-14-25" href="#__codelineno-14-25"></a>
+</span><span id="__span-14-26"><a id="__codelineno-14-26" name="__codelineno-14-26" href="#__codelineno-14-26"></a><span class="c1"># リストアできないDBを確認</span>
+</span><span id="__span-14-27"><a id="__codelineno-14-27" name="__codelineno-14-27" href="#__codelineno-14-27"></a><span class="o">[</span>root<span class="o">]</span><span class="c1"># grep Error  /home/restore.log</span>
+</span><span id="__span-14-28"><a id="__codelineno-14-28" name="__codelineno-14-28" href="#__codelineno-14-28"></a><span class="c1">## こちらはutf8m4に手動でmysqldumpで対応必要です。</span>
+</span><span id="__span-14-29"><a id="__codelineno-14-29" name="__codelineno-14-29" href="#__codelineno-14-29"></a>**<span class="w"> </span><span class="o">(</span>myloader:11159<span class="o">)</span>:<span class="w"> </span>CRITICAL<span class="w"> </span>**:<span class="w"> </span><span class="m">16</span>:36:58.629:<span class="w"> </span>Error<span class="w"> </span>occours<span class="w"> </span>between<span class="w"> </span>lines:<span class="w"> </span><span class="m">4</span><span class="w"> </span>and<span class="w"> </span><span class="m">5</span><span class="w"> </span>on<span class="w"> </span>file<span class="w"> </span>aaa.xxx.00000.sql.zst:<span class="w"> </span>Cannot<span class="w"> </span>create<span class="w"> </span>a<span class="w"> </span>JSON<span class="w"> </span>value<span class="w"> </span>from<span class="w"> </span>a<span class="w"> </span>string<span class="w"> </span>with<span class="w"> </span>CHARACTER<span class="w"> </span>SET<span class="w"> </span><span class="s1">&#39;binary&#39;</span>.
+</span><span id="__span-14-30"><a id="__codelineno-14-30" name="__codelineno-14-30" href="#__codelineno-14-30"></a>**<span class="w"> </span><span class="o">(</span>myloader:11159<span class="o">)</span>:<span class="w"> </span>CRITICAL<span class="w"> </span>**:<span class="w"> </span><span class="m">16</span>:36:58.813:<span class="w"> </span>Error<span class="w"> </span>occours<span class="w"> </span>between<span class="w"> </span>lines:<span class="w"> </span><span class="m">4</span><span class="w"> </span>and<span class="w"> </span><span class="m">6</span><span class="w"> </span>on<span class="w"> </span>file<span class="w"> </span>aaa.yyy.00000.sql.zst:<span class="w"> </span>Cannot<span class="w"> </span>create<span class="w"> </span>a<span class="w"> </span>JSON<span class="w"> </span>value<span class="w"> </span>from<span class="w"> </span>a<span class="w"> </span>string<span class="w"> </span>with<span class="w"> </span>CHARACTER<span class="w"> </span>SET<span class="w"> </span><span class="s1">&#39;binary&#39;</span>.
+</span><span id="__span-14-31"><a id="__codelineno-14-31" name="__codelineno-14-31" href="#__codelineno-14-31"></a>**<span class="w"> </span><span class="o">(</span>myloader:11159<span class="o">)</span>:<span class="w"> </span>CRITICAL<span class="w"> </span>**:<span class="w"> </span><span class="m">16</span>:36:58.896:<span class="w"> </span>Error<span class="w"> </span>occours<span class="w"> </span>between<span class="w"> </span>lines:<span class="w"> </span><span class="m">4</span><span class="w"> </span>and<span class="w"> </span><span class="m">6</span><span class="w"> </span>on<span class="w"> </span>file<span class="w"> </span>aaa.zzz.00000.sql.zst:<span class="w"> </span>Cannot<span class="w"> </span>create<span class="w"> </span>a<span class="w"> </span>JSON<span class="w"> </span>value<span class="w"> </span>from<span class="w"> </span>a<span class="w"> </span>string<span class="w"> </span>with<span class="w"> </span>CHARACTER<span class="w"> </span>SET<span class="w"> </span><span class="s1">&#39;binary&#39;</span>.
+</span><span id="__span-14-32"><a id="__codelineno-14-32" name="__codelineno-14-32" href="#__codelineno-14-32"></a><span class="c1">## mysqld再起動してないため、definerエラーになった。</span>
+</span><span id="__span-14-33"><a id="__codelineno-14-33" name="__codelineno-14-33" href="#__codelineno-14-33"></a>**<span class="w"> </span><span class="o">(</span>myloader:11159<span class="o">)</span>:<span class="w"> </span>CRITICAL<span class="w"> </span>**:<span class="w"> </span><span class="m">16</span>:38:08.916:<span class="w"> </span>Error<span class="w"> </span>occours<span class="w"> </span>between<span class="w"> </span>lines:<span class="w"> </span><span class="m">10</span><span class="w"> </span>and<span class="w"> </span><span class="m">10</span><span class="w"> </span>on<span class="w"> </span>file<span class="w"> </span>aaa.xxx-view_test_001-schema-view.sql.zst:<span class="w"> </span>The<span class="w"> </span>user<span class="w"> </span>specified<span class="w"> </span>as<span class="w"> </span>a<span class="w"> </span>definer<span class="w"> </span><span class="o">(</span><span class="s1">&#39;root&#39;</span>@<span class="s1">&#39;127.0.0.1&#39;</span><span class="o">)</span><span class="w"> </span>does<span class="w"> </span>not<span class="w"> </span>exist
+</span><span id="__span-14-34"><a id="__codelineno-14-34" name="__codelineno-14-34" href="#__codelineno-14-34"></a>**<span class="w"> </span><span class="o">(</span>myloader:11159<span class="o">)</span>:<span class="w"> </span>CRITICAL<span class="w"> </span>**:<span class="w"> </span><span class="m">16</span>:38:08.928:<span class="w"> </span>Error<span class="w"> </span>occours<span class="w"> </span>between<span class="w"> </span>lines:<span class="w"> </span><span class="m">10</span><span class="w"> </span>and<span class="w"> </span><span class="m">21</span><span class="w"> </span>on<span class="w"> </span>file<span class="w"> </span>aaa.yyy-schema-view.sql.zst:<span class="w"> </span>The<span class="w"> </span>user<span class="w"> </span>specified<span class="w"> </span>as<span class="w"> </span>a<span class="w"> </span>definer<span class="w"> </span><span class="o">(</span><span class="s1">&#39;test&#39;</span>@<span class="s1">&#39;%&#39;</span><span class="o">)</span><span class="w"> </span>does<span class="w"> </span>not<span class="w"> </span>exist
+</span><span id="__span-14-35"><a id="__codelineno-14-35" name="__codelineno-14-35" href="#__codelineno-14-35"></a>**<span class="w"> </span><span class="o">(</span>myloader:11159<span class="o">)</span>:<span class="w"> </span>CRITICAL<span class="w"> </span>**:<span class="w"> </span><span class="m">16</span>:38:08.937:<span class="w"> </span>Error<span class="w"> </span>occours<span class="w"> </span>between<span class="w"> </span>lines:<span class="w"> </span><span class="m">10</span><span class="w"> </span>and<span class="w"> </span><span class="m">13</span><span class="w"> </span>on<span class="w"> </span>file<span class="w"> </span>aaa.zzz-schema-view.sql.zst:<span class="w"> </span>The<span class="w"> </span>user<span class="w"> </span>specified<span class="w"> </span>as<span class="w"> </span>a<span class="w"> </span>definer<span class="w"> </span><span class="o">(</span><span class="s1">&#39;test&#39;</span>@<span class="s1">&#39;%&#39;</span><span class="o">)</span><span class="w"> </span>does<span class="w"> </span>not<span class="w"> </span>exist
+</span><span id="__span-14-36"><a id="__codelineno-14-36" name="__codelineno-14-36" href="#__codelineno-14-36"></a>
+</span><span id="__span-14-37"><a id="__codelineno-14-37" name="__codelineno-14-37" href="#__codelineno-14-37"></a><span class="c1"># mysqldを再起動</span>
+</span><span id="__span-14-38"><a id="__codelineno-14-38" name="__codelineno-14-38" href="#__codelineno-14-38"></a><span class="o">[</span>root<span class="o">]</span><span class="c1"># systemctl restart mysqld</span>
+</span><span id="__span-14-39"><a id="__codelineno-14-39" name="__codelineno-14-39" href="#__codelineno-14-39"></a>
+</span><span id="__span-14-40"><a id="__codelineno-14-40" name="__codelineno-14-40" href="#__codelineno-14-40"></a>
+</span><span id="__span-14-41"><a id="__codelineno-14-41" name="__codelineno-14-41" href="#__codelineno-14-41"></a><span class="c1"># リストアできないDBを単独対応する</span>
+</span><span id="__span-14-42"><a id="__codelineno-14-42" name="__codelineno-14-42" href="#__codelineno-14-42"></a><span class="o">[</span>root@<span class="o">]</span><span class="c1"># myloader --verbose=2 --directory=/home/backup/2022xxxx  -o -B test_db_mig_sf_in_view -s test_db_mig_sf_in_view</span>
+</span><span id="__span-14-43"><a id="__codelineno-14-43" name="__codelineno-14-43" href="#__codelineno-14-43"></a><span class="o">[</span>root@<span class="o">]</span><span class="c1"># myloader --verbose=2 --directory=/home/backup/2022xxxx  -o -B test_57_2 -s test_57_2</span>
+</span></code></pre></div>
+</details>
+<h2 id="mysqldump">mysqldumpの使い方<a class="headerlink" href="#mysqldump" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p>Export:
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>mysqldump<span class="w"> </span>-u<span class="w"> </span>root<span class="w"> </span>-p<span class="w"> </span>--all-databases<span class="w"> </span>&gt;<span class="w"> </span>alldb.sql
+</span></code></pre></div></p>
+</li>
+<li>
+<p>Look up the <a href="http://dev.mysql.com/doc/refman/5.5/en/mysqldump.html">documentation for mysqldump</a>. You may want to use some of the options mentioned in comments:
+<div class="language-text highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>mysqldump -u root -p --opt --all-databases &gt; alldb.sql
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>mysqldump -u root -p --all-databases --skip-lock-tables &gt; alldb.sql
+</span></code></pre></div></p>
+</li>
+<li>
+<p>例:
+<div class="language-text highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a># local
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>mysqldump \
+</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>--single-transaction \
+</span><span id="__span-17-4"><a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a>--hex-blob \
+</span><span id="__span-17-5"><a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a>--quote-names \
+</span><span id="__span-17-6"><a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a>--events \
+</span><span id="__span-17-7"><a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a>--force \
+</span><span id="__span-17-8"><a id="__codelineno-17-8" name="__codelineno-17-8" href="#__codelineno-17-8"></a>--max_allowed_packet=128M \
+</span><span id="__span-17-9"><a id="__codelineno-17-9" name="__codelineno-17-9" href="#__codelineno-17-9"></a>--default-character-set=binary \
+</span><span id="__span-17-10"><a id="__codelineno-17-10" name="__codelineno-17-10" href="#__codelineno-17-10"></a>--all-databases &gt; alldatabases.dump
+</span><span id="__span-17-11"><a id="__codelineno-17-11" name="__codelineno-17-11" href="#__codelineno-17-11"></a>
+</span><span id="__span-17-12"><a id="__codelineno-17-12" name="__codelineno-17-12" href="#__codelineno-17-12"></a># remote
+</span><span id="__span-17-13"><a id="__codelineno-17-13" name="__codelineno-17-13" href="#__codelineno-17-13"></a> mysqldump -h mysql_server -uroot -ppassword --single-transaction --hex-blob --quote-names --events --force --max_allowed_packet=128M --default-character-set=binary --all-databases &gt; alldatabases.dump
+</span></code></pre></div></p>
+</li>
+<li>
+<p>Import:
+<div class="language-text highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>mysql -u root -p &lt; alldb.sql
+</span></code></pre></div></p>
+</li>
+</ul>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+            Back to top
+          </button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright © 2022 - 2023 - lyvivian0077
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tracking", "navigation.top", "navigation.indexes", "navigation.path", "toc.integrate", "content.code.copy", "toc.follow"], "search": "../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.fac441b0.min.js"></script>
+      
+    
+  </body>
+</html>
