@@ -161,9 +161,7 @@
                     
 
 
-  
-
-<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
     <a href=".." title="总有刁民想要害朕" class="md-nav__button md-logo" aria-label="总有刁民想要害朕" data-md-component="logo">
       
@@ -1675,6 +1673,169 @@
               </div>
             
             
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#add-nat" class="md-nav__link">
+    Add nat
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#add-dynamic-dns" class="md-nav__link">
+    Add dynamic DNS
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#create-vpn-l2tp" class="md-nav__link">
+    create VPN L2TP
+  </a>
+  
+    <nav class="md-nav" aria-label="create VPN L2TP">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#add-firewall-rules-for-the-l2tp-traffic-to-the-local-firewall-policy" class="md-nav__link">
+    Add firewall rules for the L2TP traffic to the local firewall policy.
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ipsec" class="md-nav__link">
+    基本的な IPsec の設定
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wan-ip-pppoe0" class="md-nav__link">
+    WAN 側 IP アドレスが pppoe0 経由で割り当ての場合これを指定
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#l2tp-ip" class="md-nav__link">
+    L2TP でアクセスしてきたクライアントに割り当てる IP アドレスの範囲を指定
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#l2tp" class="md-nav__link">
+    L2TP の「シークレット」を設定
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#l2tp_1" class="md-nav__link">
+    L2TP クライアントの認証方法をローカルに設定
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#l2tp_2" class="md-nav__link">
+    L2TP クライアントのユーザー名とパスワードを設定
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#l2tp-mtu" class="md-nav__link">
+    L2TP の MTU を保守的に設定
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#l2tp-dns-google-dns" class="md-nav__link">
+    L2TP のクライアントが使う DNS をルーター自身と Google DNS に設定
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dns-l2tp-dns-frowarding" class="md-nav__link">
+    ルーターの DNS が L2TP から使えるよう DNS Frowarding をルーター自身に設定
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    設定保存
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#my-mac" class="md-nav__link">
+    「どこでも My Mac」との競合対策
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    その3）をコマンドで設定する場合
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    対策 設定モードのコマンドを使用して設定
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    設定を反映して保存、設定モード終了
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    ファームウェアのアップデート
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
           
           
             <div class="md-content" data-md-component="content">
@@ -2102,7 +2263,7 @@
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tracking", "navigation.top", "navigation.indexes", "navigation.path", "toc.integrate", "content.code.copy", "toc.follow"], "search": "../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tracking", "navigation.top", "navigation.indexes", "navigation.path", "content.code.copy", "toc.follow"], "search": "../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
       <script src="../assets/javascripts/bundle.fac441b0.min.js"></script>

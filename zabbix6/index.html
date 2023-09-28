@@ -161,9 +161,7 @@
                     
 
 
-  
-
-<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
     <a href=".." title="总有刁民想要害朕" class="md-nav__button md-logo" aria-label="总有刁民想要害朕" data-md-component="logo">
       
@@ -1481,9 +1479,142 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          zabbix6検証
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         zabbix6検証
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#url" class="md-nav__link">
+    参考URL
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#idpw" class="md-nav__link">
+    デフォルトID/PW
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    検証サーバ
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#centos7-zabbix-agent2-install" class="md-nav__link">
+    CentOS7 zabbix-agent2 install
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ubuntu-zabbix" class="md-nav__link">
+    Ubuntu zabbixのインストール
+  </a>
+  
+    <nav class="md-nav" aria-label="Ubuntu zabbixのインストール">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    警告
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mysql8" class="md-nav__link">
+    MySQL8のインストール
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#zabbix-ha" class="md-nav__link">
+    Zabbix HA
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    テンプレートについて
+  </a>
+  
+    <nav class="md-nav" aria-label="テンプレートについて">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#zabbix_server" class="md-nav__link">
+    zabbix_serverから取得した情報
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#zabbix" class="md-nav__link">
+    zabbix テンプレート上対応してないアイテム
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mysql40" class="md-nav__link">
+    MySQL4.0の特別対応
+  </a>
+  
+    <nav class="md-nav" aria-label="MySQL4.0の特別対応">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#agentconf" class="md-nav__link">
+    agent側のconf設定
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -1518,6 +1649,141 @@
               </div>
             
             
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#url" class="md-nav__link">
+    参考URL
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#idpw" class="md-nav__link">
+    デフォルトID/PW
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    検証サーバ
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#centos7-zabbix-agent2-install" class="md-nav__link">
+    CentOS7 zabbix-agent2 install
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ubuntu-zabbix" class="md-nav__link">
+    Ubuntu zabbixのインストール
+  </a>
+  
+    <nav class="md-nav" aria-label="Ubuntu zabbixのインストール">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    警告
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mysql8" class="md-nav__link">
+    MySQL8のインストール
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#zabbix-ha" class="md-nav__link">
+    Zabbix HA
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    テンプレートについて
+  </a>
+  
+    <nav class="md-nav" aria-label="テンプレートについて">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#zabbix_server" class="md-nav__link">
+    zabbix_serverから取得した情報
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#zabbix" class="md-nav__link">
+    zabbix テンプレート上対応してないアイテム
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mysql40" class="md-nav__link">
+    MySQL4.0の特別対応
+  </a>
+  
+    <nav class="md-nav" aria-label="MySQL4.0の特別対応">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#agentconf" class="md-nav__link">
+    agent側のconf設定
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
           
           
             <div class="md-content" data-md-component="content">
@@ -1530,21 +1796,21 @@
 <ul>
 <li>https://www.zabbix.com/download?zabbix=6.0&amp;os_distribution=ubuntu&amp;os_version=20.04_focal&amp;db=mysql&amp;ws=apache</li>
 </ul>
-<h1 id="url">参考URL<a class="headerlink" href="#url" title="Permanent link">&para;</a></h1>
+<h2 id="url">参考URL<a class="headerlink" href="#url" title="Permanent link">&para;</a></h2>
 <ul>
 <li>https://densan-hoshigumi.com/server/zabbix60-ha-installation</li>
 </ul>
-<h1 id="idpw">デフォルトID/PW<a class="headerlink" href="#idpw" title="Permanent link">&para;</a></h1>
+<h2 id="idpw">デフォルトID/PW<a class="headerlink" href="#idpw" title="Permanent link">&para;</a></h2>
 <ul>
 <li>ID:Admin</li>
 <li>PW:zabbix</li>
 </ul>
-<h1 id="_1">検証サーバ<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<h2 id="_1">検証サーバ<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <ul>
 <li>http://192.168.1.1/zabbix/zabbix.php?action=dashboard.view</li>
 <li>http://192.168.1.2/zabbix/zabbix.php?action=dashboard.view</li>
 </ul>
-<h1 id="centos7-zabbix-agent2-install">CentOS7 zabbix-agent2 install<a class="headerlink" href="#centos7-zabbix-agent2-install" title="Permanent link">&para;</a></h1>
+<h2 id="centos7-zabbix-agent2-install">CentOS7 zabbix-agent2 install<a class="headerlink" href="#centos7-zabbix-agent2-install" title="Permanent link">&para;</a></h2>
 <ul>
 <li>ca-certificates update<ul>
 <li>
@@ -1693,7 +1959,7 @@
 </ul>
 </li>
 </ul>
-<h1 id="ubuntu-zabbix">Ubuntu zabbixのインストール<a class="headerlink" href="#ubuntu-zabbix" title="Permanent link">&para;</a></h1>
+<h2 id="ubuntu-zabbix">Ubuntu zabbixのインストール<a class="headerlink" href="#ubuntu-zabbix" title="Permanent link">&para;</a></h2>
 <ul>
 <li>
 <p>パッケージインストール前にca-certificatesを更新</p>
@@ -1986,7 +2252,7 @@
 </ul>
 </li>
 </ul>
-<h2 id="_2">警告<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<h3 id="_2">警告<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
 <ul>
 <li>
 <p>MySQL: Buffer pool utilization is too low</p>
@@ -2035,7 +2301,7 @@
 </ul>
 </li>
 </ul>
-<h1 id="mysql8">MySQL8のインストール<a class="headerlink" href="#mysql8" title="Permanent link">&para;</a></h1>
+<h2 id="mysql8">MySQL8のインストール<a class="headerlink" href="#mysql8" title="Permanent link">&para;</a></h2>
 <ul>
 <li>https://www.server-world.info/query?os=Ubuntu_20.04&amp;p=mysql8&amp;f=1</li>
 <li>install<ul>
@@ -2387,7 +2653,7 @@
 </ul>
 </li>
 </ul>
-<h1 id="_3">テンプレートについて<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h1>
+<h2 id="_3">テンプレートについて<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
 <ul>
 <li>zabbix-agent2-6.0.5</li>
 <li>https://git.zabbix.com/projects/ZBX/repos/zabbix/browse/templates/db/mysql_agent2?at=release%2F6.0</li>
@@ -2400,7 +2666,7 @@
 <li>MySQL5.1はInnoDBが未提供のため、InnoDB系のアイテム値が全部取れない。</li>
 <li>MySQL4.0の場合、Angentがmysqlに接続すらできないため、全部アイテム値取れない。</li>
 </ul>
-<h2 id="zabbix_server">zabbix_serverから取得した情報<a class="headerlink" href="#zabbix_server" title="Permanent link">&para;</a></h2>
+<h3 id="zabbix_server">zabbix_serverから取得した情報<a class="headerlink" href="#zabbix_server" title="Permanent link">&para;</a></h3>
 <ul>
 <li>取得した情報<ul>
 <li>
@@ -2452,7 +2718,7 @@
 </ul>
 </li>
 </ul>
-<h2 id="zabbix">zabbix テンプレート上対応してないアイテム<a class="headerlink" href="#zabbix" title="Permanent link">&para;</a></h2>
+<h3 id="zabbix">zabbix テンプレート上対応してないアイテム<a class="headerlink" href="#zabbix" title="Permanent link">&para;</a></h3>
 <ul>
 <li>
 <details class="note">
@@ -2489,7 +2755,7 @@
 </span></code></pre></div></details>
 </li>
 </ul>
-<h2 id="mysql40">MySQL4.0の特別対応<a class="headerlink" href="#mysql40" title="Permanent link">&para;</a></h2>
+<h3 id="mysql40">MySQL4.0の特別対応<a class="headerlink" href="#mysql40" title="Permanent link">&para;</a></h3>
 <p>zabbix-agent2がmysql4.0対応してないため、MySQL情報取得方法を変更する。</p>
 <ul>
 <li>テンプレートを新たに作成する。<ul>
@@ -2509,7 +2775,7 @@
 </ul>
 </li>
 </ul>
-<h3 id="agentconf">agent側のconf設定<a class="headerlink" href="#agentconf" title="Permanent link">&para;</a></h3>
+<h4 id="agentconf">agent側のconf設定<a class="headerlink" href="#agentconf" title="Permanent link">&para;</a></h4>
 <ul>
 <li>
 <details class="tip" open="open">
@@ -2570,7 +2836,7 @@
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tracking", "navigation.top", "navigation.indexes", "navigation.path", "toc.integrate", "content.code.copy", "toc.follow"], "search": "../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tracking", "navigation.top", "navigation.indexes", "navigation.path", "content.code.copy", "toc.follow"], "search": "../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
       <script src="../assets/javascripts/bundle.fac441b0.min.js"></script>

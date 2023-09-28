@@ -161,9 +161,7 @@
                     
 
 
-  
-
-<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
     <a href=".." title="总有刁民想要害朕" class="md-nav__button md-logo" aria-label="总有刁民想要害朕" data-md-component="logo">
       
@@ -1915,6 +1913,407 @@
               </div>
             
             
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#explain" class="md-nav__link">
+    explain详解与索引最佳实践
+  </a>
+  
+    <nav class="md-nav" aria-label="explain详解与索引最佳实践">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#info" class="md-nav__link">
+    info
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#explain-type" class="md-nav__link">
+    explain 之type
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#explain-key" class="md-nav__link">
+    explain 之key
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#explain-rows" class="md-nav__link">
+    explain 之rows
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#explain-extra" class="md-nav__link">
+    explain 之extra
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    查看索引索引情况
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sql" class="md-nav__link">
+    SQL优化
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    查询缓存配置
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    开启查询缓存
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    查询缓存失效的情况
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mysql" class="md-nav__link">
+    MySQL内存管理及优化
+  </a>
+  
+    <nav class="md-nav" aria-label="MySQL内存管理及优化">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    内存优化原则
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#myisam" class="md-nav__link">
+    MyISAM 内存优化
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#key_buffer_size" class="md-nav__link">
+    key_buffer_size
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#read_buffer_size" class="md-nav__link">
+    read_buffer_size
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#read_rnd_buffer_size" class="md-nav__link">
+    read_rnd_buffer_size
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#innodb" class="md-nav__link">
+    InnoDB内存优化
+  </a>
+  
+    <nav class="md-nav" aria-label="InnoDB内存优化">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#innodb_buffer_pool_size" class="md-nav__link">
+    innodb_buffer_pool_size
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#innodb_log_buffer_size" class="md-nav__link">
+    innodb_log_buffer_size
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mysql_1" class="md-nav__link">
+    MySQL并发参数调整
+  </a>
+  
+    <nav class="md-nav" aria-label="MySQL并发参数调整">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#max_connections" class="md-nav__link">
+    max_connections
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#back_log" class="md-nav__link">
+    back_log
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#table_open_cache" class="md-nav__link">
+    table_open_cache
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hread_cache_size" class="md-nav__link">
+    hread_cache_size
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#innodb_lock_wait_timeout" class="md-nav__link">
+    innodb_lock_wait_timeout
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2mysql" class="md-nav__link">
+    2、MySQL 锁问题
+  </a>
+  
+    <nav class="md-nav" aria-label="2、MySQL 锁问题">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21" class="md-nav__link">
+    2.1、锁概述
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22" class="md-nav__link">
+    2.2、锁分类
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23mysql" class="md-nav__link">
+    2.3、MySQL锁
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24myisam" class="md-nav__link">
+    2.4、MyISAM 表锁
+  </a>
+  
+    <nav class="md-nav" aria-label="2.4、MyISAM 表锁">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#241" class="md-nav__link">
+    2.4.1、如何加表锁
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#244" class="md-nav__link">
+    2.4.4、结论
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#245" class="md-nav__link">
+    2.4.5、查看锁的争用情况
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#25innodb" class="md-nav__link">
+    2.5、InnoDB 行锁
+  </a>
+  
+    <nav class="md-nav" aria-label="2.5、InnoDB 行锁">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#251" class="md-nav__link">
+    2.5.1、行锁介绍
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#252" class="md-nav__link">
+    2.5.2、背景知识
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#253innodb" class="md-nav__link">
+    2.5.3、InnoDB 的行锁模式
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#256" class="md-nav__link">
+    2.5.6、无索引行锁升级为表锁
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#257" class="md-nav__link">
+    2.5.7、间隙锁危害
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#258innodb" class="md-nav__link">
+    2.5.8、InnoDB行锁争用情况
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#259" class="md-nav__link">
+    2.5.9、总结
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2510" class="md-nav__link">
+    2.5.10、优化建议
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3mysql" class="md-nav__link">
+    3、常用MySQL技巧
+  </a>
+  
+    <nav class="md-nav" aria-label="3、常用MySQL技巧">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-sql" class="md-nav__link">
+    1. SQL 执行顺序
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    2. 正则表达式使用
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-mysql" class="md-nav__link">
+    3. MySQL 常用函数
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
           
           
             <div class="md-content" data-md-component="content">
@@ -3239,7 +3638,7 @@
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tracking", "navigation.top", "navigation.indexes", "navigation.path", "toc.integrate", "content.code.copy", "toc.follow"], "search": "../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tracking", "navigation.top", "navigation.indexes", "navigation.path", "content.code.copy", "toc.follow"], "search": "../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
       <script src="../assets/javascripts/bundle.fac441b0.min.js"></script>
