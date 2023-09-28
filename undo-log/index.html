@@ -1,0 +1,2518 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../show-engine-innodb-status/">
+      
+      
+        <link rel="next" href="../buffer-pool/">
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.9">
+    
+    
+      
+        <title>undo-log - 总有刁民想要害朕</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.85bb2934.min.css">
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#undo-log" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="总有刁民想要害朕" class="md-header__button md-logo" aria-label="总有刁民想要害朕" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            总有刁民想要害朕
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              undo-log
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="总有刁民想要害朕" class="md-nav__button md-logo" aria-label="总有刁民想要害朕" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    总有刁民想要害朕
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        Welcome
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+      
+      
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+          ansbile
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          ansbile
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ansbile/" class="md-nav__link">
+        ansbileオプション
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ansbile_async/" class="md-nav__link">
+        ansbile_async
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../awk/" class="md-nav__link">
+        awk
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sed/" class="md-nav__link">
+        sed
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../MB-MiB%E7%9A%84%E5%8C%BA%E5%88%AB/" class="md-nav__link">
+        MB_MiB的区别
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+      
+      
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+          MegaRAID
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_6">
+          <span class="md-nav__icon md-icon"></span>
+          MegaRAID
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../megacli/" class="md-nav__link">
+        megacli
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../megaraid/" class="md-nav__link">
+        megaraid
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+      
+      
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+          PostgreSQL
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_7">
+          <span class="md-nav__icon md-icon"></span>
+          PostgreSQL
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../psql-vs-mysql/" class="md-nav__link">
+        MySQLとPostgreSQLコマンド比較表
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" checked>
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+          MySQL
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="true">
+        <label class="md-nav__title" for="__nav_8">
+          <span class="md-nav__icon md-icon"></span>
+          MySQL
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Explain%E8%AF%A6%E8%A7%A3%E4%B8%8E%E7%B4%A2%E5%BC%95%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/" class="md-nav__link">
+        Explain详解与索引最佳实践
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mysql/" class="md-nav__link">
+        Mysql参数优化
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../show-engine-innodb-status/" class="md-nav__link">
+        innodb status解读
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          undo-log
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        undo-log
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#ibdata1" class="md-nav__link">
+    ibdata1
+  </a>
+  
+    <nav class="md-nav" aria-label="ibdata1">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ibdata1ibdata" class="md-nav__link">
+    ibdata1文件非常大如何解决,ibdata单独存储
+  </a>
+  
+    <nav class="md-nav" aria-label="ibdata1文件非常大如何解决,ibdata单独存储">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bdata1" class="md-nav__link">
+    bdata1文件是什么？
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ibdata1_1" class="md-nav__link">
+    是什么原因导致ibdata1文件会越来越大？
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    该如何处理呢？
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    具体操作步骤如下(截图并不完整，但是首先要弄懂大概情况和原理)：
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mysql-ibdata1-innodb_undo_tablespaces" class="md-nav__link">
+    MYSQL ibdata1 和 innodb_undo_tablespaces
+  </a>
+  
+    <nav class="md-nav" aria-label="MYSQL ibdata1 和 innodb_undo_tablespaces">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ibdata1_2" class="md-nav__link">
+    ibdata1 是什么
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ibdata1-undo-log" class="md-nav__link">
+    ibdata1 中 undo log 为什么会有如此多呢 ?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    如何解决
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#undo-log_1" class="md-nav__link">
+    undo log在线收缩新特性
+  </a>
+  
+    <nav class="md-nav" aria-label="undo log在线收缩新特性">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#part1" class="md-nav__link">
+    Part1:写在最前
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#part2mysql57undolog" class="md-nav__link">
+    Part2:MySQL5.7在线回收undolog
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#part3" class="md-nav__link">
+    Part3:意义
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#innodb_undo_logs" class="md-nav__link">
+    innodb_undo_logs
+  </a>
+  
+    <nav class="md-nav" aria-label="innodb_undo_logs">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    設定
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    検証用テーブルの作成
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#undo_log" class="md-nav__link">
+    undo_logの変化
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    しばらく時間経過すると
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../buffer-pool/" class="md-nav__link">
+        Buffer-Pool
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../my-cnf/" class="md-nav__link">
+        mysql5.7性能提升一百倍调优宝典
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mysql-table/" class="md-nav__link">
+        MySQL-table
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mysql%E3%82%92%E3%82%BD%E3%83%BC%E3%82%B9%E3%81%8B%E3%82%89%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB/" class="md-nav__link">
+        MySQLビルド
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../MySQL-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="md-nav__link">
+        学习笔记
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_10" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_8_10" id="__nav_8_10_label" tabindex="0">
+          MGR
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_10_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_8_10">
+          <span class="md-nav__icon md-icon"></span>
+          MGR
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mysql-mgr/" class="md-nav__link">
+        MGR
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mysql-group-replication-how-to-elect-the-new-primary-node/" class="md-nav__link">
+        MGR 如何选举新的主节点
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mysql-mgr-copy/" class="md-nav__link">
+        転載MGR
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mysql-ha/" class="md-nav__link">
+        mysql+keepalived搭建教程
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mysql-clone/" class="md-nav__link">
+        mysqlクローン機能
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+      
+      
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+          MySQL DUMP
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_9">
+          <span class="md-nav__icon md-icon"></span>
+          MySQL DUMP
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mysql_backup/" class="md-nav__link">
+        Mysql バックアップツール
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mydumper/" class="md-nav__link">
+        mydumper
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="0">
+          Python Tips
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_10">
+          <span class="md-nav__icon md-icon"></span>
+          Python Tips
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-styleguide/" class="md-nav__link">
+        Python风格规范
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-config/" class="md-nav__link">
+        Python程序配置文件管理
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-decorator/" class="md-nav__link">
+        装饰器
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-dunder/" class="md-nav__link">
+        5种下划线
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-function/" class="md-nav__link">
+        传入参数的几种方法
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python/" class="md-nav__link">
+        非常规的技巧
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-mysql/" class="md-nav__link">
+        操作mysql基础
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Python-Re-%E6%A8%A1%E5%9D%97%E8%B6%85%E5%85%A8%E8%A7%A3%E8%AF%BB/" class="md-nav__link">
+        Re 模块
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Python%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%8B%BC%E6%8E%A5%E6%80%BB%E7%BB%93/" class="md-nav__link">
+        字符串拼接总结
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E4%B8%80%E8%A1%8C-Python-%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0%E5%B9%B6%E8%A1%8C/" class="md-nav__link">
+        代码并行
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Regular-Expression/" class="md-nav__link">
+        正規表現
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../taged-VLAN%E3%81%A8untagedVLAN%E3%81%AE%E9%81%95%E3%81%84/" class="md-nav__link">
+        タグVLAN
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sar/" class="md-nav__link">
+        sar
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Bash%E7%BC%96%E7%A8%8B%E8%B6%85%E8%AF%A6%E7%BB%86%E8%AF%AD%E6%B3%95%E6%80%BB%E7%BB%93/" class="md-nav__link">
+        Bash编程超详细语法总结
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_15" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_15" id="__nav_15_label" tabindex="0">
+          iptables
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_15_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_15">
+          <span class="md-nav__icon md-icon"></span>
+          iptables
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../iptables/" class="md-nav__link">
+        iptables
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../iptables_1/" class="md-nav__link">
+        iptables概念(1)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../iptables_2/" class="md-nav__link">
+        iptables实际操作之规则查询(2)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../iptables_3/" class="md-nav__link">
+        iptables规则管理(3)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../iptables_4/" class="md-nav__link">
+        iptables匹配条件总结之一(4)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../iptables_5/" class="md-nav__link">
+        iptables匹配条件总结之二（常用扩展模块）(5)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../iptables_6/" class="md-nav__link">
+        iptables扩展匹配条件之’–tcp-flags’(6)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../iptables_7/" class="md-nav__link">
+        iptables扩展之udp扩展与icmp扩展(7)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../iptables_8/" class="md-nav__link">
+        iptables扩展模块之state扩展(8)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../iptables_9/" class="md-nav__link">
+        iptables的黑白名单机制(9)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../iptables_10/" class="md-nav__link">
+        iptables自定义链(10)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../iptables_11/" class="md-nav__link">
+        iptables之网络防火墙(11)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../iptables_12/" class="md-nav__link">
+        iptables动作总结之一(12)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../iptables_13/" class="md-nav__link">
+        iptables动作总结之二(13)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../iptables_14/" class="md-nav__link">
+        iptables小结之常用套路(14)
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../linux-lvm/" class="md-nav__link">
+        linux-lvm
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../centos7-set-kernel/" class="md-nav__link">
+        centos7-set-kernel
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../centos-network-device-naming/" class="md-nav__link">
+        centos-network-device-naming
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Linux-Performance/" class="md-nav__link">
+        Linux Performance
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Linux-shell-%E9%80%BB%E8%BE%91%E8%BF%90%E7%AE%97%E7%AC%A6-%E9%80%BB%E8%BE%91%E8%A1%A8%E8%BE%BE%E5%BC%8F%E8%AF%A6%E8%A7%A3/" class="md-nav__link">
+        Linux-shell-逻辑运算符-逻辑表达式详解
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../LVM%E9%80%BB%E8%BE%91%E5%8D%B7%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5%E5%8F%8ALVM%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/" class="md-nav__link">
+        LVM逻辑卷基本概念及LVM的工作原理
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../macOS%E8%BD%AF%E4%BB%B6%E7%BC%96%E8%AF%91%E6%97%B6%E6%89%BE%E4%B8%8D%E5%88%B0%E5%A4%B4%E6%96%87%E4%BB%B6%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95-%E6%9B%B4%E6%96%B010-15/" class="md-nav__link">
+        macOS软件编译时找不到头文件解决方法[更新10.15]
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ubnt/" class="md-nav__link">
+        ubnt
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vim/" class="md-nav__link">
+        VIM
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../busybox/" class="md-nav__link">
+        busybox
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_26" >
+      
+      
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_26" id="__nav_26_label" tabindex="0">
+          Zabbix
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_26_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_26">
+          <span class="md-nav__icon md-icon"></span>
+          Zabbix
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../zabbix6/" class="md-nav__link">
+        zabbix6検証
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../about/" class="md-nav__link">
+        About
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#ibdata1" class="md-nav__link">
+    ibdata1
+  </a>
+  
+    <nav class="md-nav" aria-label="ibdata1">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ibdata1ibdata" class="md-nav__link">
+    ibdata1文件非常大如何解决,ibdata单独存储
+  </a>
+  
+    <nav class="md-nav" aria-label="ibdata1文件非常大如何解决,ibdata单独存储">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bdata1" class="md-nav__link">
+    bdata1文件是什么？
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ibdata1_1" class="md-nav__link">
+    是什么原因导致ibdata1文件会越来越大？
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    该如何处理呢？
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    具体操作步骤如下(截图并不完整，但是首先要弄懂大概情况和原理)：
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mysql-ibdata1-innodb_undo_tablespaces" class="md-nav__link">
+    MYSQL ibdata1 和 innodb_undo_tablespaces
+  </a>
+  
+    <nav class="md-nav" aria-label="MYSQL ibdata1 和 innodb_undo_tablespaces">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ibdata1_2" class="md-nav__link">
+    ibdata1 是什么
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ibdata1-undo-log" class="md-nav__link">
+    ibdata1 中 undo log 为什么会有如此多呢 ?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    如何解决
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#undo-log_1" class="md-nav__link">
+    undo log在线收缩新特性
+  </a>
+  
+    <nav class="md-nav" aria-label="undo log在线收缩新特性">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#part1" class="md-nav__link">
+    Part1:写在最前
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#part2mysql57undolog" class="md-nav__link">
+    Part2:MySQL5.7在线回收undolog
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#part3" class="md-nav__link">
+    Part3:意义
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#innodb_undo_logs" class="md-nav__link">
+    innodb_undo_logs
+  </a>
+  
+    <nav class="md-nav" aria-label="innodb_undo_logs">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    設定
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    検証用テーブルの作成
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#undo_log" class="md-nav__link">
+    undo_logの変化
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    しばらく時間経過すると
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="undo-log">undo log<a class="headerlink" href="#undo-log" title="Permanent link">&para;</a></h1>
+<h2 id="ibdata1">ibdata1<a class="headerlink" href="#ibdata1" title="Permanent link">&para;</a></h2>
+<ul>
+<li>https://www.cnblogs.com/edda/p/13065394.html</li>
+<li>https://blog.csdn.net/a5nan/article/details/72896131</li>
+<li>https://www.cnblogs.com/fpcbk/p/14259446.html</li>
+<li>https://fromdual.com/undo-logs-in-innodb-system-tablespace-ibdata1</li>
+<li>https://dev.mysql.com/doc/refman/8.0/ja/innochecksum.html</li>
+<li>https://dev.mysql.com/doc/refman/8.0/ja/innodb-undo-tablespaces.html#truncate-undo-tablespace</li>
+</ul>
+<h3 id="ibdata1ibdata">ibdata1文件非常大如何解决,ibdata单独存储<a class="headerlink" href="#ibdata1ibdata" title="Permanent link">&para;</a></h3>
+<p>在MySQL 5.6.6版本以前，MySQL默认会把所有的innodb的表都放在同一个文件中(ibdata1)，当该文件过大的时候，MySQL容易出错，维护性能差。</p>
+<ol>
+<li>
+<p>简介</p>
+<p>Innodb存储引擎可将所有数据存放于ibdata1 的共享表空间，也可将每张表存放于独立的.ibd文件的独立表空间。
+共享表空间以及独立表空间都是针对数据的存储方式而言的。</p>
+<ul>
+<li>共享表空间:  某一个数据库的所有的表数据，索引文件全部放在一个文件中，默认这个共享表空间的文件路径在data目录下。 默认的文件名为:ibdata1  初始化为10M。</li>
+<li>独立表空间:  每一个表都将会生成以独立的文件方式来进行存储，每一个表都有一个.frm表描述文件，还有一个.ibd文件。 其中这个文件包括了单独一个表的数据内容以及索引内容，默认情况下它的存储位置也是在表的位置之中。</li>
+</ul>
+</li>
+<li>
+<p>二者优缺点</p>
+<ol>
+<li>
+<p>共享表空间：</p>
+<ul>
+<li>优点：<ul>
+<li>可以将表空间分成多个文件存放到各个磁盘上（表空间文件大小不受表大小的限制，如一个表可以分布在不同的文件上）。数据和文件放在一起方便管理。</li>
+</ul>
+</li>
+<li>缺点：<ul>
+<li>所有的数据和索引存放到一个文件中，虽然可以把一个大文件分成多个小文件，但是多个表及索引在表空间中混合存储，这样对于一个表做了大量删除操作后表空间中将会有大量的空隙，特别是对于统计分析，日值系统这类应用最不适合用共享表空间。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>独立表空间：</p>
+<p>在配置文件（my.cnf）中设置： innodb_file_per_table</p>
+<ul>
+<li>优点：<ol>
+<li>每个表都有自已独立的表空间。</li>
+<li>每个表的数据和索引都会存在自已的表空间中。</li>
+<li>可以实现单表在不同的数据库中移动。</li>
+<li>空间可以回收（除drop table操作处，表空不能自已回收）<ul>
+<li>Drop table操作自动回收表空间，如果对于统计分析或是日值表，删除大量数据后可以通过:alter table TableName engine=innodb;回缩不用的空间。</li>
+<li>对于使innodb-plugin的Innodb使用turncate table也会使空间收缩。</li>
+<li>对于使用独立表空间的表，不管怎么删除，表空间的碎片不会太严重的影响性能，而且还有机会处理。</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>缺点：<ul>
+<li>单表增加过大，如超过100个G。</li>
+<li>相比较之下，使用独占表空间的效率以及性能会更高一点。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>
+<p>独立表空间参数innodb_file_per_table详解</p>
+<ol>
+<li>
+<p>参数列表：</p>
+<table>
+<thead>
+<tr>
+<th align="left">Command-Line Format</th>
+<th align="left">&gt;</th>
+<th align="left"><code>--innodb_file_per_table</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left"><code>System Variable</code></td>
+<td align="left">Name</td>
+<td align="left"><code>innodb_file_per_table</code></td>
+</tr>
+<tr>
+<td align="left">^</td>
+<td align="left">Variable Scope</td>
+<td align="left">Global</td>
+</tr>
+<tr>
+<td align="left">^</td>
+<td align="left">Dynamic Variable</td>
+<td align="left">Yes</td>
+</tr>
+<tr>
+<td align="left"><code>Permitted Values (&lt;= 5.6.5)</code></td>
+<td align="left">Type</td>
+<td align="left">boolean</td>
+</tr>
+<tr>
+<td align="left">^</td>
+<td align="left">Default</td>
+<td align="left">OFF</td>
+</tr>
+<tr>
+<td align="left"><code>Permitted Values (&gt;= 5.6.6)</code></td>
+<td align="left">Type</td>
+<td align="left">boolean</td>
+</tr>
+<tr>
+<td align="left">^</td>
+<td align="left">Default</td>
+<td align="left">ON</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>参数功能：</p>
+<ul>
+<li>该参数在mysql5.6.6及其后续版本默认开启，开启该参数的时候，Innodb将每个新创建的表的数据及索引存储在一个独立的.ibd文件里，而不是系统的表空间。当这些innodb表被删除或清空的时候，存储空间会被回收。</li>
+<li>开启innodb_file_per_table，在ALTER TABLE操作重建表的情况下，会将innodb表从系统共享表空间移动到独立的.ibd文件。</li>
+<li>不开启innodb_file_per_table，innodb会将所有表及索引的数据存储在构成系统表空间的ibdata文件。这样会降低文件系统操作的性能开销，例如DROP TABLE 或 TRUNCATE TABLE。它最适合于将整合磁盘都用于存储mysql数据的情况，因为系统表空间不会收缩，所有的数据库都在一个空间实例里面。当innodb_file_per_table=OFF的时候，应避免在空间受限的系统表空间里导入大量临时数据。</li>
+<li>
+<p>innodb_file_per_table 可通过SET GLOBAL动态的修改为ON或OFF，也可以在my.cnf中做永久性修改，在my.cnf中修改后生效的话需要重启mysqld服务。</p>
+<ul>
+<li><code>set global innodb_file_per_table =ON;</code></li>
+</ul>
+</li>
+<li>
+<p>注：动态修改后仅对后续操作生效，如原来为共享表空间，动态修改为独立表空间后仅新建的表为独立表空间。</p>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+</ol>
+<h4 id="bdata1">bdata1文件是什么？<a class="headerlink" href="#bdata1" title="Permanent link">&para;</a></h4>
+<p>ibdata1是一个用来构建innodb系统表空间的文件，这个文件包含了innodb表的元数据、撤销记录、修改buffer和双写buffer。如果file-per-table选项打开的话，该文件则不一定包含所有表的数据。当innodb_file_per_table选项打开的话，新创建表的数据和索引则不会存在系统表空间中，而是存放在各自表的.ibd文件中.显然这个文件会越来越大，innodb_autoextend_increment选项则指定了该文件每次自动增长的步进，默认是8M.</p>
+<h4 id="ibdata1_1">是什么原因导致ibdata1文件会越来越大？<a class="headerlink" href="#ibdata1_1" title="Permanent link">&para;</a></h4>
+<p>ibdata1存放数据，索引和缓存等，是MYSQL的最主要的数据。所以随着数据库越来越大，表也会越大，这个无法避免的。如果时间长了，越来越大，我们在处理日志和空间的时候就不是那么方便了，就不知从何入手了。接下来我们就要处理下这样的情况，分库存储数据。</p>
+<h4 id="_1">该如何处理呢？<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h4>
+<p>首先我们把数据库文件备份下来，然后直接删除ibdata文件（为了保险起见最好先全备一次，做到数据安全和完整），然后再重新导入数据库文件即可！</p>
+<h4 id="_2">具体操作步骤如下(截图并不完整，但是首先要弄懂大概情况和原理)：<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h4>
+<ul>
+<li>
+<details class="note">
+<summary>操作步骤</summary>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="m">1</span>、停止业务，备份一次全库
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>mysqldump<span class="w"> </span>-uroot<span class="w"> </span>-ppassword<span class="w"> </span>--all-databases<span class="w"> </span>--add-dorp-table<span class="w"> </span>&gt;<span class="w"> </span>/root/all_mysql.sql
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="m">2</span>、备份完成，停止数据库
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>systemctl<span class="w"> </span>stop<span class="w"> </span>mariadb<span class="w"> </span>或者<span class="w"> </span>service<span class="w"> </span>mysqld<span class="w"> </span>stop
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="m">3</span>、修改配置文件
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>在<span class="o">[</span>mysqld<span class="o">]</span>下增加下面配置<span class="w"> </span><span class="nv">innodb_file_per_table</span><span class="o">=</span><span class="m">1</span><span class="w"> </span>验证配置是否生效，可以重启mysql后,执行<span class="w"> </span><span class="c1">#service mysqld restart</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="m">4</span>、验证
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>mysql<span class="w"> </span>-uroot<span class="w"> </span>-ppassword
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>show<span class="w"> </span>variables<span class="w"> </span>like<span class="w"> </span><span class="s1">&#39;%per_table%&#39;</span><span class="p">;</span>
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="m">5</span>、删除ibdata1文件和日志
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>
+</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>rm<span class="w"> </span>-rf<span class="w"> </span>ibdata1
+</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>rm<span class="w"> </span>-rf<span class="w"> </span>ib_logfile*
+</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>
+</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a><span class="m">6</span>、还原数据库
+</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>
+</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>mysql<span class="w"> </span>-uuser<span class="w"> </span>-ppassword
+</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a><span class="nb">source</span><span class="w"> </span>/root/all_mysql.sql
+</span></code></pre></div></details>
+</li>
+</ul>
+<p>数据文件单独存放(共享表空间改为每个表独立的表空间文件)。</p>
+<ul>
+<li>
+<p>想要将共享表空间转化为独立表空间有两种方法：</p>
+<ul>
+<li>先逻辑备份，之后删除所有数据库关闭mysql服务，删除idbdata1及id_logfile0跟id_logfile1文件，然后修改配置文件my.cnf中的参数innodb_file_per_table参数为1，重启服务后将逻辑备份导入即可。</li>
+<li>修改配置文件my.cnf中的参数innodb_file_per_table参数为1，重启服务后将需要修改的所有innodb表都执行一遍：alter table table_name engine=innodb;</li>
+</ul>
+<p>使用第二种方式修改后，原来库中的表中的数据会继续存放于ibdata1中，新建的表才会使用独立表空间
+参考：https://www.cnblogs.com/mikeguan/p/8018531.html</p>
+</li>
+</ul>
+<h2 id="mysql-ibdata1-innodb_undo_tablespaces">MYSQL ibdata1 和 innodb_undo_tablespaces<a class="headerlink" href="#mysql-ibdata1-innodb_undo_tablespaces" title="Permanent link">&para;</a></h2>
+<ul>
+<li>https://www.dazhuanlan.com/driving365/topics/1494848</li>
+<li>https://blog.51cto.com/u_14286115/3323550?b=totalstatistic</li>
+</ul>
+<h3 id="ibdata1_2">ibdata1 是什么<a class="headerlink" href="#ibdata1_2" title="Permanent link">&para;</a></h3>
+<p>看下官方解释： https://dev.mysql.com/doc/refman/5.7/en/innodb-system-tablespace.html</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>The system tablespace is the storage area for the InnoDB data dictionary, the doublewrite buffer, the change buffer, and undo logs. It may also contain table and index data if tables are created in the system tablespace rather than file-per-table or general tablespaces.
+</span></code></pre></div>
+<p>系统表空间是存储 innodb 数据字典，双写缓冲区，变更缓冲区，撤销日志的地方。 如果是在系统表空间创建的 table，那么 ta 的表数据，索引数据也会在这个地方.</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>The system tablespace can have one or more data files. By default, a single system tablespace data file, named ibdata1, is created in the data directory.
+</span></code></pre></div>
+<p>系统表空间有一个或多个数据文件，默认只有一个数据文件ibdata1. 在数据目录下</p>
+<p>MYSQL 提供了工具 innochecksum 可以查看 ibdata1 文件的内容。</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>innochecksum -S ibdata1
+</span></code></pre></div>
+<ul>
+<li>
+<details class="note">
+<summary>输出为</summary>
+可以看出 undo log page 占了绝大部分。
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>File::ibdata1
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="o">================</span>PAGE<span class="w"> </span>TYPE<span class="w"> </span><span class="nv">SUMMARY</span><span class="o">==============</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="c1">#PAGE_COUNT PAGE_TYPE</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="o">===============================================</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">      </span><span class="m">88</span><span class="w">    </span>Index<span class="w"> </span>page
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="w">  </span><span class="m">104221</span><span class="w">    </span>Undo<span class="w"> </span>log<span class="w"> </span>page
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="w">      </span><span class="m">12</span><span class="w">    </span>Inode<span class="w"> </span>page
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="w">       </span><span class="m">0</span><span class="w">    </span>Insert<span class="w"> </span>buffer<span class="w"> </span>free<span class="w"> </span>list<span class="w"> </span>page
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="w">    </span><span class="m">2808</span><span class="w">    </span>Freshly<span class="w"> </span>allocated<span class="w"> </span>page
+</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="w">      </span><span class="m">14</span><span class="w">    </span>Insert<span class="w"> </span>buffer<span class="w"> </span>bitmap
+</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a><span class="w">      </span><span class="m">98</span><span class="w">    </span>System<span class="w"> </span>page
+</span><span id="__span-4-12"><a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a><span class="w">       </span><span class="m">1</span><span class="w">    </span>Transaction<span class="w"> </span>system<span class="w"> </span>page
+</span><span id="__span-4-13"><a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a><span class="w">       </span><span class="m">8</span><span class="w">    </span>File<span class="w"> </span>Space<span class="w"> </span>Header
+</span><span id="__span-4-14"><a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a><span class="w">       </span><span class="m">6</span><span class="w">    </span>Extent<span class="w"> </span>descriptor<span class="w"> </span>page
+</span><span id="__span-4-15"><a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a><span class="w">       </span><span class="m">8</span><span class="w">    </span>BLOB<span class="w"> </span>page
+</span><span id="__span-4-16"><a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a><span class="w">       </span><span class="m">0</span><span class="w">    </span>Compressed<span class="w"> </span>BLOB<span class="w"> </span>page
+</span><span id="__span-4-17"><a id="__codelineno-4-17" name="__codelineno-4-17" href="#__codelineno-4-17"></a><span class="w">       </span><span class="m">0</span><span class="w">    </span>Other<span class="w"> </span><span class="nb">type</span><span class="w"> </span>of<span class="w"> </span><span class="nv">page</span>
+</span><span id="__span-4-18"><a id="__codelineno-4-18" name="__codelineno-4-18" href="#__codelineno-4-18"></a><span class="o">===============================================</span>
+</span><span id="__span-4-19"><a id="__codelineno-4-19" name="__codelineno-4-19" href="#__codelineno-4-19"></a>Additional<span class="w"> </span>information:
+</span><span id="__span-4-20"><a id="__codelineno-4-20" name="__codelineno-4-20" href="#__codelineno-4-20"></a>Undo<span class="w"> </span>page<span class="w"> </span>type:<span class="w"> </span><span class="m">104171</span><span class="w"> </span>insert,<span class="w"> </span><span class="m">50</span><span class="w"> </span>update,<span class="w"> </span><span class="m">0</span><span class="w"> </span>other
+</span><span id="__span-4-21"><a id="__codelineno-4-21" name="__codelineno-4-21" href="#__codelineno-4-21"></a>Undo<span class="w"> </span>page<span class="w"> </span>state:<span class="w"> </span><span class="m">0</span><span class="w"> </span>active,<span class="w"> </span><span class="m">157</span><span class="w"> </span>cached,<span class="w"> </span><span class="m">2</span><span class="w"> </span>to_free,<span class="w"> </span><span class="m">0</span><span class="w"> </span>to_purge,<span class="w"> </span><span class="m">0</span><span class="w"> </span>prepared,<span class="w"> </span><span class="m">104062</span><span class="w"> </span>other
+</span></code></pre></div></details>
+</li>
+</ul>
+<h3 id="ibdata1-undo-log">ibdata1 中 undo log 为什么会有如此多呢 ?<a class="headerlink" href="#ibdata1-undo-log" title="Permanent link">&para;</a></h3>
+<p>indo log 的作用是 回滚 以及支持 MMVC（mluti-version concurrency control）即多版本并发控制。</p>
+<p>简单来说就是: 两个事务 一个在更新，一个在查询。 为了防止查询的事务读到脏数据或者更新一般的数据，更新的操作会在数据上排它锁，在更新事务未完成前对其他事务不可见。 这时候查询事务读到的数据 其实是数据的一个快照 (通过 undo 读取某个版本)。MVVC 就是同一份数据临时保留多版本的一种方式，进而实现并发控制</p>
+<p>在这样的背景下，如果一个查询操作执行了很长的时间，那么数据库需要维护长时间的 undo log.</p>
+<p>通过下面的 MYSQL 命令查找数据库的状态</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>SHOW ENGINE INNODB STATUS/G;
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>---TRANSACTION 36E, ACTIVE 1256288 sec
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>MySQL thread id 42, OS thread handle 0x7f8baaccc700, query id 7900290 localhost root
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>show engine innodb status
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>Trx read view will not see trx with id &gt;= 36F, sees &lt; 36F
+</span></code></pre></div>
+<p>可以看到这条 query 执行了 14 天还没有结束。需要在 undo log 中维护旧数据页以保障数据一致性视图。如果在这段时间数据库有大量写入任务，就意味着存储了大量的 undo log</p>
+<p>在问题发生时，我们也是通过</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>use information_schema;
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>select * from INNODB_TRXG;
+</span></code></pre></div>
+<p>找到事务的 trx_mysql_thread_id 并</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>kill &lt;trx_mysql_thread_id&gt;
+</span></code></pre></div>
+<p>来杀掉长查询来停止 ibdata1 不断增长的。</p>
+<h3 id="_3">如何解决<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<ol>
+<li>
+<p>如何阻止 ibdata1 不断增长 杀掉长时间未结束的事务,来阻止 ibdata1 的不断变大. 但这并不能减小 ibdata1 的大小. MYSQL innoDB 表空间从不收缩(参考 MYSQL ibdata1), 即便你删除数据, ibdata1 中 undo log 页也只是标记为已删除稍微重用. 但不会释放这些空间给操作系统.</p>
+</li>
+<li>
+<p>如何回收表空间 如上所述, MYSQL 表空间从不收缩, 除非用新的 ibdata1 启动数据库. 也就是说要 mysqldump 做一个逻辑全备份, 然后停止 MYSQL, 删除所有数据库, ib_logfile ibdata1 等文件. 当你重新启动数据库时会产生一个新的 ibdata1. 然后恢复逻辑备份.</p>
+</li>
+<li>
+<p>如何避免后续再发生此类事件吗 如果已经发生 ibdata1 因为 undo log 过大的问题,那么除了删除数据文件重新启动没有更好的办法,</p>
+</li>
+</ol>
+<p>但是从 MYSQL5.6 版本后 可以通过 创建外部 undo log 表空间 从而其从 ibdata1 中分离处来, 并设置相应参数来规定 undo log 的最大 size 等手段来达到在线清除 undo 表空间</p>
+<ul>
+<li>innodb_undo_directory 指定单独存放 undo 表空间的目录</li>
+<li>innodb_undo_tablespaces 指定单独存放 undo 表空间的个数. 如果设置为 3，则 undo 表空间为 undo001、undo002、undo003</li>
+<li>innodb_undo_logs 指定回滚段的个数（早期版本该参数名字是 innodb_rollback_segments），默认 128 个。每个回滚段可同时支持 1024 个在线事务。这些回滚段会平均分布到各个 undo 表空间中。该变量可以动态调整，但是物理上的回滚段不会减少，只是会控制用到的回滚段的个数。</li>
+<li>innodb_max_undo_log_size，undo 表空间文件超过此值即标记为可收缩，默认 1G，可在线修改；</li>
+<li>innodb_purge_rseg_truncate_frequency,指定 purge 操作被唤起多少次之后才释放 rollback segments。当 undo 表空间里面的 rollback segments 被释放时，undo 表空间才会被 truncate。由此可见，该参数越小，undo 表空间被尝试 truncate 的频率越高。</li>
+</ul>
+<p>后记: 这个问题最后的解决办法 正是</p>
+<ul>
+<li>先杀掉耗时长的事务</li>
+<li>备份数据, 删除数据库文件</li>
+<li>增加 innodb_undo_tablespaces 等参数到数据库配置文件中. 重启数据库. 导入数据.</li>
+</ul>
+<h2 id="undo-log_1">undo log在线收缩新特性<a class="headerlink" href="#undo-log_1" title="Permanent link">&para;</a></h2>
+<ul>
+<li>https://blog.51cto.com/u_14286115/3323550?b=totalstatistic</li>
+</ul>
+<h4 id="part1">Part1:写在最前<a class="headerlink" href="#part1" title="Permanent link">&para;</a></h4>
+<p>在MysQL5.6版本中，可以把undo log 回滚日志分离到一个单独的表空间里；其缺点是不能回收空间大小，until MysQL5.7，but MariadDB10.1暂不支持。</p>
+<p>本文介绍并演示MysQL5.7是如何在线收缩undo log的。</p>
+<p>①首先我们需要调整my.cnf参数</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>innodb_undo_directory=/data/undolog
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>innodb_undo_tablespaces=4
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>innodb_undo_logs=128
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>innodb_max_undo_log_size=1G
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>innodb_purge_rseg_truncate_frequency
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>innodb_undo_log_truncate=1
+</span></code></pre></div>
+<p>Warning:警告</p>
+<p>其中innodb_undo_directory参数要在数据库初始化时就需要写入my.cnf，否则会报如下错误：</p>
+<details class="warning">
+<summary>Warning</summary>
+<p>Expected to open 4 undo tablespaces but was able to find only 0 undo tablespaces. Set the innodb_undo_tablespaces parameter to the correct value and retry. Suggested value is 0</p>
+</details>
+<h4 id="part2mysql57undolog">Part2:MySQL5.7在线回收undolog<a class="headerlink" href="#part2mysql57undolog" title="Permanent link">&para;</a></h4>
+<p>①首先对一张100万行的表进行整表更新</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">show</span><span class="w"> </span><span class="n">variables</span><span class="w"> </span><span class="k">like</span><span class="w"> </span><span class="s1">&#39;innodb_undo%&#39;</span><span class="p">;</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="o">+</span><span class="c1">--------------------------+---------------+</span>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="o">|</span><span class="w"> </span><span class="n">Variable_name</span><span class="w">            </span><span class="o">|</span><span class="w"> </span><span class="n">Value</span><span class="w">         </span><span class="o">|</span>
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="o">+</span><span class="c1">--------------------------+---------------+</span>
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="o">|</span><span class="w"> </span><span class="n">innodb_undo_directory</span><span class="w">    </span><span class="o">|</span><span class="w"> </span><span class="o">/</span><span class="k">data</span><span class="o">/</span><span class="n">undolog</span><span class="w"> </span><span class="o">|</span>
+</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="o">|</span><span class="w"> </span><span class="n">innodb_undo_log_truncate</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">ON</span><span class="w">            </span><span class="o">|</span>
+</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="o">|</span><span class="w"> </span><span class="n">innodb_undo_logs</span><span class="w">         </span><span class="o">|</span><span class="w"> </span><span class="mi">128</span><span class="w">           </span><span class="o">|</span>
+</span><span id="__span-9-8"><a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a><span class="o">|</span><span class="w"> </span><span class="n">innodb_undo_tablespaces</span><span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="mi">4</span><span class="w">             </span><span class="o">|</span>
+</span><span id="__span-9-9"><a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a><span class="o">+</span><span class="c1">--------------------------+---------------+</span>
+</span><span id="__span-9-10"><a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a><span class="mi">4</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
+</span><span id="__span-9-11"><a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a><span class="w"> </span>
+</span><span id="__span-9-12"><a id="__codelineno-9-12" name="__codelineno-9-12" href="#__codelineno-9-12"></a>
+</span><span id="__span-9-13"><a id="__codelineno-9-13" name="__codelineno-9-13" href="#__codelineno-9-13"></a><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">update</span><span class="w"> </span><span class="n">helei</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="n">c1</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span>
+</span><span id="__span-9-14"><a id="__codelineno-9-14" name="__codelineno-9-14" href="#__codelineno-9-14"></a><span class="n">Query</span><span class="w"> </span><span class="n">OK</span><span class="p">,</span><span class="w"> </span><span class="mi">1000000</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="n">affected</span><span class="w"> </span><span class="p">(</span><span class="mi">45</span><span class="p">.</span><span class="mi">48</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
+</span><span id="__span-9-15"><a id="__codelineno-9-15" name="__codelineno-9-15" href="#__codelineno-9-15"></a><span class="k">Rows</span><span class="w"> </span><span class="n">matched</span><span class="p">:</span><span class="w"> </span><span class="mi">1000000</span><span class="w">  </span><span class="n">Changed</span><span class="p">:</span><span class="w"> </span><span class="mi">1000000</span><span class="w">  </span><span class="n">Warnings</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span>
+</span><span id="__span-9-16"><a id="__codelineno-9-16" name="__codelineno-9-16" href="#__codelineno-9-16"></a><span class="w"> </span>
+</span><span id="__span-9-17"><a id="__codelineno-9-17" name="__codelineno-9-17" href="#__codelineno-9-17"></a>
+</span><span id="__span-9-18"><a id="__codelineno-9-18" name="__codelineno-9-18" href="#__codelineno-9-18"></a><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">update</span><span class="w"> </span><span class="n">helei</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="n">c2</span><span class="o">=</span><span class="mi">222</span><span class="p">;</span>
+</span><span id="__span-9-19"><a id="__codelineno-9-19" name="__codelineno-9-19" href="#__codelineno-9-19"></a><span class="n">Query</span><span class="w"> </span><span class="n">OK</span><span class="p">,</span><span class="w"> </span><span class="mi">1000000</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="n">affected</span><span class="w"> </span><span class="p">(</span><span class="mi">43</span><span class="p">.</span><span class="mi">25</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
+</span><span id="__span-9-20"><a id="__codelineno-9-20" name="__codelineno-9-20" href="#__codelineno-9-20"></a><span class="k">Rows</span><span class="w"> </span><span class="n">matched</span><span class="p">:</span><span class="w"> </span><span class="mi">1000000</span><span class="w">  </span><span class="n">Changed</span><span class="p">:</span><span class="w"> </span><span class="mi">1000000</span><span class="w">  </span><span class="n">Warnings</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span>
+</span><span id="__span-9-21"><a id="__codelineno-9-21" name="__codelineno-9-21" href="#__codelineno-9-21"></a>
+</span><span id="__span-9-22"><a id="__codelineno-9-22" name="__codelineno-9-22" href="#__codelineno-9-22"></a><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">update</span><span class="w"> </span><span class="n">helei</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="n">c4</span><span class="o">=</span><span class="s1">&#39;heleiheleiheleiheleihel&#39;</span><span class="p">;</span>
+</span><span id="__span-9-23"><a id="__codelineno-9-23" name="__codelineno-9-23" href="#__codelineno-9-23"></a><span class="n">Query</span><span class="w"> </span><span class="n">OK</span><span class="p">,</span><span class="w"> </span><span class="mi">1000000</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="n">affected</span><span class="w"> </span><span class="p">(</span><span class="mi">10</span><span class="p">.</span><span class="mi">28</span><span class="w"> </span><span class="n">sec</span><span class="p">)</span>
+</span><span id="__span-9-24"><a id="__codelineno-9-24" name="__codelineno-9-24" href="#__codelineno-9-24"></a><span class="k">Rows</span><span class="w"> </span><span class="n">matched</span><span class="p">:</span><span class="w"> </span><span class="mi">1000000</span><span class="w">  </span><span class="n">Changed</span><span class="p">:</span><span class="w"> </span><span class="mi">1000000</span><span class="w">  </span><span class="n">Warnings</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span>
+</span></code></pre></div>
+<p>②注意undolog的日志大小</p>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="o">[</span>root@HE3<span class="w"> </span>undolog<span class="o">]</span><span class="c1"># ls -lshrt</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>total<span class="w"> </span>412M
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>128M<span class="w"> </span>-rw-r-----<span class="w"> </span><span class="m">1</span><span class="w"> </span>mysql<span class="w"> </span>mysql<span class="w"> </span>128M<span class="w"> </span>Sep<span class="w"> </span><span class="m">26</span><span class="w"> </span><span class="m">16</span>:56<span class="w"> </span>undo004
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="w"> </span>76M<span class="w"> </span>-rw-r-----<span class="w"> </span><span class="m">1</span><span class="w"> </span>mysql<span class="w"> </span>mysql<span class="w">  </span>76M<span class="w"> </span>Sep<span class="w"> </span><span class="m">26</span><span class="w"> </span><span class="m">16</span>:56<span class="w"> </span>undo003
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>136M<span class="w"> </span>-rw-r-----<span class="w"> </span><span class="m">1</span><span class="w"> </span>mysql<span class="w"> </span>mysql<span class="w"> </span>136M<span class="w"> </span>Sep<span class="w"> </span><span class="m">26</span><span class="w"> </span><span class="m">16</span>:56<span class="w"> </span>undo001
+</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="w"> </span>72M<span class="w"> </span>-rw-r-----<span class="w"> </span><span class="m">1</span><span class="w"> </span>mysql<span class="w"> </span>mysql<span class="w">  </span>72M<span class="w"> </span>Sep<span class="w"> </span><span class="m">26</span><span class="w"> </span><span class="m">16</span>:56<span class="w"> </span>undo002
+</span></code></pre></div>
+<p>③error.log日志</p>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="m">2016</span>-09-26T23:51:06.062828Z<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">[</span>Note<span class="o">]</span><span class="w"> </span>InnoDB:<span class="w"> </span>Truncating<span class="w"> </span>UNDO<span class="w"> </span>tablespace<span class="w"> </span>with<span class="w"> </span>space<span class="w"> </span>identifier<span class="w"> </span><span class="m">1</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="m">2016</span>-09-26T23:51:06.159077Z<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">[</span>Note<span class="o">]</span><span class="w"> </span>InnoDB:<span class="w"> </span>Completed<span class="w"> </span>truncate<span class="w"> </span>of<span class="w"> </span>UNDO<span class="w"> </span>tablespace<span class="w"> </span>with<span class="w"> </span>space<span class="w"> </span>identifier<span class="w"> </span><span class="m">1</span>
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="m">2016</span>-09-26T23:51:06.159101Z<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">[</span>Note<span class="o">]</span><span class="w"> </span>InnoDB:<span class="w"> </span>Truncating<span class="w"> </span>UNDO<span class="w"> </span>tablespace<span class="w"> </span>with<span class="w"> </span>space<span class="w"> </span>identifier<span class="w"> </span><span class="m">2</span>
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="m">2016</span>-09-26T23:51:06.242355Z<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">[</span>Note<span class="o">]</span><span class="w"> </span>InnoDB:<span class="w"> </span>Completed<span class="w"> </span>truncate<span class="w"> </span>of<span class="w"> </span>UNDO<span class="w"> </span>tablespace<span class="w"> </span>with<span class="w"> </span>space<span class="w"> </span>identifier<span class="w"> </span><span class="m">2</span>
+</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="m">2016</span>-09-26T23:51:06.242378Z<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">[</span>Note<span class="o">]</span><span class="w"> </span>InnoDB:<span class="w"> </span>Truncating<span class="w"> </span>UNDO<span class="w"> </span>tablespace<span class="w"> </span>with<span class="w"> </span>space<span class="w"> </span>identifier<span class="w"> </span><span class="m">3</span>
+</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a><span class="m">2016</span>-09-26T23:51:06.313036Z<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">[</span>Note<span class="o">]</span><span class="w"> </span>InnoDB:<span class="w"> </span>Completed<span class="w"> </span>truncate<span class="w"> </span>of<span class="w"> </span>UNDO<span class="w"> </span>tablespace<span class="w"> </span>with<span class="w"> </span>space<span class="w"> </span>identifier<span class="w"> </span><span class="m">3</span>
+</span><span id="__span-11-7"><a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a><span class="m">2016</span>-09-26T23:51:06.313060Z<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">[</span>Note<span class="o">]</span><span class="w"> </span>InnoDB:<span class="w"> </span>Truncating<span class="w"> </span>UNDO<span class="w"> </span>tablespace<span class="w"> </span>with<span class="w"> </span>space<span class="w"> </span>identifier<span class="w"> </span><span class="m">4</span>
+</span><span id="__span-11-8"><a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a><span class="m">2016</span>-09-26T23:51:06.403003Z<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">[</span>Note<span class="o">]</span><span class="w"> </span>InnoDB:<span class="w"> </span>Completed<span class="w"> </span>truncate<span class="w"> </span>of<span class="w"> </span>UNDO<span class="w"> </span>tablespace<span class="w"> </span>with<span class="w"> </span>space<span class="w"> </span>identifier<span class="w"> </span><span class="m">4</span>
+</span></code></pre></div>
+<p>④观察物理文件</p>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="o">[</span>root@HE3<span class="w"> </span>undolog<span class="o">]</span><span class="c1"># ls -lshrt</span>
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>total<span class="w"> </span>168M
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>76M<span class="w"> </span>-rw-r-----<span class="w"> </span><span class="m">1</span><span class="w"> </span>mysql<span class="w"> </span>mysql<span class="w"> </span>76M<span class="w"> </span>Sep<span class="w"> </span><span class="m">26</span><span class="w"> </span><span class="m">16</span>:56<span class="w"> </span>undo003
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>10M<span class="w"> </span>-rw-r-----<span class="w"> </span><span class="m">1</span><span class="w"> </span>mysql<span class="w"> </span>mysql<span class="w"> </span>10M<span class="w"> </span>Sep<span class="w"> </span><span class="m">26</span><span class="w"> </span><span class="m">16</span>:56<span class="w"> </span>undo001
+</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>10M<span class="w"> </span>-rw-r-----<span class="w"> </span><span class="m">1</span><span class="w"> </span>mysql<span class="w"> </span>mysql<span class="w"> </span>10M<span class="w"> </span>Sep<span class="w"> </span><span class="m">26</span><span class="w"> </span><span class="m">16</span>:56<span class="w"> </span>undo004
+</span><span id="__span-12-6"><a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a>72M<span class="w"> </span>-rw-r-----<span class="w"> </span><span class="m">1</span><span class="w"> </span>mysql<span class="w"> </span>mysql<span class="w"> </span>72M<span class="w"> </span>Sep<span class="w"> </span><span class="m">26</span><span class="w"> </span><span class="m">16</span>:56<span class="w"> </span>undo002
+</span><span id="__span-12-7"><a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a>可以看到超过100M设定值的undo日志已经回收，默认为10M，undo<span class="w"> </span>log空间得以释放
+</span></code></pre></div>
+<h4 id="part3">Part3:意义<a class="headerlink" href="#part3" title="Permanent link">&para;</a></h4>
+<p>该功能降低了磁盘的使用率，并且可以提高诸如Xtrabackup这类物理备份软件的备份速度。</p>
+<h2 id="innodb_undo_logs">innodb_undo_logs<a class="headerlink" href="#innodb_undo_logs" title="Permanent link">&para;</a></h2>
+<ul>
+<li>https://dev.mysql.com/doc/refman/5.6/ja/innodb-undo-tablespace.html (日本語)</li>
+<li>https://dev.mysql.com/doc/refman/5.7/en/innodb-undo-tablespaces.html</li>
+<li>https://dev.mysql.com/doc/refman/5.7/en/innodb-parameters.html#sysvar_innodb_undo_directory</li>
+<li>https://dev.mysql.com/doc/refman/5.7/en/innodb-parameters.html#sysvar_innodb_undo_tablespaces</li>
+</ul>
+<h4 id="_4">設定<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h4>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>innodb_undo_tablespaces=2
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>innodb_rollback_segments=128
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>innodb_max_undo_log_size=512M
+</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>innodb_undo_log_truncate=1
+</span></code></pre></div>
+<ul>
+<li>innodb_purge_rseg_truncate_frequencyは必要に応じて調整する。<ul>
+<li>数字小さいほどundo_log回収頻度が高く、IO負荷高い。</li>
+<li>https://dev.mysql.com/doc/refman/5.7/en/innodb-parameters.html#sysvar_innodb_purge_rseg_truncate_frequency</li>
+</ul>
+</li>
+<li>innodb_undo_tablespacesはmysql8で将来削除予定です。undo_tablesを２に設定しました。MSであれば２つで十分と考えられます。<ul>
+<li>https://dev.mysql.com/doc/refman/8.0/en/innodb-parameters.html#sysvar_innodb_undo_tablespaces</li>
+<li>https://dev.mysql.com/doc/refman/5.7/en/innodb-parameters.html#sysvar_innodb_undo_tablespaces</li>
+</ul>
+</li>
+<li>innodb_rollback_segments　innodb_undo_logs は削除予定のため非推奨と記載があり、5.7では innodb_rollback_segments の使用するよう指定があります。<ul>
+<li>innodb_undo_logs を削除します。innodb_rollback_segmentsを変わりに設定します。<ul>
+<li>https://dev.mysql.com/doc/refman/5.7/en/innodb-parameters.html#sysvar_innodb_undo_logs</li>
+</ul>
+</li>
+<li>今後のマイナーバージョンアップ時、デフォルト値の128が変更する可能性あるので、明示的に128を指定する。</li>
+</ul>
+</li>
+</ul>
+<h4 id="_5">検証用テーブルの作成<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h4>
+<details class="info">
+<summary>create table</summary>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="c1">-- テーブルの作成</span>
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">usertb</span><span class="p">(</span>
+</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span class="n">id</span><span class="w"> </span><span class="nb">serial</span><span class="p">,</span>
+</span><span id="__span-14-5"><a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a><span class="n">uname</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">20</span><span class="p">),</span>
+</span><span id="__span-14-6"><a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a><span class="n">ucreatetime</span><span class="w"> </span><span class="n">datetime</span><span class="p">,</span>
+</span><span id="__span-14-7"><a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a><span class="n">age</span><span class="w"> </span><span class="nb">int</span><span class="p">(</span><span class="mi">11</span><span class="p">))</span>
+</span><span id="__span-14-8"><a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a><span class="n">engine</span><span class="o">=</span><span class="n">innodb</span>
+</span><span id="__span-14-9"><a id="__codelineno-14-9" name="__codelineno-14-9" href="#__codelineno-14-9"></a><span class="k">default</span><span class="w"> </span><span class="nb">character</span><span class="w"> </span><span class="k">set</span><span class="o">=</span><span class="n">utf8mb4</span>
+</span><span id="__span-14-10"><a id="__codelineno-14-10" name="__codelineno-14-10" href="#__codelineno-14-10"></a><span class="n">auto_increment</span><span class="o">=</span><span class="mi">1</span>
+</span><span id="__span-14-11"><a id="__codelineno-14-11" name="__codelineno-14-11" href="#__codelineno-14-11"></a><span class="n">row_format</span><span class="o">=</span><span class="n">compact</span><span class="p">;</span>
+</span><span id="__span-14-12"><a id="__codelineno-14-12" name="__codelineno-14-12" href="#__codelineno-14-12"></a>
+</span><span id="__span-14-13"><a id="__codelineno-14-13" name="__codelineno-14-13" href="#__codelineno-14-13"></a><span class="c1">-- procedureを作成</span>
+</span><span id="__span-14-14"><a id="__codelineno-14-14" name="__codelineno-14-14" href="#__codelineno-14-14"></a>
+</span><span id="__span-14-15"><a id="__codelineno-14-15" name="__codelineno-14-15" href="#__codelineno-14-15"></a><span class="k">delimiter</span><span class="w"> </span><span class="err">$$</span>
+</span><span id="__span-14-16"><a id="__codelineno-14-16" name="__codelineno-14-16" href="#__codelineno-14-16"></a><span class="k">set</span><span class="w"> </span><span class="n">autocommit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="err">$$</span>
+</span><span id="__span-14-17"><a id="__codelineno-14-17" name="__codelineno-14-17" href="#__codelineno-14-17"></a>
+</span><span id="__span-14-18"><a id="__codelineno-14-18" name="__codelineno-14-18" href="#__codelineno-14-18"></a><span class="k">create</span><span class="w"> </span><span class="k">procedure</span><span class="w"> </span><span class="n">test1</span><span class="p">()</span>
+</span><span id="__span-14-19"><a id="__codelineno-14-19" name="__codelineno-14-19" href="#__codelineno-14-19"></a><span class="k">begin</span>
+</span><span id="__span-14-20"><a id="__codelineno-14-20" name="__codelineno-14-20" href="#__codelineno-14-20"></a><span class="k">declare</span><span class="w"> </span><span class="n">v_cnt</span><span class="w"> </span><span class="nb">decimal</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span><span class="w"> </span><span class="k">default</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+</span><span id="__span-14-21"><a id="__codelineno-14-21" name="__codelineno-14-21" href="#__codelineno-14-21"></a><span class="n">dd</span><span class="p">:</span><span class="n">loop</span>
+</span><span id="__span-14-22"><a id="__codelineno-14-22" name="__codelineno-14-22" href="#__codelineno-14-22"></a><span class="w">    </span><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">usertb</span><span class="w"> </span><span class="k">values</span>
+</span><span id="__span-14-23"><a id="__codelineno-14-23" name="__codelineno-14-23" href="#__codelineno-14-23"></a><span class="w">    </span><span class="p">(</span><span class="k">null</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;ユーザ1&#39;</span><span class="p">,</span><span class="s1">&#39;2022-11-20 00:00:00&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">20</span><span class="p">),</span>
+</span><span id="__span-14-24"><a id="__codelineno-14-24" name="__codelineno-14-24" href="#__codelineno-14-24"></a><span class="w">    </span><span class="p">(</span><span class="k">null</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;ユーザ2&#39;</span><span class="p">,</span><span class="s1">&#39;2022-11-20 00:00:00&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">20</span><span class="p">),</span>
+</span><span id="__span-14-25"><a id="__codelineno-14-25" name="__codelineno-14-25" href="#__codelineno-14-25"></a><span class="w">    </span><span class="p">(</span><span class="k">null</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;ユーザ3&#39;</span><span class="p">,</span><span class="s1">&#39;2022-11-20 00:00:00&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">20</span><span class="p">),</span>
+</span><span id="__span-14-26"><a id="__codelineno-14-26" name="__codelineno-14-26" href="#__codelineno-14-26"></a><span class="w">    </span><span class="p">(</span><span class="k">null</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;ユーザ4&#39;</span><span class="p">,</span><span class="s1">&#39;2022-11-20 00:00:00&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">20</span><span class="p">),</span>
+</span><span id="__span-14-27"><a id="__codelineno-14-27" name="__codelineno-14-27" href="#__codelineno-14-27"></a><span class="w">    </span><span class="p">(</span><span class="k">null</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;ユーザ5&#39;</span><span class="p">,</span><span class="s1">&#39;2022-11-20 00:00:00&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">20</span><span class="p">),</span>
+</span><span id="__span-14-28"><a id="__codelineno-14-28" name="__codelineno-14-28" href="#__codelineno-14-28"></a><span class="w">    </span><span class="p">(</span><span class="k">null</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;ユーザ6&#39;</span><span class="p">,</span><span class="s1">&#39;2022-11-22 00:00:00&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">20</span><span class="p">),</span>
+</span><span id="__span-14-29"><a id="__codelineno-14-29" name="__codelineno-14-29" href="#__codelineno-14-29"></a><span class="w">    </span><span class="p">(</span><span class="k">null</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;ユーザ7&#39;</span><span class="p">,</span><span class="s1">&#39;2022-11-22 00:00:00&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">20</span><span class="p">),</span>
+</span><span id="__span-14-30"><a id="__codelineno-14-30" name="__codelineno-14-30" href="#__codelineno-14-30"></a><span class="w">    </span><span class="p">(</span><span class="k">null</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;ユーザ8&#39;</span><span class="p">,</span><span class="s1">&#39;2022-11-22 00:00:00&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">20</span><span class="p">),</span>
+</span><span id="__span-14-31"><a id="__codelineno-14-31" name="__codelineno-14-31" href="#__codelineno-14-31"></a><span class="w">    </span><span class="p">(</span><span class="k">null</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;ユーザ9&#39;</span><span class="p">,</span><span class="s1">&#39;2022-11-22 00:00:00&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">20</span><span class="p">),</span>
+</span><span id="__span-14-32"><a id="__codelineno-14-32" name="__codelineno-14-32" href="#__codelineno-14-32"></a><span class="w">    </span><span class="p">(</span><span class="k">null</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;ユーザ0&#39;</span><span class="p">,</span><span class="s1">&#39;2022-11-22 00:00:00&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">20</span><span class="p">);</span>
+</span><span id="__span-14-33"><a id="__codelineno-14-33" name="__codelineno-14-33" href="#__codelineno-14-33"></a><span class="w">    </span><span class="k">commit</span><span class="p">;</span>
+</span><span id="__span-14-34"><a id="__codelineno-14-34" name="__codelineno-14-34" href="#__codelineno-14-34"></a><span class="w">    </span><span class="k">set</span><span class="w"> </span><span class="n">v_cnt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">v_cnt</span><span class="o">+</span><span class="mi">10</span><span class="p">;</span>
+</span><span id="__span-14-35"><a id="__codelineno-14-35" name="__codelineno-14-35" href="#__codelineno-14-35"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="n">v_cnt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10000000</span><span class="w"> </span><span class="k">then</span><span class="w"> </span><span class="n">leave</span><span class="w"> </span><span class="n">dd</span><span class="p">;</span>
+</span><span id="__span-14-36"><a id="__codelineno-14-36" name="__codelineno-14-36" href="#__codelineno-14-36"></a><span class="w">        </span><span class="k">end</span><span class="w"> </span><span class="k">if</span><span class="p">;</span>
+</span><span id="__span-14-37"><a id="__codelineno-14-37" name="__codelineno-14-37" href="#__codelineno-14-37"></a><span class="w">    </span><span class="k">end</span><span class="w"> </span><span class="n">loop</span><span class="w"> </span><span class="n">dd</span><span class="p">;</span>
+</span><span id="__span-14-38"><a id="__codelineno-14-38" name="__codelineno-14-38" href="#__codelineno-14-38"></a><span class="k">end</span><span class="p">;</span><span class="err">$$</span>
+</span><span id="__span-14-39"><a id="__codelineno-14-39" name="__codelineno-14-39" href="#__codelineno-14-39"></a>
+</span><span id="__span-14-40"><a id="__codelineno-14-40" name="__codelineno-14-40" href="#__codelineno-14-40"></a><span class="k">delimiter</span><span class="w"> </span><span class="p">;</span>
+</span><span id="__span-14-41"><a id="__codelineno-14-41" name="__codelineno-14-41" href="#__codelineno-14-41"></a>
+</span><span id="__span-14-42"><a id="__codelineno-14-42" name="__codelineno-14-42" href="#__codelineno-14-42"></a>
+</span><span id="__span-14-43"><a id="__codelineno-14-43" name="__codelineno-14-43" href="#__codelineno-14-43"></a>
+</span><span id="__span-14-44"><a id="__codelineno-14-44" name="__codelineno-14-44" href="#__codelineno-14-44"></a><span class="c1">-- procedureを実行</span>
+</span><span id="__span-14-45"><a id="__codelineno-14-45" name="__codelineno-14-45" href="#__codelineno-14-45"></a>
+</span><span id="__span-14-46"><a id="__codelineno-14-46" name="__codelineno-14-46" href="#__codelineno-14-46"></a><span class="k">call</span><span class="w"> </span><span class="n">test1</span><span class="p">;</span>
+</span><span id="__span-14-47"><a id="__codelineno-14-47" name="__codelineno-14-47" href="#__codelineno-14-47"></a>
+</span><span id="__span-14-48"><a id="__codelineno-14-48" name="__codelineno-14-48" href="#__codelineno-14-48"></a><span class="c1">-- テーブルのレコードを変更</span>
+</span><span id="__span-14-49"><a id="__codelineno-14-49" name="__codelineno-14-49" href="#__codelineno-14-49"></a>
+</span><span id="__span-14-50"><a id="__codelineno-14-50" name="__codelineno-14-50" href="#__codelineno-14-50"></a><span class="n">use</span><span class="w"> </span><span class="n">sbtest</span><span class="p">;</span>
+</span><span id="__span-14-51"><a id="__codelineno-14-51" name="__codelineno-14-51" href="#__codelineno-14-51"></a><span class="k">update</span><span class="w"> </span><span class="n">usertb</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="n">age</span><span class="o">=</span><span class="mi">99</span><span class="p">;</span>
+</span><span id="__span-14-52"><a id="__codelineno-14-52" name="__codelineno-14-52" href="#__codelineno-14-52"></a>
+</span><span id="__span-14-53"><a id="__codelineno-14-53" name="__codelineno-14-53" href="#__codelineno-14-53"></a><span class="c1">-- engineを変更したい場合</span>
+</span><span id="__span-14-54"><a id="__codelineno-14-54" name="__codelineno-14-54" href="#__codelineno-14-54"></a><span class="k">alter</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">usertb</span><span class="w"> </span><span class="n">engine</span><span class="o">=</span><span class="n">myisam</span>
+</span></code></pre></div>
+</details>
+<h4 id="undo_log">undo_logの変化<a class="headerlink" href="#undo_log" title="Permanent link">&para;</a></h4>
+<details class="info">
+<summary>undo_logの変化</summary>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="p">[</span><span class="n">root</span><span class="o">@</span><span class="w"> </span><span class="n">backup</span><span class="p">]</span><span class="o">#</span><span class="w"> </span><span class="n">while</span><span class="w"> </span><span class="k">true</span><span class="p">;</span><span class="w"> </span><span class="k">do</span><span class="w"> </span><span class="n">echo</span><span class="w"> </span><span class="s1">&#39;###############################################&#39;</span><span class="p">;</span><span class="w">  </span><span class="nb">date</span><span class="p">;</span><span class="w">  </span><span class="n">ll</span><span class="w"> </span><span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">mysql</span><span class="o">/</span><span class="n">undo00</span><span class="o">*</span><span class="p">;</span><span class="w"> </span><span class="n">mysql</span><span class="w"> </span><span class="o">-</span><span class="n">e</span><span class="w"> </span><span class="ss">&quot;SELECT TABLESPACE_NAME,FILE_NAME,FREE_EXTENTS,TOTAL_EXTENTS,AUTOEXTEND_SIZE,DATA_FREE FROM INFORMATION_SCHEMA.FILES WHERE FILE_TYPE LIKE &#39;UNDO LOG&#39;;&quot;</span><span class="p">;</span><span class="w"> </span><span class="n">sleep</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w"> </span><span class="n">done</span>
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>
+</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="n">Tue</span><span class="w"> </span><span class="n">Nov</span><span class="w"> </span><span class="mi">22</span><span class="w"> </span><span class="mi">15</span><span class="p">:</span><span class="mi">07</span><span class="p">:</span><span class="mi">11</span><span class="w"> </span><span class="n">JST</span><span class="w"> </span><span class="mi">2022</span>
+</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a><span class="o">-</span><span class="n">rw</span><span class="o">-</span><span class="n">r</span><span class="c1">----- 1 mysql mysql 780M Nov 22 15:01 /home/mysql/undo001</span>
+</span><span id="__span-15-5"><a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a><span class="o">-</span><span class="n">rw</span><span class="o">-</span><span class="n">r</span><span class="c1">----- 1 mysql mysql  10M Nov 22 14:55 /home/mysql/undo002</span>
+</span><span id="__span-15-6"><a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a><span class="o">+</span><span class="c1">-----------------+------------+--------------+---------------+-----------------+-----------+</span>
+</span><span id="__span-15-7"><a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a><span class="o">|</span><span class="w"> </span><span class="n">TABLESPACE_NAME</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">FILE_NAME</span><span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="n">FREE_EXTENTS</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">TOTAL_EXTENTS</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">AUTOEXTEND_SIZE</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">DATA_FREE</span><span class="w"> </span><span class="o">|</span>
+</span><span id="__span-15-8"><a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a><span class="o">+</span><span class="c1">-----------------+------------+--------------+---------------+-----------------+-----------+</span>
+</span><span id="__span-15-9"><a id="__codelineno-15-9" name="__codelineno-15-9" href="#__codelineno-15-9"></a><span class="o">|</span><span class="w"> </span><span class="n">innodb_undo001</span><span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="p">.</span><span class="o">//</span><span class="n">undo001</span><span class="w"> </span><span class="o">|</span><span class="w">            </span><span class="mi">0</span><span class="w"> </span><span class="o">|</span><span class="w">           </span><span class="mi">780</span><span class="w"> </span><span class="o">|</span><span class="w">         </span><span class="mi">4194304</span><span class="w"> </span><span class="o">|</span><span class="w">         </span><span class="mi">0</span><span class="w"> </span><span class="o">|</span>
+</span><span id="__span-15-10"><a id="__codelineno-15-10" name="__codelineno-15-10" href="#__codelineno-15-10"></a><span class="o">|</span><span class="w"> </span><span class="n">innodb_undo002</span><span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="p">.</span><span class="o">//</span><span class="n">undo002</span><span class="w"> </span><span class="o">|</span><span class="w">            </span><span class="mi">3</span><span class="w"> </span><span class="o">|</span><span class="w">            </span><span class="mi">10</span><span class="w"> </span><span class="o">|</span><span class="w">         </span><span class="mi">1048576</span><span class="w"> </span><span class="o">|</span><span class="w">   </span><span class="mi">5242880</span><span class="w"> </span><span class="o">|</span>
+</span><span id="__span-15-11"><a id="__codelineno-15-11" name="__codelineno-15-11" href="#__codelineno-15-11"></a><span class="o">+</span><span class="c1">-----------------+------------+--------------+---------------+-----------------+-----------+</span>
+</span><span id="__span-15-12"><a id="__codelineno-15-12" name="__codelineno-15-12" href="#__codelineno-15-12"></a>
+</span><span id="__span-15-13"><a id="__codelineno-15-13" name="__codelineno-15-13" href="#__codelineno-15-13"></a>
+</span><span id="__span-15-14"><a id="__codelineno-15-14" name="__codelineno-15-14" href="#__codelineno-15-14"></a><span class="o">###############################################</span>
+</span><span id="__span-15-15"><a id="__codelineno-15-15" name="__codelineno-15-15" href="#__codelineno-15-15"></a><span class="n">Tue</span><span class="w"> </span><span class="n">Nov</span><span class="w"> </span><span class="mi">22</span><span class="w"> </span><span class="mi">15</span><span class="p">:</span><span class="mi">07</span><span class="p">:</span><span class="mi">13</span><span class="w"> </span><span class="n">JST</span><span class="w"> </span><span class="mi">2022</span>
+</span><span id="__span-15-16"><a id="__codelineno-15-16" name="__codelineno-15-16" href="#__codelineno-15-16"></a><span class="o">-</span><span class="n">rw</span><span class="o">-</span><span class="n">r</span><span class="c1">----- 1 mysql mysql 780M Nov 22 15:07 /home/mysql/undo001</span>
+</span><span id="__span-15-17"><a id="__codelineno-15-17" name="__codelineno-15-17" href="#__codelineno-15-17"></a><span class="o">-</span><span class="n">rw</span><span class="o">-</span><span class="n">r</span><span class="c1">----- 1 mysql mysql  10M Nov 22 14:55 /home/mysql/undo002</span>
+</span><span id="__span-15-18"><a id="__codelineno-15-18" name="__codelineno-15-18" href="#__codelineno-15-18"></a><span class="o">+</span><span class="c1">-----------------+------------+--------------+---------------+-----------------+-----------+</span>
+</span><span id="__span-15-19"><a id="__codelineno-15-19" name="__codelineno-15-19" href="#__codelineno-15-19"></a><span class="o">|</span><span class="w"> </span><span class="n">TABLESPACE_NAME</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">FILE_NAME</span><span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="n">FREE_EXTENTS</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">TOTAL_EXTENTS</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">AUTOEXTEND_SIZE</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">DATA_FREE</span><span class="w"> </span><span class="o">|</span>
+</span><span id="__span-15-20"><a id="__codelineno-15-20" name="__codelineno-15-20" href="#__codelineno-15-20"></a><span class="o">+</span><span class="c1">-----------------+------------+--------------+---------------+-----------------+-----------+</span>
+</span><span id="__span-15-21"><a id="__codelineno-15-21" name="__codelineno-15-21" href="#__codelineno-15-21"></a><span class="o">|</span><span class="w"> </span><span class="n">innodb_undo001</span><span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="p">.</span><span class="o">//</span><span class="n">undo001</span><span class="w"> </span><span class="o">|</span><span class="w">           </span><span class="mi">13</span><span class="w"> </span><span class="o">|</span><span class="w">           </span><span class="mi">780</span><span class="w"> </span><span class="o">|</span><span class="w">         </span><span class="mi">4194304</span><span class="w"> </span><span class="o">|</span><span class="w">  </span><span class="mi">11534336</span><span class="w"> </span><span class="o">|</span>
+</span><span id="__span-15-22"><a id="__codelineno-15-22" name="__codelineno-15-22" href="#__codelineno-15-22"></a><span class="o">|</span><span class="w"> </span><span class="n">innodb_undo002</span><span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="p">.</span><span class="o">//</span><span class="n">undo002</span><span class="w"> </span><span class="o">|</span><span class="w">            </span><span class="mi">3</span><span class="w"> </span><span class="o">|</span><span class="w">            </span><span class="mi">10</span><span class="w"> </span><span class="o">|</span><span class="w">         </span><span class="mi">1048576</span><span class="w"> </span><span class="o">|</span><span class="w">   </span><span class="mi">5242880</span><span class="w"> </span><span class="o">|</span>
+</span><span id="__span-15-23"><a id="__codelineno-15-23" name="__codelineno-15-23" href="#__codelineno-15-23"></a><span class="o">+</span><span class="c1">-----------------+------------+--------------+---------------+-----------------+-----------+</span>
+</span><span id="__span-15-24"><a id="__codelineno-15-24" name="__codelineno-15-24" href="#__codelineno-15-24"></a><span class="o">###############################################</span>
+</span></code></pre></div>
+</details>
+<h4 id="_6">しばらく時間経過すると<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h4>
+<details class="info">
+<summary>しばらく時間経過する</summary>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="p">[</span><span class="n">root</span><span class="o">@</span><span class="w"> </span><span class="n">backup</span><span class="p">]</span><span class="o">#</span><span class="w"> </span><span class="n">while</span><span class="w"> </span><span class="k">true</span><span class="p">;</span><span class="w"> </span><span class="k">do</span><span class="w"> </span><span class="n">echo</span><span class="w"> </span><span class="s1">&#39;###############################################&#39;</span><span class="p">;</span><span class="w">  </span><span class="nb">date</span><span class="p">;</span><span class="w">  </span><span class="n">ll</span><span class="w"> </span><span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">mysql</span><span class="o">/</span><span class="n">undo00</span><span class="o">*</span><span class="p">;</span><span class="w"> </span><span class="n">mysql</span><span class="w"> </span><span class="o">-</span><span class="n">e</span><span class="w"> </span><span class="ss">&quot;SELECT TABLESPACE_NAME, FILE_NAME,FREE_EXTENT</span>
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="ss">S,TOTAL_EXTENTS,AUTOEXTEND_SIZE,DATA_FREE FROM INFORMATION_SCHEMA.FILES WHERE FILE_TYPE LIKE &#39;UNDO LOG&#39;;&quot;</span><span class="p">;</span><span class="w"> </span><span class="n">sleep</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w"> </span><span class="n">done</span>
+</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="o">###############################################</span>
+</span><span id="__span-16-4"><a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a><span class="n">Tue</span><span class="w"> </span><span class="n">Nov</span><span class="w"> </span><span class="mi">22</span><span class="w"> </span><span class="mi">15</span><span class="p">:</span><span class="mi">10</span><span class="p">:</span><span class="mi">26</span><span class="w"> </span><span class="n">JST</span><span class="w"> </span><span class="mi">2022</span>
+</span><span id="__span-16-5"><a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a><span class="o">-</span><span class="n">rw</span><span class="o">-</span><span class="n">r</span><span class="c1">----- 1 mysql mysql 10M Nov 22 15:10 /home/mysql/undo001</span>
+</span><span id="__span-16-6"><a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a><span class="o">-</span><span class="n">rw</span><span class="o">-</span><span class="n">r</span><span class="c1">----- 1 mysql mysql 10M Nov 22 14:55 /home/mysql/undo002</span>
+</span><span id="__span-16-7"><a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a><span class="o">+</span><span class="c1">-----------------+------------+--------------+---------------+-----------------+-----------+</span>
+</span><span id="__span-16-8"><a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a><span class="o">|</span><span class="w"> </span><span class="n">TABLESPACE_NAME</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">FILE_NAME</span><span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="n">FREE_EXTENTS</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">TOTAL_EXTENTS</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">AUTOEXTEND_SIZE</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">DATA_FREE</span><span class="w"> </span><span class="o">|</span>
+</span><span id="__span-16-9"><a id="__codelineno-16-9" name="__codelineno-16-9" href="#__codelineno-16-9"></a><span class="o">+</span><span class="c1">-----------------+------------+--------------+---------------+-----------------+-----------+</span>
+</span><span id="__span-16-10"><a id="__codelineno-16-10" name="__codelineno-16-10" href="#__codelineno-16-10"></a><span class="o">|</span><span class="w"> </span><span class="n">innodb_undo001</span><span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="p">.</span><span class="o">//</span><span class="n">undo001</span><span class="w"> </span><span class="o">|</span><span class="w">            </span><span class="mi">4</span><span class="w"> </span><span class="o">|</span><span class="w">            </span><span class="mi">10</span><span class="w"> </span><span class="o">|</span><span class="w">         </span><span class="mi">1048576</span><span class="w"> </span><span class="o">|</span><span class="w">   </span><span class="mi">6291456</span><span class="w"> </span><span class="o">|</span>
+</span><span id="__span-16-11"><a id="__codelineno-16-11" name="__codelineno-16-11" href="#__codelineno-16-11"></a><span class="o">|</span><span class="w"> </span><span class="n">innodb_undo002</span><span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="p">.</span><span class="o">//</span><span class="n">undo002</span><span class="w"> </span><span class="o">|</span><span class="w">            </span><span class="mi">3</span><span class="w"> </span><span class="o">|</span><span class="w">            </span><span class="mi">10</span><span class="w"> </span><span class="o">|</span><span class="w">         </span><span class="mi">1048576</span><span class="w"> </span><span class="o">|</span><span class="w">   </span><span class="mi">5242880</span><span class="w"> </span><span class="o">|</span>
+</span><span id="__span-16-12"><a id="__codelineno-16-12" name="__codelineno-16-12" href="#__codelineno-16-12"></a><span class="o">+</span><span class="c1">-----------------+------------+--------------+---------------+-----------------+-----------+</span>
+</span><span id="__span-16-13"><a id="__codelineno-16-13" name="__codelineno-16-13" href="#__codelineno-16-13"></a><span class="o">###############################################</span>
+</span><span id="__span-16-14"><a id="__codelineno-16-14" name="__codelineno-16-14" href="#__codelineno-16-14"></a><span class="n">Tue</span><span class="w"> </span><span class="n">Nov</span><span class="w"> </span><span class="mi">22</span><span class="w"> </span><span class="mi">15</span><span class="p">:</span><span class="mi">10</span><span class="p">:</span><span class="mi">28</span><span class="w"> </span><span class="n">JST</span><span class="w"> </span><span class="mi">2022</span>
+</span><span id="__span-16-15"><a id="__codelineno-16-15" name="__codelineno-16-15" href="#__codelineno-16-15"></a><span class="o">-</span><span class="n">rw</span><span class="o">-</span><span class="n">r</span><span class="c1">----- 1 mysql mysql 10M Nov 22 15:10 /home/mysql/undo001</span>
+</span><span id="__span-16-16"><a id="__codelineno-16-16" name="__codelineno-16-16" href="#__codelineno-16-16"></a><span class="o">-</span><span class="n">rw</span><span class="o">-</span><span class="n">r</span><span class="c1">----- 1 mysql mysql 10M Nov 22 14:55 /home/mysql/undo002</span>
+</span><span id="__span-16-17"><a id="__codelineno-16-17" name="__codelineno-16-17" href="#__codelineno-16-17"></a><span class="o">+</span><span class="c1">-----------------+------------+--------------+---------------+-----------------+-----------+</span>
+</span><span id="__span-16-18"><a id="__codelineno-16-18" name="__codelineno-16-18" href="#__codelineno-16-18"></a><span class="o">|</span><span class="w"> </span><span class="n">TABLESPACE_NAME</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">FILE_NAME</span><span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="n">FREE_EXTENTS</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">TOTAL_EXTENTS</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">AUTOEXTEND_SIZE</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">DATA_FREE</span><span class="w"> </span><span class="o">|</span>
+</span><span id="__span-16-19"><a id="__codelineno-16-19" name="__codelineno-16-19" href="#__codelineno-16-19"></a><span class="o">+</span><span class="c1">-----------------+------------+--------------+---------------+-----------------+-----------+</span>
+</span><span id="__span-16-20"><a id="__codelineno-16-20" name="__codelineno-16-20" href="#__codelineno-16-20"></a><span class="o">|</span><span class="w"> </span><span class="n">innodb_undo001</span><span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="p">.</span><span class="o">//</span><span class="n">undo001</span><span class="w"> </span><span class="o">|</span><span class="w">            </span><span class="mi">4</span><span class="w"> </span><span class="o">|</span><span class="w">            </span><span class="mi">10</span><span class="w"> </span><span class="o">|</span><span class="w">         </span><span class="mi">1048576</span><span class="w"> </span><span class="o">|</span><span class="w">   </span><span class="mi">6291456</span><span class="w"> </span><span class="o">|</span>
+</span><span id="__span-16-21"><a id="__codelineno-16-21" name="__codelineno-16-21" href="#__codelineno-16-21"></a><span class="o">|</span><span class="w"> </span><span class="n">innodb_undo002</span><span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="p">.</span><span class="o">//</span><span class="n">undo002</span><span class="w"> </span><span class="o">|</span><span class="w">            </span><span class="mi">3</span><span class="w"> </span><span class="o">|</span><span class="w">            </span><span class="mi">10</span><span class="w"> </span><span class="o">|</span><span class="w">         </span><span class="mi">1048576</span><span class="w"> </span><span class="o">|</span><span class="w">   </span><span class="mi">5242880</span><span class="w"> </span><span class="o">|</span>
+</span><span id="__span-16-22"><a id="__codelineno-16-22" name="__codelineno-16-22" href="#__codelineno-16-22"></a><span class="o">+</span><span class="c1">-----------------+------------+--------------+---------------+-----------------+-----------+</span>
+</span><span id="__span-16-23"><a id="__codelineno-16-23" name="__codelineno-16-23" href="#__codelineno-16-23"></a><span class="o">###############################################</span>
+</span><span id="__span-16-24"><a id="__codelineno-16-24" name="__codelineno-16-24" href="#__codelineno-16-24"></a><span class="n">Tue</span><span class="w"> </span><span class="n">Nov</span><span class="w"> </span><span class="mi">22</span><span class="w"> </span><span class="mi">15</span><span class="p">:</span><span class="mi">10</span><span class="p">:</span><span class="mi">30</span><span class="w"> </span><span class="n">JST</span><span class="w"> </span><span class="mi">2022</span>
+</span><span id="__span-16-25"><a id="__codelineno-16-25" name="__codelineno-16-25" href="#__codelineno-16-25"></a><span class="o">-</span><span class="n">rw</span><span class="o">-</span><span class="n">r</span><span class="c1">----- 1 mysql mysql 10M Nov 22 15:10 /home/mysql/undo001</span>
+</span><span id="__span-16-26"><a id="__codelineno-16-26" name="__codelineno-16-26" href="#__codelineno-16-26"></a><span class="o">-</span><span class="n">rw</span><span class="o">-</span><span class="n">r</span><span class="c1">----- 1 mysql mysql 10M Nov 22 14:55 /home/mysql/undo002</span>
+</span><span id="__span-16-27"><a id="__codelineno-16-27" name="__codelineno-16-27" href="#__codelineno-16-27"></a><span class="o">+</span><span class="c1">-----------------+------------+--------------+---------------+-----------------+-----------+</span>
+</span><span id="__span-16-28"><a id="__codelineno-16-28" name="__codelineno-16-28" href="#__codelineno-16-28"></a><span class="o">|</span><span class="w"> </span><span class="n">TABLESPACE_NAME</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">FILE_NAME</span><span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="n">FREE_EXTENTS</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">TOTAL_EXTENTS</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">AUTOEXTEND_SIZE</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">DATA_FREE</span><span class="w"> </span><span class="o">|</span>
+</span><span id="__span-16-29"><a id="__codelineno-16-29" name="__codelineno-16-29" href="#__codelineno-16-29"></a><span class="o">+</span><span class="c1">-----------------+------------+--------------+---------------+-----------------+-----------+</span>
+</span><span id="__span-16-30"><a id="__codelineno-16-30" name="__codelineno-16-30" href="#__codelineno-16-30"></a><span class="o">|</span><span class="w"> </span><span class="n">innodb_undo001</span><span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="p">.</span><span class="o">//</span><span class="n">undo001</span><span class="w"> </span><span class="o">|</span><span class="w">            </span><span class="mi">4</span><span class="w"> </span><span class="o">|</span><span class="w">            </span><span class="mi">10</span><span class="w"> </span><span class="o">|</span><span class="w">         </span><span class="mi">1048576</span><span class="w"> </span><span class="o">|</span><span class="w">   </span><span class="mi">6291456</span><span class="w"> </span><span class="o">|</span>
+</span><span id="__span-16-31"><a id="__codelineno-16-31" name="__codelineno-16-31" href="#__codelineno-16-31"></a><span class="o">|</span><span class="w"> </span><span class="n">innodb_undo002</span><span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="p">.</span><span class="o">//</span><span class="n">undo002</span><span class="w"> </span><span class="o">|</span><span class="w">            </span><span class="mi">3</span><span class="w"> </span><span class="o">|</span><span class="w">            </span><span class="mi">10</span><span class="w"> </span><span class="o">|</span><span class="w">         </span><span class="mi">1048576</span><span class="w"> </span><span class="o">|</span><span class="w">   </span><span class="mi">5242880</span><span class="w"> </span><span class="o">|</span>
+</span><span id="__span-16-32"><a id="__codelineno-16-32" name="__codelineno-16-32" href="#__codelineno-16-32"></a><span class="o">+</span><span class="c1">-----------------+------------+--------------+---------------+-----------------+-----------+</span>
+</span></code></pre></div>
+</details>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+            Back to top
+          </button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright © 2022 - 2023 - lyvivian0077
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tracking", "navigation.top", "navigation.indexes", "navigation.path", "content.code.copy", "toc.follow"], "search": "../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.fac441b0.min.js"></script>
+      
+    
+  </body>
+</html>

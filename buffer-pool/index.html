@@ -1,0 +1,3032 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../undo-log/">
+      
+      
+        <link rel="next" href="../my-cnf/">
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.9">
+    
+    
+      
+        <title>Buffer-Pool - 总有刁民想要害朕</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.85bb2934.min.css">
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#buffer-pool" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="总有刁民想要害朕" class="md-header__button md-logo" aria-label="总有刁民想要害朕" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            总有刁民想要害朕
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Buffer-Pool
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="总有刁民想要害朕" class="md-nav__button md-logo" aria-label="总有刁民想要害朕" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    总有刁民想要害朕
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        Welcome
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+      
+      
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+          ansbile
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          ansbile
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ansbile/" class="md-nav__link">
+        ansbileオプション
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ansbile_async/" class="md-nav__link">
+        ansbile_async
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../awk/" class="md-nav__link">
+        awk
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sed/" class="md-nav__link">
+        sed
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../MB-MiB%E7%9A%84%E5%8C%BA%E5%88%AB/" class="md-nav__link">
+        MB_MiB的区别
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+      
+      
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+          MegaRAID
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_6">
+          <span class="md-nav__icon md-icon"></span>
+          MegaRAID
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../megacli/" class="md-nav__link">
+        megacli
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../megaraid/" class="md-nav__link">
+        megaraid
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+      
+      
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+          PostgreSQL
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_7">
+          <span class="md-nav__icon md-icon"></span>
+          PostgreSQL
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../psql-vs-mysql/" class="md-nav__link">
+        MySQLとPostgreSQLコマンド比較表
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" checked>
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+          MySQL
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="true">
+        <label class="md-nav__title" for="__nav_8">
+          <span class="md-nav__icon md-icon"></span>
+          MySQL
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Explain%E8%AF%A6%E8%A7%A3%E4%B8%8E%E7%B4%A2%E5%BC%95%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/" class="md-nav__link">
+        Explain详解与索引最佳实践
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mysql/" class="md-nav__link">
+        Mysql参数优化
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../show-engine-innodb-status/" class="md-nav__link">
+        innodb status解读
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../undo-log/" class="md-nav__link">
+        undo-log
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Buffer-Pool
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Buffer-Pool
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#innodb-pluginbuffer-pool" class="md-nav__link">
+    InnoDB Plugin特性介绍：让Buffer Pool不被污染
+  </a>
+  
+    <nav class="md-nav" aria-label="InnoDB Plugin特性介绍：让Buffer Pool不被污染">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    参考：
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mysql" class="md-nav__link">
+    mysql配置详解（不断更新）
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#innodb-buffer-pool" class="md-nav__link">
+    InnoDB Buffer Pool详解
+  </a>
+  
+    <nav class="md-nav" aria-label="InnoDB Buffer Pool详解">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    一、前言
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    二、基础知识
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#buffer-pool_1" class="md-nav__link">
+    三、 Buffer Pool 存储内容
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#buffer-pool_2" class="md-nav__link">
+    四、Buffer Pool 数据加载
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#innodb-buffer-pool_1" class="md-nav__link">
+    五、Innodb 如何管理Buffer Pool
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#buffer-pool_3" class="md-nav__link">
+    六、Buffer Pool 状态查询
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#innodb-buffer-pool_2" class="md-nav__link">
+    七、InnoDB Buffer Pool配置项
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#innodb" class="md-nav__link">
+    八、配置InnoDB缓冲池案例
+  </a>
+  
+    <nav class="md-nav" aria-label="八、配置InnoDB缓冲池案例">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    参考文献
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    内存优化配置
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#performance_schema" class="md-nav__link">
+    performance_schema的介绍
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mysqlinnodb_buffer_pool_size" class="md-nav__link">
+    Mysql优化之innodb_buffer_pool_size篇
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mysql-oom" class="md-nav__link">
+    MySQL OOM（内存溢出）的解决思路
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mysql8-mysql" class="md-nav__link">
+    mysql8 参考手册–mysql使用内存优化
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#performance_schema_1" class="md-nav__link">
+    通过performance_schema获取造成死锁的事务语句
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mysqlinnodb-page-clean" class="md-nav__link">
+    MySQL:Innodb page clean 线程 (一) 基础
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mysql-buffer-pool-and-memory" class="md-nav__link">
+    MYSQL buffer pool and memory解析
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#innodb-status" class="md-nav__link">
+    解析innodb status各项参数
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../my-cnf/" class="md-nav__link">
+        mysql5.7性能提升一百倍调优宝典
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mysql-table/" class="md-nav__link">
+        MySQL-table
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mysql%E3%82%92%E3%82%BD%E3%83%BC%E3%82%B9%E3%81%8B%E3%82%89%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB/" class="md-nav__link">
+        MySQLビルド
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../MySQL-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="md-nav__link">
+        学习笔记
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_10" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_8_10" id="__nav_8_10_label" tabindex="0">
+          MGR
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_10_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_8_10">
+          <span class="md-nav__icon md-icon"></span>
+          MGR
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mysql-mgr/" class="md-nav__link">
+        MGR
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mysql-group-replication-how-to-elect-the-new-primary-node/" class="md-nav__link">
+        MGR 如何选举新的主节点
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mysql-mgr-copy/" class="md-nav__link">
+        転載MGR
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mysql-ha/" class="md-nav__link">
+        mysql+keepalived搭建教程
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mysql-clone/" class="md-nav__link">
+        mysqlクローン機能
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+      
+      
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+          MySQL DUMP
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_9">
+          <span class="md-nav__icon md-icon"></span>
+          MySQL DUMP
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mysql_backup/" class="md-nav__link">
+        Mysql バックアップツール
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mydumper/" class="md-nav__link">
+        mydumper
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="0">
+          Python Tips
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_10">
+          <span class="md-nav__icon md-icon"></span>
+          Python Tips
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-styleguide/" class="md-nav__link">
+        Python风格规范
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-config/" class="md-nav__link">
+        Python程序配置文件管理
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-decorator/" class="md-nav__link">
+        装饰器
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-dunder/" class="md-nav__link">
+        5种下划线
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-function/" class="md-nav__link">
+        传入参数的几种方法
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python/" class="md-nav__link">
+        非常规的技巧
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-mysql/" class="md-nav__link">
+        操作mysql基础
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Python-Re-%E6%A8%A1%E5%9D%97%E8%B6%85%E5%85%A8%E8%A7%A3%E8%AF%BB/" class="md-nav__link">
+        Re 模块
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Python%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%8B%BC%E6%8E%A5%E6%80%BB%E7%BB%93/" class="md-nav__link">
+        字符串拼接总结
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E4%B8%80%E8%A1%8C-Python-%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0%E5%B9%B6%E8%A1%8C/" class="md-nav__link">
+        代码并行
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Regular-Expression/" class="md-nav__link">
+        正規表現
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../taged-VLAN%E3%81%A8untagedVLAN%E3%81%AE%E9%81%95%E3%81%84/" class="md-nav__link">
+        タグVLAN
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sar/" class="md-nav__link">
+        sar
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Bash%E7%BC%96%E7%A8%8B%E8%B6%85%E8%AF%A6%E7%BB%86%E8%AF%AD%E6%B3%95%E6%80%BB%E7%BB%93/" class="md-nav__link">
+        Bash编程超详细语法总结
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_15" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_15" id="__nav_15_label" tabindex="0">
+          iptables
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_15_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_15">
+          <span class="md-nav__icon md-icon"></span>
+          iptables
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../iptables/" class="md-nav__link">
+        iptables
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../iptables_1/" class="md-nav__link">
+        iptables概念(1)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../iptables_2/" class="md-nav__link">
+        iptables实际操作之规则查询(2)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../iptables_3/" class="md-nav__link">
+        iptables规则管理(3)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../iptables_4/" class="md-nav__link">
+        iptables匹配条件总结之一(4)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../iptables_5/" class="md-nav__link">
+        iptables匹配条件总结之二（常用扩展模块）(5)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../iptables_6/" class="md-nav__link">
+        iptables扩展匹配条件之’–tcp-flags’(6)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../iptables_7/" class="md-nav__link">
+        iptables扩展之udp扩展与icmp扩展(7)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../iptables_8/" class="md-nav__link">
+        iptables扩展模块之state扩展(8)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../iptables_9/" class="md-nav__link">
+        iptables的黑白名单机制(9)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../iptables_10/" class="md-nav__link">
+        iptables自定义链(10)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../iptables_11/" class="md-nav__link">
+        iptables之网络防火墙(11)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../iptables_12/" class="md-nav__link">
+        iptables动作总结之一(12)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../iptables_13/" class="md-nav__link">
+        iptables动作总结之二(13)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../iptables_14/" class="md-nav__link">
+        iptables小结之常用套路(14)
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../linux-lvm/" class="md-nav__link">
+        linux-lvm
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../centos7-set-kernel/" class="md-nav__link">
+        centos7-set-kernel
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../centos-network-device-naming/" class="md-nav__link">
+        centos-network-device-naming
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Linux-Performance/" class="md-nav__link">
+        Linux Performance
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Linux-shell-%E9%80%BB%E8%BE%91%E8%BF%90%E7%AE%97%E7%AC%A6-%E9%80%BB%E8%BE%91%E8%A1%A8%E8%BE%BE%E5%BC%8F%E8%AF%A6%E8%A7%A3/" class="md-nav__link">
+        Linux-shell-逻辑运算符-逻辑表达式详解
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../LVM%E9%80%BB%E8%BE%91%E5%8D%B7%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5%E5%8F%8ALVM%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/" class="md-nav__link">
+        LVM逻辑卷基本概念及LVM的工作原理
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../macOS%E8%BD%AF%E4%BB%B6%E7%BC%96%E8%AF%91%E6%97%B6%E6%89%BE%E4%B8%8D%E5%88%B0%E5%A4%B4%E6%96%87%E4%BB%B6%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95-%E6%9B%B4%E6%96%B010-15/" class="md-nav__link">
+        macOS软件编译时找不到头文件解决方法[更新10.15]
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ubnt/" class="md-nav__link">
+        ubnt
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vim/" class="md-nav__link">
+        VIM
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../busybox/" class="md-nav__link">
+        busybox
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_26" >
+      
+      
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_26" id="__nav_26_label" tabindex="0">
+          Zabbix
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_26_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_26">
+          <span class="md-nav__icon md-icon"></span>
+          Zabbix
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../zabbix6/" class="md-nav__link">
+        zabbix6検証
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../about/" class="md-nav__link">
+        About
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#innodb-pluginbuffer-pool" class="md-nav__link">
+    InnoDB Plugin特性介绍：让Buffer Pool不被污染
+  </a>
+  
+    <nav class="md-nav" aria-label="InnoDB Plugin特性介绍：让Buffer Pool不被污染">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    参考：
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mysql" class="md-nav__link">
+    mysql配置详解（不断更新）
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#innodb-buffer-pool" class="md-nav__link">
+    InnoDB Buffer Pool详解
+  </a>
+  
+    <nav class="md-nav" aria-label="InnoDB Buffer Pool详解">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    一、前言
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    二、基础知识
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#buffer-pool_1" class="md-nav__link">
+    三、 Buffer Pool 存储内容
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#buffer-pool_2" class="md-nav__link">
+    四、Buffer Pool 数据加载
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#innodb-buffer-pool_1" class="md-nav__link">
+    五、Innodb 如何管理Buffer Pool
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#buffer-pool_3" class="md-nav__link">
+    六、Buffer Pool 状态查询
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#innodb-buffer-pool_2" class="md-nav__link">
+    七、InnoDB Buffer Pool配置项
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#innodb" class="md-nav__link">
+    八、配置InnoDB缓冲池案例
+  </a>
+  
+    <nav class="md-nav" aria-label="八、配置InnoDB缓冲池案例">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    参考文献
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    内存优化配置
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#performance_schema" class="md-nav__link">
+    performance_schema的介绍
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mysqlinnodb_buffer_pool_size" class="md-nav__link">
+    Mysql优化之innodb_buffer_pool_size篇
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mysql-oom" class="md-nav__link">
+    MySQL OOM（内存溢出）的解决思路
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mysql8-mysql" class="md-nav__link">
+    mysql8 参考手册–mysql使用内存优化
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#performance_schema_1" class="md-nav__link">
+    通过performance_schema获取造成死锁的事务语句
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mysqlinnodb-page-clean" class="md-nav__link">
+    MySQL:Innodb page clean 线程 (一) 基础
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mysql-buffer-pool-and-memory" class="md-nav__link">
+    MYSQL buffer pool and memory解析
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#innodb-status" class="md-nav__link">
+    解析innodb status各项参数
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="buffer-pool">buffer-pool<a class="headerlink" href="#buffer-pool" title="Permanent link">&para;</a></h1>
+<details class="note">
+<summary>MySQL log 説明</summary>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nv">expire_logs_days</span><span class="o">={</span><span class="m">0</span>..99<span class="o">}</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>设定二进制日志的过期天数，超出此天数的二进制日志文件将被自动删除。默认为0，表示不启用过期自动删除功能。如果启用此功能，自动删除工作通常发生在MySQL启动时或FLUSH日志时。作用范围为全局，可用于配置文件，属动态变量。
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="nv">general_log</span><span class="o">={</span>ON<span class="p">|</span>OFF<span class="o">}</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>设定是否启用查询日志，默认值为取决于在启动mysqld时是否使用了--general_log选项。如若启用此项，其输出位置则由--log_output选项进行定义，如果log_output的值设定为NONE，即使用启用查询日志，其也不会记录任何日志信息。作用范围为全局，可用于配置文件，属动态变量。
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="nv">general_log_file</span><span class="o">=</span>FILE_NAME
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>查询日志的日志文件名称，默认为“hostname.log<span class="s2">&quot;。作用范围为全局，可用于配置文件，属动态变量。</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="s2">binlog-format={ROW|STATEMENT|MIXED}</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="s2">指定二进制日志的类型，默认为STATEMENT。如果设定了二进制日志的格式，却没有启用二进制日志，则MySQL启动时会产生警告日志信息并记录于错误日志中。作用范围为全局或会话，可用于配置文件，且属于动态变量。</span>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="s2">log={YES|NO}</span>
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="s2">是否启用记录所有语句的日志信息于一般查询日志(general query log)中，默认通常为OFF。MySQL 5.6已经弃用此选项。</span>
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="s2">log-bin={YES|NO}</span>
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="s2">是否启用二进制日志，如果为mysqld设定了--log-bin选项，则其值为ON，否则则为OFF。其仅用于显示是否启用了二进制日志，并不反应log-bin的设定值。作用范围为全局级别，属非动态变量。</span>
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>
+</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="s2">log_bin_trust_function_creators={TRUE|FALSE}</span>
+</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="s2">此参数仅在启用二进制日志时有效，用于控制创建存储函数时如果会导致不安全的事件记录二进制日志条件下是否禁止创建存储函数。默认值为0，表示除非用户除了CREATE ROUTING或ALTER ROUTINE权限外还有SUPER权限，否则将禁止创建或修改存储函数，同时，还要求在创建函数时必需为之使用DETERMINISTIC属性，再不然就是附带READS SQL DATA或NO SQL属性。设置其值为1时则不启用这些限制。作用范围为全局级别，可用于配置文件，属动态变量。</span>
+</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>
+</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a><span class="s2">log_error=/PATH/TO/ERROR_LOG_FILENAME</span>
+</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a><span class="s2">定义错误日志文件。作用范围为全局或会话级别，可用于配置文件，属非动态变量。</span>
+</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>
+</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a><span class="s2">log_output={TABLE|FILE|NONE}</span>
+</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a><span class="s2">定义一般查询日志和慢查询日志的保存方式，可以是TABLE、FILE、NONE，也可以是TABLE及FILE的组合(用逗号隔开)，默认为TABLE。如果组合中出现了NONE，那么其它设定都将失效，同时，无论是否启用日志功能，也不会记录任何相关的日志信息。作用范围为全局级别，可用于配置文件，属动态变量。</span>
+</span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a>
+</span><span id="__span-0-29"><a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a><span class="s2">log_query_not_using_indexes={ON|OFF}</span>
+</span><span id="__span-0-30"><a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a><span class="s2">设定是否将没有使用索引的查询操作记录到慢查询日志。作用范围为全局级别，可用于配置文件，属动态变量。</span>
+</span><span id="__span-0-31"><a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a>
+</span><span id="__span-0-32"><a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a><span class="s2">log_slave_updates</span>
+</span><span id="__span-0-33"><a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a><span class="s2">用于设定复制场景中的从服务器是否将从主服务器收到的更新操作记录进本机的二进制日志中。本参数设定的生效需要在从服务器上启用二进制日志功能。</span>
+</span><span id="__span-0-34"><a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a>
+</span><span id="__span-0-35"><a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a><span class="s2">log_slow_queries={YES|NO}</span>
+</span><span id="__span-0-36"><a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a><span class="s2">是否记录慢查询日志。慢查询是指查询的执行时间超出long_query_time参数所设定时长的事件。MySQL 5.6将此参数修改为了slow_query_log。作用范围为全局级别，可用于配置文件，属动态变量。</span>
+</span><span id="__span-0-37"><a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a>
+</span><span id="__span-0-38"><a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a><span class="s2">log_warnings=#</span>
+</span><span id="__span-0-39"><a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a><span class="s2">设定是否将警告信息记录进错误日志。默认设定为1，表示启用；可以将其设置为0以禁用；而其值为大于1的数值时表示将新发起连接时产生的“失败的连接”和“拒绝访问”类的错误信息也记录进错误日志。</span>
+</span><span id="__span-0-40"><a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a>
+</span><span id="__span-0-41"><a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a><span class="s2">long_query_time=#</span>
+</span><span id="__span-0-42"><a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a><span class="s2">设定区别慢查询与一般查询的语句执行时间长度。这里的语句执行时长为实际的执行时间，而非在CPU上的执行时长，因此，负载较重的服务器上更容易产生慢查询。其最小值为0，默认值为10，单位是秒钟。它也支持毫秒级的解析度。作用范围为全局或会话级别，可用于配置文件，属动态变量。</span>
+</span><span id="__span-0-43"><a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a>
+</span><span id="__span-0-44"><a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a><span class="s2">max_binlog_cache_size{4096 .. 18446744073709547520}</span>
+</span><span id="__span-0-45"><a id="__codelineno-0-45" name="__codelineno-0-45" href="#__codelineno-0-45"></a><span class="s2">二进定日志缓存空间大小，5.5.9及以后的版本仅应用于事务缓存，其上限由max_binlog_stmt_cache_size决定。作用范围为全局级别，可用于配置文件，属动态变量。</span>
+</span><span id="__span-0-46"><a id="__codelineno-0-46" name="__codelineno-0-46" href="#__codelineno-0-46"></a>
+</span><span id="__span-0-47"><a id="__codelineno-0-47" name="__codelineno-0-47" href="#__codelineno-0-47"></a><span class="s2">max_binlog_size={4096 .. 1073741824}</span>
+</span><span id="__span-0-48"><a id="__codelineno-0-48" name="__codelineno-0-48" href="#__codelineno-0-48"></a><span class="s2">设定二进制日志文件上限，单位为字节，最小值为4K，最大值为1G，默认为1G。某事务所产生的日志信息只能写入一个二进制日志文件，因此，实际上的二进制日志文件可能大于这个指定的上限。作用范围为全局级别，可用于配置文件，属动态变量。</span>
+</span><span id="__span-0-49"><a id="__codelineno-0-49" name="__codelineno-0-49" href="#__codelineno-0-49"></a>
+</span><span id="__span-0-50"><a id="__codelineno-0-50" name="__codelineno-0-50" href="#__codelineno-0-50"></a>
+</span><span id="__span-0-51"><a id="__codelineno-0-51" name="__codelineno-0-51" href="#__codelineno-0-51"></a>
+</span><span id="__span-0-52"><a id="__codelineno-0-52" name="__codelineno-0-52" href="#__codelineno-0-52"></a>
+</span><span id="__span-0-53"><a id="__codelineno-0-53" name="__codelineno-0-53" href="#__codelineno-0-53"></a><span class="s2">max_relay_log_size={4096..1073741824}</span>
+</span><span id="__span-0-54"><a id="__codelineno-0-54" name="__codelineno-0-54" href="#__codelineno-0-54"></a><span class="s2">设定从服务器上中继日志的体积上限，到达此限度时其会自动进行中继日志滚动。此参数值为0时，mysqld将使用max_binlog_size参数同时为二进制日志和中继日志设定日志文件体积上限。作用范围为全局级别，可用于配置文件，属动态变量。</span>
+</span><span id="__span-0-55"><a id="__codelineno-0-55" name="__codelineno-0-55" href="#__codelineno-0-55"></a>
+</span><span id="__span-0-56"><a id="__codelineno-0-56" name="__codelineno-0-56" href="#__codelineno-0-56"></a><span class="s2">innodb_log_buffer_size={262144 .. 4294967295}</span>
+</span><span id="__span-0-57"><a id="__codelineno-0-57" name="__codelineno-0-57" href="#__codelineno-0-57"></a><span class="s2">设定InnoDB用于辅助完成日志文件写操作的日志缓冲区大小，单位是字节，默认为8MB。较大的事务可以借助于更大的日志缓冲区来避免在事务完成之前将日志缓冲区的数据写入日志文件，以减少I/O操作进而提升系统性能。因此，在有着较大事务的应用场景中，建议为此变量设定一个更大的值。作用范围为全局级别，可用于选项文件，属非动态变量。</span>
+</span><span id="__span-0-58"><a id="__codelineno-0-58" name="__codelineno-0-58" href="#__codelineno-0-58"></a>
+</span><span id="__span-0-59"><a id="__codelineno-0-59" name="__codelineno-0-59" href="#__codelineno-0-59"></a><span class="s2">innodb_log_file_size={108576 .. 4294967295}</span>
+</span><span id="__span-0-60"><a id="__codelineno-0-60" name="__codelineno-0-60" href="#__codelineno-0-60"></a><span class="s2">设定日志组中每个日志文件的大小，单位是字节，默认值是5MB。较为明智的取值范围是从1MB到缓存池体积的1/n，其中n表示日志组中日志文件的个数。日志文件越大，在缓存池中需要执行的检查点刷写操作就越少，这意味着所需的I/O操作也就越少，然而这也会导致较慢的故障恢复速度。作用范围为全局级别，可用于选项文件，属非动态变量。</span>
+</span><span id="__span-0-61"><a id="__codelineno-0-61" name="__codelineno-0-61" href="#__codelineno-0-61"></a>
+</span><span id="__span-0-62"><a id="__codelineno-0-62" name="__codelineno-0-62" href="#__codelineno-0-62"></a><span class="s2">innodb_log_files_in_group={2 .. 100}</span>
+</span><span id="__span-0-63"><a id="__codelineno-0-63" name="__codelineno-0-63" href="#__codelineno-0-63"></a><span class="s2">设定日志组中日志文件的个数。InnoDB以循环的方式使用这些日志文件。默认值为2。作用范围为全局级别，可用于选项文件，属非动态变量。</span>
+</span><span id="__span-0-64"><a id="__codelineno-0-64" name="__codelineno-0-64" href="#__codelineno-0-64"></a>
+</span><span id="__span-0-65"><a id="__codelineno-0-65" name="__codelineno-0-65" href="#__codelineno-0-65"></a><span class="s2">innodb_log_group_home_dir=/PATH/TO/DIR</span>
+</span><span id="__span-0-66"><a id="__codelineno-0-66" name="__codelineno-0-66" href="#__codelineno-0-66"></a><span class="s2">设定InnoDB重做日志文件的存储目录。在缺省使用InnoDB日志相关的所有变量时，其默认会在数据目录中创建两个大小为5MB的名为ib_logfile0和ib_logfile1的日志文件。作用范围为全局级别，可用于选项文件，属非动态变量。</span>
+</span><span id="__span-0-67"><a id="__codelineno-0-67" name="__codelineno-0-67" href="#__codelineno-0-67"></a>
+</span><span id="__span-0-68"><a id="__codelineno-0-68" name="__codelineno-0-68" href="#__codelineno-0-68"></a>
+</span><span id="__span-0-69"><a id="__codelineno-0-69" name="__codelineno-0-69" href="#__codelineno-0-69"></a><span class="s2">relay_log=file_name</span>
+</span><span id="__span-0-70"><a id="__codelineno-0-70" name="__codelineno-0-70" href="#__codelineno-0-70"></a><span class="s2">设定中继日志的文件名称，默认为host_name-relay-bin。也可以使用绝对路径，以指定非数据目录来存储中继日志。作用范围为全局级别，可用于选项文件，属非动态变量。</span>
+</span><span id="__span-0-71"><a id="__codelineno-0-71" name="__codelineno-0-71" href="#__codelineno-0-71"></a>
+</span><span id="__span-0-72"><a id="__codelineno-0-72" name="__codelineno-0-72" href="#__codelineno-0-72"></a><span class="s2">relay_log_index=file_name</span>
+</span><span id="__span-0-73"><a id="__codelineno-0-73" name="__codelineno-0-73" href="#__codelineno-0-73"></a><span class="s2">设定中继日志的索引文件名，默认为为数据目录中的host_name-relay-bin.index。作用范围为全局级别，可用于选项文件，属非动态变量。</span>
+</span><span id="__span-0-74"><a id="__codelineno-0-74" name="__codelineno-0-74" href="#__codelineno-0-74"></a>
+</span><span id="__span-0-75"><a id="__codelineno-0-75" name="__codelineno-0-75" href="#__codelineno-0-75"></a><span class="s2">relay-log-info-file=file_name</span>
+</span><span id="__span-0-76"><a id="__codelineno-0-76" name="__codelineno-0-76" href="#__codelineno-0-76"></a><span class="s2">设定中继服务用于记录中继信息的文件，默认为数据目录中的relay-log.info。作用范围为全局级别，可用于选项文件，属非动态变量。</span>
+</span><span id="__span-0-77"><a id="__codelineno-0-77" name="__codelineno-0-77" href="#__codelineno-0-77"></a>
+</span><span id="__span-0-78"><a id="__codelineno-0-78" name="__codelineno-0-78" href="#__codelineno-0-78"></a>
+</span><span id="__span-0-79"><a id="__codelineno-0-79" name="__codelineno-0-79" href="#__codelineno-0-79"></a><span class="s2">relay_log_purge={ON|OFF}</span>
+</span><span id="__span-0-80"><a id="__codelineno-0-80" name="__codelineno-0-80" href="#__codelineno-0-80"></a><span class="s2">设定对不再需要的中继日志是否自动进行清理。默认值为ON。作用范围为全局级别，可用于选项文件，属动态变量。</span>
+</span><span id="__span-0-81"><a id="__codelineno-0-81" name="__codelineno-0-81" href="#__codelineno-0-81"></a>
+</span><span id="__span-0-82"><a id="__codelineno-0-82" name="__codelineno-0-82" href="#__codelineno-0-82"></a><span class="s2">relay_log_space_limit=#</span>
+</span><span id="__span-0-83"><a id="__codelineno-0-83" name="__codelineno-0-83" href="#__codelineno-0-83"></a><span class="s2">设定用于存储所有中继日志文件的可用空间大小。默认为0，表示不限定。最大值取决于系统平台位数。作用范围为全局级别，可用于选项文件，属非动态变量。</span>
+</span><span id="__span-0-84"><a id="__codelineno-0-84" name="__codelineno-0-84" href="#__codelineno-0-84"></a>
+</span><span id="__span-0-85"><a id="__codelineno-0-85" name="__codelineno-0-85" href="#__codelineno-0-85"></a>
+</span><span id="__span-0-86"><a id="__codelineno-0-86" name="__codelineno-0-86" href="#__codelineno-0-86"></a><span class="s2">slow_query_log={ON|OFF}</span>
+</span><span id="__span-0-87"><a id="__codelineno-0-87" name="__codelineno-0-87" href="#__codelineno-0-87"></a><span class="s2">设定是否启用慢查询日志。0或OFF表示禁用，1或ON表示启用。日志信息的输出位置取决于log_output变量的定义，如果其值为NONE，则即便slow_query_log为ON，也不会记录任何慢查询信息。作用范围为全局级别，可用于选项文件，属动态变量。</span>
+</span><span id="__span-0-88"><a id="__codelineno-0-88" name="__codelineno-0-88" href="#__codelineno-0-88"></a>
+</span><span id="__span-0-89"><a id="__codelineno-0-89" name="__codelineno-0-89" href="#__codelineno-0-89"></a><span class="s2">slow_query_log_file=/PATH/TO/SOMEFILE</span>
+</span><span id="__span-0-90"><a id="__codelineno-0-90" name="__codelineno-0-90" href="#__codelineno-0-90"></a><span class="s2">设定慢查询日志文件的名称。默认为hostname-slow.log，但可以通过--slow_query_log_file选项修改。作用范围为全局级别，可用于选项文件，属动态变量。</span>
+</span><span id="__span-0-91"><a id="__codelineno-0-91" name="__codelineno-0-91" href="#__codelineno-0-91"></a>
+</span><span id="__span-0-92"><a id="__codelineno-0-92" name="__codelineno-0-92" href="#__codelineno-0-92"></a>
+</span><span id="__span-0-93"><a id="__codelineno-0-93" name="__codelineno-0-93" href="#__codelineno-0-93"></a><span class="s2">sql_log_bin={ON|OFF}</span>
+</span><span id="__span-0-94"><a id="__codelineno-0-94" name="__codelineno-0-94" href="#__codelineno-0-94"></a><span class="s2">用于控制二进制日志信息是否记录进日志文件。默认为ON，表示启用记录功能。用户可以在会话级别修改此变量的值，但其必须具有SUPER权限。作用范围为全局和会话级别，属动态变量。</span>
+</span><span id="__span-0-95"><a id="__codelineno-0-95" name="__codelineno-0-95" href="#__codelineno-0-95"></a>
+</span><span id="__span-0-96"><a id="__codelineno-0-96" name="__codelineno-0-96" href="#__codelineno-0-96"></a><span class="s2">sql_log_off={ON|OFF}</span>
+</span><span id="__span-0-97"><a id="__codelineno-0-97" name="__codelineno-0-97" href="#__codelineno-0-97"></a><span class="s2">用于控制是否禁止将一般查询日志类信息记录进查询日志文件。默认为OFF，表示不禁止记录功能。用户可以在会话级别修改此变量的值，但其必须具有SUPER权限。作用范围为全局和会话级别，属动态变量。</span>
+</span><span id="__span-0-98"><a id="__codelineno-0-98" name="__codelineno-0-98" href="#__codelineno-0-98"></a>
+</span><span id="__span-0-99"><a id="__codelineno-0-99" name="__codelineno-0-99" href="#__codelineno-0-99"></a><span class="s2">sync_binlog=#</span>
+</span><span id="__span-0-100"><a id="__codelineno-0-100" name="__codelineno-0-100" href="#__codelineno-0-100"></a><span class="s2">设定多久同步一次二进制日志至磁盘文件中，0表示不同步，任何正数值都表示对二进制每多少次写操作之后同步一次。当autocommit的值为1时，每条语句的执行都会引起二进制日志同步，否则，每个事务的提交会引起二进制日志同步。</span>
+</span></code></pre></div>
+</details>
+<h2 id="innodb-pluginbuffer-pool">InnoDB Plugin特性介绍：让Buffer Pool不被污染<a class="headerlink" href="#innodb-pluginbuffer-pool" title="Permanent link">&para;</a></h2>
+<ul>
+<li>https://www.orczhou.com/index.php/2010/05/innodb-plugin-make-buffer-cache-scan-resistant/</li>
+<li>https://www.orczhou.com/index.php/2010/05/innodb-plugin-make-buffer-cache-scan-resistant/comment-page-1/</li>
+<li>https://dev.mysql.com/doc/refman/8.0/ja/innodb-buffer-pool.html</li>
+</ul>
+<p>较之MyISAM的一个很大的优势是，InnoDB会缓存数据块。如果系统中的数据量并不大，或者或者活跃数据量并不大时，InnoDB会将这些数据块全部缓存到Buffer Pool（内存）中，这样可以最大限度的提高提供的响应速度，特别是读取。当用户请求需要查询数据块时，InnoDB会首先在Buffer Pool中查找数据，如果Buffer Pool中没有该数据块时，InnoDB会从磁盘上Load对应的数据块，并通过LRU算法替代当前Buffer Pool的缓存块。</p>
+<ol>
+<li>Buffer Pool中LRU缺点、细节</li>
+</ol>
+<p>这样LRU算法的一个缺点是，如果有某一个查询做了一次全表扫描（例如备份，临时DDL等），都可能会导致整个Buffer Pool中LRU链表中的数据块都被替换了，甚至很多热点数据也会被替换，而这些新进的数据块可能在这一次查询之后就再也不会被读到了。我们也称这种情况为“Buffer Pool被污染”了。</p>
+<p>在InnoDB则引入了一些新的机制来避免这种情况。算法仍然是LRU算法，但是加上了中点策略（类似于MyISAM的<a href="http://www.orczhou.com/index.php/2010/01/myisam-key-buffer-2/">key buffer中的midpoint strategy</a> ）。同时引入了参数<a href="http://dev.mysql.com/doc/refman/5.5/en/innodb-parameters.html#sysvar_innodb_old_blocks_time">innodb_old_blocks_time</a>来控制Buffer Pool不被污染。</p>
+<p>LRU链表中的数据分为两部分：Sublist of new和Sublist of old。后者包含访问最近没有访问的数据块（链表越后面的数据块，最近越没有被访问）。默认情况，前者占63%（5/8），后者37%（3/8）。</p>
+<p><img alt="BufferPoolLRU" src="/assets/buffer_pool_lru_list.png" /></p>
+<p>当数据块需要从数据文件中读取时，首先会放到old sublist的头部（midpoint）。然后，如果有对这个数据块的访问，那么就将这个数据块放到new sublist的首部。一般来说，一个数据块被取出后，立刻会有读取，也就很快会被放到new sublist的头部。一种糟糕的情况是，如果是mysqldump访问全部数据块，也就会导致所有的数据块被放到new sublist。这样Buffer Pool也就全部被污染了。</p>
+<ol>
+<li>Buffer Pool中LRU队列如何防止污染</li>
+</ol>
+<p>InnoDB Plugin通过引入如下的参数来防止“污染”：</p>
+<p><a href="http://dev.mysql.com/doc/refman/5.5/en/innodb-parameters.html#sysvar_innodb_old_blocks_pct">innodb_old_blocks_pct</a>： 控制old sublist在LRU队列的长度</p>
+<p><a href="http://dev.mysql.com/doc/refman/5.5/en/innodb-parameters.html#sysvar_innodb_old_blocks_time">innodb_old_blocks_time</a>：该参数决定了，当Block被插入到midpoint（old sublist）后，必须要在old sublist停留超过<a href="http://dev.mysql.com/doc/refman/5.5/en/innodb-parameters.html#sysvar_innodb_old_blocks_time">innodb_old_blocks_time</a>（ms）时间后，才有可能被转移到new sublist。例如，将innodb_old_blocks_time设置为1000（即1s），当出现Table scan出现时，InnoDB先将数据块载入到midpoint（old sublist）上，程序读取数据块，因为这时，数据块在old sublist中的停留时间还不到innodb_old_blocks_time，所以不会被转移到new sublist中。这就避免了Buffer Pool被污染的情况。更酷的是，这个参数是动态调整的，所以在做意外的Table scan时，动态调整一下该参数就可以了。</p>
+<ol>
+<li>防污染的效率观察</li>
+</ol>
+<p>可以根据SHOW INNODB STATUS\G中Buffer Pool段开看看相关效率：</p>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>Total<span class="w"> </span>memory<span class="w"> </span>allocated<span class="w"> </span><span class="m">1107296256</span><span class="p">;</span><span class="w"> </span><span class="k">in</span><span class="w"> </span>additional<span class="w"> </span>pool<span class="w"> </span>allocated<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>Dictionary<span class="w"> </span>memory<span class="w"> </span>allocated<span class="w"> </span><span class="m">80360</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>Buffer<span class="w"> </span>pool<span class="w"> </span>size<span class="w"> </span><span class="m">65535</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>Free<span class="w"> </span>buffers<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>Database<span class="w"> </span>pages<span class="w"> </span><span class="m">63920</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>Old<span class="w"> </span>database<span class="w"> </span>pages<span class="w"> </span><span class="m">23600</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>Modified<span class="w"> </span>db<span class="w"> </span>pages<span class="w"> </span><span class="m">34969</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>Pending<span class="w"> </span>reads<span class="w"> </span><span class="m">32</span>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>Pending<span class="w"> </span>writes:<span class="w"> </span>LRU<span class="w"> </span><span class="m">0</span>,<span class="w"> </span>flush<span class="w"> </span>list<span class="w"> </span><span class="m">0</span>,<span class="w"> </span>single<span class="w"> </span>page<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>Pages<span class="w"> </span>made<span class="w"> </span>young<span class="w"> </span><span class="m">414946</span>,<span class="w"> </span>not<span class="w"> </span>young<span class="w"> </span><span class="m">2930673</span>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="m">1274</span>.75<span class="w"> </span>youngs/s,<span class="w"> </span><span class="m">16521</span>.90<span class="w"> </span>non-youngs/s
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>Pages<span class="w"> </span><span class="nb">read</span><span class="w"> </span><span class="m">486005</span>,<span class="w"> </span>created<span class="w"> </span><span class="m">3178</span>,<span class="w"> </span>written<span class="w"> </span><span class="m">160585</span>
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="m">2132</span>.37<span class="w"> </span>reads/s,<span class="w"> </span><span class="m">3</span>.40<span class="w"> </span>creates/s,<span class="w"> </span><span class="m">323</span>.74<span class="w"> </span>writes/s
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>Buffer<span class="w"> </span>pool<span class="w"> </span>hit<span class="w"> </span>rate<span class="w"> </span><span class="m">950</span><span class="w"> </span>/<span class="w"> </span><span class="m">1000</span>,<span class="w"> </span>young-making<span class="w"> </span>rate<span class="w"> </span><span class="m">30</span><span class="w"> </span>/<span class="w"> </span><span class="m">1000</span><span class="w"> </span>not<span class="w"> </span><span class="m">392</span><span class="w"> </span>/<span class="w"> </span><span class="m">1000</span>
+</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>Pages<span class="w"> </span><span class="nb">read</span><span class="w"> </span>ahead<span class="w"> </span><span class="m">1510</span>.10/s,<span class="w"> </span>evicted<span class="w"> </span>without<span class="w"> </span>access<span class="w"> </span><span class="m">0</span>.00/s
+</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>LRU<span class="w"> </span>len:<span class="w"> </span><span class="m">63920</span>,<span class="w"> </span>unzip_LRU<span class="w"> </span>len:<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>I/O<span class="w"> </span>sum<span class="o">[</span><span class="m">43690</span><span class="o">]</span>:cur<span class="o">[</span><span class="m">221</span><span class="o">]</span>,<span class="w"> </span>unzip<span class="w"> </span>sum<span class="o">[</span><span class="m">0</span><span class="o">]</span>:cur<span class="o">[</span><span class="m">0</span><span class="o">]</span>
+</span></code></pre></div>
+<ul>
+<li>解释：Old database pages 表示LRU列表中old sublist中的数据块数量。</li>
+<li>Pages made young and not young表示old sublist中有多少数据块是（没）被转移到new sublist。</li>
+</ul>
+<p>youngs/s and non-young/s 从上次执行SHOW INNODB STATUS到现在为止，访问Old sublist时有多少将数据块转移到new sublist，有多少是没有转移的（这里可以看出参数<a href="http://dev.mysql.com/doc/refman/5.5/en/innodb-parameters.html#sysvar_innodb_old_blocks_time">innodb_old_blocks_time</a>的效率）。</p>
+<p>young-making rate and not 反映的是全部Buffer Pool访问中，将（没有将）old sublist中转移new sublist的比率。</p>
+<h4 id="_1">参考：<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h4>
+<ul>
+<li><a href="https://www.orczhou.com/index.php/2010/05/innodb-plugin-make-buffer-cache-scan-resistant/comment-page-1/#:~:text=Making%20Buffer%20Cache%20Scan%20Resistant">Making Buffer Cache Scan Resistant</a></li>
+</ul>
+<h3 id="mysql">mysql配置详解（不断更新）<a class="headerlink" href="#mysql" title="Permanent link">&para;</a></h3>
+<ul>
+<li>https://www.cnblogs.com/loveus/articles/1505410.html</li>
+</ul>
+<details class="note">
+<summary>mysql配置详</summary>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="m">1</span>.<span class="w"> </span>back_log
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>指定MySQL可能的连接数量。当MySQL主线程在很短的时间内得到非常多的连接请求，该参数就起作用，之后主线程花些时间（尽管很短）检查连接并且启动一个新线程。
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>back_log参数的值指出在MySQL暂时停止响应新请求之前的短时间内多少个请求可以被存在堆栈中。如果系统在一个短时间内有很多连接，则需要增大该参数的值，该参数值指定到来的TCP/IP连接的侦听队列的大小。不同的操作系统在这个队列大小上有它自己的限制。<span class="w"> </span>试图设定back_log高于你的操作系统的限制将是无效的。
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>当观察MySQL进程列表，发现大量<span class="w"> </span><span class="m">264084</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>unauthenticated<span class="w"> </span>user<span class="w"> </span><span class="p">|</span><span class="w"> </span>xxx.xxx.xxx.xxx<span class="w"> </span><span class="p">|</span><span class="w"> </span>NULL<span class="w"> </span><span class="p">|</span><span class="w"> </span>Connect<span class="w"> </span><span class="p">|</span><span class="w"> </span>NULL<span class="w"> </span><span class="p">|</span><span class="w"> </span>login<span class="w"> </span><span class="p">|</span><span class="w"> </span>NULL<span class="w"> </span>的待连接进程时，就要加大<span class="w"> </span>back_log<span class="w"> </span>的值。back_log默认值为50。
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="m">2</span>.<span class="w"> </span>basedir
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>MySQL主程序所在路径，即：--basedir参数的值。
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>
+</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="m">3</span>.<span class="w"> </span>bdb_cache_size
+</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>
+</span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>分配给BDB类型数据表的缓存索引和行排列的缓冲区大小，如果不使用DBD类型数据表，则应该在启动MySQL时加载<span class="w"> </span>--skip-bdb<span class="w"> </span>参数以避免内存浪费。
+</span><span id="__span-2-16"><a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a>
+</span><span id="__span-2-17"><a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a><span class="m">4</span>.bdb_log_buffer_size
+</span><span id="__span-2-18"><a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a>
+</span><span id="__span-2-19"><a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a>分配给BDB类型数据表的缓存索引和行排列的缓冲区大小，如果不使用DBD类型数据表，则应该将该参数值设置为0，或者在启动MySQL时加载<span class="w"> </span>--skip-bdb<span class="w"> </span>参数以避免内存浪费。
+</span><span id="__span-2-20"><a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a>
+</span><span id="__span-2-21"><a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a><span class="m">5</span>.bdb_home
+</span><span id="__span-2-22"><a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a>
+</span><span id="__span-2-23"><a id="__codelineno-2-23" name="__codelineno-2-23" href="#__codelineno-2-23"></a>参见<span class="w"> </span>--bdb-home<span class="w"> </span>选项。
+</span><span id="__span-2-24"><a id="__codelineno-2-24" name="__codelineno-2-24" href="#__codelineno-2-24"></a>
+</span><span id="__span-2-25"><a id="__codelineno-2-25" name="__codelineno-2-25" href="#__codelineno-2-25"></a><span class="m">6</span>.<span class="w"> </span>bdb_max_lock
+</span><span id="__span-2-26"><a id="__codelineno-2-26" name="__codelineno-2-26" href="#__codelineno-2-26"></a>
+</span><span id="__span-2-27"><a id="__codelineno-2-27" name="__codelineno-2-27" href="#__codelineno-2-27"></a>指定最大的锁表进程数量（默认为10000），如果使用BDB类型数据表，则可以使用该参数。如果在执行大型事物处理或者查询时发现<span class="w"> </span>bdb:<span class="w"> </span>Lock<span class="w"> </span>table<span class="w"> </span>is<span class="w"> </span>out<span class="w"> </span>of<span class="w"> </span>available<span class="w"> </span>locks<span class="w"> </span>or<span class="w"> </span>Got<span class="w"> </span>error<span class="w"> </span><span class="m">12</span><span class="w"> </span>from<span class="w"> </span>...<span class="w"> </span>错误，则应该加大该参数值。
+</span><span id="__span-2-28"><a id="__codelineno-2-28" name="__codelineno-2-28" href="#__codelineno-2-28"></a>
+</span><span id="__span-2-29"><a id="__codelineno-2-29" name="__codelineno-2-29" href="#__codelineno-2-29"></a><span class="m">7</span>.<span class="w"> </span>bdb_logdir
+</span><span id="__span-2-30"><a id="__codelineno-2-30" name="__codelineno-2-30" href="#__codelineno-2-30"></a>
+</span><span id="__span-2-31"><a id="__codelineno-2-31" name="__codelineno-2-31" href="#__codelineno-2-31"></a>指定使用BDB类型数据表提供服务时的日志存放位置。即为<span class="w"> </span>--bdb-logdir<span class="w"> </span>的值。
+</span><span id="__span-2-32"><a id="__codelineno-2-32" name="__codelineno-2-32" href="#__codelineno-2-32"></a>
+</span><span id="__span-2-33"><a id="__codelineno-2-33" name="__codelineno-2-33" href="#__codelineno-2-33"></a><span class="m">8</span>.<span class="w"> </span>bdb_shared_data
+</span><span id="__span-2-34"><a id="__codelineno-2-34" name="__codelineno-2-34" href="#__codelineno-2-34"></a>
+</span><span id="__span-2-35"><a id="__codelineno-2-35" name="__codelineno-2-35" href="#__codelineno-2-35"></a>如果使用<span class="w"> </span>--bdb-shared-data<span class="w"> </span>选项则该参数值为On。
+</span><span id="__span-2-36"><a id="__codelineno-2-36" name="__codelineno-2-36" href="#__codelineno-2-36"></a>
+</span><span id="__span-2-37"><a id="__codelineno-2-37" name="__codelineno-2-37" href="#__codelineno-2-37"></a><span class="m">9</span>.<span class="w"> </span>bdb_tmpdir
+</span><span id="__span-2-38"><a id="__codelineno-2-38" name="__codelineno-2-38" href="#__codelineno-2-38"></a>
+</span><span id="__span-2-39"><a id="__codelineno-2-39" name="__codelineno-2-39" href="#__codelineno-2-39"></a>BDB类型数据表的临时文件目录。即为<span class="w"> </span>--bdb-tmpdir<span class="w"> </span>的值。
+</span><span id="__span-2-40"><a id="__codelineno-2-40" name="__codelineno-2-40" href="#__codelineno-2-40"></a>
+</span><span id="__span-2-41"><a id="__codelineno-2-41" name="__codelineno-2-41" href="#__codelineno-2-41"></a><span class="m">10</span>.<span class="w"> </span>binlog_cache_size
+</span><span id="__span-2-42"><a id="__codelineno-2-42" name="__codelineno-2-42" href="#__codelineno-2-42"></a>
+</span><span id="__span-2-43"><a id="__codelineno-2-43" name="__codelineno-2-43" href="#__codelineno-2-43"></a>为binary<span class="w"> </span>log指定在查询请求处理过程中SQL<span class="w"> </span>查询语句使用的缓存大小。如果频繁应用于大量、复杂的SQL表达式处理，则应该加大该参数值以获得性能提升。
+</span><span id="__span-2-44"><a id="__codelineno-2-44" name="__codelineno-2-44" href="#__codelineno-2-44"></a>
+</span><span id="__span-2-45"><a id="__codelineno-2-45" name="__codelineno-2-45" href="#__codelineno-2-45"></a><span class="m">11</span>.<span class="w"> </span>bulk_insert_buffer_size
+</span><span id="__span-2-46"><a id="__codelineno-2-46" name="__codelineno-2-46" href="#__codelineno-2-46"></a>
+</span><span id="__span-2-47"><a id="__codelineno-2-47" name="__codelineno-2-47" href="#__codelineno-2-47"></a>指定<span class="w"> </span>MyISAM<span class="w"> </span>类型数据表表使用特殊的树形结构的缓存。使用整块方式<span class="o">(</span>bulk<span class="o">)</span>能够加快插入操作<span class="o">(</span><span class="w"> </span>INSERT<span class="w"> </span>...<span class="w"> </span>SELECT,<span class="w"> </span>INSERT<span class="w"> </span>...<span class="w"> </span>VALUES<span class="w"> </span><span class="o">(</span>...<span class="o">)</span>,<span class="w"> </span><span class="o">(</span>...<span class="o">)</span>,<span class="w"> </span>...,<span class="w"> </span>和<span class="w"> </span>LOAD<span class="w"> </span>DATA<span class="w"> </span>INFILE<span class="o">)</span><span class="w"> </span>的速度和效率。该参数限制每个线程使用的树形结构缓存大小，如果设置为0则禁用该加速缓存功能。注意：该参数对应的缓存操作只能用户向非空数据表中执行插入操作！默认值为<span class="w"> </span>8MB。
+</span><span id="__span-2-48"><a id="__codelineno-2-48" name="__codelineno-2-48" href="#__codelineno-2-48"></a>
+</span><span id="__span-2-49"><a id="__codelineno-2-49" name="__codelineno-2-49" href="#__codelineno-2-49"></a><span class="m">12</span>.<span class="w"> </span>character_set
+</span><span id="__span-2-50"><a id="__codelineno-2-50" name="__codelineno-2-50" href="#__codelineno-2-50"></a>
+</span><span id="__span-2-51"><a id="__codelineno-2-51" name="__codelineno-2-51" href="#__codelineno-2-51"></a>MySQL的默认字符集。
+</span><span id="__span-2-52"><a id="__codelineno-2-52" name="__codelineno-2-52" href="#__codelineno-2-52"></a>
+</span><span id="__span-2-53"><a id="__codelineno-2-53" name="__codelineno-2-53" href="#__codelineno-2-53"></a><span class="m">13</span>.<span class="w"> </span>character_sets
+</span><span id="__span-2-54"><a id="__codelineno-2-54" name="__codelineno-2-54" href="#__codelineno-2-54"></a>
+</span><span id="__span-2-55"><a id="__codelineno-2-55" name="__codelineno-2-55" href="#__codelineno-2-55"></a>MySQL所能提供支持的字符集。
+</span><span id="__span-2-56"><a id="__codelineno-2-56" name="__codelineno-2-56" href="#__codelineno-2-56"></a>
+</span><span id="__span-2-57"><a id="__codelineno-2-57" name="__codelineno-2-57" href="#__codelineno-2-57"></a><span class="m">14</span>.<span class="w"> </span>concurrent_inserts
+</span><span id="__span-2-58"><a id="__codelineno-2-58" name="__codelineno-2-58" href="#__codelineno-2-58"></a>
+</span><span id="__span-2-59"><a id="__codelineno-2-59" name="__codelineno-2-59" href="#__codelineno-2-59"></a>如果开启该参数，MySQL则允许在执行<span class="w"> </span>SELECT<span class="w"> </span>操作的同时进行<span class="w"> </span>INSERT<span class="w"> </span>操作。如果要关闭该参数，可以在启动<span class="w"> </span>mysqld<span class="w"> </span>时加载<span class="w"> </span>--safe<span class="w"> </span>选项，或者使用<span class="w"> </span>--skip-new<span class="w"> </span>选项。默认为On。
+</span><span id="__span-2-60"><a id="__codelineno-2-60" name="__codelineno-2-60" href="#__codelineno-2-60"></a>
+</span><span id="__span-2-61"><a id="__codelineno-2-61" name="__codelineno-2-61" href="#__codelineno-2-61"></a><span class="m">15</span>.<span class="w"> </span>connect_timeout
+</span><span id="__span-2-62"><a id="__codelineno-2-62" name="__codelineno-2-62" href="#__codelineno-2-62"></a>
+</span><span id="__span-2-63"><a id="__codelineno-2-63" name="__codelineno-2-63" href="#__codelineno-2-63"></a>指定MySQL服务等待应答一个连接报文的最大秒数，超出该时间，MySQL向客户端返回<span class="w"> </span>bad<span class="w"> </span>handshake。
+</span><span id="__span-2-64"><a id="__codelineno-2-64" name="__codelineno-2-64" href="#__codelineno-2-64"></a>
+</span><span id="__span-2-65"><a id="__codelineno-2-65" name="__codelineno-2-65" href="#__codelineno-2-65"></a><span class="m">16</span>.<span class="w"> </span>datadir
+</span><span id="__span-2-66"><a id="__codelineno-2-66" name="__codelineno-2-66" href="#__codelineno-2-66"></a>
+</span><span id="__span-2-67"><a id="__codelineno-2-67" name="__codelineno-2-67" href="#__codelineno-2-67"></a>指定数据库路径。即为<span class="w"> </span>--datadir<span class="w"> </span>选项的值。
+</span><span id="__span-2-68"><a id="__codelineno-2-68" name="__codelineno-2-68" href="#__codelineno-2-68"></a>
+</span><span id="__span-2-69"><a id="__codelineno-2-69" name="__codelineno-2-69" href="#__codelineno-2-69"></a><span class="m">17</span>.<span class="w"> </span>delay_key_write
+</span><span id="__span-2-70"><a id="__codelineno-2-70" name="__codelineno-2-70" href="#__codelineno-2-70"></a>
+</span><span id="__span-2-71"><a id="__codelineno-2-71" name="__codelineno-2-71" href="#__codelineno-2-71"></a>该参数只对<span class="w"> </span>MyISAM<span class="w"> </span>类型数据表有效。有如下的取值种类：
+</span><span id="__span-2-72"><a id="__codelineno-2-72" name="__codelineno-2-72" href="#__codelineno-2-72"></a>
+</span><span id="__span-2-73"><a id="__codelineno-2-73" name="__codelineno-2-73" href="#__codelineno-2-73"></a>off:<span class="w"> </span>如果在建表语句中使用<span class="w"> </span>CREATE<span class="w"> </span>TABLE<span class="w"> </span>...<span class="w"> </span>DELAYED_KEY_WRITES，则全部忽略
+</span><span id="__span-2-74"><a id="__codelineno-2-74" name="__codelineno-2-74" href="#__codelineno-2-74"></a>
+</span><span id="__span-2-75"><a id="__codelineno-2-75" name="__codelineno-2-75" href="#__codelineno-2-75"></a>DELAYED_KEY_WRITES；
+</span><span id="__span-2-76"><a id="__codelineno-2-76" name="__codelineno-2-76" href="#__codelineno-2-76"></a>
+</span><span id="__span-2-77"><a id="__codelineno-2-77" name="__codelineno-2-77" href="#__codelineno-2-77"></a>on:<span class="w"> </span>如果在建表语句中使用<span class="w"> </span>CREATE<span class="w"> </span>TABLE<span class="w"> </span>...<span class="w"> </span>DELAYED_KEY_WRITES，则使用该选项（默认）；
+</span><span id="__span-2-78"><a id="__codelineno-2-78" name="__codelineno-2-78" href="#__codelineno-2-78"></a>
+</span><span id="__span-2-79"><a id="__codelineno-2-79" name="__codelineno-2-79" href="#__codelineno-2-79"></a>all:<span class="w"> </span>所有打开的数据表都将按照<span class="w"> </span>DELAYED_KEY_WRITES<span class="w"> </span>处理。
+</span><span id="__span-2-80"><a id="__codelineno-2-80" name="__codelineno-2-80" href="#__codelineno-2-80"></a>
+</span><span id="__span-2-81"><a id="__codelineno-2-81" name="__codelineno-2-81" href="#__codelineno-2-81"></a>如果<span class="w"> </span>DELAYED_KEY_WRITES<span class="w"> </span>开启，对于已经打开的数据表而言，在每次索引更新时都不刷新带有
+</span><span id="__span-2-82"><a id="__codelineno-2-82" name="__codelineno-2-82" href="#__codelineno-2-82"></a>
+</span><span id="__span-2-83"><a id="__codelineno-2-83" name="__codelineno-2-83" href="#__codelineno-2-83"></a>DELAYED_KEY_WRITES<span class="w"> </span>选项的数据表的key<span class="w"> </span>buffer，除非该数据表关闭。该参数会大幅提升写入键值的速
+</span><span id="__span-2-84"><a id="__codelineno-2-84" name="__codelineno-2-84" href="#__codelineno-2-84"></a>
+</span><span id="__span-2-85"><a id="__codelineno-2-85" name="__codelineno-2-85" href="#__codelineno-2-85"></a>度。如果使用该参数，则应该检查所有数据表：myisamchk<span class="w"> </span>--fast<span class="w"> </span>--force。
+</span><span id="__span-2-86"><a id="__codelineno-2-86" name="__codelineno-2-86" href="#__codelineno-2-86"></a>
+</span><span id="__span-2-87"><a id="__codelineno-2-87" name="__codelineno-2-87" href="#__codelineno-2-87"></a><span class="m">18</span>.delayed_insert_limit
+</span><span id="__span-2-88"><a id="__codelineno-2-88" name="__codelineno-2-88" href="#__codelineno-2-88"></a>
+</span><span id="__span-2-89"><a id="__codelineno-2-89" name="__codelineno-2-89" href="#__codelineno-2-89"></a>在插入delayed_insert_limit行后，INSERT<span class="w"> </span>DELAYED处理模块将检查是否有未执行的SELECT语句。如果有，在继续处理前执行允许这些语句。
+</span><span id="__span-2-90"><a id="__codelineno-2-90" name="__codelineno-2-90" href="#__codelineno-2-90"></a>
+</span><span id="__span-2-91"><a id="__codelineno-2-91" name="__codelineno-2-91" href="#__codelineno-2-91"></a><span class="m">19</span>.<span class="w"> </span>delayed_insert_timeout
+</span><span id="__span-2-92"><a id="__codelineno-2-92" name="__codelineno-2-92" href="#__codelineno-2-92"></a>
+</span><span id="__span-2-93"><a id="__codelineno-2-93" name="__codelineno-2-93" href="#__codelineno-2-93"></a>一个INSERT<span class="w"> </span>DELAYED线程应该在终止之前等待INSERT语句的时间。
+</span><span id="__span-2-94"><a id="__codelineno-2-94" name="__codelineno-2-94" href="#__codelineno-2-94"></a>
+</span><span id="__span-2-95"><a id="__codelineno-2-95" name="__codelineno-2-95" href="#__codelineno-2-95"></a><span class="m">20</span>.<span class="w"> </span>delayed_queue_size
+</span><span id="__span-2-96"><a id="__codelineno-2-96" name="__codelineno-2-96" href="#__codelineno-2-96"></a>
+</span><span id="__span-2-97"><a id="__codelineno-2-97" name="__codelineno-2-97" href="#__codelineno-2-97"></a>为处理INSERT<span class="w"> </span>DELAYED分配的队列大小（以行为单位）。如果排队满了，任何进行INSERT<span class="w"> </span>DELAYED的客户必须等待队列空间释放后才能继续。
+</span><span id="__span-2-98"><a id="__codelineno-2-98" name="__codelineno-2-98" href="#__codelineno-2-98"></a>
+</span><span id="__span-2-99"><a id="__codelineno-2-99" name="__codelineno-2-99" href="#__codelineno-2-99"></a><span class="m">21</span>.<span class="w"> </span>flush
+</span><span id="__span-2-100"><a id="__codelineno-2-100" name="__codelineno-2-100" href="#__codelineno-2-100"></a>
+</span><span id="__span-2-101"><a id="__codelineno-2-101" name="__codelineno-2-101" href="#__codelineno-2-101"></a>在启动MySQL时加载<span class="w"> </span>--flush<span class="w"> </span>参数打开该功能。
+</span><span id="__span-2-102"><a id="__codelineno-2-102" name="__codelineno-2-102" href="#__codelineno-2-102"></a>
+</span><span id="__span-2-103"><a id="__codelineno-2-103" name="__codelineno-2-103" href="#__codelineno-2-103"></a><span class="m">22</span>.<span class="w"> </span>flush_time
+</span><span id="__span-2-104"><a id="__codelineno-2-104" name="__codelineno-2-104" href="#__codelineno-2-104"></a>
+</span><span id="__span-2-105"><a id="__codelineno-2-105" name="__codelineno-2-105" href="#__codelineno-2-105"></a>如果该设置为非0值，那么每flush_time秒，所有打开的表将被关，以释放资源和sync到磁盘。注意：只建议在使用<span class="w"> </span>Windows9x/Me<span class="w"> </span>或者当前操作系统资源严重不足时才使用该参数！
+</span><span id="__span-2-106"><a id="__codelineno-2-106" name="__codelineno-2-106" href="#__codelineno-2-106"></a>
+</span><span id="__span-2-107"><a id="__codelineno-2-107" name="__codelineno-2-107" href="#__codelineno-2-107"></a><span class="m">23</span>.<span class="w"> </span>ft_boolean_syntax
+</span><span id="__span-2-108"><a id="__codelineno-2-108" name="__codelineno-2-108" href="#__codelineno-2-108"></a>
+</span><span id="__span-2-109"><a id="__codelineno-2-109" name="__codelineno-2-109" href="#__codelineno-2-109"></a>搜索引擎维护员希望更改允许用于逻辑全文搜索的操作符。这些则由变量<span class="w"> </span>ft_boolean_syntax<span class="w"> </span>控制。
+</span><span id="__span-2-110"><a id="__codelineno-2-110" name="__codelineno-2-110" href="#__codelineno-2-110"></a>
+</span><span id="__span-2-111"><a id="__codelineno-2-111" name="__codelineno-2-111" href="#__codelineno-2-111"></a><span class="m">24</span>.<span class="w"> </span>ft_min_word_len
+</span><span id="__span-2-112"><a id="__codelineno-2-112" name="__codelineno-2-112" href="#__codelineno-2-112"></a>
+</span><span id="__span-2-113"><a id="__codelineno-2-113" name="__codelineno-2-113" href="#__codelineno-2-113"></a>指定被索引的关键词的最小长度。注意：在更改该参数值后，索引必须重建！
+</span><span id="__span-2-114"><a id="__codelineno-2-114" name="__codelineno-2-114" href="#__codelineno-2-114"></a>
+</span><span id="__span-2-115"><a id="__codelineno-2-115" name="__codelineno-2-115" href="#__codelineno-2-115"></a><span class="m">25</span>.<span class="w"> </span>ft_max_word_len
+</span><span id="__span-2-116"><a id="__codelineno-2-116" name="__codelineno-2-116" href="#__codelineno-2-116"></a>
+</span><span id="__span-2-117"><a id="__codelineno-2-117" name="__codelineno-2-117" href="#__codelineno-2-117"></a>指定被索引的关键词的最大长度。注意：在更改该参数值后，索引必须重建！
+</span><span id="__span-2-118"><a id="__codelineno-2-118" name="__codelineno-2-118" href="#__codelineno-2-118"></a>
+</span><span id="__span-2-119"><a id="__codelineno-2-119" name="__codelineno-2-119" href="#__codelineno-2-119"></a><span class="m">26</span>.<span class="w"> </span>ft_max_word_len_for_sort
+</span><span id="__span-2-120"><a id="__codelineno-2-120" name="__codelineno-2-120" href="#__codelineno-2-120"></a>
+</span><span id="__span-2-121"><a id="__codelineno-2-121" name="__codelineno-2-121" href="#__codelineno-2-121"></a>指定在使用REPAIR,<span class="w"> </span>CREATE<span class="w"> </span>INDEX,<span class="w"> </span>or<span class="w"> </span>ALTER<span class="w"> </span>TABLE等方法进行快速全文索引重建过程中所能使用的关键词的最大长度。超出该长度限制的关键词将使用低速方式进行插入。加大该参数的值，MySQL将会建立更大的临时文件（这会减轻CPU负载，但效率将取决于磁盘I/O效率），并且在一个排序取内存放更少的键值。
+</span><span id="__span-2-122"><a id="__codelineno-2-122" name="__codelineno-2-122" href="#__codelineno-2-122"></a>
+</span><span id="__span-2-123"><a id="__codelineno-2-123" name="__codelineno-2-123" href="#__codelineno-2-123"></a><span class="m">27</span>.<span class="w"> </span>ft_stopword_file
+</span><span id="__span-2-124"><a id="__codelineno-2-124" name="__codelineno-2-124" href="#__codelineno-2-124"></a>
+</span><span id="__span-2-125"><a id="__codelineno-2-125" name="__codelineno-2-125" href="#__codelineno-2-125"></a>从<span class="w"> </span>ft_stopword_file<span class="w"> </span>变量指定的文件中读取列表。在修改了<span class="w"> </span>stopword<span class="w"> </span>列表后，必须重建<span class="w"> </span>FULLTEXT<span class="w"> </span>索引。
+</span><span id="__span-2-126"><a id="__codelineno-2-126" name="__codelineno-2-126" href="#__codelineno-2-126"></a>
+</span><span id="__span-2-127"><a id="__codelineno-2-127" name="__codelineno-2-127" href="#__codelineno-2-127"></a><span class="m">28</span>.<span class="w"> </span>have_innodb
+</span><span id="__span-2-128"><a id="__codelineno-2-128" name="__codelineno-2-128" href="#__codelineno-2-128"></a>
+</span><span id="__span-2-129"><a id="__codelineno-2-129" name="__codelineno-2-129" href="#__codelineno-2-129"></a>YES:<span class="w"> </span>MySQL支持InnoDB类型数据表；<span class="w"> </span>DISABLE:<span class="w"> </span>使用<span class="w"> </span>--skip-innodb<span class="w"> </span>关闭对InnoDB类型数据表的支持。
+</span><span id="__span-2-130"><a id="__codelineno-2-130" name="__codelineno-2-130" href="#__codelineno-2-130"></a>
+</span><span id="__span-2-131"><a id="__codelineno-2-131" name="__codelineno-2-131" href="#__codelineno-2-131"></a><span class="m">29</span>.<span class="w"> </span>have_bdb
+</span><span id="__span-2-132"><a id="__codelineno-2-132" name="__codelineno-2-132" href="#__codelineno-2-132"></a>
+</span><span id="__span-2-133"><a id="__codelineno-2-133" name="__codelineno-2-133" href="#__codelineno-2-133"></a>YES:<span class="w"> </span>MySQL支持伯克利类型数据表；<span class="w"> </span>DISABLE:<span class="w"> </span>使用<span class="w"> </span>--skip-bdb<span class="w"> </span>关闭对伯克利类型数据表的支持。
+</span><span id="__span-2-134"><a id="__codelineno-2-134" name="__codelineno-2-134" href="#__codelineno-2-134"></a>
+</span><span id="__span-2-135"><a id="__codelineno-2-135" name="__codelineno-2-135" href="#__codelineno-2-135"></a><span class="m">30</span>.<span class="w"> </span>have_raid
+</span><span id="__span-2-136"><a id="__codelineno-2-136" name="__codelineno-2-136" href="#__codelineno-2-136"></a>
+</span><span id="__span-2-137"><a id="__codelineno-2-137" name="__codelineno-2-137" href="#__codelineno-2-137"></a>YES:<span class="w"> </span>使MySQL支持RAID功能。
+</span><span id="__span-2-138"><a id="__codelineno-2-138" name="__codelineno-2-138" href="#__codelineno-2-138"></a>
+</span><span id="__span-2-139"><a id="__codelineno-2-139" name="__codelineno-2-139" href="#__codelineno-2-139"></a><span class="m">31</span>.<span class="w"> </span>have_openssl
+</span><span id="__span-2-140"><a id="__codelineno-2-140" name="__codelineno-2-140" href="#__codelineno-2-140"></a>
+</span><span id="__span-2-141"><a id="__codelineno-2-141" name="__codelineno-2-141" href="#__codelineno-2-141"></a>YES:<span class="w"> </span>使MySQL支持SSL加密协议。
+</span><span id="__span-2-142"><a id="__codelineno-2-142" name="__codelineno-2-142" href="#__codelineno-2-142"></a>
+</span><span id="__span-2-143"><a id="__codelineno-2-143" name="__codelineno-2-143" href="#__codelineno-2-143"></a><span class="m">32</span>.<span class="w"> </span>init_file
+</span><span id="__span-2-144"><a id="__codelineno-2-144" name="__codelineno-2-144" href="#__codelineno-2-144"></a>
+</span><span id="__span-2-145"><a id="__codelineno-2-145" name="__codelineno-2-145" href="#__codelineno-2-145"></a>指定一个包含SQL查询语句的文件，该文件在MySQL启动时将被加载，文件中的SQL语句也会被执行。
+</span><span id="__span-2-146"><a id="__codelineno-2-146" name="__codelineno-2-146" href="#__codelineno-2-146"></a>
+</span><span id="__span-2-147"><a id="__codelineno-2-147" name="__codelineno-2-147" href="#__codelineno-2-147"></a><span class="m">33</span>.<span class="w"> </span>interactive_timeout
+</span><span id="__span-2-148"><a id="__codelineno-2-148" name="__codelineno-2-148" href="#__codelineno-2-148"></a>
+</span><span id="__span-2-149"><a id="__codelineno-2-149" name="__codelineno-2-149" href="#__codelineno-2-149"></a>服务器在关上它前在一个交互连接上等待行动的秒数。一个交互的客户被定义为对mysql_real_connect<span class="o">()</span>使用CLIENT_INTERACTIVE选项的客户。也可见wait_timeout。
+</span><span id="__span-2-150"><a id="__codelineno-2-150" name="__codelineno-2-150" href="#__codelineno-2-150"></a>
+</span><span id="__span-2-151"><a id="__codelineno-2-151" name="__codelineno-2-151" href="#__codelineno-2-151"></a><span class="m">34</span>.<span class="w"> </span>join_buffer_size
+</span><span id="__span-2-152"><a id="__codelineno-2-152" name="__codelineno-2-152" href="#__codelineno-2-152"></a>
+</span><span id="__span-2-153"><a id="__codelineno-2-153" name="__codelineno-2-153" href="#__codelineno-2-153"></a>用于全部联合<span class="o">(</span>join<span class="o">)</span>的缓冲区大小<span class="o">(</span>不是用索引的联结<span class="o">)</span>。缓冲区对2个表间的每个全部联结分配一次缓冲区，当增加索引不可能时，增加该值可得到一个更快的全部联结。（通常得到快速联结的最佳方法是增加索引。）
+</span><span id="__span-2-154"><a id="__codelineno-2-154" name="__codelineno-2-154" href="#__codelineno-2-154"></a>
+</span><span id="__span-2-155"><a id="__codelineno-2-155" name="__codelineno-2-155" href="#__codelineno-2-155"></a><span class="m">35</span>.<span class="w"> </span>key_buffer_size
+</span><span id="__span-2-156"><a id="__codelineno-2-156" name="__codelineno-2-156" href="#__codelineno-2-156"></a>
+</span><span id="__span-2-157"><a id="__codelineno-2-157" name="__codelineno-2-157" href="#__codelineno-2-157"></a>用于索引块的缓冲区大小，增加它可得到更好处理的索引<span class="o">(</span>对所有读和多重写<span class="o">)</span>，到你能负担得起那样多。如果你使它太大，系统将开始变慢慢。必须为OS文件系统缓存留下一些空间。为了在写入多个行时得到更多的速度。
+</span><span id="__span-2-158"><a id="__codelineno-2-158" name="__codelineno-2-158" href="#__codelineno-2-158"></a>
+</span><span id="__span-2-159"><a id="__codelineno-2-159" name="__codelineno-2-159" href="#__codelineno-2-159"></a><span class="m">36</span>.<span class="w"> </span>language
+</span><span id="__span-2-160"><a id="__codelineno-2-160" name="__codelineno-2-160" href="#__codelineno-2-160"></a>
+</span><span id="__span-2-161"><a id="__codelineno-2-161" name="__codelineno-2-161" href="#__codelineno-2-161"></a>用户输出报错信息的语言。
+</span><span id="__span-2-162"><a id="__codelineno-2-162" name="__codelineno-2-162" href="#__codelineno-2-162"></a>
+</span><span id="__span-2-163"><a id="__codelineno-2-163" name="__codelineno-2-163" href="#__codelineno-2-163"></a><span class="m">37</span>.<span class="w"> </span>large_file_support
+</span><span id="__span-2-164"><a id="__codelineno-2-164" name="__codelineno-2-164" href="#__codelineno-2-164"></a>
+</span><span id="__span-2-165"><a id="__codelineno-2-165" name="__codelineno-2-165" href="#__codelineno-2-165"></a>开启大文件支持。
+</span><span id="__span-2-166"><a id="__codelineno-2-166" name="__codelineno-2-166" href="#__codelineno-2-166"></a>
+</span><span id="__span-2-167"><a id="__codelineno-2-167" name="__codelineno-2-167" href="#__codelineno-2-167"></a><span class="m">38</span>.<span class="w"> </span>locked_in_memory
+</span><span id="__span-2-168"><a id="__codelineno-2-168" name="__codelineno-2-168" href="#__codelineno-2-168"></a>
+</span><span id="__span-2-169"><a id="__codelineno-2-169" name="__codelineno-2-169" href="#__codelineno-2-169"></a>使用<span class="w"> </span>--memlock<span class="w"> </span>将mysqld锁定在内存中。
+</span><span id="__span-2-170"><a id="__codelineno-2-170" name="__codelineno-2-170" href="#__codelineno-2-170"></a>
+</span><span id="__span-2-171"><a id="__codelineno-2-171" name="__codelineno-2-171" href="#__codelineno-2-171"></a><span class="m">39</span>.<span class="w"> </span>log
+</span><span id="__span-2-172"><a id="__codelineno-2-172" name="__codelineno-2-172" href="#__codelineno-2-172"></a>
+</span><span id="__span-2-173"><a id="__codelineno-2-173" name="__codelineno-2-173" href="#__codelineno-2-173"></a>记录所有查询操作。
+</span><span id="__span-2-174"><a id="__codelineno-2-174" name="__codelineno-2-174" href="#__codelineno-2-174"></a>
+</span><span id="__span-2-175"><a id="__codelineno-2-175" name="__codelineno-2-175" href="#__codelineno-2-175"></a><span class="m">40</span>.<span class="w"> </span>log_update
+</span><span id="__span-2-176"><a id="__codelineno-2-176" name="__codelineno-2-176" href="#__codelineno-2-176"></a>
+</span><span id="__span-2-177"><a id="__codelineno-2-177" name="__codelineno-2-177" href="#__codelineno-2-177"></a>开启update<span class="w"> </span>log。
+</span><span id="__span-2-178"><a id="__codelineno-2-178" name="__codelineno-2-178" href="#__codelineno-2-178"></a>
+</span><span id="__span-2-179"><a id="__codelineno-2-179" name="__codelineno-2-179" href="#__codelineno-2-179"></a><span class="m">41</span>.<span class="w"> </span>log_bin
+</span><span id="__span-2-180"><a id="__codelineno-2-180" name="__codelineno-2-180" href="#__codelineno-2-180"></a>
+</span><span id="__span-2-181"><a id="__codelineno-2-181" name="__codelineno-2-181" href="#__codelineno-2-181"></a>开启<span class="w"> </span>binary<span class="w"> </span>log。
+</span><span id="__span-2-182"><a id="__codelineno-2-182" name="__codelineno-2-182" href="#__codelineno-2-182"></a>
+</span><span id="__span-2-183"><a id="__codelineno-2-183" name="__codelineno-2-183" href="#__codelineno-2-183"></a><span class="m">42</span>.<span class="w"> </span>log_slave_updates
+</span><span id="__span-2-184"><a id="__codelineno-2-184" name="__codelineno-2-184" href="#__codelineno-2-184"></a>
+</span><span id="__span-2-185"><a id="__codelineno-2-185" name="__codelineno-2-185" href="#__codelineno-2-185"></a>如果使用链状同步或者多台Slave之间进行同步则需要开启此参数。
+</span><span id="__span-2-186"><a id="__codelineno-2-186" name="__codelineno-2-186" href="#__codelineno-2-186"></a>
+</span><span id="__span-2-187"><a id="__codelineno-2-187" name="__codelineno-2-187" href="#__codelineno-2-187"></a><span class="m">43</span>.<span class="w"> </span>long_query_time
+</span><span id="__span-2-188"><a id="__codelineno-2-188" name="__codelineno-2-188" href="#__codelineno-2-188"></a>
+</span><span id="__span-2-189"><a id="__codelineno-2-189" name="__codelineno-2-189" href="#__codelineno-2-189"></a>如果一个查询所用时间超过该参数值，则该查询操作将被记录在Slow_queries中。
+</span><span id="__span-2-190"><a id="__codelineno-2-190" name="__codelineno-2-190" href="#__codelineno-2-190"></a>
+</span><span id="__span-2-191"><a id="__codelineno-2-191" name="__codelineno-2-191" href="#__codelineno-2-191"></a><span class="m">44</span>.<span class="w"> </span>lower_case_table_names
+</span><span id="__span-2-192"><a id="__codelineno-2-192" name="__codelineno-2-192" href="#__codelineno-2-192"></a>
+</span><span id="__span-2-193"><a id="__codelineno-2-193" name="__codelineno-2-193" href="#__codelineno-2-193"></a><span class="m">1</span>:<span class="w"> </span>MySQL总使用小写字母进行SQL操作；
+</span><span id="__span-2-194"><a id="__codelineno-2-194" name="__codelineno-2-194" href="#__codelineno-2-194"></a>
+</span><span id="__span-2-195"><a id="__codelineno-2-195" name="__codelineno-2-195" href="#__codelineno-2-195"></a><span class="m">0</span>:<span class="w"> </span>关闭该功能。
+</span><span id="__span-2-196"><a id="__codelineno-2-196" name="__codelineno-2-196" href="#__codelineno-2-196"></a>
+</span><span id="__span-2-197"><a id="__codelineno-2-197" name="__codelineno-2-197" href="#__codelineno-2-197"></a>注意：如果使用该参数，则应该在启用前将所有数据表转换为小写字母。
+</span><span id="__span-2-198"><a id="__codelineno-2-198" name="__codelineno-2-198" href="#__codelineno-2-198"></a>
+</span><span id="__span-2-199"><a id="__codelineno-2-199" name="__codelineno-2-199" href="#__codelineno-2-199"></a><span class="m">45</span>.<span class="w"> </span>max_allowed_packet
+</span><span id="__span-2-200"><a id="__codelineno-2-200" name="__codelineno-2-200" href="#__codelineno-2-200"></a>
+</span><span id="__span-2-201"><a id="__codelineno-2-201" name="__codelineno-2-201" href="#__codelineno-2-201"></a>一个查询语句包的最大尺寸。消息缓冲区被初始化为net_buffer_length字节，但是可在需要时增加到max_allowed_packet个字节。该值太小则会在处理大包时产生错误。如果使用大的BLOB列，必须增加该值。
+</span><span id="__span-2-202"><a id="__codelineno-2-202" name="__codelineno-2-202" href="#__codelineno-2-202"></a>
+</span><span id="__span-2-203"><a id="__codelineno-2-203" name="__codelineno-2-203" href="#__codelineno-2-203"></a><span class="m">46</span>.<span class="w"> </span>net_buffer_length
+</span><span id="__span-2-204"><a id="__codelineno-2-204" name="__codelineno-2-204" href="#__codelineno-2-204"></a>
+</span><span id="__span-2-205"><a id="__codelineno-2-205" name="__codelineno-2-205" href="#__codelineno-2-205"></a>通信缓冲区在查询期间被重置到该大小。通常不要改变该参数值，但是如果内存不足，可以将它设置为查询期望的大小。（即，客户发出的SQL语句期望的长度。如果语句超过这个长度，缓冲区自动地被扩大，直到max_allowed_packet个字节。）
+</span><span id="__span-2-206"><a id="__codelineno-2-206" name="__codelineno-2-206" href="#__codelineno-2-206"></a>
+</span><span id="__span-2-207"><a id="__codelineno-2-207" name="__codelineno-2-207" href="#__codelineno-2-207"></a><span class="m">47</span>.<span class="w"> </span>max_binlog_cache_size
+</span><span id="__span-2-208"><a id="__codelineno-2-208" name="__codelineno-2-208" href="#__codelineno-2-208"></a>
+</span><span id="__span-2-209"><a id="__codelineno-2-209" name="__codelineno-2-209" href="#__codelineno-2-209"></a>指定binary<span class="w"> </span>log缓存的最大容量，如果设置的过小，则在执行复杂查询语句时MySQL会出错。
+</span><span id="__span-2-210"><a id="__codelineno-2-210" name="__codelineno-2-210" href="#__codelineno-2-210"></a>
+</span><span id="__span-2-211"><a id="__codelineno-2-211" name="__codelineno-2-211" href="#__codelineno-2-211"></a><span class="m">48</span>.<span class="w"> </span>max_binlog_size
+</span><span id="__span-2-212"><a id="__codelineno-2-212" name="__codelineno-2-212" href="#__codelineno-2-212"></a>
+</span><span id="__span-2-213"><a id="__codelineno-2-213" name="__codelineno-2-213" href="#__codelineno-2-213"></a>指定binary<span class="w"> </span>log文件的最大容量，默认为1GB。
+</span><span id="__span-2-214"><a id="__codelineno-2-214" name="__codelineno-2-214" href="#__codelineno-2-214"></a>
+</span><span id="__span-2-215"><a id="__codelineno-2-215" name="__codelineno-2-215" href="#__codelineno-2-215"></a><span class="m">49</span>.<span class="w"> </span>max_connections
+</span><span id="__span-2-216"><a id="__codelineno-2-216" name="__codelineno-2-216" href="#__codelineno-2-216"></a>
+</span><span id="__span-2-217"><a id="__codelineno-2-217" name="__codelineno-2-217" href="#__codelineno-2-217"></a>允许同时连接MySQL服务器的客户数量。如果超出该值，MySQL会返回Too<span class="w"> </span>many<span class="w"> </span>connections错误，但通常情况下，MySQL能够自行解决。
+</span><span id="__span-2-218"><a id="__codelineno-2-218" name="__codelineno-2-218" href="#__codelineno-2-218"></a>
+</span><span id="__span-2-219"><a id="__codelineno-2-219" name="__codelineno-2-219" href="#__codelineno-2-219"></a><span class="m">50</span>.<span class="w"> </span>max_connect_errors
+</span><span id="__span-2-220"><a id="__codelineno-2-220" name="__codelineno-2-220" href="#__codelineno-2-220"></a>
+</span><span id="__span-2-221"><a id="__codelineno-2-221" name="__codelineno-2-221" href="#__codelineno-2-221"></a>对于同一主机，如果有超出该参数值个数的中断错误连接，则该主机将被禁止连接。如需对该主机进行解禁，执行：FLUSH<span class="w"> </span>HOST<span class="p">;</span>。
+</span><span id="__span-2-222"><a id="__codelineno-2-222" name="__codelineno-2-222" href="#__codelineno-2-222"></a>
+</span><span id="__span-2-223"><a id="__codelineno-2-223" name="__codelineno-2-223" href="#__codelineno-2-223"></a><span class="m">51</span>.<span class="w"> </span>max_delayed_threads
+</span><span id="__span-2-224"><a id="__codelineno-2-224" name="__codelineno-2-224" href="#__codelineno-2-224"></a>
+</span><span id="__span-2-225"><a id="__codelineno-2-225" name="__codelineno-2-225" href="#__codelineno-2-225"></a>不要启动多于的这个数字的线程来处理INSERT<span class="w"> </span>DELAYED语句。如果你试图在所有INSERT<span class="w"> </span>DELAYED线程在用后向一张新表插入数据，行将被插入，就像DELAYED属性没被指定那样。
+</span><span id="__span-2-226"><a id="__codelineno-2-226" name="__codelineno-2-226" href="#__codelineno-2-226"></a>
+</span><span id="__span-2-227"><a id="__codelineno-2-227" name="__codelineno-2-227" href="#__codelineno-2-227"></a><span class="m">52</span>.<span class="w"> </span>max_heap_table_size
+</span><span id="__span-2-228"><a id="__codelineno-2-228" name="__codelineno-2-228" href="#__codelineno-2-228"></a>
+</span><span id="__span-2-229"><a id="__codelineno-2-229" name="__codelineno-2-229" href="#__codelineno-2-229"></a>内存表所能使用的最大容量。
+</span><span id="__span-2-230"><a id="__codelineno-2-230" name="__codelineno-2-230" href="#__codelineno-2-230"></a>
+</span><span id="__span-2-231"><a id="__codelineno-2-231" name="__codelineno-2-231" href="#__codelineno-2-231"></a><span class="m">53</span>.<span class="w"> </span>max_join_size
+</span><span id="__span-2-232"><a id="__codelineno-2-232" name="__codelineno-2-232" href="#__codelineno-2-232"></a>
+</span><span id="__span-2-233"><a id="__codelineno-2-233" name="__codelineno-2-233" href="#__codelineno-2-233"></a>如果要查询多于max_join_size个记录的联合将返回一个错误。如果要执行没有一个WHERE的语句并且耗费大量时间，且返回上百万行的联结，则需要加大该参数值。
+</span><span id="__span-2-234"><a id="__codelineno-2-234" name="__codelineno-2-234" href="#__codelineno-2-234"></a>
+</span><span id="__span-2-235"><a id="__codelineno-2-235" name="__codelineno-2-235" href="#__codelineno-2-235"></a><span class="m">54</span>.<span class="w"> </span>max_sort_length
+</span><span id="__span-2-236"><a id="__codelineno-2-236" name="__codelineno-2-236" href="#__codelineno-2-236"></a>
+</span><span id="__span-2-237"><a id="__codelineno-2-237" name="__codelineno-2-237" href="#__codelineno-2-237"></a>在排序BLOB或TEXT值时使用的字节数<span class="o">(</span>每个值仅头max_sort_length个字节被使用；其余的被忽略<span class="o">)</span>。
+</span><span id="__span-2-238"><a id="__codelineno-2-238" name="__codelineno-2-238" href="#__codelineno-2-238"></a>
+</span><span id="__span-2-239"><a id="__codelineno-2-239" name="__codelineno-2-239" href="#__codelineno-2-239"></a><span class="m">55</span>.<span class="w"> </span>max_user_connections
+</span><span id="__span-2-240"><a id="__codelineno-2-240" name="__codelineno-2-240" href="#__codelineno-2-240"></a>
+</span><span id="__span-2-241"><a id="__codelineno-2-241" name="__codelineno-2-241" href="#__codelineno-2-241"></a>指定来自同一用户的最多连接数。设置为0则代表不限制。
+</span><span id="__span-2-242"><a id="__codelineno-2-242" name="__codelineno-2-242" href="#__codelineno-2-242"></a>
+</span><span id="__span-2-243"><a id="__codelineno-2-243" name="__codelineno-2-243" href="#__codelineno-2-243"></a><span class="m">56</span>.<span class="w"> </span>max_tmp_tables
+</span><span id="__span-2-244"><a id="__codelineno-2-244" name="__codelineno-2-244" href="#__codelineno-2-244"></a>
+</span><span id="__span-2-245"><a id="__codelineno-2-245" name="__codelineno-2-245" href="#__codelineno-2-245"></a>（该参数目前还没有作用）。一个客户能同时保持打开的临时表的最大数量。
+</span><span id="__span-2-246"><a id="__codelineno-2-246" name="__codelineno-2-246" href="#__codelineno-2-246"></a>
+</span><span id="__span-2-247"><a id="__codelineno-2-247" name="__codelineno-2-247" href="#__codelineno-2-247"></a><span class="m">57</span>.<span class="w"> </span>max_write_lock_count
+</span><span id="__span-2-248"><a id="__codelineno-2-248" name="__codelineno-2-248" href="#__codelineno-2-248"></a>
+</span><span id="__span-2-249"><a id="__codelineno-2-249" name="__codelineno-2-249" href="#__codelineno-2-249"></a>当出现max_write_lock_count个写入锁定数量后，开始允许一些被锁定的读操作开始执行。避免写入锁定过多，读取操作处于长时间等待状态。
+</span><span id="__span-2-250"><a id="__codelineno-2-250" name="__codelineno-2-250" href="#__codelineno-2-250"></a>
+</span><span id="__span-2-251"><a id="__codelineno-2-251" name="__codelineno-2-251" href="#__codelineno-2-251"></a><span class="m">58</span>.<span class="w"> </span>myisam_recover_options
+</span></code></pre></div>
+</details>
+<h2 id="innodb-buffer-pool">InnoDB Buffer Pool详解<a class="headerlink" href="#innodb-buffer-pool" title="Permanent link">&para;</a></h2>
+<ul>
+<li>https://zhuanlan.zhihu.com/p/65811829</li>
+</ul>
+<h4 id="_2">一、前言<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h4>
+<p>MySQ InnoDB Buffer Pool，从字面意思理解就是:MySQL InnoDB缓冲池，既然是缓冲池，那么里面应该缓存着大量的数据，使CPU读取或者写入数据时，不直接和低速的磁盘打交道，直接和缓冲区进行交互，从而解决了因为磁盘性能慢导致的数据库性能差的问题，弥补了两者之间的速度差异。但小编就会有些疑问:</p>
+<ul>
+<li>Innodb buffer pool有哪些需要提前了解的基础知识？</li>
+<li>Innodb buffer pool中存的具体是什么内容？</li>
+<li>Innodb bufferp pool中的数据是如何加载进去的？</li>
+<li>InnoDB如何管理buffer pool的？</li>
+<li>Innodb Buffer Pool 有哪些配置项？</li>
+</ul>
+<h4 id="_3">二、基础知识<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h4>
+<p>2.1 Buffer Pool Instance</p>
+<p>Buffer Pool实例，大小等于innodb_buffer_pool_size/innodb_buffer_pool_instances，每个Buffer Pool Instance都有自己的锁，信号量，物理块(Buffer chunks)以及逻辑链表(List)。即各个instance之间没有竞争关系，可以并发读取与写入。所有instance的物理块(Buffer chunks)在数据库启动的时候被分配，直到数据库关闭内存才予以释放。每个Buffer Pool Instance有一个page hash链表，通过它，使用space_id和page_no就能快速找到已经被读入内存的数据页，而不用线性遍历LRU List去查找。注意这个hash表不是InnoDB的自适应哈希，自适应哈希是为了减少Btree的扫描，而page hash是为了避免扫描LRU List。</p>
+<p>当innodb_buffer_pool_size小于1GB时候，innodb_buffer_pool_instances被重置为1，主要是防止有太多小的instance从而导致性能问题。</p>
+<p>2.2 数据页</p>
+<p>InnoDB中，数据管理的最小单位为页，默认是16KB，页中除了存储用户数据，还可以存储控制信息的数据。InnoDB IO子系统的读写最小单位也是页。</p>
+<p>2.3 Buffer Chunks</p>
+<p>包括两部分：数据页和数据页对应的控制体，控制体中有指针指向数据页。Buffer Chunks是最低层的物理块，在启动阶段从操作系统申请，直到数据库关闭才释放。通过遍历chunks可以访问几乎所有的数据页，有两种状态的数据页除外：没有被解压的压缩页(BUF_BLOCK_ZIP_PAGE)以及被修改过且解压页已经被驱逐的压缩页(BUF_BLOCK_ZIP_DIRTY)。此外数据页里面不一定都存的是用户数据，开始是控制信息，比如行锁，自适应哈希等。</p>
+<p>2.4 逻辑链表</p>
+<p>链表节点是数据页的控制体(控制体中有指针指向真正的数据页)，链表中的所有节点都有同一的属性，引入其的目的是方便管理。Innodb Buffer Pool 相关的链表有:</p>
+<p>2.4.1 Free List</p>
+<p>其上的节点都是未被使用的节点，如果需要从数据库中分配新的数据页，直接从上获取即可。InnoDB需要保证Free List有足够的节点，提供给用户线程用，否则需要从FLU List或者LRU List淘汰一定的节点。InnoDB初始化后，Buffer Chunks中的所有数据页都被加入到Free List，表示所有节点都可用。</p>
+<p>2.4.2 LRU List</p>
+<p>近期最少使用链表(Least Recently Used)，这个是InnoDB中最重要的链表。所有新读取进来的数据页都被放在上面。链表按照最近最少使用算法排序，最近最少使用的节点被放在链表末尾，如果Free List里面没有节点了，就会从中淘汰末尾的节点。LRU List还包含没有被解压的压缩页，这些压缩页刚从磁盘读取出来，还没来得及被解压。LRU List被分为两部分，默认前5/8为young list，存储经常被使用的热点page，后3/8为old list。新读入的page默认被加在old list头，只有满足一定条件后，才被移到young list上，主要是为了预读的数据页和全表扫描污染buffer pool。</p>
+<p>2.4.3 FLU List</p>
+<p>这个链表中的所有节点都是脏页，也就是说这些数据页都被修改过，但是还没来得及被刷新到磁盘上。在FLU List上的页面一定在LRU List上，但是反之则不成立。一个数据页可能会在不同的时刻被修改多次，在数据页上记录了最老(也就是第一次)的一次修改的lsn，即oldest_modification。不同数据页有不同的oldest_modification，FLU List中的节点按照oldest_modification排序，链表尾是最小的，也就是最早被修改的数据页，当需要从FLU List中淘汰页面时候，从链表尾部开始淘汰。加入FLU List，需要使用flush_list_mutex保护，所以能保证FLU List中节点的顺序。</p>
+<p>2.4.4 Unzip LRU List</p>
+<p>这个链表中存储的数据页都是解压页，也就是说，这个数据页是从一个压缩页通过解压而来的。</p>
+<p>2.4.5 Zip Clean List</p>
+<p>这个链表只在Debug模式下有，主要是存储没有被解压的压缩页。这些压缩页刚刚从磁盘读取出来，还没来的及被解压，一旦被解压后，就从此链表中删除，然后加入到Unzip LRU List中。</p>
+<p>2.4.6 Zip Free</p>
+<p>压缩页有不同的大小，比如8K，4K，InnoDB使用了类似内存管理的伙伴系统来管理压缩页。Zip Free可以理解为由5个链表构成的一个二维数组，每个链表分别存储了对应大小的内存碎片，例如8K的链表里存储的都是8K的碎片，如果新读入一个8K的页面，首先从这个链表中查找，如果有则直接返回，如果没有则从16K的链表中分裂出两个8K的块，一个被使用，另外一个放入8K链表中。</p>
+<p>2.6 Frame</p>
+<p>帧，16K的虚拟地址空间， 在缓冲池的管理上，整个缓冲区是是以大小为16k的frame(可以理解为数据块)为单位来进行的，frame是innodb中页的大小。</p>
+<p>2.7 Page</p>
+<p>页，16K的物理内存， page上存的是需要保存到磁盘上的数据， 这些数据可能是数据记录信息， 也可以是索引信息或其他的元数据等；</p>
+<p>2.8 Control Block</p>
+<p>控制块，对于每个frame, 对应一个block， block上的信息是专门用于进行frame控制的管理信息， 但是这些信息不需要记录到磁盘，而是根据读入数据块在内存中的状态动态生成的， 主要包括：</p>
+<ol>
+<li>页面管理的普通信息，互斥锁， 页面的状态等</li>
+<li>脏回写(flush)管理信息</li>
+<li>lru控制信息</li>
+<li>快速查找的管理信息， 为了便于快速的超找某一个block或frame， 缓冲区里面的block被组织到一些hash表中; 缓冲区中的block数量是一定的， innodb缓冲区对所管理的block用lru(last recently used)策略进行替换。</li>
+</ol>
+<p>2.9 Buffer Pool分配方式</p>
+<p>MySQL使用mmap分配Buffer Pool，但是都是虚存，在top命令中占用VIRT这一列，而不是RES这一列，只有相应的内存被真正使用到了，才会被统计到RES中，从而提高内存使用率。这就是为什么常常看到MySQL一启动就被分配了很多的VIRT，而RES却是慢慢涨上来的原因。这里大家可能有个疑问，为啥不用malloc。其实查阅malloc文档，可以发现，当请求的内存数量大于MMAP_THRESHOLD(默认为128KB)时候，malloc底层就是调用了mmap。在InnoDB中，默认使用mmap来分配。 分配完了内存，buf_chunk_init函数中，把这片内存划分为两个部分，前一部分是数据页控制体(buf_block_t)，后一部分是真正的数据页，按照UNIV_PAGE_SIZE分隔。假设page大小为16KB，则数据页控制体占的内存:数据页约等于1:38.6，也就是说如果innodb_buffer_pool_size被配置为40G，则需要额外的1G多空间来存数据页的控制体。 划分完空间后，遍历数据页控制体，设置buf_block_t::frame指针，指向真正的数据页，然后把这些数据页加入到Free List中即可。初始化完Buffer Chunks的内存，还需要初始化BUF_BLOCK_POOL_WATCH类型的数据页控制块，page hash的结构体，zip hash的结构体(所有被压缩页的伙伴系统分配走的数据页面会加入到这个哈希表中)。注意这些内存是额外分配的，不包含在Buffer Chunks中。</p>
+<p>2.10 互斥访问</p>
+<p>缓冲池的整个缓冲区一个数据结构buf_pool进行管理和控制， 一个专门的mutex保护着， 这个mutex是用来保护buf_pool这个控制结构中的数据域的， 并不保护缓冲区中的数据frame以及用于管理的block, 缓冲区里block或者frame中的访问是由专门的读写锁来保护的， 每个block/frame一个。在5.1以前， 每个block是没专门的mutex保护的，如果需要进行互斥保护，直接使用缓冲区的mutex, 结果导致很高的争用； 5.1以后，每个block一个mutex对其进行保护， 从而在很大程度上解缓了对buf_pool的mutex的争用。</p>
+<h4 id="buffer-pool_1">三、 Buffer Pool 存储内容<a class="headerlink" href="#buffer-pool_1" title="Permanent link">&para;</a></h4>
+<p>BUffer Pool中缓存的数据页类型有: 索引页、数据页、undo页、插入缓冲（insert buffer)、自适应哈希索引（adaptive hash index)、InnoDB存储的锁信息（lock info)、数据字典信息（data dictionary)等。</p>
+<h4 id="buffer-pool_2">四、Buffer Pool 数据加载<a class="headerlink" href="#buffer-pool_2" title="Permanent link">&para;</a></h4>
+<p>4.1 Buffer Pool预热</p>
+<p>MySQL在重启后，Buffer Pool里面没有什么数据，这个时候业务上对数据库的数据操作，MySQL就只能从磁盘中读取数据到内存中，这个过程可能需要很久才能是内存中的数据是业务频繁使用的。Buffer Pool中数据从无到业务频繁使用热数据的过程称之为预热。所以在预热这个过程中，MySQL数据库的性能不会特别好，并且Buffer Pool越大，预热过程越长。</p>
+<p>为了减短这个预热过程，在MySQL关闭前，把Buffer Pool中的页面信息保存到磁盘，等到MySQL启动时，再根据之前保存的信息把磁盘中的数据加载到Buffer Pool中即可。</p>
+<p>4.1.1 Buffer Pool Dump</p>
+<p>遍历所有Buffer Pool Instance的LRU List，对于其中的每个数据页，按照space_id和page_no组成一个64位的数字，写到外部文件中</p>
+<p>4.1.2 Buffer Pool Load</p>
+<p>读取指定的外部文件，把所有的数据读入内存后，使用归并排序对数据排序，以64个数据页为单位进行IO合并，然后发起一次真正的读取操作。排序的作用就是便于IO合并。</p>
+<p>4.2 预读机制</p>
+<p>InnoDB在I/O的优化上有个比较重要的特性为预读，预读请求是一个i/o请求，它会异步地在缓冲池中预先回迁多个页面，预计很快就会需要这些页面，这些请求在一个范围内引入所有页面。InnoDB以64个page为一个extent，那么InnoDB的预读是以page为单位还是以extent？</p>
+<p><img alt="" src="/assets/v2-a4c7d4b6d8ef094105aecb50f222a88a_r.jpg" /></p>
+<p>数据库请求数据的时候，会将读请求交给文件系统，放入请求队列中；相关进程从请求队列中将读请求取出，根据需求到相关数据区(内存、磁盘)读取数据；取出的数据，放入响应队列中，最后数据库就会从响应队列中将数据取走，完成一次数据读操作过程。</p>
+<p>接着进程继续处理请求队列，(如果数据库是全表扫描的话，数据读请求将会占满请求队列)，判断后面几个数据读请求的数据是否相邻，再根据自身系统IO带宽处理量， 进行预读，进行读请求的合并处理 ，一次性读取多块数据放入响应队列中，再被数据库取走。(如此，一次物理读操作，实现多页数据读取，rrqm&gt;0（ # iostat -x ），假设是4个读请求合并，则rrqm参数显示的就是4)</p>
+<p>InnoDB使用两种预读算法来提高I/O性能： 线性预读（linear read-ahead）和随机预读（randomread-ahead）</p>
+<p>为了区分这两种预读的方式，我们可以把线性预读以extent为单位，而随机预读以extent中的page为单位。线性预读着眼于将下一个extent提前读取到buffer pool中，而随机预读着眼于将当前extent中的剩余的page提前读取到buffer pool中。</p>
+<p>4.2.1 线性预读（linear read-ahead）</p>
+<p>线性预读方式有一个很重要的变量控制是否将下一个extent预读到buffer pool中，通过使用配置参数 innodb_read_ahead_threshold ，控制触发innodb执行预读操作的时间。</p>
+<p>如果一个extent中的被顺序读取的page超过或者等于该参数变量时，Innodb将会异步的将下一个extent读取到buffer pool中，innodb_read_ahead_threshold可以设置为0-64的任何值(因为一个extent中也就只有64页)，默认值为56，值越高，访问模式检查越严格。</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>mysql&gt; show variables like &#39;innodb_read_ahead_threshold&#39;;
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>+-----------------------------+-------+
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>| Variable_name               | Value |
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>+-----------------------------+-------+
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>| innodb_read_ahead_threshold | 56    |
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>+-----------------------------+-------+
+</span></code></pre></div>
+<p>例如 ，如果将值设置为48，则InnoDB只有在顺序访问当前extent中的48个pages时才触发线性预读请求，将下一个extent读到内存中。如果值为8，InnoDB触发异步预读，即使程序段中只有8页被顺序访问。</p>
+<p>可以在MySQL配置文件中设置此参数的值，或者使用SET GLOBAL需要该SUPER权限的命令动态更改该参数。</p>
+<p>在没有该变量之前，当访问到extent的最后一个page的时候，innodb会决定是否将下一个extent放入到buffer pool中。</p>
+<p>4.2.2 随机预读（randomread-ahead）
+随机预读方式则是表示当同一个extent中的一些page在buffer pool中发现时，Innodb会将该extent中的剩余page一并读到buffer pool中。</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>mysql&gt; show variables like &#39;innodb_random_read_ahead&#39;;
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>+--------------------------+-------+
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>| Variable_name            | Value |
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>+--------------------------+-------+
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>| innodb_random_read_ahead | OFF   |
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>+--------------------------+-------+
+</span></code></pre></div>
+<p>由于随机预读方式给innodb code带来了一些不必要的复杂性，同时在性能也存在不稳定性，在5.5中已经将这种预读方式 废弃，默认是OFF 。若要启用此功能，即将配置变量设置innodb_random_read_ahead为ON。</p>
+<p>4.2.3 监控Innodb的预读</p>
+<ol>
+<li>可以通过show engine innodb status\G显示统计信息</li>
+</ol>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>mysql&gt; show engine innodb status\G
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>----------------------
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>BUFFER POOL AND MEMORY
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>----------------------
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>……
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>Pages read ahead 0.00/s, evicted without access 0.00/s, Random read ahead 0.00/s
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>……
+</span></code></pre></div>
+<ul>
+<li>Pages read ahead：表示每秒读入的pages；</li>
+<li>evicted without access：表示每秒读出的pages；</li>
+<li>
+<p>一般随机预读都是关闭的，也就是0。</p>
+</li>
+<li>
+<p>通过两个状态值，评估预读算法的有效性</p>
+</li>
+</ul>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>mysql&gt; show global status like &#39;%read_ahead%&#39;;
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>+---------------------------------------+-------+
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>| Variable_name                         | Value |
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>+---------------------------------------+-------+
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>| Innodb_buffer_pool_read_ahead_rnd     | 0     |
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>| Innodb_buffer_pool_read_ahead         | 2303  |
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>| Innodb_buffer_pool_read_ahead_evicted | 0     |
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>+---------------------------------------+-------+
+</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>3 rows in set (0.01 sec)
+</span></code></pre></div>
+<ul>
+<li>Innodb_buffer_pool_read_ahead：通过预读(后台线程)读入innodb buffer pool中数据页数</li>
+<li>Innodb_buffer_pool_read_ahead_evicted：通过预读来的数据页没有被查询访问就被清理的pages，无效预读页数</li>
+</ul>
+<h4 id="innodb-buffer-pool_1">五、Innodb 如何管理Buffer Pool<a class="headerlink" href="#innodb-buffer-pool_1" title="Permanent link">&para;</a></h4>
+<p>5.1 Buffer Pool的工作机制</p>
+<p>buffer pool两个最主要的功能：一个是加速读，一个是加速写。加速读呢？ 就是当需要访问一个数据页面的时候，如果这个页面已经在缓存池中，那么就不再需要访问磁盘，直接从缓冲池中就能获取这个页面的内容。加速写呢？就是当需要修改一个页面的时候，先将这个页面在缓冲池中进行修改，记下相关的重做日志，这个页面的修改就算已经完成了。至于这个被修改的页面什么时候真正刷新到磁盘，这个是buffer pool后台刷新线程来完成的。</p>
+<p>在实现上面两个功能的同时，需要考虑客观条件的限制，因为机器的内存大小是有限的，所以MySQL的innodb buffer pool的大小同样是有限的。在通常的情况下，当数据库的数据量比较大的时候，缓存池并不能缓存所有的数据页，所以也就可能会出现，当需要访问的某个页面时，该页面却不在缓存池中的情况，这个时候就需要从磁盘中将这个页面读出来，加载到缓存池中，然后再去访问。这样就涉及到随机的物理io，也就延长了访问页面所消耗的时间。</p>
+<p>这样的情况是一个bad case，是我们期望尽量避免的——因此需要想办法来提高缓存的命中率。 innodb buffer pool采用经典的LRU列表算法来进行页面淘汰，以提高缓存命中率。将缓存的页面按照最近使用的次数跟时间进行排序，队列最末尾的页面将会最先被淘汰。同时，在LRU列表的中间位置打了一个old标识，可以简单的理解为将LRU列表分为两个部分，这个标记到LRU列表头部的页面称之为young的页面，这个标志到LRU列表尾部的页面称之为old页面。再进行抽象的话，我们简单地理解为缓存池被分成两个池子，一个叫young池子，一个叫old池子。当一个页面从磁盘上加载缓存池中的时候，会将它排放在这个old标识之后的第一个位置，也就是说放在了old池子中。这个机制的作用就是，在做大表的一次性全表扫描的时候，大量新进来的页面，是存放在old池子中的，当old池子的大小不够缓存新进来的页面的时候，也只是在old池子中内部进行循环冲洗，这样就不会冲洗young池子中的热点页面，从而保护了热点页面。这就是LRU列表的简单机制。</p>
+<p>另外，前面我们讲到页面更新是在缓存池中先进行的，所以需要考虑这些被修改的页面什么时候刷新到磁盘？以什么样的顺序刷新到磁盘？在innodb buffer pool中，采用的方式是将页面在缓存中的按照第一次修改时间，也就是变成脏页的时间进行排序，flush列表进行排序，由后台刷新线程依次刷新到磁盘，实现修改落地到磁盘。</p>
+<p>简单介绍了buffer pool的工作机制，我们现在来看buffer pool里面最重要的几个列表，前面已经讲了两个列表，LRU列表以及flush列表，也就是脏页刷新列表。现在再补充一个列表—空闲（free）列表。空闲列表中的内存块，是没有存放任何数据页的内存块。当没有在缓存池中的页面需要被访问时，它需要先被加载到缓存池中，从而需要从空闲列表中取出一个空闲内存块来缓存这个页面。</p>
+<p>所以，总结一下。为了管理buffer pool，每个buffer pool instance使用如下几个链表来管理：</p>
+<ul>
+<li>lru链表：缓存了所有读入内存的数据页，包含三类</li>
+<li>1）未修改的页面，可以从该列表中摘除，然后移到free列表中。</li>
+<li>2）已修改还未刷新到磁盘的页面。</li>
+<li>
+<p>3）已修改且已经刷新到磁盘的页面，可并为第一类。</p>
+</li>
+<li>
+<p>free链表：空闲内存页（块）列表，需要装载（缓存）磁盘上的数据页的时候，从此列表取内存块。</p>
+</li>
+<li>flush链表：在内存中被修改但还没有刷新到磁盘的数据页列表，就是所谓的脏页列表，内存中的数据跟对应的磁盘上的数据不一致，属于该列表的页面同样存在于lru列表中，但反之未必。</li>
+<li>unzip_lru链表：包含所有解压页。</li>
+</ul>
+<p>5.2 LRU（least recently used）</p>
+<p>InnoDB管理buffer poll是将buffer pool作为一个list管理，基于LRU算法的管理。当有新的页信息要读入到buffer pool里面的时候，buffer pool就将最近最少使用的页信息从buffer pool当中驱逐出去，并且将新页加入到list的中间位置，这就是所谓的“中点插入策略”。一般情况下list头部存放的是热数据，就是所谓的young page（最近经常访问的数据），list尾部存放的就是old page（最近不被访问的数据）。这个算法就保证了最近经常使用的page信息会被保存在最近访问的sublist中，相反的不被经常访问的就会保存在old sublist，而old sublist当中的page信息都是会被在新数据写入的时候被驱逐的。</p>
+<p>LRU算法有以下的标准算法：1）3/8的list信息是作为old list，这些信息是被驱逐的对象。2）list的中点就是我们所谓的old list头部和new list尾部的连接点，相当于一个界限。3）新数据的读入首先会插入到old list的头部。4）如果是old list的数据被访问到了，这个页信息就会变成new list，变成young page，就会将数据页信息移动到new sublist的头部。5）在数据库的buffer pool里面，不管是new sublist还是old sublist的数据如果不会被访问到，最后都会被移动到list的尾部作为牺牲者。</p>
+<p>一般情况下，页信息会被查询语句立马查询到而被移动到new sublist，这就意味着他们会在buffer pool里面保留很长一段时间。表扫描（包括mysqldump或者没有where条件的select等操作）等操作将会刷入大量的数据进入buffer pool，同时也会将更多的buffer pool当中的信息刷出去，即使这个操作可能只会使用到一次而已。同样的，如果read-ahead（线性预读）后台进程读入大量数据的情况下也是会造成buffer pool大量高频的刷新数据页，但是这些操作是可控的，下面3，4会说得到。read-ahead操作简单说一下就是MySQL的一个后台预读进程，能够保证MySQL预读入数据进入buffer pool当中</p>
+<p>当你做backup或者report的时候，可以频繁的往buffer pool里面读取数据，不用有太多的顾虑。</p>
+<p>InnoDB采用的是一种不是像LRU那么严格的方法来保证将最近访问的数据写入到buffer pool里面，并且最大可能的降低减少数据的带入量。这个语句是全表扫描或者以后这个数据将不会再被访问到，但是缓冲数据还是会写入到buffer pool里面。</p>
+<p>新写入的数据会被插入到LRU list的中间位置，默认会插入到从list尾部算起来的3/8的位置，当这些写入的数据在buffer pool中被第一次访问的时候，在list中的位置就会向前移动，这样其实就会在list保留两个位置，老的位置并不会被立即清除，直到老的LRU list的位置被标记为old的时候，才会在下一次插入数据的时候被作为牺牲者清除掉。</p>
+<p>我们本身是可以指定插入LRU list的位置，并且也可以设置当索引扫描或者是全表扫描的时候是不是采用这个相同的优化方法。innodb_old_blocks_pct这个参数设置的是插入的位置，默认的值是37，我们可以设置的值是5-95之间，其余部分并不用来保存热数据。但是还有一个严重的问题就是当一个全表扫描或者索引的扫描经常被访问的时候，就会存储很大的数据到buffer pool里面，我们都知道这是很危险的一件事。所以MySQL给我们以下参数来设置保留在buffer pool里面的数据在插入时候没有被改变list位置的时候的保存时间innodb_old_blocks_time，单位是毫秒，这个值的默认值是1000。如果增大这个值的话，就会让buffer pool里面很多页信息变老的速度变快，这个很好理解把，因为这些数据不会很快被内存中擦除的话，就会变成热数据而挤掉原有缓存的数据。</p>
+<p>以上的两个参数都是可以动态设置的，当然也可以在my.cnf里面设置。当然设置这些前一定要对机器配置，表信息，负载情况有充分的了解才能进行设置，生产库尽量不要随便修改。如果OLTP系统中有大量的大查询的话，设置innodb_old_blocks_time能够较大的提供系统的稳定性。如果当一个大查询很大不足够存储到buffer pool当中的时候，我们可以指定innodb_old_blocks_pct的值小一点，以保证这些数据只会被读取一次，比如说设置为5的时候，就限制了一次读取数据最多只能被读取到buffer pool当中5%。当然一些小表并且是经常访问到的数据的话就可以适当设置较大的值，比如50。当然设置这两个值的时候一定要建立在你充分了解你的数据负载的基础上，不然千万不要乱改。</p>
+<p>5.3 数据页访问机制</p>
+<p>下面我们来看一下一个数据页的访问流程。</p>
+<ol>
+<li>当访问的页面在缓存池中命中，则直接从缓冲池中访问该页面。另外为了避免查询数据页时扫描LRU，还为每个buffer pool instance维护了一个page hash，通过space id和page no可以直接找到对应的page。一般情况下，当我们需要读入一个Page时，首先根据space id和page no找到对应的buffer pool instance。然后查询page hash，如果page hash中没有，则表示需要从磁盘读取。</li>
+<li>如果没有命中，则需要将这个页面从磁盘上加载到缓存池中，因此需要在缓存池中的空闲列表中找一个空闲的内存块来缓存这个从磁盘读入的页面。</li>
+<li>但存在空闲内存块被使用完的情况，不保证一定有空闲的内存块。假如空闲列表为空，没有空闲的内存块，则需要想办法去产生空闲的内存块。</li>
+<li>首先去LRU列表中找可以替换的内存页面，查找方向是从列表的尾部开始找，如果找到可以替换的页面，将其从LRU列表中摘除，加入空闲列表，然后再去空闲列表中找空闲的内存块。第一次查找最多只扫描100个页面，循环进行到第二次时，会查找深度就是整个LRU列表。这就是LRU列表中的页面淘汰机制。</li>
+<li>如果在LRU列表中没有找到可以替换的页，则进行单页刷新，将脏页刷新到磁盘之后，然后将释放的内存块加入到空闲列表。然后再去空闲列表中取。为什么只做单页刷新呢？因为这个函数的目的是获取空闲内存页，进行脏页刷新是不得已而为之，所以只会进行一个页面的刷新，目的是为了尽快的获取空闲内存块。</li>
+</ol>
+<p>因为空闲列表是一个公共的列表，所有的用户线程都可以使用，存在争用的情况。因此，自己产生的空闲内存块有可能会刚好被其他线程所使用，所以用户线程可能会重复执行上面的查找流程，直到找到空闲的内存块为止。</p>
+<p>通过数据页访问机制，可以知道其中当无空闲页时产生空闲页就成为一个必须要做的事情了。如果需要刷新脏页来产生空闲页面或者需要扫描整个LRU列表来产生空闲页面的时候，查找空闲内存块的时间就会延长，这个是一个bad case，是我们希望尽量避免的。因此，innodb buffer pool中存在大量可以替换的页面，或者free列表中一直存在着空闲内存块，对快速获取到空闲内存块起决定性的作用。在innodb buffer pool的机制中，是采用何种方式来产生的空闲内存块，以及可以替换的内存页的呢？这就是我们下面要讲的内容——通过后台刷新机制来产生空闲的内存块以及可以替换的页面。</p>
+<p>5.4 缓冲池刷新策略
+InnoDB会在后台执行某些任务，包括从缓冲池刷新脏页（那些已更改但尚未写入数据库文件的页）。</p>
+<p>当启用innodb_max_dirty_pages_pct_lwm（默认值0）参数时，表示启用了脏页面预刷新行为，以控制脏页面占比。也是为了防止脏页占有率超过innodb_max_dirty_pages_pct（默认值75%）的设定值。默认禁用“预刷新”行为。如果当脏页的占有率达到了innodb_max_dirty_pages_pct的设定值的时候，InnoDB就会强制刷新buffer pool pages。另外当free列表小于innodb_lru_scan_depth值时也会触发刷新机制，innodb_lru_scan_depth控制LRU列表中可用页的数量，该值默认为1024。</p>
+<p>后台刷新的动作由后台刷新协调线程触发，该线程的所有工作内容均由buf_flush_page_cleaner_coordinator函数完成，我们后面简称它为协调函数。接下来，来看后台刷新协调函数的主体流程。</p>
+<ol>
+<li>调用page_cleaner_flush_pages_recommendation建议函数，对每个缓冲池实例生成脏页刷新数量的建议。在执行刷新之前，会用建议函数生成每个buffer pool需要刷新多少个脏页的建议。</li>
+<li>生成刷新建议之后，通过设置事件的方式，向刷新线程（Page Cleaner线程）发出刷新请求。后台刷新线程在收到请求刷新的事件后，会执行pc_flush_slot函数对某个缓存池进行刷新，刷新的过程首先是对lru列表进行刷新，执行的函数为buf_flush_LRU_list，完成LRU列表的刷新之后，就会根据建议函数生成的建议对脏页列表进行刷新，执行的函数为buf_flush_do_batch。</li>
+<li>后台刷新的协调线程会作为刷新调度总负责人的角色，它会确保每个buffer pool都已经开始执行刷新。如果哪个buffer pool的刷新请求还没有被处理，则由刷新协调线程亲自刷新，且直到所有的buffer pool instance都已开始/进行了刷新，才退出这个while循环。</li>
+<li>当所有的buffer pool instance的刷新请求都已经开始处理之后，协调函数（或协调线程）就等待所有buffer pool instance的刷新的完成，等待函数为pc_wait_finished。如果这次刷新的总耗时超过4000ms，下次循环之前，会在数据库的错误日志记录相关的超时信息。它期望每秒钟对buffer pool进行一次刷新调度。如果相邻两次刷新调度的间隔超过4000ms ，也就是4秒钟，MySQL的错误日志中会记录相关信息，意思就是“本来预计1000ms的循环花费了超过4000ms的时间。</li>
+</ol>
+<p>前面我们反复讲到，每个buffer pool需要刷新多少页面是由建议函数生成的，它在做刷新建议的时候，具体考虑了哪些因素？现在我们来详细解析。</p>
+<p>在讲这段内容之前，我们先来了解两个参数：innodb_io_capacity与innodb_io_capacity_max，这两个参数大部分朋友都不陌生，设置这个参数的目的，是告诉MySQL数据库，它所在服务器的磁盘的随机IO能力。MySQL数据库目前还没有去自己评估服务器磁盘IO能力的功能，所以磁盘io能力大小由这个参数提供，以便让数据库知道磁盘的实际IO能力。这个参数将直接影响建议刷新的页面的数量。</p>
+<p>建议函数它会计算当前的脏页刷新平均速度（也就是一秒钟刷新了多少脏页）以及重做日志的生成平均速度。但这个函数并不是每次被调用时，都计算一次平均速度。它是多久计算一次的呢？这个是由数据库参数innodb_flushing_avg_loops来决定的，默认是30，当这个函数被调用了30次之后或者经过30秒之后，重新计算一次平均值。我们暂且简单理解为30秒钟。计算规则是当前的平均速度加上最近30秒钟期间的平均速度再除以2得出新的平均速度。两个平均值相加再平均，得出新的平均值。这样的平均值能明显的体现出最近30秒的速度的变化。</p>
+<p>平均值计算规则就是新平均速度=(当前的平均速度+最近这段期间平均速度)%2。</p>
+<p>接下来，它会根据innodb buffer pool的脏页百分比来计算innodb_io_capacity的百分比。然后会根据重做日志中的活跃日志量的大小，也就是lsn的age，最近生成量，占重做日志文件大小的百分比来计算innodb_io_capacity的百分比。调用相关函数根据脏页百分比来计算io_capacity的百分比，用变量pct_for_dirty保存，然后根据活跃日志量的大小来计算io_capacity的百分比，用变量pct_for_lsn来保存，这个值后面会被是使用到，用来决定每个buffer pool是建议刷新相同的数量的脏页，还是刷新不同的数量。当pct_for_lsn&lt;30的时候，建议每个buffer刷新相同数量的页面。否则，建议刷新不同数量的页面。最后比较这两个变量的大小，大的值作为最终的io_capacity的百分比，用变量pct_total保存。假如计算出来的得到pctl_total为90，而数据库参数innodb_io_capacity设置为1000，则根据这两个因素再结合所设置的磁盘io能力，得出的建议就为刷新900个脏页，所以innodb_io_capacity参数也是刷新多少的一个重要参数。接下来我们将来看看是如何具体跟据这两项来计算io_capacity的百分比的。</p>
+<p>5.4.1 如何根据脏页百分比来计算innodb_io_capacity百分比？</p>
+<p>首先获取缓存池的脏页百分比，然后根据这个值进行判断。如果参数最大脏页百分比的低水位设置为0(默认值），当dirty_pct大于参数innodb_max_dirty_pages_pct（默认值75%），则返回100，否则返回0。如果设置了最大脏页百分比的低水位，当脏页百分比超过该值时，则返回相应的比例。当脏页百分比越接近最大脏页百分比，返回比例越接近100。否则为0。</p>
+<p>5.4.2 如何根据重做日志活跃日志量来计算innodb_io_capacity百分比？</p>
+<p>如果活跃日志量占日志文件大小的百分比小于参数innodb_adaptive_flushing_lwm，即自适应刷新的低水位，默认是10，则直接返回0。如果没有设置自适应刷新参数innodb_adaptive_flushing，（InnoDB 1.0引入的参数，自适应刷新，就是我们这里讲的刷新方式。旧的刷新方式时只有脏页在缓冲池中占的比例大于innodb_max_dirty_pages_pct参数时就会刷新100个脏页），默认为on，则需要等待活跃的日志量大于max_async_age的值，才会返回相应的百分比，否则返回0。可以简单的理解为，如果没有开启自适应刷新，则必须等待活跃日志量的过大，大到存在危害数据库的可用性风险时，才开始考虑基于活跃日志量的大小来进行脏页刷新。如果开启了自适应刷新，活跃日志量所占百分比大于自适应刷新的低水位时，返回相应的百分比。</p>
+<p>然后，会根据前面计算的重做日志生成的平均速度，来计算建议每个buffer pool instance刷新多少脏页以及所有pool buffer的刷新总量。之所以会基于这个因素来考虑，我认为是这样的：新产生的重做日志是活跃的重做日志，根据活跃日志的生成速度来计算需要刷新的脏页的数量，从而将使活跃日志的过期速度跟生成速度达到一个均衡，这样控制了活跃的重做日志在一个正常的范围，保障了重做日志文件一直有可以使用的空间，不然就会有问题（可以看MySQL InnoDB checkpoint）。在这里简单说明一下活跃的重做日志跟不活跃的重做日志的区别：活跃日志是指其记录的被修改的脏页还没有被刷新到磁盘，当MySQL实例crash之后，需要使用这些日志来做实例恢复。</p>
+<p>5.4.3 如何计算每个buffer pool instance需要刷新的页面？</p>
+<p>首先，根据前面计算得出的lsn_avg_rate，即重做日志产生的平均速度，计算出一个target_lsn号。</p>
+<p>然后从每一个buffer pool的脏页列表的队尾开始取出脏页，将脏页的old_modifiaction(最小的lsn)跟target_lsn进行比较，这里简单的说明一下脏页的oldest_modification的含义，它表示的是脏页第一次修改时的lsn号，也就是脏页的最小lsn号。如果它小于target_lsn，然后将其作为刷新对象进行计数，否则，退出这个buffer pool内的循环。因为刷新列表时按照脏页的最小lsn号进行排序的，前面的脏页的最小lsn都大于target_lsn ，所以不需要再继续找下去。</p>
+<p>从上面的计算方式可以看出，当重做日志生成的平均速度越大，target_lsn就越大，同时，如果buffer_pool中的脏页的old_modition小于target_lsn的数量越多，也就是老的脏页越多，被建议刷新的页面就越多。</p>
+<p>再接下来，通过上面的计算，我们从不同维度分别得出三个建议刷新的数量：分别为当前的脏页刷新的平均速度，也就是一秒钟刷新了多少脏页；根据脏页百分比，以及活跃日志量的大小，以及所设置的innodb_io_capacity参数所得出建议刷新的数量；以及根据重做日志产生速度计算得出的建议刷新数量。将这三个值相加之后再平均，得出的就是考虑了上面所有因素的一个综合建议，由变量n_pages保存。接下来，这个建议刷新的总量n_pages会跟innodb_io_capacity_max这个参数进行比较，也就是建议刷新的总量最大不能超过所设置的磁盘最大随机io能力。</p>
+<p>最后，生成最终的刷新建议。生成最终的刷新建议时，会考虑当前数据库的活跃日志量的大小，当前活跃日志比较少的时候，认为重做日志文件有足够可以使用的空间(以变量pct_for_lsn小于30为依据），则不需要考虑每个buffer pool之间的脏页年龄分布不均的情况，每个buffer pool刷新相同的数量，数量就刷新总量除以buffer pool的个数。如果活跃日志比较多(以变量pct_for_lsn大于等于30为依据），则需要考虑脏页的年龄在每个buffer pool的分布不同，每个buffer刷新不同的数量的脏页，老的脏页比较多的buffer pool instance刷新的数量也就多。</p>
+<p>5.4.4 生成最终刷新建议后的刷新逻辑？</p>
+<p>当生成刷新建议之后，就设置刷新请求事件，请求刷新线程进行脏页批量刷新。请求函数pc_request也很简单。</p>
+<ol>
+<li>将所有buffer pool instances的刷新状态设置为PAGE_CLEANER_STATE_REQUESTED，即申请刷新。</li>
+<li>通过设置事件，唤醒/触发page cleaner线程调用pc_flush_slot函数来进行buffer pool的批量刷新。</li>
+</ol>
+<p>Page_cleaner线程收到刷新请求之后，就开始进行批量刷新。</p>
+<ol>
+<li>寻找一个状态为申请刷新的缓存池实例，然后选为刷新对象，将状态修改为flushing.。然后执行后面的刷新。</li>
+<li>执行buf_flush_LRU_list函数进行LRU列表的刷新。</li>
+<li>执行buf_flush_do_batch批量刷新脏页列表，该buffer pool instance建议刷新的数量slot-&gt;n_pages_requested作为该函数参数值，也就是依据建议刷新的页面数来进行刷新。</li>
+</ol>
+<p>对于LRU列表的刷新的函数buf_flush_LRU_list将scan_depth变量传递最终传递给buf_flush_LRU_list_batch函数，在通常情况下，可以简单的理解scan_depth的值来自于数据库参数innodb_lru_scan_deptch（简单理解innodb_lru_scan_depth参数控制LRU列表中可用页的数量，该值默认为1024）参数。接下来看buf_flush_LRU_list_batch函数，这个函数一个重要点就是如果free列表的长度大于innodb_lru_scan_depth参数值，则终止内部循序。否则就往下走，然后就该判断如果是一个可替换的页，则将从LRU列表中摘除，其加入free列表。如果是脏页，则进行刷新，直到满足小于innodb_lru_scan_depth的条件则终止循环体。由此我们可以看出innodb_lru_scan_depth参数，在此起非常关键的作用，实际上也直接影响了buffer bool instance中的free列表的长度。</p>
+<p>刷新协调函数的执行一个刷新循环的最后一步，就是设置事件等待，等待所有buffer pool instance刷新完成的事件触发。刷新完成之后，然后开始下一轮循环，如果刷新在1秒之内完成，则刷新协调线程会有短暂的sleep才会发起下一次刷新。期望是1秒钟进行一次所有buffer pool instance的批量刷新。</p>
+<h4 id="buffer-pool_3">六、Buffer Pool 状态查询<a class="headerlink" href="#buffer-pool_3" title="Permanent link">&para;</a></h4>
+<p>InnoDB缓冲池将表的索引和数据进行缓存，缓冲池允许从内存直接处理频繁使用的数据，这加快了处理速度。在专用数据库服务器上，通常将多达80％的物理内存分配给InnoDB缓冲池。因为InnoDB的存储引擎的工作方式总是将数据库文件按页读取到缓冲池，每个页16k默认（innodb_page_size=16k），在MySQL 5.7中增加了32KB和64KB页面大小的支持，之前版本是不允许大于16k的；但你只能在初始化MySQL实例之前进行配置，一旦设置了一个实例的页面大小，就不能改变它，具体看innodb_page_size参数。</p>
+<p>然后按最近最少使用（LRU）算法来保留在缓冲池中的缓存数据。如果数据库文件需要修改，总是首先修改在缓存池中的页（发生修改后，该页即为脏页），然后再按照一定的频率将缓冲池的脏也刷新到文件中。可以通过show engine innodb status来查看innodb_buffer_pool的具体使用情况。一个buffer pool可能会分成好几个buffer pool instance，为了提高性能减少争用，在MySQL 5.7中，如果不显式设置innodb_buffer_pool_instances这个参数，当innodb buffer size大于1G的时候，就会默认会分成8个instances，如果小于1G，就只有1个instance。如下:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>mysql&gt; show engine innodb status\G
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>Per second averages calculated from the last 38 seconds（以下信息来之过去的38秒）
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>----------------------
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>BUFFER POOL AND MEMORY
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>----------------------
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>Total memory allocated 1098907648; in additional pool allocated 0
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>Dictionary memory allocated 59957
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>Buffer pool size   65536
+</span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a>Free buffers  65371
+</span><span id="__span-7-10"><a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a>Database pages  165
+</span><span id="__span-7-11"><a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a>Old database pages  3
+</span><span id="__span-7-12"><a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a>Modified db pages  9
+</span><span id="__span-7-13"><a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a>..........
+</span></code></pre></div>
+<p>在Buffer pool size中可以看到内存池的使用情况：</p>
+<ul>
+<li>Total memory allocated：为缓冲池分配的总内存（以字节为单位）。</li>
+<li>Dictionary memory allocated：分配给InnoDB数据字典的总内存（以字节为单位）。</li>
+<li>Buffer pool size：分配给缓冲池的页面总数量（数量*页面大小=缓冲池大小），默认每个Page为16k。</li>
+<li>Free buffers：缓冲池中空闲列表的页面总数量（Buffer pool size – Database pages）。</li>
+<li>Database pages：缓冲池中LRU LIST的页面总数量（可以理解为已经使用的页面）。</li>
+<li>Old database pages：缓冲池中LRU old SUBLIST的页面总大小（可以理解为不经常访问的页面，即将可能被LRU算法淘汰的页面）。</li>
+<li>Modified db pages：缓冲池中已经修改了的页数，所谓脏数据。</li>
+</ul>
+<p>所以这里一共分配了63336*16/1024=1G内存的缓冲池，空闲65371个页面，已经使用了165个页面，不经常修改的数据页有3个（一般占用内存的1/3），脏页的页面有9个，这些数据能分析当前数据库的压力值。</p>
+<h4 id="innodb-buffer-pool_2">七、InnoDB Buffer Pool配置项<a class="headerlink" href="#innodb-buffer-pool_2" title="Permanent link">&para;</a></h4>
+<ul>
+<li>innodb_buffer_pool_size</li>
+</ul>
+<p>指定缓冲池的大小。 如果缓冲池很小并且有足够的内存，那么通过减少查询访问InnoDB表所需的磁盘I / O量可以提高缓冲池的性能，从而提高性能。 innodb_buffer_pool_size选项是动态的，允许在不重新启动服务器的情况下配置缓冲池大小。</p>
+<ul>
+<li>innodb_buffer_pool_chunk_size</li>
+</ul>
+<p>定义InnoDB缓冲池调整大小操作的块大小</p>
+<ul>
+<li>innodb_buffer_pool_instances</li>
+</ul>
+<p>将缓冲池划分为用户指定数量的单独区域，每个区域都有自己的LRU列表和相关数据结构，以减少并发内存读取和写入操作期间的争用。 只有将innodb_buffer_pool_size设置为1GB或更大的值时，此选项才会生效。 您指定的总大小被分配到所有缓冲池中。 为了获得最佳效率，请指定innodb_buffer_pool_instances和innodb_buffer_pool_size的组合，以便每个缓冲池实例至少为1 GB。</p>
+<ul>
+<li>innodb_old_blocks_pct</li>
+</ul>
+<p>指定InnoDB用于旧块子列表的缓冲池的近似百分比。 值的范围是5到95.默认值是37（即池的3/8）。</p>
+<ul>
+<li>innodb_old_blocks_time</li>
+</ul>
+<p>指定插入到旧子列表中的页面在第一次访问后必须在毫秒（ms）内保留多长时间，然后才能移动到新子列表中。 如果值为0，则无论插入后何时发生访问，插入旧子列表的页面在第一次访问时都会立即移至新子列表。 如果该值大于0，则页面将保留在旧的子列表中，直到在第一次访问后至少几毫秒内发生访问。 例如，值为1000（默认值）会导致页面在第一次访问后停留在旧子表中1秒钟，然后才有资格移动到新子列表。</p>
+<p>将innodb_old_blocks_time设置为大于0可防止一次性表扫描使用仅用于扫描的页面填充新的子列表。 读取的扫描页面中的行会连续快速访问多次，但该页面在此之后未被使用。 如果innodb_old_blocks_time设置为大于处理页面的时间的值，则该页面保留在“旧”子列表中，并且老化到列表的尾部以被快速驱逐。 这样，仅用于一次扫描的页面不会影响新子列表中大量使用的页面。</p>
+<p>innodb_old_blocks_time可以在运行时设置。</p>
+<ul>
+<li>innodb_read_ahead_threshold</li>
+</ul>
+<p>控制InnoDB用于预取页面到缓冲池中的线性预读的灵敏度。</p>
+<ul>
+<li>innodb_random_read_ahead</li>
+</ul>
+<p>使用随机预读技术将页面预取到缓冲池中。 随机预读是一项技术，可根据缓冲池中已有的页面快速预测何时需要页面，而不管这些页面的读取顺序如何。 innodb_random_read_ahead默认是禁用的。</p>
+<ul>
+<li>innodb_adaptive_flushing</li>
+</ul>
+<p>指定是否根据工作负载动态调整缓冲池中刷新脏页的速率。 动态调整冲刷速率旨在避免I / O活动的爆发。 该设置默认启用。</p>
+<ul>
+<li>innodb_flush_neighbors</li>
+</ul>
+<p>指定是否从缓冲池中清除页面也会在相同范围内刷新其他脏页面。默认是1 启用。</p>
+<ul>
+<li>innodb_flushing_avg_loops</li>
+</ul>
+<p>InnoDB保存之前计算的刷新状态快照的迭代次数，控制自适应刷新对更改工作负载的响应速度。默认是 30</p>
+<ul>
+<li>innodb_lru_scan_depth</li>
+</ul>
+<p>影响缓冲池刷新操作的算法和启发式的参数。 性能主要关注调整I / O密集型工作负载。 它为每个缓冲池实例指定了缓冲池LRU下多远，page_cleaner线程扫描寻找要刷新的脏页。默认是1024</p>
+<ul>
+<li>innodb_max_dirty_pages_pct</li>
+</ul>
+<p>InnoDB会尝试从缓冲池中刷新数据，以便脏页面的百分比不超过此值。 指定范围从0到99的整数。默认值为75。</p>
+<ul>
+<li>innodb_max_dirty_pages_pct_lwm</li>
+</ul>
+<p>低水位的百分比表示启用来控制脏页预flush的比率。 默认值为0将完全禁用预冲洗行为。默认是0</p>
+<ul>
+<li>innodb_buffer_pool_filename</li>
+</ul>
+<p>指定保存由innodb_buffer_pool_dump_at_shutdown或innodb_buffer_pool_dump_now生成的表空间ID和页面ID列表的文件的名称。</p>
+<ul>
+<li>innodb_buffer_pool_dump_at_shutdown</li>
+</ul>
+<p>指定在MySQL服务器关闭时是否记录缓冲池中缓存的页面，以缩短下次重新启动时的预热过程。默认是启用</p>
+<ul>
+<li>innodb_buffer_pool_load_at_startup</li>
+</ul>
+<p>指定在MySQL服务器启动时，通过加载它在先前保存的相同页面，缓冲池自动预热。 通常与innodb_buffer_pool_dump_at_shutdown结合使用。默认是on</p>
+<ul>
+<li>innodb_buffer_pool_dump_now</li>
+</ul>
+<p>立即记录在缓冲池中缓存的页面。默认是OFF</p>
+<ul>
+<li>innodb_buffer_pool_load_now</li>
+</ul>
+<p>立即通过加载一组数据页面来加热缓冲池，而无需等待服务器重新启动。 在基准测试期间将高速缓存恢复到已知状态，或者在运行查询报告或维护后，使MySQL服务器恢复正常工作负载，可能会很有用。 通常与innodb_buffer_pool_dump_now一起使用。</p>
+<ul>
+<li>innodb_buffer_pool_dump_pct</li>
+</ul>
+<p>指定每个缓冲池读出和转储的最近使用页面的百分比。 范围是1到100。默认是25</p>
+<ul>
+<li>innodb_buffer_pool_load_abort</li>
+</ul>
+<p>中断由innodb_buffer_pool_load_at_startup或innodb_buffer_pool_load_now触发的缓冲池内容恢复过程。默认是OFF</p>
+<h4 id="innodb">八、配置InnoDB缓冲池案例<a class="headerlink" href="#innodb" title="Permanent link">&para;</a></h4>
+<p>以配置InnoDB缓冲池的各个方面来提高性能。</p>
+<ul>
+<li>理想情况下，你将缓冲池的大小设置为尽可能大的值，一般buffer pool的大小为物理内存的70%-80%。缓冲池越大，InnoDB内存数据库的行为越多，从磁盘读取数据一次，然后在后续读取期间从内存访问数据。</li>
+<li>对于具有大内存的64位系统，你可以将缓冲池拆分成多个实例（默认8个），以最大限度地减少并发操作中内存结构的争用。</li>
+</ul>
+<p>8.1 配置InnoDB缓冲池大小</p>
+<p>8.1.1 在线配置InnoDB缓冲池大小</p>
+<p>缓冲池支持脱机和联机两种配置方式，当增加或减少innodb_buffer_pool_size时，操作以块（chunk）形式执行。块大小由innodb_buffer_pool_chunk_size配置选项定义，默认值128M。</p>
+<p>在线配置InnoDB缓冲池大小，该innodb_buffer_pool_size配置选项可以动态使用设置SET声明，让你调整缓冲池无需重新启动服务器。例如：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>mysql&gt; SET GLOBAL innodb_buffer_pool_size=8589934592;
+</span></code></pre></div>
+<p>缓冲池大小配置必须始终等于innodb_buffer_pool_chunk_size<em>innodb_buffer_pool_instances的倍数。如果配置innodb_buffer_pool_size为不等于innodb_buffer_pool_chunk_size</em>innodb_buffer_pool_instances的倍数，则缓冲池大小将自动调整为等于或不小于指定缓冲池大小的innodb_buffer_pool_chunk_size*innodb_buffer_pool_instances的倍数。</p>
+<p>在以下示例中， innodb_buffer_pool_size设置为8G，innodb_buffer_pool_instances设置为16，innodb_buffer_pool_chunk_size是128M，这是默认值。8G是一个有效的innodb_buffer_pool_size值，因为它是innodb_buffer_pool_instances=16乘以innodb_buffer_pool_chunk_size=128M的倍数。</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>mysql&gt; select 8*1024 / (16*128);
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>+-------------------+
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>| 8*1024 / (16*128) |
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>+-------------------+
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>|            4.0000 |
+</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>+-------------------+
+</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a>1 row in set (0.00 sec)
+</span></code></pre></div>
+<p>如果innodb_buffer_pool_size设置为9G，innodb_buffer_pool_instances设置为16，
+innodb_buffer_pool_chunk_size是128M，这是默认值。在这种情况下，
+9G不是innodb_buffer_pool_instances=16<em>innodb_buffer_pool_chunk_size=128M的倍数 ，
+所以innodb_buffer_pool_size被调整为10G，这是不小于指定缓冲池大小的下一个innodb_buffer_pool_chunk_size</em>innodb_buffer_pool_instances的倍数。</p>
+<p>8.1.2 监控在线缓冲池调整大小进度</p>
+<p>该Innodb_buffer_pool_resize_status报告缓冲池大小调整的进展。例如：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>mysql&gt; SHOW STATUS WHERE Variable_name =&#39;InnoDB_buffer_pool_resize_status&#39;;
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>+----------------------------------+-------+
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>| Variable_name                    | Value |
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>+----------------------------------+-------+
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>| Innodb_buffer_pool_resize_status |       |
+</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>+----------------------------------+-------+
+</span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a>1 row in set (0.01 sec)
+</span></code></pre></div>
+<p>8.2 脱机配置InnoDB缓冲池块（chunk）大小</p>
+<p>innodb_buffer_pool_chunk_size可以在1MB（1048576字节）单位中增加或减少，但只能在启动时，在命令行字符串或MySQL配置文件中进行修改。</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>[mysqld]
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>innodb_buffer_pool_chunk_size = 134217728
+</span></code></pre></div>
+<p>修改innodb_buffer_pool_chunk_size时适用以下条件：</p>
+<p>如果新innodb_buffer_pool_chunk_size值乘以innodb_buffer_pool_instances大于初始化缓冲池大小时， innodb_buffer_pool_chunk_size则截断为innodb_buffer_pool_size / innodb_buffer_pool_instances。</p>
+<p>例如，如果缓冲池初始化大小为2GB（2147483648字节）， 4个缓冲池实例和块大小1GB（1073741824字节），则块大小将被截断为等于innodb_buffer_pool_size / innodb_buffer_pool_instances，值为：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>mysql&gt; select 2147483648 / 4;
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>+----------------+
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>| 2147483648 / 4 |
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>+----------------+
+</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>| 536870912.0000 |
+</span><span id="__span-12-6"><a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a>+----------------+
+</span><span id="__span-12-7"><a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a>1 row in set (0.00 sec)
+</span></code></pre></div>
+<p>缓冲池大小必须始终等于或不小于innodb_buffer_pool_chunk_size * innodb_buffer_pool_instances的倍数。如果更改innodb_buffer_pool_chunk_size，innodb_buffer_pool_size则会自动调整为等于或不小于当前缓冲池大小的innodb_buffer_pool_chunk_size * innodb_buffer_pool_instances的倍数。缓冲池初始化时会发生调整。</p>
+<p>更改时应小心innodb_buffer_pool_chunk_size，因为更改此值可以增加缓冲池的大小，如上面的示例所示。在更改innodb_buffer_pool_chunk_size之前，计算innodb_buffer_pool_size以确保生成的缓冲池大小是可接受的。</p>
+<p>8.3 配置多个缓冲池实例</p>
+<p>对于具有多GB级缓冲池的系统，将缓冲池划分为单独的实例可以通过减少不同线程读取和写入缓存页面的争用来提高并发性。此功能通常适用于缓冲池大小在千兆字节范围内的系统。使用innodb_buffer_pool_instances配置选项配置多个缓冲池实例，你也可以调整该innodb_buffer_pool_size值。</p>
+<p>当InnoDB缓冲池大时，可以通过从内存检索来满足许多数据请求。你可能会遇到多个请求一次访问缓冲池的线程的瓶颈。你可以启用多个缓冲池以最小化此争用。使用散列函数，将缓冲池中存储或读取的每个页面随机分配给其中一个缓冲池。每个缓冲池管理自己的空闲列表，刷新列表，LRU和连接到缓冲池的所有其他数据结构，并由其自己的缓冲池互斥锁保护。</p>
+<p>要启用多个缓冲池实例，请将innodb_buffer_pool_instances配置选项设置为大于1（默认值）高达64（最大值）的值。此选项仅在设置innodb_buffer_pool_size为1GB或更大的大小时生效。你指定的总大小在所有缓冲池之间分配，为了获得最佳效率，指定的组合innodb_buffer_pool_instances和innodb_buffer_pool_size，使得每个缓冲池实例是至少为1GB。在MySQL 5.7中，如果不显式设置innodb_buffer_pool_instances这个参数，当innodb buffer size大于1G的时候，就会默认会分成8个instances，如果小于1G，就只有1个instance。</p>
+<p>8.4 配置InnoDB缓冲池预读</p>
+<p>InnoDB在io的优化上有个比较重要的特性为预读，预读请求是一个i/o请求，它会异步地在缓冲池中预先回迁多个页面，预计很快就会需要这些页面，这些请求在一个范围内引入所有页面。InnoDB以64个page为一个extent，那么InnoDB的预读是以page为单位还是以extent？</p>
+<p>这样就进入了下面的话题，InnoDB使用两种预读算法来提高I/O性能：线性预读（linear read-ahead）和随机预读（randomread-ahead）</p>
+<p>为了区分这两种预读的方式，我们可以把线性预读放到以extent为单位，而随机预读放到以extent中的page为单位。线性预读着眼于将下一个extent提前读取到buffer pool中，而随机预读着眼于将当前extent中的剩余的page提前读取到buffer pool中。</p>
+<p>8.4.1 线性预读（linear read-ahead）</p>
+<p>它可以根据顺序访问缓冲池中的页面，预测哪些页面可能需要很快。通过使用配置参数innodb_read_ahead_threshold，通过调整触发异步读取请求所需的顺序页访问数，可以控制Innodb执行提前读操作的时间。在添加此参数之前，InnoDB只会计算当在当前范围的最后一页中读取整个下一个区段时是否发出异步预取请求。</p>
+<p>线性预读方式有一个很重要的变量控制是否将下一个extent预读到buffer pool中，通过使用配置参数innodb_read_ahead_threshold，可以控制Innodb执行预读操作的时间。如果一个extent中的被顺序读取的page超过或者等于该参数变量时，Innodb将会异步的将下一个extent读取到buffer pool中，innodb_read_ahead_threshold可以设置为0-64的任何值，默认值为56，值越高，访问模式检查越严格。</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>mysql&gt; show global variables like &#39;%innodb_read_ahead_threshold%&#39;;
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>+-----------------------------+-------+
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>| Variable_name               | Value |
+</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>+-----------------------------+-------+
+</span><span id="__span-13-5"><a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a>| innodb_read_ahead_threshold | 56    |
+</span><span id="__span-13-6"><a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a>+-----------------------------+-------+
+</span><span id="__span-13-7"><a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a>1 row in set (0.00 sec)
+</span></code></pre></div>
+<p>例如，如果将值设置为48，则InnoDB只有在顺序访问当前extent中的48个pages时才触发线性预读请求，将下一个extent读到内存中。如果值为8，InnoDB触发异步预读，即使程序段中只有8页被顺序访问。你可以在MySQL配置文件中设置此参数的值，或者使用SET GLOBAL需要该SUPER权限的命令动态更改该参数。</p>
+<p>在没有该变量之前，当访问到extent的最后一个page的时候，Innodb会决定是否将下一个extent放入到buffer pool中。</p>
+<p>8.4.2 随机预读（randomread-ahead）</p>
+<p>随机预读方式则是表示当同一个extent中的一些page在buffer pool中发现时，Innodb会将该extent中的剩余page一并读到buffer pool中，由于随机预读方式给Innodb code带来了一些不必要的复杂性，同时在性能也存在不稳定性，在5.5中已经将这种预读方式废弃。要启用此功能，请将配置变量设置innodb_random_read_ahead为ON。</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>mysql&gt; show global variables like &#39;%innodb_random_read_ahead%&#39;;
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>+--------------------------+-------+
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>| Variable_name            | Value |
+</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>+--------------------------+-------+
+</span><span id="__span-14-5"><a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a>| innodb_random_read_ahead | OFF   |
+</span><span id="__span-14-6"><a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a>+--------------------------+-------+
+</span><span id="__span-14-7"><a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a>1 row in set (0.01 sec)
+</span></code></pre></div>
+<p>在监控Innodb的预读时候，我们可以通过SHOW ENGINE INNODB STATUS命令显示统计信息，通过Pages read ahead和evicted without access两个值来观察预读的情况，或者通过两个状态值，以帮助您评估预读算法的有效性。</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>mysql&gt; show global status like &#39;%Innodb_buffer_pool_read_ahead%&#39;;
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>+---------------------------------------+-------+
+</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>| Variable_name                         | Value |
+</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>+---------------------------------------+-------+
+</span><span id="__span-15-5"><a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a>| Innodb_buffer_pool_read_ahead_rnd     | 0     |
+</span><span id="__span-15-6"><a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a>| Innodb_buffer_pool_read_ahead         | 0     |
+</span><span id="__span-15-7"><a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a>| Innodb_buffer_pool_read_ahead_evicted | 0     |
+</span><span id="__span-15-8"><a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a>+---------------------------------------+-------+
+</span><span id="__span-15-9"><a id="__codelineno-15-9" name="__codelineno-15-9" href="#__codelineno-15-9"></a>3 rows in set (0.00 sec)
+</span></code></pre></div>
+<p>而通过SHOW ENGINE INNODB STATUS得到的Pages read ahead和evicted without access则表示每秒读入和读出的pages：Pages read ahead 1.00/s, evicted without access 9.99/s。</p>
+<p>当微调innodb_random_read_ahead设置时，此信息可能很有用 。</p>
+<p>8.5 配置InnoDB缓冲池刷新</p>
+<p>上面详细说了缓冲池刷新机制，简单来说基本原理可以总结如下：</p>
+<p>当启用innodb_max_dirty_pages_pct_lwm（默认值0）参数时，表示启用了脏页面预刷新行为，以控制脏页面占比。也是为了防止脏页占有率超过innodb_max_dirty_pages_pct（默认值75%）的设定值。默认禁用“预刷新”行为。如果当脏页的占有率达到了innodb_max_dirty_pages_pct的设定值的时候，InnoDB就会强制刷新buffer pool pages。另外当free列表小于innodb_lru_scan_depth值时也会触发刷新机制，innodb_lru_scan_depth控制LRU列表中可用页的数量，该值默认为1024。</p>
+<p>InnoDB采用一种基于redo log的最近生成量（活跃日志量的大小，也就是lsn的age）和脏页刷新平均速度（一秒刷新了多少次）及innodb_io_capacity参数的算法来决定刷新脏页数量。这样的算法可以保证数据库的刷新不会影响到数据库的性能，也能保证数据库buffer pool中的数据的脏数据的占用比。这种自动调整刷新速率有助于避免过多的缓冲池刷新限制了普通读写请求可用的I/O容量，从而避免吞吐量突然下降，但还是对正常IO有影响。内部基准测试显示，该算法随着时间的推移可以显著提高整体吞吐量。这种算法是经得住考验的，所以说千万不要随便设置，最好是默认值。</p>
+<p>配置参数innodb_flush_neighbors（刷新邻接页），innodb_lru_scan_depth可以让你微调缓冲池刷新过程的某些方面，这些选项主要是帮助写密集型的工作负载。如果DML操作较为严重，如果没有较高的值，则刷新可能会下降，会导致缓冲池中的内存过多。或者，如果这种机制过于激进，磁盘写入将会使你的I/O容量饱和，理想的设置取决于你的工作负载，数据访问模式和存储配置（例如数据是否存储在HDD或SSD设备上）。</p>
+<p>InnoDB存储引挚提供了flush Neighbor page（刷新邻接页）的特性。其工作原理为：当刷新一个脏页时，InnoDB存储引挚会检测该页所在区（extent）的所有页，如果是脏页，那么一起进行刷新。这样做的好处显而易见，通过AIO可以将多个IO写入操作合并为一个IO操作，故该工作机制在传统的机械硬盘下有着显著的优势。但需要考虑到下面两个问题：</p>
+<ol>
+<li>是不是可能将不怎么脏的页进行了写入，而该页之后又会很快变成脏页？</li>
+<li>固态硬盘有着较高的IOPS，是否还需要这个特性？</li>
+</ol>
+<p>为此，InnoDB存储引挚从1.2.x版本开始提供了参数innodb_flush_neighbors，用来控制是否开启这个特性。对于传统的机械硬盘建议开启该特性，而对于固态硬盘有着超高的IOPS性能，则建议将该参数设置为0，即关闭此特性。</p>
+<p>InnoDB对于具有不断繁重工作负载的系统或者工作负载波动很大的系统，可以使用下面几个配置选项来调整表的刷新行为：</p>
+<ul>
+<li>innodb_adaptive_flushing_lwm：默认值10，指定重做日志容量的“ 低水位 ”百分比，当该阈值越过时，InnoDB即使没有开启innodb_adaptive_flushing选项也会自动启用自适应刷新。</li>
+<li>innodb_max_dirty_pages_pct_lwm：默认值0，InnoDB尝试从缓冲池中刷新数据，以使脏页面的百分比不超过该值innodb_max_dirty_pages_pct。默认值为75。该innodb_max_dirty_pages_pct_lwm选项是用来指定“ 低水位 ”值，其表示使用预冲洗来控制脏页比例的百分比，防止脏页的百分比达到innodb_max_dirty_pages_pct的值，innodb_max_dirty_pages_pct_lwm默认0，禁用“ 预冲洗”行为。</li>
+<li>innodb_io_capacity_max，默认2000，如果刷新动作远远落后，InnoDB刷新脏页量可以超出innodb_io_capacity值。innodb_io_capacity_max表示在这种紧急情况下使用的I/O容量的上限，以便I/O中的尖峰消耗不到服务器的所有容量。</li>
+<li>innodb_flushing_avg_loops，默认30，定义了innodb保留先前计算的刷新状态快照的迭代次数, 它控制了自适应刷新对此前负载更改的响应速度。为innodb_flushing_avg_loops设置高值意味着innodb保留以前计算的快照的时间更长，因此自适应刷新的响应速度更慢，高值还可以减少前台和后台工作之间的正面反馈。但是，在设置高值时，确保innodb重做日志利用率不达到75% (异步刷新开始时的硬编码限制) 和innodb_max_dirty_pages_pct设置将脏页的数量保持为适合于工作负荷的级别是很重要的。</li>
+</ul>
+<p>上面提到的大多数选项最适用于长时间运行写入繁重工作负载的服务器。</p>
+<p>8.6 保存和恢复缓冲池状态</p>
+<p>8.6.1 在关闭时保存缓冲池状态并在启动时恢复缓冲池状态</p>
+<p>可以配置在MySQL关闭之前，保存InnoDB当前的缓冲池的状态，以避免在服务器重新启动后，还要经历一个预热的暖机时间。通过innodb_buffer_pool_dump_at_shutdown（服务器关闭前设置）来设置，当设置这个参数以后MySQL就会在机器关闭时保存InnoDB当前的状态信息到磁盘上。</p>
+<p>当启动MySQL服务器时要恢复服务器缓冲池状态，请在启动服务器时开启innodb_buffer_pool_load_at_startup参数。个人认为这个值还是需要配置一下的，MySQL 5.7.6版本之前这两个值默认是关闭的，但从MySQL 5.7.7版本开始这两个值就默认为开启状态了。这些数据是从磁盘重新读取到buffer pool当中的，这会花费一些时间，并且恢复时新的DML操作是不能够进行操作的。这些数据是怎么恢复呢？其实INNODB_BUFFER_PAGE_LRU表（INFORMATION_SCHEMA）会记录缓存的tablespace ID和page ID，通过这个来恢复。另外缓冲池状态保存文件默认在数据目录下，名为”ib_buffer_pool”，可以使用innodb_buffer_pool_filename参数来修改文件名和位置。</p>
+<p>8.6.2 配置缓冲池页面保存的百分比</p>
+<p>在加载数据进入buffer pool之前，可以通过设置innodb_buffer_pool_dump_pct参数来决定恢复buffer pool中多少数据。MySQL 5.7.6版本之前的默认值是100，恢复全部，从MySQL 5.7.7版本之后默认调整为25了。可以动态设置此参数：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>mysql&gt; SET GLOBAL innodb_buffer_pool_dump_pct = 40;
+</span></code></pre></div>
+<p>8.6.3 在线保存和恢复缓冲池状态</p>
+<p>要在运行MySQL服务器时保存缓冲池的状态，请发出以下语句：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>mysql&gt; SET GLOBAL innodb_buffer_pool_dump_now=ON;
+</span></code></pre></div>
+<p>要在MySQL运行时恢复缓冲池状态，请发出以下语句：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>mysql&gt; SET GLOBAL innodb_buffer_pool_load_now = ON;
+</span></code></pre></div>
+<p>如果要终止buffer pool加载，可以指定运行：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>mysql&gt; SET GLOBAL innodb_buffer_pool_load_abort=ON;
+</span></code></pre></div>
+<p>8.6.4 显示缓冲池保存和加载进度</p>
+<p>显示将缓冲池状态保存到磁盘时的进度：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>mysql&gt; SHOW STATUS LIKE &#39;Innodb_buffer_pool_dump_status&#39;;
+</span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>+--------------------------------+------------------------------------+
+</span><span id="__span-20-3"><a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a>| Variable_name                  | Value                              |
+</span><span id="__span-20-4"><a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a>+--------------------------------+------------------------------------+
+</span><span id="__span-20-5"><a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a>| Innodb_buffer_pool_dump_status | Dumping of buffer pool not started |
+</span><span id="__span-20-6"><a id="__codelineno-20-6" name="__codelineno-20-6" href="#__codelineno-20-6"></a>+--------------------------------+------------------------------------+
+</span><span id="__span-20-7"><a id="__codelineno-20-7" name="__codelineno-20-7" href="#__codelineno-20-7"></a>1 row in set (0.03 sec)
+</span></code></pre></div>
+<p>显示加载缓冲池时的进度:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>mysql&gt; SHOW STATUS LIKE &#39;Innodb_buffer_pool_load_status&#39;;
+</span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>+--------------------------------+--------------------------------------------------+
+</span><span id="__span-21-3"><a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a>| Variable_name                  | Value                                            |
+</span><span id="__span-21-4"><a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a>+--------------------------------+--------------------------------------------------+
+</span><span id="__span-21-5"><a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a>| Innodb_buffer_pool_load_status | Buffer pool(s) load completed at 170428 16:13:21 |
+</span><span id="__span-21-6"><a id="__codelineno-21-6" name="__codelineno-21-6" href="#__codelineno-21-6"></a>+--------------------------------+--------------------------------------------------+
+</span><span id="__span-21-7"><a id="__codelineno-21-7" name="__codelineno-21-7" href="#__codelineno-21-7"></a>1 row in set (0.00 sec)
+</span></code></pre></div>
+<p>以通过innodb的performance schema监控buffer pool的LOAD状态，打开或者关闭stage/innodb/buffer pool load。</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>mysql&gt; UPDATE performance_schema.setup_instruments SET ENABLED = &#39;YES&#39; WHERE NAME LIKE &#39;stage/innodb/buffer%&#39;;
+</span></code></pre></div>
+<p>启动events_stages_current，events_stages_history，events_stages_history_long表监控。</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>mysql&gt; UPDATE performance_schema.setup_consumers SET ENABLED = &#39;YES&#39; WHERE NAME LIKE &#39;%stages%&#39;;
+</span></code></pre></div>
+<p>通过启用保存当前的缓冲池状态来获取最近的buffer pool状态。</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>mysql&gt; SHOW STATUS LIKE &#39;Innodb_buffer_pool_dump_status&#39;\G
+</span><span id="__span-24-2"><a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a>*************************** 1. row ***************************
+</span><span id="__span-24-3"><a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a>Variable_name: Innodb_buffer_pool_dump_status
+</span><span id="__span-24-4"><a id="__codelineno-24-4" name="__codelineno-24-4" href="#__codelineno-24-4"></a>        Value: Buffer pool(s) dump completed at 170525 18:41:06
+</span><span id="__span-24-5"><a id="__codelineno-24-5" name="__codelineno-24-5" href="#__codelineno-24-5"></a>1 row in set (0.01 sec)
+</span></code></pre></div>
+<p>通过启用恢复当前的缓冲池状态来获取最近加载到buffer pool状态。</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>mysql&gt; SET GLOBAL innodb_buffer_pool_load_now=ON;
+</span><span id="__span-25-2"><a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a>Query OK, 0 rows affected (0.00 sec)
+</span></code></pre></div>
+<p>通过查询性能模式events_stages_current表来检查缓冲池加载操作的当前状态，该WORK_COMPLETED列显示加载的缓冲池页数，该WORK_ESTIMATED列提供剩余工作的估计，以页为单位。</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-26-1"><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a>mysql&gt; SELECT EVENT_NAME, WORK_COMPLETED, WORK_ESTIMATED FROM performance_schema.events_stages_current;
+</span><span id="__span-26-2"><a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a>+-------------------------------+----------------+----------------+
+</span><span id="__span-26-3"><a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a>| EVENT_NAME                    | WORK_COMPLETED | WORK_ESTIMATED |
+</span><span id="__span-26-4"><a id="__codelineno-26-4" name="__codelineno-26-4" href="#__codelineno-26-4"></a>+-------------------------------+----------------+----------------+
+</span><span id="__span-26-5"><a id="__codelineno-26-5" name="__codelineno-26-5" href="#__codelineno-26-5"></a>| stage/innodb/buffer pool load |           5353 |           7167 |
+</span><span id="__span-26-6"><a id="__codelineno-26-6" name="__codelineno-26-6" href="#__codelineno-26-6"></a>+-------------------------------+----------------+----------------+
+</span></code></pre></div>
+<p>如果缓冲池加载操作已经完成，该表将返回一个空集合。在这种情况下，你可以检查events_stages_history表以查看已完成事件的数据。例如：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-27-1"><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a>mysql&gt; SELECT EVENT_NAME, WORK_COMPLETED, WORK_ESTIMATED FROM performance_schema.events_stages_history;
+</span><span id="__span-27-2"><a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a>+-------------------------------+----------------+----------------+
+</span><span id="__span-27-3"><a id="__codelineno-27-3" name="__codelineno-27-3" href="#__codelineno-27-3"></a>| EVENT_NAME                    | WORK_COMPLETED | WORK_ESTIMATED |
+</span><span id="__span-27-4"><a id="__codelineno-27-4" name="__codelineno-27-4" href="#__codelineno-27-4"></a>+-------------------------------+----------------+----------------+
+</span><span id="__span-27-5"><a id="__codelineno-27-5" name="__codelineno-27-5" href="#__codelineno-27-5"></a>| stage/innodb/buffer pool load |           7167 |           7167 |
+</span><span id="__span-27-6"><a id="__codelineno-27-6" name="__codelineno-27-6" href="#__codelineno-27-6"></a>+-------------------------------+----------------+----------------+
+</span></code></pre></div>
+<p>注意：在使用innodb_buffer_pool_load_at_startup启动时加载缓冲池时，还可以使用performance scheme来监视缓冲池负载进度，在这种情况下，需要开启stage/innodb/buffer pool load。</p>
+<h5 id="_4">参考文献<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h5>
+<ul>
+<li><a href="https://link.zhihu.com/?target=https%3A//www.kancloud.cn/taobaomysql/monthly/67167">MySQL · 性能优化·</a></li>
+<li><a href="https://link.zhihu.com/?target=https%3A//www.kancloud.cn/taobaomysql/monthly/67167">InnoDB buffer pool flush策略漫谈</a></li>
+<li><a href="https://link.zhihu.com/?target=http%3A//www.qingpingshan.com/shujuku/mysql/315466.html">详解MySQL buffer pool预读机制</a></li>
+<li><a href="https://link.zhihu.com/?target=https%3A//blog.csdn.net/qq_27347991/article/details/81052728">Mysql Buffer Pool</a></li>
+<li><a href="https://link.zhihu.com/?target=https%3A//www.cnblogs.com/JiangLe/p/7501464.html">mysql-5.7 saving and restore buffer pool state 详解</a></li>
+<li><a href="https://link.zhihu.com/?target=https%3A//blog.csdn.net/qq_27529917/article/details/78454947">Mysql的Innodb存储引擎缓冲池个人理解</a></li>
+<li><a href="https://link.zhihu.com/?target=http%3A//mysql.taobao.org/monthly/2017/05/01/">InnoDB缓冲池MySQL · 引擎特性 · InnoDB Buffer Pool</a></li>
+</ul>
+<h4 id="_5">内存优化配置<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h4>
+<ul>
+<li>https://blog.csdn.net/mshxuyi/article/details/94901212</li>
+</ul>
+<h4 id="performance_schema">performance_schema的介绍<a class="headerlink" href="#performance_schema" title="Permanent link">&para;</a></h4>
+<ul>
+<li>https://www.cnblogs.com/Courage129/p/14188422.html</li>
+</ul>
+<h4 id="mysqlinnodb_buffer_pool_size">Mysql优化之innodb_buffer_pool_size篇<a class="headerlink" href="#mysqlinnodb_buffer_pool_size" title="Permanent link">&para;</a></h4>
+<ul>
+<li>https://www.cnblogs.com/innocenter/p/14948857.html</li>
+</ul>
+<h4 id="mysql-oom">MySQL OOM（内存溢出）的解决思路<a class="headerlink" href="#mysql-oom" title="Permanent link">&para;</a></h4>
+<ul>
+<li>https://www.jb51.net/article/192694.htm</li>
+</ul>
+<h4 id="mysql8-mysql">mysql8 参考手册–mysql使用内存优化<a class="headerlink" href="#mysql8-mysql" title="Permanent link">&para;</a></h4>
+<ul>
+<li>https://www.1024sky.cn/blog/article/1074</li>
+</ul>
+<h4 id="performance_schema_1">通过performance_schema获取造成死锁的事务语句<a class="headerlink" href="#performance_schema_1" title="Permanent link">&para;</a></h4>
+<ul>
+<li>https://www.jianshu.com/p/268889c997e8</li>
+</ul>
+<h4 id="mysqlinnodb-page-clean">MySQL:Innodb page clean 线程 (一) 基础<a class="headerlink" href="#mysqlinnodb-page-clean" title="Permanent link">&para;</a></h4>
+<ul>
+<li>http://blog.itpub.net/7728585/viewspace-2157988/</li>
+</ul>
+<h4 id="mysql-buffer-pool-and-memory">MYSQL buffer pool and memory解析<a class="headerlink" href="#mysql-buffer-pool-and-memory" title="Permanent link">&para;</a></h4>
+<ul>
+<li>
+<p>https://blog.csdn.net/liu911025/article/details/115479142
+<div class="language-text highlight"><pre><span></span><code><span id="__span-28-1"><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a>----------------------
+</span><span id="__span-28-2"><a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a>BUFFER POOL AND MEMORY
+</span><span id="__span-28-3"><a id="__codelineno-28-3" name="__codelineno-28-3" href="#__codelineno-28-3"></a>----------------------
+</span><span id="__span-28-4"><a id="__codelineno-28-4" name="__codelineno-28-4" href="#__codelineno-28-4"></a>Total large memory allocated 44589645824
+</span><span id="__span-28-5"><a id="__codelineno-28-5" name="__codelineno-28-5" href="#__codelineno-28-5"></a>Dictionary memory allocated 24341116
+</span><span id="__span-28-6"><a id="__codelineno-28-6" name="__codelineno-28-6" href="#__codelineno-28-6"></a>Buffer pool size   2640000
+</span><span id="__span-28-7"><a id="__codelineno-28-7" name="__codelineno-28-7" href="#__codelineno-28-7"></a>Free buffers       7032
+</span><span id="__span-28-8"><a id="__codelineno-28-8" name="__codelineno-28-8" href="#__codelineno-28-8"></a>Database pages     2632968
+</span><span id="__span-28-9"><a id="__codelineno-28-9" name="__codelineno-28-9" href="#__codelineno-28-9"></a>Old database pages 971772
+</span><span id="__span-28-10"><a id="__codelineno-28-10" name="__codelineno-28-10" href="#__codelineno-28-10"></a>Modified db pages  50101
+</span><span id="__span-28-11"><a id="__codelineno-28-11" name="__codelineno-28-11" href="#__codelineno-28-11"></a>Pending reads      0
+</span><span id="__span-28-12"><a id="__codelineno-28-12" name="__codelineno-28-12" href="#__codelineno-28-12"></a>Pending writes: LRU 0, flush list 120, single page 0
+</span><span id="__span-28-13"><a id="__codelineno-28-13" name="__codelineno-28-13" href="#__codelineno-28-13"></a>Pages made young 59102, not young 10118954
+</span><span id="__span-28-14"><a id="__codelineno-28-14" name="__codelineno-28-14" href="#__codelineno-28-14"></a>0.00 youngs/s, 0.00 non-youngs/s
+</span><span id="__span-28-15"><a id="__codelineno-28-15" name="__codelineno-28-15" href="#__codelineno-28-15"></a>Pages read 12279286, created 13976023, written 14775298
+</span><span id="__span-28-16"><a id="__codelineno-28-16" name="__codelineno-28-16" href="#__codelineno-28-16"></a>0.00 reads/s, 0.00 creates/s, 0.00 writes/s
+</span><span id="__span-28-17"><a id="__codelineno-28-17" name="__codelineno-28-17" href="#__codelineno-28-17"></a>Buffer pool hit rate 1000 / 1000, young-making rate 0 / 1000 not 0 / 1000
+</span><span id="__span-28-18"><a id="__codelineno-28-18" name="__codelineno-28-18" href="#__codelineno-28-18"></a>Pages read ahead 0.00/s, evicted without access 0.00/s, Random read ahead 0.00/s
+</span><span id="__span-28-19"><a id="__codelineno-28-19" name="__codelineno-28-19" href="#__codelineno-28-19"></a>LRU len: 2632968, unzip_LRU len: 0
+</span><span id="__span-28-20"><a id="__codelineno-28-20" name="__codelineno-28-20" href="#__codelineno-28-20"></a>I/O sum[1960144]:cur[42208], unzip sum[0]:cur[0]
+</span><span id="__span-28-21"><a id="__codelineno-28-21" name="__codelineno-28-21" href="#__codelineno-28-21"></a>----------------------
+</span></code></pre></div></p>
+</li>
+<li>
+<p>（1）Total memory allocated，这就是说buffer pool最终的总大小是多少</p>
+</li>
+<li>（2）Buffer pool size，这就是说buffer pool一共能容纳多少个缓存页</li>
+<li>（3）Free buffers，这就是说free链表中一共有多少个空闲的缓存页是可用的</li>
+<li>（4）Database pages和Old database pages，就是说lru链表中一共有多少个缓存页，以及冷数据区域里的缓存页数量</li>
+<li>（5）Modified db pages，这就是flush链表中的缓存页数量</li>
+<li>（6）Pending reads和Pending writes，等待从磁盘上加载进缓存页的数量，还有就是即将从lru链表中刷入磁盘的数量、即将从flush链表中刷入磁盘的数量</li>
+<li>（7）Pages made young和not young，这就是说已经lru冷数据区域里访问之后转移到热数据区域的缓存页的数量，以及在lru冷数据区域里1s内被访问了没进入热数据区域的缓存页的数量</li>
+<li>（8）youngs/s和not youngs/s，这就是说每秒从冷数据区域进入热数据区域的缓存页的数量，以及每秒在冷数据区域里被访问了但是不能进入热数据区域的缓存页的数量</li>
+<li>（9）Pages read xxxx, created xxx, written xxx，xx reads/s, xx creates/s, 1xx writes/s，这里就是说已经读取、创建和写入了多少个缓存页，以及每秒钟读取、创建和写入的缓存页数量</li>
+<li>（10）Buffer pool hit rate xxx / 1000，这就是说每1000次访问，有多少次是直接命中了buffer pool里的缓存的</li>
+<li>（11）young-making rate xxx / 1000 not xx / 1000，每1000次访问，有多少次访问让缓存页从冷数据区域移动到了热数据区域，以及没移动的缓存页数量</li>
+<li>（12）LRU len：这就是lru链表里的缓存页的数量</li>
+<li>（13）I/O sum：最近50s读取磁盘页的总数</li>
+<li>（14）I/O cur：现在正在读取磁盘页的数量</li>
+</ul>
+<h4 id="innodb-status">解析innodb status各项参数<a class="headerlink" href="#innodb-status" title="Permanent link">&para;</a></h4>
+<ul>
+<li>https://blog.csdn.net/victory0508/article/details/24373499</li>
+</ul>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+            Back to top
+          </button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright © 2022 - 2023 - lyvivian0077
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tracking", "navigation.top", "navigation.indexes", "navigation.path", "content.code.copy", "toc.follow"], "search": "../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.fac441b0.min.js"></script>
+      
+    
+  </body>
+</html>
