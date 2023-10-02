@@ -1656,13 +1656,28 @@
   
   
   
+    <li class="md-nav__item">
+      <a href="../terminal-shortcut/" class="md-nav__link">
+        ターミナルを使うためのショートカット集
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
     
     <li class="md-nav__item md-nav__item--nested">
       
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_21" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_22" >
       
       
         
@@ -1670,13 +1685,13 @@
         
       
       
-        <label class="md-nav__link" for="__nav_21" id="__nav_21_label" tabindex="0">
+        <label class="md-nav__link" for="__nav_22" id="__nav_22_label" tabindex="0">
           Zabbix
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_21_label" aria-expanded="false">
-        <label class="md-nav__title" for="__nav_21">
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_22_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_22">
           <span class="md-nav__icon md-icon"></span>
           Zabbix
         </label>
@@ -1715,7 +1730,7 @@
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_22" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_23" >
       
       
         
@@ -1727,13 +1742,13 @@
         
       
       
-        <label class="md-nav__link" for="__nav_22" id="__nav_22_label" tabindex="0">
+        <label class="md-nav__link" for="__nav_23" id="__nav_23_label" tabindex="0">
           SWAP
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_22_label" aria-expanded="false">
-        <label class="md-nav__title" for="__nav_22">
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_23_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_23">
           <span class="md-nav__icon md-icon"></span>
           SWAP
         </label>
@@ -2637,6 +2652,109 @@
 </details>
 </li>
 </ul>
+</li>
+<li>
+<p>VMの作成・削除</p>
+<details class="info">
+<summary>履歴</summary>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="c1"># delete VM</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>virsh<span class="w"> </span>undefine<span class="w"> </span>rocky92-mini-tmp
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>virsh<span class="w"> </span>destroy<span class="w"> </span>rocky92-mini-tmp
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>virsh<span class="w"> </span>vol-delete<span class="w"> </span>/dev/tank/rocky92-mini-tmp
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>
+</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="c1"># create VM</span>
+</span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a>virsh<span class="w"> </span>vol-create-as<span class="w"> </span>tank<span class="w"> </span>rocky92-mini-tmp<span class="w"> </span>200G
+</span><span id="__span-10-8"><a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a><span class="nb">time</span><span class="w"> </span>unzstd<span class="w"> </span>&lt;<span class="w"> </span>/mnt/rocky92-mini-tmp.img.zst<span class="w"> </span><span class="p">|</span><span class="w"> </span>dd<span class="w"> </span><span class="nv">of</span><span class="o">=</span>/dev/tank/rocky92-mini-tmp<span class="w">  </span><span class="nv">bs</span><span class="o">=</span>1M<span class="w"> </span><span class="nv">oflag</span><span class="o">=</span>direct<span class="w"> </span><span class="nv">iflag</span><span class="o">=</span>fullblock<span class="w"> </span><span class="nv">status</span><span class="o">=</span>progress
+</span><span id="__span-10-9"><a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a>virsh<span class="w"> </span>define<span class="w"> </span>/root/work/rocky92-mini-tmp.xml
+</span><span id="__span-10-10"><a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a>virsh<span class="w"> </span>start<span class="w"> </span>rocky92-mini-tmp
+</span><span id="__span-10-11"><a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a>
+</span><span id="__span-10-12"><a id="__codelineno-10-12" name="__codelineno-10-12" href="#__codelineno-10-12"></a><span class="c1"># setting IP address</span>
+</span><span id="__span-10-13"><a id="__codelineno-10-13" name="__codelineno-10-13" href="#__codelineno-10-13"></a><span class="o">[</span>root@rocky92-mini<span class="w"> </span>~<span class="o">]</span><span class="c1"># cat /etc/NetworkManager/system-connections/eth0.nmconnection</span>
+</span><span id="__span-10-14"><a id="__codelineno-10-14" name="__codelineno-10-14" href="#__codelineno-10-14"></a><span class="o">[</span>connection<span class="o">]</span>
+</span><span id="__span-10-15"><a id="__codelineno-10-15" name="__codelineno-10-15" href="#__codelineno-10-15"></a><span class="nv">id</span><span class="o">=</span>eth0
+</span><span id="__span-10-16"><a id="__codelineno-10-16" name="__codelineno-10-16" href="#__codelineno-10-16"></a><span class="nv">uuid</span><span class="o">=</span>d83faba3-9f08-46f5-8084-341c3bad7138
+</span><span id="__span-10-17"><a id="__codelineno-10-17" name="__codelineno-10-17" href="#__codelineno-10-17"></a><span class="nv">type</span><span class="o">=</span>ethernet
+</span><span id="__span-10-18"><a id="__codelineno-10-18" name="__codelineno-10-18" href="#__codelineno-10-18"></a>interface-name<span class="o">=</span>eth0
+</span><span id="__span-10-19"><a id="__codelineno-10-19" name="__codelineno-10-19" href="#__codelineno-10-19"></a>
+</span><span id="__span-10-20"><a id="__codelineno-10-20" name="__codelineno-10-20" href="#__codelineno-10-20"></a><span class="o">[</span>ethernet<span class="o">]</span>
+</span><span id="__span-10-21"><a id="__codelineno-10-21" name="__codelineno-10-21" href="#__codelineno-10-21"></a>
+</span><span id="__span-10-22"><a id="__codelineno-10-22" name="__codelineno-10-22" href="#__codelineno-10-22"></a><span class="o">[</span>ipv4<span class="o">]</span>
+</span><span id="__span-10-23"><a id="__codelineno-10-23" name="__codelineno-10-23" href="#__codelineno-10-23"></a><span class="nv">dns</span><span class="o">=</span><span class="m">8</span>.8.8.8<span class="p">;</span><span class="m">1</span>.1.1.1<span class="p">;</span>
+</span><span id="__span-10-24"><a id="__codelineno-10-24" name="__codelineno-10-24" href="#__codelineno-10-24"></a>dns-search<span class="o">=</span>test.com<span class="p">;</span>
+</span><span id="__span-10-25"><a id="__codelineno-10-25" name="__codelineno-10-25" href="#__codelineno-10-25"></a><span class="nv">method</span><span class="o">=</span>auto
+</span><span id="__span-10-26"><a id="__codelineno-10-26" name="__codelineno-10-26" href="#__codelineno-10-26"></a>
+</span><span id="__span-10-27"><a id="__codelineno-10-27" name="__codelineno-10-27" href="#__codelineno-10-27"></a><span class="o">[</span>ipv6<span class="o">]</span>
+</span><span id="__span-10-28"><a id="__codelineno-10-28" name="__codelineno-10-28" href="#__codelineno-10-28"></a>addr-gen-mode<span class="o">=</span>default
+</span><span id="__span-10-29"><a id="__codelineno-10-29" name="__codelineno-10-29" href="#__codelineno-10-29"></a><span class="nv">method</span><span class="o">=</span>auto
+</span><span id="__span-10-30"><a id="__codelineno-10-30" name="__codelineno-10-30" href="#__codelineno-10-30"></a>
+</span><span id="__span-10-31"><a id="__codelineno-10-31" name="__codelineno-10-31" href="#__codelineno-10-31"></a><span class="o">[</span>proxy<span class="o">]</span>
+</span><span id="__span-10-32"><a id="__codelineno-10-32" name="__codelineno-10-32" href="#__codelineno-10-32"></a>
+</span><span id="__span-10-33"><a id="__codelineno-10-33" name="__codelineno-10-33" href="#__codelineno-10-33"></a><span class="o">[</span>root@rocky92-mini<span class="w"> </span>~<span class="o">]</span><span class="c1"># nmcli connection add con-name eth0 ifname eth0 type ethernet</span>
+</span><span id="__span-10-34"><a id="__codelineno-10-34" name="__codelineno-10-34" href="#__codelineno-10-34"></a>Warning:<span class="w"> </span>There<span class="w"> </span>is<span class="w"> </span>another<span class="w"> </span>connection<span class="w"> </span>with<span class="w"> </span>the<span class="w"> </span>name<span class="w"> </span><span class="s1">&#39;eth0&#39;</span>.<span class="w"> </span>Reference<span class="w"> </span>the<span class="w"> </span>connection<span class="w"> </span>by<span class="w"> </span>its<span class="w"> </span>uuid<span class="w"> </span><span class="s1">&#39;2ea6cb27-a044-4752-a234-d7b745b1113f&#39;</span>
+</span><span id="__span-10-35"><a id="__codelineno-10-35" name="__codelineno-10-35" href="#__codelineno-10-35"></a>Connection<span class="w"> </span><span class="s1">&#39;eth0&#39;</span><span class="w"> </span><span class="o">(</span>2ea6cb27-a044-4752-a234-d7b745b1113f<span class="o">)</span><span class="w"> </span>successfully<span class="w"> </span>added.
+</span><span id="__span-10-36"><a id="__codelineno-10-36" name="__codelineno-10-36" href="#__codelineno-10-36"></a>
+</span><span id="__span-10-37"><a id="__codelineno-10-37" name="__codelineno-10-37" href="#__codelineno-10-37"></a><span class="o">[</span>root@rocky92-mini<span class="w"> </span>~<span class="o">]</span><span class="c1"># nmcli connection modify eth0 ipv4.method manual ipv4.addresses 192.168.1.2/24 ipv4.gateway 192.168.1.1</span>
+</span><span id="__span-10-38"><a id="__codelineno-10-38" name="__codelineno-10-38" href="#__codelineno-10-38"></a>Warning:<span class="w"> </span>There<span class="w"> </span>is<span class="w"> </span>another<span class="w"> </span>connection<span class="w"> </span>with<span class="w"> </span>the<span class="w"> </span>name<span class="w"> </span><span class="s1">&#39;eth0&#39;</span>.<span class="w"> </span>Reference<span class="w"> </span>the<span class="w"> </span>connection<span class="w"> </span>by<span class="w"> </span>its<span class="w"> </span>uuid<span class="w"> </span><span class="s1">&#39;d83faba3-9f08-46f5-8084-341c3bad7138&#39;</span>
+</span><span id="__span-10-39"><a id="__codelineno-10-39" name="__codelineno-10-39" href="#__codelineno-10-39"></a>
+</span><span id="__span-10-40"><a id="__codelineno-10-40" name="__codelineno-10-40" href="#__codelineno-10-40"></a><span class="o">[</span>root@rocky92-mini<span class="w"> </span>~<span class="o">]</span><span class="c1"># nmcli connection modify eth0 ipv6.method &quot;disabled&quot;</span>
+</span><span id="__span-10-41"><a id="__codelineno-10-41" name="__codelineno-10-41" href="#__codelineno-10-41"></a>Warning:<span class="w"> </span>There<span class="w"> </span>is<span class="w"> </span>another<span class="w"> </span>connection<span class="w"> </span>with<span class="w"> </span>the<span class="w"> </span>name<span class="w"> </span><span class="s1">&#39;eth0&#39;</span>.<span class="w"> </span>Reference<span class="w"> </span>the<span class="w"> </span>connection<span class="w"> </span>by<span class="w"> </span>its<span class="w"> </span>uuid<span class="w"> </span><span class="s1">&#39;d83faba3-9f08-46f5-8084-341c3bad7138&#39;</span>
+</span><span id="__span-10-42"><a id="__codelineno-10-42" name="__codelineno-10-42" href="#__codelineno-10-42"></a>
+</span><span id="__span-10-43"><a id="__codelineno-10-43" name="__codelineno-10-43" href="#__codelineno-10-43"></a><span class="o">[</span>root@rocky92-mini<span class="w"> </span>~<span class="o">]</span><span class="c1"># cat /etc/NetworkManager/system-connections/eth0.nmconnection</span>
+</span><span id="__span-10-44"><a id="__codelineno-10-44" name="__codelineno-10-44" href="#__codelineno-10-44"></a><span class="o">[</span>connection<span class="o">]</span>
+</span><span id="__span-10-45"><a id="__codelineno-10-45" name="__codelineno-10-45" href="#__codelineno-10-45"></a><span class="nv">id</span><span class="o">=</span>eth0
+</span><span id="__span-10-46"><a id="__codelineno-10-46" name="__codelineno-10-46" href="#__codelineno-10-46"></a><span class="nv">uuid</span><span class="o">=</span>d83faba3-9f08-46f5-8084-341c3bad7138
+</span><span id="__span-10-47"><a id="__codelineno-10-47" name="__codelineno-10-47" href="#__codelineno-10-47"></a><span class="nv">type</span><span class="o">=</span>ethernet
+</span><span id="__span-10-48"><a id="__codelineno-10-48" name="__codelineno-10-48" href="#__codelineno-10-48"></a>interface-name<span class="o">=</span>eth0
+</span><span id="__span-10-49"><a id="__codelineno-10-49" name="__codelineno-10-49" href="#__codelineno-10-49"></a><span class="nv">timestamp</span><span class="o">=</span><span class="m">1684897628</span>
+</span><span id="__span-10-50"><a id="__codelineno-10-50" name="__codelineno-10-50" href="#__codelineno-10-50"></a>
+</span><span id="__span-10-51"><a id="__codelineno-10-51" name="__codelineno-10-51" href="#__codelineno-10-51"></a><span class="o">[</span>ethernet<span class="o">]</span>
+</span><span id="__span-10-52"><a id="__codelineno-10-52" name="__codelineno-10-52" href="#__codelineno-10-52"></a>
+</span><span id="__span-10-53"><a id="__codelineno-10-53" name="__codelineno-10-53" href="#__codelineno-10-53"></a><span class="o">[</span>ipv4<span class="o">]</span>
+</span><span id="__span-10-54"><a id="__codelineno-10-54" name="__codelineno-10-54" href="#__codelineno-10-54"></a><span class="nv">address1</span><span class="o">=</span><span class="m">192</span>.168.1.2/24,192.168.1.1
+</span><span id="__span-10-55"><a id="__codelineno-10-55" name="__codelineno-10-55" href="#__codelineno-10-55"></a>dns-search<span class="o">=</span>sakura.ne.jp<span class="p">;</span><span class="m">1</span>.1.1.1<span class="p">;</span>
+</span><span id="__span-10-56"><a id="__codelineno-10-56" name="__codelineno-10-56" href="#__codelineno-10-56"></a><span class="nv">method</span><span class="o">=</span>manual
+</span><span id="__span-10-57"><a id="__codelineno-10-57" name="__codelineno-10-57" href="#__codelineno-10-57"></a>
+</span><span id="__span-10-58"><a id="__codelineno-10-58" name="__codelineno-10-58" href="#__codelineno-10-58"></a><span class="o">[</span>ipv6<span class="o">]</span>
+</span><span id="__span-10-59"><a id="__codelineno-10-59" name="__codelineno-10-59" href="#__codelineno-10-59"></a>addr-gen-mode<span class="o">=</span>default
+</span><span id="__span-10-60"><a id="__codelineno-10-60" name="__codelineno-10-60" href="#__codelineno-10-60"></a><span class="nv">method</span><span class="o">=</span>disabled
+</span><span id="__span-10-61"><a id="__codelineno-10-61" name="__codelineno-10-61" href="#__codelineno-10-61"></a>
+</span><span id="__span-10-62"><a id="__codelineno-10-62" name="__codelineno-10-62" href="#__codelineno-10-62"></a><span class="o">[</span>proxy<span class="o">]</span>
+</span><span id="__span-10-63"><a id="__codelineno-10-63" name="__codelineno-10-63" href="#__codelineno-10-63"></a><span class="o">[</span>root@rocky92-mini<span class="w"> </span>~<span class="o">]</span><span class="c1"># nmcli connection down eth0 &amp;&amp; nmcli connection up eth0</span>
+</span></code></pre></div>
+</details>
+</li>
+<li>
+<p>HVのVLANを削除したい場合</p>
+<details class="info">
+<summary>この作業は慎重に実施ください</summary>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="m">1</span>.<span class="w"> </span>ブリッジ確認
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="w">   </span>-<span class="w"> </span><span class="sb">`</span>brctl<span class="w"> </span>show<span class="sb">`</span>
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="m">2</span>.<span class="w"> </span>ブリッジ配下のIF<span class="w"> </span>vlan15<span class="w"> </span>を削除
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="w">   </span>-<span class="w"> </span><span class="sb">`</span>brctl<span class="w"> </span>delif<span class="w"> </span>br0<span class="w"> </span>vlan15<span class="sb">`</span>
+</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="m">3</span>.<span class="w"> </span>該当ブリッジをdown
+</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a><span class="w">   </span>-<span class="w"> </span><span class="sb">`</span>ip<span class="w"> </span>link<span class="w"> </span><span class="nb">set</span><span class="w"> </span>br0<span class="w"> </span>down<span class="sb">`</span>
+</span><span id="__span-11-7"><a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a><span class="m">4</span>.<span class="w"> </span>該当ブリッジを削除
+</span><span id="__span-11-8"><a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a><span class="w">   </span>-<span class="w"> </span><span class="sb">`</span>brctl<span class="w"> </span>delbr<span class="w"> </span>br0<span class="sb">`</span>
+</span><span id="__span-11-9"><a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a><span class="m">5</span>.<span class="w"> </span>ブリッジ確認
+</span><span id="__span-11-10"><a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a><span class="w">   </span>-<span class="w"> </span><span class="sb">`</span>brctl<span class="w"> </span>show<span class="sb">`</span>
+</span><span id="__span-11-11"><a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a>
+</span><span id="__span-11-12"><a id="__codelineno-11-12" name="__codelineno-11-12" href="#__codelineno-11-12"></a>**仮装インタフェースの削除**
+</span><span id="__span-11-13"><a id="__codelineno-11-13" name="__codelineno-11-13" href="#__codelineno-11-13"></a>
+</span><span id="__span-11-14"><a id="__codelineno-11-14" name="__codelineno-11-14" href="#__codelineno-11-14"></a><span class="m">1</span>.<span class="w"> </span>vlanインタフェースの確認
+</span><span id="__span-11-15"><a id="__codelineno-11-15" name="__codelineno-11-15" href="#__codelineno-11-15"></a><span class="w">   </span>-<span class="w"> </span><span class="sb">`</span>ip<span class="w"> </span>a<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>vlan<span class="sb">`</span>
+</span><span id="__span-11-16"><a id="__codelineno-11-16" name="__codelineno-11-16" href="#__codelineno-11-16"></a><span class="w">   </span>-<span class="w"> </span><span class="sb">`</span>ip<span class="w"> </span>-s<span class="w"> </span>-d<span class="w"> </span>addr<span class="w"> </span>show<span class="w"> </span>dev<span class="w"> </span>vlan15<span class="sb">`</span>
+</span><span id="__span-11-17"><a id="__codelineno-11-17" name="__codelineno-11-17" href="#__codelineno-11-17"></a>
+</span><span id="__span-11-18"><a id="__codelineno-11-18" name="__codelineno-11-18" href="#__codelineno-11-18"></a><span class="m">2</span>.<span class="w"> </span>該当インタフェースをシャットダウン
+</span><span id="__span-11-19"><a id="__codelineno-11-19" name="__codelineno-11-19" href="#__codelineno-11-19"></a><span class="w">   </span>-<span class="w"> </span><span class="sb">`</span>ip<span class="w"> </span>link<span class="w"> </span><span class="nb">set</span><span class="w"> </span>dev<span class="w">  </span>vlan15<span class="w"> </span>down<span class="sb">`</span>
+</span><span id="__span-11-20"><a id="__codelineno-11-20" name="__codelineno-11-20" href="#__codelineno-11-20"></a>
+</span><span id="__span-11-21"><a id="__codelineno-11-21" name="__codelineno-11-21" href="#__codelineno-11-21"></a><span class="m">3</span>.<span class="w"> </span>該当インタフェースを削除
+</span><span id="__span-11-22"><a id="__codelineno-11-22" name="__codelineno-11-22" href="#__codelineno-11-22"></a><span class="w">   </span>-<span class="w"> </span><span class="sb">`</span>ip<span class="w"> </span>link<span class="w"> </span>delete<span class="w"> </span>vlan15@bond0<span class="sb">`</span><span class="w">  </span>&lt;--<span class="w"> </span>@bond0は必要ない。
+</span><span id="__span-11-23"><a id="__codelineno-11-23" name="__codelineno-11-23" href="#__codelineno-11-23"></a><span class="w">   </span>-<span class="w"> </span><span class="sb">`</span>ip<span class="w"> </span>link<span class="w"> </span>delete<span class="w"> </span>vlan15<span class="sb">`</span>
+</span><span id="__span-11-24"><a id="__codelineno-11-24" name="__codelineno-11-24" href="#__codelineno-11-24"></a>
+</span><span id="__span-11-25"><a id="__codelineno-11-25" name="__codelineno-11-25" href="#__codelineno-11-25"></a><span class="m">4</span>.<span class="w"> </span>vlanインタフェースの確認
+</span><span id="__span-11-26"><a id="__codelineno-11-26" name="__codelineno-11-26" href="#__codelineno-11-26"></a><span class="w">   </span>-<span class="w"> </span><span class="sb">`</span>ip<span class="w"> </span>a<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>vlan<span class="sb">`</span>
+</span></code></pre></div>
+</details>
 </li>
 </ol>
 
