@@ -9,17 +9,17 @@
       
       
       
-        <link rel="prev" href="../megaraid/">
+        <link rel="prev" href="../mysql-dummy/">
       
       
-        <link rel="next" href="../Explain%E8%AF%A6%E8%A7%A3%E4%B8%8E%E7%B4%A2%E5%BC%95%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/">
+        <link rel="next" href="../MySQL-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
       
       <link rel="icon" href="../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.9">
     
     
       
-        <title>MySQLとPostgreSQLコマンド比較表 - 总有刁民想要害朕</title>
+        <title>mysqladmin kill - 总有刁民想要害朕</title>
       
     
     
@@ -61,7 +61,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#mysqlpostgresql" class="md-skip">
+        <a href="#mysqladmin-kill" class="md-skip">
           Skip to content
         </a>
       
@@ -96,7 +96,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              MySQLとPostgreSQLコマンド比較表
+              mysqladmin kill
             
           </span>
         </div>
@@ -378,16 +378,14 @@
 
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" checked>
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
       
       
         
@@ -400,7 +398,7 @@
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="true">
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
         <label class="md-nav__title" for="__nav_7">
           <span class="md-nav__icon md-icon"></span>
           PostgreSQL
@@ -411,82 +409,11 @@
               
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          MySQLとPostgreSQLコマンド比較表
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../psql-vs-mysql/" class="md-nav__link">
         MySQLとPostgreSQLコマンド比較表
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#mysqlpostgresql" class="md-nav__link">
-    MySQLとPostgreSQLコマンド比較表
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#information_schema" class="md-nav__link">
-    information_schemaは両方に共通
-  </a>
-  
-    <nav class="md-nav" aria-label="information_schemaは両方に共通">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    テーブル一覧を表示
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    カラム一覧を表示
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
-    デフォルト接続先
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -504,14 +431,16 @@
 
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" checked>
       
       
         
@@ -552,7 +481,7 @@
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="true">
         <label class="md-nav__title" for="__nav_8">
           <span class="md-nav__icon md-icon"></span>
           MySQL
@@ -717,11 +646,87 @@
               
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../mysql-kill/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          mysqladmin kill
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         mysqladmin kill
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#60" class="md-nav__link">
+    処理時間に60秒以上かかっているのを表示
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#id" class="md-nav__link">
+    指定ユーザのプロセスIDのを表示
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#60id" class="md-nav__link">
+    処理時間に60秒以上かつ指定ユーザのプロセスIDのを表示
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    結果
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#idkill" class="md-nav__link">
+    複数のプロセスIDをkillする
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#kill" class="md-nav__link">
+    killコマンドを出力する
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1960,6 +1965,8 @@
   
   
   
+    
+  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -1968,42 +1975,43 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#mysqlpostgresql" class="md-nav__link">
-    MySQLとPostgreSQLコマンド比較表
+  <a href="#60" class="md-nav__link">
+    処理時間に60秒以上かかっているのを表示
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#information_schema" class="md-nav__link">
-    information_schemaは両方に共通
+  <a href="#id" class="md-nav__link">
+    指定ユーザのプロセスIDのを表示
   </a>
   
-    <nav class="md-nav" aria-label="information_schemaは両方に共通">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#60id" class="md-nav__link">
+    処理時間に60秒以上かつ指定ユーザのプロセスIDのを表示
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#_1" class="md-nav__link">
-    テーブル一覧を表示
+    結果
   </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    カラム一覧を表示
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
-    デフォルト接続先
+  <a href="#idkill" class="md-nav__link">
+    複数のプロセスIDをkillする
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#kill" class="md-nav__link">
+    killコマンドを出力する
   </a>
   
 </li>
@@ -2023,188 +2031,41 @@
                   
 
 
-  <h1>MySQLとPostgreSQLコマンド比較表</h1>
-
-<h2 id="mysqlpostgresql">MySQLとPostgreSQLコマンド比較表<a class="headerlink" href="#mysqlpostgresql" title="Permanent link">&para;</a></h2>
-<p><a href="https://qiita.com/aosho235/items/c657e2fcd15fa0647471">本文</a></p>
-<table>
-<thead>
-<tr>
-<th align="left">機能</th>
-<th align="left">MySQL</th>
-<th align="left">PostgreSQL</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td align="left">起動</td>
-<td align="left"><code>$ mysql -p -h ホスト名 -P ポート番号 -u ユーザ名 DB名</code></td>
-<td align="left"><code>$ psql -h ホスト名 -p ポート番号 -U ユーザ名 DB名</code></td>
-</tr>
-<tr>
-<td align="left">データベース一覧</td>
-<td align="left">show databases;</td>
-<td align="left">\l</td>
-</tr>
-<tr>
-<td align="left">データベース切替</td>
-<td align="left">use DB名 \u DB名</td>
-<td align="left">\c DB名</td>
-</tr>
-<tr>
-<td align="left">テーブル一覧</td>
-<td align="left">show tables;</td>
-<td align="left">\d、\dt、\d+、\dt+</td>
-</tr>
-<tr>
-<td align="left">テーブル定義確認</td>
-<td align="left">desc テーブル名;</td>
-<td align="left">\d テーブル名</td>
-</tr>
-<tr>
-<td align="left">テーブルCREATE文確認</td>
-<td align="left">show create table テーブル名</td>
-<td align="left">pg_dump DB名 -U ユーザ名 -s -t テーブル名</td>
-</tr>
-<tr>
-<td align="left">インデックス一覧</td>
-<td align="left">SHOW INDEX FROM tbl_name;</td>
-<td align="left">\d table_name</td>
-</tr>
-<tr>
-<td align="left">行表示の切り替え</td>
-<td align="left">select * from t \G</td>
-<td align="left">\x select * from t; ※mysql同様、1回のクエリだけ\xしたい場合は select * from t \gx <a href="https://qiita.com/aosho235/items/7e580c6302610346f80d">psql 9以前の場合はこちら</a></td>
-</tr>
-<tr>
-<td align="left">SQLファイル実行</td>
-<td align="left">.</td>
-<td align="left">\i</td>
-</tr>
-<tr>
-<td align="left">SQLダンプ</td>
-<td align="left">mysqldump</td>
-<td align="left">pg_dump</td>
-</tr>
-<tr>
-<td align="left">TSVダンプ</td>
-<td align="left">mysqldump -u USER --password=PASS DATABASE_NAME TABLE_NAME -T /tmp</td>
-<td align="left">\copy テーブル名 to 'data.tsv' csv delimiter E'\t' header; または \copy (select * from テーブル名) to 'data.tsv' csv delimiter E'\t' header;</td>
-</tr>
-<tr>
-<td align="left">TSVインポート</td>
-<td align="left">LOAD DATA LOCAL INFILE ファイル名 REPLACE INTO TABLE テーブル名 IGNORE 1 LINES;</td>
-<td align="left">copy テーブル名 from '/absolute_path/to/data.tsv' ( delimiter E'\t', format csv, header true );</td>
-</tr>
-<tr>
-<td align="left">SQL時間計測</td>
-<td align="left">デフォルトで表示される</td>
-<td align="left">\timing on</td>
-</tr>
-<tr>
-<td align="left">ログ出力開始</td>
-<td align="left">\T log.txt</td>
-<td align="left">\o log.txt</td>
-</tr>
-<tr>
-<td align="left">ログ出力終了</td>
-<td align="left">\t</td>
-<td align="left">\o</td>
-</tr>
-<tr>
-<td align="left">1回のクエリだけファイルに出力</td>
-<td align="left">不明</td>
-<td align="left">SQLの末尾に\g FILENAMEをつける</td>
-</tr>
-<tr>
-<td align="left">1回のクエリだけvimで表示</td>
-<td align="left">不明</td>
-<td align="left">SQLの末尾に\g |vim -をつける</td>
-</tr>
-<tr>
-<td align="left">定義をコピーしてテーブル作成</td>
-<td align="left">create table t2 like t1;</td>
-<td align="left">create table t2 (like t1);</td>
-</tr>
-<tr>
-<td align="left">実行計画</td>
-<td align="left">SQLの先頭にEXPLAINをつける</td>
-<td align="left">SQLの先頭にEXPLAINをつける</td>
-</tr>
-<tr>
-<td align="left">接続先サーバ確認</td>
-<td align="left">\s</td>
-<td align="left">\conninfo SELECT version();</td>
-</tr>
-<tr>
-<td align="left">接続を確認</td>
-<td align="left">show processlist;</td>
-<td align="left">select * from pg_stat_activity;</td>
-</tr>
-<tr>
-<td align="left">連番ID</td>
-<td align="left">カラム名 int auto_increment</td>
-<td align="left">カラム名 serial</td>
-</tr>
-<tr>
-<td align="left">今日の日付</td>
-<td align="left">curdate()</td>
-<td align="left">current_date</td>
-</tr>
-<tr>
-<td align="left">現在時刻</td>
-<td align="left">now()</td>
-<td align="left">now()</td>
-</tr>
-<tr>
-<td align="left">ヘルプ</td>
-<td align="left">\h または \?</td>
-<td align="left">\h と \? （内容が異なる）</td>
-</tr>
-<tr>
-<td align="left">設定ファイル</td>
-<td align="left">~/.my.cnf</td>
-<td align="left">~/.psqlrc</td>
-</tr>
-</tbody>
-</table>
-<h2 id="information_schema">information_schemaは両方に共通<a class="headerlink" href="#information_schema" title="Permanent link">&para;</a></h2>
-<p>information_schemaはSQL標準なので、どちらでも同じSQLが使える。</p>
-<h3 id="_1">テーブル一覧を表示<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>SELECT table_catalog
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>       ,table_schema
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>       ,table_name
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>       ,table_type
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>FROM   information_schema.tables;
+<h1 id="mysqladmin-kill">mysqladmin kill<a class="headerlink" href="#mysqladmin-kill" title="Permanent link">&para;</a></h1>
+<ul>
+<li>https://tech.basicinc.jp/articles/41</li>
+<li>https://stackoverflow.com/questions/44192418/how-to-find-mysql-process-list-and-to-kill-those-processes</li>
+</ul>
+<h2 id="60">処理時間に60秒以上かかっているのを表示<a class="headerlink" href="#60" title="Permanent link">&para;</a></h2>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>SELECT * FROM information_schema.PROCESSLIST WHERE TIME &gt; 59;
 </span></code></pre></div>
-<h3 id="_2">カラム一覧を表示<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>SELECT table_schema
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>       ,table_name
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>       ,column_name
-</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>       ,data_type
-</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>       ,character_maximum_length
-</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>       ,numeric_precision
-</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>       ,column_default
-</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>FROM   information_schema.columns
-</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>WHERE  table_name = &#39;t1&#39;
-</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>ORDER  BY table_name
-</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>          ,ordinal_position;
+<h2 id="id">指定ユーザのプロセスIDのを表示<a class="headerlink" href="#id" title="Permanent link">&para;</a></h2>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>SELECT GROUP_CONCAT(ID) FROM information_schema.PROCESSLIST WHERE user=&#39;user&#39;;
 </span></code></pre></div>
-<h2 id="_3">デフォルト接続先<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
-<p>PostgreSQL：環境変数で設定</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>export PGDATABASE=DB名
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>export PGHOST=ホスト
-</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>export PGPORT=ポート番号
-</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>export PGUSER=ユーザー名
-</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>export PGPASSWORD=パスワード
-</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>
-</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>パスワードは~/.pgpassでも設定できる。
+<h2 id="60id">処理時間に60秒以上かつ指定ユーザのプロセスIDのを表示<a class="headerlink" href="#60id" title="Permanent link">&para;</a></h2>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>SELECT GROUP_CONCAT(ID) FROM information_schema.PROCESSLIST WHERE user=&#39;user&#39; and TIME &gt; 59;
 </span></code></pre></div>
-<p>MySQL：~/.my.cnfで設定</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>[client]
-</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>database=DB名
-</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>user=ユーザー名
-</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>password=パスワード
+<h2 id="_1">結果<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">GROUP_CONCAT</span><span class="p">(</span><span class="n">ID</span><span class="p">)</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">information_schema</span><span class="p">.</span><span class="n">PROCESSLIST</span><span class="w"> </span><span class="k">WHERE</span><span class="w">  </span><span class="k">user</span><span class="o">=</span><span class="s1">&#39;user&#39;</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="k">TIME</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">59</span><span class="p">;</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="o">+</span><span class="c1">------------------+</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="o">|</span><span class="w"> </span><span class="n">group_concat</span><span class="p">(</span><span class="n">ID</span><span class="p">)</span><span class="w"> </span><span class="o">|</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="o">+</span><span class="c1">------------------+</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="o">|</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="w">        </span><span class="o">|</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="o">+</span><span class="c1">------------------+</span>
+</span></code></pre></div>
+<h2 id="idkill">複数のプロセスIDをkillする<a class="headerlink" href="#idkill" title="Permanent link">&para;</a></h2>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>$ mysqladmin kill 1,2,3
+</span></code></pre></div>
+<h2 id="kill">killコマンドを出力する<a class="headerlink" href="#kill" title="Permanent link">&para;</a></h2>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>SELECT  concat(&#39;mysqladmin kill &#39;, GROUP_CONCAT(ID)) FROM information_schema.PROCESSLIST WHERE user=&#39;user&#39;;
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>+--------------------------------------------------------------------------------------------+
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>| concat(&#39;mysqladmin kill &#39;, GROUP_CONCAT(ID))                                               |
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>+--------------------------------------------------------------------------------------------+
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>| mysqladmin kill 588732677,326878732692,588732693,588732695,588732684,588732696,588732688   |
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>+--------------------------------------------------------------------------------------------+
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>[root@mysqlxxx ~]# mysql -e &quot;SELECT  concat(&#39;mysqladmin kill &#39;, GROUP_CONCAT(ID)) FROM information_schema.PROCESSLIST WHERE user=&#39;user&#39;;&quot;
 </span></code></pre></div>
 
 
