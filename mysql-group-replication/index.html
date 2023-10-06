@@ -9,17 +9,17 @@
       
       
       
-        <link rel="prev" href="../iptables_13/">
+        <link rel="prev" href="../mysql8-basic/">
       
       
-        <link rel="next" href="../centos7-set-kernel/">
+        <link rel="next" href="../mysql-mgr/">
       
       <link rel="icon" href="../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.9">
     
     
       
-        <title>iptables小结之常用套路(14) - 总有刁民想要害朕</title>
+        <title>3種類のMGR - 总有刁民想要害朕</title>
       
     
     
@@ -61,7 +61,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#iptables14iptables" class="md-skip">
+        <a href="#mysql-group-replication" class="md-skip">
           Skip to content
         </a>
       
@@ -96,7 +96,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              iptables小结之常用套路(14)
+              3種類のMGR
             
           </span>
         </div>
@@ -431,14 +431,16 @@
 
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" checked>
       
       
         
@@ -479,7 +481,7 @@
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="true">
         <label class="md-nav__title" for="__nav_8">
           <span class="md-nav__icon md-icon"></span>
           MySQL
@@ -686,14 +688,16 @@
               
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_15" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_15" checked>
       
       
         
@@ -716,7 +720,7 @@
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_15_label" aria-expanded="false">
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_15_label" aria-expanded="true">
         <label class="md-nav__title" for="__nav_8_15">
           <span class="md-nav__icon md-icon"></span>
           MGR
@@ -727,11 +731,86 @@
               
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../mysql-group-replication/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          3種類のMGR
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         3種類のMGR
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#mysql3" class="md-nav__link">
+    mysqlのレプリケーション方式は以下の3種類進化してきた。
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    公式サイト
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3mgr" class="md-nav__link">
+    3種類のMGR
+  </a>
+  
+    <nav class="md-nav" aria-label="3種類のMGR">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    シングルプライマリモード
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    マルチプライマリモード
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1168,16 +1247,14 @@
 
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_15" checked>
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_15" >
       
       
         
@@ -1218,7 +1295,7 @@
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_15_label" aria-expanded="true">
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_15_label" aria-expanded="false">
         <label class="md-nav__title" for="__nav_15">
           <span class="md-nav__icon md-icon"></span>
           iptables
@@ -1425,21 +1502,11 @@
               
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../iptables_14/" class="md-nav__link">
         iptables小结之常用套路(14)
       </a>
-      
     </li>
   
 
@@ -1918,6 +1985,55 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#mysql3" class="md-nav__link">
+    mysqlのレプリケーション方式は以下の3種類進化してきた。
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    公式サイト
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3mgr" class="md-nav__link">
+    3種類のMGR
+  </a>
+  
+    <nav class="md-nav" aria-label="3種類のMGR">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    シングルプライマリモード
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    マルチプライマリモード
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -1931,26 +2047,117 @@
                   
 
 
-<h1 id="iptables14iptables">iptables详解（14）：iptables小结之常用套路<a class="headerlink" href="#iptables14iptables" title="Permanent link">&para;</a></h1>
-<p>不知不觉，已经总结了13篇IPTABLES文章，这些文章中有一些需要注意的地方。</p>
-<p>此处，我们对前文中的一些注意点进行总结，我们可以理解为对”常用套路”的总结。</p>
-<p>记住这些套路，能让我们事半功倍。</p>
-<p>阅读这篇文章之前，请确定你已经阅读了之前的文章，否则你有可能会不理解为什么要这样做。</p>
-<p><img alt="" src="/assets/iptables/img/052217_0629_1.jpg" /></p>
-<p><strong>1</strong>、规则的顺序非常重要。</p>
-<p>如果报文已经被前面的规则匹配到，IPTABLES则会对报文执行对应的动作，通常是ACCEPT或者REJECT，报文被放行或拒绝以后，即使后面的规则也能匹配到刚才放行或拒绝的报文，也没有机会再对报文执行相应的动作了（前面规则的动作为LOG时除外），所以，针对相同服务的规则，更严格的规则应该放在前面。</p>
-<p><strong>2</strong>、当规则中有多个匹配条件时，条件之间默认存在”与”的关系。</p>
-<p>如果一条规则中包含了多个匹配条件，那么报文必须同时满足这个规则中的所有匹配条件，报文才能被这条规则匹配到。</p>
-<p><strong>3</strong>、在不考虑1的情况下，应该将更容易被匹配到的规则放置在前面。</p>
-<p>比如，你写了两条规则，一条针对sshd服务，一条针对web服务。</p>
-<p>假设，一天之内，有20000个请求访问web服务，有200个请求访问sshd服务，</p>
-<p>那么，应该将针对web服务的规则放在前面，针对sshd的规则放在后面，因为访问web服务的请求频率更高。</p>
-<p>如果将sshd的规则放在前面，当报文是访问web服务时，sshd的规则也要白白的验证一遍，由于访问web服务的频率更高，白白耗费的资源就更多。</p>
-<p>如果web服务的规则放在前面，由于访问web服务的频率更高，所以无用功会比较少。</p>
-<p>换句话说就是，在没有顺序要求的情况下，不同类别的规则，被匹配次数多的、匹配频率高的规则应该放在前面。</p>
-<p><strong>4</strong>、当IPTABLES所在主机作为网络防火 墙时，在配置规则时，应着重考虑方向性，双向都要考虑，从外到内，从内到外。</p>
-<p><strong>5</strong>、在配置IPTABLES白名单时，往往会将链的默认策略设置为ACCEPT，通过在链的最后设置REJECT规则实现白名单机制，而不是将链的默认策略设置为DROP，如果将链的默认策略设置为DROP，当链中的规则被清空时，管理员的请求也将会被DROP掉。</p>
-<p>好了，套路就总结到这里，希望能够对你有所帮助。</p>
+<h1 id="mysql-group-replication">mysql-group-replication<a class="headerlink" href="#mysql-group-replication" title="Permanent link">&para;</a></h1>
+<h2 id="mysql3">mysqlのレプリケーション方式は以下の3種類進化してきた。<a class="headerlink" href="#mysql3" title="Permanent link">&para;</a></h2>
+<ul>
+<li>MySQL 非同期レプリケーション</li>
+<li>MySQL 準同期レプリケーション</li>
+<li>MySQL グループレプリケーション ← 現在</li>
+</ul>
+<h2 id="_1">公式サイト<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<ul>
+<li>https://dev.mysql.com/doc/refman/8.0/ja/group-replication-primary-secondary-replication.html</li>
+</ul>
+<h2 id="3mgr">3種類のMGR<a class="headerlink" href="#3mgr" title="Permanent link">&para;</a></h2>
+<ol>
+<li>
+<p>非同期レプリケーション（Asynchronous Replication、异步复制）</p>
+<ul>
+<li>データベースサーバーの故障時に、過去に成功したトランザクションが消失する可能性があります。</li>
+<li>传统MySQL复制默认提供了一种简单的主从复制方法，这种架构有一个主，以及一个或者多个从，当主节点执行提交事务，然后异步的方式发送到其他从节点，从库重新执行relay log日志内容达到主副本一致的目的，在默认情况下集群所有节点数据都是一致的。</li>
+<li><img alt="非同期レプリケーション" src="../async-replication-diagram.png" /></li>
+</ul>
+</li>
+<li>
+<p>準同期レプリケーション（Semisynchronous Replication、半同步复制）</p>
+<ul>
+<li>Semi-synchronous Replication では適切に設定すると一台のサーバーが故障してもトランザクションが消失しないようにすることができます。 一方で、故障サーバーが復帰すると errant transaction という不整合データが発生する可能性があります。</li>
+<li>异步复制存在一定的数据丢失风险，MySQL又在5.6版本中推出半同步复制，在同步数据协议中添加了一个同步操作，这样意味主节点在commit操作，需要确认最少一个从节点确认接收到并且返回ACK，只有这样主节点才能正确提交数据。</li>
+<li><img alt="準同期レプリケーション" src="../semisync-replication-diagram.png" /></li>
+</ul>
+</li>
+<li>
+<p>MySQL グループレプリケーション（Group Replication Protocol）</p>
+<ul>
+<li>Group Replication は <a href="https://en.wikipedia.org/wiki/Paxos_(computer_science)">Paxos</a> をベースにした分散合意方式により <a href="https://www.percona.com/blog/2014/05/19/errant-transactions-major-hurdle-for-gtid-based-failover-in-mysql-5-6/">errant transaction</a> の発生を防止します。</li>
+<li>MySQL MGR 集群最少3个server节点共同组成的分布式集群，一种share-nothing复制方案，每个server节点都有完整的副本。
+MGR由若干个节点共同组成一个复制组，一个事务的提交，必须经过组内大多数节点（N / 2 + 1）决议并通过，才能得以提交。组复制的引入，主要是为了解决传统异步复制和半同步复制可能产生数据不一致的问题。组复制依靠分布式一致性协议(Paxos协议的变体)，实现了分布式下数据的最终一致性，提供了真正的数据高可用方案。</li>
+<li><img alt="MySQL グループレプリケーション" src="../gr-replication-diagram.png" /></li>
+<li>
+<p>f 障害を許容するために必要なサーバーの数 (n) は、n = 2 x f + 1 です。</p>
+<table>
+<thead>
+<tr>
+<th align="left">グループサイズ<br>(node数)</th>
+<th align="left">過半数<br>(Majority)</th>
+<th align="left">許容される即時障害<br>(Instant Failures Tolerated)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">7</td>
+<td align="left">4</td>
+<td align="left">3</td>
+</tr>
+<tr>
+<td align="left">6</td>
+<td align="left">4</td>
+<td align="left">2</td>
+</tr>
+<tr>
+<td align="left">5</td>
+<td align="left">3</td>
+<td align="left">2</td>
+</tr>
+<tr>
+<td align="left">4</td>
+<td align="left">3</td>
+<td align="left">1</td>
+</tr>
+<tr>
+<td align="left">3</td>
+<td align="left">2</td>
+<td align="left">1</td>
+</tr>
+<tr>
+<td align="left">2</td>
+<td align="left">2</td>
+<td align="left">0</td>
+</tr>
+<tr>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">0</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="_2">シングルプライマリモード<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<ul>
+<li>新規プライマリ選択<ul>
+<li><img alt="新規プライマリ選択" src="../single-primary-election.png" /></li>
+</ul>
+</li>
+<li>プライマリ選択アルゴリズム<ol>
+<li>プライマリメンバーの自動選択プロセスでは、各メンバーがグループの新しいビューを参照し、潜在的な新しいプライマリメンバーを順序付けし、最も適したメンバーを選択します。 各メンバーは、MySQL Server リリースのプライマリ選択アルゴリズムに従って、独自の決定をローカルで行います。 すべてのメンバーは同じ決定に到達する必要があるため、他のグループメンバーがより低い MySQL Server バージョンを実行している場合、メンバーはプライマリ選択アルゴリズムを調整して、グループ内で最も低い MySQL Server バージョンのメンバーと同じ動作をします。</li>
+<li>プライマリを選択するときにメンバーが考慮するファクタは、次のとおりです:<ol>
+<li>最初に考慮される要因は、MySQL Server の最下位バージョンを実行しているメンバーです。 すべてのグループメンバーが MySQL 8.0.17 以上を実行している場合、メンバーは最初にそのリリースのパッチバージョンで順序付けされます。 MySQL Server 5.7 または MySQL 8.0.16 以下を実行しているメンバーがある場合、メンバーは最初にメジャーバージョンのリリースで順序付けされ、パッチバージョンは無視されます。</li>
+<li>複数のメンバーで最低バージョンの MySQL Server が実行されている場合、考慮される 2 番目のファクタは、メンバーの group_replication_member_weight システム変数で指定されている各メンバーのメンバーの重みです。 このシステム変数を使用できなかった MySQL Server 5.7 をグループのいずれかのメンバーが実行している場合、この係数は無視されます。group_replication_member_weight システム変数は、0-100 の範囲の数値を指定します。 すべてのメンバーのデフォルトの重みは 50 であるため、順序を下げるにはこの値より下の重みを設定し、順序を上げるにはその上の重みを設定します。 この重み付け機能を使用すると、より適切なハードウェアの使用に優先順位を付けることや、プライマリのスケジュールされたメンテナンス中に特定のメンバーにフェイルオーバーすることができます。</li>
+<li>複数のメンバーで最低バージョンの MySQL Server が実行されており、それらのメンバーのうち複数のメンバーの重みが最高である (またはメンバーの重みが無視されている) 場合、3 番目の要因は、server_uuid システム変数で指定されているように、各メンバーの生成されたサーバー UUID の辞書順であるとみなされます。 サーバー UUID が最も低いメンバーがプライマリとして選択されます。 このファクタは、すべてのグループメンバーが重要なファクタによって決定できない場合に同じ決定に到達するように、保証付きで予測可能なタイエリアとして機能します。</li>
+</ol>
+</li>
+</ol>
+</li>
+</ul>
+<h3 id="_3">マルチプライマリモード<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<p>詳細は割愛します、制限多い上にグループ内一番スペック低いサーバに性能引っ張られる、更にネットワーク帯域、速度など要素多く影響されるため、運用に不向きです。</p>
+<ul>
+<li><a href="https://dev.mysql.com/doc/refman/8.0/ja/group-replication-multi-primary-mode.html">公式サイト</a></li>
+<li><img alt="マルチプライマリモード" src="../multi-primary.png" /></li>
+</ul>
 
 
 
