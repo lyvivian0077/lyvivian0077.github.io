@@ -3718,7 +3718,7 @@
 <div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>awk &#39;/正则1/,/正则2/ {动作}&#39; file
 </span></code></pre></div>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>$ awk -F &quot;:&quot; &#39;/^5may/ {print $1,$NF}&#39; osn_mysql40_acc_list
-</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>5may mysql31.db.sakura.ne.jp
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>5may mysql31.db.google.com
 </span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>
 </span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>www2323# cat /home/.logs/users/xxx/access_log.20230502 | awk &#39;$1 ~ &quot;xxx.sa|xxx.org|xxx.xxx.ne.jp&quot; {print $3}&#39; | uniq -n
 </span></code></pre></div>
