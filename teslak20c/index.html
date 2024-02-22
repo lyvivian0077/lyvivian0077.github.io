@@ -1,0 +1,2336 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../vim/">
+      
+      
+        <link rel="next" href="../terminal-shortcut/">
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.9">
+    
+    
+      
+        <title>Tesla K20c をゲーム用に改造してみた - 总有刁民想要害朕</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.85bb2934.min.css">
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#tesla-k20c" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="总有刁民想要害朕" class="md-header__button md-logo" aria-label="总有刁民想要害朕" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            总有刁民想要害朕
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Tesla K20c をゲーム用に改造してみた
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="总有刁民想要害朕" class="md-nav__button md-logo" aria-label="总有刁民想要害朕" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    总有刁民想要害朕
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        Welcome
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+      
+      
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+          ansbile
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          ansbile
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ansbile/" class="md-nav__link">
+        ansbileオプション
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ansbile_async/" class="md-nav__link">
+        ansbile_async
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../awk/" class="md-nav__link">
+        awk
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sed/" class="md-nav__link">
+        sed
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../MB-MiB%E7%9A%84%E5%8C%BA%E5%88%AB/" class="md-nav__link">
+        MB_MiB的区别
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+      
+      
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+          MegaRAID
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_6">
+          <span class="md-nav__icon md-icon"></span>
+          MegaRAID
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../megacli/" class="md-nav__link">
+        megacli
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../megaraid/" class="md-nav__link">
+        megaraid
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+      
+      
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+          PostgreSQL
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_7">
+          <span class="md-nav__icon md-icon"></span>
+          PostgreSQL
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../psql-vs-mysql/" class="md-nav__link">
+        MySQLとPostgreSQLコマンド比較表
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+          MySQL
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_8">
+          <span class="md-nav__icon md-icon"></span>
+          MySQL
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mysql-ssl/" class="md-nav__link">
+        MySQL安全SSL介绍
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Explain%E8%AF%A6%E8%A7%A3%E4%B8%8E%E7%B4%A2%E5%BC%95%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/" class="md-nav__link">
+        Explain详解与索引最佳实践
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mysql/" class="md-nav__link">
+        Mysql参数优化
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../show-engine-innodb-status/" class="md-nav__link">
+        innodb status解读
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../undo-log/" class="md-nav__link">
+        undo-log
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../buffer-pool/" class="md-nav__link">
+        Buffer-Pool
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../my-cnf/" class="md-nav__link">
+        mysql5.7性能提升一百倍调优宝典
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mysql-table/" class="md-nav__link">
+        MySQL-table
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mysql%E3%82%92%E3%82%BD%E3%83%BC%E3%82%B9%E3%81%8B%E3%82%89%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB/" class="md-nav__link">
+        MySQLビルド
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mysql-add-del-user/" class="md-nav__link">
+        Mysqlユーザ作成削除
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mysql-sysbench/" class="md-nav__link">
+        Mysql sysbench
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mysql-dummy/" class="md-nav__link">
+        ダミーデータを作成
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mysql-kill/" class="md-nav__link">
+        mysqladmin kill
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../MySQL-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="md-nav__link">
+        学习笔记
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mysql8-basic/" class="md-nav__link">
+        Mysql8
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_16" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_8_16" id="__nav_8_16_label" tabindex="0">
+          MGR
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_16_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_8_16">
+          <span class="md-nav__icon md-icon"></span>
+          MGR
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mysql-group-replication/" class="md-nav__link">
+        3種類のMGR
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mysql-mgr/" class="md-nav__link">
+        MGR
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mysql-group-replication-how-to-elect-the-new-primary-node/" class="md-nav__link">
+        MGR 如何选举新的主节点
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mysql-mgr-copy/" class="md-nav__link">
+        転載MGR
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mysql-ha/" class="md-nav__link">
+        mysql+keepalived搭建教程
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mysql-clone/" class="md-nav__link">
+        mysqlクローン機能
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+      
+      
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+          MySQL DUMP
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_9">
+          <span class="md-nav__icon md-icon"></span>
+          MySQL DUMP
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mysql_backup/" class="md-nav__link">
+        Mysql バックアップツール
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mydumper/" class="md-nav__link">
+        mydumper
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="0">
+          Python Tips
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_10">
+          <span class="md-nav__icon md-icon"></span>
+          Python Tips
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-styleguide/" class="md-nav__link">
+        Python风格规范
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-config/" class="md-nav__link">
+        Python程序配置文件管理
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-decorator/" class="md-nav__link">
+        装饰器
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-dunder/" class="md-nav__link">
+        5种下划线
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-function/" class="md-nav__link">
+        传入参数的几种方法
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python/" class="md-nav__link">
+        非常规的技巧
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-mysql/" class="md-nav__link">
+        操作mysql基础
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Python-Re-%E6%A8%A1%E5%9D%97%E8%B6%85%E5%85%A8%E8%A7%A3%E8%AF%BB/" class="md-nav__link">
+        Re 模块
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Python%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%8B%BC%E6%8E%A5%E6%80%BB%E7%BB%93/" class="md-nav__link">
+        字符串拼接总结
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E4%B8%80%E8%A1%8C-Python-%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0%E5%B9%B6%E8%A1%8C/" class="md-nav__link">
+        代码并行
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../py-pip/" class="md-nav__link">
+        使用 Python Pip 的 10 个技巧
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Regular-Expression/" class="md-nav__link">
+        正規表現
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../taged-VLAN%E3%81%A8untagedVLAN%E3%81%AE%E9%81%95%E3%81%84/" class="md-nav__link">
+        タグVLAN
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sar/" class="md-nav__link">
+        sar
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Bash%E7%BC%96%E7%A8%8B%E8%B6%85%E8%AF%A6%E7%BB%86%E8%AF%AD%E6%B3%95%E6%80%BB%E7%BB%93/" class="md-nav__link">
+        Bash编程超详细语法总结
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_15" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_15" id="__nav_15_label" tabindex="0">
+          iptables
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_15_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_15">
+          <span class="md-nav__icon md-icon"></span>
+          iptables
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../iptables/" class="md-nav__link">
+        iptables
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../iptables_1/" class="md-nav__link">
+        iptables概念(1)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../iptables_2/" class="md-nav__link">
+        iptables实际操作之规则查询(2)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../iptables_3/" class="md-nav__link">
+        iptables规则管理(3)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../iptables_4/" class="md-nav__link">
+        iptables匹配条件总结之一(4)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../iptables_5/" class="md-nav__link">
+        iptables匹配条件总结之二（常用扩展模块）(5)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../iptables_6/" class="md-nav__link">
+        iptables扩展匹配条件之’–tcp-flags’(6)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../iptables_7/" class="md-nav__link">
+        iptables扩展之udp扩展与icmp扩展(7)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../iptables_8/" class="md-nav__link">
+        iptables扩展模块之state扩展(8)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../iptables_9/" class="md-nav__link">
+        iptables的黑白名单机制(9)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../iptables_10/" class="md-nav__link">
+        iptables自定义链(10)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../iptables_11/" class="md-nav__link">
+        iptables之网络防火墙(11)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../iptables_12/" class="md-nav__link">
+        iptables动作总结之一(12)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../iptables_13/" class="md-nav__link">
+        iptables动作总结之二(13)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../iptables_14/" class="md-nav__link">
+        iptables小结之常用套路(14)
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_16" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_16" id="__nav_16_label" tabindex="0">
+          Linux
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_16_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_16">
+          <span class="md-nav__icon md-icon"></span>
+          Linux
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../centos7-set-kernel/" class="md-nav__link">
+        centos7-set-kernel
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../centos-network-device-naming/" class="md-nav__link">
+        centos-network-device-naming
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Linux-Performance/" class="md-nav__link">
+        Linux Performance
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Linux-shell-%E9%80%BB%E8%BE%91%E8%BF%90%E7%AE%97%E7%AC%A6-%E9%80%BB%E8%BE%91%E8%A1%A8%E8%BE%BE%E5%BC%8F%E8%AF%A6%E8%A7%A3/" class="md-nav__link">
+        Linux-shell-逻辑运算符-逻辑表达式详解
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../busybox/" class="md-nav__link">
+        busybox
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../linux-img/" class="md-nav__link">
+        rocky img 作成
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../osinfo-query/" class="md-nav__link">
+        osinfo-query更新
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_17" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_17" id="__nav_17_label" tabindex="0">
+          LVM
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_17_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_17">
+          <span class="md-nav__icon md-icon"></span>
+          LVM
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../LVM%E9%80%BB%E8%BE%91%E5%8D%B7%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5%E5%8F%8ALVM%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/" class="md-nav__link">
+        LVM逻辑卷基本概念及LVM的工作原理
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../linux-lvm/" class="md-nav__link">
+        LVM逻辑卷的建立、扩容和减容
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lvm-snapshot/" class="md-nav__link">
+        LVM-snapshot
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../macOS%E8%BD%AF%E4%BB%B6%E7%BC%96%E8%AF%91%E6%97%B6%E6%89%BE%E4%B8%8D%E5%88%B0%E5%A4%B4%E6%96%87%E4%BB%B6%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95-%E6%9B%B4%E6%96%B010-15/" class="md-nav__link">
+        macOS软件编译时找不到头文件解决方法[更新10.15]
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ubnt/" class="md-nav__link">
+        ubnt
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vim/" class="md-nav__link">
+        VIM
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Tesla K20c をゲーム用に改造してみた
+      </a>
+      
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../terminal-shortcut/" class="md-nav__link">
+        ターミナルを使うためのショートカット集
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_23" >
+      
+      
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_23" id="__nav_23_label" tabindex="0">
+          Zabbix
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_23_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_23">
+          <span class="md-nav__icon md-icon"></span>
+          Zabbix
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../zabbix6/" class="md-nav__link">
+        zabbix6検証
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_24" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_24" id="__nav_24_label" tabindex="0">
+          SWAP
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_24_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_24">
+          <span class="md-nav__icon md-icon"></span>
+          SWAP
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../swap-find/" class="md-nav__link">
+        Swapを使ってるプロセスを探す
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../swap-schema/" class="md-nav__link">
+        Swap原理
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../swap-linux/" class="md-nav__link">
+        Linux内存回收与swap
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pfctl/" class="md-nav__link">
+        pfctlのコマンドを毎回忘れるのでメモ
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../about/" class="md-nav__link">
+        About
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="tesla-k20c">Tesla K20c をゲーム用に改造してみた<a class="headerlink" href="#tesla-k20c" title="Permanent link">&para;</a></h1>
+<h1 id="_1">背景<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<p>最近Switchエミュにはまって、既存のGTX660Tiでは力不足でして、
+長年にわたり使っていたグラボを新規調達しようと思いましたが、調べたところ中古GTX1080も１万８千円前後でした。
+たまたまセールの中古品Tesla K20c が見かけて、どういうものかを調べたところ、GTX780と同じレベルでした。
+激安のため、購入しました。</p>
+<p>teslak20cは以下デメリットがあります。
+- 出力端子がなくて、お使いPCのCPUはグラボ内蔵が前提条件です。
+- もともと計算用GPUのため、デフォルトのBIOSではゲームできない
+- ゲームできるようにするため、BIOSの書き換えが必要です。</p>
+<p>ネットにたくさん情報ありますが、どれもうまくいきませんでした。</p>
+<p>さらにBIOSを調査したところ改造済かつoverclock済のBIOSがありました。
+試しにやってみましたが、すんなりいけました。</p>
+<p>手順として記載しました。</p>
+<h2 id="vbios">VBIOS更新用ツールのダウンロード<a class="headerlink" href="#vbios" title="Permanent link">&para;</a></h2>
+<ul>
+<li>nvflash_5.165<ul>
+<li>https://us3-dl.techpowerup.com/files/KZuE8M2-AmRn0PFtSfEMSg/1708622385/nvflash_windows_5.165.zip</li>
+</ul>
+</li>
+</ul>
+<h2 id="vbios_1">更新用VBIOSのダウンロード<a class="headerlink" href="#vbios_1" title="Permanent link">&para;</a></h2>
+<ul>
+<li>PNY Tesla K20c 5 GB BIOS<ul>
+<li>https://www.techpowerup.com/vgabios/241461/241461</li>
+<li>PNY, K20C modded for WDDM, NVIDIA Tesla K20c, Light overclocked (954 / 1450)</li>
+</ul>
+</li>
+</ul>
+<h2 id="vbios_2">VBIOS更新前の確認<a class="headerlink" href="#vbios_2" title="Permanent link">&para;</a></h2>
+<details class="info">
+<summary>version check</summary>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1">## version check</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>PS<span class="w"> </span>D:<span class="se">\t</span>eslak20c<span class="se">\n</span>vflash_5.821&gt;<span class="w"> </span>.<span class="se">\n</span>vflash64.exe<span class="w"> </span>--version
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>NVIDIA<span class="w"> </span>Firmware<span class="w"> </span>Update<span class="w"> </span>Utility<span class="w"> </span><span class="o">(</span>Version<span class="w"> </span><span class="m">5</span>.821.0<span class="o">)</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>Copyright<span class="w"> </span><span class="o">(</span>C<span class="o">)</span><span class="w"> </span><span class="m">1993</span>-2023,<span class="w"> </span>NVIDIA<span class="w"> </span>Corporation.<span class="w"> </span>All<span class="w"> </span>rights<span class="w"> </span>reserved.
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>Reading<span class="w"> </span>EEPROM<span class="w"> </span><span class="o">(</span>this<span class="w"> </span>operation<span class="w"> </span>may<span class="w"> </span>take<span class="w"> </span>up<span class="w"> </span>to<span class="w"> </span><span class="m">30</span><span class="w"> </span>seconds<span class="o">)</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>Redundant<span class="w"> </span>Firmware<span class="w">    </span>:<span class="w"> </span>Not<span class="w"> </span>Present
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>Sign-On<span class="w"> </span>Message<span class="w">       </span>:<span class="w"> </span>GK110<span class="w"> </span>P2081<span class="w"> </span>SKU<span class="w"> </span><span class="m">0204</span><span class="w"> </span>VGA<span class="w"> </span>BIOS<span class="w"> </span><span class="o">(</span>HWDIAG<span class="o">)</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>Build<span class="w"> </span>GUID<span class="w">            </span>:<span class="w"> </span>Blank
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>Build<span class="w"> </span>Number<span class="w">          </span>:<span class="w"> </span><span class="m">14126909</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>IFR<span class="w"> </span>Subsystem<span class="w"> </span>ID<span class="w">      </span>:<span class="w"> </span>10DE-0982
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>Subsystem<span class="w"> </span>Vendor<span class="w"> </span>ID<span class="w">   </span>:<span class="w"> </span>0x10DE
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>Subsystem<span class="w"> </span>ID<span class="w">          </span>:<span class="w"> </span>0x0982
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>Version<span class="w">               </span>:<span class="w"> </span><span class="m">80</span>.10.14.00.02
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>Image<span class="w"> </span>Hash<span class="w">            </span>:<span class="w"> </span>71FAA0E10FCFAE1803B1BFBB45280763
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>Product<span class="w"> </span>Name<span class="w">          </span>:<span class="w"> </span>GK110<span class="w"> </span>Board<span class="w"> </span>-<span class="w"> </span><span class="m">20810204</span>
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>Device<span class="w"> </span>Name<span class="o">(</span>s<span class="o">)</span><span class="w">        </span>:<span class="w"> </span>Tesla<span class="w"> </span>K20c
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>Board<span class="w"> </span>ID<span class="w">              </span>:<span class="w"> </span>0xE208
+</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>Vendor<span class="w"> </span>ID<span class="w">             </span>:<span class="w"> </span>0x10DE
+</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>Device<span class="w"> </span>ID<span class="w">             </span>:<span class="w"> </span>0x1022
+</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>Hierarchy<span class="w"> </span>ID<span class="w">          </span>:<span class="w"> </span>Normal<span class="w"> </span>Board
+</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>Chip<span class="w"> </span>SKU<span class="w">              </span>:<span class="w"> </span><span class="m">885</span>-0
+</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>Project<span class="w">               </span>:<span class="w"> </span><span class="m">2081</span>-0204
+</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>Build<span class="w"> </span>Date<span class="w">            </span>:<span class="w"> </span><span class="m">10</span>/16/12
+</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>Modification<span class="w"> </span>Date<span class="w">     </span>:<span class="w"> </span><span class="m">10</span>/23/12
+</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>UEFI<span class="w"> </span>Version<span class="w">          </span>:<span class="w"> </span>No<span class="w"> </span>Version<span class="w"> </span>Found<span class="w"> </span>or<span class="w"> </span>Out-dated<span class="w"> </span><span class="o">(</span><span class="w">  </span><span class="o">)</span>
+</span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a>UEFI<span class="w"> </span>Variant<span class="w"> </span>ID<span class="w">       </span>:<span class="w"> </span>No<span class="w"> </span>Variant<span class="w"> </span>ID<span class="w"> </span>Found<span class="w"> </span><span class="o">(</span><span class="w"> </span>No<span class="w"> </span>Variant<span class="w"> </span>ID<span class="w"> </span>Found<span class="w"> </span><span class="o">)</span>
+</span><span id="__span-0-29"><a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a>UEFI<span class="w"> </span>Signer<span class="o">(</span>s<span class="o">)</span><span class="w">        </span>:<span class="w"> </span>Unknown<span class="w"> </span>signer
+</span><span id="__span-0-30"><a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a>XUSB-FW<span class="w"> </span>Version<span class="w"> </span>ID<span class="w">    </span>:<span class="w"> </span>N/A
+</span><span id="__span-0-31"><a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a>XUSB-FW<span class="w"> </span>Build<span class="w"> </span>Time<span class="w">    </span>:<span class="w"> </span>N/A
+</span><span id="__span-0-32"><a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a>InfoROM<span class="w"> </span>Version<span class="w">       </span>:<span class="w"> </span><span class="m">2081</span>.0204.00.07
+</span><span id="__span-0-33"><a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a>InfoROM<span class="w"> </span>Backup<span class="w">        </span>:<span class="w"> </span>Present
+</span><span id="__span-0-34"><a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a>License<span class="w"> </span>Placeholder<span class="w">   </span>:<span class="w"> </span>Not<span class="w"> </span>Present
+</span><span id="__span-0-35"><a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a>GPU<span class="w"> </span>Mode<span class="w">              </span>:<span class="w"> </span>N/A
+</span><span id="__span-0-36"><a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a>CEC<span class="w"> </span>OTA-signed<span class="w"> </span>Blob<span class="w">   </span>:<span class="w"> </span>Not<span class="w"> </span>Present
+</span></code></pre></div>
+</details>
+<h2 id="vbios_3">VBIOSのバックアップ<a class="headerlink" href="#vbios_3" title="Permanent link">&para;</a></h2>
+<details class="info">
+<summary>backup VBIOS</summary>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># backup VBIOS</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>PS<span class="w"> </span>D:<span class="se">\t</span>eslak20c<span class="se">\n</span>vflash_5.821&gt;<span class="w"> </span>.<span class="se">\n</span>vflash64.exe<span class="w"> </span>--save<span class="w"> </span>k20c.origin.vbios.bin
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>NVIDIA<span class="w"> </span>Firmware<span class="w"> </span>Update<span class="w"> </span>Utility<span class="w"> </span><span class="o">(</span>Version<span class="w"> </span><span class="m">5</span>.821.0<span class="o">)</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>Copyright<span class="w"> </span><span class="o">(</span>C<span class="o">)</span><span class="w"> </span><span class="m">1993</span>-2023,<span class="w"> </span>NVIDIA<span class="w"> </span>Corporation.<span class="w"> </span>All<span class="w"> </span>rights<span class="w"> </span>reserved.
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>Reading<span class="w"> </span>EEPROM<span class="w"> </span><span class="o">(</span>this<span class="w"> </span>operation<span class="w"> </span>may<span class="w"> </span>take<span class="w"> </span>up<span class="w"> </span>to<span class="w"> </span><span class="m">30</span><span class="w"> </span>seconds<span class="o">)</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>Build<span class="w"> </span>GUID<span class="w">            </span>:<span class="w"> </span>Blank
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>Build<span class="w"> </span>Number<span class="w">          </span>:<span class="w"> </span><span class="m">14126909</span>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>IFR<span class="w"> </span>Subsystem<span class="w"> </span>ID<span class="w">      </span>:<span class="w"> </span>10DE-0982
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>Subsystem<span class="w"> </span>Vendor<span class="w"> </span>ID<span class="w">   </span>:<span class="w"> </span>0x10DE
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>Subsystem<span class="w"> </span>ID<span class="w">          </span>:<span class="w"> </span>0x0982
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>Version<span class="w">               </span>:<span class="w"> </span><span class="m">80</span>.10.14.00.02
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>Image<span class="w"> </span>Hash<span class="w">            </span>:<span class="w"> </span>71FAA0E10FCFAE1803B1BFBB45280763
+</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>Hierarchy<span class="w"> </span>ID<span class="w">          </span>:<span class="w"> </span>Normal<span class="w"> </span>Board
+</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>Build<span class="w"> </span>Date<span class="w">            </span>:<span class="w"> </span><span class="m">10</span>/16/12
+</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>Modification<span class="w"> </span>Date<span class="w">     </span>:<span class="w"> </span><span class="m">10</span>/23/12
+</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>UEFI<span class="w"> </span>Version<span class="w">          </span>:<span class="w"> </span>No<span class="w"> </span>Version<span class="w"> </span>Found<span class="w"> </span>or<span class="w"> </span>Out-dated<span class="w"> </span><span class="o">(</span><span class="w">  </span><span class="o">)</span>
+</span><span id="__span-1-19"><a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a>UEFI<span class="w"> </span>Variant<span class="w"> </span>ID<span class="w">       </span>:<span class="w"> </span>No<span class="w"> </span>Variant<span class="w"> </span>ID<span class="w"> </span>Found<span class="w"> </span><span class="o">(</span><span class="w"> </span>No<span class="w"> </span>Variant<span class="w"> </span>ID<span class="w"> </span>Found<span class="w"> </span><span class="o">)</span>
+</span><span id="__span-1-20"><a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a>UEFI<span class="w"> </span>Signer<span class="o">(</span>s<span class="o">)</span><span class="w">        </span>:<span class="w"> </span>Unknown<span class="w"> </span>signer
+</span><span id="__span-1-21"><a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a>XUSB-FW<span class="w"> </span>Version<span class="w"> </span>ID<span class="w">    </span>:<span class="w"> </span>N/A
+</span><span id="__span-1-22"><a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a>XUSB-FW<span class="w"> </span>Build<span class="w"> </span>Time<span class="w">    </span>:<span class="w"> </span>N/A
+</span><span id="__span-1-23"><a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a>InfoROM<span class="w"> </span>Version<span class="w">       </span>:<span class="w"> </span><span class="m">2081</span>.0204.00.07
+</span><span id="__span-1-24"><a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a>InfoROM<span class="w"> </span>Backup<span class="w">        </span>:<span class="w"> </span>Present
+</span><span id="__span-1-25"><a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a>License<span class="w"> </span>Placeholder<span class="w">   </span>:<span class="w"> </span>Not<span class="w"> </span>Present
+</span><span id="__span-1-26"><a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a>GPU<span class="w"> </span>Mode<span class="w">              </span>:<span class="w"> </span>N/A
+</span><span id="__span-1-27"><a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a>CEC<span class="w"> </span>OTA-signed<span class="w"> </span>Blob<span class="w">   </span>:<span class="w"> </span>Not<span class="w"> </span>Present
+</span></code></pre></div>
+</details>
+<h2 id="vbios_4">対象VBIOSにアップグレード<a class="headerlink" href="#vbios_4" title="Permanent link">&para;</a></h2>
+<ul>
+<li>VBIOSの更新は古いnvflashしかだめのようです、新バージョンの検証未実施です。</li>
+</ul>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a># update vbios
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>PS D:\teslak20c\nvflash_5.165&gt; .\nvflash.exe -4 -5 -6 .\PNY_Tesla_K20c_5GB_BIOS.rom
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>NVIDIA Firmware Update Utility (Version 5.165)
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>Checking for matches between display adapter(s) and image(s)...
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>Adapter: Tesla K20c           (10DE,1022,10DE,1015) H:--:NRM B:01,PCI,D:00,F:00
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>WARNING: None of the firmware image compatible PCI Device ID&#39;s
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>match the PCI Device ID of the adapter.
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>Adapter PCI Device ID:        1022
+</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>Firmware image PCI Device ID: 1023
+</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>WARNING: Firmware image PCI Subsystem ID (10DE.097E)
+</span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>  does not match adapter PCI Subsystem ID (10DE.1015).
+</span><span id="__span-2-16"><a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a>WARNING: Firmware image Board ID (E606) does not match adapter Board ID (E209).
+</span><span id="__span-2-17"><a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a>
+</span><span id="__span-2-18"><a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a>PCI Device ID override detected.
+</span><span id="__span-2-19"><a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a>(This is usually only needed for very special circumstances.)
+</span><span id="__span-2-20"><a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a>Are you sure you want to continue?
+</span><span id="__span-2-21"><a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a>Type &quot;YES&quot; to confirm (all caps):
+</span><span id="__span-2-22"><a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a>YES
+</span><span id="__span-2-23"><a id="__codelineno-2-23" name="__codelineno-2-23" href="#__codelineno-2-23"></a>
+</span><span id="__span-2-24"><a id="__codelineno-2-24" name="__codelineno-2-24" href="#__codelineno-2-24"></a>Overriding GPU mismatch
+</span><span id="__span-2-25"><a id="__codelineno-2-25" name="__codelineno-2-25" href="#__codelineno-2-25"></a>
+</span><span id="__span-2-26"><a id="__codelineno-2-26" name="__codelineno-2-26" href="#__codelineno-2-26"></a>Please press &#39;y&#39; to confirm override of PCI Subsystem ID&#39;s:
+</span><span id="__span-2-27"><a id="__codelineno-2-27" name="__codelineno-2-27" href="#__codelineno-2-27"></a>Overriding PCI subsystem ID mismatch
+</span><span id="__span-2-28"><a id="__codelineno-2-28" name="__codelineno-2-28" href="#__codelineno-2-28"></a>
+</span><span id="__span-2-29"><a id="__codelineno-2-29" name="__codelineno-2-29" href="#__codelineno-2-29"></a>*** WARNING: Overriding the Board ID can be very dangerous. ***
+</span><span id="__span-2-30"><a id="__codelineno-2-30" name="__codelineno-2-30" href="#__codelineno-2-30"></a>Upgrading to an image with the wrong Board ID can render the video card
+</span><span id="__span-2-31"><a id="__codelineno-2-31" name="__codelineno-2-31" href="#__codelineno-2-31"></a>unusable.
+</span><span id="__span-2-32"><a id="__codelineno-2-32" name="__codelineno-2-32" href="#__codelineno-2-32"></a>Overriding the Board ID is only needed for extreme circumstances.
+</span><span id="__span-2-33"><a id="__codelineno-2-33" name="__codelineno-2-33" href="#__codelineno-2-33"></a>A mismatched Board ID almost always means the wrong firmware image is being
+</span><span id="__span-2-34"><a id="__codelineno-2-34" name="__codelineno-2-34" href="#__codelineno-2-34"></a>used for the specific video card.
+</span><span id="__span-2-35"><a id="__codelineno-2-35" name="__codelineno-2-35" href="#__codelineno-2-35"></a>Are you sure you want to continue?
+</span><span id="__span-2-36"><a id="__codelineno-2-36" name="__codelineno-2-36" href="#__codelineno-2-36"></a>Type &quot;YES&quot; to confirm (all caps):
+</span><span id="__span-2-37"><a id="__codelineno-2-37" name="__codelineno-2-37" href="#__codelineno-2-37"></a>YES
+</span><span id="__span-2-38"><a id="__codelineno-2-38" name="__codelineno-2-38" href="#__codelineno-2-38"></a>
+</span><span id="__span-2-39"><a id="__codelineno-2-39" name="__codelineno-2-39" href="#__codelineno-2-39"></a>Overrding Board ID mismatch
+</span><span id="__span-2-40"><a id="__codelineno-2-40" name="__codelineno-2-40" href="#__codelineno-2-40"></a>Current      - Version:80.10.11.00.0B ID:10DE:1028:10DE:1015
+</span><span id="__span-2-41"><a id="__codelineno-2-41" name="__codelineno-2-41" href="#__codelineno-2-41"></a>               GK110 Board - 20810208 (Normal Board)
+</span><span id="__span-2-42"><a id="__codelineno-2-42" name="__codelineno-2-42" href="#__codelineno-2-42"></a>Replace with - Version:80.80.65.00.0A ID:10DE:1023:10DE:097E
+</span><span id="__span-2-43"><a id="__codelineno-2-43" name="__codelineno-2-43" href="#__codelineno-2-43"></a>               GK110B Board - 20810202 (Normal Board)
+</span><span id="__span-2-44"><a id="__codelineno-2-44" name="__codelineno-2-44" href="#__codelineno-2-44"></a>
+</span><span id="__span-2-45"><a id="__codelineno-2-45" name="__codelineno-2-45" href="#__codelineno-2-45"></a>Update display adapter firmware?
+</span><span id="__span-2-46"><a id="__codelineno-2-46" name="__codelineno-2-46" href="#__codelineno-2-46"></a>Press &#39;y&#39; to confirm (any other key to abort):
+</span><span id="__span-2-47"><a id="__codelineno-2-47" name="__codelineno-2-47" href="#__codelineno-2-47"></a>The display may go *BLANK* on and off for up to 10 seconds or more during the update process depending on your display adapter and output device.
+</span><span id="__span-2-48"><a id="__codelineno-2-48" name="__codelineno-2-48" href="#__codelineno-2-48"></a>
+</span><span id="__span-2-49"><a id="__codelineno-2-49" name="__codelineno-2-49" href="#__codelineno-2-49"></a>Identifying EEPROM...
+</span><span id="__span-2-50"><a id="__codelineno-2-50" name="__codelineno-2-50" href="#__codelineno-2-50"></a>EEPROM ID (C8,4012) : GD GD25Q20 2.7-3.6V 2048Kx1S, page
+</span><span id="__span-2-51"><a id="__codelineno-2-51" name="__codelineno-2-51" href="#__codelineno-2-51"></a>Clearing original firmware image...
+</span><span id="__span-2-52"><a id="__codelineno-2-52" name="__codelineno-2-52" href="#__codelineno-2-52"></a>.
+</span><span id="__span-2-53"><a id="__codelineno-2-53" name="__codelineno-2-53" href="#__codelineno-2-53"></a>Storing updated firmware image...
+</span><span id="__span-2-54"><a id="__codelineno-2-54" name="__codelineno-2-54" href="#__codelineno-2-54"></a>.........
+</span><span id="__span-2-55"><a id="__codelineno-2-55" name="__codelineno-2-55" href="#__codelineno-2-55"></a>Verifying update...
+</span><span id="__span-2-56"><a id="__codelineno-2-56" name="__codelineno-2-56" href="#__codelineno-2-56"></a>Update successful.
+</span><span id="__span-2-57"><a id="__codelineno-2-57" name="__codelineno-2-57" href="#__codelineno-2-57"></a>
+</span><span id="__span-2-58"><a id="__codelineno-2-58" name="__codelineno-2-58" href="#__codelineno-2-58"></a>PS D:\teslak20c\nvflash_5.165&gt;
+</span></code></pre></div>
+<h2 id="vbios_5">VBIOS更新後の確認<a class="headerlink" href="#vbios_5" title="Permanent link">&para;</a></h2>
+<details class="info">
+<summary>nvflash_5.165での確認</summary>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1"># nvflash_5.165での確認</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>PS<span class="w"> </span>D:<span class="se">\t</span>eslak20c<span class="se">\n</span>vflash_5.165&gt;<span class="w"> </span>.<span class="se">\n</span>vflash.exe<span class="w"> </span>--version
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>NVIDIA<span class="w"> </span>Firmware<span class="w"> </span>Update<span class="w"> </span>Utility<span class="w"> </span><span class="o">(</span>Version<span class="w"> </span><span class="m">5</span>.165<span class="o">)</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>Adapter:<span class="w"> </span>Tesla<span class="w"> </span>K20c<span class="w">           </span><span class="o">(</span>10DE,1022,10DE,097E<span class="o">)</span><span class="w"> </span>H:--:NRM<span class="w"> </span>B:01,PCI,D:00,F:00
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>The<span class="w"> </span>display<span class="w"> </span>may<span class="w"> </span>go<span class="w"> </span>*BLANK*<span class="w"> </span>on<span class="w"> </span>and<span class="w"> </span>off<span class="w"> </span><span class="k">for</span><span class="w"> </span>up<span class="w"> </span>to<span class="w"> </span><span class="m">10</span><span class="w"> </span>seconds<span class="w"> </span>during<span class="w"> </span>access<span class="w"> </span>to<span class="w"> </span>the<span class="w"> </span>EEPROM<span class="w"> </span>depending<span class="w"> </span>on<span class="w"> </span>your<span class="w"> </span>display<span class="w"> </span>adapter<span class="w"> </span>and<span class="w"> </span>output<span class="w"> </span>device.
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>Identifying<span class="w"> </span>EEPROM...
+</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>EEPROM<span class="w"> </span>ID<span class="w"> </span><span class="o">(</span>C8,4012<span class="o">)</span><span class="w"> </span>:<span class="w"> </span>GD<span class="w"> </span>GD25Q20<span class="w"> </span><span class="m">2</span>.7-3.6V<span class="w"> </span>2048Kx1S,<span class="w"> </span>page
+</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>Reading<span class="w"> </span>adapter<span class="w"> </span>firmware<span class="w"> </span>image...
+</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>IFR<span class="w"> </span>Data<span class="w"> </span>Size<span class="w">         </span>:<span class="w"> </span><span class="m">1336</span><span class="w"> </span>bytes
+</span><span id="__span-3-14"><a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a>IFR<span class="w"> </span>CRC32<span class="w">             </span>:<span class="w"> </span>32DE7F88
+</span><span id="__span-3-15"><a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a>IFR<span class="w"> </span>Image<span class="w"> </span>Size<span class="w">        </span>:<span class="w"> </span><span class="m">1536</span><span class="w"> </span>bytes
+</span><span id="__span-3-16"><a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a>IFR<span class="w"> </span>Image<span class="w"> </span>CRC32<span class="w">       </span>:<span class="w"> </span>F53E2AAC
+</span><span id="__span-3-17"><a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a>IFR<span class="w"> </span>Subsystem<span class="w"> </span>ID<span class="w">      </span>:<span class="w"> </span>10DE-097E
+</span><span id="__span-3-18"><a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a>Image<span class="w"> </span>Size<span class="w">            </span>:<span class="w"> </span><span class="m">224256</span><span class="w"> </span>bytes
+</span><span id="__span-3-19"><a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a>Version<span class="w">               </span>:<span class="w"> </span><span class="m">80</span>.80.65.00.0A
+</span><span id="__span-3-20"><a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a>RC32<span class="w">                </span>:<span class="w"> </span>9BF14895
+</span><span id="__span-3-21"><a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a>OEM<span class="w"> </span>String<span class="w">            </span>:<span class="w"> </span>NVIDIA
+</span><span id="__span-3-22"><a id="__codelineno-3-22" name="__codelineno-3-22" href="#__codelineno-3-22"></a>Vendor<span class="w"> </span>Name<span class="w">           </span>:<span class="w"> </span>NVIDIA<span class="w"> </span>Corporation
+</span><span id="__span-3-23"><a id="__codelineno-3-23" name="__codelineno-3-23" href="#__codelineno-3-23"></a>Product<span class="w"> </span>Name<span class="w">          </span>:<span class="w"> </span>GK110B<span class="w"> </span>Board<span class="w"> </span>-<span class="w"> </span><span class="m">20810202</span>
+</span><span id="__span-3-24"><a id="__codelineno-3-24" name="__codelineno-3-24" href="#__codelineno-3-24"></a>Product<span class="w"> </span>Revision<span class="w">      </span>:<span class="w"> </span>Chip<span class="w"> </span>Rev
+</span><span id="__span-3-25"><a id="__codelineno-3-25" name="__codelineno-3-25" href="#__codelineno-3-25"></a>Device<span class="w"> </span>Name<span class="o">(</span>s<span class="o">)</span><span class="w">        </span>:<span class="w"> </span>Tesla<span class="w"> </span>K40m
+</span><span id="__span-3-26"><a id="__codelineno-3-26" name="__codelineno-3-26" href="#__codelineno-3-26"></a>Board<span class="w"> </span>ID<span class="w">              </span>:<span class="w"> </span>E606
+</span><span id="__span-3-27"><a id="__codelineno-3-27" name="__codelineno-3-27" href="#__codelineno-3-27"></a>PCI<span class="w"> </span>ID<span class="w">                </span>:<span class="w"> </span>10DE-1023
+</span><span id="__span-3-28"><a id="__codelineno-3-28" name="__codelineno-3-28" href="#__codelineno-3-28"></a>Subsystem<span class="w"> </span>ID<span class="w">          </span>:<span class="w"> </span>10DE-097E
+</span><span id="__span-3-29"><a id="__codelineno-3-29" name="__codelineno-3-29" href="#__codelineno-3-29"></a>Hierarchy<span class="w"> </span>ID<span class="w">          </span>:<span class="w"> </span>Normal<span class="w"> </span>Board
+</span><span id="__span-3-30"><a id="__codelineno-3-30" name="__codelineno-3-30" href="#__codelineno-3-30"></a>Chip<span class="w"> </span>SKU<span class="w">              </span>:<span class="w"> </span><span class="m">897</span>-0
+</span><span id="__span-3-31"><a id="__codelineno-3-31" name="__codelineno-3-31" href="#__codelineno-3-31"></a>Project<span class="w">               </span>:<span class="w"> </span><span class="m">2081</span>-0202
+</span><span id="__span-3-32"><a id="__codelineno-3-32" name="__codelineno-3-32" href="#__codelineno-3-32"></a>CDP<span class="w">                   </span>:<span class="w"> </span>N/A
+</span><span id="__span-3-33"><a id="__codelineno-3-33" name="__codelineno-3-33" href="#__codelineno-3-33"></a>Build<span class="w"> </span>Date<span class="w">            </span>:<span class="w"> </span><span class="m">04</span>/08/15
+</span><span id="__span-3-34"><a id="__codelineno-3-34" name="__codelineno-3-34" href="#__codelineno-3-34"></a>Modification<span class="w"> </span>Date<span class="w">     </span>:<span class="w"> </span><span class="m">07</span>/10/16
+</span><span id="__span-3-35"><a id="__codelineno-3-35" name="__codelineno-3-35" href="#__codelineno-3-35"></a>UEFI<span class="w"> </span>Support<span class="w">          </span>:<span class="w"> </span>Yes
+</span><span id="__span-3-36"><a id="__codelineno-3-36" name="__codelineno-3-36" href="#__codelineno-3-36"></a>UEFI<span class="w"> </span>Version<span class="w">          </span>:<span class="w"> </span>0x10031<span class="w"> </span><span class="o">(</span>Jan<span class="w">  </span><span class="m">7</span><span class="w"> </span><span class="m">2015</span><span class="w"> </span>@<span class="w"> </span><span class="m">19206708</span><span class="w"> </span><span class="o">)</span>
+</span><span id="__span-3-37"><a id="__codelineno-3-37" name="__codelineno-3-37" href="#__codelineno-3-37"></a>UEFI<span class="w"> </span>Variant<span class="w"> </span>Id<span class="w">       </span>:<span class="w"> </span>0x0000000000000004
+</span><span id="__span-3-38"><a id="__codelineno-3-38" name="__codelineno-3-38" href="#__codelineno-3-38"></a>UEFI<span class="w"> </span>Signer<span class="o">(</span>s<span class="o">)</span><span class="w">        </span>:<span class="w"> </span>Microsoft<span class="w"> </span>Corporation<span class="w"> </span>UEFI<span class="w"> </span>CA<span class="w"> </span><span class="m">2011</span>
+</span><span id="__span-3-39"><a id="__codelineno-3-39" name="__codelineno-3-39" href="#__codelineno-3-39"></a>Sign-On<span class="w"> </span>Message<span class="w">       </span>:<span class="w"> </span>GK110B<span class="w"> </span>P2081<span class="w"> </span>SKU<span class="w"> </span><span class="m">0202</span><span class="w"> </span>VGA<span class="w"> </span>BIOS
+</span><span id="__span-3-40"><a id="__codelineno-3-40" name="__codelineno-3-40" href="#__codelineno-3-40"></a>
+</span><span id="__span-3-41"><a id="__codelineno-3-41" name="__codelineno-3-41" href="#__codelineno-3-41"></a>PS<span class="w"> </span>D:<span class="se">\t</span>eslak20c<span class="se">\n</span>vflash_5.165&gt;
+</span></code></pre></div>
+</details>
+<details class="info">
+<summary>nvflash_5.821での確認</summary>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>PS<span class="w"> </span>D:<span class="se">\t</span>eslak20c<span class="se">\n</span>vflash_5.821&gt;<span class="w"> </span>.<span class="se">\n</span>vflash64.exe<span class="w"> </span>--version
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>NVIDIA<span class="w"> </span>Firmware<span class="w"> </span>Update<span class="w"> </span>Utility<span class="w"> </span><span class="o">(</span>Version<span class="w"> </span><span class="m">5</span>.821.0<span class="o">)</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>Copyright<span class="w"> </span><span class="o">(</span>C<span class="o">)</span><span class="w"> </span><span class="m">1993</span>-2023,<span class="w"> </span>NVIDIA<span class="w"> </span>Corporation.<span class="w"> </span>All<span class="w"> </span>rights<span class="w"> </span>reserved.
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>Reading<span class="w"> </span>EEPROM<span class="w"> </span><span class="o">(</span>this<span class="w"> </span>operation<span class="w"> </span>may<span class="w"> </span>take<span class="w"> </span>up<span class="w"> </span>to<span class="w"> </span><span class="m">30</span><span class="w"> </span>seconds<span class="o">)</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>Redundant<span class="w"> </span>Firmware<span class="w">    </span>:<span class="w"> </span>Not<span class="w"> </span>Present
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>Sign-On<span class="w"> </span>Message<span class="w">       </span>:<span class="w"> </span>GK110B<span class="w"> </span>P2081<span class="w"> </span>SKU<span class="w"> </span><span class="m">0202</span><span class="w"> </span>VGA<span class="w"> </span>BIOS
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>Build<span class="w"> </span>GUID<span class="w">            </span>:<span class="w"> </span>Blank
+</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>Build<span class="w"> </span>Number<span class="w">          </span>:<span class="w"> </span><span class="m">19469039</span>
+</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>IFR<span class="w"> </span>Subsystem<span class="w"> </span>ID<span class="w">      </span>:<span class="w"> </span>10DE-097E
+</span><span id="__span-4-12"><a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a>Subsystem<span class="w"> </span>Vendor<span class="w"> </span>ID<span class="w">   </span>:<span class="w"> </span>0x10DE
+</span><span id="__span-4-13"><a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a>Subsystem<span class="w"> </span>ID<span class="w">          </span>:<span class="w"> </span>0x097E
+</span><span id="__span-4-14"><a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a>Version<span class="w">               </span>:<span class="w"> </span><span class="m">80</span>.80.65.00.0A
+</span><span id="__span-4-15"><a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a>Image<span class="w"> </span>Hash<span class="w">            </span>:<span class="w"> </span>F3DF0AD7DE190246945C43491A71AEE5
+</span><span id="__span-4-16"><a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a>Product<span class="w"> </span>Name<span class="w">          </span>:<span class="w"> </span>GK110B<span class="w"> </span>Board<span class="w"> </span>-<span class="w"> </span><span class="m">20810202</span>
+</span><span id="__span-4-17"><a id="__codelineno-4-17" name="__codelineno-4-17" href="#__codelineno-4-17"></a>Device<span class="w"> </span>Name<span class="o">(</span>s<span class="o">)</span><span class="w">        </span>:<span class="w"> </span>Tesla<span class="w"> </span>K40m
+</span><span id="__span-4-18"><a id="__codelineno-4-18" name="__codelineno-4-18" href="#__codelineno-4-18"></a>Board<span class="w"> </span>ID<span class="w">              </span>:<span class="w"> </span>0xE606
+</span><span id="__span-4-19"><a id="__codelineno-4-19" name="__codelineno-4-19" href="#__codelineno-4-19"></a>Vendor<span class="w"> </span>ID<span class="w">             </span>:<span class="w"> </span>0x10DE
+</span><span id="__span-4-20"><a id="__codelineno-4-20" name="__codelineno-4-20" href="#__codelineno-4-20"></a>Device<span class="w"> </span>ID<span class="w">             </span>:<span class="w"> </span>0x1023
+</span><span id="__span-4-21"><a id="__codelineno-4-21" name="__codelineno-4-21" href="#__codelineno-4-21"></a>Hierarchy<span class="w"> </span>ID<span class="w">          </span>:<span class="w"> </span>Normal<span class="w"> </span>Board
+</span><span id="__span-4-22"><a id="__codelineno-4-22" name="__codelineno-4-22" href="#__codelineno-4-22"></a>Chip<span class="w"> </span>SKU<span class="w">              </span>:<span class="w"> </span><span class="m">897</span>-0
+</span><span id="__span-4-23"><a id="__codelineno-4-23" name="__codelineno-4-23" href="#__codelineno-4-23"></a>Project<span class="w">               </span>:<span class="w"> </span><span class="m">2081</span>-0202
+</span><span id="__span-4-24"><a id="__codelineno-4-24" name="__codelineno-4-24" href="#__codelineno-4-24"></a>Build<span class="w"> </span>Date<span class="w">            </span>:<span class="w"> </span><span class="m">04</span>/08/15
+</span><span id="__span-4-25"><a id="__codelineno-4-25" name="__codelineno-4-25" href="#__codelineno-4-25"></a>Modification<span class="w"> </span>Date<span class="w">     </span>:<span class="w"> </span><span class="m">07</span>/10/16
+</span><span id="__span-4-26"><a id="__codelineno-4-26" name="__codelineno-4-26" href="#__codelineno-4-26"></a>UEFI<span class="w"> </span>Version<span class="w">          </span>:<span class="w"> </span>0x10031<span class="w"> </span><span class="o">(</span><span class="w"> </span>x64<span class="w"> </span><span class="o">)</span>
+</span><span id="__span-4-27"><a id="__codelineno-4-27" name="__codelineno-4-27" href="#__codelineno-4-27"></a>UEFI<span class="w"> </span>Variant<span class="w"> </span>ID<span class="w">       </span>:<span class="w"> </span>0x0000000000000004<span class="w"> </span><span class="o">(</span><span class="w"> </span>GK1xx<span class="w"> </span><span class="o">)</span>
+</span><span id="__span-4-28"><a id="__codelineno-4-28" name="__codelineno-4-28" href="#__codelineno-4-28"></a>UEFI<span class="w"> </span>Signer<span class="o">(</span>s<span class="o">)</span><span class="w">        </span>:<span class="w"> </span>Microsoft<span class="w"> </span>Corporation<span class="w"> </span>UEFI<span class="w"> </span>CA<span class="w"> </span><span class="m">2011</span>
+</span><span id="__span-4-29"><a id="__codelineno-4-29" name="__codelineno-4-29" href="#__codelineno-4-29"></a>XUSB-FW<span class="w"> </span>Version<span class="w"> </span>ID<span class="w">    </span>:<span class="w"> </span>N/A
+</span><span id="__span-4-30"><a id="__codelineno-4-30" name="__codelineno-4-30" href="#__codelineno-4-30"></a>XUSB-FW<span class="w"> </span>Build<span class="w"> </span>Time<span class="w">    </span>:<span class="w"> </span>N/A
+</span><span id="__span-4-31"><a id="__codelineno-4-31" name="__codelineno-4-31" href="#__codelineno-4-31"></a>InfoROM<span class="w"> </span>Version<span class="w">       </span>:<span class="w"> </span><span class="m">2081</span>.0208.01.07
+</span><span id="__span-4-32"><a id="__codelineno-4-32" name="__codelineno-4-32" href="#__codelineno-4-32"></a>InfoROM<span class="w"> </span>Backup<span class="w">        </span>:<span class="w"> </span>Present
+</span><span id="__span-4-33"><a id="__codelineno-4-33" name="__codelineno-4-33" href="#__codelineno-4-33"></a>License<span class="w"> </span>Placeholder<span class="w">   </span>:<span class="w"> </span>Not<span class="w"> </span>Present
+</span><span id="__span-4-34"><a id="__codelineno-4-34" name="__codelineno-4-34" href="#__codelineno-4-34"></a>GPU<span class="w"> </span>Mode<span class="w">              </span>:<span class="w"> </span>N/A
+</span><span id="__span-4-35"><a id="__codelineno-4-35" name="__codelineno-4-35" href="#__codelineno-4-35"></a>CEC<span class="w"> </span>OTA-signed<span class="w"> </span>Blob<span class="w">   </span>:<span class="w"> </span>Not<span class="w"> </span>Present
+</span><span id="__span-4-36"><a id="__codelineno-4-36" name="__codelineno-4-36" href="#__codelineno-4-36"></a>
+</span><span id="__span-4-37"><a id="__codelineno-4-37" name="__codelineno-4-37" href="#__codelineno-4-37"></a>PS<span class="w"> </span>D:<span class="se">\t</span>eslak20c<span class="se">\n</span>vflash_5.821&gt;
+</span></code></pre></div>
+</details>
+<h2 id="wddm">WDDMの確認<a class="headerlink" href="#wddm" title="Permanent link">&para;</a></h2>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a># VBIOS更新前
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>PS C:\Program Files\NVIDIA Corporation\NVSMI&gt; .\nvidia-smi.exe
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>Wed Feb 21 14:53:56 2024
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>+-----------------------------------------------------------------------------+
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>| NVIDIA-SMI 442.50       Driver Version: 442.50       CUDA Version: 10.2     |
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>|-------------------------------+----------------------+----------------------+
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>| GPU  Name            TCC/WDDM | Bus-Id        Disp.A | Volatile Uncorr. ECC |
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>| Fan  Temp  Perf  Pwr:Usage/Cap|         Memory-Usage | GPU-Util  Compute M. |
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>|===============================+======================+======================|
+</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a>|   0  Tesla K40st         TCC  | 00000000:01:00.0 N/A |                  N/A |
+</span><span id="__span-5-11"><a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a>| 30%   37C    P8    N/A /  N/A |      9MiB /  5056MiB |     N/A      Default |
+</span><span id="__span-5-12"><a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a>+-------------------------------+----------------------+----------------------+
+</span><span id="__span-5-13"><a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a>
+</span><span id="__span-5-14"><a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a>+-----------------------------------------------------------------------------+
+</span><span id="__span-5-15"><a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a>| Processes:                                                       GPU Memory |
+</span><span id="__span-5-16"><a id="__codelineno-5-16" name="__codelineno-5-16" href="#__codelineno-5-16"></a>|  GPU       PID   Type   Process name                             Usage      |
+</span><span id="__span-5-17"><a id="__codelineno-5-17" name="__codelineno-5-17" href="#__codelineno-5-17"></a>|=============================================================================|
+</span><span id="__span-5-18"><a id="__codelineno-5-18" name="__codelineno-5-18" href="#__codelineno-5-18"></a>|    0                    Not Supported                                       |
+</span><span id="__span-5-19"><a id="__codelineno-5-19" name="__codelineno-5-19" href="#__codelineno-5-19"></a>+-----------------------------------------------------------------------------+
+</span><span id="__span-5-20"><a id="__codelineno-5-20" name="__codelineno-5-20" href="#__codelineno-5-20"></a>PS C:\Program Files\NVIDIA Corporation\NVSMI&gt;
+</span><span id="__span-5-21"><a id="__codelineno-5-21" name="__codelineno-5-21" href="#__codelineno-5-21"></a>
+</span><span id="__span-5-22"><a id="__codelineno-5-22" name="__codelineno-5-22" href="#__codelineno-5-22"></a># VBIOS更新後
+</span><span id="__span-5-23"><a id="__codelineno-5-23" name="__codelineno-5-23" href="#__codelineno-5-23"></a>PS C:\Program Files\NVIDIA Corporation\NVSMI&gt; .\nvidia-smi.exe
+</span><span id="__span-5-24"><a id="__codelineno-5-24" name="__codelineno-5-24" href="#__codelineno-5-24"></a>Wed Feb 21 16:04:20 2024
+</span><span id="__span-5-25"><a id="__codelineno-5-25" name="__codelineno-5-25" href="#__codelineno-5-25"></a>+-----------------------------------------------------------------------------+
+</span><span id="__span-5-26"><a id="__codelineno-5-26" name="__codelineno-5-26" href="#__codelineno-5-26"></a>| NVIDIA-SMI 442.50       Driver Version: 442.50       CUDA Version: 10.2     |
+</span><span id="__span-5-27"><a id="__codelineno-5-27" name="__codelineno-5-27" href="#__codelineno-5-27"></a>|-------------------------------+----------------------+----------------------+
+</span><span id="__span-5-28"><a id="__codelineno-5-28" name="__codelineno-5-28" href="#__codelineno-5-28"></a>| GPU  Name            TCC/WDDM | Bus-Id        Disp.A | Volatile Uncorr. ECC |
+</span><span id="__span-5-29"><a id="__codelineno-5-29" name="__codelineno-5-29" href="#__codelineno-5-29"></a>| Fan  Temp  Perf  Pwr:Usage/Cap|         Memory-Usage | GPU-Util  Compute M. |
+</span><span id="__span-5-30"><a id="__codelineno-5-30" name="__codelineno-5-30" href="#__codelineno-5-30"></a>|===============================+======================+======================|
+</span><span id="__span-5-31"><a id="__codelineno-5-31" name="__codelineno-5-31" href="#__codelineno-5-31"></a>|   0  Tesla K20c         WDDM  | 00000000:01:00.0 Off |                  Off |
+</span><span id="__span-5-32"><a id="__codelineno-5-32" name="__codelineno-5-32" href="#__codelineno-5-32"></a>| N/A   39C    P0    70W / 235W |    409MiB /  5120MiB |     31%      Default |
+</span><span id="__span-5-33"><a id="__codelineno-5-33" name="__codelineno-5-33" href="#__codelineno-5-33"></a>+-------------------------------+----------------------+----------------------+
+</span><span id="__span-5-34"><a id="__codelineno-5-34" name="__codelineno-5-34" href="#__codelineno-5-34"></a>
+</span><span id="__span-5-35"><a id="__codelineno-5-35" name="__codelineno-5-35" href="#__codelineno-5-35"></a>+-----------------------------------------------------------------------------+
+</span><span id="__span-5-36"><a id="__codelineno-5-36" name="__codelineno-5-36" href="#__codelineno-5-36"></a>| Processes:                                                       GPU Memory |
+</span><span id="__span-5-37"><a id="__codelineno-5-37" name="__codelineno-5-37" href="#__codelineno-5-37"></a>|  GPU       PID   Type   Process name                             Usage      |
+</span><span id="__span-5-38"><a id="__codelineno-5-38" name="__codelineno-5-38" href="#__codelineno-5-38"></a>|=============================================================================|
+</span><span id="__span-5-39"><a id="__codelineno-5-39" name="__codelineno-5-39" href="#__codelineno-5-39"></a>|    0      1940    C+G   E:\game\yuzu-windows-msvc\yuzu.exe         N/A      |
+</span><span id="__span-5-40"><a id="__codelineno-5-40" name="__codelineno-5-40" href="#__codelineno-5-40"></a>|    0      2584    C+G   ...ration\Control Panel Client\nvcplui.exe N/A      |
+</span><span id="__span-5-41"><a id="__codelineno-5-41" name="__codelineno-5-41" href="#__codelineno-5-41"></a>+-----------------------------------------------------------------------------+
+</span><span id="__span-5-42"><a id="__codelineno-5-42" name="__codelineno-5-42" href="#__codelineno-5-42"></a>PS C:\Program Files\NVIDIA Corporation\NVSMI&gt;
+</span></code></pre></div>
+<h1 id="_2">おまけ<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h1>
+<p>VBIOSのカスタマイズは下記のツールで我流に変更できる。
+あまり詳しくないため、弄ってなかった。</p>
+<ul>
+<li>Kepler BIOS<ul>
+<li>https://www.techpowerup.com/download/kepler-bios-tweaker/</li>
+</ul>
+</li>
+</ul>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+            Back to top
+          </button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright © 2022 - 2023 - lyvivian0077
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tracking", "navigation.top", "navigation.indexes", "navigation.path", "content.code.copy", "toc.follow"], "search": "../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.fac441b0.min.js"></script>
+      
+    
+  </body>
+</html>
