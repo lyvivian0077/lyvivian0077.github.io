@@ -1998,6 +1998,40 @@
     参考URL
   </a>
   
+    <nav class="md-nav" aria-label="参考URL">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-thanos-sidecar" class="md-nav__link">
+    1. Thanos Sidecar
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-thanos-query" class="md-nav__link">
+    2. Thanos Query
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-thanos-store" class="md-nav__link">
+    3. Thanos Store
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-thanos-compact" class="md-nav__link">
+    4. Thanos Compact
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -2089,6 +2123,40 @@
     参考URL
   </a>
   
+    <nav class="md-nav" aria-label="参考URL">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-thanos-sidecar" class="md-nav__link">
+    1. Thanos Sidecar
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-thanos-query" class="md-nav__link">
+    2. Thanos Query
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-thanos-store" class="md-nav__link">
+    3. Thanos Store
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-thanos-compact" class="md-nav__link">
+    4. Thanos Compact
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -2132,6 +2200,33 @@
 <li><a href="https://hezhiqiang.gitbook.io/prometheus/part-ii-prometheus-jin-jie/exporter/commonly-eporter-usage/use-promethues-monitor-mysql">监控MySQL运行状态：MySQLD Exporter</a></li>
 <li><a href="https://qiita.com/MetricFire/items/acdbfe0149639988285f">Prometheus + Thanosを使用したHA Kubernetes監視</a></li>
 </ul>
+<p>Thanosは、Prometheusのデータを長期間保管し、大規模な監視システムを構築するためのオープンソースプロジェクトです。Thanosは複数のコンポーネントから成り立っており、それぞれが特定の役割を担っています。以下に、主要なコンポーネントの用途を説明します。</p>
+<h3 id="1-thanos-sidecar">1. Thanos Sidecar<a class="headerlink" href="#1-thanos-sidecar" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>用途</strong>: Thanos Sidecarは、実行中のPrometheusサーバーに隣接して動作します。その主な役割は、Prometheusが収集したデータをリアルタイムで読み取り、Thanosシステムの他の部分がアクセスできるようにすることです。さらに、SidecarはPrometheusのTSDBブロックをリモートストレージ（例：S3、GCSなど）にアップロードすることもできます。これにより、データの長期保管とスケーラビリティが向上します。</li>
+</ul>
+<h3 id="2-thanos-query">2. Thanos Query<a class="headerlink" href="#2-thanos-query" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>用途</strong>: Thanos Queryコンポーネントは、複数のThanos SidecarやThanos Storeからデータを集約してクエリするフロントエンドとして機能します。ユーザーはThanos Queryを通じて、分散された監視データに対して統一的なクエリを実行できます。これにより、システム全体の可視性が向上し、データの分析が容易になります。</li>
+</ul>
+<h3 id="3-thanos-store">3. Thanos Store<a class="headerlink" href="#3-thanos-store" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>用途</strong>: Thanos Storeは、リモートストレージ（S3、GCSなど）に保存された歴史データに対する長期ストレージのゲートウェイとして機能します。Storeコンポーネントは、これらの長期データをThanos Queryに提供し、クエリの実行を可能にします。Thanos Storeは、大量の監視データを扱う際に、効率的なデータアクセスを実現します。</li>
+</ul>
+<h3 id="4-thanos-compact">4. Thanos Compact<a class="headerlink" href="#4-thanos-compact" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>用途</strong>: Thanos Compactは、リモートストレージに保存されたデータブロックをより効率的に管理するためのコンポーネントです。これは、複数の小さいデータブロックを大きなブロックに統合（コンパクション）し、クエリのパフォーマンスを向上させると同時に、ストレージ使用量を最適化します。また、Thanos Compactはデータのダウンサンプリングも行い、異なる解像度でのデータビューを提供します。</li>
+</ul>
+<p>これらのコンポーネントは合わさって、Thanosが提供する強力なデータ保管とクエリの機能を実現します。モジュール式の設計により、Thanosは柔軟に拡張可能であり、小規模な環境から大規模なクラスタまで、さまざまな監視システムのニーズに対応できます。</p>
+<p>Thanos SidecarがS3（またはS3互換のオブジェクトストレージ）にデータを保存するタイミングは、主にPrometheusのブロックの生成とアップロードの周期に依存します。Prometheusは通常、2時間ごとにデータのブロックを生成し、これらのブロックはThanos Sidecarによって自動的にS3にアップロードされます。以下は、そのプロセスの概要です：</p>
+<ol>
+<li><strong>ブロックの生成</strong>: Prometheusは監視データを時間単位で区切り、2時間ごとにデータブロックとしてディスクに書き込みます。これらのブロックには、収集されたメトリクスデータが格納されています。</li>
+<li><strong>ブロックのアップロード</strong>: Thanos Sidecarは、Prometheusが新しいブロックを生成すると、それを検出し、S3にアップロードします。このプロセスは、ブロックが作成されるたびに自動的に行われます。</li>
+<li><strong>コンパクション</strong>: Prometheusには、時間が経つにつれて小さなブロックをより大きなブロックに統合するコンパクションプロセスがあります。Thanosでは、Thanos CompactorコンポーネントがS3に保存されたブロックのコンパクションを担います。このプロセスにより、長期間のクエリのパフォーマンスが向上し、ストレージの使用効率が改善します。</li>
+<li><strong>即時性</strong>：Thanos Sidecarは、Prometheusサーバーからリアルタイムでメトリクスを収集し、Thanosクエリレイヤーを通じてクエリ可能にします。しかし、S3（または他のオブジェクトストレージ）に永続的にデータが保存されるのは、ブロックが生成されアップロードされた後です。</li>
+</ol>
+<p>Thanos Sidecarを使う利点の一つは、この自動的なアップロードプロセスによって、監視データの長期保管とスケーラビリティが向上することです。ただし、リアルタイムデータとS3にアップロードされるデータ間のわずかな遅延は、このプロセスの性質上発生します。</p>
+<p>また、Thanos Sidecarの設定オプションを通じて、この挙動に影響を与えることが可能です。例えば、アップロード間隔を調整することで、どのくらいの頻度でデータがS3に送信されるかを制御できます。しかし、基本的なアップロードのタイミングは、Prometheusのブロック生成周期に従います。</p>
 <h2 id="_1">システムイメージ図<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>   HOST1       [prometheus:9090    ]
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>[exporter]-----[thanos-sidecar:19190(http),19090(grpc)]-----[nginx]-----[grafana]
