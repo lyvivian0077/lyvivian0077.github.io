@@ -1,0 +1,2632 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../iptables_14/">
+      
+      
+        <link rel="next" href="../centos7-set-kernel/">
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.9">
+    
+    
+      
+        <title>KVM ライブマイグレーションの仕組み - 总有刁民想要害朕</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.85bb2934.min.css">
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#virt-migrate" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="总有刁民想要害朕" class="md-header__button md-logo" aria-label="总有刁民想要害朕" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            总有刁民想要害朕
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              KVM ライブマイグレーションの仕組み
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="总有刁民想要害朕" class="md-nav__button md-logo" aria-label="总有刁民想要害朕" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    总有刁民想要害朕
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        Welcome
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+      
+      
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+          ansbile
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          ansbile
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ansbile/" class="md-nav__link">
+        ansbileオプション
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ansbile_async/" class="md-nav__link">
+        ansbile_async
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../awk/" class="md-nav__link">
+        awk
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sed/" class="md-nav__link">
+        sed
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../MB-MiB%E7%9A%84%E5%8C%BA%E5%88%AB/" class="md-nav__link">
+        MB_MiB的区别
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+      
+      
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+          MegaRAID
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_6">
+          <span class="md-nav__icon md-icon"></span>
+          MegaRAID
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../megacli/" class="md-nav__link">
+        megacli
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../megaraid/" class="md-nav__link">
+        megaraid
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+      
+      
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+          PostgreSQL
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_7">
+          <span class="md-nav__icon md-icon"></span>
+          PostgreSQL
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../psql-vs-mysql/" class="md-nav__link">
+        MySQLとPostgreSQLコマンド比較表
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+          MySQL
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_8">
+          <span class="md-nav__icon md-icon"></span>
+          MySQL
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mysql-ssl/" class="md-nav__link">
+        MySQL安全SSL介绍
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Explain%E8%AF%A6%E8%A7%A3%E4%B8%8E%E7%B4%A2%E5%BC%95%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/" class="md-nav__link">
+        Explain详解与索引最佳实践
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mysql/" class="md-nav__link">
+        Mysql参数优化
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../show-engine-innodb-status/" class="md-nav__link">
+        innodb status解读
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../undo-log/" class="md-nav__link">
+        undo-log
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../buffer-pool/" class="md-nav__link">
+        Buffer-Pool
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../my-cnf/" class="md-nav__link">
+        mysql5.7性能提升一百倍调优宝典
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mysql-table/" class="md-nav__link">
+        MySQL-table
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mysql%E3%82%92%E3%82%BD%E3%83%BC%E3%82%B9%E3%81%8B%E3%82%89%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB/" class="md-nav__link">
+        MySQLビルド
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mysql-add-del-user/" class="md-nav__link">
+        Mysqlユーザ作成削除
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mysql-sysbench/" class="md-nav__link">
+        Mysql sysbench
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mysql-dummy/" class="md-nav__link">
+        ダミーデータを作成
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mysql-kill/" class="md-nav__link">
+        mysqladmin kill
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../MySQL-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="md-nav__link">
+        学习笔记
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mysql8-basic/" class="md-nav__link">
+        Mysql8
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_16" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_8_16" id="__nav_8_16_label" tabindex="0">
+          MGR
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_16_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_8_16">
+          <span class="md-nav__icon md-icon"></span>
+          MGR
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mysql-group-replication/" class="md-nav__link">
+        3種類のMGR
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mysql-mgr/" class="md-nav__link">
+        MGR
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mysql-group-replication-how-to-elect-the-new-primary-node/" class="md-nav__link">
+        MGR 如何选举新的主节点
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mysql-mgr-copy/" class="md-nav__link">
+        転載MGR
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mysql-ha/" class="md-nav__link">
+        mysql+keepalived搭建教程
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mysql-clone/" class="md-nav__link">
+        mysqlクローン機能
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+      
+      
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+          MySQL DUMP
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_9">
+          <span class="md-nav__icon md-icon"></span>
+          MySQL DUMP
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mysql_backup/" class="md-nav__link">
+        Mysql バックアップツール
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mydumper/" class="md-nav__link">
+        mydumper
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="0">
+          Python Tips
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_10">
+          <span class="md-nav__icon md-icon"></span>
+          Python Tips
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-styleguide/" class="md-nav__link">
+        Python风格规范
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-config/" class="md-nav__link">
+        Python程序配置文件管理
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-decorator/" class="md-nav__link">
+        装饰器
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-dunder/" class="md-nav__link">
+        5种下划线
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-function/" class="md-nav__link">
+        传入参数的几种方法
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python/" class="md-nav__link">
+        非常规的技巧
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-mysql/" class="md-nav__link">
+        操作mysql基础
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Python-Re-%E6%A8%A1%E5%9D%97%E8%B6%85%E5%85%A8%E8%A7%A3%E8%AF%BB/" class="md-nav__link">
+        Re 模块
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Python%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%8B%BC%E6%8E%A5%E6%80%BB%E7%BB%93/" class="md-nav__link">
+        字符串拼接总结
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E4%B8%80%E8%A1%8C-Python-%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0%E5%B9%B6%E8%A1%8C/" class="md-nav__link">
+        代码并行
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../py-pip/" class="md-nav__link">
+        使用 Python Pip 的 10 个技巧
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Regular-Expression/" class="md-nav__link">
+        正規表現
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../taged-VLAN%E3%81%A8untagedVLAN%E3%81%AE%E9%81%95%E3%81%84/" class="md-nav__link">
+        タグVLAN
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sar/" class="md-nav__link">
+        sar
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Bash%E7%BC%96%E7%A8%8B%E8%B6%85%E8%AF%A6%E7%BB%86%E8%AF%AD%E6%B3%95%E6%80%BB%E7%BB%93/" class="md-nav__link">
+        Bash编程超详细语法总结
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_15" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_15" id="__nav_15_label" tabindex="0">
+          iptables
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_15_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_15">
+          <span class="md-nav__icon md-icon"></span>
+          iptables
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../iptables/" class="md-nav__link">
+        iptables
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../iptables_1/" class="md-nav__link">
+        iptables概念(1)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../iptables_2/" class="md-nav__link">
+        iptables实际操作之规则查询(2)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../iptables_3/" class="md-nav__link">
+        iptables规则管理(3)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../iptables_4/" class="md-nav__link">
+        iptables匹配条件总结之一(4)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../iptables_5/" class="md-nav__link">
+        iptables匹配条件总结之二（常用扩展模块）(5)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../iptables_6/" class="md-nav__link">
+        iptables扩展匹配条件之’–tcp-flags’(6)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../iptables_7/" class="md-nav__link">
+        iptables扩展之udp扩展与icmp扩展(7)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../iptables_8/" class="md-nav__link">
+        iptables扩展模块之state扩展(8)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../iptables_9/" class="md-nav__link">
+        iptables的黑白名单机制(9)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../iptables_10/" class="md-nav__link">
+        iptables自定义链(10)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../iptables_11/" class="md-nav__link">
+        iptables之网络防火墙(11)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../iptables_12/" class="md-nav__link">
+        iptables动作总结之一(12)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../iptables_13/" class="md-nav__link">
+        iptables动作总结之二(13)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../iptables_14/" class="md-nav__link">
+        iptables小结之常用套路(14)
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_16" checked>
+      
+      
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_16" id="__nav_16_label" tabindex="0">
+          virt
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_16_label" aria-expanded="true">
+        <label class="md-nav__title" for="__nav_16">
+          <span class="md-nav__icon md-icon"></span>
+          virt
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          KVM迁移)
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        KVM迁移)
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    オプション
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    移動先
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    移動元
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sysbench" class="md-nav__link">
+    移動中のsysbench
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vm" class="md-nav__link">
+    移動中の移動先のVM状況
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    各ライブマイグレーション方式の比較
+  </a>
+  
+    <nav class="md-nav" aria-label="各ライブマイグレーション方式の比較">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    手順書
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    問題点
+  </a>
+  
+    <nav class="md-nav" aria-label="問題点">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    参考情報
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#-vm" class="md-nav__link">
+    - コマンドでVM作成手順
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_17" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_17" id="__nav_17_label" tabindex="0">
+          Linux
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_17_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_17">
+          <span class="md-nav__icon md-icon"></span>
+          Linux
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../centos7-set-kernel/" class="md-nav__link">
+        centos7-set-kernel
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../centos-network-device-naming/" class="md-nav__link">
+        centos-network-device-naming
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Linux-Performance/" class="md-nav__link">
+        Linux Performance
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Linux-shell-%E9%80%BB%E8%BE%91%E8%BF%90%E7%AE%97%E7%AC%A6-%E9%80%BB%E8%BE%91%E8%A1%A8%E8%BE%BE%E5%BC%8F%E8%AF%A6%E8%A7%A3/" class="md-nav__link">
+        Linux-shell-逻辑运算符-逻辑表达式详解
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../busybox/" class="md-nav__link">
+        busybox
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../linux-img/" class="md-nav__link">
+        rocky img 作成
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../osinfo-query/" class="md-nav__link">
+        osinfo-query更新
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_18" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_18" id="__nav_18_label" tabindex="0">
+          LVM
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_18_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_18">
+          <span class="md-nav__icon md-icon"></span>
+          LVM
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../LVM%E9%80%BB%E8%BE%91%E5%8D%B7%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5%E5%8F%8ALVM%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/" class="md-nav__link">
+        LVM逻辑卷基本概念及LVM的工作原理
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../linux-lvm/" class="md-nav__link">
+        LVM逻辑卷的建立、扩容和减容
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lvm-snapshot/" class="md-nav__link">
+        LVM-snapshot
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../macOS%E8%BD%AF%E4%BB%B6%E7%BC%96%E8%AF%91%E6%97%B6%E6%89%BE%E4%B8%8D%E5%88%B0%E5%A4%B4%E6%96%87%E4%BB%B6%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95-%E6%9B%B4%E6%96%B010-15/" class="md-nav__link">
+        macOS软件编译时找不到头文件解决方法[更新10.15]
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ubnt/" class="md-nav__link">
+        ubnt
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vim/" class="md-nav__link">
+        VIM
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../teslak20c/" class="md-nav__link">
+        Tesla K20c をゲーム用に改造してみた
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../terminal-shortcut/" class="md-nav__link">
+        ターミナルを使うためのショートカット集
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_24" >
+      
+      
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_24" id="__nav_24_label" tabindex="0">
+          Zabbix
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_24_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_24">
+          <span class="md-nav__icon md-icon"></span>
+          Zabbix
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../zabbix6/" class="md-nav__link">
+        zabbix6検証
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_25" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_25" id="__nav_25_label" tabindex="0">
+          SWAP
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_25_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_25">
+          <span class="md-nav__icon md-icon"></span>
+          SWAP
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../swap-find/" class="md-nav__link">
+        Swapを使ってるプロセスを探す
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../swap-schema/" class="md-nav__link">
+        Swap原理
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../swap-linux/" class="md-nav__link">
+        Linux内存回收与swap
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pfctl/" class="md-nav__link">
+        pfctlのコマンドを毎回忘れるのでメモ
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_27" >
+      
+      
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_27" id="__nav_27_label" tabindex="0">
+          Prometheus
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_27_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_27">
+          <span class="md-nav__icon md-icon"></span>
+          Prometheus
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../prometheus/" class="md-nav__link">
+        prometheus構築
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mysqld_exporter_flags/" class="md-nav__link">
+        mysqld_exporterコレクタFlags
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../about/" class="md-nav__link">
+        About
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    オプション
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    移動先
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    移動元
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sysbench" class="md-nav__link">
+    移動中のsysbench
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vm" class="md-nav__link">
+    移動中の移動先のVM状況
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    各ライブマイグレーション方式の比較
+  </a>
+  
+    <nav class="md-nav" aria-label="各ライブマイグレーション方式の比較">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    手順書
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    問題点
+  </a>
+  
+    <nav class="md-nav" aria-label="問題点">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    参考情報
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#-vm" class="md-nav__link">
+    - コマンドでVM作成手順
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="virt-migrate">virt migrate<a class="headerlink" href="#virt-migrate" title="Permanent link">&para;</a></h1>
+<ul>
+<li>https://www.libvirt.org/manpages/virsh.html</li>
+<li><a href="https://qiita.com/haystacker/items/e94d8670086fb7c798bc">KVM ライブマイグレーションの仕組み</a></li>
+<li></li>
+<li></li>
+</ul>
+<details class="tip">
+<summary>virsh migrate --help</summary>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>root@HV:~#<span class="w"> </span>virsh<span class="w"> </span>migrate<span class="w"> </span>--help<span class="w">                                         </span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span>NAME<span class="w">                                                                                    </span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">    </span>migrate<span class="w"> </span>-<span class="w"> </span>migrate<span class="w"> </span>domain<span class="w"> </span>to<span class="w"> </span>another<span class="w"> </span>host<span class="w">                                            </span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">  </span>SYNOPSIS<span class="w">                                                                     </span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">    </span>migrate<span class="w"> </span>&lt;domain&gt;<span class="w"> </span>&lt;desturi&gt;<span class="w"> </span><span class="o">[</span>--live<span class="o">]</span><span class="w"> </span><span class="o">[</span>--offline<span class="o">]</span><span class="w"> </span><span class="o">[</span>--p2p<span class="o">]</span><span class="w"> </span><span class="o">[</span>--direct<span class="o">]</span><span class="w"> </span><span class="o">[</span>--tunnelled<span class="o">]</span><span class="w"> </span><span class="o">[</span>--persistent<span class="o">]</span><span class="w"> </span><span class="o">[</span>--undefinesource<span class="o">]</span><span class="w"> </span><span class="o">[</span>--suspend<span class="o">]</span><span class="w"> </span><span class="o">[</span>--copy-storage-all<span class="o">]</span><span class="w"> </span><span class="o">[</span>--copy-storage-inc<span class="o">]</span><span class="w"> </span><span class="o">[</span>--c
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>hange-protection<span class="o">]</span><span class="w"> </span><span class="o">[</span>--unsafe<span class="o">]</span><span class="w"> </span><span class="o">[</span>--verbose<span class="o">]</span><span class="w"> </span><span class="o">[</span>--compressed<span class="o">]</span><span class="w"> </span><span class="o">[</span>--auto-converge<span class="o">]</span><span class="w"> </span><span class="o">[</span>--rdma-pin-all<span class="o">]</span><span class="w"> </span><span class="o">[</span>--abort-on-error<span class="o">]</span><span class="w"> </span><span class="o">[</span>--postcopy<span class="o">]</span><span class="w"> </span><span class="o">[</span>--postcopy-after-precopy<span class="o">]</span><span class="w"> </span><span class="o">[</span>--migrateuri<span class="w"> </span>&lt;string&gt;<span class="o">]</span><span class="w"> </span><span class="o">[</span>--
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>graphicsuri<span class="w"> </span>&lt;string&gt;<span class="o">]</span><span class="w"> </span><span class="o">[</span>--listen-address<span class="w"> </span>&lt;string&gt;<span class="o">]</span><span class="w"> </span><span class="o">[</span>--dname<span class="w"> </span>&lt;string&gt;<span class="o">]</span><span class="w"> </span><span class="o">[</span>--timeout<span class="w"> </span>&lt;number&gt;<span class="o">]</span><span class="w"> </span><span class="o">[</span>--timeout-suspend<span class="o">]</span><span class="w"> </span><span class="o">[</span>--timeout-postcopy<span class="o">]</span><span class="w"> </span><span class="o">[</span>--xml<span class="w"> </span>&lt;string&gt;<span class="o">]</span><span class="w"> </span><span class="o">[</span>--migrate-disks<span class="w"> </span>&lt;string&gt;<span class="o">]</span><span class="w"> </span><span class="o">[</span>-
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>-disks-port<span class="w"> </span>&lt;number&gt;<span class="o">]</span><span class="w"> </span><span class="o">[</span>--comp-methods<span class="w"> </span>&lt;string&gt;<span class="o">]</span><span class="w"> </span><span class="o">[</span>--comp-mt-level<span class="w"> </span>&lt;number&gt;<span class="o">]</span><span class="w"> </span><span class="o">[</span>--comp-mt-threads<span class="w"> </span>&lt;number&gt;<span class="o">]</span><span class="w"> </span><span class="o">[</span>--comp-mt-dthreads<span class="w"> </span>&lt;number&gt;<span class="o">]</span><span class="w"> </span><span class="o">[</span>--comp-xbzrle-cache<span class="w"> </span>&lt;number&gt;<span class="o">]</span><span class="w"> </span><span class="o">[</span>--auto-conv
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>erge-initial<span class="w"> </span>&lt;number&gt;<span class="o">]</span><span class="w"> </span><span class="o">[</span>--auto-converge-increment<span class="w"> </span>&lt;number&gt;<span class="o">]</span><span class="w"> </span><span class="o">[</span>--persistent-xml<span class="w"> </span>&lt;string&gt;<span class="o">]</span><span class="w"> </span><span class="o">[</span>--tls<span class="o">]</span><span class="w"> </span><span class="o">[</span>--postcopy-bandwidth<span class="w"> </span>&lt;number&gt;<span class="o">]</span><span class="w"> </span><span class="o">[</span>--parallel<span class="o">]</span><span class="w"> </span><span class="o">[</span>--parallel-connections<span class="w"> </span>&lt;number&gt;<span class="o">]</span><span class="w"> </span><span class="o">[</span>-
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>-bandwidth<span class="w"> </span>&lt;number&gt;<span class="o">]</span><span class="w"> </span><span class="o">[</span>--tls-destination<span class="w"> </span>&lt;string&gt;<span class="o">]</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="w">  </span>DESCRIPTION
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="w">    </span>Migrate<span class="w"> </span>domain<span class="w"> </span>to<span class="w"> </span>another<span class="w"> </span>host.<span class="w">  </span>Add<span class="w"> </span>--live<span class="w"> </span><span class="k">for</span><span class="w"> </span>live<span class="w"> </span>migration.
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="w">  </span>OPTIONS
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="w">    </span><span class="o">[</span>--domain<span class="o">]</span><span class="w"> </span>&lt;string&gt;<span class="w">  </span>domain<span class="w"> </span>name,<span class="w"> </span>id<span class="w"> </span>or<span class="w"> </span>uuid
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="w">    </span><span class="o">[</span>--desturi<span class="o">]</span><span class="w"> </span>&lt;string&gt;<span class="w">  </span>connection<span class="w"> </span>URI<span class="w"> </span>of<span class="w"> </span>the<span class="w"> </span>destination<span class="w"> </span>host<span class="w"> </span>as<span class="w"> </span>seen<span class="w"> </span>from<span class="w"> </span>the<span class="w"> </span>client<span class="o">(</span>normal<span class="w"> </span>migration<span class="o">)</span><span class="w"> </span>or<span class="w"> </span>source<span class="o">(</span>p2p<span class="w"> </span>migration<span class="o">)</span>
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="w">    </span>--live<span class="w">           </span>live<span class="w"> </span>migration<span class="w"> </span>在线迁移（动态迁移）,<span class="w"> </span>虚拟机开机的情况下进行迁移
+</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="w">    </span>--offline<span class="w">        </span>offline<span class="w"> </span>migration<span class="w"> </span>虚拟机离线迁移（静态迁移），<span class="w"> </span>虚拟机关机以后迁移
+</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="w">    </span>--p2p<span class="w">            </span>peer-2-peer<span class="w"> </span>migration
+</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="w">    </span>--direct<span class="w">         </span>direct<span class="w"> </span>migration
+</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a><span class="w">    </span>--tunnelled<span class="w">      </span>tunnelled<span class="w"> </span>migration
+</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a><span class="w">    </span>--persistent<span class="w">     </span>persist<span class="w"> </span>VM<span class="w"> </span>on<span class="w"> </span>destination<span class="w">  </span>永久迁移（将虚拟机的配置文件复制到迁移目的节点）,<span class="w"> </span>如果不加，配置文件将不会复制到迁移目的节点的。
+</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a><span class="w">    </span>--undefinesource<span class="w">  </span>undefine<span class="w"> </span>VM<span class="w"> </span>on<span class="w"> </span><span class="nb">source</span><span class="w"> </span>在源节点中删除虚拟机配置文件
+</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a><span class="w">    </span>--suspend<span class="w">        </span><span class="k">do</span><span class="w"> </span>not<span class="w"> </span>restart<span class="w"> </span>the<span class="w"> </span>domain<span class="w"> </span>on<span class="w"> </span>the<span class="w"> </span>destination<span class="w"> </span>host
+</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a><span class="w">    </span>--copy-storage-all<span class="w">  </span>migration<span class="w"> </span>with<span class="w"> </span>non-shared<span class="w"> </span>storage<span class="w"> </span>with<span class="w"> </span>full<span class="w"> </span>disk<span class="w"> </span>copy
+</span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a><span class="w">    </span>--copy-storage-inc<span class="w">  </span>migration<span class="w"> </span>with<span class="w"> </span>non-shared<span class="w"> </span>storage<span class="w"> </span>with<span class="w"> </span>incremental<span class="w"> </span>copy<span class="w"> </span><span class="o">(</span>same<span class="w"> </span>base<span class="w"> </span>image<span class="w"> </span>shared<span class="w"> </span>between<span class="w"> </span><span class="nb">source</span><span class="w"> </span>and<span class="w"> </span>destination<span class="o">)</span>
+</span><span id="__span-0-29"><a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a><span class="w">    </span>--change-protection<span class="w">  </span>prevent<span class="w"> </span>any<span class="w"> </span>configuration<span class="w"> </span>changes<span class="w"> </span>to<span class="w"> </span>domain<span class="w"> </span><span class="k">until</span><span class="w"> </span>migration<span class="w"> </span>ends
+</span><span id="__span-0-30"><a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a><span class="w">    </span>--unsafe<span class="w">         </span>force<span class="w"> </span>migration<span class="w"> </span>even<span class="w"> </span><span class="k">if</span><span class="w"> </span>it<span class="w"> </span>may<span class="w"> </span>be<span class="w"> </span>unsafe
+</span><span id="__span-0-31"><a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a><span class="w">    </span>--verbose<span class="w">        </span>display<span class="w"> </span>the<span class="w"> </span>progress<span class="w"> </span>of<span class="w"> </span>migration
+</span><span id="__span-0-32"><a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a><span class="w">    </span>--compressed<span class="w">     </span>compress<span class="w"> </span>repeated<span class="w"> </span>pages<span class="w"> </span>during<span class="w"> </span>live<span class="w"> </span>migration
+</span><span id="__span-0-33"><a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a><span class="w">    </span>--auto-converge<span class="w">  </span>force<span class="w"> </span>convergence<span class="w"> </span>during<span class="w"> </span>live<span class="w"> </span>migration
+</span><span id="__span-0-34"><a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a><span class="w">    </span>--rdma-pin-all<span class="w">   </span>pin<span class="w"> </span>all<span class="w"> </span>memory<span class="w"> </span>before<span class="w"> </span>starting<span class="w"> </span>RDMA<span class="w"> </span>live<span class="w"> </span>migration
+</span><span id="__span-0-35"><a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a><span class="w">    </span>--abort-on-error<span class="w">  </span>abort<span class="w"> </span>on<span class="w"> </span>soft<span class="w"> </span>errors<span class="w"> </span>during<span class="w"> </span>migration
+</span><span id="__span-0-36"><a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a><span class="w">    </span>--postcopy<span class="w">       </span><span class="nb">enable</span><span class="w"> </span>post-copy<span class="w"> </span>migration<span class="p">;</span><span class="w"> </span>switch<span class="w"> </span>to<span class="w"> </span>it<span class="w"> </span>using<span class="w"> </span>migrate-postcopy<span class="w"> </span><span class="nb">command</span>
+</span><span id="__span-0-37"><a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a><span class="w">    </span>--postcopy-after-precopy<span class="w">  </span>automatically<span class="w"> </span>switch<span class="w"> </span>to<span class="w"> </span>post-copy<span class="w"> </span>migration<span class="w"> </span>after<span class="w"> </span>one<span class="w"> </span>pass<span class="w"> </span>of<span class="w"> </span>pre-copy
+</span><span id="__span-0-38"><a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a><span class="w">    </span>--migrateuri<span class="w"> </span>&lt;string&gt;<span class="w">  </span>migration<span class="w"> </span>URI,<span class="w"> </span>usually<span class="w"> </span>can<span class="w"> </span>be<span class="w"> </span>omitted
+</span><span id="__span-0-39"><a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a><span class="w">    </span>--graphicsuri<span class="w"> </span>&lt;string&gt;<span class="w">  </span>graphics<span class="w"> </span>URI<span class="w"> </span>to<span class="w"> </span>be<span class="w"> </span>used<span class="w"> </span><span class="k">for</span><span class="w"> </span>seamless<span class="w"> </span>graphics<span class="w"> </span>migration
+</span><span id="__span-0-40"><a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a><span class="w">    </span>--listen-address<span class="w"> </span>&lt;string&gt;<span class="w">  </span>listen<span class="w"> </span>address<span class="w"> </span>that<span class="w"> </span>destination<span class="w"> </span>should<span class="w"> </span><span class="nb">bind</span><span class="w"> </span>to<span class="w"> </span><span class="k">for</span><span class="w"> </span>incoming<span class="w"> </span>migration
+</span><span id="__span-0-41"><a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a><span class="w">    </span>--dname<span class="w"> </span>&lt;string&gt;<span class="w">  </span>rename<span class="w"> </span>to<span class="w"> </span>new<span class="w"> </span>name<span class="w"> </span>during<span class="w"> </span>migration<span class="w"> </span><span class="o">(</span><span class="k">if</span><span class="w"> </span>supported<span class="o">)</span>
+</span><span id="__span-0-42"><a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a><span class="w">    </span>--timeout<span class="w"> </span>&lt;number&gt;<span class="w">  </span>run<span class="w"> </span>action<span class="w"> </span>specified<span class="w"> </span>by<span class="w"> </span>--timeout-*<span class="w"> </span>option<span class="w"> </span><span class="o">(</span><span class="nb">suspend</span><span class="w"> </span>by<span class="w"> </span>default<span class="o">)</span><span class="w"> </span><span class="k">if</span><span class="w"> </span>live<span class="w"> </span>migration<span class="w"> </span>exceeds<span class="w"> </span>timeout<span class="w"> </span><span class="o">(</span><span class="k">in</span><span class="w"> </span>seconds<span class="o">)</span>
+</span><span id="__span-0-43"><a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a><span class="w">    </span>--timeout-suspend<span class="w">  </span><span class="nb">suspend</span><span class="w"> </span>the<span class="w"> </span>guest<span class="w"> </span>after<span class="w"> </span>timeout
+</span><span id="__span-0-44"><a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a><span class="w">    </span>--timeout-postcopy<span class="w">  </span>switch<span class="w"> </span>to<span class="w"> </span>post-copy<span class="w"> </span>after<span class="w"> </span>timeout
+</span><span id="__span-0-45"><a id="__codelineno-0-45" name="__codelineno-0-45" href="#__codelineno-0-45"></a><span class="w">    </span>--xml<span class="w"> </span>&lt;string&gt;<span class="w">   </span>filename<span class="w"> </span>containing<span class="w"> </span>updated<span class="w"> </span>XML<span class="w"> </span><span class="k">for</span><span class="w"> </span>the<span class="w"> </span>target
+</span><span id="__span-0-46"><a id="__codelineno-0-46" name="__codelineno-0-46" href="#__codelineno-0-46"></a><span class="w">    </span>--migrate-disks<span class="w"> </span>&lt;string&gt;<span class="w">  </span>comma<span class="w"> </span>separated<span class="w"> </span>list<span class="w"> </span>of<span class="w"> </span>disks<span class="w"> </span>to<span class="w"> </span>be<span class="w"> </span>migrated
+</span><span id="__span-0-47"><a id="__codelineno-0-47" name="__codelineno-0-47" href="#__codelineno-0-47"></a><span class="w">    </span>--disks-port<span class="w"> </span>&lt;number&gt;<span class="w">  </span>port<span class="w"> </span>to<span class="w"> </span>use<span class="w"> </span>by<span class="w"> </span>target<span class="w"> </span>server<span class="w"> </span><span class="k">for</span><span class="w"> </span>incoming<span class="w"> </span>disks<span class="w"> </span>migration
+</span><span id="__span-0-48"><a id="__codelineno-0-48" name="__codelineno-0-48" href="#__codelineno-0-48"></a><span class="w">    </span>--comp-methods<span class="w"> </span>&lt;string&gt;<span class="w">  </span>comma<span class="w"> </span>separated<span class="w"> </span>list<span class="w"> </span>of<span class="w"> </span>compression<span class="w"> </span>methods<span class="w"> </span>to<span class="w"> </span>be<span class="w"> </span>used
+</span><span id="__span-0-49"><a id="__codelineno-0-49" name="__codelineno-0-49" href="#__codelineno-0-49"></a><span class="w">    </span>--comp-mt-level<span class="w"> </span>&lt;number&gt;<span class="w">  </span>compress<span class="w"> </span>level<span class="w"> </span><span class="k">for</span><span class="w"> </span>multithread<span class="w"> </span>compression
+</span><span id="__span-0-50"><a id="__codelineno-0-50" name="__codelineno-0-50" href="#__codelineno-0-50"></a><span class="w">    </span>--comp-mt-threads<span class="w"> </span>&lt;number&gt;<span class="w">  </span>number<span class="w"> </span>of<span class="w"> </span>compression<span class="w"> </span>threads<span class="w"> </span><span class="k">for</span><span class="w"> </span>multithread<span class="w"> </span>compression
+</span><span id="__span-0-51"><a id="__codelineno-0-51" name="__codelineno-0-51" href="#__codelineno-0-51"></a><span class="w">    </span>--comp-mt-dthreads<span class="w"> </span>&lt;number&gt;<span class="w">  </span>number<span class="w"> </span>of<span class="w"> </span>decompression<span class="w"> </span>threads<span class="w"> </span><span class="k">for</span><span class="w"> </span>multithread<span class="w"> </span>compression
+</span><span id="__span-0-52"><a id="__codelineno-0-52" name="__codelineno-0-52" href="#__codelineno-0-52"></a><span class="w">    </span>--comp-xbzrle-cache<span class="w"> </span>&lt;number&gt;<span class="w">  </span>page<span class="w"> </span>cache<span class="w"> </span>size<span class="w"> </span><span class="k">for</span><span class="w"> </span>xbzrle<span class="w"> </span>compression
+</span><span id="__span-0-53"><a id="__codelineno-0-53" name="__codelineno-0-53" href="#__codelineno-0-53"></a><span class="w">    </span>--auto-converge-initial<span class="w"> </span>&lt;number&gt;<span class="w">  </span>initial<span class="w"> </span>CPU<span class="w"> </span>throttling<span class="w"> </span>rate<span class="w"> </span><span class="k">for</span><span class="w"> </span>auto-convergence
+</span><span id="__span-0-54"><a id="__codelineno-0-54" name="__codelineno-0-54" href="#__codelineno-0-54"></a><span class="w">    </span>--auto-converge-increment<span class="w"> </span>&lt;number&gt;<span class="w">  </span>CPU<span class="w"> </span>throttling<span class="w"> </span>rate<span class="w"> </span>increment<span class="w"> </span><span class="k">for</span><span class="w"> </span>auto-convergence
+</span><span id="__span-0-55"><a id="__codelineno-0-55" name="__codelineno-0-55" href="#__codelineno-0-55"></a><span class="w">    </span>--persistent-xml<span class="w"> </span>&lt;string&gt;<span class="w">  </span>filename<span class="w"> </span>containing<span class="w"> </span>updated<span class="w"> </span>persistent<span class="w"> </span>XML<span class="w"> </span><span class="k">for</span><span class="w"> </span>the<span class="w"> </span>target
+</span><span id="__span-0-56"><a id="__codelineno-0-56" name="__codelineno-0-56" href="#__codelineno-0-56"></a><span class="w">    </span>--tls<span class="w">            </span>use<span class="w"> </span>TLS<span class="w"> </span><span class="k">for</span><span class="w"> </span>migration
+</span><span id="__span-0-57"><a id="__codelineno-0-57" name="__codelineno-0-57" href="#__codelineno-0-57"></a><span class="w">    </span>--postcopy-bandwidth<span class="w"> </span>&lt;number&gt;<span class="w">  </span>post-copy<span class="w"> </span>migration<span class="w"> </span>bandwidth<span class="w"> </span>limit<span class="w"> </span><span class="k">in</span><span class="w"> </span>MiB/s
+</span><span id="__span-0-58"><a id="__codelineno-0-58" name="__codelineno-0-58" href="#__codelineno-0-58"></a><span class="w">    </span>--parallel<span class="w">       </span><span class="nb">enable</span><span class="w"> </span>parallel<span class="w"> </span>migration
+</span><span id="__span-0-59"><a id="__codelineno-0-59" name="__codelineno-0-59" href="#__codelineno-0-59"></a><span class="w">    </span>--parallel-connections<span class="w"> </span>&lt;number&gt;<span class="w">  </span>number<span class="w"> </span>of<span class="w"> </span>connections<span class="w"> </span><span class="k">for</span><span class="w"> </span>parallel<span class="w"> </span>migration
+</span><span id="__span-0-60"><a id="__codelineno-0-60" name="__codelineno-0-60" href="#__codelineno-0-60"></a><span class="w">    </span>--bandwidth<span class="w"> </span>&lt;number&gt;<span class="w">  </span>migration<span class="w"> </span>bandwidth<span class="w"> </span>limit<span class="w"> </span><span class="k">in</span><span class="w"> </span>MiB/s
+</span><span id="__span-0-61"><a id="__codelineno-0-61" name="__codelineno-0-61" href="#__codelineno-0-61"></a><span class="w">    </span>--tls-destination<span class="w"> </span>&lt;string&gt;<span class="w">  </span>override<span class="w"> </span>the<span class="w"> </span>destination<span class="w"> </span>host<span class="w"> </span>name<span class="w"> </span>used<span class="w"> </span><span class="k">for</span><span class="w"> </span>TLS<span class="w"> </span>verification
+</span></code></pre></div>
+</details>
+<h3 id="_1">オプション<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
+<ul>
+<li>--comp-xbzrle-cache</li>
+</ul>
+<p>特点:</p>
+<ul>
+<li>传输内存脏页的差异数据，减少数据的传输量</li>
+<li>占有源节点一定量的内存作为cache保存原始内存</li>
+<li>cache_size小于VM内存时，加速效果与cache_size成正相关</li>
+</ul>
+<p>加速效果：</p>
+<ul>
+<li>加速效果受到cache大小的影响，适用于主机内存资源充足，且VM内存频繁读写的场景</li>
+</ul>
+<p>主要参数：</p>
+<ul>
+<li>缓存大小</li>
+<li>在源节点临时保存当前内存值，用于产生脏页后计算内存差异数据</li>
+</ul>
+<h3 id="_2">移動先<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="m">1</span>.<span class="w"> </span>対象lvsの作成
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>virsh<span class="w"> </span>pool-define-as<span class="w"> </span>tank<span class="w"> </span>logical<span class="w"> </span>-<span class="w"> </span>-<span class="w"> </span>/dev/sda4<span class="w"> </span>tank<span class="w"> </span>/dev/tank
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>virsh<span class="w"> </span>pool-start<span class="w"> </span>tank
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>virsh<span class="w"> </span>pool-autostart<span class="w"> </span>tank
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>virsh<span class="w"> </span>net-autostart<span class="w"> </span>default
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>virsh<span class="w"> </span>net-start<span class="w"> </span>default
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>virsh<span class="w"> </span>vol-create-as<span class="w"> </span>tank<span class="w"> </span>vm-test<span class="w"> </span>50G<span class="w"> </span><span class="c1"># 同じVM名のDISK作成</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>virsh<span class="w"> </span>vol-create-as<span class="w"> </span>tank<span class="w"> </span>mysql-dev.db<span class="w"> </span>300G<span class="w"> </span><span class="c1"># 同じVM名のDISK作成</span>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="m">2</span>.<span class="w"> </span>対象vlanの作成
+</span></code></pre></div>
+<h3 id="_3">移動元<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<ul>
+<li>sys4 -&gt; sys5</li>
+<li>
+<p><code>root@sys4:~/work# virsh migrate --live --copy-storage-all --verbose vm-test qemu+ssh://sys5/system`</code></p>
+</li>
+<li>
+<p>HV1 -&gt; HV2</p>
+<ul>
+<li>```
+  # 圧縮せず、通常方式で転送
+  root@HV1:~# date; time virsh migrate --live --copy-storage-all --verbose mysql-dev qemu+ssh://HV2/system; date
+  Fri 31 May 2024 05:36:51 AM JST
+  Migration: [100 %]</li>
+</ul>
+<p>real    91m19.769s
+  user    0m0.738s
+  sys     0m0.954s
+  Fri 31 May 2024 07:08:11 AM JST
+  root@HV1:~# virsh list --all
+   Id   Name             State</p>
+<hr />
+<ul>
+<li>mysql-dev      shut off</li>
+</ul>
+<p>root@HV1:~# </p>
+<p># xbzrle方式で転送 （大体300Gの20%が10分かかりました）
+  root@HV1:~# date; time virsh migrate --live --copy-storage-all --compressed --comp-xbzrle-cache 68719476736 --comp-methods xbzrle --verbose mysql-dev.db qemu+ssh ://HV2/system; date # 68719476736 = 64G
+  Fri 31 May 2024 07:43:44 AM JST
+  Migration: [ 21 %]
+  Fri 31 May 2024 07:54:12 AM JST
+  ```</p>
+</li>
+</ul>
+<h3 id="sysbench">移動中のsysbench<a class="headerlink" href="#sysbench" title="Permanent link">&para;</a></h3>
+<p>移動中のVMの稼働状況を確認する。<br />
+切り替えの際、MySQLの接続は切断されるかどうかの確認</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a># 検証用データの準備
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>sysbench oltp_read_write \
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>--mysql-host=mysql-dev \
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>--mysql-dry-run=off \
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>--db-driver=mysql \
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>--mysql-user=sbtest \
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>--mysql-password=sbtest \
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>--table_size=10000 \
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>--threads=4 \
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>--tables=30 \
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>--time=120 \
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>--report-interval=10 \
+</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>prepare
+</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>
+</span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a># 検証
+</span><span id="__span-2-16"><a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a>* --time=5400 は実行時間、300GのVMは大体1時間で完了見込みのため、余裕をもって1時間半に設定した
+</span><span id="__span-2-17"><a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a>
+</span><span id="__span-2-18"><a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a>sysbench oltp_read_write \
+</span><span id="__span-2-19"><a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a>--mysql-host=mysql-dev \
+</span><span id="__span-2-20"><a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a>--mysql-dry-run=off \
+</span><span id="__span-2-21"><a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a>--db-driver=mysql \
+</span><span id="__span-2-22"><a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a>--mysql-user=sbtest \
+</span><span id="__span-2-23"><a id="__codelineno-2-23" name="__codelineno-2-23" href="#__codelineno-2-23"></a>--mysql-password=sbtest \
+</span><span id="__span-2-24"><a id="__codelineno-2-24" name="__codelineno-2-24" href="#__codelineno-2-24"></a>--table_size=10000 \
+</span><span id="__span-2-25"><a id="__codelineno-2-25" name="__codelineno-2-25" href="#__codelineno-2-25"></a>--threads=10 \
+</span><span id="__span-2-26"><a id="__codelineno-2-26" name="__codelineno-2-26" href="#__codelineno-2-26"></a>--tables=30 \
+</span><span id="__span-2-27"><a id="__codelineno-2-27" name="__codelineno-2-27" href="#__codelineno-2-27"></a>--time=5400 \
+</span><span id="__span-2-28"><a id="__codelineno-2-28" name="__codelineno-2-28" href="#__codelineno-2-28"></a>--report-interval=10 \
+</span><span id="__span-2-29"><a id="__codelineno-2-29" name="__codelineno-2-29" href="#__codelineno-2-29"></a>run &gt;&gt; sysbench.log
+</span></code></pre></div>
+<h3 id="vm">移動中の移動先のVM状況<a class="headerlink" href="#vm" title="Permanent link">&para;</a></h3>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>root@HV2:~# virsh list --all
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a> Id   Name             State
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>-------------------------------
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a> 1    mysql-dev   paused
+</span></code></pre></div>
+<h2 id="_4">各ライブマイグレーション方式の比較<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th align="left">マイグレーション方式</th>
+<th align="left">コピーの反復</th>
+<th align="left">移行元ホストへの依存</th>
+<th align="left">ダウンタイム</th>
+<th align="left">転送データ量</th>
+<th align="left">マイグレーション時間</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">Pre-Copy</td>
+<td align="left">固定値</td>
+<td align="left">・コピー反復中: VM は移行元で動作</td>
+<td align="left">CPU/ネットワークの状態、および dirty メモリページの転送遅延</td>
+<td align="left">多い。 dirty メモリページを反復してコピーする。</td>
+<td align="left">dirty 率、反復回数、帯域幅に依存。</td>
+</tr>
+<tr>
+<td align="left">Post-Copy</td>
+<td align="left">コピーの反復なし</td>
+<td align="left">・メモリマイグレーション時: VM は移行先で動作</td>
+<td align="left">CPU/ネットワーク状態の転送遅延</td>
+<td align="left">メモリサイズと同等のサイズを転送</td>
+<td align="left">移行先のページフォルト率に依存。</td>
+</tr>
+<tr>
+<td align="left">Hybrid-Copy</td>
+<td align="left">1サイクル</td>
+<td align="left">・コピー反復中: VM は移行元で動作 ・コピー後: VM は移行先で動作</td>
+<td align="left">CPU/ネットワーク状態の転送遅延</td>
+<td align="left">dirty 率に依存率に依存。 Pre-Copy フェーズにおける "メモリ＋dirty ページ" のサイズ</td>
+<td align="left">dirty 率と帯域幅に依存。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_5">手順書<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<ol>
+<li>両HVにお互いの鍵を登録</li>
+<li>移動先に対象VMのlvsを作成する</li>
+<li>移動先に対象vlanを作成</li>
+<li>移動元でmigrateコマンドを実行する</li>
+<li>別サーバ（ops1）で対象VMにsysbenchをかける（MySQLサービスの確認）</li>
+</ol>
+<h3 id="_6">問題点<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
+<ol>
+<li>
+<p>移動HV同士の接続はWAN（10G）ではなく、LAN（1G）です。そのため、転送速度は遅く、効率悪いです。</p>
+</li>
+<li>
+<p>対策案</p>
+</li>
+<li>HVに専用VLANを作成し、IPを設定する（10.0.0.0/8）、これでHV同士の通信は10Gになります。</li>
+<li>
+<p>WANは（10G）を利用するため、ユーザ用の帯域が逼迫する可能性があります。（制限も可能です）</p>
+</li>
+<li>
+<p>移動元が99%になっても進捗が80%に戻ってしまう事例がありました。</p>
+</li>
+<li>
+<p>原因</p>
+</li>
+<li>対象VMがかなり利用中のため、メモリ頻繁に更新され、転送データの整合性を取るため、常に反復転送してしまう。<ul>
+<li>特にMySQLなどメモリ利用多いサービス</li>
+</ul>
+</li>
+<li>
+<p>対策案</p>
+<ul>
+<li>転送プロトコルを --comp-xbzrle-cache に使う、内部はXORのロジックで更新部分だけ転送する</li>
+</ul>
+</li>
+<li>
+<p>転送後、新HV上にVMが起動しても疎通がない</p>
+</li>
+<li>
+<p>原因</p>
+</li>
+<li>調査中<ul>
+<li>もしかしてVLAN設定に問題ある。あるいは移動先HV（sub機）がWANに接続してない？</li>
+</ul>
+</li>
+</ol>
+<hr />
+<h5 id="_7">参考情報<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h5>
+<h2 id="-vm">- コマンドでVM作成手順<a class="headerlink" href="#-vm" title="Permanent link">&para;</a></h2>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>## 1. create tank
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a># virsh pool-define-as tank logical - - /dev/sda4 tank /dev/tank
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a># vgscan 2&gt;&amp;1 | fgrep -q &#39;No volume groups found&#39; &amp;&amp; virsh pool-build tank
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a># virsh pool-start tank
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a># virsh pool-autostart tank
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a># virsh net-autostart default
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a># virsh net-start default
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>## 2. dd VM img
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a># virsh vol-create-as tank mysql-test 100G
+</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a># gunzip &lt; centos79-tmp.img.gz | dd of=`virsh vol-path vm-test --pool tank` bs=1M oflag=direct status=progress iflag=fullblock # gzタイプ
+</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a># unzstd &lt; rocky93-tmp.img.zst | dd of=/dev/tank/vm-test bs=1M oflag=direct iflag=fullblock status=progress # zstタイプ
+</span><span id="__span-4-12"><a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a>## 3. delete VM
+</span><span id="__span-4-13"><a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a># virsh undefine vm-test
+</span><span id="__span-4-14"><a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a># virsh destroy vm-test
+</span><span id="__span-4-15"><a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a># virsh vol-delete /dev/tank/temp-test
+</span></code></pre></div>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+            Back to top
+          </button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright © 2022 - 2023 - lyvivian0077
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tracking", "navigation.top", "navigation.indexes", "navigation.path", "content.code.copy", "toc.follow"], "search": "../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.fac441b0.min.js"></script>
+      
+    
+  </body>
+</html>
