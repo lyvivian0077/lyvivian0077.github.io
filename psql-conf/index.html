@@ -1,0 +1,3080 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../psql-vs-mysql/">
+      
+      
+        <link rel="next" href="../mysql-ssl/">
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.9">
+    
+    
+      
+        <title>从零开始学PostgreSQL (二)： 配置文件 - 总有刁民想要害朕</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.85bb2934.min.css">
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#postgresql" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="总有刁民想要害朕" class="md-header__button md-logo" aria-label="总有刁民想要害朕" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            总有刁民想要害朕
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              从零开始学PostgreSQL (二)： 配置文件
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="总有刁民想要害朕" class="md-nav__button md-logo" aria-label="总有刁民想要害朕" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    总有刁民想要害朕
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        Welcome
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+      
+      
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+          ansbile
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          ansbile
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ansbile/" class="md-nav__link">
+        ansbileオプション
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ansbile_async/" class="md-nav__link">
+        ansbile_async
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../awk/" class="md-nav__link">
+        awk
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sed/" class="md-nav__link">
+        sed
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../MB-MiB%E7%9A%84%E5%8C%BA%E5%88%AB/" class="md-nav__link">
+        MB_MiB的区别
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+      
+      
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+          MegaRAID
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_6">
+          <span class="md-nav__icon md-icon"></span>
+          MegaRAID
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../megacli/" class="md-nav__link">
+        megacli
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../megaraid/" class="md-nav__link">
+        megaraid
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" checked>
+      
+      
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+          PostgreSQL
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="true">
+        <label class="md-nav__title" for="__nav_7">
+          <span class="md-nav__icon md-icon"></span>
+          PostgreSQL
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../psql-vs-mysql/" class="md-nav__link">
+        MySQLとPostgreSQLコマンド比較表
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          从零开始学PostgreSQL (二)： 配置文件
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        从零开始学PostgreSQL (二)： 配置文件
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#postgresql" class="md-nav__link">
+    从零开始学PostgreSQL (二)： 配置文件
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#postgresql_1" class="md-nav__link">
+    PostgreSQL 配置文件概览
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#postgresqlconf" class="md-nav__link">
+    postgresql.conf 详解
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pg_hbaconf" class="md-nav__link">
+    pg_hba.conf详解
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pg_identconf" class="md-nav__link">
+    pg_ident.conf 详解
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    线上调整参数
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    总结
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+          MySQL
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_8">
+          <span class="md-nav__icon md-icon"></span>
+          MySQL
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mysql-ssl/" class="md-nav__link">
+        MySQL安全SSL介绍
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Explain%E8%AF%A6%E8%A7%A3%E4%B8%8E%E7%B4%A2%E5%BC%95%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/" class="md-nav__link">
+        Explain详解与索引最佳实践
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mysql/" class="md-nav__link">
+        Mysql参数优化
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../show-engine-innodb-status/" class="md-nav__link">
+        innodb status解读
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../undo-log/" class="md-nav__link">
+        undo-log
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../buffer-pool/" class="md-nav__link">
+        Buffer-Pool
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../my-cnf/" class="md-nav__link">
+        mysql5.7性能提升一百倍调优宝典
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mysql-table/" class="md-nav__link">
+        MySQL-table
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mysql%E3%82%92%E3%82%BD%E3%83%BC%E3%82%B9%E3%81%8B%E3%82%89%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB/" class="md-nav__link">
+        MySQLビルド
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mysql-add-del-user/" class="md-nav__link">
+        Mysqlユーザ作成削除
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mysql-sysbench/" class="md-nav__link">
+        Mysql sysbench
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mysql-dummy/" class="md-nav__link">
+        ダミーデータを作成
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mysql-kill/" class="md-nav__link">
+        mysqladmin kill
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../MySQL-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="md-nav__link">
+        学习笔记
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mysql8-basic/" class="md-nav__link">
+        Mysql8
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_16" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_8_16" id="__nav_8_16_label" tabindex="0">
+          MGR
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_16_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_8_16">
+          <span class="md-nav__icon md-icon"></span>
+          MGR
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mysql-group-replication/" class="md-nav__link">
+        3種類のMGR
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mysql-mgr/" class="md-nav__link">
+        MGR
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mysql-group-replication-how-to-elect-the-new-primary-node/" class="md-nav__link">
+        MGR 如何选举新的主节点
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mysql-mgr-copy/" class="md-nav__link">
+        転載MGR
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mysql-ha/" class="md-nav__link">
+        mysql+keepalived搭建教程
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mysql-clone/" class="md-nav__link">
+        mysqlクローン機能
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+      
+      
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+          MySQL DUMP
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_9">
+          <span class="md-nav__icon md-icon"></span>
+          MySQL DUMP
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mysql_backup/" class="md-nav__link">
+        Mysql バックアップツール
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mydumper/" class="md-nav__link">
+        mydumper
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="0">
+          Python Tips
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_10">
+          <span class="md-nav__icon md-icon"></span>
+          Python Tips
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-styleguide/" class="md-nav__link">
+        Python风格规范
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-config/" class="md-nav__link">
+        Python程序配置文件管理
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-decorator/" class="md-nav__link">
+        装饰器
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-dunder/" class="md-nav__link">
+        5种下划线
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-function/" class="md-nav__link">
+        传入参数的几种方法
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python/" class="md-nav__link">
+        非常规的技巧
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-mysql/" class="md-nav__link">
+        操作mysql基础
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Python-Re-%E6%A8%A1%E5%9D%97%E8%B6%85%E5%85%A8%E8%A7%A3%E8%AF%BB/" class="md-nav__link">
+        Re 模块
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Python%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%8B%BC%E6%8E%A5%E6%80%BB%E7%BB%93/" class="md-nav__link">
+        字符串拼接总结
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E4%B8%80%E8%A1%8C-Python-%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0%E5%B9%B6%E8%A1%8C/" class="md-nav__link">
+        代码并行
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../py-pip/" class="md-nav__link">
+        使用 Python Pip 的 10 个技巧
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Regular-Expression/" class="md-nav__link">
+        正規表現
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../taged-VLAN%E3%81%A8untagedVLAN%E3%81%AE%E9%81%95%E3%81%84/" class="md-nav__link">
+        タグVLAN
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sar/" class="md-nav__link">
+        sar
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Bash%E7%BC%96%E7%A8%8B%E8%B6%85%E8%AF%A6%E7%BB%86%E8%AF%AD%E6%B3%95%E6%80%BB%E7%BB%93/" class="md-nav__link">
+        Bash编程超详细语法总结
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_15" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_15" id="__nav_15_label" tabindex="0">
+          iptables
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_15_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_15">
+          <span class="md-nav__icon md-icon"></span>
+          iptables
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../iptables/" class="md-nav__link">
+        iptables
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../iptables_1/" class="md-nav__link">
+        iptables概念(1)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../iptables_2/" class="md-nav__link">
+        iptables实际操作之规则查询(2)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../iptables_3/" class="md-nav__link">
+        iptables规则管理(3)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../iptables_4/" class="md-nav__link">
+        iptables匹配条件总结之一(4)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../iptables_5/" class="md-nav__link">
+        iptables匹配条件总结之二（常用扩展模块）(5)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../iptables_6/" class="md-nav__link">
+        iptables扩展匹配条件之’–tcp-flags’(6)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../iptables_7/" class="md-nav__link">
+        iptables扩展之udp扩展与icmp扩展(7)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../iptables_8/" class="md-nav__link">
+        iptables扩展模块之state扩展(8)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../iptables_9/" class="md-nav__link">
+        iptables的黑白名单机制(9)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../iptables_10/" class="md-nav__link">
+        iptables自定义链(10)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../iptables_11/" class="md-nav__link">
+        iptables之网络防火墙(11)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../iptables_12/" class="md-nav__link">
+        iptables动作总结之一(12)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../iptables_13/" class="md-nav__link">
+        iptables动作总结之二(13)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../iptables_14/" class="md-nav__link">
+        iptables小结之常用套路(14)
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_16" >
+      
+      
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_16" id="__nav_16_label" tabindex="0">
+          virt
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_16_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_16">
+          <span class="md-nav__icon md-icon"></span>
+          virt
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../virt-migrate/" class="md-nav__link">
+        KVM迁移
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_17" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_17" id="__nav_17_label" tabindex="0">
+          Linux
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_17_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_17">
+          <span class="md-nav__icon md-icon"></span>
+          Linux
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../centos7-set-kernel/" class="md-nav__link">
+        centos7-set-kernel
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../centos-network-device-naming/" class="md-nav__link">
+        centos-network-device-naming
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Linux-Performance/" class="md-nav__link">
+        Linux Performance
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Linux-shell-%E9%80%BB%E8%BE%91%E8%BF%90%E7%AE%97%E7%AC%A6-%E9%80%BB%E8%BE%91%E8%A1%A8%E8%BE%BE%E5%BC%8F%E8%AF%A6%E8%A7%A3/" class="md-nav__link">
+        Linux-shell-逻辑运算符-逻辑表达式详解
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../busybox/" class="md-nav__link">
+        busybox
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../linux-img/" class="md-nav__link">
+        rocky img 作成
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../osinfo-query/" class="md-nav__link">
+        osinfo-query更新
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_18" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_18" id="__nav_18_label" tabindex="0">
+          LVM
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_18_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_18">
+          <span class="md-nav__icon md-icon"></span>
+          LVM
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../LVM%E9%80%BB%E8%BE%91%E5%8D%B7%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5%E5%8F%8ALVM%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/" class="md-nav__link">
+        LVM逻辑卷基本概念及LVM的工作原理
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../linux-lvm/" class="md-nav__link">
+        LVM逻辑卷的建立、扩容和减容
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lvm-snapshot/" class="md-nav__link">
+        LVM-snapshot
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../macOS%E8%BD%AF%E4%BB%B6%E7%BC%96%E8%AF%91%E6%97%B6%E6%89%BE%E4%B8%8D%E5%88%B0%E5%A4%B4%E6%96%87%E4%BB%B6%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95-%E6%9B%B4%E6%96%B010-15/" class="md-nav__link">
+        macOS软件编译时找不到头文件解决方法[更新10.15]
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ubnt/" class="md-nav__link">
+        ubnt
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vim/" class="md-nav__link">
+        VIM
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../teslak20c/" class="md-nav__link">
+        Tesla K20c をゲーム用に改造してみた
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../terminal-shortcut/" class="md-nav__link">
+        ターミナルを使うためのショートカット集
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_24" >
+      
+      
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_24" id="__nav_24_label" tabindex="0">
+          Zabbix
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_24_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_24">
+          <span class="md-nav__icon md-icon"></span>
+          Zabbix
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../zabbix6/" class="md-nav__link">
+        zabbix6検証
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_25" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_25" id="__nav_25_label" tabindex="0">
+          SWAP
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_25_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_25">
+          <span class="md-nav__icon md-icon"></span>
+          SWAP
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../swap-find/" class="md-nav__link">
+        Swapを使ってるプロセスを探す
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../swap-schema/" class="md-nav__link">
+        Swap原理
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../swap-linux/" class="md-nav__link">
+        Linux内存回收与swap
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pfctl/" class="md-nav__link">
+        pfctlのコマンドを毎回忘れるのでメモ
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_27" >
+      
+      
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_27" id="__nav_27_label" tabindex="0">
+          Prometheus
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_27_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_27">
+          <span class="md-nav__icon md-icon"></span>
+          Prometheus
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../prometheus/" class="md-nav__link">
+        prometheus構築
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mysqld_exporter_flags/" class="md-nav__link">
+        mysqld_exporterコレクタFlags
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../about/" class="md-nav__link">
+        About
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#postgresql" class="md-nav__link">
+    从零开始学PostgreSQL (二)： 配置文件
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#postgresql_1" class="md-nav__link">
+    PostgreSQL 配置文件概览
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#postgresqlconf" class="md-nav__link">
+    postgresql.conf 详解
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pg_hbaconf" class="md-nav__link">
+    pg_hba.conf详解
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pg_identconf" class="md-nav__link">
+    pg_ident.conf 详解
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    线上调整参数
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    总结
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h2 id="postgresql">从零开始学PostgreSQL (二)： 配置文件<a class="headerlink" href="#postgresql" title="Permanent link">&para;</a></h2>
+<p><a href="https://mp.weixin.qq.com/s/eP9bppHaTy6YkDHp415L3Q">本文</a></p>
+<h1 id="postgresql_1">PostgreSQL 配置文件概览<a class="headerlink" href="#postgresql_1" title="Permanent link">&para;</a></h1>
+<p>PostgreSQL 使用三个主要的配置文件来控制服务器的行为、网络访问和用户映射。下面是对这三个文件的详细介绍：</p>
+<ol>
+<li><code>postgresql.conf</code></li>
+</ol>
+<p>这是 PostgreSQL 的主配置文件，包含了服务器运行的各种参数，包括性能调整、资源限制、日志设置、网络设置等。这些参数可以分为几个大类：</p>
+<ul>
+<li>General: 通用设置，如数据目录的位置、监听的端口等。</li>
+<li>Connection and Authentication: 连接和认证相关的设置，如最大连接数、超时设置等。</li>
+<li>Performance: 性能相关设置，如缓存大小、工作内存等。</li>
+<li>Logging and Replication: 日志记录和复制相关的设置，如日志级别、归档模式等。</li>
+<li>Security: 安全相关的设置，如密码复杂度要求、SSL 设置等。</li>
+</ul>
+<p>注意事项:</p>
+<ul>
+<li>修改 postgresql.conf 后，需要重启 PostgreSQL 服务器或使用 pg_ctl reload 命令使更改生效。</li>
+<li>保持文件权限安全，通常只允许 PostgreSQL 服务器进程读取。</li>
+<li>
+<p>定期审查和优化参数以适应服务器负载的变化。</p>
+</li>
+<li>
+<p><code>pg_hba.conf</code></p>
+</li>
+</ul>
+<p>pg_hba.conf 文件控制着 PostgreSQL 的访问策略，定义了哪些客户端可以连接到服务器以及使用哪种认证方法。每一行代表一个访问规则，包括连接类型、目标数据库、用户、地址、认证方法等。</p>
+<p>注意事项:</p>
+<ul>
+<li>确保规则的顺序正确，因为第一个匹配的规则将应用于连接。</li>
+<li>使用安全的认证方法，如 scram-sha-256 或 gss。</li>
+<li>对于敏感的网络环境，避免使用 trust 方法。</li>
+<li>
+<p>定期审查和更新规则，确保只有授权的客户端能够访问。</p>
+</li>
+<li>
+<p><code>pg_ident.conf</code></p>
+</li>
+</ul>
+<p><code>pg_ident.conf</code> 文件用于映射操作系统用户到数据库用户，当使用 ident 或 peer 认证方法时尤其重要。每一行定义了一个映射规则，包含映射名称、系统用户名和数据库用户名。</p>
+<p>注意事项:</p>
+<ul>
+<li>确保映射规则正确，以避免未经授权的用户访问数据库。</li>
+<li>使用正则表达式时要小心，确保它们正确匹配预期的用户名。</li>
+<li>如果不需要复杂的映射，可以省略 pg_ident.conf 文件，使用默认行为。</li>
+</ul>
+<h1 id="postgresqlconf">postgresql.conf 详解<a class="headerlink" href="#postgresqlconf" title="Permanent link">&para;</a></h1>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>文件位置
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>data_directory            指定用于数据存储的目录。此参数只能在服务器启动时设置。
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>config_file               指定主服务器配置文件
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>hba_file                  指定基于主机的身份验证的配置文件
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>ident_file                指定用户名映射的配置文件
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>external_pid_file         指定服务器应创建的以供服务器管理程序使用的其他进程 ID （PID） 文件的名称
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>连接设置
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>listen_addresses = &#39;*&#39;          # 监听的 IP 地址；
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>                                        # 使用逗号分隔的地址列表；
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>                                        # 默认为 &#39;localhost&#39;；使用 &#39;*&#39; 表示所有地址
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>                                        # （修改后需要重新启动）
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>port = 5432                             # 端口号（修改后需要重新启动）
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>max_connections = 2000                  # 确定与数据库服务器的最大并发连接数。默认值通常为 100 个连接（修改后需要重新启动）
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>#reserved_connections = 0               # 保留连接数（修改后需要重新启动）
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>#superuser_reserved_connections = 3     # 超级用户保留连接数（修改后需要重新启动）
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>#unix_socket_directories = &#39;/run/postgresql&#39; # 逗号分隔的目录列表（修改后需要重新启动）
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>#unix_socket_group = &#39;&#39;                 # Unix socket 的群组（修改后需要重新启动）
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>#unix_socket_permissions = 0777         # 使用八进制表示的权限（修改后需要重新启动）
+</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>#bonjour = off                          # 通过 Bonjour 发布服务器信息（修改后需要重新启动）
+</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>#bonjour_name = &#39;&#39;                      # 默认为计算机名称（修改后需要重新启动）
+</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>
+</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>TCP 设置
+</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>#tcp_keepalives_idle = 0                # 指定没有网络活动的时间，在此之后，操作系统应向客户端发送 TCP keepalive 消息，单位为秒；0 选择系统默认值
+</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>#tcp_keepalives_interval = 0            # 指定应重新传输客户端未确认的 TCP keepalive 消息的时间量，单位为秒；0 选择系统默认值
+</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>#tcp_keepalives_count = 0               # 指定在服务器与客户端的连接被视为失效之前可能丢失的 TCP keepalive 消息数；0 选择系统默认值
+</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>#tcp_user_timeout = 0                   # 指定在强制关闭 TCP 连接之前，传输的数据可能保持未确认状态的时间量，单位为毫秒；0 选择系统默认值
+</span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a>#client_connection_check_interval = 0   # 在运行查询时检查客户端断开连接的时间间隔；0 表示从不检查
+</span><span id="__span-0-29"><a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a>
+</span><span id="__span-0-30"><a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a>认证设置
+</span><span id="__span-0-31"><a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a>#authentication_timeout = 1min          # 认证超时时间，范围为 1 秒至 600 秒
+</span><span id="__span-0-32"><a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a>#password_encryption = scram-sha-256    # 密码加密方式，可以是 scram-sha-256 或 md5
+</span><span id="__span-0-33"><a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a>#scram_iterations = 4096                # SCRAM 加密迭代次数
+</span><span id="__span-0-34"><a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a>#db_user_namespace = off                # 是否启用数据库用户命名空间
+</span><span id="__span-0-35"><a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a>
+</span><span id="__span-0-36"><a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a># 使用 Kerberos 的 GSSAPI 认证
+</span><span id="__span-0-37"><a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a>#krb_server_keyfile = &#39;FILE:${sysconfdir}/krb5.keytab&#39;  # Kerberos 服务端密钥文件路径
+</span><span id="__span-0-38"><a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a>#krb_caseins_users = off                # 是否区分大小写的用户名称
+</span><span id="__span-0-39"><a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a>#gss_accept_delegation = off            # 是否接受委派
+</span><span id="__span-0-40"><a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a>
+</span><span id="__span-0-41"><a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a>SSL设置
+</span><span id="__span-0-42"><a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a>#ssl = off                             # 是否启用 SSL
+</span><span id="__span-0-43"><a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a>#ssl_ca_file = &#39;&#39;                      # CA 证书文件路径
+</span><span id="__span-0-44"><a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a>#ssl_cert_file = &#39;server.crt&#39;          # 服务器证书文件路径
+</span><span id="__span-0-45"><a id="__codelineno-0-45" name="__codelineno-0-45" href="#__codelineno-0-45"></a>#ssl_crl_file = &#39;&#39;                     # 撤销列表文件路径
+</span><span id="__span-0-46"><a id="__codelineno-0-46" name="__codelineno-0-46" href="#__codelineno-0-46"></a>#ssl_crl_dir = &#39;&#39;                      # 撤销列表目录路径
+</span><span id="__span-0-47"><a id="__codelineno-0-47" name="__codelineno-0-47" href="#__codelineno-0-47"></a>#ssl_key_file = &#39;server.key&#39;           # 服务器私钥文件路径
+</span><span id="__span-0-48"><a id="__codelineno-0-48" name="__codelineno-0-48" href="#__codelineno-0-48"></a>#ssl_ciphers = &#39;HIGH:MEDIUM:+3DES:!aNULL&#39; # 允许的 SSL 加密算法
+</span><span id="__span-0-49"><a id="__codelineno-0-49" name="__codelineno-0-49" href="#__codelineno-0-49"></a>#ssl_prefer_server_ciphers = on        # 是否优先使用服务器端加密算法
+</span><span id="__span-0-50"><a id="__codelineno-0-50" name="__codelineno-0-50" href="#__codelineno-0-50"></a>#ssl_ecdh_curve = &#39;prime256v1&#39;         # ECDH 曲线
+</span><span id="__span-0-51"><a id="__codelineno-0-51" name="__codelineno-0-51" href="#__codelineno-0-51"></a>#ssl_min_protocol_version = &#39;TLSv1.2&#39;  # 最小的 SSL 协议版本
+</span><span id="__span-0-52"><a id="__codelineno-0-52" name="__codelineno-0-52" href="#__codelineno-0-52"></a>#ssl_max_protocol_version = &#39;&#39;         # 最大的 SSL 协议版本
+</span><span id="__span-0-53"><a id="__codelineno-0-53" name="__codelineno-0-53" href="#__codelineno-0-53"></a>#ssl_dh_params_file = &#39;&#39;               # DH 参数文件路径
+</span><span id="__span-0-54"><a id="__codelineno-0-54" name="__codelineno-0-54" href="#__codelineno-0-54"></a>#ssl_passphrase_command = &#39;&#39;           # SSL 密码短语命令
+</span><span id="__span-0-55"><a id="__codelineno-0-55" name="__codelineno-0-55" href="#__codelineno-0-55"></a>#ssl_passphrase_command_supports_reload = off  # SSL 密码短语命令是否支持重新加载
+</span><span id="__span-0-56"><a id="__codelineno-0-56" name="__codelineno-0-56" href="#__codelineno-0-56"></a>
+</span><span id="__span-0-57"><a id="__codelineno-0-57" name="__codelineno-0-57" href="#__codelineno-0-57"></a>
+</span><span id="__span-0-58"><a id="__codelineno-0-58" name="__codelineno-0-58" href="#__codelineno-0-58"></a>内存设置
+</span><span id="__span-0-59"><a id="__codelineno-0-59" name="__codelineno-0-59" href="#__codelineno-0-59"></a>shared_buffers = 128MB                  # 共享缓冲区大小，默认为 128kB（修改后需要重新启动）
+</span><span id="__span-0-60"><a id="__codelineno-0-60" name="__codelineno-0-60" href="#__codelineno-0-60"></a>#huge_pages = try                       # 使用巨大页面的设置，可以是 on、off 或 try（修改后需要重新启动）
+</span><span id="__span-0-61"><a id="__codelineno-0-61" name="__codelineno-0-61" href="#__codelineno-0-61"></a>#huge_page_size = 0                     # 巨大页面的大小，0 表示使用系统默认值（修改后需要重新启动）
+</span><span id="__span-0-62"><a id="__codelineno-0-62" name="__codelineno-0-62" href="#__codelineno-0-62"></a>#temp_buffers = 8MB                     # 临时缓冲区大小，最小为 800kB
+</span><span id="__span-0-63"><a id="__codelineno-0-63" name="__codelineno-0-63" href="#__codelineno-0-63"></a>#max_prepared_transactions = 0          # 最大预处理事务数，0 表示禁用该功能 （修改后需要重新启动）
+</span><span id="__span-0-64"><a id="__codelineno-0-64" name="__codelineno-0-64" href="#__codelineno-0-64"></a># 注意：不建议将 max_prepared_transactions 设置为非零，除非你确实打算使用预处理事务。
+</span><span id="__span-0-65"><a id="__codelineno-0-65" name="__codelineno-0-65" href="#__codelineno-0-65"></a>
+</span><span id="__span-0-66"><a id="__codelineno-0-66" name="__codelineno-0-66" href="#__codelineno-0-66"></a>#work_mem = 4MB                         # 每个工作进程可用的内存大小，最小为 64kB
+</span><span id="__span-0-67"><a id="__codelineno-0-67" name="__codelineno-0-67" href="#__codelineno-0-67"></a>#hash_mem_multiplier = 2.0              # 哈希表工作内存的倍数，范围为 1 到 1000.0
+</span><span id="__span-0-68"><a id="__codelineno-0-68" name="__codelineno-0-68" href="#__codelineno-0-68"></a>#maintenance_work_mem = 64MB            # 维护操作使用的内存大小，最小为 1MB
+</span><span id="__span-0-69"><a id="__codelineno-0-69" name="__codelineno-0-69" href="#__codelineno-0-69"></a>#autovacuum_work_mem = -1               # 自动清理操作使用的内存大小，最小为 1MB，-1 表示使用 maintenance_work_mem
+</span><span id="__span-0-70"><a id="__codelineno-0-70" name="__codelineno-0-70" href="#__codelineno-0-70"></a>#logical_decoding_work_mem = 64MB       # 逻辑解码操作使用的内存大小，最小为 64kB
+</span><span id="__span-0-71"><a id="__codelineno-0-71" name="__codelineno-0-71" href="#__codelineno-0-71"></a>#max_stack_depth = 2MB                  # 栈深度的最大值，最小为 100kB
+</span><span id="__span-0-72"><a id="__codelineno-0-72" name="__codelineno-0-72" href="#__codelineno-0-72"></a>#shared_memory_type = mmap              # 共享内存的类型，默认为操作系统支持的第一个选项：（修改后需要重新启动）
+</span><span id="__span-0-73"><a id="__codelineno-0-73" name="__codelineno-0-73" href="#__codelineno-0-73"></a>                                        #   mmap
+</span><span id="__span-0-74"><a id="__codelineno-0-74" name="__codelineno-0-74" href="#__codelineno-0-74"></a>                                        #   sysv
+</span><span id="__span-0-75"><a id="__codelineno-0-75" name="__codelineno-0-75" href="#__codelineno-0-75"></a>                                        #   windows
+</span><span id="__span-0-76"><a id="__codelineno-0-76" name="__codelineno-0-76" href="#__codelineno-0-76"></a>dynamic_shared_memory_type = posix      # 动态共享内存的类型，默认为操作系统支持的第一个选项：（修改后需要重新启动）
+</span><span id="__span-0-77"><a id="__codelineno-0-77" name="__codelineno-0-77" href="#__codelineno-0-77"></a>                                        #   posix
+</span><span id="__span-0-78"><a id="__codelineno-0-78" name="__codelineno-0-78" href="#__codelineno-0-78"></a>                                        #   sysv
+</span><span id="__span-0-79"><a id="__codelineno-0-79" name="__codelineno-0-79" href="#__codelineno-0-79"></a>                                        #   windows
+</span><span id="__span-0-80"><a id="__codelineno-0-80" name="__codelineno-0-80" href="#__codelineno-0-80"></a>                                        #   mmap
+</span><span id="__span-0-81"><a id="__codelineno-0-81" name="__codelineno-0-81" href="#__codelineno-0-81"></a>#min_dynamic_shared_memory = 0MB        # 最小动态共享内存大小
+</span><span id="__span-0-82"><a id="__codelineno-0-82" name="__codelineno-0-82" href="#__codelineno-0-82"></a>#vacuum_buffer_usage_limit = 256kB      # 清理和分析缓冲区访问策略环的大小；
+</span><span id="__span-0-83"><a id="__codelineno-0-83" name="__codelineno-0-83" href="#__codelineno-0-83"></a>                                        # 0 表示禁用清理缓冲区访问策略；
+</span><span id="__span-0-84"><a id="__codelineno-0-84" name="__codelineno-0-84" href="#__codelineno-0-84"></a>
+</span><span id="__span-0-85"><a id="__codelineno-0-85" name="__codelineno-0-85" href="#__codelineno-0-85"></a>
+</span><span id="__span-0-86"><a id="__codelineno-0-86" name="__codelineno-0-86" href="#__codelineno-0-86"></a>磁盘
+</span><span id="__span-0-87"><a id="__codelineno-0-87" name="__codelineno-0-87" href="#__codelineno-0-87"></a>#temp_file_limit = -1                   # 每个进程临时文件空间限制，单位为千字节，-1 表示无限制
+</span><span id="__span-0-88"><a id="__codelineno-0-88" name="__codelineno-0-88" href="#__codelineno-0-88"></a>基于成本的清理延迟
+</span><span id="__span-0-89"><a id="__codelineno-0-89" name="__codelineno-0-89" href="#__codelineno-0-89"></a>#vacuum_cost_delay = 0                  # 超过成本限制时进程将休眠的时间量，单位为毫秒（0 表示禁用）
+</span><span id="__span-0-90"><a id="__codelineno-0-90" name="__codelineno-0-90" href="#__codelineno-0-90"></a>#vacuum_cost_page_hit = 1               # 在共享缓冲区缓存中找到的缓冲区进行清空的估计成本
+</span><span id="__span-0-91"><a id="__codelineno-0-91" name="__codelineno-0-91" href="#__codelineno-0-91"></a>#vacuum_cost_page_miss = 2              # 清理必须从磁盘读取的缓冲区的估计成本
+</span><span id="__span-0-92"><a id="__codelineno-0-92" name="__codelineno-0-92" href="#__codelineno-0-92"></a>#vacuum_cost_page_dirty = 20            # 页面脏数据时的成本
+</span><span id="__span-0-93"><a id="__codelineno-0-93" name="__codelineno-0-93" href="#__codelineno-0-93"></a>#vacuum_cost_limit = 200                # 当吸尘操作累计的成本达到多少时，吸尘进程将进入休眠状态
+</span><span id="__span-0-94"><a id="__codelineno-0-94" name="__codelineno-0-94" href="#__codelineno-0-94"></a>后台写入进程
+</span><span id="__span-0-95"><a id="__codelineno-0-95" name="__codelineno-0-95" href="#__codelineno-0-95"></a>#bgwriter_delay = 200ms                 # 每轮之间的延迟时间，单位为毫秒
+</span><span id="__span-0-96"><a id="__codelineno-0-96" name="__codelineno-0-96" href="#__codelineno-0-96"></a>#bgwriter_lru_maxpages = 100            # 每轮最多写入的缓冲区数，0 表示禁用
+</span><span id="__span-0-97"><a id="__codelineno-0-97" name="__codelineno-0-97" href="#__codelineno-0-97"></a>#bgwriter_lru_multiplier = 2.0          # 每轮中写入的脏缓冲区数基于服务器进程在最近几轮中所需的新缓冲区数
+</span><span id="__span-0-98"><a id="__codelineno-0-98" name="__codelineno-0-98" href="#__codelineno-0-98"></a>#bgwriter_flush_after = 512kB           # 每当后台编写器写入的数据量超过此量时，请尝试强制操作系统向底层存储发出这些写入，0 表示禁用
+</span><span id="__span-0-99"><a id="__codelineno-0-99" name="__codelineno-0-99" href="#__codelineno-0-99"></a>异步行为
+</span><span id="__span-0-100"><a id="__codelineno-0-100" name="__codelineno-0-100" href="#__codelineno-0-100"></a>#backend_flush_after = 0                # 每当单个后端写入的数据量超过此量时，请尝试强制操作系统将这些写入事件发到底层存储，以页为单位，0 表示禁用
+</span><span id="__span-0-101"><a id="__codelineno-0-101" name="__codelineno-0-101" href="#__codelineno-0-101"></a>#effective_io_concurrency = 1           # 可以同时执行的并发磁盘 I/O 操作数，范围为 1 到 1000；0 表示禁用预取
+</span><span id="__span-0-102"><a id="__codelineno-0-102" name="__codelineno-0-102" href="#__codelineno-0-102"></a>#maintenance_io_concurrency = 10        # 用于指定在执行维护操作（如 VACUUM、REINDEX 等）时，允许并发 IO 操作的数量，范围为 1 到 1000；0 表示禁用预取
+</span><span id="__span-0-103"><a id="__codelineno-0-103" name="__codelineno-0-103" href="#__codelineno-0-103"></a>#max_worker_processes = 8               # 最大工作进程数（修改后需要重新启动）
+</span><span id="__span-0-104"><a id="__codelineno-0-104" name="__codelineno-0-104" href="#__codelineno-0-104"></a>#max_parallel_workers_per_gather = 2    # 每次并行操作的最大并行工作进程数，受 max_parallel_workers 限制
+</span><span id="__span-0-105"><a id="__codelineno-0-105" name="__codelineno-0-105" href="#__codelineno-0-105"></a>#max_parallel_maintenance_workers = 2   # 并行维护工作进程的最大数，受 max_parallel_workers 限制
+</span><span id="__span-0-106"><a id="__codelineno-0-106" name="__codelineno-0-106" href="#__codelineno-0-106"></a>#max_parallel_workers = 8               # 可以在并行操作中使用的最大工作进程数，默认值为 8
+</span><span id="__span-0-107"><a id="__codelineno-0-107" name="__codelineno-0-107" href="#__codelineno-0-107"></a>#parallel_leader_participation = on     # 并行操作中是否允许主进程参与
+</span><span id="__span-0-108"><a id="__codelineno-0-108" name="__codelineno-0-108" href="#__codelineno-0-108"></a>#old_snapshot_threshold = -1            # 设置使用查询快照时可以使用查询快照的最短时间，而不会出现“快照太旧”错误的风险。，单位为分钟到天数；-1 表示禁用；0 表示立即
+</span><span id="__span-0-109"><a id="__codelineno-0-109" name="__codelineno-0-109" href="#__codelineno-0-109"></a>                                        # （修改后需要重新启动）
+</span><span id="__span-0-110"><a id="__codelineno-0-110" name="__codelineno-0-110" href="#__codelineno-0-110"></a>预写日志
+</span><span id="__span-0-111"><a id="__codelineno-0-111" name="__codelineno-0-111" href="#__codelineno-0-111"></a>wal_level = replica                    # WAL 日志级别，可以是 minimal（最小）、replica（复制）、logical（逻辑）
+</span><span id="__span-0-112"><a id="__codelineno-0-112" name="__codelineno-0-112" href="#__codelineno-0-112"></a>                                       # （修改后需要重启）
+</span><span id="__span-0-113"><a id="__codelineno-0-113" name="__codelineno-0-113" href="#__codelineno-0-113"></a>fsync = on                             # 是否将数据刷新到磁盘以确保崩溃安全性（关闭此选项可能导致不可恢复的数据损坏）
+</span><span id="__span-0-114"><a id="__codelineno-0-114" name="__codelineno-0-114" href="#__codelineno-0-114"></a>synchronous_commit = on                # 同步提交级别（指定在数据库服务器向客户端返回“成功”指示之前必须完成的 WAL 处理）；
+</span><span id="__span-0-115"><a id="__codelineno-0-115" name="__codelineno-0-115" href="#__codelineno-0-115"></a>                                       # off、local、remote_write、remote_apply 或 on
+</span><span id="__span-0-116"><a id="__codelineno-0-116" name="__codelineno-0-116" href="#__codelineno-0-116"></a>wal_sync_method = fsync                # WAL 同步方法，默认为操作系统支持的第一个选项：
+</span><span id="__span-0-117"><a id="__codelineno-0-117" name="__codelineno-0-117" href="#__codelineno-0-117"></a>                                       #   open_datasync（使用选项写入 WAL 文件open()O_DSYNC)
+</span><span id="__span-0-118"><a id="__codelineno-0-118" name="__codelineno-0-118" href="#__codelineno-0-118"></a>                                       #   fdatasync（每次提交时调用）（Linux 和 FreeBSD 上的默认选项）
+</span><span id="__span-0-119"><a id="__codelineno-0-119" name="__codelineno-0-119" href="#__codelineno-0-119"></a>                                       #   fsync（每次提交时调用）
+</span><span id="__span-0-120"><a id="__codelineno-0-120" name="__codelineno-0-120" href="#__codelineno-0-120"></a>                                       #   fsync_writethrough（每次提交时调用，强制写入任何磁盘写入缓存）
+</span><span id="__span-0-121"><a id="__codelineno-0-121" name="__codelineno-0-121" href="#__codelineno-0-121"></a>                                       #   open_sync（使用选项写入 WAL 文件）
+</span><span id="__span-0-122"><a id="__codelineno-0-122" name="__codelineno-0-122" href="#__codelineno-0-122"></a>full_page_writes = on                 # 从部分页面写入中恢复
+</span><span id="__span-0-123"><a id="__codelineno-0-123" name="__codelineno-0-123" href="#__codelineno-0-123"></a>wal_log_hints = off                   # 是否对非关键更新也执行全页写入
+</span><span id="__span-0-124"><a id="__codelineno-0-124" name="__codelineno-0-124" href="#__codelineno-0-124"></a>                                       # （修改后需要重启）
+</span><span id="__span-0-125"><a id="__codelineno-0-125" name="__codelineno-0-125" href="#__codelineno-0-125"></a>wal_compression = off                 # 启用全页写入的压缩；
+</span><span id="__span-0-126"><a id="__codelineno-0-126" name="__codelineno-0-126" href="#__codelineno-0-126"></a>                                       # off、pglz、lz4、zstd 或 on
+</span><span id="__span-0-127"><a id="__codelineno-0-127" name="__codelineno-0-127" href="#__codelineno-0-127"></a>wal_init_zero = on                    # 新的 WAL 文件是否进行零填充
+</span><span id="__span-0-128"><a id="__codelineno-0-128" name="__codelineno-0-128" href="#__codelineno-0-128"></a>wal_recycle = on                      # 回收 WAL 文件
+</span><span id="__span-0-129"><a id="__codelineno-0-129" name="__codelineno-0-129" href="#__codelineno-0-129"></a>wal_buffers = -1                      # WAL 缓冲区大小，最小为 32kB，-1 根据 shared_buffers 设置
+</span><span id="__span-0-130"><a id="__codelineno-0-130" name="__codelineno-0-130" href="#__codelineno-0-130"></a>                                       # （修改后需要重启）
+</span><span id="__span-0-131"><a id="__codelineno-0-131" name="__codelineno-0-131" href="#__codelineno-0-131"></a>wal_writer_delay = 200ms              # 指定 WAL 编写器刷新 WAL 的频率，以时间为单位，毫秒
+</span><span id="__span-0-132"><a id="__codelineno-0-132" name="__codelineno-0-132" href="#__codelineno-0-132"></a>wal_writer_flush_after = 1MB          # 指定 WAL 编写器刷新 WAL 的频率，以页面计量，0 禁用
+</span><span id="__span-0-133"><a id="__codelineno-0-133" name="__codelineno-0-133" href="#__codelineno-0-133"></a>wal_skip_threshold = 2MB              # 跳过 WAL 的阈值（当 is 和 事务在创建或重写永久关系后提交时，此设置确定如何保留新数据）
+</span><span id="__span-0-134"><a id="__codelineno-0-134" name="__codelineno-0-134" href="#__codelineno-0-134"></a>
+</span><span id="__span-0-135"><a id="__codelineno-0-135" name="__codelineno-0-135" href="#__codelineno-0-135"></a>commit_delay = 0                      # 提交延迟，范围 0-100000，单位为微秒
+</span><span id="__span-0-136"><a id="__codelineno-0-136" name="__codelineno-0-136" href="#__codelineno-0-136"></a>commit_siblings = 5                   # 同时进行提交的事务数，范围 1-1000
+</span><span id="__span-0-137"><a id="__codelineno-0-137" name="__codelineno-0-137" href="#__codelineno-0-137"></a>
+</span><span id="__span-0-138"><a id="__codelineno-0-138" name="__codelineno-0-138" href="#__codelineno-0-138"></a>检查点设置
+</span><span id="__span-0-139"><a id="__codelineno-0-139" name="__codelineno-0-139" href="#__codelineno-0-139"></a>#checkpoint_timeout = 5min              # 自动 WAL 检查点之间的最长时间，范围 30秒-1天
+</span><span id="__span-0-140"><a id="__codelineno-0-140" name="__codelineno-0-140" href="#__codelineno-0-140"></a>#checkpoint_completion_target = 0.9     # 检查点完成目标时长，范围 0.0 - 1.0
+</span><span id="__span-0-141"><a id="__codelineno-0-141" name="__codelineno-0-141" href="#__codelineno-0-141"></a>#checkpoint_flush_after = 256kB         # 每多少页刷新检查点，0 表示禁用
+</span><span id="__span-0-142"><a id="__codelineno-0-142" name="__codelineno-0-142" href="#__codelineno-0-142"></a>#checkpoint_warning = 30s               # 检查点警告时间，0 表示禁用
+</span><span id="__span-0-143"><a id="__codelineno-0-143" name="__codelineno-0-143" href="#__codelineno-0-143"></a>max_wal_size = 1GB                      # WAL 日志文件最大大小
+</span><span id="__span-0-144"><a id="__codelineno-0-144" name="__codelineno-0-144" href="#__codelineno-0-144"></a>min_wal_size = 80MB                     # WAL 日志文件最小大小
+</span><span id="__span-0-145"><a id="__codelineno-0-145" name="__codelineno-0-145" href="#__codelineno-0-145"></a>
+</span><span id="__span-0-146"><a id="__codelineno-0-146" name="__codelineno-0-146" href="#__codelineno-0-146"></a># - 恢复过程中的预取设置 -
+</span><span id="__span-0-147"><a id="__codelineno-0-147" name="__codelineno-0-147" href="#__codelineno-0-147"></a>
+</span><span id="__span-0-148"><a id="__codelineno-0-148" name="__codelineno-0-148" href="#__codelineno-0-148"></a>#recovery_prefetch = try                # 是否预取WAL中引用的页面？
+</span><span id="__span-0-149"><a id="__codelineno-0-149" name="__codelineno-0-149" href="#__codelineno-0-149"></a>#wal_decode_buffer_size = 512kB         # 预取时的前瞻窗口大小 (需要重启生效)
+</span><span id="__span-0-150"><a id="__codelineno-0-150" name="__codelineno-0-150" href="#__codelineno-0-150"></a>归档
+</span><span id="__span-0-151"><a id="__codelineno-0-151" name="__codelineno-0-151" href="#__codelineno-0-151"></a># - 归档设置 -
+</span><span id="__span-0-152"><a id="__codelineno-0-152" name="__codelineno-0-152" href="#__codelineno-0-152"></a>#archive_mode = off             # 启用归档; off, on, or always(更改需重启)
+</span><span id="__span-0-153"><a id="__codelineno-0-153" name="__codelineno-0-153" href="#__codelineno-0-153"></a>#archive_library = &#39;&#39;           # 用于归档WAL文件的库
+</span><span id="__span-0-154"><a id="__codelineno-0-154" name="__codelineno-0-154" href="#__codelineno-0-154"></a>                                # (空字符串表示使用archive_command)
+</span><span id="__span-0-155"><a id="__codelineno-0-155" name="__codelineno-0-155" href="#__codelineno-0-155"></a>#archive_command = &#39;&#39;           # 用于归档WAL文件的命令
+</span><span id="__span-0-156"><a id="__codelineno-0-156" name="__codelineno-0-156" href="#__codelineno-0-156"></a>                                # 占位符: %p = 要归档的文件路径
+</span><span id="__span-0-157"><a id="__codelineno-0-157" name="__codelineno-0-157" href="#__codelineno-0-157"></a>                                #         %f = 仅文件名
+</span><span id="__span-0-158"><a id="__codelineno-0-158" name="__codelineno-0-158" href="#__codelineno-0-158"></a>                                # 例如: &#39;test ! -f /mnt/server/archivedir/%f &amp;&amp; cp %p /mnt/server/archivedir/%f&#39;
+</span><span id="__span-0-159"><a id="__codelineno-0-159" name="__codelineno-0-159" href="#__codelineno-0-159"></a>#archive_timeout = 0            # 在多少秒后强制切换到下一个WAL文件; 0 表示禁用
+</span><span id="__span-0-160"><a id="__codelineno-0-160" name="__codelineno-0-160" href="#__codelineno-0-160"></a>
+</span><span id="__span-0-161"><a id="__codelineno-0-161" name="__codelineno-0-161" href="#__codelineno-0-161"></a># - 归档恢复 -
+</span><span id="__span-0-162"><a id="__codelineno-0-162" name="__codelineno-0-162" href="#__codelineno-0-162"></a>
+</span><span id="__span-0-163"><a id="__codelineno-0-163" name="__codelineno-0-163" href="#__codelineno-0-163"></a># 以下仅在恢复模式中使用。
+</span><span id="__span-0-164"><a id="__codelineno-0-164" name="__codelineno-0-164" href="#__codelineno-0-164"></a>#restore_command = &#39;&#39;           # 用于恢复已归档WAL文件的命令
+</span><span id="__span-0-165"><a id="__codelineno-0-165" name="__codelineno-0-165" href="#__codelineno-0-165"></a>                                # 占位符: %p = 要恢复的文件路径
+</span><span id="__span-0-166"><a id="__codelineno-0-166" name="__codelineno-0-166" href="#__codelineno-0-166"></a>                                #         %f = 仅文件名
+</span><span id="__span-0-167"><a id="__codelineno-0-167" name="__codelineno-0-167" href="#__codelineno-0-167"></a>                                # 例如: &#39;cp /mnt/server/archivedir/%f %p&#39;
+</span><span id="__span-0-168"><a id="__codelineno-0-168" name="__codelineno-0-168" href="#__codelineno-0-168"></a>#archive_cleanup_command = &#39;&#39;   # 每次重启点执行的清理归档命令
+</span><span id="__span-0-169"><a id="__codelineno-0-169" name="__codelineno-0-169" href="#__codelineno-0-169"></a>#recovery_end_command = &#39;&#39;      # 恢复完成时执行的命令
+</span><span id="__span-0-170"><a id="__codelineno-0-170" name="__codelineno-0-170" href="#__codelineno-0-170"></a>
+</span><span id="__span-0-171"><a id="__codelineno-0-171" name="__codelineno-0-171" href="#__codelineno-0-171"></a>恢复目标设置
+</span><span id="__span-0-172"><a id="__codelineno-0-172" name="__codelineno-0-172" href="#__codelineno-0-172"></a># 仅在执行有针对性的恢复时设置这些选项。
+</span><span id="__span-0-173"><a id="__codelineno-0-173" name="__codelineno-0-173" href="#__codelineno-0-173"></a>
+</span><span id="__span-0-174"><a id="__codelineno-0-174" name="__codelineno-0-174" href="#__codelineno-0-174"></a>#recovery_target = &#39;&#39;           # 设置为 &#39;immediate&#39; 可以在达到一致状态后立即结束恢复(更改需重启)
+</span><span id="__span-0-175"><a id="__codelineno-0-175" name="__codelineno-0-175" href="#__codelineno-0-175"></a>#recovery_target_name = &#39;&#39;      # 恢复到指定的命名恢复点 (更改需重启)
+</span><span id="__span-0-176"><a id="__codelineno-0-176" name="__codelineno-0-176" href="#__codelineno-0-176"></a>#recovery_target_time = &#39;&#39;      # 恢复到指定的时间戳 (更改需重启)
+</span><span id="__span-0-177"><a id="__codelineno-0-177" name="__codelineno-0-177" href="#__codelineno-0-177"></a>#recovery_target_xid = &#39;&#39;       # 恢复到指定的事务ID(更改需重启)
+</span><span id="__span-0-178"><a id="__codelineno-0-178" name="__codelineno-0-178" href="#__codelineno-0-178"></a>#recovery_target_lsn = &#39;&#39;       # 恢复到指定的WAL LSN (更改需重启)
+</span><span id="__span-0-179"><a id="__codelineno-0-179" name="__codelineno-0-179" href="#__codelineno-0-179"></a>#recovery_target_inclusive = on # 指定停止的方式:
+</span><span id="__span-0-180"><a id="__codelineno-0-180" name="__codelineno-0-180" href="#__codelineno-0-180"></a>                                # 在指定恢复目标之后（on）
+</span><span id="__span-0-181"><a id="__codelineno-0-181" name="__codelineno-0-181" href="#__codelineno-0-181"></a>                                # 在指定恢复目标之前（off） (更改需重启)
+</span><span id="__span-0-182"><a id="__codelineno-0-182" name="__codelineno-0-182" href="#__codelineno-0-182"></a>#recovery_target_timeline = &#39;latest&#39;    # 恢复到特定的时间线: &#39;current&#39;, &#39;latest&#39; 或时间线ID (更改需重启)
+</span><span id="__span-0-183"><a id="__codelineno-0-183" name="__codelineno-0-183" href="#__codelineno-0-183"></a>#recovery_target_action = &#39;pause&#39;       # 恢复目标后应执行的操作: &#39;pause&#39;, &#39;promote&#39;, &#39;shutdown&#39; (更改需重启)
+</span><span id="__span-0-184"><a id="__codelineno-0-184" name="__codelineno-0-184" href="#__codelineno-0-184"></a>
+</span><span id="__span-0-185"><a id="__codelineno-0-185" name="__codelineno-0-185" href="#__codelineno-0-185"></a>复制
+</span><span id="__span-0-186"><a id="__codelineno-0-186" name="__codelineno-0-186" href="#__codelineno-0-186"></a># - 发送服务器设置 -
+</span><span id="__span-0-187"><a id="__codelineno-0-187" name="__codelineno-0-187" href="#__codelineno-0-187"></a>
+</span><span id="__span-0-188"><a id="__codelineno-0-188" name="__codelineno-0-188" href="#__codelineno-0-188"></a># 在主服务器和任何将发送复制数据的备用服务器上设置这些选项。
+</span><span id="__span-0-189"><a id="__codelineno-0-189" name="__codelineno-0-189" href="#__codelineno-0-189"></a>#max_wal_senders = 10           # walsender 进程的最大数量(更改需重启)
+</span><span id="__span-0-190"><a id="__codelineno-0-190" name="__codelineno-0-190" href="#__codelineno-0-190"></a>#max_replication_slots = 10     # 复制插槽的最大数量(更改需重启)
+</span><span id="__span-0-191"><a id="__codelineno-0-191" name="__codelineno-0-191" href="#__codelineno-0-191"></a>#wal_keep_size = 0              # 保留的WAL文件大小，单位为MB；0 表示禁用
+</span><span id="__span-0-192"><a id="__codelineno-0-192" name="__codelineno-0-192" href="#__codelineno-0-192"></a>#max_slot_wal_keep_size = -1    # 每个插槽保留的WAL文件大小，单位为MB；-1 表示禁用
+</span><span id="__span-0-193"><a id="__codelineno-0-193" name="__codelineno-0-193" href="#__codelineno-0-193"></a>#wal_sender_timeout = 60s       # walsender 的超时时间，单位为毫秒；0 表示禁用
+</span><span id="__span-0-194"><a id="__codelineno-0-194" name="__codelineno-0-194" href="#__codelineno-0-194"></a>#track_commit_timestamp = off   # 是否收集事务提交的时间戳
+</span><span id="__span-0-195"><a id="__codelineno-0-195" name="__codelineno-0-195" href="#__codelineno-0-195"></a>                                # (更改需重启)
+</span><span id="__span-0-196"><a id="__codelineno-0-196" name="__codelineno-0-196" href="#__codelineno-0-196"></a>
+</span><span id="__span-0-197"><a id="__codelineno-0-197" name="__codelineno-0-197" href="#__codelineno-0-197"></a># - 主服务器设置 
+</span><span id="__span-0-198"><a id="__codelineno-0-198" name="__codelineno-0-198" href="#__codelineno-0-198"></a>
+</span><span id="__span-0-199"><a id="__codelineno-0-199" name="__codelineno-0-199" href="#__codelineno-0-199"></a># 这些设置在备用服务器上会被忽略。
+</span><span id="__span-0-200"><a id="__codelineno-0-200" name="__codelineno-0-200" href="#__codelineno-0-200"></a>#synchronous_standby_names = &#39;&#39; # 提供同步复制的备用服务器
+</span><span id="__span-0-201"><a id="__codelineno-0-201" name="__codelineno-0-201" href="#__codelineno-0-201"></a>                                # 可以选择同步备用服务器、同步备用服务器的数量，
+</span><span id="__span-0-202"><a id="__codelineno-0-202" name="__codelineno-0-202" href="#__codelineno-0-202"></a>                                # 以及以逗号分隔的应用程序名称列表
+</span><span id="__span-0-203"><a id="__codelineno-0-203" name="__codelineno-0-203" href="#__codelineno-0-203"></a>                                # &#39;*&#39; 表示所有备用服务器
+</span><span id="__span-0-204"><a id="__codelineno-0-204" name="__codelineno-0-204" href="#__codelineno-0-204"></a>
+</span><span id="__span-0-205"><a id="__codelineno-0-205" name="__codelineno-0-205" href="#__codelineno-0-205"></a># - 备用服务器设置 -
+</span><span id="__span-0-206"><a id="__codelineno-0-206" name="__codelineno-0-206" href="#__codelineno-0-206"></a>
+</span><span id="__span-0-207"><a id="__codelineno-0-207" name="__codelineno-0-207" href="#__codelineno-0-207"></a># 这些设置在主服务器上会被忽略。
+</span><span id="__span-0-208"><a id="__codelineno-0-208" name="__codelineno-0-208" href="#__codelineno-0-208"></a>#primary_conninfo = &#39;&#39;                  # 发送服务器的连接字符串
+</span><span id="__span-0-209"><a id="__codelineno-0-209" name="__codelineno-0-209" href="#__codelineno-0-209"></a>#primary_slot_name = &#39;&#39;                 # 发送服务器上的复制插槽名称
+</span><span id="__span-0-210"><a id="__codelineno-0-210" name="__codelineno-0-210" href="#__codelineno-0-210"></a>#hot_standby = on                       # &quot;off&quot; 在恢复期间禁止查询(更改需重启)
+</span><span id="__span-0-211"><a id="__codelineno-0-211" name="__codelineno-0-211" href="#__codelineno-0-211"></a>#max_standby_archive_delay = 30s        # 从归档中读取WAL时取消查询的最大延迟时间 -1 表示无限延迟
+</span><span id="__span-0-212"><a id="__codelineno-0-212" name="__codelineno-0-212" href="#__codelineno-0-212"></a>#max_standby_streaming_delay = 30s      # 从流式WAL中读取取消查询的最大延迟时间 -1 表示无限延迟
+</span><span id="__span-0-213"><a id="__codelineno-0-213" name="__codelineno-0-213" href="#__codelineno-0-213"></a>#wal_receiver_create_temp_slot = off    # 如果未设置primary_slot_name，则创建临时插槽
+</span><span id="__span-0-214"><a id="__codelineno-0-214" name="__codelineno-0-214" href="#__codelineno-0-214"></a>#wal_receiver_status_interval = 10s     # 至少每隔此时间发送一次响应 0 禁用
+</span><span id="__span-0-215"><a id="__codelineno-0-215" name="__codelineno-0-215" href="#__codelineno-0-215"></a>#hot_standby_feedback = off             # 从备用服务器发送信息以防止查询冲突
+</span><span id="__span-0-216"><a id="__codelineno-0-216" name="__codelineno-0-216" href="#__codelineno-0-216"></a>#wal_receiver_timeout = 60s             # 接收者等待主服务器通信的时间 单位为毫秒；0 禁用
+</span><span id="__span-0-217"><a id="__codelineno-0-217" name="__codelineno-0-217" href="#__codelineno-0-217"></a>#wal_retrieve_retry_interval = 5s       # 在失败尝试后重新尝试检索WAL之前等待的时间
+</span><span id="__span-0-218"><a id="__codelineno-0-218" name="__codelineno-0-218" href="#__codelineno-0-218"></a>#recovery_min_apply_delay = 0           # 恢复期间应用更改的最小延迟时间
+</span><span id="__span-0-219"><a id="__codelineno-0-219" name="__codelineno-0-219" href="#__codelineno-0-219"></a>
+</span><span id="__span-0-220"><a id="__codelineno-0-220" name="__codelineno-0-220" href="#__codelineno-0-220"></a># - 订阅者设置 -
+</span><span id="__span-0-221"><a id="__codelineno-0-221" name="__codelineno-0-221" href="#__codelineno-0-221"></a>
+</span><span id="__span-0-222"><a id="__codelineno-0-222" name="__codelineno-0-222" href="#__codelineno-0-222"></a># 这些设置在发布者上会被忽略。
+</span><span id="__span-0-223"><a id="__codelineno-0-223" name="__codelineno-0-223" href="#__codelineno-0-223"></a>#max_logical_replication_workers = 4    # 指定逻辑复制工作线程的最大数量，从max_worker_processes中获取(更改需重启)
+</span><span id="__span-0-224"><a id="__codelineno-0-224" name="__codelineno-0-224" href="#__codelineno-0-224"></a>#max_sync_workers_per_subscription = 2  # 每个订阅的最大同步工作线程数，从max_logical_replication_workers中获取
+</span><span id="__span-0-225"><a id="__codelineno-0-225" name="__codelineno-0-225" href="#__codelineno-0-225"></a>#max_parallel_apply_workers_per_subscription = 2        # 每个订阅的最大并行应用工作线程数，从max_logical_replication_workers中获取
+</span><span id="__span-0-226"><a id="__codelineno-0-226" name="__codelineno-0-226" href="#__codelineno-0-226"></a>查询优化
+</span><span id="__span-0-227"><a id="__codelineno-0-227" name="__codelineno-0-227" href="#__codelineno-0-227"></a># - 查询计划方法配置 -
+</span><span id="__span-0-228"><a id="__codelineno-0-228" name="__codelineno-0-228" href="#__codelineno-0-228"></a>
+</span><span id="__span-0-229"><a id="__codelineno-0-229" name="__codelineno-0-229" href="#__codelineno-0-229"></a>#enable_async_append = on   启用或禁用查询计划器对异步感知追加计划类型的使用
+</span><span id="__span-0-230"><a id="__codelineno-0-230" name="__codelineno-0-230" href="#__codelineno-0-230"></a>#enable_bitmapscan = on     启用或禁用查询计划器对位图扫描计划类型的使用
+</span><span id="__span-0-231"><a id="__codelineno-0-231" name="__codelineno-0-231" href="#__codelineno-0-231"></a>#enable_gathermerge = on    启用或禁用查询计划器对收集合并计划类型的使用
+</span><span id="__span-0-232"><a id="__codelineno-0-232" name="__codelineno-0-232" href="#__codelineno-0-232"></a>#enable_hashagg = on       启用或禁用查询计划器对哈希聚合计划类型的使用
+</span><span id="__span-0-233"><a id="__codelineno-0-233" name="__codelineno-0-233" href="#__codelineno-0-233"></a>#enable_hashjoin = on       启用或禁用查询计划器对哈希联接计划类型的使用
+</span><span id="__span-0-234"><a id="__codelineno-0-234" name="__codelineno-0-234" href="#__codelineno-0-234"></a>#enable_incremental_sort = on   启用或禁用查询计划器对增量排序步骤的使用
+</span><span id="__span-0-235"><a id="__codelineno-0-235" name="__codelineno-0-235" href="#__codelineno-0-235"></a>#enable_indexscan = on    启用或禁用查询计划器对索引扫描计划类型的使用
+</span><span id="__span-0-236"><a id="__codelineno-0-236" name="__codelineno-0-236" href="#__codelineno-0-236"></a>#enable_indexonlyscan = on   启用或禁用查询计划器对仅索引扫描计划类型的使用
+</span><span id="__span-0-237"><a id="__codelineno-0-237" name="__codelineno-0-237" href="#__codelineno-0-237"></a>#enable_material = on   启用或禁用查询计划器对具体化的使用
+</span><span id="__span-0-238"><a id="__codelineno-0-238" name="__codelineno-0-238" href="#__codelineno-0-238"></a>#enable_memoize = on   启用或禁用查询计划器使用记忆计划来缓存嵌套循环联接中参数化扫描的结果
+</span><span id="__span-0-239"><a id="__codelineno-0-239" name="__codelineno-0-239" href="#__codelineno-0-239"></a>#enable_mergejoin = on  启用或禁用查询计划器对合并-联接计划类型的使用
+</span><span id="__span-0-240"><a id="__codelineno-0-240" name="__codelineno-0-240" href="#__codelineno-0-240"></a>#enable_nestloop = on   启用或禁用查询计划器对嵌套循环联接计划的使用
+</span><span id="__span-0-241"><a id="__codelineno-0-241" name="__codelineno-0-241" href="#__codelineno-0-241"></a>#enable_parallel_append = on   启用或禁用查询计划器对并行感知追加计划类型的使用
+</span><span id="__span-0-242"><a id="__codelineno-0-242" name="__codelineno-0-242" href="#__codelineno-0-242"></a>#enable_parallel_hash = on    启用或禁用查询计划器使用具有并行哈希的哈希联接计划类型
+</span><span id="__span-0-243"><a id="__codelineno-0-243" name="__codelineno-0-243" href="#__codelineno-0-243"></a>#enable_partition_pruning = on   启用或禁用查询计划器从查询计划中消除分区表分区的功能
+</span><span id="__span-0-244"><a id="__codelineno-0-244" name="__codelineno-0-244" href="#__codelineno-0-244"></a>#enable_partitionwise_join = off  启用或禁用查询规划器对分区联接的使用，这允许通过联接匹配的分区来执行分区表之间的联接
+</span><span id="__span-0-245"><a id="__codelineno-0-245" name="__codelineno-0-245" href="#__codelineno-0-245"></a>#enable_partitionwise_aggregate = off   启用或禁用查询规划器对分区分组或聚合的使用，这允许对分区表分别对每个分区执行分组或聚合
+</span><span id="__span-0-246"><a id="__codelineno-0-246" name="__codelineno-0-246" href="#__codelineno-0-246"></a>#enable_presorted_aggregate = on   控制查询计划器是否将生成一个计划，该计划将提供按查询/聚合函数所需的顺序进行预排序的行
+</span><span id="__span-0-247"><a id="__codelineno-0-247" name="__codelineno-0-247" href="#__codelineno-0-247"></a>#enable_seqscan = on   启用或禁用查询计划器对顺序扫描计划类型的使用
+</span><span id="__span-0-248"><a id="__codelineno-0-248" name="__codelineno-0-248" href="#__codelineno-0-248"></a>#enable_sort = on    启用或禁用查询计划器对显式排序步骤的使用
+</span><span id="__span-0-249"><a id="__codelineno-0-249" name="__codelineno-0-249" href="#__codelineno-0-249"></a>#enable_tidscan = on     启用或禁用查询计划器对 TID 扫描计划类型的使用
+</span><span id="__span-0-250"><a id="__codelineno-0-250" name="__codelineno-0-250" href="#__codelineno-0-250"></a>
+</span><span id="__span-0-251"><a id="__codelineno-0-251" name="__codelineno-0-251" href="#__codelineno-0-251"></a># - 查询计划成本常量 -
+</span><span id="__span-0-252"><a id="__codelineno-0-252" name="__codelineno-0-252" href="#__codelineno-0-252"></a>
+</span><span id="__span-0-253"><a id="__codelineno-0-253" name="__codelineno-0-253" href="#__codelineno-0-253"></a>#seq_page_cost = 1.0          # 设置计划员对磁盘页读取成本的估计值，该读取是一系列顺序读取的一部分
+</span><span id="__span-0-254"><a id="__codelineno-0-254" name="__codelineno-0-254" href="#__codelineno-0-254"></a>#random_page_cost = 4.0       # 设置计划员对非顺序提取的磁盘页的成本的估计值
+</span><span id="__span-0-255"><a id="__codelineno-0-255" name="__codelineno-0-255" href="#__codelineno-0-255"></a>#cpu_tuple_cost = 0.01        # 设置计划员对查询期间处理每一行的成本的估计值
+</span><span id="__span-0-256"><a id="__codelineno-0-256" name="__codelineno-0-256" href="#__codelineno-0-256"></a>#cpu_index_tuple_cost = 0.005 # 设置计划员对索引扫描期间处理每个索引条目的成本的估计值
+</span><span id="__span-0-257"><a id="__codelineno-0-257" name="__codelineno-0-257" href="#__codelineno-0-257"></a>#cpu_operator_cost = 0.0025   # 设置计划员对处理查询期间执行的每个运算符或函数的成本的估计值
+</span><span id="__span-0-258"><a id="__codelineno-0-258" name="__codelineno-0-258" href="#__codelineno-0-258"></a>#parallel_setup_cost = 1000.0 # 设置计划员对启动并行工作进程的成本的估计
+</span><span id="__span-0-259"><a id="__codelineno-0-259" name="__codelineno-0-259" href="#__codelineno-0-259"></a>#parallel_tuple_cost = 0.1    # 设置计划员对将一个元组从一个并行工作进程转移到另一个进程的成本的估计值
+</span><span id="__span-0-260"><a id="__codelineno-0-260" name="__codelineno-0-260" href="#__codelineno-0-260"></a>#min_parallel_table_scan_size = 8MB  设置必须扫描的最小表数据量，以便考虑并行扫描
+</span><span id="__span-0-261"><a id="__codelineno-0-261" name="__codelineno-0-261" href="#__codelineno-0-261"></a>#min_parallel_index_scan_size = 512kB  设置必须扫描的索引数据的最小量，以便考虑并行扫描
+</span><span id="__span-0-262"><a id="__codelineno-0-262" name="__codelineno-0-262" href="#__codelineno-0-262"></a>#effective_cache_size = 4GB   设置计划器对可用于单个查询的磁盘缓存的有效大小的假设
+</span><span id="__span-0-263"><a id="__codelineno-0-263" name="__codelineno-0-263" href="#__codelineno-0-263"></a>
+</span><span id="__span-0-264"><a id="__codelineno-0-264" name="__codelineno-0-264" href="#__codelineno-0-264"></a>#jit_above_cost = 100000         # 如果查询比这个成本昂贵，则执行JIT编译；-1 禁用
+</span><span id="__span-0-265"><a id="__codelineno-0-265" name="__codelineno-0-265" href="#__codelineno-0-265"></a>#jit_inline_above_cost = 500000  # 如果查询比这个成本昂贵，则内联小函数；-1 禁用
+</span><span id="__span-0-266"><a id="__codelineno-0-266" name="__codelineno-0-266" href="#__codelineno-0-266"></a>#jit_optimize_above_cost = 500000 # 如果查询比这个成本昂贵，则使用昂贵的JIT优化；-1 禁用
+</span><span id="__span-0-267"><a id="__codelineno-0-267" name="__codelineno-0-267" href="#__codelineno-0-267"></a>
+</span><span id="__span-0-268"><a id="__codelineno-0-268" name="__codelineno-0-268" href="#__codelineno-0-268"></a># - 遗传查询优化器 -
+</span><span id="__span-0-269"><a id="__codelineno-0-269" name="__codelineno-0-269" href="#__codelineno-0-269"></a>
+</span><span id="__span-0-270"><a id="__codelineno-0-270" name="__codelineno-0-270" href="#__codelineno-0-270"></a>#geqo = on    启用或禁用遗传查询优化
+</span><span id="__span-0-271"><a id="__codelineno-0-271" name="__codelineno-0-271" href="#__codelineno-0-271"></a>#geqo_threshold = 12      使用遗传查询优化来规划至少涉及这么多项的查询
+</span><span id="__span-0-272"><a id="__codelineno-0-272" name="__codelineno-0-272" href="#__codelineno-0-272"></a>#geqo_effort = 5             # 范围 1-10
+</span><span id="__span-0-273"><a id="__codelineno-0-273" name="__codelineno-0-273" href="#__codelineno-0-273"></a>#geqo_pool_size = 0          # 根据工作量选择默认值
+</span><span id="__span-0-274"><a id="__codelineno-0-274" name="__codelineno-0-274" href="#__codelineno-0-274"></a>#geqo_generations = 0        # 根据工作量选择默认值
+</span><span id="__span-0-275"><a id="__codelineno-0-275" name="__codelineno-0-275" href="#__codelineno-0-275"></a>#geqo_selection_bias = 2.0   # 范围 1.5-2.0
+</span><span id="__span-0-276"><a id="__codelineno-0-276" name="__codelineno-0-276" href="#__codelineno-0-276"></a>#geqo_seed = 0.0             # 范围 0.0-1.0
+</span><span id="__span-0-277"><a id="__codelineno-0-277" name="__codelineno-0-277" href="#__codelineno-0-277"></a>
+</span><span id="__span-0-278"><a id="__codelineno-0-278" name="__codelineno-0-278" href="#__codelineno-0-278"></a># - 其他查询计划选项 -
+</span><span id="__span-0-279"><a id="__codelineno-0-279" name="__codelineno-0-279" href="#__codelineno-0-279"></a>
+</span><span id="__span-0-280"><a id="__codelineno-0-280" name="__codelineno-0-280" href="#__codelineno-0-280"></a>#default_statistics_target = 100    # 范围 1-10000
+</span><span id="__span-0-281"><a id="__codelineno-0-281" name="__codelineno-0-281" href="#__codelineno-0-281"></a>#constraint_exclusion = partition  # 控制查询计划器对表约束的使用，以优化查询。on、off 或 partition
+</span><span id="__span-0-282"><a id="__codelineno-0-282" name="__codelineno-0-282" href="#__codelineno-0-282"></a>#cursor_tuple_fraction = 0.1       # 设置计划器对将要检索的游标行的比例的估计值 范围 0.0-1.0
+</span><span id="__span-0-283"><a id="__codelineno-0-283" name="__codelineno-0-283" href="#__codelineno-0-283"></a>#from_collapse_limit = 8
+</span><span id="__span-0-284"><a id="__codelineno-0-284" name="__codelineno-0-284" href="#__codelineno-0-284"></a>#jit = on                          # 允许 JIT 编译
+</span><span id="__span-0-285"><a id="__codelineno-0-285" name="__codelineno-0-285" href="#__codelineno-0-285"></a>#join_collapse_limit = 8           # 1 禁用显式 JOIN 子句的折叠
+</span><span id="__span-0-286"><a id="__codelineno-0-286" name="__codelineno-0-286" href="#__codelineno-0-286"></a>#plan_cache_mode = auto            # auto、force_generic_plan 或 force_custom_plan
+</span><span id="__span-0-287"><a id="__codelineno-0-287" name="__codelineno-0-287" href="#__codelineno-0-287"></a>#recursive_worktable_factor = 10.0 # 范围 0.001-1000000
+</span><span id="__span-0-288"><a id="__codelineno-0-288" name="__codelineno-0-288" href="#__codelineno-0-288"></a>
+</span><span id="__span-0-289"><a id="__codelineno-0-289" name="__codelineno-0-289" href="#__codelineno-0-289"></a>报告和日志记录
+</span><span id="__span-0-290"><a id="__codelineno-0-290" name="__codelineno-0-290" href="#__codelineno-0-290"></a># - 日志位置 -
+</span><span id="__span-0-291"><a id="__codelineno-0-291" name="__codelineno-0-291" href="#__codelineno-0-291"></a>log_destination = &#39;stderr&#39;     # 有效值是 stderr、csvlog、jsonlog、syslog 和 eventlog，取决于平台
+</span><span id="__span-0-292"><a id="__codelineno-0-292" name="__codelineno-0-292" href="#__codelineno-0-292"></a>logging_collector = on         # 启用捕获 stderr、jsonlog 和 csvlog 到日志文件。需要启用此项才能使用 csvlog 和 jsonlog。（更改需要重启）
+</span><span id="__span-0-293"><a id="__codelineno-0-293" name="__codelineno-0-293" href="#__codelineno-0-293"></a>
+</span><span id="__span-0-294"><a id="__codelineno-0-294" name="__codelineno-0-294" href="#__codelineno-0-294"></a># 只有在 logging_collector 启用时才会使用以下选项：
+</span><span id="__span-0-295"><a id="__codelineno-0-295" name="__codelineno-0-295" href="#__codelineno-0-295"></a>log_directory = &#39;log&#39;         # 日志文件写入的目录，可以是绝对路径或相对于 PGDATA 的路径
+</span><span id="__span-0-296"><a id="__codelineno-0-296" name="__codelineno-0-296" href="#__codelineno-0-296"></a>log_filename = &#39;postgresql-%a.log&#39;  # 日志文件名模式，可以包含 strftime() 转义字符
+</span><span id="__span-0-297"><a id="__codelineno-0-297" name="__codelineno-0-297" href="#__codelineno-0-297"></a>#log_file_mode = 0600         # 日志文件的创建模式，以 0 开始使用八进制表示
+</span><span id="__span-0-298"><a id="__codelineno-0-298" name="__codelineno-0-298" href="#__codelineno-0-298"></a>log_rotation_age = 1d         # 自动轮换日志文件的时间间隔。0 禁用。
+</span><span id="__span-0-299"><a id="__codelineno-0-299" name="__codelineno-0-299" href="#__codelineno-0-299"></a>log_rotation_size = 0         # 自动轮换日志文件的输出大小。0 禁用。
+</span><span id="__span-0-300"><a id="__codelineno-0-300" name="__codelineno-0-300" href="#__codelineno-0-300"></a>log_truncate_on_rotation = on # 如果启用，同名的旧日志文件会被截断而不是追加。但此种截断仅在基于时间的轮换时发生，不包括重启或基于大小的轮换。默认为关闭，即在所有情况下追加到现有文件。
+</span><span id="__span-0-301"><a id="__codelineno-0-301" name="__codelineno-0-301" href="#__codelineno-0-301"></a>
+</span><span id="__span-0-302"><a id="__codelineno-0-302" name="__codelineno-0-302" href="#__codelineno-0-302"></a># - 何时记录日志 -
+</span><span id="__span-0-303"><a id="__codelineno-0-303" name="__codelineno-0-303" href="#__codelineno-0-303"></a>
+</span><span id="__span-0-304"><a id="__codelineno-0-304" name="__codelineno-0-304" href="#__codelineno-0-304"></a>#log_min_messages = warning           # 记录消息的最低级别: debug5 debug4 debug3 debug2  debug1  info notice warning error log fatal panic
+</span><span id="__span-0-305"><a id="__codelineno-0-305" name="__codelineno-0-305" href="#__codelineno-0-305"></a>
+</span><span id="__span-0-306"><a id="__codelineno-0-306" name="__codelineno-0-306" href="#__codelineno-0-306"></a>#log_min_error_statement = error      # 记录错误语句的最低级别: debug5 debug4 debug3 debug2  debug1  info notice warning error log fatal 
+</span><span id="__span-0-307"><a id="__codelineno-0-307" name="__codelineno-0-307" href="#__codelineno-0-307"></a>                                      # panic  (实际上是禁用的)
+</span><span id="__span-0-308"><a id="__codelineno-0-308" name="__codelineno-0-308" href="#__codelineno-0-308"></a>#log_min_duration_statement = -1      # -1 表示禁用，0 记录所有语句及其持续时间，&gt; 0 仅记录运行时间至少为指定毫秒数的语句
+</span><span id="__span-0-309"><a id="__codelineno-0-309" name="__codelineno-0-309" href="#__codelineno-0-309"></a>#log_min_duration_sample = -1         # -1 表示禁用，0 记录样本语句及其持续时间，&gt; 0 仅记录运行时间至少为指定毫秒数的样本语句；
+</span><span id="__span-0-310"><a id="__codelineno-0-310" name="__codelineno-0-310" href="#__codelineno-0-310"></a>                                      # 样本比例由 log_statement_sample_rate 决定
+</span><span id="__span-0-311"><a id="__codelineno-0-311" name="__codelineno-0-311" href="#__codelineno-0-311"></a>#log_statement_sample_rate = 1.0      # 超过 log_min_duration_sample 的语句的记录比例；
+</span><span id="__span-0-312"><a id="__codelineno-0-312" name="__codelineno-0-312" href="#__codelineno-0-312"></a>                                      # 1.0 记录所有这样的语句，0.0 从不记录
+</span><span id="__span-0-313"><a id="__codelineno-0-313" name="__codelineno-0-313" href="#__codelineno-0-313"></a>#log_transaction_sample_rate = 0.0    # 不考虑其持续时间，记录语句的事务比例；
+</span><span id="__span-0-314"><a id="__codelineno-0-314" name="__codelineno-0-314" href="#__codelineno-0-314"></a>                                      # 1.0 记录所有事务的语句，0.0 从不记录
+</span><span id="__span-0-315"><a id="__codelineno-0-315" name="__codelineno-0-315" href="#__codelineno-0-315"></a>#log_startup_progress_interval = 10s  # 长时间运行的启动操作之间的进度更新时间。
+</span><span id="__span-0-316"><a id="__codelineno-0-316" name="__codelineno-0-316" href="#__codelineno-0-316"></a>                                      # 0 禁用此功能，&gt; 0 表示以毫秒为间隔
+</span><span id="__span-0-317"><a id="__codelineno-0-317" name="__codelineno-0-317" href="#__codelineno-0-317"></a>
+</span><span id="__span-0-318"><a id="__codelineno-0-318" name="__codelineno-0-318" href="#__codelineno-0-318"></a># - 记录内容 -
+</span><span id="__span-0-319"><a id="__codelineno-0-319" name="__codelineno-0-319" href="#__codelineno-0-319"></a>
+</span><span id="__span-0-320"><a id="__codelineno-0-320" name="__codelineno-0-320" href="#__codelineno-0-320"></a>#debug_print_parse = off
+</span><span id="__span-0-321"><a id="__codelineno-0-321" name="__codelineno-0-321" href="#__codelineno-0-321"></a>#debug_print_rewritten = off
+</span><span id="__span-0-322"><a id="__codelineno-0-322" name="__codelineno-0-322" href="#__codelineno-0-322"></a>#debug_print_plan = off
+</span><span id="__span-0-323"><a id="__codelineno-0-323" name="__codelineno-0-323" href="#__codelineno-0-323"></a>#debug_pretty_print = on
+</span><span id="__span-0-324"><a id="__codelineno-0-324" name="__codelineno-0-324" href="#__codelineno-0-324"></a>#log_autovacuum_min_duration = 10min  # 记录自动清理活动；
+</span><span id="__span-0-325"><a id="__codelineno-0-325" name="__codelineno-0-325" href="#__codelineno-0-325"></a>                                      # -1 禁用，0 记录所有操作及其持续时间，&gt; 0 仅记录运行时间至少为指定毫秒数的操作
+</span><span id="__span-0-326"><a id="__codelineno-0-326" name="__codelineno-0-326" href="#__codelineno-0-326"></a>#log_checkpoints = on                导致在服务器日志中记录检查点和重新启动点
+</span><span id="__span-0-327"><a id="__codelineno-0-327" name="__codelineno-0-327" href="#__codelineno-0-327"></a>#log_connections = off             导致记录与服务器的每次尝试连接，以及成功完成客户端身份验证（如有必要）和授权
+</span><span id="__span-0-328"><a id="__codelineno-0-328" name="__codelineno-0-328" href="#__codelineno-0-328"></a>#log_disconnections = off            导致记录会话终止
+</span><span id="__span-0-329"><a id="__codelineno-0-329" name="__codelineno-0-329" href="#__codelineno-0-329"></a>#log_duration = off                   导致记录每个已完成的语句的持续时间
+</span><span id="__span-0-330"><a id="__codelineno-0-330" name="__codelineno-0-330" href="#__codelineno-0-330"></a>#log_error_verbosity = default       # 简洁、默认或详细消息
+</span><span id="__span-0-331"><a id="__codelineno-0-331" name="__codelineno-0-331" href="#__codelineno-0-331"></a>#log_hostname = off                      连接日志消息仅显示连接主机的 IP 地址
+</span><span id="__span-0-332"><a id="__codelineno-0-332" name="__codelineno-0-332" href="#__codelineno-0-332"></a>log_line_prefix = &#39;%m [%p] &#39;         # 特殊值:
+</span><span id="__span-0-333"><a id="__codelineno-0-333" name="__codelineno-0-333" href="#__codelineno-0-333"></a>                                      #   %a = 应用程序名称
+</span><span id="__span-0-334"><a id="__codelineno-0-334" name="__codelineno-0-334" href="#__codelineno-0-334"></a>                                      #   %u = 用户名
+</span><span id="__span-0-335"><a id="__codelineno-0-335" name="__codelineno-0-335" href="#__codelineno-0-335"></a>                                      #   %d = 数据库名称
+</span><span id="__span-0-336"><a id="__codelineno-0-336" name="__codelineno-0-336" href="#__codelineno-0-336"></a>                                      #   %r = 远程主机和端口
+</span><span id="__span-0-337"><a id="__codelineno-0-337" name="__codelineno-0-337" href="#__codelineno-0-337"></a>                                      #   %h = 远程主机
+</span><span id="__span-0-338"><a id="__codelineno-0-338" name="__codelineno-0-338" href="#__codelineno-0-338"></a>                                      #   %b = 后端类型
+</span><span id="__span-0-339"><a id="__codelineno-0-339" name="__codelineno-0-339" href="#__codelineno-0-339"></a>                                      #   %p = 进程 ID
+</span><span id="__span-0-340"><a id="__codelineno-0-340" name="__codelineno-0-340" href="#__codelineno-0-340"></a>                                      #   %P = 并行组的进程 ID
+</span><span id="__span-0-341"><a id="__codelineno-0-341" name="__codelineno-0-341" href="#__codelineno-0-341"></a>                                      #   %t = 没有毫秒的时间戳
+</span><span id="__span-0-342"><a id="__codelineno-0-342" name="__codelineno-0-342" href="#__codelineno-0-342"></a>                                      #   %m = 带毫秒的时间戳
+</span><span id="__span-0-343"><a id="__codelineno-0-343" name="__codelineno-0-343" href="#__codelineno-0-343"></a>                                      #   %n = 带毫秒的时间戳（Unix epoch格式）
+</span><span id="__span-0-344"><a id="__codelineno-0-344" name="__codelineno-0-344" href="#__codelineno-0-344"></a>                                      #   %Q = 查询 ID（如果没有或未计算为 0）
+</span><span id="__span-0-345"><a id="__codelineno-0-345" name="__codelineno-0-345" href="#__codelineno-0-345"></a>                                      #   %i = 命令标签
+</span><span id="__span-0-346"><a id="__codelineno-0-346" name="__codelineno-0-346" href="#__codelineno-0-346"></a>                                      #   %e = SQL 状态
+</span><span id="__span-0-347"><a id="__codelineno-0-347" name="__codelineno-0-347" href="#__codelineno-0-347"></a>                                      #   %c = 会话 ID
+</span><span id="__span-0-348"><a id="__codelineno-0-348" name="__codelineno-0-348" href="#__codelineno-0-348"></a>                                      #   %l = 会话行号
+</span><span id="__span-0-349"><a id="__codelineno-0-349" name="__codelineno-0-349" href="#__codelineno-0-349"></a>                                      #   %s = 会话启动时间戳
+</span><span id="__span-0-350"><a id="__codelineno-0-350" name="__codelineno-0-350" href="#__codelineno-0-350"></a>                                      #   %v = 虚拟事务 ID
+</span><span id="__span-0-351"><a id="__codelineno-0-351" name="__codelineno-0-351" href="#__codelineno-0-351"></a>                                      #   %x = 事务 ID（如果没有为 0）
+</span><span id="__span-0-352"><a id="__codelineno-0-352" name="__codelineno-0-352" href="#__codelineno-0-352"></a>                                      #   %q = 非会话进程中止
+</span><span id="__span-0-353"><a id="__codelineno-0-353" name="__codelineno-0-353" href="#__codelineno-0-353"></a>                                      #   %% = &#39;%&#39;
+</span><span id="__span-0-354"><a id="__codelineno-0-354" name="__codelineno-0-354" href="#__codelineno-0-354"></a>                                      # 例如 &#39;&lt;%u%%%d&gt; &#39;
+</span><span id="__span-0-355"><a id="__codelineno-0-355" name="__codelineno-0-355" href="#__codelineno-0-355"></a>#log_lock_waits = off                 # 记录锁等待 &gt;= 死锁超时的锁
+</span><span id="__span-0-356"><a id="__codelineno-0-356" name="__codelineno-0-356" href="#__codelineno-0-356"></a>#log_recovery_conflict_waits = off    # 记录备用恢复冲突等待 &gt;= 死锁超时
+</span><span id="__span-0-357"><a id="__codelineno-0-357" name="__codelineno-0-357" href="#__codelineno-0-357"></a>#log_parameter_max_length = -1        # 记录语句时，将绑定参数值限制为 N 字节；-1 表示完整打印，0 禁用
+</span><span id="__span-0-358"><a id="__codelineno-0-358" name="__codelineno-0-358" href="#__codelineno-0-358"></a>#log_parameter_max_length_on_error = 0 # 记录错误时，将绑定参数值限制为 N 字节；-1 表示完整打印，0 禁用
+</span><span id="__span-0-359"><a id="__codelineno-0-359" name="__codelineno-0-359" href="#__codelineno-0-359"></a>#log_statement = &#39;none&#39;               # none、ddl、mod、all
+</span><span id="__span-0-360"><a id="__codelineno-0-360" name="__codelineno-0-360" href="#__codelineno-0-360"></a>#log_replication_commands = off
+</span><span id="__span-0-361"><a id="__codelineno-0-361" name="__codelineno-0-361" href="#__codelineno-0-361"></a>#log_temp_files = -1                 # 记录临时文件等于或大于指定大小的文件（以 KB 为单位）；-1 禁用，0 记录所有临时文件
+</span><span id="__span-0-362"><a id="__codelineno-0-362" name="__codelineno-0-362" href="#__codelineno-0-362"></a>log_timezone = &#39;Asia/Shanghai&#39;
+</span><span id="__span-0-363"><a id="__codelineno-0-363" name="__codelineno-0-363" href="#__codelineno-0-363"></a>
+</span><span id="__span-0-364"><a id="__codelineno-0-364" name="__codelineno-0-364" href="#__codelineno-0-364"></a># - 进程标题 -
+</span><span id="__span-0-365"><a id="__codelineno-0-365" name="__codelineno-0-365" href="#__codelineno-0-365"></a>#cluster_name = &#39;&#39;                   # 如果非空，添加到进程标题中（更改需要重新启动）
+</span><span id="__span-0-366"><a id="__codelineno-0-366" name="__codelineno-0-366" href="#__codelineno-0-366"></a>#update_process_title = on
+</span><span id="__span-0-367"><a id="__codelineno-0-367" name="__codelineno-0-367" href="#__codelineno-0-367"></a>
+</span><span id="__span-0-368"><a id="__codelineno-0-368" name="__codelineno-0-368" href="#__codelineno-0-368"></a>统计信息
+</span><span id="__span-0-369"><a id="__codelineno-0-369" name="__codelineno-0-369" href="#__codelineno-0-369"></a># - 累积查询和索引统计 -
+</span><span id="__span-0-370"><a id="__codelineno-0-370" name="__codelineno-0-370" href="#__codelineno-0-370"></a>
+</span><span id="__span-0-371"><a id="__codelineno-0-371" name="__codelineno-0-371" href="#__codelineno-0-371"></a>#track_activities = on
+</span><span id="__span-0-372"><a id="__codelineno-0-372" name="__codelineno-0-372" href="#__codelineno-0-372"></a>#track_activity_query_size = 1024  # (修改后需要重新启动)
+</span><span id="__span-0-373"><a id="__codelineno-0-373" name="__codelineno-0-373" href="#__codelineno-0-373"></a>#track_counts = on
+</span><span id="__span-0-374"><a id="__codelineno-0-374" name="__codelineno-0-374" href="#__codelineno-0-374"></a>#track_io_timing = off
+</span><span id="__span-0-375"><a id="__codelineno-0-375" name="__codelineno-0-375" href="#__codelineno-0-375"></a>#track_wal_io_timing = off
+</span><span id="__span-0-376"><a id="__codelineno-0-376" name="__codelineno-0-376" href="#__codelineno-0-376"></a>#track_functions = none          # none, pl, all
+</span><span id="__span-0-377"><a id="__codelineno-0-377" name="__codelineno-0-377" href="#__codelineno-0-377"></a>#stats_fetch_consistency = cache # cache, none, snapshot
+</span><span id="__span-0-378"><a id="__codelineno-0-378" name="__codelineno-0-378" href="#__codelineno-0-378"></a>监控
+</span><span id="__span-0-379"><a id="__codelineno-0-379" name="__codelineno-0-379" href="#__codelineno-0-379"></a>#compute_query_id = auto  启用查询标识符的核心计算
+</span><span id="__span-0-380"><a id="__codelineno-0-380" name="__codelineno-0-380" href="#__codelineno-0-380"></a>#log_statement_stats = off
+</span><span id="__span-0-381"><a id="__codelineno-0-381" name="__codelineno-0-381" href="#__codelineno-0-381"></a>#log_parser_stats = off
+</span><span id="__span-0-382"><a id="__codelineno-0-382" name="__codelineno-0-382" href="#__codelineno-0-382"></a>#log_planner_stats = off
+</span><span id="__span-0-383"><a id="__codelineno-0-383" name="__codelineno-0-383" href="#__codelineno-0-383"></a>#log_executor_stats = off
+</span><span id="__span-0-384"><a id="__codelineno-0-384" name="__codelineno-0-384" href="#__codelineno-0-384"></a>自动清理
+</span><span id="__span-0-385"><a id="__codelineno-0-385" name="__codelineno-0-385" href="#__codelineno-0-385"></a>#autovacuum = on                  # 启用自动清理子进程？&#39;on&#39; 需要同时启用 track_counts。
+</span><span id="__span-0-386"><a id="__codelineno-0-386" name="__codelineno-0-386" href="#__codelineno-0-386"></a>#autovacuum_max_workers = 3       # 最大自动清理子进程数 (修改后需要重新启动)
+</span><span id="__span-0-387"><a id="__codelineno-0-387" name="__codelineno-0-387" href="#__codelineno-0-387"></a>#autovacuum_naptime = 1min        # 自动清理运行之间的时间间隔
+</span><span id="__span-0-388"><a id="__codelineno-0-388" name="__codelineno-0-388" href="#__codelineno-0-388"></a>#autovacuum_vacuum_threshold = 50 # 执行 VACUUM 前更新的最小行数
+</span><span id="__span-0-389"><a id="__codelineno-0-389" name="__codelineno-0-389" href="#__codelineno-0-389"></a>#autovacuum_vacuum_insert_threshold = 1000 # 执行 VACUUM 前插入的最小行数；-1 禁用插入 VACUUM
+</span><span id="__span-0-390"><a id="__codelineno-0-390" name="__codelineno-0-390" href="#__codelineno-0-390"></a>#autovacuum_analyze_threshold = 50 # 执行 ANALYZE 前更新的最小行数
+</span><span id="__span-0-391"><a id="__codelineno-0-391" name="__codelineno-0-391" href="#__codelineno-0-391"></a>#autovacuum_vacuum_scale_factor = 0.2 # VACUUM 执行前表大小的分数
+</span><span id="__span-0-392"><a id="__codelineno-0-392" name="__codelineno-0-392" href="#__codelineno-0-392"></a>#autovacuum_vacuum_insert_scale_factor = 0.2 # 插入 VACUUM 执行前插入数量与表大小的分数
+</span><span id="__span-0-393"><a id="__codelineno-0-393" name="__codelineno-0-393" href="#__codelineno-0-393"></a>#autovacuum_analyze_scale_factor = 0.1 # ANALYZE 执行前表大小的分数
+</span><span id="__span-0-394"><a id="__codelineno-0-394" name="__codelineno-0-394" href="#__codelineno-0-394"></a>#autovacuum_freeze_max_age = 200000000 # 强制执行 VACUUM 前的最大 XID 年龄 (修改后需要重新启动)
+</span><span id="__span-0-395"><a id="__codelineno-0-395" name="__codelineno-0-395" href="#__codelineno-0-395"></a>#autovacuum_multixact_freeze_max_age = 400000000 # 强制执行 VACUUM 前的最大 multixact 年龄 (修改后需要重新启动)
+</span><span id="__span-0-396"><a id="__codelineno-0-396" name="__codelineno-0-396" href="#__codelineno-0-396"></a>#autovacuum_vacuum_cost_delay = 2ms # 自动 VACUUM 的默认 VACUUM 成本延迟，以毫秒为单位；-1 表示使用 vacuum_cost_delay
+</span><span id="__span-0-397"><a id="__codelineno-0-397" name="__codelineno-0-397" href="#__codelineno-0-397"></a>#autovacuum_vacuum_cost_limit = -1 # 自动 VACUUM 的默认 VACUUM 成本限制；-1 表示使用 vacuum_cost_limit
+</span><span id="__span-0-398"><a id="__codelineno-0-398" name="__codelineno-0-398" href="#__codelineno-0-398"></a>客户端连接默认值
+</span><span id="__span-0-399"><a id="__codelineno-0-399" name="__codelineno-0-399" href="#__codelineno-0-399"></a># - 语句行为 -
+</span><span id="__span-0-400"><a id="__codelineno-0-400" name="__codelineno-0-400" href="#__codelineno-0-400"></a>#client_min_messages = notice    # 消息的最低级别:debug5 debug4 debug3 debug2  debug1 log  notice warning error 
+</span><span id="__span-0-401"><a id="__codelineno-0-401" name="__codelineno-0-401" href="#__codelineno-0-401"></a>#search_path = &#39;&quot;$user&quot;, public&#39; # 模式名称
+</span><span id="__span-0-402"><a id="__codelineno-0-402" name="__codelineno-0-402" href="#__codelineno-0-402"></a>#row_security = on
+</span><span id="__span-0-403"><a id="__codelineno-0-403" name="__codelineno-0-403" href="#__codelineno-0-403"></a>#default_table_access_method = &#39;heap&#39;
+</span><span id="__span-0-404"><a id="__codelineno-0-404" name="__codelineno-0-404" href="#__codelineno-0-404"></a>#default_tablespace = &#39;&#39;         # 表空间名称，&#39;&#39; 使用默认
+</span><span id="__span-0-405"><a id="__codelineno-0-405" name="__codelineno-0-405" href="#__codelineno-0-405"></a>#default_toast_compression = &#39;pglz&#39; # &#39;pglz&#39; 或 &#39;lz4&#39;
+</span><span id="__span-0-406"><a id="__codelineno-0-406" name="__codelineno-0-406" href="#__codelineno-0-406"></a>#temp_tablespaces = &#39;&#39;           # 表空间名称列表，&#39;&#39; 只使用默认表空间
+</span><span id="__span-0-407"><a id="__codelineno-0-407" name="__codelineno-0-407" href="#__codelineno-0-407"></a>#check_function_bodies = on
+</span><span id="__span-0-408"><a id="__codelineno-0-408" name="__codelineno-0-408" href="#__codelineno-0-408"></a>#default_transaction_isolation = &#39;read committed&#39;
+</span><span id="__span-0-409"><a id="__codelineno-0-409" name="__codelineno-0-409" href="#__codelineno-0-409"></a>#default_transaction_read_only = off
+</span><span id="__span-0-410"><a id="__codelineno-0-410" name="__codelineno-0-410" href="#__codelineno-0-410"></a>#default_transaction_deferrable = off
+</span><span id="__span-0-411"><a id="__codelineno-0-411" name="__codelineno-0-411" href="#__codelineno-0-411"></a>#session_replication_role = &#39;origin&#39;
+</span><span id="__span-0-412"><a id="__codelineno-0-412" name="__codelineno-0-412" href="#__codelineno-0-412"></a>#statement_timeout = 0           # 毫秒为单位，0 表示禁用
+</span><span id="__span-0-413"><a id="__codelineno-0-413" name="__codelineno-0-413" href="#__codelineno-0-413"></a>#lock_timeout = 0                # 毫秒为单位，0 表示禁用
+</span><span id="__span-0-414"><a id="__codelineno-0-414" name="__codelineno-0-414" href="#__codelineno-0-414"></a>#idle_in_transaction_session_timeout = 0 # 毫秒为单位，0 表示禁用
+</span><span id="__span-0-415"><a id="__codelineno-0-415" name="__codelineno-0-415" href="#__codelineno-0-415"></a>#idle_session_timeout = 0        # 毫秒为单位，0 表示禁用
+</span><span id="__span-0-416"><a id="__codelineno-0-416" name="__codelineno-0-416" href="#__codelineno-0-416"></a>#vacuum_freeze_table_age = 150000000   #参数决定了在 VACUUM 进行冻结操作前，一个表的事务年龄（从上次 VACUUM 到现在的事务数）应该达到多少
+</span><span id="__span-0-417"><a id="__codelineno-0-417" name="__codelineno-0-417" href="#__codelineno-0-417"></a>#vacuum_freeze_min_age = 50000000     #这个参数控制了行版本在被标记为冻结前需要有多“老”
+</span><span id="__span-0-418"><a id="__codelineno-0-418" name="__codelineno-0-418" href="#__codelineno-0-418"></a>#vacuum_failsafe_age = 1600000000     #参数设置了一个绝对的界限，当事务 ID 的年龄接近这个值时，系统将开始发出警告，提醒管理员采取行动
+</span><span id="__span-0-419"><a id="__codelineno-0-419" name="__codelineno-0-419" href="#__codelineno-0-419"></a>#vacuum_multixact_freeze_table_age = 150000000  #与 vacuum_freeze_table_age 类似，但针对多事务 ID。当一个多事务的年龄超过这个设置时，将触发冻结操作
+</span><span id="__span-0-420"><a id="__codelineno-0-420" name="__codelineno-0-420" href="#__codelineno-0-420"></a>#vacuum_multixact_freeze_min_age = 5000000   # 控制多事务 ID 在被冻结前需要有多“老”
+</span><span id="__span-0-421"><a id="__codelineno-0-421" name="__codelineno-0-421" href="#__codelineno-0-421"></a>#vacuum_multixact_failsafe_age = 1600000000  #与 vacuum_failsafe_age 相似，但用于多事务 ID，设置了一个绝对的界限，以避免多事务 ID 环绕问题
+</span><span id="__span-0-422"><a id="__codelineno-0-422" name="__codelineno-0-422" href="#__codelineno-0-422"></a>#bytea_output = &#39;hex&#39;            # hex, escape
+</span><span id="__span-0-423"><a id="__codelineno-0-423" name="__codelineno-0-423" href="#__codelineno-0-423"></a>#xmlbinary = &#39;base64&#39;
+</span><span id="__span-0-424"><a id="__codelineno-0-424" name="__codelineno-0-424" href="#__codelineno-0-424"></a>#xmloption = &#39;content&#39;
+</span><span id="__span-0-425"><a id="__codelineno-0-425" name="__codelineno-0-425" href="#__codelineno-0-425"></a>#gin_pending_list_limit = 4MB
+</span><span id="__span-0-426"><a id="__codelineno-0-426" name="__codelineno-0-426" href="#__codelineno-0-426"></a>#createrole_self_grant = &#39;&#39;      # 设置和/或继承
+</span><span id="__span-0-427"><a id="__codelineno-0-427" name="__codelineno-0-427" href="#__codelineno-0-427"></a>区域设置和格式化
+</span><span id="__span-0-428"><a id="__codelineno-0-428" name="__codelineno-0-428" href="#__codelineno-0-428"></a>datestyle = &#39;iso, mdy&#39;
+</span><span id="__span-0-429"><a id="__codelineno-0-429" name="__codelineno-0-429" href="#__codelineno-0-429"></a>#intervalstyle = &#39;postgres&#39;
+</span><span id="__span-0-430"><a id="__codelineno-0-430" name="__codelineno-0-430" href="#__codelineno-0-430"></a>timezone = &#39;Asia/Shanghai&#39;
+</span><span id="__span-0-431"><a id="__codelineno-0-431" name="__codelineno-0-431" href="#__codelineno-0-431"></a>#timezone_abbreviations = &#39;Default&#39; # 选择可用时区缩写集。
+</span><span id="__span-0-432"><a id="__codelineno-0-432" name="__codelineno-0-432" href="#__codelineno-0-432"></a>                                    # 目前有
+</span><span id="__span-0-433"><a id="__codelineno-0-433" name="__codelineno-0-433" href="#__codelineno-0-433"></a>                                    #   Default
+</span><span id="__span-0-434"><a id="__codelineno-0-434" name="__codelineno-0-434" href="#__codelineno-0-434"></a>                                    #   Australia (historical usage)
+</span><span id="__span-0-435"><a id="__codelineno-0-435" name="__codelineno-0-435" href="#__codelineno-0-435"></a>                                    #   India
+</span><span id="__span-0-436"><a id="__codelineno-0-436" name="__codelineno-0-436" href="#__codelineno-0-436"></a>                                    # 您可以在 share/timezonesets/ 中创建自己的文件。
+</span><span id="__span-0-437"><a id="__codelineno-0-437" name="__codelineno-0-437" href="#__codelineno-0-437"></a>#extra_float_digits = 1           # 最小 -15，最大 3；&gt;0 实际上选择精确输出模式
+</span><span id="__span-0-438"><a id="__codelineno-0-438" name="__codelineno-0-438" href="#__codelineno-0-438"></a>#client_encoding = sql_ascii      # 实际上，默认为数据库编码
+</span><span id="__span-0-439"><a id="__codelineno-0-439" name="__codelineno-0-439" href="#__codelineno-0-439"></a>
+</span><span id="__span-0-440"><a id="__codelineno-0-440" name="__codelineno-0-440" href="#__codelineno-0-440"></a># 这些设置由 initdb 初始化，但它们可以更改。
+</span><span id="__span-0-441"><a id="__codelineno-0-441" name="__codelineno-0-441" href="#__codelineno-0-441"></a>lc_messages = &#39;en_US.UTF-8&#39;      # 系统错误消息字符串的区域设置
+</span><span id="__span-0-442"><a id="__codelineno-0-442" name="__codelineno-0-442" href="#__codelineno-0-442"></a>lc_monetary = &#39;en_US.UTF-8&#39;      # 货币格式的区域设置
+</span><span id="__span-0-443"><a id="__codelineno-0-443" name="__codelineno-0-443" href="#__codelineno-0-443"></a>lc_numeric = &#39;en_US.UTF-8&#39;       # 数字格式的区域设置
+</span><span id="__span-0-444"><a id="__codelineno-0-444" name="__codelineno-0-444" href="#__codelineno-0-444"></a>lc_time = &#39;en_US.UTF-8&#39;          # 时间格式的区域设置
+</span><span id="__span-0-445"><a id="__codelineno-0-445" name="__codelineno-0-445" href="#__codelineno-0-445"></a>
+</span><span id="__span-0-446"><a id="__codelineno-0-446" name="__codelineno-0-446" href="#__codelineno-0-446"></a>#icu_validation_level = warning   # 报告 ICU 区域设置验证错误的级别
+</span><span id="__span-0-447"><a id="__codelineno-0-447" name="__codelineno-0-447" href="#__codelineno-0-447"></a>
+</span><span id="__span-0-448"><a id="__codelineno-0-448" name="__codelineno-0-448" href="#__codelineno-0-448"></a>错误处理
+</span><span id="__span-0-449"><a id="__codelineno-0-449" name="__codelineno-0-449" href="#__codelineno-0-449"></a>
+</span><span id="__span-0-450"><a id="__codelineno-0-450" name="__codelineno-0-450" href="#__codelineno-0-450"></a>#exit_on_error = off             # 在任何错误时终止会话？
+</span><span id="__span-0-451"><a id="__codelineno-0-451" name="__codelineno-0-451" href="#__codelineno-0-451"></a>#restart_after_crash = on        # 后端崩溃后重新初始化？
+</span><span id="__span-0-452"><a id="__codelineno-0-452" name="__codelineno-0-452" href="#__codelineno-0-452"></a>#data_sync_retry = off           # 数据 fsync 失败时重试或紧急情况？
+</span><span id="__span-0-453"><a id="__codelineno-0-453" name="__codelineno-0-453" href="#__codelineno-0-453"></a>                                  # (修改后需要重新启动)
+</span><span id="__span-0-454"><a id="__codelineno-0-454" name="__codelineno-0-454" href="#__codelineno-0-454"></a>#recovery_init_sync_method = fsync # fsync, syncfs (Linux 5.8+)
+</span><span id="__span-0-455"><a id="__codelineno-0-455" name="__codelineno-0-455" href="#__codelineno-0-455"></a>
+</span><span id="__span-0-456"><a id="__codelineno-0-456" name="__codelineno-0-456" href="#__codelineno-0-456"></a>配置文件包含设置
+</span><span id="__span-0-457"><a id="__codelineno-0-457" name="__codelineno-0-457" href="#__codelineno-0-457"></a>
+</span><span id="__span-0-458"><a id="__codelineno-0-458" name="__codelineno-0-458" href="#__codelineno-0-458"></a># 这些选项允许从除了默认 postgresql.conf 之外的文件中加载设置。
+</span><span id="__span-0-459"><a id="__codelineno-0-459" name="__codelineno-0-459" href="#__codelineno-0-459"></a># 注意，这些是指令，而不是变量赋值，因此可以有多个有效设置。
+</span><span id="__span-0-460"><a id="__codelineno-0-460" name="__codelineno-0-460" href="#__codelineno-0-460"></a>
+</span><span id="__span-0-461"><a id="__codelineno-0-461" name="__codelineno-0-461" href="#__codelineno-0-461"></a>#include_dir = &#39;...&#39;             # 包含以 &#39;.conf&#39; 结尾的文件的目录，例如 &#39;conf.d&#39;
+</span><span id="__span-0-462"><a id="__codelineno-0-462" name="__codelineno-0-462" href="#__codelineno-0-462"></a>#include_if_exists = &#39;...&#39;       # 仅在文件存在时包含文件
+</span><span id="__span-0-463"><a id="__codelineno-0-463" name="__codelineno-0-463" href="#__codelineno-0-463"></a>#include = &#39;...&#39;                # 包含文件
+</span><span id="__span-0-464"><a id="__codelineno-0-464" name="__codelineno-0-464" href="#__codelineno-0-464"></a>其他
+</span><span id="__span-0-465"><a id="__codelineno-0-465" name="__codelineno-0-465" href="#__codelineno-0-465"></a># 文本搜索的默认配置
+</span><span id="__span-0-466"><a id="__codelineno-0-466" name="__codelineno-0-466" href="#__codelineno-0-466"></a>default_text_search_config = &#39;pg_catalog.english&#39;
+</span><span id="__span-0-467"><a id="__codelineno-0-467" name="__codelineno-0-467" href="#__codelineno-0-467"></a>
+</span><span id="__span-0-468"><a id="__codelineno-0-468" name="__codelineno-0-468" href="#__codelineno-0-468"></a># - 共享库预加载 -
+</span><span id="__span-0-469"><a id="__codelineno-0-469" name="__codelineno-0-469" href="#__codelineno-0-469"></a>
+</span><span id="__span-0-470"><a id="__codelineno-0-470" name="__codelineno-0-470" href="#__codelineno-0-470"></a>#local_preload_libraries = &#39;&#39;
+</span><span id="__span-0-471"><a id="__codelineno-0-471" name="__codelineno-0-471" href="#__codelineno-0-471"></a>#session_preload_libraries = &#39;&#39;
+</span><span id="__span-0-472"><a id="__codelineno-0-472" name="__codelineno-0-472" href="#__codelineno-0-472"></a>#shared_preload_libraries = &#39;&#39;    # (修改后需要重新启动)
+</span><span id="__span-0-473"><a id="__codelineno-0-473" name="__codelineno-0-473" href="#__codelineno-0-473"></a>#jit_provider = &#39;llvmjit&#39;        # 要使用的 JIT 库
+</span><span id="__span-0-474"><a id="__codelineno-0-474" name="__codelineno-0-474" href="#__codelineno-0-474"></a>
+</span><span id="__span-0-475"><a id="__codelineno-0-475" name="__codelineno-0-475" href="#__codelineno-0-475"></a># - 其他默认值 -
+</span><span id="__span-0-476"><a id="__codelineno-0-476" name="__codelineno-0-476" href="#__codelineno-0-476"></a>
+</span><span id="__span-0-477"><a id="__codelineno-0-477" name="__codelineno-0-477" href="#__codelineno-0-477"></a>#dynamic_library_path = &#39;$libdir&#39;
+</span><span id="__span-0-478"><a id="__codelineno-0-478" name="__codelineno-0-478" href="#__codelineno-0-478"></a>#gin_fuzzy_search_limit = 0
+</span><span id="__span-0-479"><a id="__codelineno-0-479" name="__codelineno-0-479" href="#__codelineno-0-479"></a>
+</span><span id="__span-0-480"><a id="__codelineno-0-480" name="__codelineno-0-480" href="#__codelineno-0-480"></a>
+</span><span id="__span-0-481"><a id="__codelineno-0-481" name="__codelineno-0-481" href="#__codelineno-0-481"></a>#------------------------------------------------------------------------------
+</span><span id="__span-0-482"><a id="__codelineno-0-482" name="__codelineno-0-482" href="#__codelineno-0-482"></a># 锁管理
+</span><span id="__span-0-483"><a id="__codelineno-0-483" name="__codelineno-0-483" href="#__codelineno-0-483"></a>#------------------------------------------------------------------------------
+</span><span id="__span-0-484"><a id="__codelineno-0-484" name="__codelineno-0-484" href="#__codelineno-0-484"></a>
+</span><span id="__span-0-485"><a id="__codelineno-0-485" name="__codelineno-0-485" href="#__codelineno-0-485"></a>#deadlock_timeout = 1s
+</span><span id="__span-0-486"><a id="__codelineno-0-486" name="__codelineno-0-486" href="#__codelineno-0-486"></a>#max_locks_per_transaction = 64   # 最小为 10
+</span><span id="__span-0-487"><a id="__codelineno-0-487" name="__codelineno-0-487" href="#__codelineno-0-487"></a>                                  # (修改后需要重新启动)
+</span><span id="__span-0-488"><a id="__codelineno-0-488" name="__codelineno-0-488" href="#__codelineno-0-488"></a>#max_pred_locks_per_transaction = 64 # 最小为 10
+</span><span id="__span-0-489"><a id="__codelineno-0-489" name="__codelineno-0-489" href="#__codelineno-0-489"></a>                                      # (修改后需要重新启动)
+</span><span id="__span-0-490"><a id="__codelineno-0-490" name="__codelineno-0-490" href="#__codelineno-0-490"></a>#max_pred_locks_per_relation = -2 # 负值意味着
+</span><span id="__span-0-491"><a id="__codelineno-0-491" name="__codelineno-0-491" href="#__codelineno-0-491"></a>                                  # (max_pred_locks_per_transaction
+</span><span id="__span-0-492"><a id="__codelineno-0-492" name="__codelineno-0-492" href="#__codelineno-0-492"></a>                                  #  / -max_pred_locks_per_relation) - 1
+</span><span id="__span-0-493"><a id="__codelineno-0-493" name="__codelineno-0-493" href="#__codelineno-0-493"></a>#max_pred_locks_per_page = 2      # 最小为 0
+</span><span id="__span-0-494"><a id="__codelineno-0-494" name="__codelineno-0-494" href="#__codelineno-0-494"></a>
+</span><span id="__span-0-495"><a id="__codelineno-0-495" name="__codelineno-0-495" href="#__codelineno-0-495"></a>
+</span><span id="__span-0-496"><a id="__codelineno-0-496" name="__codelineno-0-496" href="#__codelineno-0-496"></a>#------------------------------------------------------------------------------
+</span><span id="__span-0-497"><a id="__codelineno-0-497" name="__codelineno-0-497" href="#__codelineno-0-497"></a># 版本和平台兼容性
+</span><span id="__span-0-498"><a id="__codelineno-0-498" name="__codelineno-0-498" href="#__codelineno-0-498"></a>#------------------------------------------------------------------------------
+</span><span id="__span-0-499"><a id="__codelineno-0-499" name="__codelineno-0-499" href="#__codelineno-0-499"></a>
+</span><span id="__span-0-500"><a id="__codelineno-0-500" name="__codelineno-0-500" href="#__codelineno-0-500"></a># - 以前的 PostgreSQL 版本 -
+</span><span id="__span-0-501"><a id="__codelineno-0-501" name="__codelineno-0-501" href="#__codelineno-0-501"></a>#array_nulls = on
+</span><span id="__span-0-502"><a id="__codelineno-0-502" name="__codelineno-0-502" href="#__codelineno-0-502"></a>#backslash_quote = safe_encoding # on, off, or safe_encoding
+</span><span id="__span-0-503"><a id="__codelineno-0-503" name="__codelineno-0-503" href="#__codelineno-0-503"></a>#escape_string_warning = on
+</span><span id="__span-0-504"><a id="__codelineno-0-504" name="__codelineno-0-504" href="#__codelineno-0-504"></a>#lo_compat_privileges = off
+</span><span id="__span-0-505"><a id="__codelineno-0-505" name="__codelineno-0-505" href="#__codelineno-0-505"></a>#quote_all_identifiers = off
+</span><span id="__span-0-506"><a id="__codelineno-0-506" name="__codelineno-0-506" href="#__codelineno-0-506"></a>#standard_conforming_strings = on
+</span><span id="__span-0-507"><a id="__codelineno-0-507" name="__codelineno-0-507" href="#__codelineno-0-507"></a>#synchronize_seqscans = on
+</span><span id="__span-0-508"><a id="__codelineno-0-508" name="__codelineno-0-508" href="#__codelineno-0-508"></a>
+</span><span id="__span-0-509"><a id="__codelineno-0-509" name="__codelineno-0-509" href="#__codelineno-0-509"></a># - 其他平台和客户端 -
+</span><span id="__span-0-510"><a id="__codelineno-0-510" name="__codelineno-0-510" href="#__codelineno-0-510"></a>
+</span><span id="__span-0-511"><a id="__codelineno-0-511" name="__codelineno-0-511" href="#__codelineno-0-511"></a>#transform_null_equals = off
+</span></code></pre></div>
+<h1 id="pg_hbaconf">pg_hba.conf详解<a class="headerlink" href="#pg_hbaconf" title="Permanent link">&para;</a></h1>
+<p>解释各字段</p>
+<p>1、TYPE: 指定连接的类型。可能的值包括：</p>
+<ul>
+<li>local: 适用于 Unix 域套接字连接（即本地系统上的连接）。</li>
+<li>host: 适用于非加密的 TCP/IP 连接。</li>
+<li>hostssl: 适用于 SSL/TLS 加密的 TCP/IP 连接。</li>
+<li>hostnossl: 适用于非 SSL/TLS 的 TCP/IP 连接。</li>
+<li>hostgssenc: 适用于 GSSAPI 加密的 TCP/IP 连接。</li>
+<li>hostnogssenc: 适用于非 GSSAPI 加密的 TCP/IP 连接。</li>
+</ul>
+<p>2、DATABASE: 指定规则适用的数据库。可以是具体数据库的名字，如 mydb；all 表示所有数据库；replication 表示专门用于流复制的连接。</p>
+<p>3、USER: 指定规则适用的用户。可以是具体用户的名字，如 johndoe；all 表示所有用户。</p>
+<p>4、ADDRESS: 指定连接的来源。可以是具体的 IP 地址，如 192.168.1.100；all 或 0.0.0.0 表示任何 IP 地址；::1 表示 IPv6 的本地环回地址；localhost 表示通过主机名解析的本地连接；% 表示通配符，匹配任何地址；.example.com 表示以 .example.com 结尾的任何主机名。</p>
+<p>5、METHOD: 指定用于身份验证的方法。可能的值包括：</p>
+<ul>
+<li>trust: 不需要任何身份验证，自动接受连接。</li>
+<li>reject: 自动拒绝连接。</li>
+<li>md5: 使用 MD5 加密的密码验证。</li>
+<li>scram-sha-256: 使用 SCRAM-SHA-256 加密的密码验证。</li>
+<li>ident: 使用远程主机上的 identd 服务进行身份验证。</li>
+<li>peer: 使用操作系统身份验证（如 SELinux 或 AppArmor）。</li>
+<li>pam: 使用 PAM（Pluggable Authentication Modules）进行身份验证。</li>
+<li>gss: 使用 GSSAPI 进行 Kerberos 身份验证。</li>
+<li>radius: 使用 RADIUS 服务进行身份验证。</li>
+</ul>
+<p>6、OPTIONS: 这些是可选的，用于特定的身份验证方法或扩展的功能。</p>
+<p>示例</p>
+<p>TYPE DATABASE USER ADDRESS METHOD [OPTIONS]</p>
+<ol>
+<li>
+<p>本地 Unix 域套接字连接：</p>
+</li>
+<li>
+<p>local all all trust </p>
+</li>
+</ol>
+<p>允许任何本地系统用户无需密码通过 Unix 域套接字连接到任何数据库。</p>
+<ol>
+<li>
+<p>本地环回 TCP/IP 连接：</p>
+</li>
+<li>
+<p>host all all 127.0.0.1/32 trust </p>
+</li>
+</ol>
+<p>允许任何用户从本地环回地址 (127.0.0.1) 连接到任何数据库，无需密码。</p>
+<ol>
+<li>
+<p>IPv4 掩码指定的本地环回连接：</p>
+</li>
+<li>
+<p>host all all 127.0.0.1 255.255.255.255 trust </p>
+</li>
+</ol>
+<p>这与上一条相同，但明确指定了 IP 掩码。</p>
+<ol>
+<li>
+<p>IPv6 本地环回连接：</p>
+</li>
+<li>
+<p>host all all ::1/128 trust </p>
+</li>
+</ol>
+<p>允许任何用户从 IPv6 本地环回地址 (::1) 连接到任何数据库，无需密码。</p>
+<ol>
+<li>
+<p>主机名指定的本地连接：</p>
+</li>
+<li>
+<p>host all all localhost trust </p>
+</li>
+</ol>
+<p>这条规则允许任何用户从主机名 localhost 连接到任何数据库，无需密码。</p>
+<ol>
+<li>
+<p>正则表达式匹配的数据库：</p>
+</li>
+<li>
+<p>local db1,"/^db\d{2,4}$",db2 all localhost trust </p>
+</li>
+</ol>
+<p>允许任何用户无需密码从 localhost 连接到名为 db1 或以 "db" 开头并以 2 到 4 位数字结尾的任何数据库，例如 db1234 或 db12。</p>
+<ol>
+<li>
+<p>特定 IP 地址范围内的信任连接：</p>
+</li>
+<li>
+<p>host postgres all 192.168.93.0/24 ident </p>
+</li>
+</ol>
+<p>允许 192.168.93.0/24 子网中的任何用户连接到 postgres 数据库，身份验证通过 ident 方法完成。</p>
+<ol>
+<li>
+<p>单个 IP 地址的密码验证：</p>
+</li>
+<li>
+<p>host postgres all 192.168.12.10/32 scram-sha-256 </p>
+</li>
+</ol>
+<p>允许 192.168.12.10 的任何用户连接到 postgres 数据库，要求使用 SCRAM-SHA-256 密码验证。</p>
+<ol>
+<li>
+<p>域名范围的连接：</p>
+</li>
+<li>
+<p>host all mike .example.com md5</p>
+</li>
+<li>host all all .example.com scram-sha-256 </li>
+</ol>
+<p>允许来自 example.com 域的所有用户连接到任何数据库，Mike 使用 MD5 身份验证，其他所有用户使用 SCRAM-SHA-256。</p>
+<p>10.拒绝和例外规则：</p>
+<ul>
+<li>host all all 192.168.54.1/32 reject       拒绝来自 192.168.54.1 的所有连接。</li>
+<li>hostgssenc all all 0.0.0.0/0 gss         允许任何地方的 GSSAPI 加密连接。</li>
+<li>host all all 192.168.12.10/32 gss        允许 192.168.12.10 的 GSSAPI 非加密连接。</li>
+</ul>
+<p>11.子网范围的身份验证：</p>
+<ul>
+<li>host all all 192.168.0.0/16 ident map=omicron </li>
+</ul>
+<p>允许 192.168.0.0/16 子网中的任何用户连接到任何数据库，身份验证通过 ident 方法和 pg_ident.conf 中的 omicron 映射完成。</p>
+<p>12.本地连接的密码策略：</p>
+<ul>
+<li>local sameuser all md5</li>
+<li>local all /^.*helpdesk$/ md5</li>
+<li>local all @admins md5</li>
+<li>local all +support md5 </li>
+</ul>
+<p>允许本地用户连接到与他们用户名同名的数据库，并对 helpdesk 用户、管理员和 support 角色成员连接到任何数据库时要求密码。</p>
+<h1 id="pg_identconf">pg_ident.conf 详解<a class="headerlink" href="#pg_identconf" title="Permanent link">&para;</a></h1>
+<p>文件结构与语法</p>
+<p>映射记录（Mapping Records）</p>
+<ul>
+<li>每个记录由三部分组成：MAPNAME, SYSTEM-USERNAME, PG-USERNAME。</li>
+<li>MAPNAME 是在 pg_hba.conf 文件中定义的映射名称，用于识别特定的映射规则。</li>
+<li>SYSTEM-USERNAME 是从客户端检测到的操作系统用户名。</li>
+<li>PG-USERNAME 是客户端请求的 PostgreSQL 用户名，也是映射后的用户名。</li>
+</ul>
+<p>正则表达式支持</p>
+<ul>
+<li>如果 SYSTEM-USERNAME 开头是斜杠 /，则会被视为正则表达式。</li>
+<li>正则表达式中可以包含捕获组（括号内的子表达式），匹配的子串可以用 \1（或其他反向引用）在 PG-USERNAME 中替换。</li>
+</ul>
+<p>PG-USERNAME 的特殊值</p>
+<ul>
+<li>all：表示任何数据库用户。</li>
+<li>用户名前加 + 表示一个组名，允许组内的所有用户使用此映射。</li>
+<li>以斜杠 / 开始表示 PG-USERNAME 也是一个正则表达式，此时 \1 的值不会影响匹配。</li>
+</ul>
+<p>包含其他文件或目录</p>
+<p>包含记录（Include Records）</p>
+<ul>
+<li>include: 直接包含指定的文件。</li>
+<li>include_if_exists: 如果文件存在，则包含；否则忽略。</li>
+<li>include_dir: 包含指定目录下的所有 .conf 后缀的文件，按文件名排序。</li>
+</ul>
+<p>文件处理</p>
+<ul>
+<li>pg_ident.conf 文件在 PostgreSQL 服务器启动时读取，或在 postmaster 进程收到 SIGHUP 信号时重新读取。</li>
+<li>编辑文件后，需要通过 pg_ctl reload 命令或发送 SIGHUP 信号给 postmaster 进程，以便让更改生效。</li>
+</ul>
+<p>实际配置位置</p>
+<ul>
+<li>在文件的最后，你可以添加实际的映射规则，格式为：MAPNAME SYSTEM-USERNAME PG-USERNAME。</li>
+</ul>
+<p>示例</p>
+<p>假设有以下 pg_ident.conf 配置：</p>
+<p>> sysadmin root postgres </p>
+<p>> developers /dev\1/ developer+\1+</p>
+<p>这意味着：</p>
+<ul>
+<li>名称为 sysadmin 的映射，将系统用户 root 映射为数据库用户 postgres。</li>
+<li>名称为 developers 的映射，使用正则表达式 /dev\1/ 来匹配以 dev 开头的系统用户，然后将其映射为数据库用户，其中系统用户名中匹配的部分（即 \1）将被追加到 developer 之后形成数据库用户名。</li>
+</ul>
+<p>这种配置使得 PostgreSQL 可以更加灵活地控制不同操作系统的用户如何访问数据库资源，同时简化了用户管理和权限分配。</p>
+<h1 id="_1">线上调整参数<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<p>下面是一些常见的、通常需要在生产环境中调整的参数，以及它们的作用：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>listen_addresses:
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>设置 PostgreSQL 监听的网络地址。在生产环境中，你可能需要监听所有接口或特定的 IP 地址。
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>port:
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>PostgreSQL 默认监听的端口是 5432。在生产环境中，如果需要，可以更改此端口号。
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>max_connections:
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>设定数据库服务器可以同时接受的最大连接数。根据服务器的内存和 CPU 资源，以及预期的并发用户数进行调整。
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>shared_buffers:
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>设置用于缓冲数据库块的共享内存大小。在生产环境中，通常将其设置为服务器总内存的 25% 至 40%。
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>effective_cache_size:
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>设置 PostgreSQL 应假设的缓存大小。通常设置为服务器总内存的 75%。
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>maintenance_work_mem:
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>设定在执行如 VACUUM FULL, CREATE INDEX, REINDEX 等维护操作时可以使用的内存。根据可用内存调整。
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>checkpoint_completion_target:
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>设定在检查点期间，PostgreSQL 努力完成的 I/O 操作百分比。通常设置为 0.9（90%）。
+</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>wal_level:
+</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>设置写入 WAL（Write-Ahead Log）的日志级别。在生产环境中，通常设置为 replica 或 logical，以支持流复制或逻辑解码。
+</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>wal_log_hints:
+</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>如果设置为 on，WAL 将包含额外的信息，有助于分析和调试。
+</span><span id="__span-1-19"><a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a>log_destination:
+</span><span id="__span-1-20"><a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a>设定日志的输出目的地。在生产环境中，通常设置为 stderr 和 syslog。
+</span><span id="__span-1-21"><a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a>log_min_duration_statement:
+</span><span id="__span-1-22"><a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a>设置记录慢查询的最小执行时间。根据性能监控需求调整。
+</span><span id="__span-1-23"><a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a>log_min_error_statement:
+</span><span id="__span-1-24"><a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a>设置记录错误的最低级别。通常设置为 error 或更高。
+</span><span id="__span-1-25"><a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a>log_line_prefix:
+</span><span id="__span-1-26"><a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a>设置日志记录行的前缀，通常包含数据库名和用户信息。
+</span><span id="__span-1-27"><a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a>log_checkpoints, log_connections, log_disconnections, log_lock_waits, log_statement, log_temp_files:
+</span><span id="__span-1-28"><a id="__codelineno-1-28" name="__codelineno-1-28" href="#__codelineno-1-28"></a>控制各种事件的记录。根据监控和审计需求进行调整。
+</span><span id="__span-1-29"><a id="__codelineno-1-29" name="__codelineno-1-29" href="#__codelineno-1-29"></a>work_mem:
+</span><span id="__span-1-30"><a id="__codelineno-1-30" name="__codelineno-1-30" href="#__codelineno-1-30"></a>设置每个后台工作进程可以使用的内存。根据查询复杂性和服务器资源调整。
+</span><span id="__span-1-31"><a id="__codelineno-1-31" name="__codelineno-1-31" href="#__codelineno-1-31"></a>max_wal_senders:
+</span><span id="__span-1-32"><a id="__codelineno-1-32" name="__codelineno-1-32" href="#__codelineno-1-32"></a>设定可以同时发送 WAL 数据的最大流复制连接数。
+</span><span id="__span-1-33"><a id="__codelineno-1-33" name="__codelineno-1-33" href="#__codelineno-1-33"></a>max_replication_slots:
+</span><span id="__span-1-34"><a id="__codelineno-1-34" name="__codelineno-1-34" href="#__codelineno-1-34"></a>设定可以同时保持的最大逻辑解码复制槽数。
+</span><span id="__span-1-35"><a id="__codelineno-1-35" name="__codelineno-1-35" href="#__codelineno-1-35"></a>max_worker_processes:
+</span><span id="__span-1-36"><a id="__codelineno-1-36" name="__codelineno-1-36" href="#__codelineno-1-36"></a>设定可以同时运行的后台工作进程的最大数目。
+</span><span id="__span-1-37"><a id="__codelineno-1-37" name="__codelineno-1-37" href="#__codelineno-1-37"></a>max_parallel_workers_per_gather 和 max_parallel_workers:
+</span><span id="__span-1-38"><a id="__codelineno-1-38" name="__codelineno-1-38" href="#__codelineno-1-38"></a>控制并行查询可以使用的最大工作进程数。
+</span><span id="__span-1-39"><a id="__codelineno-1-39" name="__codelineno-1-39" href="#__codelineno-1-39"></a>ssl:
+</span><span id="__span-1-40"><a id="__codelineno-1-40" name="__codelineno-1-40" href="#__codelineno-1-40"></a>如果需要加密客户端连接，设置 SSL 相关参数。
+</span><span id="__span-1-41"><a id="__codelineno-1-41" name="__codelineno-1-41" href="#__codelineno-1-41"></a>autovacuum 相关参数:
+</span><span id="__span-1-42"><a id="__codelineno-1-42" name="__codelineno-1-42" href="#__codelineno-1-42"></a>调整 autovacuum_max_workers, autovacuum_naptime, autovacuum_vacuum_threshold, autovacuum_analyze_threshold 等参数，以适应数据库的工作负载。
+</span><span id="__span-1-43"><a id="__codelineno-1-43" name="__codelineno-1-43" href="#__codelineno-1-43"></a>archive_mode 和 archive_command:
+</span><span id="__span-1-44"><a id="__codelineno-1-44" name="__codelineno-1-44" href="#__codelineno-1-44"></a>如果使用归档模式，需要设置这些参数。
+</span></code></pre></div>
+<p>这些只是在生产环境中可能需要调整的一部分参数。具体调整应基于你的硬件规格、工作负载特性、安全需求和业务要求。</p>
+<h1 id="_2">总结<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h1>
+<p>这三个配置文件共同控制着 PostgreSQL 服务器的核心功能和安全性。正确配置这些文件对于确保数据库的稳定运行和数据安全至关重要。定期审查和更新这些配置文件，根据服务器的工作负载和安全需求进行调整，是数据库管理的重要组成部分。同时，保持对最新安全实践的关注，以防止潜在的安全漏洞</p>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+            Back to top
+          </button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright © 2022 - 2023 - lyvivian0077
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tracking", "navigation.top", "navigation.indexes", "navigation.path", "content.code.copy", "toc.follow"], "search": "../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.fac441b0.min.js"></script>
+      
+    
+  </body>
+</html>
