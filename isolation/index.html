@@ -2180,20 +2180,24 @@
 <h1 id="_1">事务隔离级别<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
 <h2 id="transaction_isolation"><a href="https://dev.mysql.com/doc/refman/8.4/en/server-system-variables.html#sysvar_transaction_isolation">transaction_isolation</a><a class="headerlink" href="#transaction_isolation" title="Permanent link">&para;</a></h2>
 <ul>
-<li>脏读</li>
 <li>
-<p>指读取到其他事务正在处理的未提交数据</p>
+<p>脏读</p>
+<ul>
+<li>指读取到其他事务正在处理的未提交数据</li>
+</ul>
 </li>
 <li>
 <p>不可重复读</p>
-</li>
-<li>
-<p>指并发更新时， 另一个事务前后查询相同数据时的结果不符合预期</p>
+<ul>
+<li>指并发更新时， 另一个事务前后查询相同数据时的结果不符合预期</li>
+</ul>
 </li>
 <li>
 <p>幻读</p>
-</li>
+<ul>
 <li>指并发新增，删除 这种会产生数量变化的操作时，另一个事务前后查询相同数据时的不符合预期</li>
+</ul>
+</li>
 </ul>
 <table>
 <thead>
