@@ -9,17 +9,17 @@
       
       
       
-        <link rel="prev" href="../zabbix6/">
+        <link rel="prev" href="../mysql/">
       
       
-        <link rel="next" href="../swap-schema/">
+        <link rel="next" href="../show-engine-innodb-status/">
       
       <link rel="icon" href="../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.9">
     
     
       
-        <title>Swapを使ってるプロセスを探す - 总有刁民想要害朕</title>
+        <title>事务隔离级别 - 总有刁民想要害朕</title>
       
     
     
@@ -61,7 +61,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#swap" class="md-skip">
+        <a href="#_1" class="md-skip">
           Skip to content
         </a>
       
@@ -96,7 +96,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Swapを使ってるプロセスを探す
+              事务隔离级别
             
           </span>
         </div>
@@ -447,14 +447,16 @@
 
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" checked>
       
       
         
@@ -499,7 +501,7 @@
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="true">
         <label class="md-nav__title" for="__nav_8">
           <span class="md-nav__icon md-icon"></span>
           MySQL
@@ -552,11 +554,52 @@
               
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../isolation/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          事务隔离级别
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         事务隔离级别
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#transaction_isolation" class="md-nav__link">
+    transaction_isolation
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1908,16 +1951,14 @@
 
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_25" checked>
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_25" >
       
       
         
@@ -1934,7 +1975,7 @@
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_25_label" aria-expanded="true">
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_25_label" aria-expanded="false">
         <label class="md-nav__title" for="__nav_25">
           <span class="md-nav__icon md-icon"></span>
           SWAP
@@ -1945,106 +1986,11 @@
               
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          Swapを使ってるプロセスを探す
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../swap-find/" class="md-nav__link">
         Swapを使ってるプロセスを探す
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    メモリのキャッシュをクリア
-  </a>
-  
-    <nav class="md-nav" aria-label="メモリのキャッシュをクリア">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#swap_1" class="md-nav__link">
-    Swapを使っているプロセスと使用量を使ってる順に表示
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#swapps" class="md-nav__link">
-    Swapを使っているプロセスをpsで調べるワンライナー
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#top" class="md-nav__link">
-    topコマンドの使い方
-  </a>
-  
-    <nav class="md-nav" aria-label="topコマンドの使い方">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#1-ps" class="md-nav__link">
-    方法1. ps
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2-pmap-x-pid" class="md-nav__link">
-    方法2. pmap -x [PID]
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3-cat-procpidsmaps" class="md-nav__link">
-    方法3. cat /proc/[PID]/smaps
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -2210,63 +2156,9 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    メモリのキャッシュをクリア
+  <a href="#transaction_isolation" class="md-nav__link">
+    transaction_isolation
   </a>
-  
-    <nav class="md-nav" aria-label="メモリのキャッシュをクリア">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#swap_1" class="md-nav__link">
-    Swapを使っているプロセスと使用量を使ってる順に表示
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#swapps" class="md-nav__link">
-    Swapを使っているプロセスをpsで調べるワンライナー
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#top" class="md-nav__link">
-    topコマンドの使い方
-  </a>
-  
-    <nav class="md-nav" aria-label="topコマンドの使い方">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#1-ps" class="md-nav__link">
-    方法1. ps
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2-pmap-x-pid" class="md-nav__link">
-    方法2. pmap -x [PID]
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3-cat-procpidsmaps" class="md-nav__link">
-    方法3. cat /proc/[PID]/smaps
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -2285,228 +2177,65 @@
                   
 
 
-<h1 id="swap">Swapを使ってるプロセスを探す<a class="headerlink" href="#swap" title="Permanent link">&para;</a></h1>
+<h1 id="_1">事务隔离级别<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<h2 id="transaction_isolation"><a href="https://dev.mysql.com/doc/refman/8.4/en/server-system-variables.html#sysvar_transaction_isolation">transaction_isolation</a><a class="headerlink" href="#transaction_isolation" title="Permanent link">&para;</a></h2>
 <ul>
-<li><a href="https://www.cnblogs.com/rdchenxi/p/13612524.html">Linux 下swap工作原理</a></li>
-<li>https://qiita.com/rmanzoku/items/be8c4f403ec6b37a7beb</li>
-<li>https://qiita.com/white_aspara25/items/cfc835006ae356189df3</li>
-<li>https://stackoverflow.com/questions/131303/how-to-measure-actual-memory-usage-of-an-application-or-process</li>
-</ul>
-<p>メモリを食いつぶしてたプロセスがいたのでそれを調べるときに利用したコマンド。</p>
-<p>これでズラっとでます。</p>
-<details class="info" open="open">
-<summary>Info</summary>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>$ ps alx  | awk &#39;{printf (&quot;%d\t%s\n&quot;, $8,$13)}&#39;
-</span></code></pre></div>
-</details>
-<p>しかし、このコマンドの結果が見づらい。なので<strong>使用量の多い順にソートしてトップ10を出してみる</strong>と下記のようなコマンドになります。</p>
-<details class="info" open="open">
-<summary>Info</summary>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>$ ps alx  | awk &#39;{printf (&quot;%d\t%s\n&quot;, $8,$13)}&#39; | sort -nr | head -10
-</span></code></pre></div>
-</details>
-<h2 id="_1">メモリのキャッシュをクリア<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
-<ul>
-<li>https://futuremix.org/2009/09/clear-linux-memory-cach</li>
-<li>https://www.softel.co.jp/blogs/tech/archives/3244</li>
-</ul>
-<details class="info" open="open">
-<summary>Info</summary>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a># echo 1 &gt; /proc/sys/vm/drop_caches
-</span></code></pre></div>
-</details>
-<p>proc/sys/vm/drop_caches に1～3の値を書き込む。</p>
-<p>値によって解放されるメモリが異なる。</p>
-<table>
-<thead>
-<tr>
-<th>値</th>
-<th>対象</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>1</td>
-<td>ページキャッシュを解放する</td>
-</tr>
-<tr>
-<td>2</td>
-<td>dentry、inode を解放する</td>
-</tr>
-<tr>
-<td>3</td>
-<td>ページキャッシュ、dentry、inode を解放する</td>
-</tr>
-</tbody>
-</table>
-<ul>
-<li>この操作は非破壊的な操作で、ダーティな (dirty) オブジェクトは 解放されないので、この操作を行う際は最初に sync(8) を実行しておくべきである。</li>
-<li>（dentryとは、ファイル名、ディレクトリ階層構造、キャッシュ管理などをおこなっているデータ。）</li>
-<li>cachedやbuffersはLinuxが効率的に動作するために空いている領域を使っているだけで、通常は空きメモリと考えてよい。</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th>名称</th>
-<th>意味</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>VSZ (virtual set size)</td>
-<td>仮想メモリ</td>
-</tr>
-<tr>
-<td>RSS (Resident set size)</td>
-<td>物理メモリの消費量</td>
-</tr>
-<tr>
-<td>PSS (proportional set size)</td>
-<td>プロセスが実質的に所有しているメモリ</td>
-</tr>
-<tr>
-<td>USS (unique set size)</td>
-<td>ひとつのプロセスが占有しているメモリ</td>
-</tr>
-</tbody>
-</table>
-<h3 id="swap_1">Swapを使っているプロセスと使用量を使ってる順に表示<a class="headerlink" href="#swap_1" title="Permanent link">&para;</a></h3>
-<details class="info" open="open">
-<summary>Info</summary>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>$ grep VmSwap /proc/*/status | sort -k 2 -nr
-</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>$ for file in /proc/*/status ; do awk &#39;/VmSwap|Name|^Pid/{printf $2 &quot; &quot; $3}END{ print &quot;&quot;}&#39; $file; done | sort -k 3 -n -r | head
-</span></code></pre></div>
-</details>
-<h3 id="swapps">Swapを使っているプロセスをpsで調べるワンライナー<a class="headerlink" href="#swapps" title="Permanent link">&para;</a></h3>
-<details class="info" open="open">
-<summary>Info</summary>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>$ grep VmSwap /proc/*/status | sort -k 2 -nr | cut -d&quot;/&quot; -f3 | grep -e &#39;^[0-9]*$&#39; | xargs -I{} ps u -p{} --no-headers
-</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>$ grep VmSwap /proc/*/status | sort -k 2 -nr |head -2| cut -d&quot;/&quot; -f3 | grep -e &#39;^[0-9]*$&#39; | xargs -I{} ps u -p{} --no-headers
-</span></code></pre></div>
-</details>
-<p>現実的には上の幾つかのプロセスを再起動なりしてあげるとSwapが開放されるでしょう。</p>
-<h2 id="top">topコマンドの使い方<a class="headerlink" href="#top" title="Permanent link">&para;</a></h2>
-<ul>
-<li>https://qiita.com/k0kubun/items/7368c323d90f24a00c2f</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th>PR</th>
-<th>NI</th>
-<th>VIRT</th>
-<th>RES</th>
-<th>SHR</th>
-<th>S</th>
-<th>%CPU</th>
-<th>%MEM</th>
-<th>TIME+</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>優先度</td>
-<td>相対優先度</td>
-<td>仮想メモリ</td>
-<td>物理メモリ</td>
-<td>共有メモリ</td>
-<td>状態</td>
-<td>CPU使用率</td>
-<td>メモリ使用率</td>
-<td>実行時間</td>
-</tr>
-</tbody>
-</table>
-<ul>
-<li>NI: Nice value。相対優先度。0が基準で、負だと優先度が高く、正だと優先度が低い。</li>
-<li>VIRT: Virtual Image。確保された仮想メモリ全て。スワップしたメモリ使用量を含む。</li>
-<li>RES: Resident size。 スワップしていない、使用した物理メモリのサイズ。</li>
-<li>SHR: Shared Mem size。 他のプロセスと共有される可能性のあるメモリのサイズ。</li>
-<li>S: Process Status。 以下のいずれの状態であるかを示している。<ul>
-<li>D: 割り込み不能</li>
-<li>R: 実行中</li>
-<li>S: スリープ状態</li>
-<li>T: 停止中</li>
-<li>Z: ゾンビプロセス</li>
-</ul>
+<li>脏读</li>
+<li>
+<p>指读取到其他事务正在处理的未提交数据</p>
 </li>
+<li>
+<p>不可重复读</p>
+</li>
+<li>
+<p>指并发更新时， 另一个事务前后查询相同数据时的结果不符合预期</p>
+</li>
+<li>
+<p>幻读</p>
+</li>
+<li>指并发新增，删除 这种会产生数量变化的操作时，另一个事务前后查询相同数据时的不符合预期</li>
 </ul>
-<h3 id="1-ps">方法1. ps<a class="headerlink" href="#1-ps" title="Permanent link">&para;</a></h3>
-<p>基本中の基本。プロセスを調べるコマンド内にメモリ消費量が表示されてます。</p>
-<details class="info" open="open">
-<summary>Info</summary>
-<div class="language-shell highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1"># ps aux | grep unicor[n]</span>
-</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>USER<span class="w">  </span>PID<span class="w"> </span>%CPU<span class="w"> </span>%MEM<span class="w"> </span>VSZ<span class="w">    </span>RSS<span class="w">    </span>TTY<span class="w"> </span>STAT<span class="w"> </span>START<span class="w">  </span>TIME<span class="w">  </span>COMMAND
-</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>user<span class="w">  </span><span class="m">1111</span><span class="w"> </span><span class="m">0</span>.0<span class="w"> </span><span class="m">10</span>.4<span class="w"> </span><span class="m">479180</span><span class="w"> </span><span class="m">177440</span><span class="w">   </span>?<span class="w">  </span>Sl<span class="w">  </span>Aug16<span class="w">  </span><span class="m">0</span>:38<span class="w">  </span>unicorn<span class="w"> </span>worker<span class="o">[</span><span class="m">0</span><span class="o">]</span><span class="w"> </span>-D<span class="w"> </span>-E<span class="w"> </span>production<span class="w"> </span>-c<span class="w"> </span>/RAILS_ROOT/config/unicorn.rb
-</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>user<span class="w">  </span><span class="m">2222</span><span class="w"> </span><span class="m">0</span>.0<span class="w"> </span><span class="m">10</span>.5<span class="w"> </span><span class="m">547060</span><span class="w"> </span><span class="m">178604</span><span class="w">   </span>?<span class="w">  </span>Sl<span class="w">  </span>Aug16<span class="w">  </span><span class="m">0</span>:39<span class="w">  </span>unicorn<span class="w"> </span>worker<span class="o">[</span><span class="m">1</span><span class="o">]</span><span class="w"> </span>-D<span class="w"> </span>-E<span class="w"> </span>production<span class="w"> </span>-c<span class="w"> </span>/RAILS_ROOT/config/unicorn.rb
-</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>user<span class="w">  </span><span class="m">3333</span><span class="w"> </span><span class="m">0</span>.0<span class="w"> </span><span class="m">10</span>.5<span class="w"> </span><span class="m">479180</span><span class="w"> </span><span class="m">178764</span><span class="w">   </span>?<span class="w">  </span>Sl<span class="w">  </span>Aug16<span class="w">  </span><span class="m">0</span>:26<span class="w">  </span>unicorn<span class="w"> </span>worker<span class="o">[</span><span class="m">2</span><span class="o">]</span><span class="w"> </span>-D<span class="w"> </span>-E<span class="w"> </span>production<span class="w"> </span>-c<span class="w"> </span>/RAILS_ROOT/config/unicorn.rbe
-</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>user<span class="w">  </span><span class="m">4444</span><span class="w"> </span><span class="m">0</span>.0<span class="w"> </span><span class="m">10</span>.3<span class="w"> </span><span class="m">479324</span><span class="w"> </span><span class="m">175128</span><span class="w">   </span>?<span class="w">  </span>Sl<span class="w">  </span>Aug16<span class="w">  </span><span class="m">0</span>:19<span class="w">  </span>unicorn<span class="w"> </span>worker<span class="o">[</span><span class="m">3</span><span class="o">]</span><span class="w"> </span>-D<span class="w"> </span>-E<span class="w"> </span>production<span class="w"> </span>-c<span class="w"> </span>/RAILS_ROOT/config/unicorn.rb
-</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>user<span class="w">  </span><span class="m">5555</span><span class="w"> </span><span class="m">0</span>.0<span class="w"> </span><span class="m">10</span>.7<span class="w"> </span><span class="m">552648</span><span class="w"> </span><span class="m">182308</span><span class="w">   </span>?<span class="w">  </span>Sl<span class="w">  </span>Aug16<span class="w">  </span><span class="m">0</span>:50<span class="w">  </span>unicorn<span class="w"> </span>worker<span class="o">[</span><span class="m">4</span><span class="o">]</span><span class="w"> </span>-D<span class="w"> </span>-E<span class="w"> </span>production<span class="w"> </span>-c<span class="w"> </span>/RAILS_ROOT/config/unicorn.rb
-</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>user<span class="w">  </span><span class="m">6666</span><span class="w"> </span><span class="m">0</span>.0<span class="w"> </span><span class="m">9</span>.3<span class="w"> </span><span class="m">402900</span><span class="w">  </span><span class="m">158168</span><span class="w">   </span>?<span class="w">  </span>Sl<span class="w">  </span>Aug16<span class="w">  </span><span class="m">0</span>:16<span class="w">  </span>unicorn<span class="w"> </span>master<span class="w"> </span>-D<span class="w"> </span>-E<span class="w"> </span>production<span class="w"> </span>-c<span class="w"> </span>/RAILS_ROOT/config/unicorn.rb
-</span></code></pre></div>
-</details>
-<p>%MEMの行にメモリの消費量(％)、RSSの行に実際のRSS値(kB)が書いてあります。
-この例だと、各 unicorn の worker が 180MB 程使ってる事がわかります。
-RSS値を足し上げれば、トータルの消費量が計算できます。</p>
-<p><div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a># ps aux | grep unicor[n] | awk &#39;{sum += $6}END{print sum}&#39;
-</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>=&gt; 1050436
-</span></code></pre></div>
-1.05GB.. 結構使ってる。。</p>
-<h3 id="2-pmap-x-pid">方法2. pmap -x [PID]<a class="headerlink" href="#2-pmap-x-pid" title="Permanent link">&para;</a></h3>
-<p>pmap はプロセスのアドレス空間マッピング情報を閲覧するコマンドですが、-x をつける事でメモリ割り当ての量も表示できます。</p>
-<details class="info" open="open">
-<summary>Info</summary>
-<div class="language-shell highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="c1"># pmap -x 1111</span>
-</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>Address<span class="w">           </span>Kbytes<span class="w">     </span>RSS<span class="w">   </span>Dirty<span class="w"> </span>Mode<span class="w">   </span>Mapping
-</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="m">0000000000400000</span><span class="w">       </span><span class="m">0</span><span class="w">       </span><span class="m">4</span><span class="w">       </span><span class="m">0</span><span class="w"> </span>r-x--<span class="w">  </span>ruby
-</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="m">0000000000600000</span><span class="w">       </span><span class="m">0</span><span class="w">       </span><span class="m">4</span><span class="w">       </span><span class="m">4</span><span class="w"> </span>r----<span class="w">  </span>ruby
-</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>...（中略）...
-</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>ffffffffff600000<span class="w">       </span><span class="m">0</span><span class="w">       </span><span class="m">0</span><span class="w">       </span><span class="m">0</span><span class="w"> </span>r-x--<span class="w">    </span><span class="o">[</span><span class="w"> </span>anon<span class="w"> </span><span class="o">]</span>
-</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>----------------<span class="w">  </span>------<span class="w">  </span>------<span class="w">  </span>------
-</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>total<span class="w"> </span>kB<span class="w">          </span><span class="m">479180</span><span class="w">  </span><span class="m">177448</span><span class="w">  </span><span class="m">172868</span>
-</span></code></pre></div>
-</details>
-<p>最終行に、RSS値の合計が表示されます(kB)。</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>$ cat /tmp/unicorn.pid | xargs pmap -x | tail -n1 | tr -s &#39; &#39; | cut -d &#39; &#39; -f 4 =&gt; 177448
-</span></code></pre></div>
-<h3 id="3-cat-procpidsmaps">方法3. cat /proc/[PID]/smaps<a class="headerlink" href="#3-cat-procpidsmaps" title="Permanent link">&para;</a></h3>
-<p>こちらもPIDがわかれば、RSS値とPSS値がわかります。</p>
-<p><code>/proc/[PID]/smaps</code> では仮想メモリ空間の各アドレスにマッピングされた領域の状態を一覧で参照できます。</p>
-<div class="language-shell highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="c1"># cat /proc/1111/smaps | less</span>
-</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="m">00400000</span>-00401000<span class="w"> </span>r-xp<span class="w"> </span><span class="m">00000000</span><span class="w"> </span>ca:01<span class="w"> </span><span class="m">35818</span><span class="w">  </span>/RUBY_PATH/bin/ruby
-</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>Size:<span class="w">                  </span><span class="m">4</span><span class="w"> </span>kB
-</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>Rss:<span class="w">                   </span><span class="m">4</span><span class="w"> </span>kB
-</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>Pss:<span class="w">                   </span><span class="m">0</span><span class="w"> </span>kB
-</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>Shared_Clean:<span class="w">          </span><span class="m">4</span><span class="w"> </span>kB
-</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a>Shared_Dirty:<span class="w">          </span><span class="m">0</span><span class="w"> </span>kB
-</span><span id="__span-9-8"><a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a>Private_Clean:<span class="w">         </span><span class="m">0</span><span class="w"> </span>kB
-</span><span id="__span-9-9"><a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a>Private_Dirty:<span class="w">         </span><span class="m">0</span><span class="w"> </span>kB
-</span><span id="__span-9-10"><a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a>Referenced:<span class="w">            </span><span class="m">4</span><span class="w"> </span>kB
-</span><span id="__span-9-11"><a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a>Anonymous:<span class="w">             </span><span class="m">0</span><span class="w"> </span>kB
-</span><span id="__span-9-12"><a id="__codelineno-9-12" name="__codelineno-9-12" href="#__codelineno-9-12"></a>AnonHugePages:<span class="w">         </span><span class="m">0</span><span class="w"> </span>kB
-</span><span id="__span-9-13"><a id="__codelineno-9-13" name="__codelineno-9-13" href="#__codelineno-9-13"></a>Swap:<span class="w">                  </span><span class="m">0</span><span class="w"> </span>kB
-</span><span id="__span-9-14"><a id="__codelineno-9-14" name="__codelineno-9-14" href="#__codelineno-9-14"></a>KernelPageSize:<span class="w">        </span><span class="m">4</span><span class="w"> </span>kB
-</span><span id="__span-9-15"><a id="__codelineno-9-15" name="__codelineno-9-15" href="#__codelineno-9-15"></a>MMUPageSize:<span class="w">           </span><span class="m">4</span><span class="w"> </span>kB
-</span><span id="__span-9-16"><a id="__codelineno-9-16" name="__codelineno-9-16" href="#__codelineno-9-16"></a>Locked:<span class="w">                </span><span class="m">0</span><span class="w"> </span>kB
-</span><span id="__span-9-17"><a id="__codelineno-9-17" name="__codelineno-9-17" href="#__codelineno-9-17"></a><span class="m">00600000</span>-00601000<span class="w"> </span>r--p<span class="w"> </span><span class="m">00000000</span><span class="w"> </span>ca:01<span class="w"> </span><span class="m">35818</span><span class="w">  </span>/RUBY_PATH/bin/ruby
-</span><span id="__span-9-18"><a id="__codelineno-9-18" name="__codelineno-9-18" href="#__codelineno-9-18"></a>Size:<span class="w">                  </span><span class="m">4</span><span class="w"> </span>kB
-</span><span id="__span-9-19"><a id="__codelineno-9-19" name="__codelineno-9-19" href="#__codelineno-9-19"></a>Rss:<span class="w">                   </span><span class="m">4</span><span class="w"> </span>kB
-</span><span id="__span-9-20"><a id="__codelineno-9-20" name="__codelineno-9-20" href="#__codelineno-9-20"></a>Pss:<span class="w">                   </span><span class="m">0</span><span class="w"> </span>kB
-</span><span id="__span-9-21"><a id="__codelineno-9-21" name="__codelineno-9-21" href="#__codelineno-9-21"></a>Shared_Clean:<span class="w">          </span><span class="m">0</span><span class="w"> </span>kB
-</span><span id="__span-9-22"><a id="__codelineno-9-22" name="__codelineno-9-22" href="#__codelineno-9-22"></a>...（後略）...
-</span></code></pre></div>
-<p>こちらのRssを足し上げれば、実際の値。</p>
-<div class="language-shell highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>Rss
-</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="c1"># cat /proc/1111/smaps | awk &#39;/^Rss/{sum += $2}END{print sum}&#39;</span>
-</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="o">=</span>&gt;<span class="w"> </span><span class="m">177448</span><span class="o">(</span>kB<span class="o">)</span>
-</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>
-</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>Pss
-</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="c1"># cat /proc/1111/smaps | awk &#39;/^Pss/{sum += $2}END{print sum}&#39;</span>
-</span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a><span class="o">=</span>&gt;<span class="w"> </span><span class="m">107824</span><span class="o">(</span>kB<span class="o">)</span>
-</span><span id="__span-10-8"><a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a>
-</span><span id="__span-10-9"><a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a>unicorn<span class="w"> </span>のRss値合計
-</span><span id="__span-10-10"><a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a><span class="c1"># ps aux | grep unicor[n] | awk &#39;{print $2}&#39; | xargs -i% cat /proc/%/smaps | awk &#39;/^Rss/{sum += $2}END{print sum}&#39;</span>
-</span></code></pre></div>
+<table>
+<thead>
+<tr>
+<th align="left">隔离级</th>
+<th>脏读可能性</th>
+<th>不可重复读可能性</th>
+<th>幻读可能性</th>
+<th>加锁读</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">READ-UNCOMMITTED</td>
+<td>是</td>
+<td>是</td>
+<td>是</td>
+<td>否</td>
+</tr>
+<tr>
+<td align="left">READ-COMMITTED</td>
+<td>否</td>
+<td>是</td>
+<td>是</td>
+<td>否</td>
+</tr>
+<tr>
+<td align="left">REPEATABLE-READ</td>
+<td>否</td>
+<td>否</td>
+<td>是 (innodb除外)</td>
+<td>否</td>
+</tr>
+<tr>
+<td align="left">SERIALIZABLE</td>
+<td>否</td>
+<td>否</td>
+<td>否</td>
+<td>是</td>
+</tr>
+</tbody>
+</table>
 
 
 
