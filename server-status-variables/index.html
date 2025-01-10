@@ -9,17 +9,17 @@
       
       
       
-        <link rel="prev" href="../iptables_6/">
+        <link rel="prev" href="../Explain%E8%AF%A6%E8%A7%A3%E4%B8%8E%E7%B4%A2%E5%BC%95%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/">
       
       
-        <link rel="next" href="../iptables_8/">
+        <link rel="next" href="../mysql/">
       
       <link rel="icon" href="../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.9">
     
     
       
-        <title>iptables扩展之udp扩展与icmp扩展(7) - 总有刁民想要害朕</title>
+        <title>MySQL - 总有刁民想要害朕</title>
       
     
     
@@ -61,7 +61,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#iptables7iptablesudpicmp" class="md-skip">
+        <a href="#_1" class="md-skip">
           Skip to content
         </a>
       
@@ -96,7 +96,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              iptables扩展之udp扩展与icmp扩展(7)
+              MySQL
             
           </span>
         </div>
@@ -447,14 +447,16 @@
 
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" checked>
       
       
         
@@ -503,7 +505,7 @@
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="true">
         <label class="md-nav__title" for="__nav_8">
           <span class="md-nav__icon md-icon"></span>
           MySQL
@@ -542,11 +544,107 @@
               
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../server-status-variables/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Mysqlサーバーステータス変数
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         Mysqlサーバーステータス変数
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    主なステータス変数
+  </a>
+  
+    <nav class="md-nav" aria-label="主なステータス変数">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    クエリキャッシュのヒット率計算
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#show-processlist" class="md-nav__link">
+    SHOW PROCESSLIST
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#show-binary-logs" class="md-nav__link">
+    SHOW BINARY LOGS
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#show-binlog-events" class="md-nav__link">
+    SHOW BINLOG EVENTS
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#show-master-status" class="md-nav__link">
+    SHOW MASTER STATUS
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#show-slave-status" class="md-nav__link">
+    SHOW SLAVE STATUS
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#show-slave-hosts" class="md-nav__link">
+    SHOW SLAVE HOSTS
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1248,16 +1346,14 @@
 
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_15" checked>
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_15" >
       
       
         
@@ -1298,7 +1394,7 @@
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_15_label" aria-expanded="true">
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_15_label" aria-expanded="false">
         <label class="md-nav__title" for="__nav_15">
           <span class="md-nav__icon md-icon"></span>
           iptables
@@ -1407,86 +1503,11 @@
               
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          iptables扩展之udp扩展与icmp扩展(7)
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../iptables_7/" class="md-nav__link">
         iptables扩展之udp扩展与icmp扩展(7)
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#udp" class="md-nav__link">
-    udp扩展
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#icmp" class="md-nav__link">
-    icmp扩展
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    小结
-  </a>
-  
-    <nav class="md-nav" aria-label="小结">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#udp_1" class="md-nav__link">
-    udp扩展
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#icmp_1" class="md-nav__link">
-    icmp扩展
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -2222,37 +2243,58 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#udp" class="md-nav__link">
-    udp扩展
+  <a href="#_2" class="md-nav__link">
+    主なステータス変数
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#icmp" class="md-nav__link">
-    icmp扩展
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    小结
-  </a>
-  
-    <nav class="md-nav" aria-label="小结">
+    <nav class="md-nav" aria-label="主なステータス変数">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#udp_1" class="md-nav__link">
-    udp扩展
+  <a href="#_3" class="md-nav__link">
+    クエリキャッシュのヒット率計算
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#icmp_1" class="md-nav__link">
-    icmp扩展
+  <a href="#show-processlist" class="md-nav__link">
+    SHOW PROCESSLIST
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#show-binary-logs" class="md-nav__link">
+    SHOW BINARY LOGS
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#show-binlog-events" class="md-nav__link">
+    SHOW BINLOG EVENTS
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#show-master-status" class="md-nav__link">
+    SHOW MASTER STATUS
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#show-slave-status" class="md-nav__link">
+    SHOW SLAVE STATUS
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#show-slave-hosts" class="md-nav__link">
+    SHOW SLAVE HOSTS
   </a>
   
 </li>
@@ -2277,65 +2319,296 @@
                   
 
 
-<h1 id="iptables7iptablesudpicmp">iptables详解（7）：iptables扩展之udp扩展与icmp扩展<a class="headerlink" href="#iptables7iptablesudpicmp" title="Permanent link">&para;</a></h1>
-<p>在本博客中，从理论到实践，系统的介绍了iptables，如果你想要从头开始了解iptables，可以查看iptables文章列表，直达链接如下</p>
-<p><a href="https://www.zsythink.net/archives/tag/iptables/">iptables零基础快速入门系列</a></p>
-<p>前文中总结了iptables的tcp扩展模块，此处，我们来总结一下另外两个跟协议有关的常用的扩展模块，udp扩展与icmp扩展。</p>
-<h2 id="udp">udp扩展<a class="headerlink" href="#udp" title="Permanent link">&para;</a></h2>
-<p>我们先来说说udp扩展模块，这个扩展模块中能用的匹配条件比较少，只有两个，就是–sport与–dport，即匹配报文的源端口与目标端口。</p>
-<p>没错，tcp模块中也有这两个选项，名称都一模一样。</p>
-<p>只不过udp扩展模块的–sport与–dport是用于匹配UDP协议报文的源端口与目标端口，比如，放行samba服务的137与138这两个UDP端口，示例如下</p>
-<p><img alt="" src="/assets/iptables/img/050117_1112_1.png" /></p>
-<p>前文说明过，当使用扩展匹配条件时，如果未指定扩展模块，iptables会默认调用与”-p”对应的协议名称相同的模块，所以，当使用”-p udp”时，可以省略”-m udp”，示例如下。</p>
-<p><img alt="" src="/assets/iptables/img/050117_1112_2.png" /></p>
-<p>udp扩展中的–sport与–dport同样支持指定一个连续的端口范围，示例如下</p>
-<p><img alt="" src="/assets/iptables/img/050117_1112_3.png" /></p>
-<p>上图中的配置表示137到157之间的所有udp端口全部对外开放，其实与tcp扩展中的使用方法相同。</p>
-<p>但是udp中的–sport与–dport也只能指定连续的端口范围，并不能一次性指定多个离散的端口，没错，聪明如你一定想到，使用之前总结过的multiport扩展模块，即可指定多个离散的UDP端口，如果你忘了multiport模块怎样使用，请回顾前文。</p>
-<p>总之有了前文的基础，再理解上述示例就容易多了，此处不再对udp模块的–sport与–dport进行赘述。</p>
-<h2 id="icmp">icmp扩展<a class="headerlink" href="#icmp" title="Permanent link">&para;</a></h2>
-<p>最常用的tcp扩展、udp扩展已经总结完毕，现在聊聊icmp扩展，没错，看到icmp，你肯定就想到了ping命令，因为ping命令使用的就是icmp协议。</p>
-<p>ICMP协议的全称为Internet Control Message Protocol，翻译为互联网控制报文协议，它主要用于探测网络上的主机是否可用，目标是否可达，网络是否通畅，路由是否可用等。</p>
-<p>我们平常使用ping命令ping某主机时，如果主机可达，对应主机会对我们的ping请求做出回应（此处不考虑禁ping等情况），也就是说，我们发出ping请求，对方回应ping请求，虽然ping请求报文与ping回应报文都属于ICMP类型的报文，但是如果在概念上细分的话，它们所属的类型还是不同的，我们发出的ping请求属于类型8的icmp报文，而对方主机的ping回应报文则属于类型0的icmp报文，根据应用场景的不同，icmp报文被细分为如下各种类型。</p>
-<p><img alt="" src="/assets/iptables/img/050117_1112_4.png" /></p>
-<p>从上图可以看出，所有表示”目标不可达”的icmp报文的type码为3，而”目标不可达”又可以细分为多种情况，是网络不可达呢？还是主机不可达呢？再或者是端口不可达呢？所以，为了更加细化的区分它们，icmp对每种type又细分了对应的code，用不同的code对应具体的场景，  所以，我们可以使用type/code去匹配具体类型的ICMP报文，比如可以使用”3/1″表示主机不可达的icmp报文。</p>
-<p>上图中的第一行就表示ping回应报文，它的type为0，code也为0，从上图可以看出，ping回应报文属于查询类（query）的ICMP报文，从大类上分，ICMP报文还能分为查询类与错误类两大类，目标不可达类的icmp报文则属于错误类报文。</p>
-<p>而我们发出的ping请求报文对应的type为8，code为0。</p>
-<p>了解完上述概念，就好办了，我们来看一些应用场景。</p>
-<p>假设，我们现在想要禁止所有icmp类型的报文进入本机，那么我们可以进行如下设置。</p>
-<p><img alt="" src="/assets/iptables/img/050117_1112_5.png" /></p>
-<p>上例中，我们并没有使用任何扩展匹配条件，我们只是使用”-p icmp”匹配了所有icmp协议类型的报文。</p>
-<p>如果进行了上述设置，别的主机向我们发送的ping请求报文无法进入防火墙，我们向别人发送的ping请求对应的回应报文也无法进入防火墙。所以，我们既无法ping通别人，别人也无法ping通我们。</p>
-<p>假设，此刻需求有变，我们只想要ping通别人，但是不想让别人ping通我们，刚才的配置就不能满足我们了，我们则可以进行如下设置（此处不考虑禁ping的情况）</p>
-<p><img alt="" src="/assets/iptables/img/050117_1112_6.png" /></p>
-<p>上图中，使用”-m icmp”表示使用icmp扩展，因为上例中使用了”-p icmp”，所以”-m icmp”可以省略，使用”–icmp-type”选项表示根据具体的type与code去匹配对应的icmp报文，而上图中的”–icmp-type 8/0″表示icmp报文的type为8，code为0才会被匹配到，也就是只有ping请求类型的报文才能被匹配到，所以，别人对我们发起的ping请求将会被拒绝通过防火墙，而我们之所以能够ping通别人，是因为别人回应我们的报文的icmp type为0，code也为0，所以无法被上述规则匹配到，所以我们可以看到别人回应我们的信息。</p>
-<p>因为type为8的类型下只有一个code为0的类型，所以我们可以省略对应的code，示例如下</p>
-<p><img alt="" src="/assets/iptables/img/050117_1112_7.png" /></p>
-<p>除了能够使用对应type/code匹配到具体类型的icmp报文以外，我们还能用icmp报文的描述名称去匹配对应类型的报文，示例如下</p>
-<p><img alt="" src="/assets/iptables/img/050117_1112_8.png" /></p>
-<p>没错，上例中使用的 –icmp-type “echo-request”与 –icmp-type 8/0的效果完全相同，参考本文最上方的表格即可获取对应的icmp类型的描述名称。</p>
-<p><img alt="" src="/assets/iptables/img/050117_1112_9.png" /></p>
-<p>注意：名称中的”空格”需要替换为”-“。</p>
-<h2 id="_1">小结<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
-<h3 id="udp_1">udp扩展<a class="headerlink" href="#udp_1" title="Permanent link">&para;</a></h3>
-<p>常用的扩展匹配条件</p>
-<p>–sport：匹配udp报文的源地址</p>
-<p>–dport：匹配udp报文的目标地址</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>#示例
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>iptables -t filter -I INPUT -p udp -m udp --dport 137 -j ACCEPT
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>iptables -t filter -I INPUT -p udp -m udp --dport 137:157 -j ACCEPT
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>#可以结合multiport模块指定多个离散的端口
+<h1 id="_1">サーバーステータス変数<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<ul>
+<li><a href="https://dev.mysql.com/doc/refman/8.0/ja/server-status-variables.html">原文</a></li>
+<li><a href="https://kikai.hatenablog.jp/entry/20110909/1315546492">参考サイト</a></li>
+</ul>
+<p>MySQL サーバーは、その操作に関する情報を提供する多くのステータス変数を保持します。 これらの変数およびその値は、SHOW [GLOBAL | SESSION] STATUS ステートメントを使用して表示できます (セクション13.7.7.37「SHOW STATUS ステートメント」を参照してください)。 オプションの GLOBAL キーワードはすべての接続にわたって値を集計し、SESSION は現在の接続についての値を表示します。</p>
+<p><div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>mysql&gt; SHOW GLOBAL STATUS;
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>+-----------------------------------+------------+
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>| Variable_name                     | Value      |
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>+-----------------------------------+------------+
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>| Aborted_clients                   | 0          |
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>| Aborted_connects                  | 0          |
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>| Bytes_received                    | 155372598  |
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>| Bytes_sent                        | 1176560426 |
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>...
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>| Connections                       | 30023      |
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>| Created_tmp_disk_tables           | 0          |
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>| Created_tmp_files                 | 3          |
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>| Created_tmp_tables                | 2          |
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>...
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>| Threads_created                   | 217        |
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>| Threads_running                   | 88         |
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>| Uptime                            | 1389872    |
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>+-----------------------------------+------------+
 </span></code></pre></div>
-<h3 id="icmp_1">icmp扩展<a class="headerlink" href="#icmp_1" title="Permanent link">&para;</a></h3>
-<p>常用的扩展匹配条件</p>
-<p>–icmp-type：匹配icmp报文的具体类型</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>#示例
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>iptables -t filter -I INPUT -p icmp -m icmp --icmp-type 8/0 -j REJECT
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>iptables -t filter -I INPUT -p icmp --icmp-type 8 -j REJECT
-</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>iptables -t filter -I OUTPUT -p icmp -m icmp --icmp-type 0/0 -j REJECT
-</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>iptables -t filter -I OUTPUT -p icmp --icmp-type 0 -j REJECT
-</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>iptables -t filter -I INPUT -p icmp --icmp-type &quot;echo-request&quot; -j REJECT
+多くのステータス変数は、FLUSH STATUS ステートメントで 0 にリセットされます。</p>
+<p>グローバルステータス変数はmysqldが起動してから作成されたすべてのセッションにおけるステータス変数の合計であるが、
+接続中のセッションのステータス変数が動的に反映されるわけではなく、次のタイミングで反映される。</p>
+<p><strong>・セッション終了時</strong>
+<strong>・FLUSH STATUSを実行したとき</strong>
+<strong>・SHOW GLOBAL STATUSを実行したとき</strong></p>
+<p>SHOW GLOBAL STATUSを実行することで、排他制御が行われステータス変数がマージされる。
+つまり、むやみにSHOW GLOBAL STATUSを実行すると性能低下に繋がる可能性があるので気を付ける。
+また、このコマンドで表示される値はmysqldが起動してからの累積なので、現時点の瞬間的な負荷状況を反映しているわけではない。
+負荷状況を確認するには、一定の間隔をあけて2回SHOW GLOBAL STATUSを実行し、その差分をみるのが有効。</p>
+<h3 id="_2">主なステータス変数<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Aborted_clients</th>
+<th>接続が終了する前にクライアントが切断した回数。クライアントプログラムのクラッシュやネットワーク不調時に加算される</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Aborted_conncts</td>
+<td>クライアントがログインに失敗した回数。この値が異常に増えていた場合、不正ログインを試みている可能性がある。</td>
+</tr>
+<tr>
+<td>Bytes_received/Bytes_sent</td>
+<td>ネットワークの送受信バイト数</td>
+</tr>
+<tr>
+<td>Com_xxx</td>
+<td>各コマンドを実行した回数。サーバ負荷が更新メインなのか参照メインなのかを知る手がかりになる。</td>
+</tr>
+<tr>
+<td>Connections</td>
+<td>クライアントが接続した回数</td>
+</tr>
+<tr>
+<td>Created_tmp_disk_tables</td>
+<td>メモリ内のテンポラリテーブルにデータが収まらず、MyISAMを用いたテンポラリテーブルが作成された回数</td>
+</tr>
+<tr>
+<td>Handler_update</td>
+<td>ストレージエンジンに対して、行の更新要求が出された回数</td>
+</tr>
+<tr>
+<td>Handler_write</td>
+<td>ストレージエンジンに対して、行の挿入要求が出された回数</td>
+</tr>
+<tr>
+<td>Handler_delete</td>
+<td>ストレージエンジンに対して、行の削除要求が出された回数</td>
+</tr>
+<tr>
+<td>Handler_read_first</td>
+<td>ストレージエンジンから、インデックスの先頭行が取得された回数。インデックススキャン時に加算。</td>
+</tr>
+<tr>
+<td>Handler_read_rnd</td>
+<td>ストレージエンジンから、行の位置に基づいて行を読み込んだ回数。テーブルスキャン時に加算</td>
+</tr>
+<tr>
+<td>Handler_read_rnd_next</td>
+<td>ストレージエンジンから、行の位置に基づいて行を読み込んだ回数。Handler_read_rndの次の行を読み込むと加算。</td>
+</tr>
+<tr>
+<td>Max_used_connection</td>
+<td>MySQL serverの同時接続数のピーク値</td>
+</tr>
+<tr>
+<td>Open_files</td>
+<td>現在オープンされているファイル数</td>
+</tr>
+<tr>
+<td>Open_tables</td>
+<td>現在オープンされているテーブル数</td>
+</tr>
+<tr>
+<td>Opened_table_definitions</td>
+<td>現在までに開かれたテーブル定義ファイルを累積値。この値が急激に増えていた場合テーブル定義キャッシュが少なすぎる兆候</td>
+</tr>
+<tr>
+<td>Opened_tables</td>
+<td>現在までに開かれたテーブルの累積値。この値が急激に増えていた場合テーブルキャッシュが少なすぎる兆候</td>
+</tr>
+<tr>
+<td>Qcache_xxx</td>
+<td>クエリキャッシュ関連の項目</td>
+</tr>
+<tr>
+<td>Select_full_join</td>
+<td>インデックスを用いないJOINが行われた回数</td>
+</tr>
+<tr>
+<td>Select_full_range_join</td>
+<td>範囲検索によってJOINが行われた回数</td>
+</tr>
+<tr>
+<td>Select_range_check</td>
+<td>Extraフィールドに「range checked for each record(index map : N)」と表示されるようなクエリを実行した回数。Select_full_joinよりは高速なクエリだが、改善する必要あり</td>
+</tr>
+<tr>
+<td>Select_scan</td>
+<td>JOIN時の先頭のテーブル、または単一のテーブルからのクエリにおいて全件スキャンが行われた回数</td>
+</tr>
+<tr>
+<td>Slow_queries</td>
+<td>実行に時間のかかったクエリ</td>
+</tr>
+<tr>
+<td>Sort_merge_passes</td>
+<td>ソート処理においてテンポラリファイル上でソートされた行の結果をマージした回数。この値が増えるのはソートバッファが足りない兆候</td>
+</tr>
+<tr>
+<td>Threads_connected</td>
+<td>現在接続中のクライアント数</td>
+</tr>
+<tr>
+<td>Threads_created</td>
+<td>mysqldが起動してから現在までに作成されたスレッド数。急激に増えていたらスレッドキャッシュを増やす</td>
+</tr>
+<tr>
+<td>Threads_running</td>
+<td>現在何かの処理をしているクライアント数。Threads_connectedの中から処理を行っているクライアントのみをカウント</td>
+</tr>
+</tbody>
+</table>
+<h4 id="_3">クエリキャッシュのヒット率計算<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h4>
+<p>Qcache_hits / ( Qcache_hits + Com_select )</p>
+<p>Qcache_hitsはクエリキャッシュにヒットして、キャッシュからクライアントへ結果送信された回数。
+キャッシュミスが発生した場合、MySQL ServerはSELECT文を実行した際に、Com_selectが加算される。
+似た結果を出す式として、
+<strong> Qcache_hits / ( Qcache_hits + Qcache_inserts + Qcache_not_cached ) </strong></p>
+<p>SHOW GLOBAL STATUS LIKE 'Qcache%'コマンドで表示した項目だけでヒット率計算ができるのでこちらのほうが便利。</p>
+<p>クエリキャッシュへ結果がキャッシュされるとQcache_insertsが加算され、されなかった場合は、Qcache_not_cachedが加算される。
+7〜8割程度のヒット率が出ていれば、それなりの効果が期待できる。</p>
+<p>クエリキャッシュのヒット率が悪い場合、Qcache_lowmem_prunesが多くなっていないか確認する。
+Qcache_lowmem_prunesはクエリキャッシュに割り当てられたメモリが足りないために、クエリキャッシュからエントリを削除した回数。
+クエリキャッシュが溢れているので、query_cache_sizeを増やすのが良い。
+Qcache_not_cachedが多い場合、明示的にSQL_NO_CACHEでキャッシュしないように指定しているなら問題はない。
+その場合は上記式からQcache_not_cachedを除外して計算する。
+明示的に指示していない状態でQcache_not_cachedが多い場合、SELECTの結果セットが大きすぎてキャッシュに格納されていないので、
+クエリキャッシュに追加できる最大サイズであるquery_cache_limitを増やす。
+これらを試してもヒット率が改善しない場合、単純に更新系処理が多いためクエリキャッシュが効率よく利用されていない可能性がある、
+その場合クエリキャッシュをOFFにしてしまうのがよい。</p>
+<h4 id="show-processlist">SHOW PROCESSLIST<a class="headerlink" href="#show-processlist" title="Permanent link">&para;</a></h4>
+<p>現在接続中のスレッドを一覧で表示する。
+Threads_connectedの内訳を表示するコマンド。</p>
+<h4 id="show-binary-logs">SHOW BINARY LOGS<a class="headerlink" href="#show-binary-logs" title="Permanent link">&para;</a></h4>
+<p>バイナリログが有効になっている場合、存在するバイナリログを表示。</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>mysql&gt; show binary logs;
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>+------------------+-----------+
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>| Log_name         | File_size |
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>+------------------+-----------+
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>| mysql-bin.000001 |     57797 |
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>+------------------+-----------+
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>1 row in set (0.00 sec)
 </span></code></pre></div>
+<h4 id="show-binlog-events">SHOW BINLOG EVENTS<a class="headerlink" href="#show-binlog-events" title="Permanent link">&para;</a></h4>
+<p>記録された更新系クエリを表示するコマンド。
+デフォルトではもっとも古いバイナリログを表示する。</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>mysql&gt; SHOW BINLOG EVENTS [IN &#39;ログファイル名&#39;] [FROM 開始位置] [LIMIT [オフセット,]エントリ数]
+</span></code></pre></div>
+<p>かなりの数が表示される場合があるので、LIMIT句でエントリ数を絞ったほうが良い。
+レプリケーション失敗したときに、その前のクエリを調べるといった用途で役に立つ。</p>
+<h4 id="show-master-status">SHOW MASTER STATUS<a class="headerlink" href="#show-master-status" title="Permanent link">&para;</a></h4>
+<p>レプリケーションに必要なバイナリログ情報を表示する。</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>mysql&gt; show master status;
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>+------------------+----------+--------------+------------------+
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>| File             | Position | Binlog_Do_DB | Binlog_Ignore_DB |
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>+------------------+----------+--------------+------------------+
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>| mysql-bin.000001 |    57797 |              |                  |
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>+------------------+----------+--------------+------------------+
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>1 row in set (0.00 sec)
+</span></code></pre></div>
+<h4 id="show-slave-status">SHOW SLAVE STATUS<a class="headerlink" href="#show-slave-status" title="Permanent link">&para;</a></h4>
+<p>レプリケーションのステータスを表示するコマンド。
+コマンド実行時の各フィールドの説明は以下。</p>
+<table>
+<thead>
+<tr>
+<th>Slave_IO_State</th>
+<th>スレーブIOスレッドの状態。FailedやReconnectingなどが表示されていたら問題あり</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Master_Host</td>
+<td>接続するマスター情報</td>
+</tr>
+<tr>
+<td>Master_User</td>
+<td>〃</td>
+</tr>
+<tr>
+<td>Master_Port</td>
+<td>〃</td>
+</tr>
+<tr>
+<td>Connect_Retry</td>
+<td>スレーブIOスレッドが切断してからリトライするまでの時間。：デフォルト60秒</td>
+</tr>
+<tr>
+<td>Master_Log_File</td>
+<td>スレーブIOスレッドが読んでいるマスター上のログファイル名</td>
+</tr>
+<tr>
+<td>Read_Master_Log_Pos</td>
+<td>スレーブIOスレッドが読んでいるマスター上のログファイルの位置。レプリケーション遅延を知るには、スレーブ上でSHOW SLAVE STATUSを実行した際に表示されたファイル名と位置を、マスター上で実行したSHOW MASTER STATUSで表示される値と比べて判断する。</td>
+</tr>
+<tr>
+<td>Relay_Log_File</td>
+<td>スレーブSQLスレッドが実行しているSQL文が含まれるリレーログのファイル名とその中の位置</td>
+</tr>
+<tr>
+<td>Relay_Log_Pos</td>
+<td>〃</td>
+</tr>
+<tr>
+<td>Relay_Master_Log_File</td>
+<td>スレーブSQLスレッドが実行しているSQL文が含まれているマスターのバイナリログファイル名。SQLスレッドでエラーが発生した時に、マスター上でSHOW BINLOG EVENTSを実行してその直前に実行していたSQL文を確認するなどの対応ができる。</td>
+</tr>
+<tr>
+<td>Slave_IO_Running</td>
+<td>スレーブIOスレッドおよびスレーブSQLスレッドが動いているかどうかを示す。もしもどちらかがNoになっていた場合すぐにメンテナンスしたほうが良い。</td>
+</tr>
+<tr>
+<td>Slave_SQL_Running</td>
+<td>〃</td>
+</tr>
+<tr>
+<td>Last_Errno</td>
+<td>最後に発生したエラーのエラー番号</td>
+</tr>
+<tr>
+<td>Last_Error</td>
+<td>最後に発生したエラー内容</td>
+</tr>
+<tr>
+<td>Skip_Counter</td>
+<td>自動的にエラーをスキップする回数。グローバルシステム変数のsql_slave_skip_counterで設定。重複キーエラーなどをスキップしたいときに。</td>
+</tr>
+<tr>
+<td>Replicate_xxx</td>
+<td>スレーブ側のレプリケーションフィルタ</td>
+</tr>
+<tr>
+<td>Until_xxx</td>
+<td>UNTIL句を指定してSTART SLAVEを実行したときに表示される</td>
+</tr>
+<tr>
+<td>Master_SSL_xxx</td>
+<td>マスターへ接続するときに利用するSSL関係の情報</td>
+</tr>
+<tr>
+<td>Exec_Master_Log_Por</td>
+<td>スレーブSQLスレッドが実行しているSQL文に含まれているマスターのバイナリログファイルポジション。Relay_Master_Log_Fileに対応。</td>
+</tr>
+<tr>
+<td>Seconds_Behind_Master</td>
+<td>SQLスレッドがログの適用にどれだけ時間がかかっているかの値。リレーログ中に実行するべきSQL文が何もない場合は0になる。もしこの値が大きいならスレーブの更新性能が低すぎるということを示しているので、innodb_flush_log_at_trx_commit=2にするなどの更新処理が早くなるチューニングを施すべきである。</td>
+</tr>
+</tbody>
+</table>
+<h4 id="show-slave-hosts">SHOW SLAVE HOSTS<a class="headerlink" href="#show-slave-hosts" title="Permanent link">&para;</a></h4>
+<p><code>--report-host=スレーブホスト名</code> オプションを付けて起動したスレーブがマスター上でリストアップされる。
+スレーブが接続されているか一覧できるので、スレーブにはこのオプションをつけたほうが良い。</p>
 
 
 
